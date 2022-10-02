@@ -1,0 +1,14 @@
+astroid
+colorama
+imutils
+isort
+lazy-object-proxy
+mccabe
+numpy
+opencv-python
+pylint
+scipy
+six
+toml
+typed-ast
+wrapt
