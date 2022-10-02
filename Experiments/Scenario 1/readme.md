@@ -22,8 +22,10 @@
 
 Figure 1 above shows a possible scenario of an experiment. There are 3 actors, each having a tag in the pocket. Cameras C<sub>1</sub> and C<sub>2</sub> and anchors A<sub>1</sub> and A<sub>2</sub> are placed on the cabinets. The distance between C<sub>1</sub> and C<sub>2</sub> (resp. A<sub>1</sub> and A<sub>2</sub>) is equal to 10 m.
 
+Camera C<sub>3</sub> is placed in the corner next to the front door.
+
 Distance between Actor 1 and Actor 2 is equal to 2 m that corresponds to the violated distance according to COVID19 restrictions. Actor 2 and Actor 3 have distance 3 m that does not violate restrictions.
 
-All actors are moving along the dashed line shown on the Figure 1. Only Actor 3 has a more difficult path, because he needs to overcome obstacles in the form of cabinets.
+All actors are moving along the dashed line shown on the Figure 1. Actor A1 and Actor A2 walk together and talk to each other. 
 
-Camera C<sub>3</sub> is placed in the corner next to the front door.
+Actor 3 has a more difficult path, because he needs to overcome obstacles in the form of cabinets. He walks in the direction opposite to Actor 1 and Actor 2.
