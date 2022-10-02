@@ -29,3 +29,8 @@ Distance between Actor 1 and Actor 2 is equal to 2 m that corresponds to the vio
 All actors are moving along the dashed line shown on the Figure 1. Actor A1 and Actor A2 walk together and talk to each other. 
 
 Actor 3 has a more difficult path, because he needs to overcome obstacles in the form of cabinets. He walks in the direction opposite to Actor 1 and Actor 2.
+
+## Goal
+The goal of the experiment is to detect violated social distance (2 m) between each pair of actors (tags). 
+
+Actor 1 and Actor 2 walk together in the same direction. Actor 3 walks in opposite direction and has a distance of 3 meters from others. This may be used to calibrate software and hardware solutions.
