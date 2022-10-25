@@ -20,7 +20,7 @@
     <em>Figure 1. Schema of the Scenario 2</em>
 </p>
 
-Figure 1 above shows a possible scenario of an experiment. There are 3 actors, each having a tag in the pocket. Cameras C<sub>1</sub> and C<sub>2</sub> and anchors A<sub>1</sub> and A<sub>2</sub> are placed on the cabinets. The distance between C<sub>1</sub> and C<sub>2</sub> (resp. A<sub>1</sub> and A<sub>2</sub>) is equal to 10 m.
+Figure 1 above shows a possible scenario of an experiment. There are 3 actors, each having a tag in the pocket. Cameras C<sub>1</sub> and C<sub>2</sub> and anchors A<sub>1</sub> and A<sub>2</sub> are placed on the cabinets. The distance between C<sub>1</sub> and C<sub>2</sub> (resp. A<sub>1</sub> and A<sub>2</sub>) is equal to 10 m. Anchors are placed above actors.
 
 Camera C<sub>3</sub> is placed in the corner next to the front door. Camera C<sub>1</sub> is filming in the direction of front door. Cameras C<sub>2</sub> and C<sub>3</sub> are filming in the direction opposite to C<sub>1</sub>.
 
