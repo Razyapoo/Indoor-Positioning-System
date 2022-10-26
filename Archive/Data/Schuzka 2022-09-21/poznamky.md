@@ -2,6 +2,8 @@
 
 <h2 id="NN-matching">Neural network matching (based on [1])</h2>
 
+[1] is the main basic paper used as motivation.
+
 - How to check if detection is correct (without annotations)?
   - Run multiple NNs to detect people on the input video/image. The coincidence of several NNs can serve as an indicator that a person really exists.
   - Experiment shows that coincidence of 3 out of 5 NNs is better.
@@ -77,20 +79,13 @@ Using sensors we can configure video detection algorithm, and otherwise using vi
 - Obstacles that make difficult to detect person (such as auto, chair etc.)
 - How to determine real height of a person? (using door height?)
 
-- How to compute Focal Length and distance between people?
+- How to compute the distance between people?
     - Work in 3D space and compute the Euclidean distance between points (mine formula is not working)
-    - 
+    - measure the heigh and positions of other different objects in the image and use them to determine positions of the people
 
 <h1>Result of Master Thesis</h1>
 
 The result of the Master Thesis will consist of many tables containing comparisons of several methods, their precision and error values.
-
-
-
-
-
-
-
 
 
 
