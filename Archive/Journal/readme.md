@@ -27,5 +27,8 @@ It doesn't record all changes, but the most important.
   - Delay parameter was set to small value. When tag has computed the distance, it sent to the server ack to establish the connection. Tag didn't get the ack from server and started to compute new value. 
 
 - Updates:
-  - creation of state diagram (tag)
-  - implementation of load balancing algorithm to balance the overloading of anchors with tag requests
+  - state diagram for tag
+# Nov 1, 2022
+
+- Updates:
+  - state diagram for anchor
