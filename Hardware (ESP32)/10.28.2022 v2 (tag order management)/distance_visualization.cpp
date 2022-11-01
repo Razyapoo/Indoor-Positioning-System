@@ -11,6 +11,7 @@
 #include <netinet/in.h>
 #include <sys/time.h> //FD_SET, FD_ISSET, FD_ZERO macros
 #include <iostream>
+#include <fstream>
 	
 #define TRUE 1
 #define FALSE 0
@@ -21,8 +22,11 @@
 // bool readyToRead = true;
 
 uint8_t state = STATE_IDLE;
-char request[8] = { '\0' };
+char tagId[5];
+char request[8] = "REQUEST";
+char receivedJSON[1025];
 // size_t req_sz = sizeof request - 1;
+std::ofstream stream;
 
 int main(int argc , char *argv[])
 {
@@ -33,12 +37,13 @@ int main(int argc , char *argv[])
 	struct sockaddr_in address;
 		
 	char buffer[1025]; //data buffer of 1K
+	stream.open("output.txt");
 		
 	//set of socket descriptors
 	fd_set readfds;
 		
 	//a message
-	char *message = "ECHO Daemon v1.0 \r\n";
+	// char *message = "ECHO Daemon v1.0 \r\n";
 	
 	//initialise all client_socket[] to 0 so not checked
 	for (i = 0; i < max_clients; i++)
@@ -162,7 +167,7 @@ int main(int argc , char *argv[])
 				
 			if (FD_ISSET( sd , &readfds))
 			{
-				memset(&request, 0, sizeof(request));
+				// memset(&request, 0, sizeof(request));
 				memset(&buffer, 0, sizeof(buffer));
 				//Check if it was for closing , and also read the
 				//incoming message
@@ -182,68 +187,37 @@ int main(int argc , char *argv[])
 				//Echo back the message that came in
 				else
 				{
-					// printf("in else");
-					// printf(buffer);
-					// if (state == 1) {
-					// // 	printf("IDLE");
-					// // 	buffer[8] = '\0';
-					// // 	memcmp(&request, buffer, req_sz - 1);
-					// 	// printf(buffer);
-					// // 	printf(request);
-						
-					// 	if (request == "REQUEST") {
-							// printf("Received from, ip %s , port %d \n" ,
-							// 					inet_ntoa(address.sin_addr) , ntohs(address.sin_port));
-							// printf(buffer);
-							// send(sd, "OK", 2, 0);
-							// state = 2;
-					// 	}
-					// }
-					// else if (state == 2)
-					// {
-						//set the string terminating NULL byte on the end
-						//of the data read
-						
-						// send(sd , buffer , strlen(buffer) , 0 );
-						
-						// printf("Request: ");
-						// printf(request);
-						// printf("\n");
-						//printf("Buffer: ");
-						//printf(buffer);
+					if (state == STATE_IDLE && (memcmp(buffer + 5, request, sizeof(request)) == 0)) {
+						//printf("Received from, ip %s , port %d \n" ,
+						//					inet_ntoa(address.sin_addr) , ntohs(address.sin_port));
+						memcpy(tagId, buffer, sizeof(tagId));
+						send(sd, "ACCEPTED", 9, 0);
+						state = STATE_COMMUNICATION;
+
+					} else if (state == STATE_COMMUNICATION && (memcmp(buffer, tagId, sizeof(tagId)) == 0 )) {
+						// printf(buffer + 5);
 						//printf("\n");
-						strncpy(request, buffer, 8);
-						if (state == STATE_IDLE && (strcmp(request, "REQUEST") == 0)) {
-							//printf("Sate is IDLE. Receiving request. Sending ACK OK \n");
-							//printf("\n");
-							// if( send(sd, "OK", 3, 0) != strlen("OK") ) {
-							// 	perror("send");
-							// }
-							printf("Received from, ip %s , port %d \n" ,
-												inet_ntoa(address.sin_addr) , ntohs(address.sin_port));
-							send(sd, "OK", 3, 0);
-							state = STATE_COMMUNICATION;
-							memset(&request, 0, sizeof(request));
-						} else if (state == STATE_COMMUNICATION) {
-							//printf("Sate is COMMUNICATION. Receiving data. \n");
-							printf(buffer);
-							printf("\n");
-							send(sd, "RECEIVED", 9, 0);
-							state = STATE_IDLE;
-							// if( send(sd, "RECEIVED", 9, 0) != strlen("RECEIVED") ) {
-							// 	perror("send");
-							// }
-						}
-						// state = STATE_IDLE;
-					// }
-
-					// std::cout << "after";
+						// stream << buffer + 5 << "\n";
+						memcpy(buffer, buffer + 5, sizeof(buffer) - 5);
+						printf(buffer);
+						printf("\n");
+						time_t now = time(0);
+   						char *date = ctime(& now);
+						if (date[strlen(date)-1] == '\n') date[strlen(date)-1] = '\0';
+						// stream.write(date, sizeof(date));
+						// stream.write(": ", 2);
+						stream << date << ": ";
+						stream.write((char*)&buffer, sizeof(buffer));
+						stream.write("\n", 1);
+						// stream.close();
+						send(sd, "RECEIVED", 9, 0);
+						state = STATE_IDLE;
+						memset(&tagId, 0, sizeof(tagId));
+					}
 				}
-
-				// std::cout << valread;
 			}
 		}
 	}
-		
+	stream.close();
 	return 0;
 }

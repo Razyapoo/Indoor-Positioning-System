@@ -16,12 +16,12 @@
 
 
 /* WiFi settings */
-const char *ssid = "ASUS";
-const char *password = "cuni3103&";
-const char *host = "192.168.1.55";
-//const char *ssid = "iPhone Nyx";
-//const char *password = "Nera1998&";
-//const char *host = "172.20.10.3";
+//const char *ssid = "ASUS";
+//const char *password = "cuni3103&";
+//const char *host = "192.168.1.55";
+const char *ssid = "iPhone Nyx";
+const char *password = "Nera1998&";
+const char *host = "172.20.10.3";
 WiFiClient client;
 
 /* Edit tagId */
@@ -180,11 +180,11 @@ void calculateRange() {
  * Main *
  ********/
 void setup() {
-  //setupI2C();
   setupDW1000();
 #if DEBUG
   Serial.begin(115200);
 #endif // DEBUG
+
   String mc_addr = WiFi.macAddress();
   if (mc_addr == "70:B8:F6:D8:F6:48") {
     tagId = FLAG_TAG | 1;
@@ -195,21 +195,22 @@ void setup() {
   } else {
     Serial.println("Wrong tag MAC address.");
   }
+
   WiFi.mode(WIFI_STA);
   WiFi.setSleep(false);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
   {
-      delay(500);
-      Serial.print(".");
+    delay(500);
+    Serial.print(".");
   }
   Serial.println("Connected");
   if (client.connect(host, 30001))
   {
-      Serial.println("Success");
+    Serial.println("Success");
   } else {
-      Serial.println("Unsuccessfull connection");
-    }
+    Serial.println("Unsuccessfull connection");
+  }
     
   delay(1000);
   uwb_data = init_link(tagId);
@@ -219,6 +220,80 @@ void setup() {
 
 void loop() {
   curMillis = millis();
+
+
+  if (state == STATE_SCAN) {
+    PRINTLN(F("SCANNING..."));
+    for (idx_anchor = 0; idx_anchor < NUM_ANCHORS; idx_anchor++) {
+      delete_link(uwb_data, anchorId[idx_anchor]);
+      anchorId[idx_anchor] = ID_NONE;
+      distance[idx_anchor] = 0;
+    }
+
+    idx_anchor = 0;
+    num_anchors = 0;
+    transmitPing();
+    updateState(STATE_PONG);
+    return;
+  }
+
+  if (state == STATE_PONG
+      && ((lastSent && curMillis - lastSent > PONG_TIMEOUT_MS)
+          || curMillis - lastStateChange > 2 * PONG_TIMEOUT_MS)) {
+
+    if (num_anchors > 0) {
+      PRINT(num_anchors); PRINTLN(F(" are detected. Go to ROUNDROBIN state"));
+      idx_anchor = 0;
+      updateState(STATE_ROUNDROBIN);
+      return;
+
+    } else {
+      PRINTLN(F("No anchor is detected. Return to SCAN state..."));
+      updateState(STATE_SCAN);
+      return;
+
+    }
+  }
+
+  if (state == STATE_ROUNDROBIN) {
+
+    if (idx_anchor < num_anchors) {
+      PRINTLN(F("  Sending POLL..."));
+      transmitPoll();
+      updateState(STATE_POLLACK);
+
+    } else {
+      PRINTLN(F("  ROUNDROBIN is finished."));
+      if (toSend) updateState(STATE_SEND_REQUEST_TO_SERVER);
+      else updateState(STATE_SCAN);
+
+    }
+    return;
+  }
+
+  // Safety watchdog to avoid stuck in POLLACK state
+  if (state == STATE_POLLACK
+      && ((lastSent && curMillis - lastSent > POLLACK_TIMEOUT_MS)
+          || curMillis - lastStateChange > 2 * POLLACK_TIMEOUT_MS)) {
+    PRINTLN(F("POLLACK timeout.. No POLLACK were received..."));
+    updateRoundRobin();
+    return;
+  }
+
+  if (state == STATE_RANGEREPORT
+      && ((lastSent && curMillis - lastSent > RANGEREPORT_TIMEOUT_MS)
+          || curMillis - lastStateChange > 2 * RANGEREPORT_TIMEOUT_MS)) {
+    PRINTLN(F("RANGEREPORT timeout.. No RANGEREPORT were received..."));
+    updateRoundRobin();
+    return;
+  }
+
+
+
+
+
+
+
   // Safety watchdog to avoid stuck in PONG state
   // 1. If SPI tx interrupt captured (confirmed that PING is broadcasted)
   // 2. If SPI tx interrupt is not captured for some reason
@@ -227,28 +302,31 @@ void loop() {
   if (state == STATE_SEND_REQUEST_TO_SERVER) {
     PRINTLN(F("Server request"));
     if (client.connected()) { 
-      client.print("REQUEST");
+//      /PRINTLN((const char*)(tagId) + (const char*)SIG_REQUEST);
+      //char* msg = (char*)tagId;
+      //PRINTLN(msg);
+      //msg[sizeof(msg)] = '3';
+      client.print(String(tagId) + "3");
       updateState(STATE_REQUEST_ACK_FROM_SERVER);
     } else {
-      PRINTLN(F("Server is not available"));
+      PRINTLN(F("Server is not available."));
+      updateState(STATE_SCAN);
     }
   }
 
   if (state == STATE_REQUEST_ACK_FROM_SERVER) {
-      //&& ((lastSent && curMillis - lastSent > SERVER_TIMEOUT_MS)
-        //  || curMillis - lastStateChange > 2 * SERVER_TIMEOUT_MS)) {
-//    if (client.available()) ack = client.read();/
     ack = "";
-    delay(100);
-    while (client.available()) { 
-       delay(3);
-       char c = client.read();
-       ack += c;
-    } 
+    delay(30);
+    // while (client.available()) { 
+    //    delay(3);
+    //    char c = client.read();
+    //    ack += c;
+    // } 
+    if (client.available()) ack = client.read();
+    PRINTLN(F("ACK: "));
     PRINTLN(ack);
-    if (ack == "OK") {
-//    if (strcmp(ack, "OK") == 0) {
-        PRINTLN(F("Server response - OK"));
+    if (ack == "53") {
+        PRINTLN(F("Server response - ACCEPTED"));
         updateState(STATE_SEND_DISTANCE_TO_SERVER);
       }
     else {
@@ -259,66 +337,30 @@ void loop() {
   }
 
   if (state == STATE_SEND_DISTANCE_TO_SERVER) {
+    //delay(100);
     make_link_json(uwb_data, &all_json);
     client.print(all_json);
     ack = "";
-    delay(100);
-    while (client.available()) { 
-       delay(3);
-       char c = client.read();
-       ack += c;
-    }
-    if (ack == "RECEIVED") {
+    delay(30);
+    // while (client.available()) { 
+    //    delay(3);
+    //    char c = client.read();
+    //    ack += c;
+    // }
+    if (client.available()) ack = client.read();
+    PRINTLN(F("ACK: "));
+    PRINTLN(ack);
+    if (ack == "55") {
       toSend = false;
       PRINTLN(F("  UWB package sent"));
-      updateState(STATE_SCAN);
       ack = "";
     } else {
       PRINTLN(F("Server does't respond. Data was not send."));
       ack = "";
     }
+    updateState(STATE_SCAN);
   }
   
-  if (state == STATE_PONG
-      && ((lastSent && curMillis - lastSent > PONG_TIMEOUT_MS)
-          || curMillis - lastStateChange > 2 * PONG_TIMEOUT_MS)) {
-    //PRINTLN(F("PONG timeout"));
-    if (num_anchors < 2) {
-      // Seems not enough anchors exist (lack of deployment, collision, delayed tx)
-      //PRINTLN(F("  Not enough anchors scanned. Return to IDLE"));
-      updateState(STATE_SCAN);
-      return;
-    } else {
-      // 3 or more anchors are observed
-      // Proceed to two way ranging in a round robin manner
-      //PRINTLN(F("  Starting ROUNDROBIN..."));
-      idx_anchor = 0;
-      updateState(STATE_ROUNDROBIN);
-      return;
-    }
-  }
-  // Safety watchdog to avoid stuck in POLLACK state
-  // 1. If SPI tx interrupt captured (confirmed that POLL is sent)
-  // 2. If SPI tx interrupt is not captured for some reason
-  if (state == STATE_POLLACK
-      && ((lastSent && curMillis - lastSent > POLLACK_TIMEOUT_MS)
-          || curMillis - lastStateChange > 2 * POLLACK_TIMEOUT_MS)) {
-    PRINTLN(F("POLLACK timeout"));
-    //PRINTLN(F("  Return to ROUNDROBIN"));
-    updateRoundRobin();
-    return;
-  }
-  // Safety watchdog to avoid stuck in RANGEREPORT state
-  // 1. If SPI tx interrupt captured (confirmed that RANGE is sent)
-  // 2. If SPI tx interrupt is not captured for some reason
-  if (state == STATE_RANGEREPORT
-      && ((lastSent && curMillis - lastSent > RANGEREPORT_TIMEOUT_MS)
-          || curMillis - lastStateChange > 2 * RANGEREPORT_TIMEOUT_MS)) {
-    //PRINTLN(F("RANGEREPORT timeout"));
-    //PRINTLN(F("  Return to ROUNDROBIN"));
-    updateRoundRobin();
-    return;
-  }
   // Arduino didn't capture SIP tx/rx interrupts for more than RESET_TIMEOUT_MS
 //  if (!sentFrame && !receivedFrame && curMillis - lastActivity > RESET_TIMEOUT_MS) {
 //    ////PRINTLN(F("Seems transceiver not working. Re-init it."));
@@ -327,37 +369,7 @@ void loop() {
 //    return;
 //  }
 
-  if (state == STATE_SCAN) {
-    //PRINTLN(F("State: SCAN"));
-    //PRINTLN(F("  Initializing arrays..."));
-    for (idx_anchor = 0; idx_anchor < NUM_ANCHORS; idx_anchor++) {
-      delete_link(uwb_data, anchorId[idx_anchor]);
-      anchorId[idx_anchor] = ID_NONE;
-      distance[idx_anchor] = 0;
-    }
-    idx_anchor = 0;
-    num_anchors = 0;
-    //PRINTLN(F("  Sending PING..."));
-    transmitPing();
-    updateState(STATE_PONG);
-    return;
-  }
-
-  if (state == STATE_ROUNDROBIN) {
-    //PRINTLN(F("State: ROUNDROBIN"));
-    //PRINT(F("  idx_anchor: ")); PRINTLN(idx_anchor);
-    if (idx_anchor < num_anchors) {
-      PRINTLN(F("  Sending POLL..."));
-      transmitPoll();
-      updateState(STATE_POLLACK);
-    } else {
-      //PRINTLN(F("  Ranging all anchors. Return to IDLE"));
-      PRINT(F("  send to server idx_anchor: ")); PRINTLN(idx_anchor);
-      if (toSend) updateState(STATE_SEND_REQUEST_TO_SERVER);
-      else updateState(STATE_SCAN);
-    }
-    return;
-  }
+  
 
   // SPI tx interrupt is captured
   // Update some time variables, state
@@ -384,72 +396,57 @@ void loop() {
   //  Update some time variables, state
   // Extract DW1000 high-precision time value if needed
   if (receivedFrame) {
-    //PRINTLN(F("Received something"));
     receivedFrame = false;
     noteActivity();
     DW1000.getData(rxBuffer, FRAME_LEN);
 
     if (state == STATE_PONG) {
-      //PRINTLN(F("  State: PONG"));
       if (rxBuffer[0] != FTYPE_PONG) {
-        //PRINTLN(F("    Not PONG"));
         return;
       }
       if (!DOES_DST_MATCH(rxBuffer, tagId, ADDR_SIZE)) {
-        //PRINTLN(F("    Not for me"));
         return;
       }
+
       #warning "This may store anchors with the same ID"
       memcpy(&anchorId[idx_anchor], rxBuffer + 1, ADDR_SIZE);
       PRINT(F("    Anchor")); PRINT(idx_anchor); PRINT(F("(")); PRINT(anchorId[idx_anchor]); PRINTLN(F(") found"));
-      //if (num_anchors < 2) {
+      add_link(uwb_data, anchorId[idx_anchor]);
+      
       if (anchorId[idx_anchor] > 0) {
         num_anchors++;
         idx_anchor++;
       }
-      //}
-      //num_anchors = min(num_anchors, 5);
-      //idx_anchor %= 2;
+
       return;
     }
 
     if (state == STATE_POLLACK) {
-      //PRINTLN(F("  State: POLLACK"));
       if (rxBuffer[0] != FTYPE_POLLACK) {
-        //PRINTLN(F("    Not POLLACK"));
         return;
       }
       if (!DOES_SRC_MATCH(rxBuffer, anchorId[idx_anchor], ADDR_SIZE)) {
-        //PRINTLN(F("    Not from counter part"));
         return;
       }
       if (!DOES_DST_MATCH(rxBuffer, tagId, ADDR_SIZE)) {
-        //PRINTLN(F("    Not for me"));
         return;
       }
-      //PRINTLN(F("    Received POLLACK. Getting timestamp..."));
       DW1000.getReceiveTimestamp(timePollAckReceived);
-      //PRINTLN(F("    Sending RANGE..."));
       transmitRange();
       updateState(STATE_RANGEREPORT);
       return;
     }
 
     if (state == STATE_RANGEREPORT) {
-      //PRINTLN(F("  State: RANGEREPORT"));
       if (rxBuffer[0] != FTYPE_RANGEREPORT) {
-        //PRINTLN(F("    Not RANGEREPORT"));
         return;
       }
       if (!DOES_SRC_MATCH(rxBuffer, anchorId[idx_anchor], ADDR_SIZE)) {
-        //PRINTLN(F("    Not from countere part"));
         return;
       }
       if (!DOES_DST_MATCH(rxBuffer, tagId, ADDR_SIZE)) {
-        //PRINTLN(F("    Not for me"));
         return;
       }
-      //PRINTLN(F("    Received RANGEREPORT. Getting timestamps..."));
       timePollReceived.setTimestamp(rxBuffer + 5);
       timePollAckSent.setTimestamp(rxBuffer + 10);
       timeRangeReceived.setTimestamp(rxBuffer + 15);
@@ -457,9 +454,11 @@ void loop() {
       calculateRange();
       PRINT(F("  anchor ID: ")); PRINTLN(anchorId[idx_anchor]);
       PRINT(F("    distance: ")); PRINTLN(distance[idx_anchor]);
-      add_link(uwb_data, anchorId[idx_anchor]);
+
       fresh_link(uwb_data, anchorId[idx_anchor], distance[idx_anchor]);
       toSend = true;
+      txBuffer[0] = FTYPE_NONE;
+      rxBuffer[0] = FTYPE_NONE;
       
       updateRoundRobin();
       return;

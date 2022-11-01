@@ -1,0 +1,1 @@
+This version establishes communication with a tag and receive data from that tag (not another). Working a little bit worse, because a lot of cases when data are coming only from one anchor. Why?
