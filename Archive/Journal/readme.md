@@ -32,3 +32,9 @@ It doesn't record all changes, but the most important.
 
 - Updates:
   - state diagram for anchor
+  - Did some tests:
+    - Note: Anchors sometimes lost receive and sent flags. It is needed to hard reset them.
+    - Note: delay and PONG_TIMEOUT_MS in the anchor's IDLE_STATE is needed to escape deadlock when all tags send PING to the anchor. Do we need STATE_PENDING_PONG? Sometimes tags are hard reset. Why? Does STATE_PENDING_PONG help? Looks like yes, but I did only one test; need to do more tests.
+
+- Next step: 
+  - to implement centralized system with server as initiator. This way we will escape problems with overloading the server and anchors.

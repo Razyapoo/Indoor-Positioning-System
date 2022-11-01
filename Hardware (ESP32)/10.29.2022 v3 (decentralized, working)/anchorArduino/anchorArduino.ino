@@ -184,11 +184,11 @@ void loop() {
     return;
   }
   // Arduino didn't capture SIP tx/rx interrupts for more than RESET_TIMEOUT_MS
-  // if (!sentFrame && !receivedFrame && curMillis - lastActivity > RESET_TIMEOUT_MS) {
-  //   PRINTLN(F("Seems transceiver not working. Re-init it."));
-  //   initDW1000Receiver();
-  //   return;
-  // }
+   if (!sentFrame && !receivedFrame && curMillis - lastActivity > RESET_TIMEOUT_MS) {
+     PRINTLN(F("Seems transceiver not working. Re-init it."));
+     initDW1000Receiver();
+     return;
+  }
 
   // SPI tx interrupt is captured
   // Update some time variables, state

@@ -16,12 +16,12 @@
 
 
 /* WiFi settings */
-//const char *ssid = "ASUS";
-//const char *password = "cuni3103&";
-//const char *host = "192.168.1.55";
-const char *ssid = "iPhone Nyx";
-const char *password = "Nera1998&";
-const char *host = "172.20.10.3";
+const char *ssid = "ASUS";
+const char *password = "cuni3103&";
+const char *host = "192.168.1.55";
+//const char *ssid = "iPhone Nyx";
+//const char *password = "Nera1998&";
+//const char *host = "172.20.10.3";
 WiFiClient client;
 
 /* Edit tagId */
