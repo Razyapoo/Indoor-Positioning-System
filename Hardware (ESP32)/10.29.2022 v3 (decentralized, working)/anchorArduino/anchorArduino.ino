@@ -184,7 +184,7 @@ void loop() {
     return;
   }
   // Arduino didn't capture SIP tx/rx interrupts for more than RESET_TIMEOUT_MS
-   if (!sentFrame && !receivedFrame && curMillis - lastActivity > RESET_TIMEOUT_MS) {
+  if (!sentFrame && !receivedFrame && curMillis - lastActivity > RESET_TIMEOUT_MS) {
      PRINTLN(F("Seems transceiver not working. Re-init it."));
      initDW1000Receiver();
      return;
@@ -224,6 +224,7 @@ void loop() {
     noteActivity();
     DW1000.getData(rxBuffer, FRAME_LEN);
     GET_SRC(rxBuffer, sender, ADDR_SIZE);
+    PRINTLN();PRINT(F("Received something from tag: ")); PRINTLN(sender);
 
     if (state == STATE_IDLE) {
       PRINTLN(F("  State: IDLE"));

@@ -32,7 +32,7 @@
 
 // Parameters are tunable, but anchors and tags must have the same values
 #warning "TODO: Temporary values"
-#define PONG_TIMEOUT_MS         100
+#define PONG_TIMEOUT_MS         10
 #define POLLACK_TIMEOUT_MS      20
 #define RANGE_TIMEOUT_MS        10
 #define RANGEREPORT_TIMEOUT_MS  10

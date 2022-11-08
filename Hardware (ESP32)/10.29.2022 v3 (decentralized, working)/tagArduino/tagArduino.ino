@@ -16,12 +16,16 @@
 
 
 /* WiFi settings */
-const char *ssid = "ASUS";
-const char *password = "cuni3103&";
-const char *host = "192.168.1.55";
+//const char *ssid = "ASUS";
+//const char *password = "cuni3103&";
+//const char *host = "192.168.1.55";
 //const char *ssid = "iPhone Nyx";
 //const char *password = "Nera1998&";
 //const char *host = "172.20.10.3";
+
+const char *ssid = "oskar-hotspot";
+const char *password = "Nera1998";
+const char *host = "10.42.0.1";
 WiFiClient client;
 
 /* Edit tagId */
@@ -168,11 +172,17 @@ void calculateRange() {
     // See APS013: The Implementation of Two-Way Ranging with he DW1000
     // https://decawave.com/sites/default/files/aps013_dw1000_and_two_way_ranging_v2.2.pdf pp. 4
     DW1000Time round1 = (timePollAckReceived - timePollSent).wrap();
+    PRINT(F("round1: ")); PRINTLN(round1);
     DW1000Time reply1 = (timePollAckSent - timePollReceived).wrap();
+    PRINT(F("reply1: ")); PRINTLN(reply1);
     DW1000Time round2 = (timeRangeReceived - timePollAckSent).wrap();
+    PRINT(F("round2: ")); PRINTLN(round2);
     DW1000Time reply2 = (timeRangeSent - timePollAckReceived).wrap();
+    PRINT(F("reply2: ")); PRINTLN(reply2);
     DW1000Time tof = (round1 * round2 - reply1 * reply2)
                       / (round1 + round2 + reply1 + reply2);
+    PRINT(F("tof: ")); PRINTLN(tof);
+    PRINT(F("tof as meters: ")); PRINTLN(tof.getAsMeters());
     distance[idx_anchor] = tof.getAsMeters();
 }
 

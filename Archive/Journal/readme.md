@@ -38,3 +38,22 @@ It doesn't record all changes, but the most important.
 
 - Next step: 
   - to implement centralized system with server as initiator. This way we will escape problems with overloading the server and anchors.
+
+# Nov 2, 2022
+
+- There is a problem with centralized system - it waits for the new connections and only waits for incoming requests from sockets.
+- In my opinion, there exist 2 ways how to solve this problem. 1 way is to connect tags to the server at the beginning and then just communicate with them. 2 way is to write multithreaded server
+  where 1 thread will be responsible for the new connections and another thread will be used for communication.  
+
+# Nov 7, 2022
+
+- There is no reason to implement centralized system, since tags still need to respond to server and there can be some delay. Can it interrupt another calculation, request a write request while calculating another tag?
+- Set up local network. A lot better now. 
+- Trying to implement in anchors history of tag connections (first draft). Is it good working?
+
+# Nov 8, 2022
+
+- Note: In many systems, where all devices have the same transmitter and receiver antenna delays, it is
+unnecessary to calibrate the transmitter antenna delay. The transmitter antenna delay may be set to zero
+and a combined receiver and transmitter delay value may be used for the receiver antenna delay without
+impairing the ranging performance of the system. source: https://www.qorvo.com/products/d/da007967
