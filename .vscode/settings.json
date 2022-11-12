@@ -2,6 +2,17 @@
     "files.associations": {
         "*.tcc": "cpp",
         "chrono": "cpp",
-        "compare": "cpp"
+        "compare": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "valarray": "cpp",
+        "cstddef": "cpp"
     }
 }

@@ -19,13 +19,13 @@
 //const char *ssid = "ASUS";
 //const char *password = "cuni3103&";
 //const char *host = "192.168.1.55";
-//const char *ssid = "iPhone Nyx";
-//const char *password = "Nera1998&";
-//const char *host = "172.20.10.3";
+const char *ssid = "iPhone Nyx";
+const char *password = "Nera1998&";
+const char *host = "172.20.10.3";
 
-const char *ssid = "oskar-hotspot";
-const char *password = "Nera1998";
-const char *host = "10.42.0.1";
+//const char *ssid = "oskar-hotspot";
+//const char *password = "Nera1998";
+//const char *host = "10.42.0.1";
 WiFiClient client;
 
 /* Edit tagId */
@@ -205,22 +205,22 @@ void setup() {
   } else {
     Serial.println("Wrong tag MAC address.");
   }
-
-  WiFi.mode(WIFI_STA);
-  WiFi.setSleep(false);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("Connected");
-  if (client.connect(host, 30001))
-  {
-    Serial.println("Success");
-  } else {
-    Serial.println("Unsuccessfull connection");
-  }
+//
+//  WiFi.mode(WIFI_STA);
+//  WiFi.setSleep(false);
+//  WiFi.begin(ssid, password);
+//  while (WiFi.status() != WL_CONNECTED)
+//  {
+//    delay(500);
+//    Serial.print(".");
+//  }
+//  Serial.println("Connected");
+//  if (client.connect(host, 30001))
+//  {
+//    Serial.println("Success");
+//  } else {
+//    Serial.println("Unsuccessfull connection");
+//  }
     
   delay(1000);
   uwb_data = init_link(tagId);

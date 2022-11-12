@@ -57,3 +57,12 @@ It doesn't record all changes, but the most important.
 unnecessary to calibrate the transmitter antenna delay. The transmitter antenna delay may be set to zero
 and a combined receiver and transmitter delay value may be used for the receiver antenna delay without
 impairing the ranging performance of the system. source: https://www.qorvo.com/products/d/da007967
+
+# Nov 9, 2022
+
+- standard Ranging library does not check if msg was sent to the certain (current) tag, therefore, when we have multiple tags, one of them can receive data that was specialized for another tag 
+
+# Nov 12, 2022
+
+- I have implemented own anchor-tag ranging system based on https://github.com/gsongsong/dw1000-positioning and https://www.decawave.com/wp-content/uploads/2018/10/APS013_The-Implementation-of-Two-Way-Ranging-with-the-DW1000_v2.3.pdf.
+I have it also configured with 1 anchor and 3 tags. It is working synchronically. **But it is need to synchronize also 2nd anchor.**  folder: v5
