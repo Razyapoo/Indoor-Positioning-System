@@ -38,15 +38,27 @@
 
 // Parameters are tunable, but anchors and tags must have the same values
 #warning "TODO: Temporary values"
-#define DISCOVERY_TIMEOUT           70//100
-#define POLLACK_TIMEOUT             10
+/* Close setting */
+//#define DISCOVERY_TIMEOUT           100
+//#define POLLACK_TIMEOUT             10
+//#define RANGE_TIMEOUT               10
+//#define RANGEREPORT_TIMEOUT         10
+//#define RANGING_INIT_TIMEOUT        10
+//#define REPLY_DELAY                 3
+//#define DEFAULT_RESET_TIMEOUT       1000
+//#define SERVER_TIMEOUT_MS           20
+//#define SLEEP                       100//300
+
+/* distance setting */
+#define DISCOVERY_TIMEOUT           150
+#define POLLACK_TIMEOUT             15
 #define RANGE_TIMEOUT               10
-#define RANGEREPORT_TIMEOUT         10
+#define RANGEREPORT_TIMEOUT         15
 #define RANGING_INIT_TIMEOUT        10
 #define REPLY_DELAY                 3
 #define DEFAULT_RESET_TIMEOUT       1000
 #define SERVER_TIMEOUT_MS           20
-#define SLEEP                       200//300
+#define SLEEP                       100//300
 
 
 /* time */ 

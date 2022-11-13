@@ -26,12 +26,12 @@ boolean isTagAddress(uint16_t addr) {
 
 void checkForReset() {
     if(!sentAck && !receivedAck) {
-      if(currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
-        initReceiver();
+  		if(currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
+  			initReceiver();
         Serial.println("Reinit....");
-      }
-      return;
-    }
+  		}
+  		return;
+  	}
 }
 
 void handleReceived() {
@@ -183,7 +183,7 @@ void loop() {
       PRINTLN(F("  State: IDLE"));
       if (receivedMessageType == BLINK) {
         PRINTLN(F("    Received BLINK. Reply with RANGING INIT"));
-        rangingInitDelay = random(0, 10);
+        rangingInitDelay = random(0, 90);
         delay(rangingInitDelay);
         transmitRangingInit();
         updateState(STATE_RANGING_INIT);
