@@ -49,7 +49,7 @@
 #define REPLY_DELAY                 3
 #define DEFAULT_RESET_TIMEOUT       1000
 #define SERVER_TIMEOUT_MS           20
-#define SLEEP                       100
+#define SLEEP                       10
 
 /* WiFi settings */
 WiFiClient client;

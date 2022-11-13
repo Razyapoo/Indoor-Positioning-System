@@ -194,8 +194,8 @@ void loop() {
 
     } else {
       //PRINTLN(F("No anchor is detected. Return to SCAN state..."));
-      updateState(STATE_IDLE);
       delay(SLEEP);
+      updateState(STATE_IDLE);
       return;
 
     }
@@ -216,8 +216,8 @@ void loop() {
         if (distances[idx_anchor] > 0) { PRINT(F("   Anchor id: ")); PRINT(idx_anchor + 1); PRINT(F(" distance: ")); PRINT(distances[idx_anchor]); }
       }
       PRINTLN();
-      updateState(STATE_IDLE);
       delay(SLEEP);
+      updateState(STATE_IDLE);
     }
     return;
   }
