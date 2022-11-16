@@ -66,3 +66,10 @@ impairing the ranging performance of the system. source: https://www.qorvo.com/p
 
 - I have implemented own anchor-tag ranging system based on https://github.com/gsongsong/dw1000-positioning and https://www.decawave.com/wp-content/uploads/2018/10/APS013_The-Implementation-of-Two-Way-Ranging-with-the-DW1000_v2.3.pdf.
 I have it also configured with 1 anchor and 3 tags. It is working synchronically. **But it is need to synchronize also 2nd anchor.**  folder: v5
+
+# Nov 16, 2022
+
+- Tests are done in the dormitory. 2 anchors x 3 tags.
+- 2 anchors x 1 tag is working best. This use-case is useful for the camera calibration purposes
+- 2 anchors x 2 tags working good. But the one needs to be located in front of and perpendicular to anchors. 
+- 2 anchors x 3 tags is also working, but only if anchors are located within 3-4 meters and places perpendicular to tags. But we still get data at least from 1 anchor that is useful for the calibration purposes.  
