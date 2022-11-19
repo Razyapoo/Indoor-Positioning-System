@@ -12,16 +12,17 @@
 
 // Macros in order to avoid hard coding
 #define STATE_IDLE          0
-#define STATE_DISCOVERY     1
-#define STATE_RANGING       2
-#define STATE_POLL          3
-#define STATE_POLLACK       4
-#define STATE_RANGE         5
-#define STATE_RANGEREPORT   6
-#define STATE_RANGING_INIT  7
-#define STATE_SEND_REQUEST_TO_SERVER  8
-#define STATE_REQUEST_ACK_FROM_SERVER  9
-#define STATE_SEND_DISTANCE_TO_SERVER  10
+#define STATE_SCAN          1
+#define STATE_DISCOVERY     2
+#define STATE_RANGING       3
+#define STATE_POLL          4
+#define STATE_POLLACK       5
+#define STATE_RANGE         6
+#define STATE_RANGEREPORT   7
+#define STATE_RANGING_INIT  8
+#define STATE_SEND_REQUEST_TO_SERVER  9
+#define STATE_REQUEST_ACK_FROM_SERVER  10
+#define STATE_SEND_DISTANCE_TO_SERVER  11
 
 #define BLINK           0
 #define RANGINGINIT     1
@@ -53,13 +54,13 @@
 //#define SLEEP                       100//300
 
 /* distance setting */
-#define DISCOVERY_TIMEOUT           100
+#define DISCOVERY_TIMEOUT           70
 #define POLLACK_TIMEOUT             10
 #define RANGE_TIMEOUT               10
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
 #define REPLY_DELAY                 3
-#define DEFAULT_RESET_TIMEOUT       1000
+#define DEFAULT_RESET_TIMEOUT       5000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
 

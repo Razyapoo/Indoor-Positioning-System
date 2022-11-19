@@ -69,7 +69,67 @@ I have it also configured with 1 anchor and 3 tags. It is working synchronically
 
 # Nov 16, 2022
 
+- Decentralized
 - Tests are done in the dormitory. 2 anchors x 3 tags.
 - 2 anchors x 1 tag is working best. This use-case is useful for the camera calibration purposes
 - 2 anchors x 2 tags working good. But the one needs to be located in front of and perpendicular to anchors. 
 - 2 anchors x 3 tags is also working, but only if anchors are located within 3-4 meters and places perpendicular to tags. But we still get data at least from 1 anchor that is useful for the calibration purposes.  
+
+# Nov 17, 2022
+
+- Centralized version v6
+- Working better?
+
+# Nov 18, 2022
+
+- trying to implement centralized version, but using implemented library (all additional files are in v6). But it is not working, i.e. one tag is working super clean, but when it is 2 tag, it is now working, hitting only 1 tag and sometimes range is 0.00. Why?
+- I thought it would be faster to get data while using library, but it is not. It is better to continue with my own implementation.
+
+
+# Nov 19, 2022 Tests at university. 1 floor
+
+- **v6 (centralized)**
+  - **1 test** 
+    - Anchors are placed in opposite sides. Distance between anchors is 3,4 m.
+    - 1 tag is working good max at distance
+      - at the distance 17 m it can hit 1 anchor
+      - at the distance 14 m it can hit 2 anchors continuously
+    - 2 tag work fine, but there are some unnecessary pings of server, why?
+    - 3 tag are working good. 
+    - Result: Sometimes there are some pings from tag to server that are unnecessary and not allowing tag to start communication with anchors. It is happen very often that tags disconnect from server, and in a while reconnect again. Why? 
+    - Basically, it is working good with all 1, 2, 3 tags switched on. Working unexpectedly good. 
+
+    - **Test for distance** was done with the following setting: 
+      - 1st tag was placed at the distance ~10 m from anchors
+      - 2nd and 3rd tags were placed an my hands at the distance ~15 m
+      - Everything was working fine. All tags managed to send data. 
+      - **Problems**: there was some issues unfortunately:
+        - not always incoming package contains data from both anchors, but it happened rarely
+        - the main problem here is that server prints incoming request signals instead of incoming packages, why?
+
+    - So far, it is best setting.
+
+  - **2 test** 
+    - Anchors placed in one line along the whole
+    - working a bit worth that the case when anchors placed on opposite sides.
+
+  - **3 test** (with obstacles)
+  - 1 tag and 2 anchors 
+  - Obstacles such as the wall, any part of person (hand, leg, wrist), laptop, lower part, chair seat completely blocks signal.
+  - chair backrest is not blocking.
+  - when it is in the pocket, it hits both anchors at the distance 5 m and lower, and only 1 anchor at the distance 8~9 m
+
+- v5.1 (decentralized)
+  - **1 test**
+  - anchors are placed on the opposite sides
+  - it is working good as well in all cases (1, 2 and 3 tags switched on).
+  - 1st tag is placed at the distance 5.5 m, 2nd and 3rd tags are placed at the distance 7 m (from anchors).
+  - Since anchors are placed on the opposite sides, distance from a tag to each anchor is almost same.
+
+Overall results: 
+- v6 centralized. signal outgoing from uwb chip on tag must come directly to the uwb chip on anchor, therefore anchors must be placed at different level than tags. Lower or higher? Does n't matter, the goal is that signal should target uwb chip directly.
+The best is when anchors are placed in the opposite direction. 
+
+- v5.1 decentralized. Working good, but data coming less frequently than in v6. Sometimes can happen deadlocks. But thanks to the delay in tags it resolves automatically.
+
+
