@@ -26,12 +26,12 @@ boolean isTagAddress(uint16_t addr) {
 
 void checkForReset() {
     if(!sentAck && !receivedAck) {
-  		if(currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
-  			initReceiver();
+      if(currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
+        initReceiver();
         Serial.println("Reinit....");
-  		}
-  		return;
-  	}
+      }
+      return;
+    }
 }
 
 void handleReceived() {
@@ -66,8 +66,6 @@ void transmitRangingInit() {
   txFrame[0] = RANGINGINIT;
   setSenderAddr(txFrame, myID);
   setReceiverAddr(txFrame, tagID);
-  //SET_SRC(txFrame, myID, ADDR_SIZE);
-  //SET_DST(txFrame, sender, ADDR_SIZE);
   startTx();
 }
 
@@ -76,8 +74,6 @@ void transmitPollAck() {
   txFrame[0] = POLLACK;
   setSenderAddr(txFrame, myID);
   setReceiverAddr(txFrame, tagID);
-  //SET_SRC(txFrame, myID, ADDR_SIZE);
-  //SET_DST(txFrame, tagID, ADDR_SIZE);
   DW1000.setDelay(pollackReplyDelay);
   startTx();
 }
@@ -111,7 +107,7 @@ void setup() {
   DW1000.attachSentHandler(handleSent);
   DW1000.attachReceivedHandler(handleReceived);
   
-  DW1000.setAntennaDelay(Adelay);
+  //DW1000.setAntennaDelay(Adelay);
 
   initReceiver();
 
@@ -119,10 +115,12 @@ void setup() {
 
 void loop() {
   currentTime = millis();
+  
+  checkForReset();
 
   if (state == STATE_RANGING_INIT
       && currentTime - lastStateChange > RANGING_INIT_TIMEOUT) {
-    //PRINTLN(F("Seems Pending Pong lost. Return to IDLE"));
+    PRINTLN(F("Seems Pending Pong lost. Return to IDLE"));
     updateState(STATE_IDLE);
   }
 
@@ -132,13 +130,11 @@ void loop() {
     /*
      * Check RANGE message timeout when state is waiting for RANGE message
      */
-    //PRINTLN(F("RANGE timeout. Return to IDLE"));
+    PRINTLN(F("RANGE timeout. Return to IDLE"));
     updateState(STATE_IDLE);
     return;
   }
 
-  checkForReset();
-  
   if (sentAck) {
     PRINTLN(F("Sent something"));
     sentAck = false;
@@ -147,26 +143,28 @@ void loop() {
 
     sentMessageType = txFrame[0];
 
+    PRINT(F("  MSG TYPE: ")); PRINTLN(sentMessageType);
+
     if (sentMessageType != RANGINGINIT && sentMessageType != POLLACK && sentMessageType != RANGEREPORT) return;
 
     if (state == STATE_RANGING_INIT && sentMessageType == RANGINGINIT) {
-      //PRINTLN(F("  Ranging phase initialized sent. Return to IDLE"));
+      PRINTLN(F("  Ranging phase initialized sent. Return to IDLE"));
       updateState(STATE_IDLE);
       return;
     }
 
     if (sentMessageType == POLLACK) {
-      //PRINTLN(F("  POLLACK sent. Getting timestamp..."));
+      PRINTLN(F("  POLLACK sent. Getting timestamp..."));
       DW1000.getTransmitTimestamp(timePollAckSent);
     }
 
     if (sentMessageType == RANGEREPORT) {
-      //PRINTLN(F("  RANGEREPORT sent"));
+      PRINTLN(F("  RANGEREPORT sent"));
     }
   }
-
+  
   if (receivedAck) {
-    //PRINTLN(F("Received something"));
+    PRINTLN(F("Received something"));
     receivedAck = false;
     noteActivity();
     DW1000.getData(rxFrame, FRAME_SIZE);
@@ -178,12 +176,14 @@ void loop() {
     receivedMessageType = rxFrame[0];
     //PRINT(F("Received msg: ")); PRINTLN(receivedMessageType);
     if (receivedMessageType != BLINK && receivedMessageType != POLL && receivedMessageType != RANGE) return;
-    //PRINT(F("Current state: ")); PRINTLN(state);
+    PRINT(F("Current state: ")); PRINTLN(state);
     if (state == STATE_IDLE) {
       PRINTLN(F("  State: IDLE"));
       if (receivedMessageType == BLINK) {
         PRINTLN(F("    Received BLINK. Reply with RANGING INIT"));
         rangingInitDelay = random(0, 50);
+        //runtimeDelay = millis();
+        //while (millis() - runtimeDelay < rangingInitDelay) continue;
         delay(rangingInitDelay);
         transmitRangingInit();
         updateState(STATE_RANGING_INIT);
@@ -192,7 +192,6 @@ void loop() {
 
       if (receivedMessageType == POLL && isReceiverMatch(rxFrame, myID)) {
         PRINTLN(F("    Received POLL"));
-        //if (!isReceiverMatch(rxFrame, myID)) return;
         DW1000.getReceiveTimestamp(timePollReceived);
         transmitPollAck();
         PRINTLN(F("      Reply with POLLACK"));

@@ -56,7 +56,7 @@
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
 #define REPLY_DELAY                 3
-#define DEFAULT_RESET_TIMEOUT       1000
+#define DEFAULT_RESET_TIMEOUT       100
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
 
@@ -75,8 +75,8 @@ const uint16_t networkId = 10;
 
 /* */
 uint16_t myID, tagID; // range of anchor ids: 100..199, tag: 0..99
-uint16_t Adelay = 16592;
-unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay;
+uint16_t Adelay = 16530;
+unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 
 byte state = STATE_IDLE;
 byte sentMessageType, receivedMessageType;
@@ -86,3 +86,4 @@ byte rxFrame[FRAME_SIZE];
 /* volatile */
 volatile boolean sentAck = false;
 volatile boolean receivedAck = false;
+volatile boolean errorWatch = false;

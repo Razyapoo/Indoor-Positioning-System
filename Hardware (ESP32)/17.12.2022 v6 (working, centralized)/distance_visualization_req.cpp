@@ -189,14 +189,16 @@ int main(int argc , char *argv[])
 						// strcpy(sendRequest, tagId);
 						// strcpy(sendRequest + 1, "2");
 						//printf("Received request from TAG %s, replying with distance request... \n", tagId);
-						send(sd, "5", 1, 0); //3
+						send(sd, "5", 1, 0); //TODO add tag id // 3
 						state = STATE_COMMUNICATION;
 
 					} else if ((state == STATE_COMMUNICATION) && (memcmp(buffer, tagId, sizeof(tagId)) == 0)) {
 							memcpy(buffer, buffer + 1, sizeof(buffer) - 1);
 							//printf("Received distance \n");
-							printf(buffer);
-							printf("\n");
+							if (buffer[0] != '3') {
+								printf("Tag ID: %s msg: %s", tagId, buffer);
+								printf("\n");
+							}
 							// time_t now = time(0);
 							// char *date = ctime(& now);
 							// if (date[strlen(date)-1] == '\n') date[strlen(date)-1] = '\0';
@@ -211,6 +213,7 @@ int main(int argc , char *argv[])
 							// printf(tagId);
 							// printf("\n");
 							memset(&tagId, 0, sizeof(tagId));
+							//close( sd );
 						//} 
 					}
 					// buffer[valread] = '\0';  

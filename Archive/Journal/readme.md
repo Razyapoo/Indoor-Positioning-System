@@ -133,3 +133,16 @@ The best is when anchors are placed in the opposite direction.
 - v5.1 decentralized. Working good, but data coming less frequently than in v6. Sometimes can happen deadlocks. But thanks to the delay in tags it resolves automatically.
 
 
+# Nov 24, 2022
+
+Centralized v6
+
+- A lot of 3's were coming because tag wasn't receive ack from the server indication that the server received distance. 
+  - Supplementing such condition helped
+- I didn't find where is the problem with anchors: some times they got frozen and did't receive messages from tags. 
+  - Reinit helped, but it happened after a second in the case when anchor didn't received or send something. And because of that, tags sometimes didn't see that anchor. 
+  - Reinit after 100 ms helped. Now it is working good.
+- There was hard reset in tags. 
+  - The problem was in interrupt pins in Tag. When tag had a lot of interrupts, interrupt flags got overflowed. And this happened only when tag received messages that are not for it. 
+    - Also after request sent to the server, in the case server was used by some other tag, first tag had gotten wrong ack, but still checked received and sent packages, but instead it was better to start ping server again. Adding "return" to such placed helped.
+- Now tags and anchors work good.

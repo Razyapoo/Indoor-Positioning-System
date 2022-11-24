@@ -66,9 +66,9 @@
 
 /* WiFi settings */
 WiFiClient client;
-// const char *ssid = "ASUS";
-// const char *password = "cuni3103&";
-// const char *host = "192.168.1.55";
+//const char *ssid = "ASUS";
+//const char *password = "cuni3103&";
+//const char *host = "192.168.1.55";
 //const char *ssid = "iPhone Nyx";
 //const char *password = "Nera1998&";
 //const char *host = "172.20.10.3";
@@ -107,7 +107,7 @@ uint16_t idx_anchor = 0;
 uint16_t counterPoll = 0;
 uint16_t anchors[2];
 uint16_t myID, anchorID; // range of tag ids: 0..99, anchor: 100..199
-unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay;
+unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 float distances[2] = {0, 0};
 
 byte state = STATE_IDLE;
