@@ -198,16 +198,18 @@ int main(int argc , char *argv[])
 							if (buffer[0] != '3') {
 								printf("Tag ID: %s msg: %s", tagId, buffer);
 								printf("\n");
+							
+								time_t now = time(0);
+								char *date = ctime(& now);
+								if (date[strlen(date)-1] == '\n') date[strlen(date)-1] = '\0';
+								//stream.write(date, sizeof(date));
+								//stream.write(": ", 2);
+								stream << date << ": ";
+								stream.write("\n", 1);
+								stream.write((char*)&buffer, sizeof(buffer));
+								stream.write("\n", 1);
 							}
-							// time_t now = time(0);
-							// char *date = ctime(& now);
-							// if (date[strlen(date)-1] == '\n') date[strlen(date)-1] = '\0';
-							// // stream.write(date, sizeof(date));
-							// // stream.write(": ", 2);
-							// stream << date << ": ";
-							// stream.write((char*)&buffer, sizeof(buffer));
-							// stream.write("\n", 1);
-							// stream.close();
+							
 							send(sd, "7", 1, 0); //5
 							state = STATE_IDLE;
 							// printf(tagId);
