@@ -146,3 +146,10 @@ Centralized v6
   - The problem was in interrupt pins in Tag. When tag had a lot of interrupts, interrupt flags got overflowed. And this happened only when tag received messages that are not for it. 
     - Also after request sent to the server, in the case server was used by some other tag, first tag had gotten wrong ack, but still checked received and sent packages, but instead it was better to start ping server again. Adding "return" to such placed helped.
 - Now tags and anchors work good.
+
+# Nov 25, 2022
+
+- There are 2 basic libraries (first, 2022: https://github.com/jremington/UWB-Indoor-Localization_Arduino; second, official, 2019: https://github.com/thotro/arduino-dw1000).
+  - The first lib provides setting of calibration parameter on anchors. It also provides autocalibration methods. But the bad side of this library is that anchors and tag are working best only in the case they are **facing each other**, for example when a person body , or some obstacle blocks the signal. Calibration (antenna delay) is set on anchor side. Each anchor must have own calibration parameter.
+  - The second library doesn't provide methods to set the calibration parameter, but tags and anchors still see each other even if there are obstacles between them. Anchors and tags do not have to look directly to sensors of each other. It is working a lot better. The only thing is calibration parameter must to be set inside the library code. Each ESP32 chip has the same calibration parameter, and it is working good. 
+- Small experiment at school 
