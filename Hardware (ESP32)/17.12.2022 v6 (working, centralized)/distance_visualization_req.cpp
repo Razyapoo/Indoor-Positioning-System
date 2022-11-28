@@ -44,7 +44,7 @@ int main(int argc , char *argv[])
 	struct sockaddr_in address;
 		
 	char buffer[1025]; //data buffer of 1K
-	stream.open("output.txt");
+	stream.open("output-experiment-3-tagy-dist-between-anchors-is-3-85-accuracy.txt");
 		
 	//set of socket descriptors
 	fd_set readfds;
