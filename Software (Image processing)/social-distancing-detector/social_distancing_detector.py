@@ -55,7 +55,7 @@ while True:
         break
 
     # resize the frame and then detect people (only people) in it
-    frame = cv2.resize(frame, (900, 500))
+    frame = cv2.resize(frame, (416, 416))
     results = detect_people(frame, net, ln, personIdx=LABELS.index("person"))
 
     # initialize the set of indexes that violate the minimum social distance
