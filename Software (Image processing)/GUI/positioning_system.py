@@ -121,7 +121,7 @@ class TKinterStreamLog(tk.Frame):
         self.root = root
         #load all UI
         self.setupUI()
-        self.limit = 1000
+        self.limit = 20
     
     def setupUI(self):
         #create a header
@@ -139,7 +139,7 @@ class TKinterStreamLog(tk.Frame):
         # Inserting Text which is read only
         data = str(data) + "\n"
         self.textArea.insert(tk.INSERT, data)
-        # self.textArea.see(tk.END)
+        self.textArea.see(tk.END)
         
         if (int(self.textArea.index('end-1c').split('.')[0]) > self.limit):
             self.textArea.delete('1.0', '2.0')
@@ -294,7 +294,7 @@ class AppGUI():
             if type == "uwbStream":
                 self.tkinterUwbServerStreamLogTopLevel = None
                 
-    def updateOutputFrame(self, frame=None, videoDistance=-1, uwbDataJSON=""):
+    def updateOutputFrameVideo(self, frame=None, videoDistance=-1):
         if not frame is None :
             frame = imutils.resize(frame, 700)
             #convert frame to PIL library format which is required for Tk toolkit
@@ -310,8 +310,13 @@ class AppGUI():
             # Update log if exists
             if self.tkinterVideoStreamLogTopLevel:
                 self.tkinterVideoStreamLogTopLevel.tkinterStream.updateTextArea(videoDistance)
-            
+    
+    def updateOutputFrameUwb(self, uwbDataJSON=""):
         if uwbDataJSON:
+            print(uwbDataJSON)
+            # Update log if exists
+            if self.tkinterUwbServerStreamLogTopLevel:
+                self.tkinterUwbServerStreamLogTopLevel.tkinterStream.updateTextArea(uwbDataJSON)
             # Try to parse data, because when there is no detected anchor, data are coming in other than JSON format
             try:
                 uwbData = json.loads(uwbDataJSON)
@@ -321,9 +326,6 @@ class AppGUI():
             except:
                 uwbData = ""
 
-            # Update log if exists
-            if self.tkinterUwbServerStreamLogTopLevel:
-                self.tkinterUwbServerStreamLogTopLevel.tkinterStream.updateTextArea(uwbDataJSON)
                 
 
 class VideoDistanceAnalyzer(threading.Thread):
@@ -337,11 +339,11 @@ class VideoDistanceAnalyzer(threading.Thread):
         self.mainGUI = mainGUI
         self.callbackQueue = callbackQueue
         
-        self.Frame = None
+        # self.Frame = None
         self.net = None
         self.labels = None
         self.ln = None
-        self.distance = 0
+        # self.distance = 0
         
         self.readNN()
     
@@ -377,9 +379,10 @@ class VideoDistanceAnalyzer(threading.Thread):
         self.ln = self.net.getLayerNames()
         self.ln = [self.ln[i - 1] for i in self.net.getUnconnectedOutLayers()]
 
-    def computeDistance(self):
+    def computeDistance(self, frame):
         
-        results = detectPeople(self.frame, self.net, self.ln, personIdx=self.labels.index("person"))
+        results = detectPeople(frame, self.net, self.ln, personIdx=self.labels.index("person"))
+        distance = 0
 
         # initialize the set of indexes that violate the minimum social distance
         violate = set()
@@ -406,22 +409,28 @@ class VideoDistanceAnalyzer(threading.Thread):
         for (i, (prob, bbox, centroid)) in enumerate(results):
             # extract teh bounding box and centroid coordinates, then initialize the color of the annotation
             (startX, startY, endX, endY) = bbox
-            (cX, cY, self.distance) = centroid
+            (cX, cY, distance) = centroid
             color = (0, 255, 0)
 
             # if the index pair exists within the violation set, then update the color
             if i in violate:
                 color = (0, 0, 255)
 
-            text = "Depth: {} cm".format(round(self.distance))
-            cv2.putText(self.frame, text, (startX + 10, startY + 100),
+            text = "Depth: {} cm".format(round(distance))
+            cv2.putText(frame, text, (startX + 10, startY + 100),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
             # draw (1) a bounding box around the person and (2) the centroid coordinates of the person
-            cv2.rectangle(self.frame, (startX, startY), (endX, endY), color, 2)
+            cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 
         # draw the total number of social distancing violations on the output frame
         text = "Social Distancing Violations: {}".format(len(violate))
-        cv2.putText(self.frame, text, (10, self.frame.shape[0] - 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3)
+        cv2.putText(frame, text, (10, frame.shape[0] - 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3)
+        
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        
+        if self.callbackQueue.full() == False:
+            #put the update UI callback to queue so that main thread can execute it
+            self.callbackQueue.put((lambda: self.updateMainThread(frame, distance)))
         
     def run(self):
         self.openCamera()
@@ -431,22 +440,22 @@ class VideoDistanceAnalyzer(threading.Thread):
                 self.isRunning = False
                 break
             
-            self.grabbed, self.frame = self.videoStream.read()
+            grabbed, frame = self.videoStream.read()
             
-            if not self.grabbed:
+            if not grabbed:
                 break
             
-            self.frame = imutils.resize(self.frame, width=700)
+            frame = imutils.resize(frame, width=700)
             
+            self.computeDistance(frame)
             
-            if self.callbackQueue.full() == False:
-                #put the update UI callback to queue so that main thread can execute it
-                self.callbackQueue.put((lambda: self.updateMainThread(self.mainGUI)))
+            # cv2.imshow("Frame", frame)
+            # if self.callbackQueue.full() == False:
+            #     #put the update UI callback to queue so that main thread can execute it
+            #     self.callbackQueue.put((lambda: self.updateMainThread(frame, distance)))
     
-    def updateMainThread(self, mainGUI):
-        self.computeDistance()
-        self.frame = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
-        mainGUI.updateOutputFrame(frame=self.frame, videoDistance=self.distance)
+    def updateMainThread(self, frame, distance):
+        self.mainGUI.updateOutputFrameVideo(frame=frame, videoDistance=distance)
         
     # def __del__(self):
     #     self.release()
@@ -473,7 +482,7 @@ class UWBServer(threading.Thread):
         self.inputs = []
         self.outputs = []
         self.isServerBusy = False
-        self.receivedData = None
+        # self.receivedData = None
         self.requestSentTime = None
         
     def startServer(self):
@@ -513,10 +522,11 @@ class UWBServer(threading.Thread):
                     else:
                         data = s.recv(1024)
                         if data:
-                            self.receivedData = data.decode('utf-8')
+                            receivedData = data.decode('utf-8')
+                            # print(receivedData)
                             if self.callbackQueue.full() == False:
                                 #put the update UI callback to queue so that main thread can execute it
-                                self.callbackQueue.put((lambda: self.updateMainThread(self.mainGUI)))
+                                self.callbackQueue.put((lambda: self.mainGUI.updateOutputFrameUwb(uwbDataJSON=receivedData)))
                             ack = "7" # ack received
                             s.send(str.encode(ack))
                             if s in self.inputs:
@@ -553,8 +563,8 @@ class UWBServer(threading.Thread):
                     self.isServerBusy = False
                     s.close()
     
-    def updateMainThread(self, mainGUI):
-        mainGUI.updateOutputFrame(uwbDataJSON=self.receivedData)
+    # def updateMainThread(self, receivedData):
+    #     self.mainGUI.updateOutputFrameUwb(uwbDataJSON=receivedData)
 
     def stopServer(self):
         self.toStop = True
@@ -606,7 +616,7 @@ class Wrapper():
             callback = self.videoStreamCallbackQueue.get_nowait()
             callback()
             self.attemptsVideoStream = 0
-            self.mainGUI.root.after(40, self.fetchVideoStream)
+            self.mainGUI.root.after(1, self.fetchVideoStream)
                 
         except queue.Empty:
             if (self.attemptsVideoStream <= 50):
