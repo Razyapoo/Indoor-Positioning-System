@@ -56,7 +56,10 @@ Why we cannot reconstruct 3D from 2D using single camera:
 - https://www.youtube.com/watch?v=sW4CVI51jDY
 - Very good calibration: https://github.com/DLuensch/StereoVision-ADCensus
 - https://www.youtube.com/watch?v=t3LOey68Xpg&list=PLkmvobsnE0GHMmTF7GTzJnCISue1L9fJn&index=13
-
+- USEFULL!!! camera calibration and triangulation: https://temugebatpurev.wordpress.com/2021/02/02/stereo-camera-calibration-and-triangulation-with-opencv-and-python/
+- USEFUL!!! depth perception: https://learnopencv.com/depth-perception-using-stereo-camera-python-c/
+- !!!VERY USEFUL!!! https://learnopencv.com/introduction-to-epipolar-geometry-and-stereo-vision/
+- https://learnopencv.com/depth-perception-using-stereo-camera-python-c/
 
 # Back Projection
 

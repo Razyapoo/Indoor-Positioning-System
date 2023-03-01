@@ -15,6 +15,10 @@
 - [social-distancing-detector](https://drive.google.com/drive/folders/1mwdjlg_mJs8x-rcP7L525YzDZpt3fF2o?usp=sharing)
 
 
+- [Disparity Estimation Using Deep Learning](https://learnopencv.com/disparity-estimation-using-deep-learning/)
+- [Neural Network depth estimation](https://www.youtube.com/watch?v=9ZjmY6EFr6E)
+
+
 # Ideas
 
 ## How to measure human height?

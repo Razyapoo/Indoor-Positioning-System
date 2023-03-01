@@ -3,8 +3,8 @@ import cv2 as cv
 import os
 import glob
 
-chessBoardSize = (9, 6)
-squareSize = 17
+chessboardSize = (6, 9)
+squareSize = 2.1
 imgSize = (640, 480)
 imageDirPath = "Calibrate Images"
 calibratedDataPath = "Calibrated Data"
@@ -12,21 +12,21 @@ calibratedDataPath = "Calibrated Data"
 
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
-objPoint = np.zeros((chessBoardSize[1] * chessBoardSize[0], 3), np.float32)
-objPoint[:,:2] = np.mgrid[0:chessBoardSize[0], 0:chessBoardSize[1]].T.reshape(-1, 2)
-objPoint *= squareSize
+objectPoint = np.zeros((chessboardSize[0] * chessboardSize[1], 3), np.float32)
+objectPoint[:,:2] = np.mgrid[0:chessboardSize[0], 0:chessboardSize[1]].T.reshape(-1, 2)
+objectPoint *= squareSize
 
-objPoints = []
+objectPoints = []
 imgPoints = []
 
 def calibrate(img):
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) 
-    isBoardDetected, corners1 = cv.findChessboardCorners(gray, chessBoardSize, None)
+    isBoardDetected, corners = cv.findChessboardCorners(gray, chessboardSize, None)
     if isBoardDetected == True: 
-        objPoints.append(objPoint)
-        corners2 = cv.cornerSubPix(gray, corners1, (11,11), (-1,-1), criteria)
-        imgPoints.append(corners2)
-        img = cv.drawChessboardCorners(img, chessBoardSize, corners2, isBoardDetected)
+        objectPoints.append(objectPoint)
+        corners = cv.cornerSubPix(gray, corners, (11,11), (-1,-1), criteria)
+        imgPoints.append(corners)
+        img = cv.drawChessboardCorners(img, chessboardSize, corners, isBoardDetected)
         
     return isBoardDetected, img
         
@@ -46,7 +46,7 @@ def calibrateImages():
         
 def calibrateWebCam():
         
-    cap = cv.VideoCapture(0)
+    cap = cv.VideoCapture(2)
     count = 0
     while True:
         _, frame = cap.read()
@@ -70,70 +70,73 @@ def calibrateWebCam():
     cv.destroyAllWindows()
 
 def getUndistorted(img):
-    newCamMtx, roi = cv.getOptimalNewCameraMatrix(camMtx, dist, imgSize, 1, imgSize)
+    newCameraMatrix, roi = cv.getOptimalNewCameraMatrix(cameraMatrix, distributionCoefficients, imgSize, 1, imgSize)
             
-    undistImg = cv.undistort(img, camMtx, dist, None, newCamMtx)
+    undistortedImage = cv.undistort(img, cameraMatrix, distributionCoefficients, None, newCameraMatrix)
     x, y, w, h = roi
-    undistImg = undistImg[y:y+h, x:x+w]
-    cv.imwrite(f"{calibratedDataPath}/{relImagePath}", undistImg)
+    undistortedImage = undistortedImage[y:y+h, x:x+w]
+    cv.imwrite(f"{calibratedDataPath}/{relImagePath}", undistortedImage)
     
-    return undistImg
+    return undistortedImage
 
 def getReprojectionError():
-    mean_error = 0
+    total_error = 0
     
-    for i in range(len(objPoints)):
-        imgPoints2, _ = cv.projectPoints(objPoints[i], rvecs[i], tvecs[i], camMtx, dist)
+    for i in range(len(objectPoints)):
+        imgPoints2, _ = cv.projectPoints(objectPoints[i], rvecs[i], tvecs[i], cameraMatrix, distributionCoefficients)
         error = cv.norm(imgPoints[i], imgPoints2, cv.NORM_L2)/len(imgPoints2)
-        mean_error += error
+        total_error += error
         
-    return mean_error
+    return total_error/len(objectPoints)
 
 if __name__=="__main__":
     
-    if not os.path.isdir(calibratedDataPath):
-        os.makedirs(calibratedDataPath)
-        if not os.path.isdir(imageDirPath):
-            os.makedirs(imageDirPath)
-            calibrateWebCam()
-        else: 
+    if os.path.isdir(calibratedDataPath) and os.path.listdir(calibratedDataPath):
+        data = np.load(f"{calibratedDataPath}/ProjectionMatrix.npz")
+        rmse = data["rmse"]
+        cameraMatrix = data["cameraMatrix"]
+        distributionCoefficients = data["distributionCoefficients"]
+        rVector = data["rVector"]
+        tVector = data["tVector"]
+    else:
+        if not os.path.isdir(calibratedDataPath):
+            os.makedirs(calibratedDataPath)
+        if os.path.isdir(imageDirPath) and os.path.listdir(imageDirPath):
             calibrateImages()
+        else:
+            if not os.path.isdir(imageDirPath): 
+                os.makedirs(imageDirPath)
+            calibrateWebCam()
         
-        ret, camMtx, dist, rvecs, tvecs = cv.calibrateCamera(objPoints, imgPoints, imgSize, None, None)
+        rmse, cameraMatrix, distributionCoefficients, rvecs, tvecs = cv.calibrateCamera(objectPoints, imgPoints, imgSize, None, None)
         
-        print(" Camera matrix:")
-        print(camMtx)
+        print ("RMSE:")
+        print(rmse)
+        
+        print("\n Camera matrix:")
+        print(cameraMatrix)
         
         print("\n Distortion coefficient:")
-        print(dist)
+        print(distributionCoefficients)
         
         print("\n Rotation Vectors:")
         print(rvecs)
         
         print("\n Translation Vectors:")
         print(tvecs)
-
-        if not os.path.isdir(calibratedDataPath):
-            os.makedirs(calibratedDataPath)
         
-        np.savez(f"{calibratedDataPath}/ProjectionMatrix", 	ret=ret, cameraMatrix=camMtx, distCoeffs=dist, rVector=rvecs, tVector=tvecs)
+        np.savez(f"{calibratedDataPath}/ProjectionMatrix", 	rmse=rmse, cameraMatrix=cameraMatrix, distributionCoefficients=distributionCoefficients, rVector=rvecs, tVector=tvecs)
         
-    else:
-        data = np.load(f"{calibratedDataPath}/ProjectionMatrix.npz")
-        ret = data["ret"]
-        camMtx = data["camMtx"]
-        distCoeffs = data["distCoeffs"]
-        rVector = data["rVector"]
-        tVector = data["tVector"]
         
     # Undistortion
-    if ret == True:
-        imagePaths = os.listdir(imageDirPath)
-        for relImagePath in imagePaths:
-            imagePath = os.path.join(imageDirPath, relImagePath)
-            img = cv.imread(imagePath)
-            undistImg = getUndistorted(img)
-            cv.imshow(relImagePath, undistImg)
+    # if rmse:
+    imagePaths = os.listdir(imageDirPath)
+    count = 0
+    for relImagePath in imagePaths:
+        imagePath = os.path.join(imageDirPath, relImagePath)
+        img = cv.imread(imagePath)
+        undistortedImage = getUndistorted(img)
+        cv.imshow(relImagePath, undistortedImage)
             
     # Reprojection error
     totalError = getReprojectionError()
