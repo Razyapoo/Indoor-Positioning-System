@@ -78,3 +78,11 @@ Why we cannot reconstruct 3D from 2D using single camera:
 - [Displaying a video feed with OpenCV and Tkinter](https://pyimagesearch.com/2016/05/30/displaying-a-video-feed-with-opencv-and-tkinter/)
 - [OpenCV-with-tkinter-and-threading](https://github.com/informramiz/OpenCV-with-tkinter-and-threading/blob/master/GUI.py)
 - [Increasing webcam FPS with Python and OpenCV](https://pyimagesearch.com/2015/12/21/increasing-webcam-fps-with-python-and-opencv/)
+
+
+# Compilation of c++ with opencv
+
+- need to install opencv
+- need to configure program in CMakeLists
+- install xorg to be able to open windows when running program from shell
+- 
