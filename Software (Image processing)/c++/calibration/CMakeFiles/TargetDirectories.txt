@@ -1,3 +1,0 @@
-/home/oskar/Documents/Master Thesis/Neural Networks/c++/calibration/CMakeFiles/StereoCalibration.dir
-/home/oskar/Documents/Master Thesis/Neural Networks/c++/calibration/CMakeFiles/edit_cache.dir
-/home/oskar/Documents/Master Thesis/Neural Networks/c++/calibration/CMakeFiles/rebuild_cache.dir

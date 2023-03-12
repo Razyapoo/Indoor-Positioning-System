@@ -15,11 +15,13 @@ class Disparity {
         ~Disparity();
         
         void computeDepth(const std::string& intrinsicFilePath, const std::string& extrinsicFilePath, const std::string& rectificationFilePath);
+        static void createTrackBars(Disparity& disparityObject);
 
 
     private: 
         void loadParameters(const std::string& intrinsicFilePath, const std::string& extrinsicFilePath, const std::string& rectificationFilePath);
         static void onMouse(int event, int x, int y, int flags, void* data);
+        static void onTrackBar(int value, void* data);
         // cv::Rect computeROI()
 
         // Paths to files containing parameters
@@ -43,13 +45,14 @@ class Disparity {
 
         std::string filter;
 
-        cv::Ptr<cv::StereoSGBM> sgbm;
+        cv::Ptr<cv::StereoSGBM> leftMatcher, sgbm;
+        cv::Ptr<cv::StereoMatcher> rightMatcher;
         cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter;
         int minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, preFilterCap, uniquenessRatio, speckleWindowSize, speckleRange;
-        int mode = cv::StereoSGBM::MODE_SGBM_3WAY;
+        int mode;
 
         double lambda, sigma; //Post-filter parameters
-        cv::Mat disparity, depth, filteredDisparity;
+        cv::Mat disparityLeft, disparityRight, depth, filteredDisparity, image8U;
 
         double baseline = 2;
         

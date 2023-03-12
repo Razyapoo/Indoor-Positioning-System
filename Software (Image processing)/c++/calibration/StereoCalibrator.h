@@ -38,7 +38,7 @@ class StereoCalibrator {
 
         const cv::Size chessboardSize = cv::Size(chessboardWidth, chessboardHeight);
         const cv::Size imageSize = cv::Size(640, 360);
-        const cv::TermCriteria& criteria = cv::TermCriteria(cv::TermCriteria::MAX_ITER | cv::TermCriteria::EPS, 30, 0.01);
+        const cv::TermCriteria& criteria = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
         const int numberOfCells = chessboardHeight * chessboardWidth;
 
         std::vector<std::vector<cv::Point3f>> objectPoints;
