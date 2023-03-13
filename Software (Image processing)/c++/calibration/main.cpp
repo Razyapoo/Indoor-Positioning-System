@@ -1,5 +1,5 @@
 
-#include "StereoCalibrator.h"
+#include "StereoCalibratorThreaded.h"
 #include <string>
 #include <map>
 #include <fstream>
@@ -8,11 +8,11 @@ int main(int argc, char** argv) {
     std::map<std::string, std::string> options;
     bool skipCalibration = false;
 
-    options["input_camera_left"] = "2";
-    options["input_camera_right"] = "4";
+    // options["input_camera_left"] = "2";
+    // options["input_camera_right"] = "4";
 
-    // options["input_camera_left"] = "rtsp://admin:Nera1998&@192.168.1.11:554/";
-    // options["input_camera_right"] = "rtsp://admin:Nera1998&@192.168.1.12:554/";
+    options["input_camera_left"] = "rtsp://admin:Nera1998&@192.168.1.11:554/";
+    options["input_camera_right"] = "rtsp://admin:Nera1998&@192.168.1.12:554/";
 
     options["intrinsic_file_path"] = "parameters/intrinsic_parameters.xml";
     options["extrinsic_file_path"] = "parameters/extrinsic_parameters.xml";
@@ -59,17 +59,22 @@ int main(int argc, char** argv) {
     }
 
     // Web camera
-    StereoCamera stereoCamera = StereoCamera(std::stoi(options["input_camera_left"]), std::stoi(options["input_camera_right"]));
+    // StereoCamera stereoCamera = StereoCamera(std::stoi(options["input_camera_left"]), std::stoi(options["input_camera_right"]));
 
     // IP Camera
     // StereoCamera stereoCamera = StereoCamera(options["input_camera_left"], options["input_camera_right"]);
+
+
+    //IP camera threaded
+    StereoCamera cameraLeft(options["input_camera_left"]);
+    StereoCamera cameraRight(options["input_camera_left"]);
     
     if (!skipCalibration) {
-        StereoCalibrator stereoCalibrator = StereoCalibrator(stereoCamera);
+        StereoCalibrator stereoCalibrator(cameraLeft, cameraRight);
         stereoCalibrator.initCameraCalibration(options["intrinsic_file_path"], options["extrinsic_file_path"], options["rectification_file_path"]);
     }
 
-    Disparity disparity = Disparity(stereoCamera);
+    Disparity disparity(stereoCamera);
     Disparity::createTrackBars(disparity);
     disparity.computeDepth(options["intrinsic_file_path"], options["extrinsic_file_path"], options["rectification_file_path"]);
 }

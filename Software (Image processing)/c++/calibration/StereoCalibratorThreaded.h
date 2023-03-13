@@ -5,12 +5,12 @@
 #include <opencv2/core.hpp>
 #include <iostream>
 #include <stdio.h>
-#include "StereoCamera.h"
+#include "CameraThreaded.h"
 #include "Disparity.h"
 
 class StereoCalibrator {
     public: 
-        StereoCalibrator(const StereoCamera& stereoCamera);
+        StereoCalibrator(Camera& Camera);
         ~StereoCalibrator();
 
         void initCameraCalibration(const std::string& pIntrinsicFilePath, const std::string& pExtrinsicFilePath, const std::string& pRectificationFilePath);
@@ -22,11 +22,11 @@ class StereoCalibrator {
 
     private: 
 
-        // StereoCamera cameraLeft;
-        // StereoCamera cameraRight;
+        // Camera cameraLeft;
+        // Camera cameraRight;
 
         std::string intrinsicFilePath, extrinsicFilePath, rectificationFilePath;
-        StereoCamera stereoCamera;
+        Camera cameraLeft, cameraRight;
         uint8_t chessboardHeight = 6;
         uint8_t chessboardWidth = 9;
         uint8_t key;
