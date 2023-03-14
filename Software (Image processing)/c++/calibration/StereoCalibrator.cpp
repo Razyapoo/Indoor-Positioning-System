@@ -67,8 +67,8 @@ void StereoCalibrator::detectChessboard() {
         cv::cvtColor(imageLeft, grayLeft, cv::COLOR_BGR2GRAY);
         cv::cvtColor(imageRight, grayRight, cv::COLOR_BGR2GRAY);
 
-        foundLeft = cv::findChessboardCorners(grayLeft, chessboardSize, cornersLeft); //, cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FILTER_QUADS | cv::CALIB_CB_NORMALIZE_IMAGE);
-        foundRight = cv::findChessboardCorners(grayRight, chessboardSize, cornersRight); //, cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FILTER_QUADS | cv::CALIB_CB_NORMALIZE_IMAGE);
+        foundLeft = cv::findChessboardCorners(grayLeft, chessboardSize, cornersLeft); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
+        foundRight = cv::findChessboardCorners(grayRight, chessboardSize, cornersRight); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
 
         if (foundLeft) {
             // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.1);
@@ -135,16 +135,30 @@ void StereoCalibrator::intrinsicCalibration() {
         
         if (key == 'x') exit(0);
         if (key == 's') {
-            cv::FileStorage fs(intrinsicFilePath, cv::FileStorage::WRITE);
+            try {
+                cv::FileStorage fs(intrinsicFilePath, cv::FileStorage::WRITE);
+                if (!fs.isOpened()) {
+                    throw std::runtime_error("Failed to open file for writing");
+                }
+                fs << "cameraMatrixLeft" <<  cameraMatrixLeft;
+                fs << "cameraMatrixRight" <<  cameraMatrixRight;
+                fs << "optimalCameraMatrixLeft" <<  optimalCameraMatrixLeft;
+                fs << "optimalCameraMatrixRight" <<  optimalCameraMatrixRight;
+                fs << "distortionMatrixLeft" << distortionMatrixLeft;
+                fs << "distortionMatrixRight" << distortionMatrixRight;
 
-            fs << "cameraMatrixLeft" <<  cameraMatrixLeft;
-            fs << "cameraMatrixRight" <<  cameraMatrixRight;
-            fs << "optimalCameraMatrixLeft" <<  optimalCameraMatrixLeft;
-            fs << "optimalCameraMatrixRight" <<  optimalCameraMatrixRight;
-            fs << "distortionMatrixLeft" << distortionMatrixLeft;
-            fs << "distortionMatrixRight" << distortionMatrixRight;
+                fs.release();
+                if (fs.isOpened()) {
+                    throw std::runtime_error("Failed to close file after writing");
+                }
 
-            fs.release();
+                std::cout << "The parameters have been saved successfully!" << std::endl;
+                intrinsicParamsSaved = true;
+
+            } catch (const std::exception& e) {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
+        
         }
         if (key == 'n') {
             StereoCalibrator::extrinsicCalibration();
@@ -172,14 +186,54 @@ void StereoCalibrator::extrinsicCalibration() {
         
         if (key == 'x') exit(0);
         if (key == 's') {
-            cv::FileStorage fs(extrinsicFilePath, cv::FileStorage::WRITE);
+            try {
+                cv::FileStorage fs(extrinsicFilePath, cv::FileStorage::WRITE);
 
-            fs << "rotationMatrixCommon" <<  rotationMatrixCommon;
-            fs << "translationVector" << translationVector;
-            fs << "essentialMatrix" << essentialMatrix;
-            fs << "fundamentalMatrix" << fundamentalMatrix;
+                if (!fs.isOpened()) {
+                    throw std::runtime_error("Failed to open file for writing");
+                }
 
-            fs.release();
+                fs << "rotationMatrixCommon" << rotationMatrixCommon;
+                fs << "translationVector" << translationVector;
+                fs << "essentialMatrix" << essentialMatrix;
+                fs << "fundamentalMatrix" << fundamentalMatrix;
+
+                fs.release();
+
+                if (fs.isOpened()) {
+                    throw std::runtime_error("Failed to close file after writing");
+                }
+
+                std::cout << "The parameters have been saved successfully!" << std::endl;
+            } catch (const std::exception& e) {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
+
+            if (!intrinsicParamsSaved) {
+                try {
+                    cv::FileStorage fs(intrinsicFilePath, cv::FileStorage::WRITE);
+                    if (!fs.isOpened()) {
+                        throw std::runtime_error("Failed to open file for writing");
+                    }
+                    fs << "cameraMatrixLeft" <<  cameraMatrixLeft;
+                    fs << "cameraMatrixRight" <<  cameraMatrixRight;
+                    fs << "optimalCameraMatrixLeft" <<  optimalCameraMatrixLeft;
+                    fs << "optimalCameraMatrixRight" <<  optimalCameraMatrixRight;
+                    fs << "distortionMatrixLeft" << distortionMatrixLeft;
+                    fs << "distortionMatrixRight" << distortionMatrixRight;
+
+                    fs.release();
+                    if (fs.isOpened()) {
+                        throw std::runtime_error("Failed to close file after writing");
+                    }
+
+                    std::cout << "The parameters have been saved successfully!" << std::endl;
+                    intrinsicParamsSaved = true;
+                    
+                } catch (const std::exception& e) {
+                    std::cerr << "Error: " << e.what() << std::endl;
+                }
+            }
         }
         if (key == 'n') {
             StereoCalibrator::stereoRectification();
@@ -243,25 +297,97 @@ void StereoCalibrator::stereoRectification() {
             exit(0);
         }
         if (key == 's') {
-            cv::FileStorage fs(rectificationFilePath, cv::FileStorage::WRITE);
+            try {
+                cv::FileStorage fs(rectificationFilePath, cv::FileStorage::WRITE);
+                if (!fs.isOpened()) {
+                    throw std::runtime_error("Failed to open file for writing");
+                }
+                fs << "rotationMatrixLeft" <<  rotationMatrixLeft;
+                fs << "rotationMatrixRight" <<  rotationMatrixRight;
+                fs << "projectionMatrixLeft" << projectionMatrixLeft;
+                fs << "projectionMatrixRight" << projectionMatrixRight;
+                fs << "disparityMatrix" << disparityMatrix;
+                fs << "mapLeftX" << mapLeftX;
+                fs << "mapLeftY" << mapLeftY;
+                fs << "mapRightX" << mapRightX;
+                fs << "mapRightY" << mapRightY;
 
-            fs << "rotationMatrixLeft" <<  rotationMatrixLeft;
-            fs << "rotationMatrixRight" <<  rotationMatrixRight;
-            fs << "projectionMatrixLeft" << projectionMatrixLeft;
-            fs << "projectionMatrixRight" << projectionMatrixRight;
-            fs << "disparityMatrix" << disparityMatrix;
-            fs << "mapLeftX" << mapLeftX;
-            fs << "mapLeftY" << mapLeftY;
-            fs << "mapRightX" << mapRightX;
-            fs << "mapRightY" << mapRightY;
+                fs.release();
 
-            fs.release();
+                if (fs.isOpened()) {
+                    throw std::runtime_error("Failed to close file after writing");
+                }
+
+                std::cout << "The parameters have been saved successfully!" << std::endl;
+            } catch (const std::exception& e) {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
+
+            if (!intrinsicParamsSaved) {
+                try {
+                    cv::FileStorage fs(intrinsicFilePath, cv::FileStorage::WRITE);
+                    if (!fs.isOpened()) {
+                        throw std::runtime_error("Failed to open file for writing");
+                    }
+                    fs << "cameraMatrixLeft" <<  cameraMatrixLeft;
+                    fs << "cameraMatrixRight" <<  cameraMatrixRight;
+                    fs << "optimalCameraMatrixLeft" <<  optimalCameraMatrixLeft;
+                    fs << "optimalCameraMatrixRight" <<  optimalCameraMatrixRight;
+                    fs << "distortionMatrixLeft" << distortionMatrixLeft;
+                    fs << "distortionMatrixRight" << distortionMatrixRight;
+
+                    fs.release();
+                    if (fs.isOpened()) {
+                        throw std::runtime_error("Failed to close file after writing");
+                    }
+
+                    std::cout << "The parameters have been saved successfully!" << std::endl;
+                    intrinsicParamsSaved = true;
+                    
+                } catch (const std::exception& e) {
+                    std::cerr << "Error: " << e.what() << std::endl;
+                }
+            }
+
+            if (!extrinsicParamsSaved) {
+                try {
+                    cv::FileStorage fs(extrinsicFilePath, cv::FileStorage::WRITE);
+
+                    if (!fs.isOpened()) {
+                        throw std::runtime_error("Failed to open file for writing");
+                    }
+
+                    fs << "rotationMatrixCommon" << rotationMatrixCommon;
+                    fs << "translationVector" << translationVector;
+                    fs << "essentialMatrix" << essentialMatrix;
+                    fs << "fundamentalMatrix" << fundamentalMatrix;
+
+                    fs.release();
+
+                    if (fs.isOpened()) {
+                        throw std::runtime_error("Failed to close file after writing");
+                    }
+
+                    std::cout << "The parameters have been saved successfully!" << std::endl;
+                } catch (const std::exception& e) {
+                    std::cerr << "Error: " << e.what() << std::endl;
+                }
+            }
         }
         if (key == 'n') { 
             cv::destroyAllWindows();
             std::cout << "Stereo Calibration stage is finished" << std::endl;
             break;
         }
+    }
+}
+
+void StereoCalibrator::getReprojectionError(bool left) {
+    std::vector<std::vector<cv::Point2f>> imagePoints;
+
+
+    if (left) {
+        
     }
 }
 
