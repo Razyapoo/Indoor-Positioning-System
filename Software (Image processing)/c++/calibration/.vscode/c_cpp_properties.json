@@ -20,7 +20,7 @@
                 "limitSymbolsToIncludedHeaders": true
             },
             
-            "compilerPath": "/opt/cuda/bin/gcc",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "${default}",
             "cppStandard": "${default}",
             "intelliSenseMode": "linux-gcc-x64",

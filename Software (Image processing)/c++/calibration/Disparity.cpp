@@ -66,11 +66,11 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
     sigma = 1.5;
     mode = cv::StereoSGBM::MODE_SGBM_3WAY;
 
-    sgbm = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
-    // leftMatcher = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
-    // rightMatcher = cv::ximgproc::createRightMatcher(leftMatcher);
-    // cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(leftMatcher);
-    cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(sgbm);
+    // sgbm = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
+    leftMatcher = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
+    rightMatcher = cv::ximgproc::createRightMatcher(leftMatcher);
+    cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(leftMatcher);
+    // cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(sgbm);
 
     wlsFilter->setLambda(lambda);
     wlsFilter->setSigmaColor(sigma);
@@ -78,43 +78,76 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
     while (true) {
         imageLeft = stereoCamera.getLeftFrame();
         imageRight = stereoCamera.getRightFrame();
+        
+        cv::cvtColor(imageLeft, grayLeft, cv::COLOR_BGR2GRAY);
+        cv::cvtColor(imageRight, grayRight, cv::COLOR_BGR2GRAY);
+
+        // cv::remap(imageLeft, rectifiedLeft, mapLeftX, mapLeftY, cv::INTER_LINEAR);
+        // cv::remap(imageRight, rectifiedRight, mapRightX, mapRightY, cv::INTER_LINEAR);
 
 
-        cv::remap(imageLeft, rectifiedLeft, mapLeftX, mapLeftY, cv::INTER_LINEAR);
-        cv::remap(imageRight, rectifiedRight, mapRightX, mapRightY, cv::INTER_LINEAR);
+        cv::remap(grayLeft, rectifiedLeft, mapLeftX, mapLeftY, cv::INTER_LINEAR);
+        cv::remap(grayRight, rectifiedRight, mapRightX, mapRightY, cv::INTER_LINEAR);
 
-        sgbm->compute(rectifiedLeft, rectifiedRight, disparityLeft);
-        sgbm->compute(rectifiedRight, rectifiedLeft, disparityRight);
+        // sgbm->compute(rectifiedLeft, rectifiedRight, disparityLeft);
+        // sgbm->compute(rectifiedRight, rectifiedLeft, disparityRight);
 
         // cv::cvtColor(rectifiedLeft, grayLeft, cv::COLOR_BGR2GRAY);
         // cv::cvtColor(rectifiedRight, grayRight, cv::COLOR_BGR2GRAY);
 
-        // leftMatcher->compute(grayLeft, grayRight, disparityLeft);
-        // rightMatcher->compute(grayRight, grayLeft, disparityRight);
+        leftMatcher->compute(rectifiedLeft, rectifiedRight, disparityLeft);
+        rightMatcher->compute(rectifiedRight, rectifiedLeft, disparityRight);
 
         //TODO: right matcher?
         
-        // cv::normalize(grayLeft, grayLeft, 0, 255, cv::NORM_MINMAX, CV_8U);
-        // cv::normalize(grayRight, grayRight, 0, 255, cv::NORM_MINMAX, CV_8U);
+        cv::normalize(disparityLeft, disparityLeft, 0, 255, cv::NORM_MINMAX, CV_8U);
+        cv::normalize(disparityRight, disparityRight, 0, 255, cv::NORM_MINMAX, CV_8U);
 
         // disparityLeft.convertTo(image8U, CV_8U, 255.0 / (sgbm->getNumDisparities() * 16));
 
         // wlsFilter = cv::ximgproc::createDisparityWLSFilter(sgbm);
-        // wlsFilter->filter(disparityLeft, grayLeft, filteredDisparity, disparityRight);
+        wlsFilter->filter(disparityLeft, rectifiedLeft, filteredDisparity, disparityRight);
 
         // Normalize the output 
-        // cv::normalize(filteredDisparity, filteredDisparity, 0, 255, cv::NORM_MINMAX, CV_8U);
-        cv::normalize(disparityLeft, disparityLeft, 0, 255, cv::NORM_MINMAX, CV_8UC1);
+        cv::normalize(filteredDisparity, filteredDisparity, 0, 255, cv::NORM_MINMAX, CV_8U);
+        // cv::normalize(disparityLeft, disparityLeft, 0, 255, cv::NORM_MINMAX, CV_8UC1);
 
         // cv::reprojectImageTo3D(filteredDisparity, depth, disparityMatrix, false, CV_32F);
-        cv::reprojectImageTo3D(disparityLeft, depth, disparityMatrix, false, CV_32F);
+        // cv::reprojectImageTo3D(disparityLeft, depth, disparityMatrix, false, CV_32F);
 
         // cv::setMouseCallback("Disparity map", onMouse, this);
 
-        cv::imshow("Disparity map", disparityLeft);
-        // cv::imshow("Disparity map", filteredDisparity);
+        // cv::imshow("Disparity map", disparityLeft);
+        cv::imshow("Disparity map", filteredDisparity);
 
         cv::imshow("Depth map", depth);
+        
+
+
+
+
+
+
+
+        // Calculate and display depth map
+        // double baseline = stereoCamera.getBaseline();
+        // double focalLength = stereoCamera.getFocalLength();
+        // double depthScale = 1.0 / baseline;
+        // cv::Mat depth = cv::Mat::zeros(filteredDisparity.size(), CV_32F);
+        // for (int y = 0; y < filteredDisparity.rows; ++y) {
+        //     for (int x = 0; x < filteredDisparity.cols; ++x) {
+        //         float d = static_cast<float>(filteredDisparity.at<uchar>(y, x));
+        //         if (d == 0) {
+        //             depth.at<float>(y, x) = 0.0f;
+        //         } else {
+        //             depth.at<float>(y, x) = static_cast<float>(focalLength * depthScale / d);
+        //         }
+        //     }
+        // }
+        // // Normalize the output 
+        // cv::normalize(depth, depth, 0, 255, cv::NORM_MINMAX, CV_8U);
+
+        // cv::imshow("Depth map", depth);
         
         key = cv::waitKey(1);
         if (key == 'x') exit(0);
@@ -158,17 +191,31 @@ void Disparity::onTrackBar(int value, void* data) {
     disparityObject->P1 = 8 * 3 * disparityObject->blockSize * disparityObject->blockSize;
     disparityObject->P2 = 32 * 3 * disparityObject->blockSize * disparityObject->blockSize;
 
-    disparityObject->sgbm->setMinDisparity(disparityObject->minDisparity);
-    disparityObject->sgbm->setNumDisparities(disparityObject->numDisparities);
-    disparityObject->sgbm->setBlockSize(disparityObject->blockSize);
-    disparityObject->sgbm->setDisp12MaxDiff(disparityObject->disp12MaxDiff);
-    disparityObject->sgbm->setUniquenessRatio(disparityObject->uniquenessRatio);
-    disparityObject->sgbm->setSpeckleWindowSize(disparityObject->speckleWindowSize);
-    disparityObject->sgbm->setSpeckleRange(disparityObject->speckleRange);
-    disparityObject->sgbm->setPreFilterCap(disparityObject->preFilterCap);
+    //SGBM only
+    // disparityObject->sgbm->setMinDisparity(disparityObject->minDisparity);
+    // disparityObject->sgbm->setNumDisparities(disparityObject->numDisparities);
+    // disparityObject->sgbm->setBlockSize(disparityObject->blockSize);
+    // disparityObject->sgbm->setDisp12MaxDiff(disparityObject->disp12MaxDiff);
+    // disparityObject->sgbm->setUniquenessRatio(disparityObject->uniquenessRatio);
+    // disparityObject->sgbm->setSpeckleWindowSize(disparityObject->speckleWindowSize);
+    // disparityObject->sgbm->setSpeckleRange(disparityObject->speckleRange);
+    // disparityObject->sgbm->setPreFilterCap(disparityObject->preFilterCap);
 
-    disparityObject->sgbm->setP1(disparityObject->P1);
-    disparityObject->sgbm->setP2(disparityObject->P2);
+    // disparityObject->sgbm->setP1(disparityObject->P1);
+    // disparityObject->sgbm->setP2(disparityObject->P2);
+
+    // WLS
+    disparityObject->leftMatcher->setMinDisparity(disparityObject->minDisparity);
+    disparityObject->leftMatcher->setNumDisparities(disparityObject->numDisparities);
+    disparityObject->leftMatcher->setBlockSize(disparityObject->blockSize);
+    disparityObject->leftMatcher->setDisp12MaxDiff(disparityObject->disp12MaxDiff);
+    disparityObject->leftMatcher->setUniquenessRatio(disparityObject->uniquenessRatio);
+    disparityObject->leftMatcher->setSpeckleWindowSize(disparityObject->speckleWindowSize);
+    disparityObject->leftMatcher->setSpeckleRange(disparityObject->speckleRange);
+    disparityObject->leftMatcher->setPreFilterCap(disparityObject->preFilterCap);
+
+    disparityObject->leftMatcher->setP1(disparityObject->P1);
+    disparityObject->leftMatcher->setP2(disparityObject->P2);
 }
 
 void Disparity::createTrackBars(Disparity& disparityObject) {

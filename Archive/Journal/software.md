@@ -86,3 +86,9 @@ Why we cannot reconstruct 3D from 2D using single camera:
 - need to configure program in CMakeLists
 - install xorg to be able to open windows when running program from shell
 - 
+
+
+# March 03, 2023
+
+- C++ version of stereo calibration is implemented. However with IP cameras it works worse than with webcameras. Frames are not synchronized. 
+- In order to solve it, threaded version need to be implemented. Each camera will use a separate thread.

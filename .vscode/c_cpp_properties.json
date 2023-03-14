@@ -3,11 +3,16 @@
     "configurations": [
         {
             "name": "Linux",
-            "compilerPath": "/opt/cuda/bin/gcc",
+            "compilerPath": "/usr/bin/gcc",
             "compilerArgs": [],
             "intelliSenseMode": "linux-gcc-x64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Software (Image processing)/c++/calibration/**",
+                "/usr/local/include",
+                "/usr/include",
+                "/usr/include/opencv4",
+                "/usr/include/opencv4/opencv2"
             ],
             "forcedInclude": [],
             "cStandard": "gnu17",
