@@ -113,12 +113,12 @@ void StereoCalibrator::intrinsicCalibration() {
     // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.1);
     std::cout << "Stage - Compute Intrinsic Parameters" << std::endl;
 
-    reprojectionErrorLeft = cv::calibrateCamera(objectPoints, imagePointsLeft, imageSize, cameraMatrixLeft, distortionMatrixLeft, rotationMatrixLeft, translationVectorLeft);
-    reprojectionErrorRight = cv::calibrateCamera(objectPoints, imagePointsRight, imageSize, cameraMatrixRight, distortionMatrixRight, rotationMatrixRight, translationVectorRight);
+    reprojectionErrorLeft = cv::calibrateCamera(objectPoints, imagePointsLeft, imageSize, cameraMatrixLeft, distortionCoeffsLeft, rotationVecsLeft, translationVecsLeft);
+    reprojectionErrorRight = cv::calibrateCamera(objectPoints, imagePointsRight, imageSize, cameraMatrixRight, distortionCoeffsRight, rotationVecsRight, translationVecsRight);
 
     
-    optimalCameraMatrixLeft = cv::getOptimalNewCameraMatrix(cameraMatrixLeft, distortionMatrixLeft, imageSize, alpha, imageSize, 0);
-    optimalCameraMatrixRight = cv::getOptimalNewCameraMatrix(cameraMatrixRight, distortionMatrixRight, imageSize, alpha, imageSize, 0);
+    optimalCameraMatrixLeft = cv::getOptimalNewCameraMatrix(cameraMatrixLeft, distortionCoeffsLeft, imageSize, alpha, imageSize, 0);
+    optimalCameraMatrixRight = cv::getOptimalNewCameraMatrix(cameraMatrixRight, distortionCoeffsRight, imageSize, alpha, imageSize, 0);
 
     std::cout << "Intrinsic calibration is finished" << std::endl;
     std::cout << "Calibration Error Left Camera: " <<  reprojectionErrorLeft << std::endl;
@@ -141,8 +141,8 @@ void StereoCalibrator::intrinsicCalibration() {
             fs << "cameraMatrixRight" <<  cameraMatrixRight;
             fs << "optimalCameraMatrixLeft" <<  optimalCameraMatrixLeft;
             fs << "optimalCameraMatrixRight" <<  optimalCameraMatrixRight;
-            fs << "distortionMatrixLeft" << distortionMatrixLeft;
-            fs << "distortionMatrixRight" << distortionMatrixRight;
+            fs << "distortionCoeffsLeft" << distortionCoeffsLeft;
+            fs << "distortionCoeffsRight" << distortionCoeffsRight;
 
             fs.release();
         }
@@ -156,7 +156,7 @@ void StereoCalibrator::intrinsicCalibration() {
 void StereoCalibrator::extrinsicCalibration() {
     std::cout << "Stage - Compute Extrinsic Parameters" << std::endl;
 
-    double stereoReprojectionError = cv::stereoCalibrate(objectPoints, imagePointsLeft, imagePointsRight, optimalCameraMatrixLeft, distortionMatrixLeft, optimalCameraMatrixRight, distortionMatrixRight, imageSize, rotationMatrixCommon, translationVector, essentialMatrix, fundamentalMatrix, cv::CALIB_FIX_INTRINSIC, criteria);
+    double stereoReprojectionError = cv::stereoCalibrate(objectPoints, imagePointsLeft, imagePointsRight, optimalCameraMatrixLeft, distortionCoeffsLeft, optimalCameraMatrixRight, distortionCoeffsRight, imageSize, rotationMatrixCommon, translationVector, essentialMatrix, fundamentalMatrix, cv::CALIB_FIX_INTRINSIC, criteria);
 
     std::cout << "Extrinsic calibration is finished" << std::endl;
     std::cout << "Stereo calibration error: " <<  stereoReprojectionError << std::endl;
@@ -190,12 +190,12 @@ void StereoCalibrator::extrinsicCalibration() {
 
 void StereoCalibrator::stereoRectification() {
     std::cout << "Stage - Stereo rectification" << std::endl;
-    cv::stereoRectify(optimalCameraMatrixLeft, distortionMatrixLeft, optimalCameraMatrixRight, distortionMatrixRight, imageSize, rotationMatrixCommon, translationVector, rotationMatrixLeft, rotationMatrixRight, projectionMatrixLeft, projectionMatrixRight, disparityMatrix);
+    cv::stereoRectify(optimalCameraMatrixLeft, distortionCoeffsLeft, optimalCameraMatrixRight, distortionCoeffsRight, imageSize, rotationMatrixCommon, translationVector, rotationVecsLeft, rotationVecsRight, projectionMatrixLeft, projectionMatrixRight, disparityMatrix);
     std::cout << "Stereo rectification is finished" << std::endl;
 
     std::cout << "Undistortion..." << std::endl;
-    cv::initUndistortRectifyMap(cameraMatrixLeft, distortionMatrixLeft, rotationMatrixLeft, optimalCameraMatrixLeft, imageSize, CV_32FC1, mapLeftX, mapLeftY);
-    cv::initUndistortRectifyMap(cameraMatrixRight, distortionMatrixRight, rotationMatrixRight, optimalCameraMatrixRight, imageSize, CV_32FC1, mapRightX, mapRightY);
+    cv::initUndistortRectifyMap(cameraMatrixLeft, distortionCoeffsLeft, rotationVecsLeft, optimalCameraMatrixLeft, imageSize, CV_32FC1, mapLeftX, mapLeftY);
+    cv::initUndistortRectifyMap(cameraMatrixRight, distortionCoeffsRight, rotationVecsRight, optimalCameraMatrixRight, imageSize, CV_32FC1, mapRightX, mapRightY);
     std::cout << "Undistortion is finished" << std::endl;
 
     std::cout << "Result of undistortion:" << std::endl;
@@ -245,8 +245,8 @@ void StereoCalibrator::stereoRectification() {
         if (key == 's') {
             cv::FileStorage fs(rectificationFilePath, cv::FileStorage::WRITE);
 
-            fs << "rotationMatrixLeft" <<  rotationMatrixLeft;
-            fs << "rotationMatrixRight" <<  rotationMatrixRight;
+            fs << "rotationVecsLeft" <<  rotationVecsLeft;
+            fs << "rotationVecsRight" <<  rotationVecsRight;
             fs << "projectionMatrixLeft" << projectionMatrixLeft;
             fs << "projectionMatrixRight" << projectionMatrixRight;
             fs << "disparityMatrix" << disparityMatrix;

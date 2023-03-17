@@ -20,7 +20,8 @@ class StereoCalibrator {
         void intrinsicCalibration();
         void extrinsicCalibration();
         void stereoRectification();
-        void getReprojectionError(bool left);
+        double getReprojectionError(const std::vector<std::vector<cv::Point3f>>& objectPoints, const std::vector<std::vector<cv::Point2f>>& imagePoints, const std::vector<cv::Mat>& rotationVecs, const std::vector<cv::Mat>& translationVecs, const cv::Mat& cameraMatrix, const cv::Mat& distortionCoeffs);
+        double getEpipolarError(const std::vector<std::vector<cv::Point2f>>& imagePoints);
 
     private: 
 
@@ -28,20 +29,21 @@ class StereoCalibrator {
         // StereoCamera cameraRight;
 
         std::string intrinsicFilePath, extrinsicFilePath, rectificationFilePath;
-        bool intrinsicParamsSaved, extrinsicParamsSaved, rectificationParamsSaved;
+        bool intrinsicParamsSaved = false, extrinsicParamsSaved = false, rectificationParamsSaved = false;
         StereoCamera stereoCamera;
         uint8_t chessboardHeight = 6;
         uint8_t chessboardWidth = 9;
         uint8_t key;
         uint16_t imageCounter = 0;
-        float squareSize = 2.5f;
+        float squareSize = 3.4f;
         float alpha = 0;
         double reprojectionErrorLeft;
         double reprojectionErrorRight;
 
         const cv::Size chessboardSize = cv::Size(chessboardWidth, chessboardHeight);
         const cv::Size imageSize = cv::Size(640, 360);
-        const cv::TermCriteria& criteria = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
+        const cv::TermCriteria criteriaMono = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
+        const cv::TermCriteria criteriaStereo = cv::TermCriteria(cv::TermCriteria::COUNT, 100, 1e-5);
         const int numberOfCells = chessboardHeight * chessboardWidth;
 
         std::vector<std::vector<cv::Point3f>> objectPoints;
@@ -54,12 +56,13 @@ class StereoCalibrator {
         bool foundLeft, foundRight;
 
         // Intrinsic calibration
-        cv::Mat cameraMatrixLeft, cameraMatrixRight, distortionMatrixLeft, distortionMatrixRight, rotationMatrixLeft, rotationMatrixRight, translationVectorLeft, translationVectorRight;
+        cv::Mat cameraMatrixLeft, cameraMatrixRight, distortionCoeffsLeft, distortionCoeffsRight;
+        std::vector<cv::Mat> rotationVecsLeft, rotationVecsRight, translationVecsLeft, translationVecsRight;
         cv::Mat optimalCameraMatrixLeft, optimalCameraMatrixRight;
         // Extrinsic calibration 
         cv::Mat rotationMatrixCommon, translationVector, essentialMatrix, fundamentalMatrix;
         // Rectification
-        cv::Mat projectionMatrixLeft, projectionMatrixRight, disparityMatrix; 
+        cv::Mat rotationMatrixLeft, rotationMatrixRight, projectionMatrixLeft, projectionMatrixRight, disparityMatrix; 
         // Undistortion
         cv::Mat mapLeftX, mapLeftY, mapRightX, mapRightY;
         cv::Mat undistortedImageLeft, undistortedImageRight;

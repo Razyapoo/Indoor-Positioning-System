@@ -33,6 +33,8 @@ class Disparity {
         cv::FileStorage extrinsicFile;
         cv::FileStorage rectificationFile;
 
+        const cv::Size imageSize = cv::Size(640, 360);
+
         // StereoCamera cameraLeft;
         // StereoCamera cameraRight;
         StereoCamera stereoCamera; 
@@ -42,6 +44,7 @@ class Disparity {
 
         cv::Point3f cameraPoint;
         cv::Point3f worldPoint;
+        cv::Mat points3D;
 
         std::string filter;
 
@@ -52,7 +55,7 @@ class Disparity {
         int mode;
 
         double lambda, sigma; //Post-filter parameters
-        cv::Mat disparityLeft, disparityRight, depth, filteredDisparity, image8U;
+        cv::Mat disparityLeft, disparityRight, depth, filteredDisparity, disparity8U, disparity8UColored;
 
         double baseline = 2;
         

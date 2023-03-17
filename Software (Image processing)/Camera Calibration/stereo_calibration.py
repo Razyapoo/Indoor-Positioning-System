@@ -122,10 +122,10 @@ if __name__=="__main__":
     
     # Stereo rectification
     rectifyScale = 1
-    rotationMatrixLeft, rotationMatrixRight, projectionMatrixLeft, projectionMatrixRight, disparityToDepthMatrix, roiLeft, roiRight= cv.stereoRectify(newCameraMatrixLeft, distributionCoefficientsLeft, newCameraMatrixRight, distributionCoefficientsRight, imgSize, rotationMatrix, translationVector, rectifyScale, (0,0))
+    rotationVecsLeft, rotationVecsRight, projectionMatrixLeft, projectionMatrixRight, disparityToDepthMatrix, roiLeft, roiRight= cv.stereoRectify(newCameraMatrixLeft, distributionCoefficientsLeft, newCameraMatrixRight, distributionCoefficientsRight, imgSize, rotationMatrix, translationVector, rectifyScale, (0,0))
 
-    stereoTransformationMapLeft = cv.initUndistortRectifyMap(newCameraMatrixLeft, distributionCoefficientsLeft, rotationMatrixLeft, projectionMatrixLeft, imgSize, cv.CV_16SC2)
-    stereoTransformationMapRight = cv.initUndistortRectifyMap(newCameraMatrixRight, distributionCoefficientsRight, rotationMatrixRight, projectionMatrixRight, imgSize, cv.CV_16SC2)
+    stereoTransformationMapLeft = cv.initUndistortRectifyMap(newCameraMatrixLeft, distributionCoefficientsLeft, rotationVecsLeft, projectionMatrixLeft, imgSize, cv.CV_16SC2)
+    stereoTransformationMapRight = cv.initUndistortRectifyMap(newCameraMatrixRight, distributionCoefficientsRight, rotationVecsRight, projectionMatrixRight, imgSize, cv.CV_16SC2)
     
     parametersFile = cv.FileStorage('stereoTransformationMap.xml', cv.FILE_STORAGE_WRITE)
     parametersFile.write('undistortionTransformationMapLeft', stereoTransformationMapLeft[0])

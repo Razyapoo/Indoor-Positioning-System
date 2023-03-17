@@ -51,7 +51,7 @@ class StereoCalibrator {
         bool foundLeft, foundRight;
 
         // Intrinsic calibration
-        cv::Mat cameraMatrixLeft, cameraMatrixRight, distortionMatrixLeft, distortionMatrixRight, rotationMatrixLeft, rotationMatrixRight, translationVectorLeft, translationVectorRight;
+        cv::Mat cameraMatrixLeft, cameraMatrixRight, distortionCoeffsLeft, distortionCoeffsRight, rotationVecsLeft, rotationVecsRight, translationVecsLeft, translationVecsRight;
         cv::Mat optimalCameraMatrixLeft, optimalCameraMatrixRight;
         // Extrinsic calibration 
         cv::Mat rotationMatrixCommon, translationVector, essentialMatrix, fundamentalMatrix;
