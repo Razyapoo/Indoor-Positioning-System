@@ -55,7 +55,7 @@ class Disparity {
         int mode;
 
         double lambda, sigma; //Post-filter parameters
-        cv::Mat disparityLeft, disparityRight, depth, filteredDisparity, disparity8U, disparity8UColored;
+        cv::Mat disparityLeft, disparityRight, depth, filteredDisparity, filteredDisparityVis, disparity8U, disparity8UColored;
 
         double baseline = 2;
         

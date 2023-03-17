@@ -67,15 +67,17 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
     mode = cv::StereoSGBM::MODE_SGBM_3WAY;
     float disparityMultiplier = 1.0f;
     bool showColored = false;
+    bool applyFilter = false;
+    cv::Mat floatDisp;
 
     sgbm = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
     // leftMatcher = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
-    // rightMatcher = cv::ximgproc::createRightMatcher(leftMatcher);
-    // cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(leftMatcher);
+    rightMatcher = cv::ximgproc::createRightMatcher(sgbm);
     cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(sgbm);
+    // cv::Ptr<cv::ximgproc::DisparityWLSFilter> wlsFilter = cv::ximgproc::createDisparityWLSFilter(sgbm);
 
-    // wlsFilter->setLambda(lambda);
-    // wlsFilter->setSigmaColor(sigma);
+    wlsFilter->setLambda(lambda);
+    wlsFilter->setSigmaColor(sigma);
     
     while (true) {
         imageLeft = stereoCamera.getLeftFrame();
@@ -101,7 +103,6 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
         // cv::cvtColor(rectifiedRight, grayRight, cv::COLOR_BGR2GRAY);
 
         // leftMatcher->compute(rectifiedLeft, rectifiedRight, disparityLeft);
-        // rightMatcher->compute(rectifiedRight, rectifiedLeft, disparityRight);
 
         //TODO: right matcher?
 
@@ -119,10 +120,23 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
         // disparityLeft.convertTo(image8U, CV_8U, 255.0 / (sgbm->getNumDisparities() * 16));
 
         // wlsFilter = cv::ximgproc::createDisparityWLSFilter(sgbm);
-        // wlsFilter->filter(disparityLeft, rectifiedLeft, filteredDisparity, disparityRight);
+        if (applyFilter) {
+            rightMatcher->compute(rectifiedRight, rectifiedLeft, disparityRight);
+            wlsFilter->filter(disparityLeft, rectifiedLeft, filteredDisparity, disparityRight);
+            cv::normalize(filteredDisparity, filteredDisparityVis, 0, 255, cv::NORM_MINMAX, CV_8UC1);
+
+            cv::namedWindow("Filtered disparity map");
+            cv::imshow("Filtered disparity map", filteredDisparityVis);
+            
+            filteredDisparity.convertTo(floatDisp, CV_32F, 1.0f / disparityMultiplier);
+            // cv::setMouseCallback("Filtered disparity map", onMouse, this);
+        } else {
+            if (cv::getWindowProperty("Filtered disparity map", cv::WND_PROP_VISIBLE) >= 1) cv::destroyWindow("Filtered disparity map");
+            // cv::setMouseCallback("Disparity map", onMouse, this);
+            disparityLeft.convertTo(floatDisp, CV_32F, 1.0f / disparityMultiplier);
+        }
 
         // Normalize the output 
-        // cv::normalize(filteredDisparity, filteredDisparity, 0, 255, cv::NORM_MINMAX, CV_8U);
         // cv::normalize(disparityLeft, disparityLeft, 0, 255, cv::NORM_MINMAX, CV_8UC1);
 
         // cv::reprojectImageTo3D(filteredDisparity, depth, disparityMatrix, false, CV_32F);
@@ -130,7 +144,6 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
 
         // cv::setMouseCallback("Disparity map", onMouse, this);
 
-        // cv::imshow("Disparity map", disparityLeft);
 
         // cv::imshow("Depth map", depth);
 
@@ -154,9 +167,9 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
 
         // cv::imshow("Depth map", depth);
 
-        cv::Mat floatDisp, disparityNorm;
+        // , disparityNorm;
         // cv::normalize(disparityLeft, disparityNorm, 0, 255, cv::NORM_MINMAX, CV_8U);
-        disparityLeft.convertTo(floatDisp, CV_32F, 1.0f / disparityMultiplier);
+
         cv::reprojectImageTo3D(floatDisp, points3D, disparityMatrix, true);
 
         cv::Mat depthMap = cv::Mat::zeros(imageSize, CV_32F);
@@ -177,7 +190,7 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
             }        
         }
 
-        double minValue, maxValue;
+        // double minValue, maxValue;
         // cv::minMaxLoc(depthMap, &minValue, &maxValue);
         // cv::Mat scaledDepthMap;
         // cv::convertScaleAbs(depthMap, scaledDepthMap, 255.0 / (maxValue - minValue), -minValue);
@@ -192,9 +205,8 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
         // // convert depth map to grayscale image (optional)
         cv::Mat depthMapGray;
         depthMap.convertTo(depthMapGray, CV_8U);
-        cv::setMouseCallback("Disparity map", onMouse, this);
-
         cv::imshow("Depth map", depthMapGray);
+        cv::setMouseCallback("Depth map", onMouse, this);
 
 
 
@@ -219,6 +231,7 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
         key = cv::waitKey(1);
         if (key == 'x') exit(0);
         if (key == 'c') showColored = !showColored; 
+        if (key == 'f') applyFilter = !applyFilter;
     }
 }
 
