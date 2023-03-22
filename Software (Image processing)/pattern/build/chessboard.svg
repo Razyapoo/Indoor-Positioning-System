@@ -1,0 +1,13 @@
+<svg width="297mm" height="419mm" viewBox="0 0 297 419" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="297" height="419" fill="#fff" />
+<g transform="translate(36 22)">
+<rect x="0" y="0" width="225" height="375" fill="#000" />
+<rect x="75" y="0" width="75" height="75" fill="#fff" />
+<rect x="0" y="75" width="75" height="75" fill="#fff" />
+<rect x="150" y="75" width="75" height="75" fill="#fff" />
+<rect x="75" y="150" width="75" height="75" fill="#fff" />
+<rect x="0" y="225" width="75" height="75" fill="#fff" />
+<rect x="150" y="225" width="75" height="75" fill="#fff" />
+<rect x="75" y="300" width="75" height="75" fill="#fff" />
+</g>
+</svg>

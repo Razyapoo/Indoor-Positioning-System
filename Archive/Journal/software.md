@@ -92,3 +92,33 @@ Why we cannot reconstruct 3D from 2D using single camera:
 
 - C++ version of stereo calibration is implemented. However with IP cameras it works worse than with webcameras. Frames are not synchronized. 
 - In order to solve it, threaded version need to be implemented. Each camera will use a separate thread.
+
+# March 18, 2023
+
+- Manage to get more or less accurate results (depth estimation) with webcam and c++ setup
+- Next step is to use YOLOv4 to detect people on the frames:
+  - Need to install YOLOv4 from https://github.com/AlexeyAB/darknet and download weights https://github.com/AlexeyAB/darknet#pre-trained-models.
+  - Intallation of the Darknet (YOLOv4) is perfomed locally, so there is need to add a path to darknet.h file in the CMakeLists.txt of the target project
+  - For better performance of YOLOv4 there is need to install CUDA support for GPU. The name of my laptop is ASUS Zenbook UX530UQ and it has the Nvidia GeForce 940MX GPU with CUDA support. Current OS is Ubuntu 22.04 and version of nvidia driver is 525
+    - First, make sure nvidia driver is installed by running the command: nvidia-detector. If not istalled, run "sudo apt install nvidia-driver-<version>"
+    - Steps to install CUDA:
+      - Run the command: sudo apt install nvidia-cuda-toolkit
+      - To check whether CUDA has been installed, run "nvcc --version".
+      - Run sudo apt update | sudo apt upgrade
+      - Add path to cuda lib to ~/.bashrc file as follows: 
+          - export PATH=/usr/lib/cuda/bin:$PATH
+          - export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH
+
+    - Steps to install Darknet for YOLOv4 suppport: 
+      - git clone https://github.com/AlexeyAB/darknet.git
+      - cd darknet
+      - "make" (this will install support for CUDA)
+        - If there is no support for CUDA use: "make CPU"
+    
+    - Steps to install CUDNN (doc: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html): 
+      - go to https://developer.nvidia.com/rdp/cudnn-archive and download .deb package
+      - run: sudo dpkg -i cudnn-local-repo-ubuntu2204-8.8.1.3_1.0-1_amd64.deb
+      - run: sudo cp /var/cudnn-local-repo-ubuntu2204-8.8.1.3/cudnn-local-A917C751-keyring.gpg /usr/share/keyrings/
+      - run: sudo apt-get install libcudnn8
+      - sudo apt-get install libcudnn8-dev
+      - sudo apt-get install libcudnn8-samples
