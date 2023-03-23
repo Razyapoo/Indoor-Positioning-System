@@ -205,7 +205,8 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
         // // convert depth map to grayscale image (optional)
         cv::Mat depthMapGray;
         depthMap.convertTo(depthMapGray, CV_8U);
-        cv::imshow("Depth map", depthMapGray);
+        cv::imshow("Depth map", depthMap);
+        cv::imshow("Depth map gray", depthMapGray);
         cv::setMouseCallback("Depth map", onMouse, this);
 
 
