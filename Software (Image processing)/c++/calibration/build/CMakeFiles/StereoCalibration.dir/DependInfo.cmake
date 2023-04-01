@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/Disparity.cpp" "CMakeFiles/StereoCalibration.dir/Disparity.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/Disparity.cpp.o.d"
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/StereoCalibrator.cpp" "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o.d"
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/StereoCamera.cpp" "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o.d"
+  "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/VideoManager.cpp" "CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o.d"
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/main.cpp" "CMakeFiles/StereoCalibration.dir/main.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/main.cpp.o.d"
   )
 

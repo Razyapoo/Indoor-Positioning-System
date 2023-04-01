@@ -1,0 +1,3 @@
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/12.7.2022 v6.1 (centralized, python)/build/CMakeFiles/Server.dir
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/12.7.2022 v6.1 (centralized, python)/build/CMakeFiles/edit_cache.dir
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/12.7.2022 v6.1 (centralized, python)/build/CMakeFiles/rebuild_cache.dir

@@ -31,7 +31,8 @@ void setAddress() {
     } else if (macAddr == "70:B8:F6:D8:F6:60") {
         myID = 3;
     } else {
-        // PRINTLN(F("Wrong tag MAC address."));
+        PRINTLN(F("Wrong tag MAC address."));
+        PRINTLN(macAddr);
     }
 }
 
@@ -42,9 +43,9 @@ void connectToWiFi() {
    while (WiFi.status() != WL_CONNECTED)
    {
        delay(300);
-       // PRINT(F("."));
+        PRINT(F("."));
    }
-   // PRINTLN(F("Connected"));
+    PRINTLN(F("Connected"));
   
 }
 
@@ -52,7 +53,7 @@ void connectToServer() {
    
    if (client.connect(host, 30001))
    {
-       // PRINTLN(F("Success"));
+        PRINTLN(F("Success"));
    } else {
        PRINTLN(F("Unsuccessfull connection"));
    }
@@ -166,6 +167,8 @@ void setup() {
   initReceiver();
   connectToWiFi();
   connectToServer();
+
+  state = STATE_IDLE;
   // uwb_data = init_link(myID);
 }
 
@@ -174,6 +177,7 @@ void loop() {
 
      /* Send data to server */
   if (state == STATE_IDLE) {
+    ack = "";
     PRINTLN(F("Server request"));
 //    if (client.connected()) { 
 //      client.print(String(myID) + "3");
@@ -184,7 +188,7 @@ void loop() {
       if (client.available()) { 
         ack = client.read();
         break;
-      } else if (millis() - runtimeDelay > 10) break;
+      } else if (millis() - runtimeDelay > 500) break;
     }
     PRINT(F("Ack: ")); PRINTLN(ack);
     if (ack == "49") updateState(STATE_SCAN);
@@ -266,7 +270,7 @@ void loop() {
         return;
     }
     else if (!client.connected()) {
-      PRINTLN(F("Server does't respond. Connection lost. Reconnecting..."));
+      PRINTLN(F("Server does't respond. Server connection lost. Reconnecting..."));
       ack = "";
       connectToServer();
       updateState(STATE_SEND_DISTANCE_TO_SERVER);
@@ -308,7 +312,7 @@ void loop() {
 
     } else {
       PRINTLN(F("No anchor is detected. STATE DISCOVERY..."));
-      msgToSend = String(myID) + "No anchor is detected. STATE DISCOVERY."; // no anchor is detected
+      msgToSend = "MyID: " + String(myID) + " No anchor is detected. STATE DISCOVERY."; // no anchor is detected
       //delay(SLEEP);
       //updateState(STATE_IDLE);
       updateState(STATE_SEND_DISTANCE_TO_SERVER);

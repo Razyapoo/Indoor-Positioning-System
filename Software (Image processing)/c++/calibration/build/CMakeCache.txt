@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_BUILD_TYPE:STRING=
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -220,9 +220,6 @@ StereoCalibration_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 StereoCalibration_SOURCE_DIR:STATIC=/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration
-
-//The directory containing a CMake configuration file for opencv.
-opencv_DIR:PATH=opencv_DIR-NOTFOUND
 
 
 ########################

@@ -5,43 +5,41 @@
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.3915616775847167e+02 0. 3.1378429429997635e+02 0.
-    4.4037446642724979e+02 1.6901560694580968e+02 0. 0. 1.</data></cameraMatrixLeft>
+    4.2603256331058225e+02 0. 3.1366595953453037e+02 0.
+    4.2921094210291238e+02 1.7178550834097607e+02 0. 0. 1.</data></cameraMatrixLeft>
 <cameraMatrixRight type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.3724475128784223e+02 0. 3.1258432051828095e+02 0.
-    4.3875117139587496e+02 1.6365776728770513e+02 0. 0. 1.</data></cameraMatrixRight>
+    4.1922403218109804e+02 0. 3.2050024482772022e+02 0.
+    4.2260747405573289e+02 1.7863115258587979e+02 0. 0. 1.</data></cameraMatrixRight>
 <optimalCameraMatrixLeft type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.4132226562500000e+02 0. 3.1470131179550663e+02 0.
-    4.4326419067382812e+02 1.6799933797906942e+02 0. 0. 1.</data></optimalCameraMatrixLeft>
+    4.2924542236328125e+02 0. 3.1409443258682222e+02 0.
+    4.3449322509765625e+02 1.7172478118962317e+02 0. 0. 1.</data></optimalCameraMatrixLeft>
 <optimalCameraMatrixRight type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.3845144653320312e+02 0. 3.1314041151927449e+02 0.
-    4.4110266113281250e+02 1.6267486855437892e+02 0. 0. 1.</data></optimalCameraMatrixRight>
+    4.2254373168945312e+02 0. 3.2190756237410278e+02 0.
+    4.2784399414062500e+02 1.7890205140128091e+02 0. 0. 1.</data></optimalCameraMatrixRight>
 <distortionCoeffsLeft type_id="opencv-matrix">
   <rows>1</rows>
   <cols>5</cols>
   <dt>d</dt>
   <data>
-    1.2637152139204641e-01 -4.9506178206877532e-01
-    -2.2816105373201770e-03 1.0190499675452709e-03
-    4.6921004947211947e-01</data></distortionCoeffsLeft>
+    1.7049499476498667e-01 -5.7679758142362214e-01
+    1.8526576682761360e-03 3.3517729120287955e-04 4.8556780893585955e-01</data></distortionCoeffsLeft>
 <distortionCoeffsRight type_id="opencv-matrix">
   <rows>1</rows>
   <cols>5</cols>
   <dt>d</dt>
   <data>
-    1.1646034213335367e-01 -4.5781383272828646e-01
-    -2.2139729028431377e-03 3.0160347242975911e-04
-    4.2373817532645280e-01</data></distortionCoeffsRight>
+    1.5893744983146038e-01 -5.2815403176469233e-01
+    3.2406604479242817e-03 2.8211023995519725e-03 4.3766623054733061e-01</data></distortionCoeffsRight>
 </opencv_storage>

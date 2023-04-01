@@ -1,9 +1,8 @@
 CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /home/oskar/Documents/Master\ Thesis/Software\ (Image\ processing)/c++/calibration/Disparity.cpp \
  /usr/include/stdc-predef.h \
- /home/oskar/Documents/Master\ Thesis/Software\ (Image\ processing)/c++/calibration/Disparity.h \
- /usr/include/opencv4/opencv2/opencv.hpp \
- /usr/include/opencv4/opencv2/opencv_modules.hpp \
+ /home/oskar/Documents/Master\ Thesis/Software\ (Image\ processing)/c++/calibration/Disparity.hpp \
+ /usr/include/opencv4/opencv2/calib3d.hpp \
  /usr/include/opencv4/opencv2/core.hpp \
  /usr/include/opencv4/opencv2/core/cvdef.h \
  /usr/include/opencv4/opencv2/core/version.hpp /usr/include/c++/11/limits \
@@ -57,16 +56,13 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/11/bits/std_abs.h /usr/include/c++/11/array \
  /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/stl_pair.h /usr/include/c++/11/bits/move.h \
@@ -85,7 +81,9 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/c++/11/bits/ptr_traits.h /usr/include/c++/11/debug/debug.h \
  /usr/include/c++/11/bits/predefined_ops.h \
  /usr/include/c++/11/bits/range_access.h \
- /usr/include/opencv4/opencv2/core/base.hpp /usr/include/c++/11/climits \
+ /usr/include/opencv4/opencv2/core/base.hpp \
+ /usr/include/opencv4/opencv2/opencv_modules.hpp \
+ /usr/include/c++/11/climits \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -129,11 +127,9 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/c++/11/bits/vector.tcc \
  /usr/include/c++/11/pstl/execution_defs.h \
  /usr/include/opencv4/opencv2/core/cvstd.hpp /usr/include/c++/11/cstring \
- /usr/include/string.h /usr/include/strings.h \
- /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
- /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/c++/11/cctype /usr/include/ctype.h \
- /usr/include/c++/11/string /usr/include/c++/11/bits/stringfwd.h \
+ /usr/include/string.h /usr/include/strings.h /usr/include/c++/11/cctype \
+ /usr/include/ctype.h /usr/include/c++/11/string \
+ /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/char_traits.h \
  /usr/include/c++/11/bits/postypes.h /usr/include/c++/11/cwchar \
  /usr/include/wchar.h /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
@@ -142,7 +138,6 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
- /usr/include/x86_64-linux-gnu/bits/wchar2.h \
  /usr/include/c++/11/bits/localefwd.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
  /usr/include/c++/11/clocale /usr/include/locale.h \
@@ -172,10 +167,9 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/11/cerrno \
- /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/c++/11/cerrno /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
@@ -261,12 +255,37 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/opencv4/opencv2/core/optim.hpp \
  /usr/include/opencv4/opencv2/core/ovx.hpp \
  /usr/include/opencv4/opencv2/core/cvdef.h \
- /usr/include/opencv4/opencv2/calib3d.hpp \
  /usr/include/opencv4/opencv2/features2d.hpp \
  /usr/include/opencv4/opencv2/flann/miniflann.hpp \
  /usr/include/opencv4/opencv2/flann/defines.h \
  /usr/include/opencv4/opencv2/flann/config.h \
  /usr/include/opencv4/opencv2/core/affine.hpp \
+ /usr/include/opencv4/opencv2/ximgproc.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/edge_filter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/disparity_filter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/sparse_match_interpolator.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/structured_edge_detection.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/edgeboxes.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/edge_drawing.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/seeds.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/segmentation.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/fast_hough_transform.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/estimated_covariance.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/weighted_median_filter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/slic.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/lsc.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/paillou_filter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/fast_line_detector.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/deriche_filter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/peilin.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/fourier_descriptors.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/ridgefilter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/brightedges.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/run_length_morphology.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/edgepreserving_filter.hpp \
+ /usr/include/opencv4/opencv2/ximgproc/color_match.hpp \
+ /home/oskar/Documents/Master\ Thesis/Software\ (Image\ processing)/c++/calibration/StereoCamera.hpp \
+ /usr/include/opencv4/opencv2/opencv.hpp \
  /usr/include/opencv4/opencv2/dnn.hpp \
  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
  /usr/include/opencv4/opencv2/core/async.hpp \
@@ -354,29 +373,4 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
- /usr/include/opencv4/opencv2/video/background_segm.hpp \
- /usr/include/opencv4/opencv2/ximgproc.hpp \
- /usr/include/opencv4/opencv2/ximgproc/edge_filter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/disparity_filter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/sparse_match_interpolator.hpp \
- /usr/include/opencv4/opencv2/ximgproc/structured_edge_detection.hpp \
- /usr/include/opencv4/opencv2/ximgproc/edgeboxes.hpp \
- /usr/include/opencv4/opencv2/ximgproc/edge_drawing.hpp \
- /usr/include/opencv4/opencv2/ximgproc/seeds.hpp \
- /usr/include/opencv4/opencv2/ximgproc/segmentation.hpp \
- /usr/include/opencv4/opencv2/ximgproc/fast_hough_transform.hpp \
- /usr/include/opencv4/opencv2/ximgproc/estimated_covariance.hpp \
- /usr/include/opencv4/opencv2/ximgproc/weighted_median_filter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/slic.hpp \
- /usr/include/opencv4/opencv2/ximgproc/lsc.hpp \
- /usr/include/opencv4/opencv2/ximgproc/paillou_filter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/fast_line_detector.hpp \
- /usr/include/opencv4/opencv2/ximgproc/deriche_filter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/peilin.hpp \
- /usr/include/opencv4/opencv2/ximgproc/fourier_descriptors.hpp \
- /usr/include/opencv4/opencv2/ximgproc/ridgefilter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/brightedges.hpp \
- /usr/include/opencv4/opencv2/ximgproc/run_length_morphology.hpp \
- /usr/include/opencv4/opencv2/ximgproc/edgepreserving_filter.hpp \
- /usr/include/opencv4/opencv2/ximgproc/color_match.hpp \
- /home/oskar/Documents/Master\ Thesis/Software\ (Image\ processing)/c++/calibration/StereoCamera.h
+ /usr/include/opencv4/opencv2/video/background_segm.hpp

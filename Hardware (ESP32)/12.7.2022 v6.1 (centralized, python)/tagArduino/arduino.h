@@ -1,8 +1,11 @@
 #define DEBUG true
 #include <SPI.h>
-#include <WiFi.h>
 #include <DW1000.h>
 
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include <WiFiServer.h>
+#include <WiFiClient.h>
 
 #include "debug.h" 
 
@@ -41,7 +44,6 @@
 #define FRAME_SIZE 20
 
 // Parameters are tunable, but anchors and tags must have the same values
-#warning "TODO: Temporary values"
 /* Close setting */
 //#define DISCOVERY_TIMEOUT           100
 //#define POLLACK_TIMEOUT             10
@@ -72,7 +74,7 @@ WiFiClient client;
 //const char *ssid = "iPhone Nyx";
 //const char *password = "Nera1998&";
 //const char *host = "172.20.10.3";
-const char *ssid = "oskar-hotspot";
+char ssid[] = "oskar-hotspot";
 const char *password = "Nera1998";
 const char *host = "10.42.0.1";
 
@@ -101,6 +103,9 @@ String ack = "";
 //     uint16_t myID;
 //     float distance;
 // } Anchor;
+
+uint8_t mac[6];
+String macAddr = "";
 
 uint16_t num_anchors = 0;
 uint16_t idx_anchor = 0;

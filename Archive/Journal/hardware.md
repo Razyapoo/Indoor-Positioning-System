@@ -73,7 +73,7 @@ I have it also configured with 1 anchor and 3 tags. It is working synchronically
 - Tests are done in the dormitory. 2 anchors x 3 tags.
 - 2 anchors x 1 tag is working best. This use-case is useful for the camera calibration purposes
 - 2 anchors x 2 tags working good. But the one needs to be located in front of and perpendicular to anchors. 
-- 2 anchors x 3 tags is also working, but only if anchors are located within 3-4 meters and places perpendicular to tags. But we still get data at least from 1 anchor that is useful for the calibration purposes.  
+- 2 anchors x 3 tags is also working, but only if anchors are located within 3-4 meters and places perpendicular to tags. But we still get data at least from 1 anchor that is useful for the calibration purposes. 
 
 # Nov 17, 2022
 
@@ -153,3 +153,9 @@ Centralized v6
   - The first lib provides setting of calibration parameter on anchors. It also provides autocalibration methods. But the bad side of this library is that anchors and tag are working best only in the case they are **facing each other**, for example when a person body , or some obstacle blocks the signal. Calibration (antenna delay) is set on anchor side. Each anchor must have own calibration parameter.
   - The second library doesn't provide methods to set the calibration parameter, but tags and anchors still see each other even if there are obstacles between them. Anchors and tags do not have to look directly to sensors of each other. It is working a lot better. The only thing is calibration parameter must to be set inside the library code. Each ESP32 chip has the same calibration parameter, and it is working good. 
 - Small experiment at school 
+
+
+# March 25, 2023 
+
+- Facing error: "python needs to be added to $Path" when trying to push code to ESP32:
+  - solution: sed -i -e 's/=python /=python3 /g' /home/oskar/.arduino15/packages/esp32/hardware/esp32/1.0.6/platform.txt

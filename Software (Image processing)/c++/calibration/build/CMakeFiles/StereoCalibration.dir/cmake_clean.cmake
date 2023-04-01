@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o.d"
   "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o"
   "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o.d"
+  "CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o"
+  "CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o.d"
   "CMakeFiles/StereoCalibration.dir/main.cpp.o"
   "CMakeFiles/StereoCalibration.dir/main.cpp.o.d"
   "StereoCalibration"

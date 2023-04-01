@@ -1,11 +1,16 @@
-#include "StereoCamera.h"
-#include <opencv2/opencv.hpp>
-#include <opencv2/core.hpp>
-#include <cstdlib>
+#include "StereoCamera.hpp"
 
-StereoCamera::StereoCamera() {}
+const std::string StereoCamera::options = "rtsp_transport;tcp";
+const std::string StereoCamera::envvar = "OPENCV_FFMPEG_CAPTURE_OPTIONS"; 
 
-StereoCamera::StereoCamera(const int& leftCameraIndex, const int& rightCameraIndex): leftCameraIndex(leftCameraIndex), rightCameraIndex(rightCameraIndex) {
+int StereoCamera::leftCameraIndex, StereoCamera::rightCameraIndex;
+std::string StereoCamera::leftCameraURL, StereoCamera::rightCameraURL;
+cv::Mat StereoCamera::readLeftFrame, StereoCamera::readRightFrame;
+cv::VideoCapture StereoCamera::leftCamera, StereoCamera::rightCamera;
+
+void StereoCamera::initStereoCamera(const int& leftCameraIndex, const int& rightCameraIndex) {
+    StereoCamera::leftCameraIndex = leftCameraIndex;
+    StereoCamera::rightCameraIndex = rightCameraIndex;
     leftCamera = cv::VideoCapture(leftCameraIndex);
     rightCamera = cv::VideoCapture(rightCameraIndex);
 
@@ -19,9 +24,11 @@ StereoCamera::StereoCamera(const int& leftCameraIndex, const int& rightCameraInd
     }
 }
 
-StereoCamera::StereoCamera(const std::string& leftCameraURL, const std::string& rightCameraURL): leftCameraURL(leftCameraURL), rightCameraURL(rightCameraURL) {
-    std::string options = "rtsp_transport;tcp";
-    std::string envvar = "OPENCV_FFMPEG_CAPTURE_OPTIONS"; 
+void StereoCamera::initStereoCamera(const std::string& leftCameraURL, const std::string& rightCameraURL) {
+    StereoCamera::leftCameraURL = leftCameraURL;
+    StereoCamera::rightCameraURL = rightCameraURL;
+
+
     setenv(envvar.c_str(), options.c_str(), 1);
 
     leftCamera = cv::VideoCapture(leftCameraURL, cv::CAP_FFMPEG);
@@ -37,16 +44,17 @@ StereoCamera::StereoCamera(const std::string& leftCameraURL, const std::string& 
     }
 }
 
-StereoCamera::~StereoCamera() {
+void StereoCamera::release() {
     leftCamera.release();
     rightCamera.release();
     cv::destroyAllWindows();
 }
 
-const cv::Mat& StereoCamera::getLeftFrame() {
+cv::Mat& StereoCamera::getLeftFrame() {
+
     if (!leftCamera.read(readLeftFrame)) {
-        if (leftCameraURL != "") throw std::runtime_error("Failed to read the frame from the camera " + leftCameraIndex);
-        else throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(leftCameraIndex));
+        if (leftCameraURL != "") throw std::runtime_error("Failed to read the frame from the camera " + StereoCamera::leftCameraURL);
+        else throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(StereoCamera::leftCameraIndex));
     }
 
     if (leftCameraURL != "") cv::resize(readLeftFrame, readLeftFrame, cv::Size(620, 480)); 
@@ -54,10 +62,11 @@ const cv::Mat& StereoCamera::getLeftFrame() {
     return readLeftFrame;
 }
 
-const cv::Mat& StereoCamera::getRightFrame() {
+cv::Mat& StereoCamera::getRightFrame() {
+
     if (!rightCamera.read(readRightFrame)) {
-        if (rightCameraURL != "") throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(rightCameraIndex));
-        else throw std::runtime_error("Failed to read the frame from the camera " + rightCameraIndex);
+        if (rightCameraURL != "") throw std::runtime_error("Failed to read the frame from the camera " + StereoCamera::rightCameraURL);
+        else throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(StereoCamera::rightCameraIndex));
     }
 
     if (rightCameraURL != "") cv::resize(readRightFrame, readRightFrame, cv::Size(620, 480));

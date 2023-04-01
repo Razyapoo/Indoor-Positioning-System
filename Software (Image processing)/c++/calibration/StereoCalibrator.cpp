@@ -1,18 +1,44 @@
-#include "StereoCalibrator.h"
-#include <opencv2/opencv.hpp>
-#include <opencv2/core.hpp>
+#include "StereoCalibrator.hpp"
 
-StereoCalibrator::StereoCalibrator(const StereoCamera& stereoCamera): stereoCamera(stereoCamera) {}
+bool StereoCalibrator::videoAsSource = false;
+cv::VideoCapture StereoCalibrator::leftVideoSource, StereoCalibrator::rightVideoSource;
 
-StereoCalibrator::~StereoCalibrator() {}
+bool StereoCalibrator::intrinsicParamsSaved = false, StereoCalibrator::extrinsicParamsSaved = false, StereoCalibrator::rectificationParamsSaved = false;
+std::string StereoCalibrator::intrinsicFilePath = "", StereoCalibrator::extrinsicFilePath = "", StereoCalibrator::rectificationFilePath = "";
+uint8_t StereoCalibrator::chessboardHeight = 6, StereoCalibrator::chessboardWidth = 9;
+uint16_t StereoCalibrator::imageCounter = 0;
+float StereoCalibrator::squareSize = 7.3f, StereoCalibrator::alpha = 0;
+const cv::Size StereoCalibrator::chessboardSize = cv::Size(StereoCalibrator::chessboardWidth, StereoCalibrator::chessboardHeight);
+const cv::Size StereoCalibrator::imageSize = cv::Size(640, 360);
+const cv::TermCriteria StereoCalibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
+const cv::TermCriteria StereoCalibrator::criteriaStereo = cv::TermCriteria(cv::TermCriteria::COUNT, 100, 1e-5);
+const int StereoCalibrator::numberOfCells = StereoCalibrator::chessboardHeight * StereoCalibrator::chessboardWidth;
+
+double StereoCalibrator::StereoCalibrator::reprojectionErrorLeft, StereoCalibrator::StereoCalibrator::reprojectionErrorRight;
+std::vector<std::vector<cv::Point3f>> StereoCalibrator::objectPoints;
+std::vector<std::vector<cv::Point2f>> StereoCalibrator::imagePointsLeft, StereoCalibrator::imagePointsRight;
+std::vector<cv::Point2f> StereoCalibrator::cornersLeft, StereoCalibrator::cornersRight;
+std::vector<cv::Point3f> StereoCalibrator::objectPoint;
+// Working with frames
+cv::Mat StereoCalibrator::imageLeft, StereoCalibrator::imageRight, StereoCalibrator::grayLeft, StereoCalibrator::grayRight;
+bool StereoCalibrator::foundLeft, StereoCalibrator::foundRight;
+// Intrinsic calibration
+cv::Mat StereoCalibrator::cameraMatrixLeft, StereoCalibrator::cameraMatrixRight, StereoCalibrator::distortionCoeffsLeft, StereoCalibrator::distortionCoeffsRight;
+std::vector<cv::Mat> StereoCalibrator::rotationVecsLeft, StereoCalibrator::rotationVecsRight, StereoCalibrator::translationVecsLeft, StereoCalibrator::translationVecsRight;
+cv::Mat StereoCalibrator::optimalCameraMatrixLeft, StereoCalibrator::optimalCameraMatrixRight;
+// Extrinsic calibration 
+cv::Mat StereoCalibrator::rotationMatrixCommon, StereoCalibrator::translationVector, StereoCalibrator::essentialMatrix, StereoCalibrator::fundamentalMatrix;
+// Rectification
+cv::Mat StereoCalibrator::rotationMatrixLeft, StereoCalibrator::rotationMatrixRight, StereoCalibrator::projectionMatrixLeft, StereoCalibrator::projectionMatrixRight, StereoCalibrator::disparityMatrix; 
+// Undistortion
+cv::Mat StereoCalibrator::mapLeftX, StereoCalibrator::mapLeftY, StereoCalibrator::mapRightX, StereoCalibrator::mapRightY;
+cv::Mat StereoCalibrator::undistortedImageLeft, StereoCalibrator::undistortedImageRight;
+cv::Mat StereoCalibrator::rectifiedPair;
+uint8_t StereoCalibrator::key;
 
 
-void StereoCalibrator::initCameraCalibration(const std::string& pIntrinsicFilePath, const std::string& pExtrinsicFilePath, const std::string& pRectificationFilePath) {
+void StereoCalibrator::initCameraCalibration() {
 
-    intrinsicFilePath = pIntrinsicFilePath;
-    extrinsicFilePath = pExtrinsicFilePath;
-    rectificationFilePath = pRectificationFilePath;
-    
     for (auto i = 0; i < chessboardHeight; i++)
         for (auto j = 0; j < chessboardWidth; j++)
             objectPoint.push_back(cv::Point3f(i * squareSize, j * squareSize, 0));
@@ -33,8 +59,8 @@ void StereoCalibrator::initCameraCalibration(const std::string& pIntrinsicFilePa
     cv::namedWindow("Right Frame");
 
     while (true) {
-        imageLeft = stereoCamera.getLeftFrame();
-        imageRight = stereoCamera.getRightFrame();
+        imageLeft = StereoCamera::getLeftFrame();
+        imageRight = StereoCamera::getRightFrame();
 
         cv::imshow("Left Frame", imageLeft);
         cv::imshow("Right Frame", imageRight);
@@ -61,8 +87,8 @@ void StereoCalibrator::detectChessboard() {
     cv::namedWindow("Right Frame");
 
     while (true) {
-        imageLeft = stereoCamera.getLeftFrame();
-        imageRight = stereoCamera.getRightFrame();
+        imageLeft = StereoCamera::getLeftFrame();
+        imageRight = StereoCamera::getRightFrame();
 
         cv::cvtColor(imageLeft, grayLeft, cv::COLOR_BGR2GRAY);
         cv::cvtColor(imageRight, grayRight, cv::COLOR_BGR2GRAY);
@@ -188,7 +214,7 @@ void StereoCalibrator::extrinsicCalibration() {
     std::cout << "Stage - Compute Extrinsic Parameters" << std::endl;
 
     int flags = cv::CALIB_FIX_INTRINSIC + cv::CALIB_USE_INTRINSIC_GUESS + cv::CALIB_FIX_PRINCIPAL_POINT + cv::CALIB_FIX_FOCAL_LENGTH + cv::CALIB_RATIONAL_MODEL;
-    double stereoReprojectionError = cv::stereoCalibrate(objectPoints, imagePointsLeft, imagePointsRight, optimalCameraMatrixLeft, distortionCoeffsLeft, optimalCameraMatrixRight, distortionCoeffsRight, imageSize, rotationMatrixCommon, translationVector, essentialMatrix, fundamentalMatrix, cv::CALIB_FIX_INTRINSIC, criteriaStereo);
+    double stereoReprojectionError = cv::stereoCalibrate(objectPoints, imagePointsLeft, imagePointsRight, cameraMatrixLeft, distortionCoeffsLeft, cameraMatrixRight, distortionCoeffsRight, imageSize, rotationMatrixCommon, translationVector, essentialMatrix, fundamentalMatrix, cv::CALIB_FIX_INTRINSIC, criteriaStereo);
 
     std::cout << "Extrinsic calibration is finished" << std::endl;
     std::cout << "Stereo calibration error: " <<  cv::sqrt(stereoReprojectionError / (imageCounter * 2)) << std::endl;
@@ -264,12 +290,12 @@ void StereoCalibrator::extrinsicCalibration() {
 
 void StereoCalibrator::stereoRectification() {
     std::cout << "Stage - Stereo rectification" << std::endl;
-    cv::stereoRectify(optimalCameraMatrixLeft, distortionCoeffsLeft, optimalCameraMatrixRight, distortionCoeffsRight, imageSize, rotationMatrixCommon, translationVector, rotationMatrixLeft, rotationMatrixRight, projectionMatrixLeft, projectionMatrixRight, disparityMatrix, cv::CALIB_ZERO_DISPARITY, -1, imageSize);
+    cv::stereoRectify(cameraMatrixLeft, distortionCoeffsLeft, cameraMatrixRight, distortionCoeffsRight, imageSize, rotationMatrixCommon, translationVector, rotationMatrixLeft, rotationMatrixRight, projectionMatrixLeft, projectionMatrixRight, disparityMatrix, cv::CALIB_ZERO_DISPARITY, -1, imageSize);
     std::cout << "Stereo rectification is finished" << std::endl;
 
     std::cout << "Undistortion..." << std::endl;
-    cv::initUndistortRectifyMap(cameraMatrixLeft, distortionCoeffsLeft, rotationMatrixLeft, optimalCameraMatrixLeft, imageSize, CV_16SC2, mapLeftX, mapLeftY);
-    cv::initUndistortRectifyMap(cameraMatrixRight, distortionCoeffsRight, rotationMatrixRight, optimalCameraMatrixRight, imageSize, CV_16SC2, mapRightX, mapRightY);
+    cv::initUndistortRectifyMap(cameraMatrixLeft, distortionCoeffsLeft, rotationMatrixLeft, projectionMatrixLeft, imageSize, CV_16SC2, mapLeftX, mapLeftY);
+    cv::initUndistortRectifyMap(cameraMatrixRight, distortionCoeffsRight, rotationMatrixRight, projectionMatrixRight, imageSize, CV_16SC2, mapRightX, mapRightY);
     std::cout << "Undistortion is finished" << std::endl;
 
     std::cout << "Result of undistortion:" << std::endl;
@@ -283,8 +309,8 @@ void StereoCalibrator::stereoRectification() {
     cv::namedWindow("Rectified pair");
 
     while (true) {
-        imageLeft = stereoCamera.getLeftFrame();
-        imageRight = stereoCamera.getRightFrame();
+        imageLeft = StereoCamera::getLeftFrame();
+        imageRight = StereoCamera::getRightFrame();
 
         // cv::cvtColor(grayLeft, imageLeft, cv::COLOR_BGR2RGB);
         // cv::cvtColor(grayRight, imageRight, cv::COLOR_BGR2RGB);
@@ -404,7 +430,8 @@ void StereoCalibrator::stereoRectification() {
             break;
         }
         if (key == 'r') {
-            StereoCalibrator::initCameraCalibration(intrinsicFilePath, extrinsicFilePath, rectificationFilePath);
+            cv::destroyAllWindows();
+            StereoCalibrator::initCameraCalibration();
         }
     }
 }

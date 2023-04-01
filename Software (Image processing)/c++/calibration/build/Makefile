@@ -201,6 +201,30 @@ StereoCamera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.s
 .PHONY : StereoCamera.cpp.s
 
+VideoManager.o: VideoManager.cpp.o
+.PHONY : VideoManager.o
+
+# target to build an object file
+VideoManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o
+.PHONY : VideoManager.cpp.o
+
+VideoManager.i: VideoManager.cpp.i
+.PHONY : VideoManager.i
+
+# target to preprocess a source file
+VideoManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/VideoManager.cpp.i
+.PHONY : VideoManager.cpp.i
+
+VideoManager.s: VideoManager.cpp.s
+.PHONY : VideoManager.s
+
+# target to generate assembly for a file
+VideoManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/VideoManager.cpp.s
+.PHONY : VideoManager.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -243,6 +267,9 @@ help:
 	@echo "... StereoCamera.o"
 	@echo "... StereoCamera.i"
 	@echo "... StereoCamera.s"
+	@echo "... VideoManager.o"
+	@echo "... VideoManager.i"
+	@echo "... VideoManager.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -75,7 +75,7 @@ const uint16_t networkId = 10;
 
 /* */
 uint16_t myID, tagID; // range of anchor ids: 100..199, tag: 0..99
-uint16_t Adelay = 16505;
+uint16_t Adelay = 16000;
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 
 byte state = STATE_IDLE;
