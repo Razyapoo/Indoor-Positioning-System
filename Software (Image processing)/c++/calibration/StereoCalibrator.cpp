@@ -5,9 +5,9 @@ cv::VideoCapture StereoCalibrator::leftVideoSource, StereoCalibrator::rightVideo
 
 bool StereoCalibrator::intrinsicParamsSaved = false, StereoCalibrator::extrinsicParamsSaved = false, StereoCalibrator::rectificationParamsSaved = false;
 std::string StereoCalibrator::intrinsicFilePath = "", StereoCalibrator::extrinsicFilePath = "", StereoCalibrator::rectificationFilePath = "";
-uint8_t StereoCalibrator::chessboardHeight = 6, StereoCalibrator::chessboardWidth = 9;
+uint8_t StereoCalibrator::chessboardHeight = 11, StereoCalibrator::chessboardWidth = 4;
 uint16_t StereoCalibrator::imageCounter = 0;
-float StereoCalibrator::squareSize = 7.3f, StereoCalibrator::alpha = 0;
+float StereoCalibrator::squareSize = 21.5f, StereoCalibrator::alpha = 0;
 const cv::Size StereoCalibrator::chessboardSize = cv::Size(StereoCalibrator::chessboardWidth, StereoCalibrator::chessboardHeight);
 const cv::Size StereoCalibrator::imageSize = cv::Size(640, 360);
 const cv::TermCriteria StereoCalibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
@@ -93,18 +93,32 @@ void StereoCalibrator::detectChessboard() {
         cv::cvtColor(imageLeft, grayLeft, cv::COLOR_BGR2GRAY);
         cv::cvtColor(imageRight, grayRight, cv::COLOR_BGR2GRAY);
 
-        foundLeft = cv::findChessboardCorners(grayLeft, chessboardSize, cornersLeft, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
-        foundRight = cv::findChessboardCorners(grayRight, chessboardSize, cornersRight, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
+        // foundLeft = cv::findChessboardCorners(grayLeft, chessboardSize, cornersLeft, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
+        // foundRight = cv::findChessboardCorners(grayRight, chessboardSize, cornersRight, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
 
-        if (foundLeft) {
-            // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.01);
-            cv::drawChessboardCorners(imageLeft, chessboardSize, cornersLeft, foundLeft);
+        // if (foundLeft) {
+        //     // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.01);
+        //     cv::drawChessboardCorners(imageLeft, chessboardSize, cornersLeft, foundLeft);
+        //     cv::cornerSubPix(grayLeft, cornersLeft, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
+        // }
+
+        // if (foundRight) {
+        //     // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.01);
+            
+        //     cv::drawChessboardCorners(imageRight, chessboardSize, cornersRight, foundRight);
+        //     cv::cornerSubPix(grayRight, cornersRight, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
+        // }
+        
+
+        // Circles
+        foundLeft = cv::findCirclesGrid(grayLeft, chessboardSize, cornersLeft, cv::CALIB_CB_ASYMMETRIC_GRID); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
+        foundRight = cv::findCirclesGrid(grayRight, chessboardSize, cornersRight, cv::CALIB_CB_ASYMMETRIC_GRID); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
+
+        // If the pattern is found in both images, draw the circles at the detected corners
+        if (foundLeft && foundRight) {
+            cv::drawChessboardCorners(imageLeft, chessboardSize, cv::Mat(cornersLeft), foundLeft);
+            cv::drawChessboardCorners(imageRight, chessboardSize, cv::Mat(cornersRight), foundRight);
             cv::cornerSubPix(grayLeft, cornersLeft, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
-        }
-
-        if (foundRight) {
-            // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.01);
-            cv::drawChessboardCorners(imageRight, chessboardSize, cornersRight, foundRight);
             cv::cornerSubPix(grayRight, cornersRight, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
         }
 

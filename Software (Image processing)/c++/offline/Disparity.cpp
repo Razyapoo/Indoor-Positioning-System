@@ -76,7 +76,7 @@ void Disparity::init(const std::string& intrinsicFilePath, const std::string& ex
     cv::namedWindow("original");
 
     minDisparity = -90;
-    numDisparities = 5*16;
+    numDisparities = 10*16;
     blockSize = 3;
     P1 = 8 * 3 * blockSize * blockSize;
     P2 = 32 * 3 * blockSize * blockSize;
@@ -87,22 +87,8 @@ void Disparity::init(const std::string& intrinsicFilePath, const std::string& ex
     speckleRange = 32;
     mode = cv::StereoSGBM::MODE_SGBM_3WAY;
 
-    // minDisparity = 0;
-    // numDisparities = 64;
-    // blockSize = 3;
-    // P1 = 0;
-    // P2 = 0;
-    // disp12MaxDiff = 0;
-    // preFilterCap = 0;
-    // uniquenessRatio = 0;
-    // speckleWindowSize = 0;
-    // speckleRange = 0;
-    // mode = cv::StereoSGBM::MODE_SGBM;
-
     lambda = 8000.0;
     sigma = 1.5;
-    
-
 
     sgbm = cv::StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, uniquenessRatio, speckleWindowSize, speckleRange, mode);
     // sgbm = cv::StereoSGBM::create(16, 15);
@@ -119,20 +105,10 @@ void Disparity::init(const std::string& intrinsicFilePath, const std::string& ex
  
 void Disparity::computeDepth(cv::Mat& imageLeft, cv::Mat& imageRight) {
     
+    int centerX, centerY;
+
     cv::cvtColor(imageLeft, grayLeft, cv::COLOR_BGR2GRAY);
     cv::cvtColor(imageRight, grayRight, cv::COLOR_BGR2GRAY);
-
-    // cv::remap(imageLeft, imageLeft, mapLeftX, mapLeftY, cv::INTER_LINEAR);
-    auto& detectedPeople = HumanDetector::detectPeople(imageLeft);
-    // // detectPeople(imageLeft);
-
-    for (size_t i = 0; i < detectedPeople.second.size(); i++) {
-        int idx = detectedPeople.second[i];
-        const cv::Rect& box = detectedPeople.first[idx];
-        cv::rectangle(imageLeft, box, cv::Scalar(0, 0, 255), 2);
-    }
-
-    // cv::imshow("original", imageLeft);
 
     cv::remap(grayLeft, rectifiedLeft, mapLeftX, mapLeftY, cv::INTER_LINEAR);
     cv::remap(grayRight, rectifiedRight, mapRightX, mapRightY, cv::INTER_LINEAR);
@@ -259,6 +235,22 @@ void Disparity::computeDepth(cv::Mat& imageLeft, cv::Mat& imageRight) {
     depthMap.convertTo(depthMapGray, CV_8U);
     cv::imshow("Depth map gray", depthMapGray);
 
+    cv::remap(imageLeft, imageLeft, mapLeftX, mapLeftY, cv::INTER_LINEAR);
+    auto& detectedPeople = HumanDetector::detectPeople(imageLeft);
+
+    for (size_t i = 0; i < detectedPeople.second.size(); i++) {
+        int idx = detectedPeople.second[i];
+        const cv::Rect& box = detectedPeople.first[idx];
+        cv::rectangle(imageLeft, box, cv::Scalar(0, 0, 255), 2);
+        int x, y;
+        x = static_cast<int>((box.x + box.width) / 2);
+        y = static_cast<int>((box.y + box.height) / 2);
+        cv::Point3f p = points3D.at<cv::Point3f>(y, x);
+        std::cout << "Detected person id: " << i << " distance: " << p.z << std::endl;
+    }
+
+    cv::imshow("original", imageLeft);
+
     // for (size_t i = 0; i < detectedPeople.second.size(); i++) {
     //     int idx = detectedPeople.second[i];
     //     const cv::Rect& box = detectedPeople.first[idx];
@@ -299,7 +291,7 @@ void Disparity::onMouse(int event, int x, int y, int flags, void* data) {
     // if (event != cv::EVENT_LBUTTONDOWN) 
     //     return;
 
-    Disparity* disparityObject = static_cast<Disparity*>(data);
+    // Disparity* disparityObject = static_cast<Disparity*>(data);
 
     // cv::Point2f point(x, y);
 
@@ -317,7 +309,7 @@ void Disparity::onMouse(int event, int x, int y, int flags, void* data) {
 
     if (event == cv::EVENT_LBUTTONDOWN) {
         // Assume points3D is a cv::Mat containing the 3D points
-        cv::Point3f p = disparityObject->points3D.at<cv::Point3f>(y, x);
+        cv::Point3f p = points3D.at<cv::Point3f>(y, x);
         std::cout << "Clicked pixel (" << x << ", " << y << ") corresponds to 3D point (" << p.x << ", " << p.y << ", " << p.z << ")" << std::endl;
     }
 }

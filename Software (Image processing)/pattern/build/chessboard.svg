@@ -1,13 +1,41 @@
-<svg width="297mm" height="419mm" viewBox="0 0 297 419" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="297" height="419" fill="#fff" />
-<g transform="translate(36 22)">
-<rect x="0" y="0" width="225" height="375" fill="#000" />
-<rect x="75" y="0" width="75" height="75" fill="#fff" />
-<rect x="0" y="75" width="75" height="75" fill="#fff" />
-<rect x="150" y="75" width="75" height="75" fill="#fff" />
-<rect x="75" y="150" width="75" height="75" fill="#fff" />
-<rect x="0" y="225" width="75" height="75" fill="#fff" />
-<rect x="150" y="225" width="75" height="75" fill="#fff" />
-<rect x="75" y="300" width="75" height="75" fill="#fff" />
+<svg width="296mm" height="420mm" viewBox="0 0 296 420" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="296" height="420" fill="#fff" />
+<g transform="translate(8 10)">
+<rect x="0" y="0" width="280" height="400" fill="#000" />
+<rect x="40" y="0" width="40" height="40" fill="#fff" />
+<rect x="120" y="0" width="40" height="40" fill="#fff" />
+<rect x="200" y="0" width="40" height="40" fill="#fff" />
+<rect x="0" y="40" width="40" height="40" fill="#fff" />
+<rect x="80" y="40" width="40" height="40" fill="#fff" />
+<rect x="160" y="40" width="40" height="40" fill="#fff" />
+<rect x="240" y="40" width="40" height="40" fill="#fff" />
+<rect x="40" y="80" width="40" height="40" fill="#fff" />
+<rect x="120" y="80" width="40" height="40" fill="#fff" />
+<rect x="200" y="80" width="40" height="40" fill="#fff" />
+<rect x="0" y="120" width="40" height="40" fill="#fff" />
+<rect x="80" y="120" width="40" height="40" fill="#fff" />
+<rect x="160" y="120" width="40" height="40" fill="#fff" />
+<rect x="240" y="120" width="40" height="40" fill="#fff" />
+<rect x="40" y="160" width="40" height="40" fill="#fff" />
+<rect x="120" y="160" width="40" height="40" fill="#fff" />
+<rect x="200" y="160" width="40" height="40" fill="#fff" />
+<rect x="0" y="200" width="40" height="40" fill="#fff" />
+<rect x="80" y="200" width="40" height="40" fill="#fff" />
+<rect x="160" y="200" width="40" height="40" fill="#fff" />
+<rect x="240" y="200" width="40" height="40" fill="#fff" />
+<rect x="40" y="240" width="40" height="40" fill="#fff" />
+<rect x="120" y="240" width="40" height="40" fill="#fff" />
+<rect x="200" y="240" width="40" height="40" fill="#fff" />
+<rect x="0" y="280" width="40" height="40" fill="#fff" />
+<rect x="80" y="280" width="40" height="40" fill="#fff" />
+<rect x="160" y="280" width="40" height="40" fill="#fff" />
+<rect x="240" y="280" width="40" height="40" fill="#fff" />
+<rect x="40" y="320" width="40" height="40" fill="#fff" />
+<rect x="120" y="320" width="40" height="40" fill="#fff" />
+<rect x="200" y="320" width="40" height="40" fill="#fff" />
+<rect x="0" y="360" width="40" height="40" fill="#fff" />
+<rect x="80" y="360" width="40" height="40" fill="#fff" />
+<rect x="160" y="360" width="40" height="40" fill="#fff" />
+<rect x="240" y="360" width="40" height="40" fill="#fff" />
 </g>
 </svg>

@@ -11,91 +11,91 @@ std::time_t VideoManager::timestamp;
 cv::Mat VideoManager::timestampMat;
 uint8_t VideoManager::key;
 
-void VideoManager::videoRecorder() {
+// void VideoManager::videoRecorder() {
 
-    // cv::Size frameSize(StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_WIDTH), StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_HEIGHT));
+//     // cv::Size frameSize(StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_WIDTH), StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_HEIGHT));
 
-    cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
-    cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+//     cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+//     cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
-    if (!leftVideoWriter.isOpened()) {
-        std::cerr << "Failed to open left video writer" << std::endl;
-        return;
-    }
+//     if (!leftVideoWriter.isOpened()) {
+//         std::cerr << "Failed to open left video writer" << std::endl;
+//         return;
+//     }
 
-    if (!rightVideoWriter.isOpened()) {
-        std::cerr << "Failed to open right video writer" << std::endl;
-        return;
-    }
+//     if (!rightVideoWriter.isOpened()) {
+//         std::cerr << "Failed to open right video writer" << std::endl;
+//         return;
+//     }
 
-    std::ofstream timestampFile("timestamp.txt");
-    if (!timestampFile.is_open())
-        throw std::runtime_error("Failed to open timestamp.txt file");
+//     std::ofstream timestampFile("timestamp.txt");
+//     if (!timestampFile.is_open())
+//         throw std::runtime_error("Failed to open timestamp.txt file");
 
-    std::cout << "Video is recording..." << std::endl;
-    std::cout << "Possible interactions" << std::endl;
-    std::cout << "  p: pause recording" << std::endl;
-    std::cout << "  c: continue recording" << std::endl;
-    std::cout << "  s: stop and save recording" << std::endl;
+//     std::cout << "Video is recording..." << std::endl;
+//     std::cout << "Possible interactions" << std::endl;
+//     std::cout << "  p: pause recording" << std::endl;
+//     std::cout << "  c: continue recording" << std::endl;
+//     std::cout << "  s: stop and save recording" << std::endl;
 
-    while (true) {
-        if (!isPause) {
-            leftFrame = StereoCamera::getLeftFrame();
-            rightFrame = StereoCamera::getRightFrame();
+//     while (true) {
+//         if (!isPause) {
+//             leftFrame = StereoCamera::getLeftFrame();
+//             rightFrame = StereoCamera::getRightFrame();
 
-            leftVideoWriter.write(leftFrame);
-            rightVideoWriter.write(rightFrame);
+//             leftVideoWriter.write(leftFrame);
+//             rightVideoWriter.write(rightFrame);
 
-            currentTime = std::chrono::system_clock::now();
-            timestamp = std::chrono::system_clock::to_time_t(currentTime);
-            timestampFile << frameIndex << " " << timestamp << std::endl;
+//             currentTime = std::chrono::system_clock::now();
+//             timestamp = std::chrono::system_clock::to_time_t(currentTime);
+//             timestampFile << frameIndex << " " << timestamp << std::endl;
 
-            // std::cout << "Frame " << frameIndex << " is recorded" << std::endl;
-            frameIndex++;
-        }
+//             // std::cout << "Frame " << frameIndex << " is recorded" << std::endl;
+//             frameIndex++;
+//         }
 
-        cv::imshow("Left frame", leftFrame);
-        cv::imshow("Right frame", rightFrame);
+//         cv::imshow("Left frame", leftFrame);
+//         cv::imshow("Right frame", rightFrame);
 
-        key = cv::waitKey(1);
-        if (key == 'p') isPause = true;
-        if (key == 'c') isPause = false;
-        if (key == 's') break;
+//         key = cv::waitKey(1);
+//         if (key == 'p') isPause = true;
+//         if (key == 'c') isPause = false;
+//         if (key == 's') break;
         
 
 
-        // std::cout << "Press \"p + Enter\" to pause recording" << std::endl;
-        // std::cout << "Press \"c + Enter\" to continue recording" << std::endl;
-        // std::cout << "Press \"s + Enter\" to stop recording and save video" << std::endl;
+//         // std::cout << "Press \"p + Enter\" to pause recording" << std::endl;
+//         // std::cout << "Press \"c + Enter\" to continue recording" << std::endl;
+//         // std::cout << "Press \"s + Enter\" to stop recording and save video" << std::endl;
 
-        // std::string input;
-        // std::getline(std::cin, input);
-        // if (input == "p") {
-        //     isPause = true;
-        // } 
-        // else if (input == "c") {
-        //     isPause = false;
-        // } 
-        // else if (input == "s") {
-        //     break;
-        // } 
-        // else {
-        //     std::cout << "Invalid option" << std::endl;
-        //     return; 
-        // }
+//         // std::string input;
+//         // std::getline(std::cin, input);
+//         // if (input == "p") {
+//         //     isPause = true;
+//         // } 
+//         // else if (input == "c") {
+//         //     isPause = false;
+//         // } 
+//         // else if (input == "s") {
+//         //     break;
+//         // } 
+//         // else {
+//         //     std::cout << "Invalid option" << std::endl;
+//         //     return; 
+//         // }
 
-    }
+//     }
     
-    std::cout << "Saving video! Please wait..." << std::endl;
-    try {
-        leftVideoWriter.release();
-        rightVideoWriter.release();
-        timestampFile.close();
-        std::cout << "Video saved successfully!" << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-}
+//     std::cout << "Saving video! Please wait..." << std::endl;
+//     try {
+//         leftVideoWriter.release();
+//         rightVideoWriter.release();
+//         timestampFile.close();
+//         std::cout << "Video saved successfully!" << std::endl;
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error: " << e.what() << std::endl;
+//     }
+// }
 
 void VideoManager::videoLoader(const std::string& leftSource, const std::string& rightSource) {
     cv::VideoCapture leftvideoLoader(leftSource);
@@ -135,7 +135,7 @@ void VideoManager::videoLoader(const std::string& leftSource, const std::string&
 
         Disparity::computeDepth(leftFrame, rightFrame);
 
-        key = cv::waitKey(40); // correspond to 25 fps
+        key = cv::waitKey(1); // correspond to 25 fps
         if(key == 'q') break;
     }
 

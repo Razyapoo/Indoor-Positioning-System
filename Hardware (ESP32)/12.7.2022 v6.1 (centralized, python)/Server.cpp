@@ -74,7 +74,8 @@ void Server::runServer() {
                         std::string request(buffer, nbytes);
                         std::cout << "Received distance " << request << " from client: " << socketID << std::endl;
                         
-                        currentTime = std::chrono::system_clock::now();
+                        // currentTime = std::chrono::system_clock::now();
+                        currentTime = std::chrono::high_resolution_clock::now();
                         timestamp = std::chrono::system_clock::to_time_t(currentTime);
                         timestampFile << dataIndex << " " << timestamp << " " << request << std::endl;
 

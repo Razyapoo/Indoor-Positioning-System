@@ -267,7 +267,7 @@ void Disparity::computeDepth(const std::string& intrinsicFilePath, const std::st
         // Normalize the depth map for visualization
         // cv::normalize(depthMap, depthMap, 0, 255, cv::NORM_MINMAX, CV_16S);
         // cv::imshow("Depth map", depthMap);
-        cv::setMouseCallback("Depth map gray", onMouse, NULL);
+        cv::setMouseCallback("Disparity map", onMouse, NULL);
 
 
 

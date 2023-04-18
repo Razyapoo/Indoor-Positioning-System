@@ -8,7 +8,7 @@
 using namespace std;
 using namespace cv;
 
-const int TILE_SIZE = 75; // Size of each square tile in pixels
+const int TILE_SIZE = 40; // Size of each square tile in pixels
 // const int MARGIN_SIZE = 1; // Size of the margin in millimeters
 const int PAGE_WIDTH = 297; // Width of the paper in millimeters
 const int PAGE_HEIGHT = 420; // Height of the paper in millimeters

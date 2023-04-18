@@ -3,7 +3,6 @@
 
 #include <opencv2/calib3d.hpp>
 #include <opencv2/ximgproc.hpp>
-#include "StereoCamera.hpp"
 #include "HumanDetector.hpp"
 
 class Disparity {

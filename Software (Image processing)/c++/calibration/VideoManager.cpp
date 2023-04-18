@@ -46,8 +46,10 @@ void VideoManager::videoRecorder() {
             leftVideoWriter.write(leftFrame);
             rightVideoWriter.write(rightFrame);
 
-            currentTime = std::chrono::system_clock::now();
+            // currentTime = std::chrono::system_clock::now();
+            currentTime = std::chrono::high_resolution_clock::now();
             timestamp = std::chrono::system_clock::to_time_t(currentTime);
+            // timestamp = std::time({});
             timestampFile << frameIndex << " " << timestamp << std::endl;
 
             // std::cout << "Frame " << frameIndex << " is recorded" << std::endl;

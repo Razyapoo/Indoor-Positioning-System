@@ -28,8 +28,5 @@ class HumanDetector {
         
 };
 
-const std::string modelConfiguration = "../weights/yolov4-tiny.cfg";
-const std::string modelWeights = "../weights/yolov4-tiny.weights"; 
-
 #endif
 

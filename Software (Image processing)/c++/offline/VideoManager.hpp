@@ -25,7 +25,7 @@ class VideoManager {
         static bool isPause;
 
         // static std::string getTimestamp();
-        static void videoRecorder();
+        // static void videoRecorder();
         static void videoLoader(const std::string& leftSource, const std::string& rightSource);
 };
 
