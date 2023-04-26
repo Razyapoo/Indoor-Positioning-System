@@ -11,6 +11,7 @@ void noteActivity() {
 
 void setAddress() {
     String macAddr = WiFi.macAddress();
+    Serial.println(macAddr);
     if (macAddr == "70:B8:F6:D8:F8:B8") {
         myID = 101;
     } else if (macAddr == "70:B8:F6:D8:F8:28") {

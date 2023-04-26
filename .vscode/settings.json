@@ -75,7 +75,9 @@
         "filesystem": "cpp",
         "__node_handle": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
