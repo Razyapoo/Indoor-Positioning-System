@@ -63,14 +63,15 @@ const byte MSG_TYPE_RANGE_REPORT = 6;
 #define RANGE_TIMEOUT               10
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
-#define REPLY_DELAY                 3
+#define REPLY_DELAY                 10000
 #define DEFAULT_RESET_TIMEOUT       1000
+#define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
 
 
 /* time */ 
-DW1000Time pollackReplyDelay = DW1000Time(REPLY_DELAY, DW1000Time::MILLISECONDS);
+DW1000Time pollackReplyDelay = DW1000Time(REPLY_DELAY, DW1000Time::MICROSECONDS);
 DW1000Time timePollSent;
 DW1000Time timePollReceived;
 DW1000Time timePollAckSent;
@@ -83,19 +84,21 @@ DW1000Time tempTime;
 const uint16_t networkId = 10;
 
 /* */
-byte myID;
-byte tagID; // range of anchor ids: 100..199, tag: 0..99
+uint16_t myID, tagID; // range of anchor ids: 100..199, tag: 0..99
 uint16_t Adelay = 16000;
+size_t pollCounterForReset = 0;
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 
 byte state = STATE_IDLE;
-byte sentMessageType, receivedMessageType;
+byte currentTagAddress;
 byte message[FRAME_SIZE] = {0};
 bool isAnchorBusy = false;
 byte expectedMessageType = MSG_TYPE_BLINK;
 // byte rxFrame[FRAME_SIZE];
 
 /* volatile */
-volatile boolean sentAck = false;
-volatile boolean receivedAck = false;
-volatile boolean errorWatch = false;
+boolean sentAck = false;
+boolean receivedAck = false;
+boolean errorWatch = false;
+boolean repeatedSoftInit = false;
+boolean debug = true;

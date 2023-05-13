@@ -77,11 +77,12 @@ bool isTagBusy = false;
 #define RANGE_TIMEOUT               10
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
-#define REPLY_DELAY                 3
-#define DEFAULT_RESET_TIMEOUT       5000
+#define REPLY_DELAY                 10
+#define DEFAULT_RESET_TIMEOUT       1000
+#define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
-#define BLINK_DELAY                 80
+#define BLINK_DELAY                 100
 
 /* WiFi settings */
 WiFiClient client;
@@ -126,14 +127,13 @@ String macAddr = "";
 
 uint16_t num_anchors = 0;
 uint16_t idx_anchor = 0;
-uint16_t counterPoll = 0;
+uint16_t counterBlink = 0;
 uint16_t anchors[2];
-byte myID, anchorID; // range of tag ids: 0..99, anchor: 100..199
+uint16_t myID, anchorID; // range of tag ids: 0..99, anchor: 100..199
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 float distances[2] = {0, 0};
 
 byte state = STATE_IDLE;
-byte sentMessageType, receivedMessageType;
 byte message[FRAME_SIZE] = {0};
 byte expectedMessageType;
 uint16_t blinkTimer;
@@ -143,3 +143,5 @@ String msgToSend;
 boolean toSend = false;
 boolean sentAck = false;
 boolean receivedAck = false;
+boolean debug = true;
+boolean errorWatch = false;
