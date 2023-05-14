@@ -15,12 +15,12 @@ uint16_t getMyID() {
 
 void checkForReset() {
   currentTime = millis();
-  if ((!sentAck && !receivedAck) || errorWatch) {
+  if ((!sentAck && !receivedAck)) {
 //    if(!repeatedSoftInit && (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT || errorWatch)) {
-    if(currentTime - lastActivity > DEFAULT_RESET_TIMEOUT || errorWatch) {
+    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
       currentTagAddress = 0;
       isAnchorBusy = false;
-      errorWatch = false;
+      // errorWatch = false;
       pollCounterForReset = 0;
       //repeatedSoftInit = true;
       expectedMessageType = MSG_TYPE_BLINK;
@@ -236,7 +236,7 @@ void loop() {
       }
       
    } else {
-      errorWatch = true;
+      // errorWatch = true;
 //      if (expectedMessageType == MSG_TYPE_POLL) 
 //      {
 //        pollCounterForReset++;

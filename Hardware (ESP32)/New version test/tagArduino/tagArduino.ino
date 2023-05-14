@@ -16,8 +16,8 @@ uint16_t getMyID() {
 
 void checkForReset() {
   currentTime = millis();
-  if ((!sentAck && !receivedAck) || errorWatch) {
-    if ((currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) || errorWatch) {
+  if (!sentAck && !receivedAck) {
+    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
       discoveredAnchorsCount = 0;
       anchorIndex = 0;
       counterBlink = 0;
@@ -87,9 +87,10 @@ bool checkSource() {
 bool checkDestination() {
   if (myID == message[2]) 
   {
+    if (debug)Serial.println("Destination is correct. It is for me!");
     return true;
   }
-  if (debug)Serial.println("Wrong destination. Not for me!");
+  if (debug) Serial.println("Wrong destination. Not for me!");
   return false;
 }
 
@@ -187,9 +188,11 @@ void sendMessage(byte messageType) {
 bool isAnchorDiscovered() {
   for (size_t i = 0; i < discoveredAnchorsCount; i++) {
     if (discoveredAnchors[i] == message[1]) {
+      if (debug) Serial.println("Anchor is already discovered!");
       return true;
     }
   }
+  if (debug) Serial.println("Anchor is not yet discovered!");
   return false;
 }
 
@@ -273,17 +276,22 @@ void loop() {
     if (expectedMessageType == message[0]) {
       if (expectedMessageType == MSG_TYPE_ANCHOR_ADDR && !isTagBusy && checkDestination()) {
         if (!isAnchorDiscovered() && isAnchorAddress()) {
-         if (debug) {
-          Serial.print("New anchor found: ");
-          Serial.println(message[1]);
-         }
+          if (debug) {
+            Serial.print("New anchor found: ");
+            Serial.println(message[1]);
+          }
          
           discoveredAnchors[discoveredAnchorsCount++] = message[1];
           //counterBlink = 0;
         }
 
         if (discoveredAnchorsCount >= MIN_ANCHORS) {
+          if (debug) {
+            Serial.print("All anchors are found!!! Let's start ranging!");
+            Serial.println(message[1]);
+          }
           isTagBusy = true;
+          anchorIndex = 0;
           currentAnchorAddress = discoveredAnchors[anchorIndex];
           expectedMessageType = MSG_TYPE_POLL_ACK;
           sendMessage(MSG_TYPE_POLL);
@@ -317,6 +325,7 @@ void loop() {
               sendMessage(MSG_TYPE_POLL);
             } else {
               discoveredAnchorsCount = 0;
+              currentAnchorAddress = 0;
               anchorIndex = 0;
               isTagBusy = false;
             }
@@ -341,21 +350,26 @@ void loop() {
     }
   }
 
-  if (!isTagBusy && discoveredAnchorsCount < MIN_ANCHORS && millis() - blinkTimer > BLINK_DELAY) {
+  blinkCurrentMillis = millis();
+  if (!isTagBusy && discoveredAnchorsCount < MIN_ANCHORS && blinkCurrentMillis - blinkTimer > BLINK_DELAY) {
     if (debug) 
       {
         Serial.print("Number of already discovered anchors: "); 
         Serial.println(discoveredAnchorsCount);
+        Serial.print("Current millis: "); 
+        Serial.println(blinkCurrentMillis);
+        Serial.print("Blink Timer: "); 
+        Serial.println(blinkTimer);
       } 
-    blinkTimer = millis();
+    blinkTimer = blinkCurrentMillis;
     expectedMessageType = MSG_TYPE_ANCHOR_ADDR;
     sendMessage(MSG_TYPE_BLINK);
 //    counterBlink++;
-    if (debug) 
-      {
-        Serial.print("Blink counter: "); 
-        Serial.println(counterBlink);
-      } 
+    // if (debug) 
+    //   {
+    //     Serial.print("Blink counter: "); 
+    //     Serial.println(counterBlink);
+    //   } 
     // Sometimes tag is looping infinitely and sending blinks, which are not received by anchor for some reason
 //    if (counterBlink > 5) {
 //      

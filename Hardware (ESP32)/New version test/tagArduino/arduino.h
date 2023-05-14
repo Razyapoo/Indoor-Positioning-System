@@ -78,11 +78,11 @@ bool isTagBusy = false;
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
 #define REPLY_DELAY                 10
-#define DEFAULT_RESET_TIMEOUT       1000
+#define DEFAULT_RESET_TIMEOUT       2000
 #define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
-#define BLINK_DELAY                 100
+#define BLINK_DELAY                 200
 
 /* WiFi settings */
 WiFiClient client;
@@ -136,7 +136,7 @@ float distances[2] = {0, 0};
 byte state = STATE_IDLE;
 byte message[FRAME_SIZE] = {0};
 byte expectedMessageType;
-uint16_t blinkTimer;
+unsigned long blinkTimer, blinkCurrentMillis;
 // byte rxFrame[FRAME_SIZE];
 
 String msgToSend;
