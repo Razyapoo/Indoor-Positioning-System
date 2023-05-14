@@ -49,10 +49,10 @@ void initReceiver() {
 bool checkTagAddress() {
   if (debug) {
     Serial.print("Tag Address: ");
-    Serial.println(message[1]);    
+    Serial.println(receivedMessage[1]);    
   }
 
-  if (0 < message[1] && message[1] < 99) {
+  if (0 < receivedMessage[1] && receivedMessage[1] < 99) {
     return true;
   } else {
    if (debug) Serial.println("  Wrong Tag Address!!");
@@ -61,7 +61,7 @@ bool checkTagAddress() {
 
 bool checkSource() {
   if (checkTagAddress()) {
-    if (currentTagAddress == message[1]) return true;
+    if (currentTagAddress == receivedMessage[1]) return true;
     if (debug) {
       Serial.println("Wrong source!");
       Serial.print("Current tag is: ");
@@ -73,10 +73,11 @@ bool checkSource() {
 }
 
 bool checkDestination() {
-  if (myID == message[2]) return true;
+  if (myID == receivedMessage[2]) return true;
 
   if (debug) Serial.println("Wrong destination. Not for me!");
   expectedMessageType = MSG_TYPE_POLL;
+  isAnchorBusy = false;
   return false;
 }
 
@@ -86,15 +87,15 @@ bool checkSourceAndDestination() {
  
  
 void prepareMessageToSend(byte messageType, byte source, byte destination) { 
-    memcpy(message, &messageType, sizeof(messageType)); 
-    memcpy(message + 1, &source, sizeof(source)); 
-    memcpy(message + 2, &destination, sizeof(destination)); 
+    memcpy(currentMessage, &messageType, sizeof(messageType)); 
+    memcpy(currentMessage + 1, &source, sizeof(source)); 
+    memcpy(currentMessage + 2, &destination, sizeof(destination)); 
 
     prepareReplyDelay();
 } 
 
 void prepareReplyDelay() { 
-    memcpy(message + 3, &replyDelay, 2); 
+    memcpy(currentMessage + 3, &replyDelay, 2); 
 }
 
  
@@ -122,16 +123,16 @@ void sendMessage(byte messageType) {
   else if (messageType == MSG_TYPE_RANGE_REPORT) { 
    if (debug) Serial.println("  MSG_TYPE_RANGE_REPORT");
     prepareMessageToSend(MSG_TYPE_RANGE_REPORT, myID, currentTagAddress); 
-    timePollReceived.getTimestamp(message + 5); 
-    timePollAckSent.getTimestamp(message + 10); 
-    timeRangeReceived.getTimestamp(message + 15); 
+    timePollReceived.getTimestamp(currentMessage + 5); 
+    timePollAckSent.getTimestamp(currentMessage + 10); 
+    timeRangeReceived.getTimestamp(currentMessage + 15); 
   }  
  
-  DW1000.setData(message, sizeof(message)); 
+  DW1000.setData(currentMessage, sizeof(currentMessage)); 
    if (debug) {
-    Serial.print("  Message content: ");
-    for (size_t i = 0; i < sizeof(message); i++) {
-       Serial.print(message[i]);
+    Serial.print(" Current Message content: ");
+    for (size_t i = 0; i < sizeof(currentMessage); i++) {
+       Serial.print(currentMessage[i]);
        Serial.print(" ");
     }
     Serial.println(" ");
@@ -185,7 +186,7 @@ void setup() {
 } 
  
 void loop() { 
-  checkForReset();
+  //checkForReset();
   
   if (sentAck) {
 //    repeatedSoftInit = false;
@@ -193,7 +194,7 @@ void loop() {
     noteActivity();
 
    if (debug) Serial.println("Send something");
-    if (message[0] == MSG_TYPE_POLL_ACK) {
+    if (currentMessage[0] == MSG_TYPE_POLL_ACK) {
       DW1000.getTransmitTimestamp(timePollAckSent);
     }
     
@@ -201,53 +202,39 @@ void loop() {
   
   if (receivedAck) {
 //    repeatedSoftInit = false;
+    noteActivity();
     receivedAck = false;
     if (debug) Serial.println("Received something");
     
-    DW1000.getData(message, sizeof(message)); 
+    DW1000.getData(receivedMessage, sizeof(receivedMessage)); 
 
     if (debug) {
-       Serial.print("  Message content: ");
-       for (size_t i = 0; i < sizeof(message); i++) {
-         Serial.print(message[i]);
+       Serial.print(" Received Message content: ");
+       for (size_t i = 0; i < sizeof(receivedMessage); i++) {
+         Serial.print(receivedMessage[i]);
          Serial.print(" ");
        }
        Serial.println(" ");
     }
 
-    if (expectedMessageType == message[0]) {
-      noteActivity();
-      // if (expectedMessageType == MSG_TYPE_BLINK && !isAnchorBusy && checkTagAddress()) {
-      //   if (debug) Serial.println("Blink!");
-      //   currentTagAddress = message[1];
-      //   if (debug) {
-      //     Serial.print("Current Tag Address: ");
-      //     Serial.println(currentTagAddress);
-      //   }
-      //   expectedMessageType = MSG_TYPE_POLL;
-      //   sendMessage(MSG_TYPE_ANCHOR_ADDR);
-      //  return;
-      // }
+    if (receivedMessage[0] == MSG_TYPE_POLL && !isAnchorBusy && checkTagAddress()) {
+      //memcpy(currentMessage, receivedMessage, sizeof(receivedMessage));
+      isAnchorBusy = true;
+      currentTagAddress = receivedMessage[1];
+      DW1000.getReceiveTimestamp(timePollReceived); 
+      expectedMessageType = MSG_TYPE_RANGE;
+      sendMessage(MSG_TYPE_POLL_ACK);
+      return;
+    }
 
-      if (expectedMessageType == MSG_TYPE_POLL && !isAnchorBusy && checkTagAddress()) {
-      //if (expectedMessageType == MSG_TYPE_POLL && !isAnchorBusy && checkTagAddress() && currentTagAddress != message[1]) {
-        isAnchorBusy = true;
-        currentTagAddress = message[1];
-        DW1000.getReceiveTimestamp(timePollReceived); 
-        expectedMessageType = MSG_TYPE_RANGE;
-        sendMessage(MSG_TYPE_POLL_ACK);
-        return;
-      }
-
+    if (expectedMessageType == MSG_TYPE_RANGE && receivedMessage[0] == MSG_TYPE_RANGE && checkSourceAndDestination() && isAnchorBusy) {
+      //memcpy(currentMessage, receivedMessage, sizeof( receivedMessage));
+      DW1000.getReceiveTimestamp(timeRangeReceived); 
+      expectedMessageType = MSG_TYPE_POLL;
+      sendMessage(MSG_TYPE_RANGE_REPORT); 
+      isAnchorBusy = false;
       
-      if (expectedMessageType == MSG_TYPE_RANGE && checkSourceAndDestination() && isAnchorBusy) {
-        DW1000.getReceiveTimestamp(timeRangeReceived); 
-        expectedMessageType = MSG_TYPE_POLL;
-        sendMessage(MSG_TYPE_RANGE_REPORT); 
-        isAnchorBusy = false;
-        return;
-      }
-      
+      return;
    } else {
       // errorWatch = true;
 //      if (expectedMessageType == MSG_TYPE_POLL) 
@@ -257,14 +244,15 @@ void loop() {
 //          errorWatch = true;
 //        }
 //      }
+      if (receivedMessage[0] == MSG_TYPE_POLL) isAnchorBusy = false;
       if (debug) {
-        Serial.print("POLL counter: ");
-        Serial.println(pollCounterForReset);
+        //Serial.print("POLL counter: ");
+        //Serial.println(pollCounterForReset);
         Serial.println("Got wrong message: ");
         Serial.print("  Expected: ");
         Serial.println(expectedMessageType);
         Serial.print("  Received: ");
-        Serial.println(message[0]);
+        Serial.println(receivedMessage[0]);
       }
      
     }

@@ -48,6 +48,7 @@ byte discoveredAnchors[MAX_ANCHORS] = {0};
 size_t discoveredAnchorsCount = 0;
 size_t anchorIndex = 0;
 byte currentAnchorAddress, anchorAddress;
+const byte broadcastAddress = 255;
 bool isTagBusy = false;
 
 #define setSenderAddr(frame, addr) memcpy(frame + 1, &addr, 2)
@@ -78,11 +79,11 @@ bool isTagBusy = false;
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
 //#define REPLY_DELAY                 10
-#define DEFAULT_RESET_TIMEOUT       2000
+#define DEFAULT_RESET_TIMEOUT       5000
 #define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
-#define BLINK_DELAY                 200
+#define BLINK_DELAY                 3000
 
 /* WiFi settings */
 WiFiClient client;
@@ -137,6 +138,8 @@ float distances[2] = {0, 0};
 
 byte state = STATE_IDLE;
 byte message[FRAME_SIZE] = {0};
+byte currentMessage[FRAME_SIZE] = {0};
+byte receivedMessage[FRAME_SIZE] = {0};
 byte expectedMessageType;
 unsigned long blinkTimer, blinkCurrentMillis;
 // byte rxFrame[FRAME_SIZE];
@@ -146,4 +149,4 @@ boolean toSend = false;
 boolean sentAck = false;
 boolean receivedAck = false;
 boolean debug = true;
-boolean errorWatch = false;
+boolean protocolFailed = false;

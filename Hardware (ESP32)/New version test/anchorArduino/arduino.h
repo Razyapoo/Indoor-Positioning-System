@@ -93,7 +93,10 @@ unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitD
 
 byte state = STATE_IDLE;
 byte currentTagAddress;
+const byte broadcastAddress = 255;
 byte message[FRAME_SIZE] = {0};
+byte currentMessage[FRAME_SIZE] = {0};
+byte receivedMessage[FRAME_SIZE] = {0};
 bool isAnchorBusy = false;
 byte expectedMessageType = MSG_TYPE_POLL;
 // byte rxFrame[FRAME_SIZE];
@@ -101,6 +104,6 @@ byte expectedMessageType = MSG_TYPE_POLL;
 /* volatile */
 boolean sentAck = false;
 boolean receivedAck = false;
-boolean errorWatch = false;
+boolean protocolFailed = false;
 boolean repeatedSoftInit = false;
 boolean debug = true;
