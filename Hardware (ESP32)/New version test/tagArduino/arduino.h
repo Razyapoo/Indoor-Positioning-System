@@ -43,7 +43,7 @@ const byte MSG_TYPE_RANGE = 5;
 const byte MSG_TYPE_RANGE_REPORT = 6;
 
 const size_t MAX_ANCHORS = 2;
-const size_t MIN_ANCHORS = 1;
+const size_t MIN_ANCHORS = 2;
 byte discoveredAnchors[MAX_ANCHORS] = {0};
 size_t discoveredAnchorsCount = 0;
 size_t anchorIndex = 0;
@@ -57,7 +57,7 @@ bool isTagBusy = false;
 #define isReceiverMatch(frame, addr) !memcmp(frame + 3, &addr, 2)
 
 // type (1), src (2), dst (2), time1 (5), time2 (5), time3 (5): total (20)
-#define FRAME_SIZE 18//20
+#define FRAME_SIZE 20
 
 // Parameters are tunable, but anchors and tags must have the same values
 /* Close setting */
@@ -77,7 +77,7 @@ bool isTagBusy = false;
 #define RANGE_TIMEOUT               10
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
-#define REPLY_DELAY                 10
+//#define REPLY_DELAY                 10
 #define DEFAULT_RESET_TIMEOUT       2000
 #define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
@@ -98,7 +98,8 @@ const char *host = "10.42.0.1";
 
 
 // UWB anchors and tags must have the same replay_delay
-DW1000Time rangeReplyDelay = DW1000Time(REPLY_DELAY, DW1000Time::MILLISECONDS);
+//DW1000Time rangeReplyDelay = DW1000Time(REPLY_DELAY, DW1000Time::MILLISECONDS);
+DW1000Time rangeReplyDelay;
 DW1000Time timePollSent;
 DW1000Time timePollReceived;
 DW1000Time timePollAckSent;
@@ -130,6 +131,7 @@ uint16_t idx_anchor = 0;
 uint16_t counterBlink = 0;
 uint16_t anchors[2];
 uint16_t myID, anchorID; // range of tag ids: 0..99, anchor: 100..199
+uint16_t replyDelay;
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 float distances[2] = {0, 0};
 

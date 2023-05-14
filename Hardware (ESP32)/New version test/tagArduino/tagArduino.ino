@@ -18,6 +18,7 @@ void checkForReset() {
   currentTime = millis();
   if (!sentAck && !receivedAck) {
     if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
+      for (size_t i = 0; i < MAX_ANCHORS - 1; i++) discoveredAnchors[i] = 0;
       discoveredAnchorsCount = 0;
       anchorIndex = 0;
       counterBlink = 0;
@@ -121,6 +122,10 @@ void prepareMessageToSend(byte messageType, byte source) {
     memcpy(message + 1, &source, sizeof(source));
 } 
 
+void setReplyDelay() {
+  memcpy(&replyDelay, message + 3, 2);
+}
+
 void handleReceived() {
   receivedAck = true;
 }
@@ -137,22 +142,23 @@ void sendMessage(byte messageType) {
   if (debug)Serial.println("---Send Message---");
   DW1000.newTransmit(); 
   DW1000.setDefaults(); 
-  if (messageType == MSG_TYPE_BLINK) { 
-    if (debug) {
-      Serial.print("  MSG_TYPE_BLINK: ");
-      Serial.println(MSG_TYPE_BLINK);
-    }
+  // if (messageType == MSG_TYPE_BLINK) { 
+  //   if (debug) {
+  //     Serial.print("  MSG_TYPE_BLINK: ");
+  //     Serial.println(MSG_TYPE_BLINK);
+  //   }
     
-    prepareMessageToSend(MSG_TYPE_BLINK, myID); 
-  }  
-  else if (messageType == MSG_TYPE_POLL) { 
+  //   prepareMessageToSend(MSG_TYPE_BLINK, myID); 
+  // }  
+  // else 
+  if (messageType == MSG_TYPE_POLL) { 
     
     if (debug) {
       Serial.print("  MSG_TYPE_POLL: ");
       Serial.println(MSG_TYPE_POLL);
     }
     
-    prepareMessageToSend(MSG_TYPE_POLL, myID, currentAnchorAddress); 
+    prepareMessageToSend(MSG_TYPE_POLL, myID); 
   }  
   else if (messageType == MSG_TYPE_RANGE) { 
     if (debug) {
@@ -160,7 +166,13 @@ void sendMessage(byte messageType) {
       Serial.println(MSG_TYPE_RANGE);
     }
     
-    prepareMessageToSend(MSG_TYPE_RANGE, myID, currentAnchorAddress); 
+    prepareMessageToSend(MSG_TYPE_RANGE, myID, currentAnchorAddress);
+    setReplyDelay();
+    if (debug) {
+      Serial.print("Reply Delay: ");
+      Serial.println(replyDelay);
+    }
+    rangeReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
     DW1000.setDelay(rangeReplyDelay);
   }  
  
@@ -186,9 +198,17 @@ void sendMessage(byte messageType) {
 
 
 bool isAnchorDiscovered() {
-  for (size_t i = 0; i < discoveredAnchorsCount; i++) {
+  for (size_t i = 0; i < MAX_ANCHORS - 1; i++) {
     if (discoveredAnchors[i] == message[1]) {
-      if (debug) Serial.println("Anchor is already discovered!");
+      if (debug) {
+        Serial.println("Anchor is already discovered!");
+        Serial.print("i = ");
+        Serial.println(i);
+        Serial.print("anchor address: ");
+        Serial.println(message[1]);
+        Serial.print("discoveredAnchorsCount: ");
+        Serial.println(discoveredAnchorsCount);
+      }
       return true;
     }
   }
@@ -228,13 +248,13 @@ void setup() {
  
 void loop() { 
   
-  checkForReset();
+  //checkForReset();
 
-  if (debug) 
-  {
-    Serial.print("Current Anchor Address: "); 
-    Serial.println(currentAnchorAddress);
-  }
+//  if (debug) 
+//  {
+//    Serial.print("Current Anchor Address: "); 
+//    Serial.println(currentAnchorAddress);
+//  }
 
   
      
@@ -248,7 +268,7 @@ void loop() {
     }  
 
     if (message[0] == MSG_TYPE_RANGE) { 
-      if (debug) Serial.println("  MSG_TYPE_POLL is sent. Record timestamp");
+      if (debug) Serial.println("  MSG_TYPE_RANGE is sent. Record timestamp");
       DW1000.getTransmitTimestamp(timeRangeSent);
     }  
     
@@ -274,67 +294,77 @@ void loop() {
    
     
     if (expectedMessageType == message[0]) {
-      if (expectedMessageType == MSG_TYPE_ANCHOR_ADDR && !isTagBusy && checkDestination()) {
-        if (!isAnchorDiscovered() && isAnchorAddress()) {
-          if (debug) {
-            Serial.print("New anchor found: ");
-            Serial.println(message[1]);
-          }
+      // if (expectedMessageType == MSG_TYPE_ANCHOR_ADDR && !isTagBusy && checkDestination()) {
+      //   if (!isAnchorDiscovered() && isAnchorAddress()) {
+      //     if (debug) {
+      //       Serial.print("New anchor found: ");
+      //       Serial.println(message[1]);
+      //     }
          
-          discoveredAnchors[discoveredAnchorsCount++] = message[1];
-          //counterBlink = 0;
-        }
+      //     discoveredAnchors[discoveredAnchorsCount++] = message[1];
+      //     //counterBlink = 0;
+      //   }
 
-        if (discoveredAnchorsCount >= MIN_ANCHORS) {
-          if (debug) {
-            Serial.print("All anchors are found!!! Let's start ranging!");
-            Serial.println(message[1]);
-          }
-          isTagBusy = true;
-          anchorIndex = 0;
-          currentAnchorAddress = discoveredAnchors[anchorIndex];
-          expectedMessageType = MSG_TYPE_POLL_ACK;
-          sendMessage(MSG_TYPE_POLL);
-        }
-        return;
-      } else {
+      //   if (discoveredAnchorsCount >= MIN_ANCHORS) {
+      //     if (debug) {
+      //       Serial.print("All anchors are found!!! Let's start ranging!");
+      //       Serial.println(message[1]);
+      //     }
+      //     isTagBusy = true;
+      //     anchorIndex = 0;
+      //     currentAnchorAddress = discoveredAnchors[anchorIndex];
+      //     expectedMessageType = MSG_TYPE_POLL_ACK;
+      //     sendMessage(MSG_TYPE_POLL);
+      //   }
+      //   return;
+      // } else {
+
+
         if (isTagBusy) {
-          if (expectedMessageType == MSG_TYPE_POLL_ACK && checkSourceAndDestination()) {
-           if (debug) Serial.println("received POLL ACK!");
-            DW1000.getReceiveTimestamp(timePollAckReceived);
-            expectedMessageType = MSG_TYPE_RANGE_REPORT;
-            sendMessage(MSG_TYPE_RANGE); 
+
+          if (expectedMessageType == MSG_TYPE_POLL_ACK && checkDestination()) {
+            if (!isAnchorDiscovered() && isAnchorAddress()) {  
+              if (debug) Serial.println("received POLL ACK!");
+              discoveredAnchors[discoveredAnchorsCount++] = message[1];
+              currentAnchorAddress = message[1];
+              DW1000.getReceiveTimestamp(timePollAckReceived);
+              expectedMessageType = MSG_TYPE_RANGE_REPORT;
+              sendMessage(MSG_TYPE_RANGE); 
+            } else {
+              isTagBusy = false;
+            }
             return;
           }
-
+        
           if (expectedMessageType == MSG_TYPE_RANGE_REPORT && checkSourceAndDestination()) {
-            timePollReceived.setTimestamp(message + 3);
-            timePollAckSent.setTimestamp(message + 8);
-            timeRangeReceived.setTimestamp(message + 13);
+            timePollReceived.setTimestamp(message + 5);
+            timePollAckSent.setTimestamp(message + 10);
+            timeRangeReceived.setTimestamp(message + 15);
             float distance = computeRangeAsymmetric();
             Serial.print("Distance from anchor ");
             Serial.print(currentAnchorAddress);
             Serial.print(": ");
             Serial.println(distance);
-            if (anchorIndex < discoveredAnchorsCount - 1) 
-            {
-              anchorIndex++;
-              isTagBusy = true;
-              currentAnchorAddress = discoveredAnchors[anchorIndex];
-              expectedMessageType = MSG_TYPE_POLL_ACK;
-              sendMessage(MSG_TYPE_POLL);
-            } else {
-              discoveredAnchorsCount = 0;
-              currentAnchorAddress = 0;
-              anchorIndex = 0;
-              isTagBusy = false;
-            }
-            return;
+            isTagBusy = false;
+            // if (anchorIndex < discoveredAnchorsCount - 1) 
+            // {
+            //   anchorIndex++;
+            //   isTagBusy = true;
+            //   currentAnchorAddress = discoveredAnchors[anchorIndex];
+            //   expectedMessageType = MSG_TYPE_POLL_ACK;
+            //   sendMessage(MSG_TYPE_POLL);
+            // } else {
+            //   discoveredAnchorsCount = 0;
+            //   currentAnchorAddress = 0;
+            //   anchorIndex = 0;
+            //   isTagBusy = false;
+            // }
+            // return;
           }
         } else {
          if (debug) Serial.println("Tag lost connection with Anchor!!");
         }
-      }
+      // }
 
     } else {
       
@@ -350,31 +380,30 @@ void loop() {
     }
   }
 
-  blinkCurrentMillis = millis();
-  if (!isTagBusy && discoveredAnchorsCount < MIN_ANCHORS && blinkCurrentMillis - blinkTimer > BLINK_DELAY) {
+  // blinkCurrentMillis = millis();
+  if (!isTagBusy && discoveredAnchorsCount >= MIN_ANCHORS) {
+    if (debug) Serial.println("All anchors are discovered! Re-submitting poll"); 
+    for (size_t i = 0; i < MAX_ANCHORS - 1; i++) discoveredAnchors[i] = 0;
+    discoveredAnchorsCount = 0;
+    
+  }
+
+  if (!isTagBusy && discoveredAnchorsCount < MIN_ANCHORS) {
     if (debug) 
       {
         Serial.print("Number of already discovered anchors: "); 
         Serial.println(discoveredAnchorsCount);
-        Serial.print("Current millis: "); 
-        Serial.println(blinkCurrentMillis);
-        Serial.print("Blink Timer: "); 
-        Serial.println(blinkTimer);
+        // Serial.print("Current millis: "); 
+        // Serial.println(blinkCurrentMillis);
+        // Serial.print("Blink Timer: "); 
+        // Serial.println(blinkTimer);
       } 
-    blinkTimer = blinkCurrentMillis;
-    expectedMessageType = MSG_TYPE_ANCHOR_ADDR;
-    sendMessage(MSG_TYPE_BLINK);
-//    counterBlink++;
-    // if (debug) 
-    //   {
-    //     Serial.print("Blink counter: "); 
-    //     Serial.println(counterBlink);
-    //   } 
-    // Sometimes tag is looping infinitely and sending blinks, which are not received by anchor for some reason
-//    if (counterBlink > 5) {
-//      
-//      errorWatch = true;
-//      delay(1000);
-//    }
+    // blinkTimer = blinkCurrentMillis;
+    currentAnchorAddress = 0;
+    isTagBusy = true;
+    expectedMessageType = MSG_TYPE_POLL_ACK;
+    sendMessage(MSG_TYPE_POLL);
   }
+
+  
 }

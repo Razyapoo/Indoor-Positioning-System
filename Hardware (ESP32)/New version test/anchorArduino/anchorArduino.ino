@@ -23,7 +23,7 @@ void checkForReset() {
       // errorWatch = false;
       pollCounterForReset = 0;
       //repeatedSoftInit = true;
-      expectedMessageType = MSG_TYPE_BLINK;
+      expectedMessageType = MSG_TYPE_POLL;
       initReceiver();
       Serial.println("Reinit....");
       noteActivity();
@@ -76,6 +76,7 @@ bool checkDestination() {
   if (myID == message[2]) return true;
 
   if (debug) Serial.println("Wrong destination. Not for me!");
+  expectedMessageType = MSG_TYPE_POLL;
   return false;
 }
 
@@ -88,27 +89,42 @@ void prepareMessageToSend(byte messageType, byte source, byte destination) {
     memcpy(message, &messageType, sizeof(messageType)); 
     memcpy(message + 1, &source, sizeof(source)); 
     memcpy(message + 2, &destination, sizeof(destination)); 
+
+    prepareReplyDelay();
 } 
+
+void prepareReplyDelay() { 
+    memcpy(message + 3, &replyDelay, 2); 
+}
+
  
 void sendMessage(byte messageType) { 
  if (debug) Serial.println("---Send Message---");
   DW1000.newTransmit(); 
   DW1000.setDefaults(); 
-  if (messageType == MSG_TYPE_ANCHOR_ADDR) {
-   if (debug) Serial.println("  MSG_TYPE_ANCHOR_ADDR");
-    prepareMessageToSend(MSG_TYPE_ANCHOR_ADDR, myID, currentTagAddress);
-  }  
-  else if (messageType == MSG_TYPE_POLL_ACK) { 
+  // if (messageType == MSG_TYPE_ANCHOR_ADDR) {
+  //  if (debug) Serial.println("  MSG_TYPE_ANCHOR_ADDR");
+  //   prepareMessageToSend(MSG_TYPE_ANCHOR_ADDR, myID, currentTagAddress);
+  // }  
+  // else 
+  
+  if (messageType == MSG_TYPE_POLL_ACK) { 
    if (debug) Serial.println("  MSG_TYPE_POLL_ACK");
+    replyDelay = (2*(myID-100)+1)*DEFAULT_REPLY_DELAY_TIME;
+    if (debug) {
+      Serial.print("Reply Delay: ");
+      Serial.println(replyDelay);
+    }
     prepareMessageToSend(MSG_TYPE_POLL_ACK, myID, currentTagAddress); 
+    pollackReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
     DW1000.setDelay(pollackReplyDelay);
   }  
   else if (messageType == MSG_TYPE_RANGE_REPORT) { 
    if (debug) Serial.println("  MSG_TYPE_RANGE_REPORT");
     prepareMessageToSend(MSG_TYPE_RANGE_REPORT, myID, currentTagAddress); 
-    timePollReceived.getTimestamp(message + 3); 
-    timePollAckSent.getTimestamp(message + 8); 
-    timeRangeReceived.getTimestamp(message + 13); 
+    timePollReceived.getTimestamp(message + 5); 
+    timePollAckSent.getTimestamp(message + 10); 
+    timeRangeReceived.getTimestamp(message + 15); 
   }  
  
   DW1000.setData(message, sizeof(message)); 
@@ -157,7 +173,6 @@ void initAnchor() {
   DW1000.attachReceivedHandler(handleReceived);
   
   initReceiver();
-  noteActivity();
   Serial.println("ANCHOR");
 
   delay(1000);  
@@ -199,40 +214,38 @@ void loop() {
        }
        Serial.println(" ");
     }
-   
-    
-    noteActivity();
 
     if (expectedMessageType == message[0]) {
-      if (expectedMessageType == MSG_TYPE_BLINK && !isAnchorBusy && checkTagAddress()) {
-        if (debug) Serial.println("Blink!");
+      noteActivity();
+      // if (expectedMessageType == MSG_TYPE_BLINK && !isAnchorBusy && checkTagAddress()) {
+      //   if (debug) Serial.println("Blink!");
+      //   currentTagAddress = message[1];
+      //   if (debug) {
+      //     Serial.print("Current Tag Address: ");
+      //     Serial.println(currentTagAddress);
+      //   }
+      //   expectedMessageType = MSG_TYPE_POLL;
+      //   sendMessage(MSG_TYPE_ANCHOR_ADDR);
+      //  return;
+      // }
+
+      if (expectedMessageType == MSG_TYPE_POLL && !isAnchorBusy && checkTagAddress()) {
+      //if (expectedMessageType == MSG_TYPE_POLL && !isAnchorBusy && checkTagAddress() && currentTagAddress != message[1]) {
+        isAnchorBusy = true;
         currentTagAddress = message[1];
-        if (debug) {
-          Serial.print("Current Tag Address: ");
-          Serial.println(currentTagAddress);
-        }
-        expectedMessageType = MSG_TYPE_POLL;
-        sendMessage(MSG_TYPE_ANCHOR_ADDR);
-       return;
+        DW1000.getReceiveTimestamp(timePollReceived); 
+        expectedMessageType = MSG_TYPE_RANGE;
+        sendMessage(MSG_TYPE_POLL_ACK);
+        return;
       }
 
-      if (checkSourceAndDestination()) {
-        if (expectedMessageType == MSG_TYPE_POLL && !isAnchorBusy) {
-          isAnchorBusy = true;
-          DW1000.getReceiveTimestamp(timePollReceived); 
-          expectedMessageType = MSG_TYPE_RANGE;
-          sendMessage(MSG_TYPE_POLL_ACK);
-          return;
-        }
-
-        if (expectedMessageType == MSG_TYPE_RANGE && isAnchorBusy) {
-          DW1000.getReceiveTimestamp(timeRangeReceived); 
-          expectedMessageType = MSG_TYPE_BLINK;
-          sendMessage(MSG_TYPE_RANGE_REPORT); 
-          isAnchorBusy = false;
-          return;
-        }
-
+      
+      if (expectedMessageType == MSG_TYPE_RANGE && checkSourceAndDestination() && isAnchorBusy) {
+        DW1000.getReceiveTimestamp(timeRangeReceived); 
+        expectedMessageType = MSG_TYPE_POLL;
+        sendMessage(MSG_TYPE_RANGE_REPORT); 
+        isAnchorBusy = false;
+        return;
       }
       
    } else {
