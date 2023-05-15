@@ -79,11 +79,11 @@ bool isTagBusy = false;
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
 //#define REPLY_DELAY                 10
-#define DEFAULT_RESET_TIMEOUT       5000
+#define DEFAULT_RESET_TIMEOUT       500
 #define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300
-#define BLINK_DELAY                 3000
+#define BLINK_DELAY                 1000
 
 /* WiFi settings */
 WiFiClient client;
@@ -145,8 +145,11 @@ unsigned long blinkTimer, blinkCurrentMillis;
 // byte rxFrame[FRAME_SIZE];
 
 String msgToSend;
-boolean toSend = false;
-boolean sentAck = false;
-boolean receivedAck = false;
-boolean debug = true;
-boolean protocolFailed = false;
+String serverRequest;
+bool toSend = false;
+bool sentAck = false;
+bool receivedAck = false;
+bool debug = true;
+bool protocolFailed = false;
+bool isRequestFromServerReceived = false;
+bool isRequestToServerSent = false;
