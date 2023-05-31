@@ -141,7 +141,7 @@ byte message[FRAME_SIZE] = {0};
 byte currentMessage[FRAME_SIZE] = {0};
 byte receivedMessage[FRAME_SIZE] = {0};
 byte expectedMessageType;
-unsigned long blinkTimer, blinkCurrentMillis;
+unsigned long blinkTimer, blinkCurrentMillis, discoveryTimeout, discoveryTimer;
 // byte rxFrame[FRAME_SIZE];
 
 String msgToSend;

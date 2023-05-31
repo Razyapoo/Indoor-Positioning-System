@@ -205,6 +205,7 @@ void sendMessage(byte messageType) {
    
   DW1000.startTransmit();
   blinkTimer = millis();
+  discoveryTimer = millis();
   //while (!DW1000.isTransmitDone()) continue; 
  
   //DW1000.clearTransmitStatus();
@@ -242,7 +243,7 @@ void initTag() {
   DW1000.setNetworkId(networkId); 
   DW1000.setDeviceAddress(myID); 
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY); 
-  DW1000.setAntennaDelay(16495);
+  DW1000.setAntennaDelay(16515);
   DW1000.commitConfiguration(); 
 
   DW1000.attachSentHandler(handleSent);
@@ -387,8 +388,8 @@ void loop() {
       }
     }
 
-    // blinkCurrentMillis = millis();
-    if (!isTagBusy && discoveredAnchorsCount >= MIN_ANCHORS) {
+    discoveryTimeout = millis();
+    if (!isTagBusy && (discoveredAnchorsCount >= MIN_ANCHORS || discoveryTimeout - discoveryTimer > BLINK_DELAY)) {
       if (debug) Serial.println("All anchors are discovered! Sending to server!"); 
       
       sendDistancesToServer();
@@ -408,6 +409,7 @@ void loop() {
       isRequestFromServerReceived = false;
       for (size_t i = 0; i < MAX_ANCHORS - 1; i++) discoveredAnchors[i] = 0;
       discoveredAnchorsCount = 0;
+      discoveryTimer = discoveryTimeout;
       noteActivity();
       return;
     }

@@ -9,10 +9,29 @@ It doesn't record all changes, but the most important.
 - trial run of YOLOv4 to detect people in the input video
 - integration of focal length into YOLOv4 to compute the distance between people using 3D Euclidian distance
 - trial run of ESP32 UWB chips
+
   - uploading existing code from official **[arduino-dw1000](https://github.com/thotro/arduino-dw1000)** library (examples/DW1000Ranging_ANCHOR/DW1000Ranging_ANCHOR.ino and examples/DW1000Ranging_TAG/DW1000Ranging_TAG.ino)
-  - integration of [link.cpp](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.cpp) and [link.h](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.h) to detect multiple anchors from tags (there was problems)
-- new try with ESP32 UWB chips
-  - source: [anchor](https://github.com/gsongsong/dw1000-positioning/blob/ee5e2c9e57f42ad23014cc470b6478d3fb0dbe57/anchorArduino/anchorArduino.ino) and [tag](https://github.com/gsongsong/dw1000-positioning/tree/ee5e2c9e57f42ad23014cc470b6478d3fb0dbe57/tagArduino) (changed) + added sender to server
+    - it works perfectly just for one tag and one anchor
+    - To support more anchors, we have used already implemented linked list of anchors:
+      - integration of [link.cpp](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.cpp) and [link.h](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.h) to detect multiple anchors from a tag
+
+- The main idea of the project is to implement synchronized system which uses several methods for distance estimation and then estimates the final distance based on those estimated distances. For example it can use average.
+
+  - this requires synchronization between each method
+
+- First thing which comes to mind is to use some machine which will collect data from every method and then make final decision about the distance estimation. This machine can be a server.
+
+- There are two ways to store the distances measured by UWB chips: in anchors and in tags. The former is not good desicion since two anchors must be synchronized as well to send the sync data to the server related to a particular tag. Therefore we decided to implement the letter method, because each tag collects data related only to it.
+
+- As the first step we desided to implement decentralized system. We have implemented the server which will get data from tags, but let tags operate on their own. So, when they will collect the desired number of estimated distances from anchors, they will send the distance to the server.
+
+- Unfortunatelly, during experiments we have realized that tags overloaded the server, so the servee showed distances with significant delay. And then after a while it showed all the received distances at once. This was a complete mess.
+
+- As an improvement of the communication between server and tags we have added acknoledgements as a step of the communication between server and tags. This helped to overcome the problem.
+
+- Unfortunatelly, after some tests, we have realized that the official implementation of the TWR protocol from the DW1000 library it happens that if we have a set up where two tags and one anchor are located at the same line, the tag in the middle overwrites data that are specific for the farther tag, therefore the farthest tag receives wrong estimated distances. Do not know exactly why, I think the library uses myDistantDevice->getDistance() in tags which reads distance from the anchor (distance is computed in the anchor). We desided not to overwrite the whole library and go with another existing solution.
+  - new try with ESP32 UWB chips
+    - source: [anchor](https://github.com/gsongsong/dw1000-positioning/blob/ee5e2c9e57f42ad23014cc470b6478d3fb0dbe57/anchorArduino/anchorArduino.ino) and [tag](https://github.com/gsongsong/dw1000-positioning/tree/ee5e2c9e57f42ad23014cc470b6478d3fb0dbe57/tagArduino) (changed) + added sender to server
 
 # Oct 29, 2022
 
@@ -22,58 +41,61 @@ It doesn't record all changes, but the most important.
 
 - On the last experiment (Oct 29, 2022) there was a problem of the server overloading with tag requests. Also tags hit the signal from the anchors only on the distance of 2 m between anchors.
 - Fixes:
+
   - there was a bug on hw level. To send data from tag to server it is needed first to establish the connection and then send data.
-  - if tag didn't receive correct ack it get stuck. Fix: left tag scan again after a while (if there is no response), or in case of bad response.
-  - Delay parameter was set to small value. When tag has computed the distance, it sent to the server ack to establish the connection. Tag didn't get the ack from server and started to compute new value. 
+  - if tag didn't receive correct ack it get stuck. Fix: let tag scan again after a while (if there is no response), or in case of bad response.
+  - Delay parameter was set to small value. When tag has computed the distance, it sent to the server ack to establish the connection. Tag didn't get the ack from server and started to compute new value.
 
 - Updates:
   - state diagram for tag
+
 # Nov 1, 2022
 
 - Updates:
+
   - state diagram for anchor
   - Did some tests:
     - Note: Anchors sometimes lost receive and sent flags. It is needed to hard reset them.
     - Note: delay and PONG_TIMEOUT_MS in the anchor's IDLE_STATE is needed to escape deadlock when all tags send PING to the anchor. Do we need STATE_PENDING_PONG? Sometimes tags are hard reset. Why? Does STATE_PENDING_PONG help? Looks like yes, but I did only one test; need to do more tests.
 
-- Next step: 
+- Next step:
   - to implement centralized system with server as initiator. This way we will escape problems with overloading the server and anchors.
 
 # Nov 2, 2022
 
 - There is a problem with centralized system - it waits for the new connections and only waits for incoming requests from sockets.
 - In my opinion, there exist 2 ways how to solve this problem. 1 way is to connect tags to the server at the beginning and then just communicate with them. 2 way is to write multithreaded server
-  where 1 thread will be responsible for the new connections and another thread will be used for communication.  
+  where 1 thread will be responsible for the new connections and another thread will be used for communication.
 
 # Nov 7, 2022
 
 - There is no reason to implement centralized system, since tags still need to respond to server and there can be some delay. Can it interrupt another calculation, request a write request while calculating another tag?
-- Set up local network. A lot better now. 
+- Set up local network. A lot better now.
 - Trying to implement in anchors history of tag connections (first draft). Is it good working?
 
 # Nov 8, 2022
 
 - Note: In many systems, where all devices have the same transmitter and receiver antenna delays, it is
-unnecessary to calibrate the transmitter antenna delay. The transmitter antenna delay may be set to zero
-and a combined receiver and transmitter delay value may be used for the receiver antenna delay without
-impairing the ranging performance of the system. source: https://www.qorvo.com/products/d/da007967
+  unnecessary to calibrate the transmitter antenna delay. The transmitter antenna delay may be set to zero
+  and a combined receiver and transmitter delay value may be used for the receiver antenna delay without
+  impairing the ranging performance of the system. source: https://www.qorvo.com/products/d/da007967
 
 # Nov 9, 2022
 
-- standard Ranging library does not check if msg was sent to the certain (current) tag, therefore, when we have multiple tags, one of them can receive data that was specialized for another tag 
+- standard Ranging library does not check if msg was sent to the certain (current) tag, therefore, when we have multiple tags, one of them can receive data that was specialized for another tag
 
 # Nov 12, 2022
 
 - I have implemented own anchor-tag ranging system based on https://github.com/gsongsong/dw1000-positioning and https://www.decawave.com/wp-content/uploads/2018/10/APS013_The-Implementation-of-Two-Way-Ranging-with-the-DW1000_v2.3.pdf.
-I have it also configured with 1 anchor and 3 tags. It is working synchronically. **But it is need to synchronize also 2nd anchor.**  folder: v5
+  I have it also configured with 1 anchor and 3 tags. It is working synchronically. **But it is need to synchronize also 2nd anchor.** folder: v5
 
 # Nov 16, 2022
 
 - Decentralized
 - Tests are done in the dormitory. 2 anchors x 3 tags.
 - 2 anchors x 1 tag is working best. This use-case is useful for the camera calibration purposes
-- 2 anchors x 2 tags working good. But the one needs to be located in front of and perpendicular to anchors. 
-- 2 anchors x 3 tags is also working, but only if anchors are located within 3-4 meters and places perpendicular to tags. But we still get data at least from 1 anchor that is useful for the calibration purposes. 
+- 2 anchors x 2 tags working good. But the one needs to be located in front of and perpendicular to anchors.
+- 2 anchors x 3 tags is also working, but only if anchors are located within 3-4 meters and places perpendicular to tags. But we still get data at least from 1 anchor that is useful for the calibration purposes.
 
 # Nov 17, 2022
 
@@ -85,36 +107,39 @@ I have it also configured with 1 anchor and 3 tags. It is working synchronically
 - trying to implement centralized version, but using implemented library (all additional files are in v6). But it is not working, i.e. one tag is working super clean, but when it is 2 tag, it is now working, hitting only 1 tag and sometimes range is 0.00. Why?
 - I thought it would be faster to get data while using library, but it is not. It is better to continue with my own implementation.
 
-
 # Nov 19, 2022 Tests at university. 1 floor
 
 - **v6 (centralized)**
-  - **1 test** 
+
+  - **1 test**
+
     - Anchors are placed in opposite sides. Distance between anchors is 3,4 m.
     - 1 tag is working good max at distance
       - at the distance 17 m it can hit 1 anchor
       - at the distance 14 m it can hit 2 anchors continuously
     - 2 tag work fine, but there are some unnecessary pings of server, why?
-    - 3 tag are working good. 
-    - Result: Sometimes there are some pings from tag to server that are unnecessary and not allowing tag to start communication with anchors. It is happen very often that tags disconnect from server, and in a while reconnect again. Why? 
-    - Basically, it is working good with all 1, 2, 3 tags switched on. Working unexpectedly good. 
+    - 3 tag are working good.
+    - Result: Sometimes there are some pings from tag to server that are unnecessary and not allowing tag to start communication with anchors. It is happen very often that tags disconnect from server, and in a while reconnect again. Why?
+    - Basically, it is working good with all 1, 2, 3 tags switched on. Working unexpectedly good.
 
-    - **Test for distance** was done with the following setting: 
+    - **Test for distance** was done with the following setting:
+
       - 1st tag was placed at the distance ~10 m from anchors
       - 2nd and 3rd tags were placed an my hands at the distance ~15 m
-      - Everything was working fine. All tags managed to send data. 
+      - Everything was working fine. All tags managed to send data.
       - **Problems**: there was some issues unfortunately:
         - not always incoming package contains data from both anchors, but it happened rarely
         - the main problem here is that server prints incoming request signals instead of incoming packages, why?
 
     - So far, it is best setting.
 
-  - **2 test** 
+  - **2 test**
+
     - Anchors placed in one line along the whole
     - working a bit worth that the case when anchors placed on opposite sides.
 
   - **3 test** (with obstacles)
-  - 1 tag and 2 anchors 
+  - 1 tag and 2 anchors
   - Obstacles such as the wall, any part of person (hand, leg, wrist), laptop, lower part, chair seat completely blocks signal.
   - chair backrest is not blocking.
   - when it is in the pocket, it hits both anchors at the distance 5 m and lower, and only 1 anchor at the distance 8~9 m
@@ -126,24 +151,24 @@ I have it also configured with 1 anchor and 3 tags. It is working synchronically
   - 1st tag is placed at the distance 5.5 m, 2nd and 3rd tags are placed at the distance 7 m (from anchors).
   - Since anchors are placed on the opposite sides, distance from a tag to each anchor is almost same.
 
-Overall results: 
+Overall results:
+
 - v6 centralized. signal outgoing from uwb chip on tag must come directly to the uwb chip on anchor, therefore anchors must be placed at different level than tags. Lower or higher? Does n't matter, the goal is that signal should target uwb chip directly.
-The best is when anchors are placed in the opposite direction. 
+  The best is when anchors are placed in the opposite direction.
 
 - v5.1 decentralized. Working good, but data coming less frequently than in v6. Sometimes can happen deadlocks. But thanks to the delay in tags it resolves automatically.
-
 
 # Nov 24, 2022
 
 Centralized v6
 
-- A lot of 3's were coming because tag wasn't receive ack from the server indication that the server received distance. 
+- A lot of 3's were coming because tag wasn't receive ack from the server indication that the server received distance.
   - Supplementing such condition helped
-- I didn't find where is the problem with anchors: some times they got frozen and did't receive messages from tags. 
-  - Reinit helped, but it happened after a second in the case when anchor didn't received or send something. And because of that, tags sometimes didn't see that anchor. 
+- I didn't find where is the problem with anchors: some times they got frozen and did't receive messages from tags.
+  - Reinit helped, but it happened after a second in the case when anchor didn't received or send something. And because of that, tags sometimes didn't see that anchor.
   - Reinit after 100 ms helped. Now it is working good.
-- There was hard reset in tags. 
-  - The problem was in interrupt pins in Tag. When tag had a lot of interrupts, interrupt flags got overflowed. And this happened only when tag received messages that are not for it. 
+- There was hard reset in tags.
+  - The problem was in interrupt pins in Tag. When tag had a lot of interrupts, interrupt flags got overflowed. And this happened only when tag received messages that are not for it.
     - Also after request sent to the server, in the case server was used by some other tag, first tag had gotten wrong ack, but still checked received and sent packages, but instead it was better to start ping server again. Adding "return" to such placed helped.
 - Now tags and anchors work good.
 
@@ -151,11 +176,52 @@ Centralized v6
 
 - There are 2 basic libraries (first, 2022: https://github.com/jremington/UWB-Indoor-Localization_Arduino; second, official, 2019: https://github.com/thotro/arduino-dw1000).
   - The first lib provides setting of calibration parameter on anchors. It also provides autocalibration methods. But the bad side of this library is that anchors and tag are working best only in the case they are **facing each other**, for example when a person body , or some obstacle blocks the signal. Calibration (antenna delay) is set on anchor side. Each anchor must have own calibration parameter.
-  - The second library doesn't provide methods to set the calibration parameter, but tags and anchors still see each other even if there are obstacles between them. Anchors and tags do not have to look directly to sensors of each other. It is working a lot better. The only thing is calibration parameter must to be set inside the library code. Each ESP32 chip has the same calibration parameter, and it is working good. 
-- Small experiment at school 
+  - The second library doesn't provide methods to set the calibration parameter, but tags and anchors still see each other even if there are obstacles between them. Anchors and tags do not have to look directly to sensors of each other. It is working a lot better. The only thing is calibration parameter must to be set inside the library code. Each ESP32 chip has the same calibration parameter, and it is working good.
+- Small experiment at school
 
-
-# March 25, 2023 
+# March 25, 2023
 
 - Facing error: "python needs to be added to $Path" when trying to push code to ESP32:
+
   - solution: sed -i -e 's/=python /=python3 /g' /home/oskar/.arduino15/packages/esp32/hardware/esp32/1.0.6/platform.txt
+
+# May 27, 2023
+
+- (Why it did not work at some point? tags sent messages, but anchors did not receive them)
+
+- Last implemented method v6.1 works perfect for 1/2 tag(s) and 2 anchors, but not so good for 3 tags and 2 anchors, because half of the received distances are from only one anchor. Why?
+
+- To solve this problem, and based on the gained knowledge of how TWR protocol works, we decided to implement own solution. As the first step we decided to get rid of states, even thought they apper to be useful.
+
+- As the first step I just focused on communication between one tag and one anchor. In own implementation I wanted to abstract from the mess of states and waiting states, therefore I desided to use the same logic as used in the https://github.com/gsongsong/dw1000-positioning and https://github.com/thotro/arduino-dw1000 implementations, but instead use separate function sendMessage and receiveMessage that will perform all the necessary steps to send and receive messages. So we can just send as a parameter the type of message to send or receive.
+
+  - it used the logic that a tag sends first round of message exchange to explore which anchors are available in the area. Anchors then respond to ranging init (explore) message with own addresses, so the tag can collect these addresses in its own array for further communications. After exploration phase follows the ranging calculation phase in which tag starts communicate with each anchor found in the ranging init phase.
+  - During the ranging calculation phase both anchor and tag have set busy flag which makes them anavailable from other interuptions. Each of them also remembers the counterpart's address, so they know that they communicate with the right counterpart.
+  - !! The problem of abstraction was that we used if statement to check whether received message is expected. Because it checked first type of the message and if it was wrong it alert that the message is wrong and that it expect another message, and then stopped ranging.
+
+    - therefore we decided to check received message explicitelly in the receive section under receivedAck variable
+    - also added returns in each part of message checking (in receive section)
+
+  - then I decided to get rid of ranging init state because it is unneccessary step. It is better to check in tag the array of already found anchors and if it is found just skip it.
+
+    - I set a reply delay for each anchor different, so when tag sends poll message, anchors responds with different delays, so tag has a time to check whether it has already communicated with that anchor.
+
+    - !!! Direct communication with anchor (without ranging init step) allowed to speed up the communication and bring the huge benefit, namely the tag is not stick with particular anchors. For example, when a person is walking fast, he may be already far from detected anchors in the ranging init phase, but tag must communicate with these anchors. It is better to have each pair of anchors set at the distance 7-10 meters from each other pair, so the tag can hit any arbitrary other anchor in the area and not stick with found in the ranging init phase. This will make the system and distance estimation iself more precise.
+      Ranging init phase is used in both https://github.com/gsongsong/dw1000-positioning and https://github.com/thotro/arduino-dw1000 implementations.
+
+  - Sometimes tag does not receive message from anchor (do not know why. Maybe it is because the issue in the implementation, or it may related to the tag).
+
+    - reinit after 500 ms helps
+
+  - Reply delay is set to replyDelay = (2*(myID-100)+1)*DEFAULT_REPLY_DELAY_TIME; where DEFAULT_REPLY_DELAY_TIME = 7 miliseconds
+
+    - not good for distances father than 10m
+    - replyDelay = (2*(myID-100)+2)*DEFAULT_REPLY_DELAY_TIME; is better
+
+  - New implementation works very good. So far best from all tested implementations.
+
+  - Problems during experiments:
+    - Experiments was done in the dormitory
+    - Setting: all 3 tags were close to each other (placed on chair), all 2 also were close to each other placed on chair
+    - At the distances farther than 10 meters sometimes one of the tags cannot find second anchor. This may be beacuse of the signal propagation, since the hole is tight and long.
+    - The estimated distance is correct within 2-3 meters. But at farthest distances from 5-6 meters there is constant shift +20..30 cm

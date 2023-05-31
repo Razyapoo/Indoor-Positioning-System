@@ -1,12 +1,12 @@
-# How to compute the distance between two object 
+# How to compute the distance between two object
 
-## 1 method 
+## 1 method
 
-- Draw the grid on the floor (1m x 1m). Then detect on what cell a person is located. Compute location of a person inside a cell: we know the offset from the boundaries of the cell in pixels and we know the number of pixels of the boundary and we know that it is 1m in real world. Then we can compute the proportion and then compute the actual real distance.  
+- Draw the grid on the floor (1m x 1m). Then detect on what cell a person is located. Compute location of a person inside a cell: we know the offset from the boundaries of the cell in pixels and we know the number of pixels of the boundary and we know that it is 1m in real world. Then we can compute the proportion and then compute the actual real distance.
 - https://answers.opencv.org/question/177732/how-to-measure-distance-between-2-objects-in-a-video-edited/
 - https://dsp.stackexchange.com/questions/46399/how-to-measure-distance-between-two-3d-objects-using-cameras
 - https://github.com/livinlargeinvenus/YOLOv4_Social_Distance
-- Bird Eye view: 
+- Bird Eye view:
   - https://medium.com/@birla.deepak26/social-distancing-ai-using-python-deep-learning-c26b20c9aa4c
     - https://github.com/deepak112/Social-Distancing-AI
   - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8249827/
@@ -14,7 +14,8 @@
   - https://github.com/mmaaz60/social_distancing
   - https://github.com/Vatsalparsaniya/Social-Distance-Surveillance
 
-Best: 
+Best:
+
 - https://github.com/JohnBetaCode/Social-Distancing-Analyser
 - https://github.com/secondlevel/Social-distance-detector
   - https://github.com/secondlevel/Social-distance-detector/blob/main/presentation.pdf
@@ -22,8 +23,8 @@ Best:
 - https://github.com/YassirMatrane/EnforcingSocialDistancingThroughComputerVision
 - https://github.com/mmaaz60/social_distancing
 
-
 Image transformations and camera calibration
+
 - https://medium.com/analytics-vidhya/camera-calibration-theory-and-implementation-b253dad449fb
 - https://www.mathworks.com/help/vision/ug/camera-calibration.html
 - https://docs.opencv.org/4.5.3/dc/dbb/tutorial_py_calibration.html
@@ -33,11 +34,13 @@ Image transformations and camera calibration
 - Camera parameters: https://www.cse.unr.edu/~bebis/CS791E/Notes/CameraParameters.pdf
 - https://www.appsloveworld.com/opencv/100/5/to-calculate-world-coordinates-from-screen-coordinates-with-opencv
 
-Why we cannot reconstruct 3D from 2D using single camera: 
+Why we cannot reconstruct 3D from 2D using single camera:
+
 - we don't know the depth
 - https://www.quora.com/How-should-I-do-back-projections-from-2D-images-to-3D
 - https://stackoverflow.com/questions/39394785/opencv-get-3d-coordinates-from-2d
 - https://www.fdxlabs.com/calculate-x-y-z-real-world-coordinates-from-a-single-camera-using-opencv/
+
 # How to track person
 
 - Merge frames of both cameras into one frame: real-time video stitching
@@ -79,46 +82,76 @@ Why we cannot reconstruct 3D from 2D using single camera:
 - [OpenCV-with-tkinter-and-threading](https://github.com/informramiz/OpenCV-with-tkinter-and-threading/blob/master/GUI.py)
 - [Increasing webcam FPS with Python and OpenCV](https://pyimagesearch.com/2015/12/21/increasing-webcam-fps-with-python-and-opencv/)
 
-
 # Compilation of c++ with opencv
 
 - need to install opencv
 - need to configure program in CMakeLists
 - install xorg to be able to open windows when running program from shell
-- 
-
+-
 
 # March 03, 2023
 
-- C++ version of stereo calibration is implemented. However with IP cameras it works worse than with webcameras. Frames are not synchronized. 
+- C++ version of stereo calibration is implemented. However with IP cameras it works worse than with webcameras. Frames are not synchronized.
 - In order to solve it, threaded version need to be implemented. Each camera will use a separate thread.
 
 # March 18, 2023
 
 - Manage to get more or less accurate results (depth estimation) with webcam and c++ setup
 - Next step is to use YOLOv4 to detect people on the frames:
+
   - Need to install YOLOv4 from https://github.com/AlexeyAB/darknet and download weights https://github.com/AlexeyAB/darknet#pre-trained-models.
   - Intallation of the Darknet (YOLOv4) is perfomed locally, so there is need to add a path to darknet.h file in the CMakeLists.txt of the target project
   - For better performance of YOLOv4 there is need to install CUDA support for GPU. The name of my laptop is ASUS Zenbook UX530UQ and it has the Nvidia GeForce 940MX GPU with CUDA support. Current OS is Ubuntu 22.04 and version of nvidia driver is 525
+
     - First, make sure nvidia driver is installed by running the command: nvidia-detector. If not istalled, run "sudo apt install nvidia-driver-<version>"
     - Steps to install CUDA:
+
       - Run the command: sudo apt install nvidia-cuda-toolkit
       - To check whether CUDA has been installed, run "nvcc --version".
       - Run sudo apt update | sudo apt upgrade
-      - Add path to cuda lib to ~/.bashrc file as follows: 
-          - export PATH=/usr/lib/cuda/bin:$PATH
-          - export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH
+      - Add path to cuda lib to ~/.bashrc file as follows:
+        - export PATH=/usr/lib/cuda/bin:$PATH
+        - export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH
 
-    - Steps to install Darknet for YOLOv4 suppport: 
+    - Steps to install Darknet for YOLOv4 suppport:
+
       - git clone https://github.com/AlexeyAB/darknet.git
       - cd darknet
       - "make" (this will install support for CUDA)
         - If there is no support for CUDA use: "make CPU"
-    
-    - Steps to install CUDNN (doc: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html): 
+
+    - Steps to install CUDNN (doc: https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html):
       - go to https://developer.nvidia.com/rdp/cudnn-archive and download .deb package
       - run: sudo dpkg -i cudnn-local-repo-ubuntu2204-8.8.1.3_1.0-1_amd64.deb
       - run: sudo cp /var/cudnn-local-repo-ubuntu2204-8.8.1.3/cudnn-local-A917C751-keyring.gpg /usr/share/keyrings/
       - run: sudo apt-get install libcudnn8
       - sudo apt-get install libcudnn8-dev
       - sudo apt-get install libcudnn8-samples
+
+# Experiments
+
+## May 31, 2023
+
+- Observations:
+
+  - There was wrong order of height and width parameters that is used as tuple representing the size of the chessboard `const cv::Size StereoCalibrator::chessboardSize`
+
+    - must be:
+      `uint8_t StereoCalibrator::chessboardHeight = 6, StereoCalibrator::chessboardWidth = 9; const cv::Size StereoCalibrator::chessboardSize = cv::Size(StereoCalibrator::chessboardHeight, StereoCalibrator::chessboardWidth);`
+    - and the order of creating array of 3D points. Correct:
+
+      for (auto i = 0; i < chessboardWidth; i++)
+      for (auto j = 0; j < chessboardHeight; j++)
+      objectPoint.push*back(cv::Point3f((float)j * squareSize, (float)i \_ squareSize, 0.0f));
+
+  - Presence of a good light conditions is very important! When it is evening, results are bad
+  - The order of the cameras is important!!!
+  - mono calibration best flags: cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE + cv::CALIB_CB_FILTER_QUADS
+  - stereo calibration:
+
+    - flags: cv::CALIB_FIX_INTRINSIC + cv::CALIB_USE_INTRINSIC_GUESS + cv::CALIB_FIX_PRINCIPAL_POINT + cv::CALIB_FIX_FOCAL_LENGTH + cv::CALIB_RATIONAL_MODEL
+    - not sure, but looks like it is no matter to use just cv::CALIB_FIX_INTRINSIC or above combination
+
+  - precision depends on the distance between cameras:
+    - when cameras are too close to each other, algorithm shows large distances to the objects that are close to the cameras (enlarge distances)
+    - otherwise, when cameras are far from each other, algorithm smaller distances (shows less than actual)
