@@ -111,7 +111,7 @@ void sendMessage(byte messageType) {
   
   if (messageType == MSG_TYPE_POLL_ACK) { 
    if (debug) Serial.println("  MSG_TYPE_POLL_ACK");
-    replyDelay = (2*(myID-100)+2)*DEFAULT_REPLY_DELAY_TIME;
+    replyDelay = (2*(myID-100)+1)*DEFAULT_REPLY_DELAY_TIME;
     if (debug) {
       Serial.print("Reply Delay: ");
       Serial.println(replyDelay);

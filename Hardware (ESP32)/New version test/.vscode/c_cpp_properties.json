@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "linux-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/include",
+                "/usr/include",
+                "/usr/include/opencv4",
+                "/usr/include/opencv4/opencv2"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "/usr/local/include",
+                    "/usr/include",
+                    "/usr/include/opencv4",
+                    "/usr/include/opencv4/opencv2"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}

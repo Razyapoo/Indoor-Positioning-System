@@ -1,0 +1,3 @@
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Server Multithreaded/build/CMakeFiles/Server.dir
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Server Multithreaded/build/CMakeFiles/edit_cache.dir
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Server Multithreaded/build/CMakeFiles/rebuild_cache.dir

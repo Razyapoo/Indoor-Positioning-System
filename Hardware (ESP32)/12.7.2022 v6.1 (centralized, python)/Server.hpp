@@ -14,27 +14,27 @@
 #include <chrono>
 #include <thread>
 
-class Server {
-    public: 
-        static int serverSocketFD, clientSocketFD;
-        static struct sockaddr_in serverAddress, clientAddress;
-        static socklen_t clientLength;
-        static char buffer[1024];
-        static std::chrono::system_clock::time_point currentTime;
-        static std::time_t timestamp;
-        static size_t dataIndex;
-        static bool isBusy;
+class Server
+{
+public:
+    static int serverSocketFD, clientSocketFD;
+    static struct sockaddr_in serverAddress, clientAddress;
+    static socklen_t clientLength;
+    static char buffer[1024];
+    static std::chrono::milliseconds currentTime;
+    static std::time_t timestamp;
+    static size_t dataIndex;
+    static bool isBusy;
 
-        static std::queue<int> clientQueue;
-        static fd_set readFDS, tmpFDS;
-        static struct timeval timeout;
+    static std::queue<int> clientQueue;
+    static fd_set readFDS, tmpFDS;
+    static struct timeval timeout;
 
-        static void runServer();
-        static void printFDSet(fd_set* set);
-        static void showQueue(std::queue<int> queue);
+    static void runServer();
+    static void printFDSet(fd_set *set);
+    static void showQueue(std::queue<int> queue);
 
-        static bool debugMode;
-
+    static bool debugMode;
 };
 
 #endif

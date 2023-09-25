@@ -10,6 +10,9 @@ std::chrono::system_clock::time_point VideoManager::currentTime;
 std::time_t VideoManager::timestamp;
 cv::Mat VideoManager::timestampMat;
 uint8_t VideoManager::key;
+std::string VideoManager::fileNameLeft;
+std::string VideoManager::fileNameRight;
+std::stringstream VideoManager::ss;
 
 // void VideoManager::videoRecorder() {
 
@@ -61,8 +64,6 @@ uint8_t VideoManager::key;
 //         if (key == 'p') isPause = true;
 //         if (key == 'c') isPause = false;
 //         if (key == 's') break;
-        
-
 
 //         // std::cout << "Press \"p + Enter\" to pause recording" << std::endl;
 //         // std::cout << "Press \"c + Enter\" to continue recording" << std::endl;
@@ -72,20 +73,20 @@ uint8_t VideoManager::key;
 //         // std::getline(std::cin, input);
 //         // if (input == "p") {
 //         //     isPause = true;
-//         // } 
+//         // }
 //         // else if (input == "c") {
 //         //     isPause = false;
-//         // } 
+//         // }
 //         // else if (input == "s") {
 //         //     break;
-//         // } 
+//         // }
 //         // else {
 //         //     std::cout << "Invalid option" << std::endl;
-//         //     return; 
+//         //     return;
 //         // }
 
 //     }
-    
+
 //     std::cout << "Saving video! Please wait..." << std::endl;
 //     try {
 //         leftVideoWriter.release();
@@ -97,26 +98,29 @@ uint8_t VideoManager::key;
 //     }
 // }
 
-void VideoManager::videoLoader(const std::string& leftSource, const std::string& rightSource) {
+void VideoManager::videoLoader(const std::string &leftSource, const std::string &rightSource)
+{
     cv::VideoCapture leftvideoLoader(leftSource);
     cv::VideoCapture rightvideoLoader(rightSource);
 
-    if (!leftvideoLoader.isOpened()) 
+    if (!leftvideoLoader.isOpened())
         throw std::runtime_error("Failed to open video from left camera");
 
-    if (!rightvideoLoader.isOpened()) 
+    if (!rightvideoLoader.isOpened())
         throw std::runtime_error("Failed to open video from right camera");
 
     std::ifstream timestampFile("timestamp.txt");
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open timestamp.txt file");
 
-    while (true) {
+    while (true)
+    {
 
         leftvideoLoader >> leftFrame;
         rightvideoLoader >> rightFrame;
 
-        if(leftFrame.empty() || rightFrame.empty()) {
+        if (leftFrame.empty() || rightFrame.empty())
+        {
             std::cout << "End of video file" << std::endl;
             break;
         }
@@ -128,15 +132,33 @@ void VideoManager::videoLoader(const std::string& leftSource, const std::string&
 
         // convert the absolute time to a cv::Mat timestamp
         // timestampMat = cv::Mat::zeros(1, 1, CV_64F);
-        // *timestampMat.ptr<double>(0) = static_cast<double>(std::chrono::system_clock::to_time_t(std::chrono::system_clock::from_time_t(timestamp))); 
+        // *timestampMat.ptr<double>(0) = static_cast<double>(std::chrono::system_clock::to_time_t(std::chrono::system_clock::from_time_t(timestamp)));
+        // std::cout << "Left frame with index: " << frameIndex << " was captured at " << timestampDate << std::endl;
+        // std::cout << "Right frame with index: " << frameIndex << " was captured at " << timestampDate << std::endl;
 
-        std::cout << "Left frame with index: " << frameIndex << " was captured at " << std::ctime(&timestamp) << std::endl;
-        std::cout << "Right frame with index: " << frameIndex << " was captured at " << std::ctime(&timestamp) << std::endl;
+        // Disparity::computeDepth(leftFrame, rightFrame);
 
-        Disparity::computeDepth(leftFrame, rightFrame);
+        ss.str("");
+        ss << "images/Left/" << frameIndex << " - " << timestamp << ".jpg";
+        fileNameLeft = ss.str();
+
+        ss.str("");
+        ss << "images/Right/" << frameIndex << " - " << timestamp << ".jpg";
+        fileNameRight = ss.str();
+
+        try
+        {
+            cv::imwrite(fileNameLeft, leftFrame);
+            cv::imwrite(fileNameRight, rightFrame);
+        }
+        catch (const std::exception &e)
+        {
+            std::cout << "Exception occurred: " << e.what() << std::endl;
+        }
 
         key = cv::waitKey(1); // correspond to 25 fps
-        if(key == 'q') break;
+        if (key == 'q')
+            break;
     }
 
     leftvideoLoader.release();

@@ -155,3 +155,25 @@ Why we cannot reconstruct 3D from 2D using single camera:
   - precision depends on the distance between cameras:
     - when cameras are too close to each other, algorithm shows large distances to the objects that are close to the cameras (enlarge distances)
     - otherwise, when cameras are far from each other, algorithm smaller distances (shows less than actual)
+
+## June 3, 2023 Experiments in school
+
+- Finally, stereo camera works good.
+- Observations:
+
+  1. Light conditions affect both calibration phase and runtime
+  2. Ideally cameras must be aligned perfectly, heads of the camera must be alighned (since they are float)
+
+  - rotation of the camera for micromilimeters may affect result
+
+  3. Ideal distance between cameras (baseline) is between 20~22 cm (might not be true)
+  4. Even with perfect calibration, during runtime lights from widnow may affect distance estimation
+
+  5. AND MAIN OBSERVATION
+
+  - it is sufficient to calirate cameras once and then shift them along each other to find best position. Then they must be recalibrated!!!
+
+  6. During tests in dormitory and in school I realized that the maximal estimated distance is around 9~9,5 meters. Is it true?
+
+  - in the dormitory I had bad light conditions
+  - in school there is a big whole behind at distance 10 m. May be that is the reason?

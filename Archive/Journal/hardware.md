@@ -225,3 +225,41 @@ Centralized v6
     - Setting: all 3 tags were close to each other (placed on chair), all 2 also were close to each other placed on chair
     - At the distances farther than 10 meters sometimes one of the tags cannot find second anchor. This may be beacuse of the signal propagation, since the hole is tight and long.
     - The estimated distance is correct within 2-3 meters. But at farthest distances from 5-6 meters there is constant shift +20..30 cm
+
+# June 3, 2023 Experiment
+
+- Anchor baseline: 1 m
+
+# September 23, 2023
+
+- During experiments I have occasionally changed options of the ESP32 board when uploading code.
+- This fortunatelly shows, that when CPU frequency is set to 240 MHz chips generate results a lot faster.
+- All chips must have same options set
+
+Example: (so far best)
+
+Board: "ESP32 Dev Module"
+Upload Speed: 115200
+CPU Frequency: 240 MHz (WiFi/BT)
+Flash Frequency: 80 Mhz
+Flash mode: QIO
+Flash size: 4MB (32 Mb)
+Partition Scheme: "Default 4MB with spiffs(1.2 MB APP/1.5MB SPIFFS)
+Core Debug Level: "None"
+PSRAM: "Disabled"
+Port: "/dev/ttyUSB0"
+
+- I have also changed a bit logic of the server such that now it handles cases when tag losts the connection, server detects it using timeout in select and then removes tag from the queue. Tag can be connected to the server again.
+
+# September 24, 2023
+
+- Experiments at university
+
+- What is need to be done next:
+  - Thing about the organization of files, naming conventions, file, directory hierarchies.
+  - all experiments assumed that tags where calibrated at 5m, and tags have presision +-5 (spise +) cm at 5 m
+  - Experiment "timestamp_ESP32_presouvani_tag_2.txt":
+    - shows that when getting closer to tag, distance is lesser than the actual (max deviation is 20cm, but usually 15 cm). Otherwise, when getting father from anchors, distance gets greater than the actual is (again max deviation is 20 cm, but most common is 15 cm).
+    - Therefore I can conclude that calibration factor is precised only for the distance at which it was calibrated
+    - also, at the end of the experiment I placed that tag before the wall, and I think the wall does not have reflexion (искажение)
+      - this comes from the 8 m part of the experiment. I placed Tag 2, at the center (second) line, and swithced off other tags (before it was at the first line). I though that tags placed at parallel lines will affect Tag 2 (which was moved), but it seems that they are not. And distance between tags more than 1 m is sufficient and they do not hide(cover) each other.

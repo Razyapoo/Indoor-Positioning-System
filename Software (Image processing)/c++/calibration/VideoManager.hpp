@@ -1,7 +1,6 @@
 #ifndef VIDOMANAGER_H
 #define VIDOMANAGER_H
 
-
 #include <iostream>
 #include <fstream>
 #include <chrono>
@@ -11,23 +10,22 @@
 
 #include "StereoCamera.hpp"
 
-class VideoManager {
-    public: 
+class VideoManager
+{
+public:
+    static size_t frameIndex;
+    const static int fps;
+    const static cv::Size frameSize;
+    static cv::Mat leftFrame, rightFrame;
+    static std::chrono::milliseconds currentTime;
+    static std::time_t timestamp;
+    static cv::Mat timestampMat;
+    static uint8_t key;
+    static bool isPause;
 
-        static size_t frameIndex;
-        const static int fps; 
-        const static cv::Size frameSize;
-        static cv::Mat leftFrame, rightFrame;
-        static std::chrono::system_clock::time_point currentTime;
-        static std::time_t timestamp;
-        static cv::Mat timestampMat;
-        static uint8_t key;
-        static bool isPause;
-
-        // static std::string getTimestamp();
-        static void videoRecorder();
-        static void videoLoader();
+    // static std::string getTimestamp();
+    static void videoRecorder();
+    static void videoLoader();
 };
 
 #endif
-

@@ -7,7 +7,7 @@ char Server::buffer[1024];
 std::queue<int> Server::clientQueue;
 fd_set Server::readFDS, Server::tmpFDS;
 size_t Server::dataIndex = 1;
-std::chrono::system_clock::time_point Server::currentTime;
+std::chrono::milliseconds Server::currentTime;
 std::time_t Server::timestamp;
 bool Server::isBusy = false;
 
@@ -15,10 +15,13 @@ bool Server::isBusy = false;
 bool Server::debugMode = true;
 // using namespace std::literals::chrono_literals;
 
-void Server::printFDSet(fd_set* set) {
+void Server::printFDSet(fd_set *set)
+{
     std::cout << "fd_set {" << std::endl;
-    for (size_t i =0; i < FD_SETSIZE; i++) {
-        if (FD_ISSET(i, set)) {
+    for (size_t i = 0; i < FD_SETSIZE; i++)
+    {
+        if (FD_ISSET(i, set))
+        {
             std::cout << i << std::endl;
         }
     }
@@ -26,13 +29,14 @@ void Server::printFDSet(fd_set* set) {
     std::cout << "}" << std::endl;
 }
 
-void Server::runServer() {
-    serverSocketFD = socket(AF_INET, SOCK_STREAM, 0); 
+void Server::runServer()
+{
+    serverSocketFD = socket(AF_INET, SOCK_STREAM, 0);
 
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);
     serverAddress.sin_port = htons(30001);
-    bind(serverSocketFD, (struct sockaddr*)&serverAddress, sizeof(serverAddress));
+    bind(serverSocketFD, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
 
     listen(serverSocketFD, 5);
 
@@ -43,8 +47,10 @@ void Server::runServer() {
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open timestamp_ESP32.txt file");
 
-    while (true) {
-        if (debugMode) {
+    while (true)
+    {
+        if (debugMode)
+        {
             std::cout << "before select" << std::endl;
             printFDSet(&readFDS);
         }
@@ -52,35 +58,44 @@ void Server::runServer() {
         tmpFDS = readFDS;
         select(FD_SETSIZE, &tmpFDS, nullptr, nullptr, nullptr);
 
-        if (debugMode) {
+        if (debugMode)
+        {
             std::cout << "after select" << std::endl;
             printFDSet(&tmpFDS);
         }
 
         for (size_t socketID = 0; socketID < FD_SETSIZE; ++socketID)
         {
-            if (FD_ISSET(socketID, &tmpFDS)) {
-                if (serverSocketFD == socketID) {
+            if (FD_ISSET(socketID, &tmpFDS))
+            {
+                if (serverSocketFD == socketID)
+                {
                     clientLength = sizeof(clientAddress);
-                    clientSocketFD = accept(serverSocketFD, (struct sockaddr*)&clientAddress, &clientLength);
+                    clientSocketFD = accept(serverSocketFD, (struct sockaddr *)&clientAddress, &clientLength);
                     clientQueue.push(clientSocketFD);
                     std::cout << "New client connected, address: " << inet_ntoa(clientAddress.sin_addr) << ":" << ntohs(clientAddress.sin_port) << ", socketID: " << clientSocketFD << std::endl;
                     FD_SET(clientSocketFD, &readFDS);
-                } else {
+                }
+                else
+                {
                     int nbytes = read(socketID, buffer, sizeof(buffer));
-                    if (nbytes < 1) {
+                    if (nbytes < 1)
+                    {
                         close(socketID);
                         FD_CLR(socketID, &readFDS);
                         std::cout << "Client with socket ID: " << socketID << " has been disconnected" << std::endl;
-                    } else {
+                    }
+                    else
+                    {
                         std::string request(buffer, nbytes);
                         std::cout << "Received distance " << request << " from client: " << socketID << std::endl;
 
-                        currentTime = std::chrono::system_clock::now();
-                        timestamp = std::chrono::system_clock::to_time_t(currentTime);
+                        currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+                        timestamp = currentTime.count();
                         timestampFile << dataIndex << " " << timestamp << " " << request << std::endl;
 
-                        if (debugMode) std::cout << "Data " << dataIndex << " is recorded" << std::endl;
+                        if (debugMode)
+                            std::cout << "Data " << dataIndex << " is recorded" << std::endl;
                         dataIndex++;
 
                         std::string responseToTag = "7\n";
@@ -94,7 +109,8 @@ void Server::runServer() {
             }
         }
 
-        if (!clientQueue.empty() && !isBusy) {
+        if (!clientQueue.empty() && !isBusy)
+        {
             clientSocketFD = clientQueue.front();
             clientQueue.pop();
 
@@ -102,17 +118,15 @@ void Server::runServer() {
             write(clientSocketFD, request.c_str(), request.length());
             isBusy = true;
 
-            if (debugMode) std::cout << "Sent request for distance to the client with socketID: " << clientSocketFD << std::endl;
-
+            if (debugMode)
+                std::cout << "Sent request for distance to the client with socketID: " << clientSocketFD << std::endl;
         }
-
     }
     timestampFile.close();
-
 }
 
-
-int main() {
+int main()
+{
 
     Server::runServer();
 
