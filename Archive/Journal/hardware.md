@@ -255,6 +255,9 @@ Port: "/dev/ttyUSB0"
 
 - Experiments at university
 
+- Distances between listecky (od zdi opropti skrini):
+  - 1,64
+  - 1,26
 - What is need to be done next:
   - Thing about the organization of files, naming conventions, file, directory hierarchies.
   - all experiments assumed that tags where calibrated at 5m, and tags have presision +-5 (spise +) cm at 5 m
