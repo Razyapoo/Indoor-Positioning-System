@@ -11,13 +11,15 @@ std::time_t VideoManager::timestamp;
 cv::Mat VideoManager::timestampMat;
 uint8_t VideoManager::key;
 
-void VideoManager::videoRecorder()
+void VideoManager::videoRecorder(bool doubleCamera)
 {
 
     // cv::Size frameSize(StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_WIDTH), StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_HEIGHT));
 
     cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
-    cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+    cv::VideoWriter rightVideoWriter;
+    if (doubleCamera)
+        rightVideoWriter = cv::VideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
     if (!leftVideoWriter.isOpened())
     {
@@ -25,7 +27,7 @@ void VideoManager::videoRecorder()
         return;
     }
 
-    if (!rightVideoWriter.isOpened())
+    if (doubleCamera && !rightVideoWriter.isOpened())
     {
         std::cerr << "Failed to open right video writer" << std::endl;
         return;
@@ -46,10 +48,12 @@ void VideoManager::videoRecorder()
         if (!isPause)
         {
             leftFrame = StereoCamera::getLeftFrame();
-            rightFrame = StereoCamera::getRightFrame();
+            if (doubleCamera)
+                rightFrame = StereoCamera::getRightFrame();
 
             leftVideoWriter.write(leftFrame);
-            rightVideoWriter.write(rightFrame);
+            if (doubleCamera)
+                rightVideoWriter.write(rightFrame);
 
             // currentTime = std::chrono::system_clock::now();
             currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
@@ -62,7 +66,8 @@ void VideoManager::videoRecorder()
         }
 
         cv::imshow("Left frame", leftFrame);
-        cv::imshow("Right frame", rightFrame);
+        if (doubleCamera)
+            cv::imshow("Right frame", rightFrame);
 
         key = cv::waitKey(1);
         if (key == 'p')
@@ -97,7 +102,8 @@ void VideoManager::videoRecorder()
     try
     {
         leftVideoWriter.release();
-        rightVideoWriter.release();
+        if (doubleCamera)
+            rightVideoWriter.release();
         timestampFile.close();
         std::cout << "Video saved successfully!" << std::endl;
     }

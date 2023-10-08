@@ -24,7 +24,7 @@ public:
     static bool isPause;
 
     // static std::string getTimestamp();
-    static void videoRecorder();
+    static void videoRecorder(bool doubleCamera = true);
     static void videoLoader();
 };
 

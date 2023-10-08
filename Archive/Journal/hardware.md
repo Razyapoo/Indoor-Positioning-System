@@ -251,18 +251,102 @@ Port: "/dev/ttyUSB0"
 
 - I have also changed a bit logic of the server such that now it handles cases when tag losts the connection, server detects it using timeout in select and then removes tag from the queue. Tag can be connected to the server again.
 
-# September 24, 2023
+# September 24, 2023 - Experiments at university
 
-- Experiments at university
+- Distances between papers (od zdi opropti skrini):
+  - 1.64 m
+  - 1.26 m
+  - all experiments assumed that tags where calibrated at 5m, and tags have presision +-5 (more +) cm at 5 m
 
-- Distances between listecky (od zdi opropti skrini):
-  - 1,64
-  - 1,26
-- What is need to be done next:
-  - Thing about the organization of files, naming conventions, file, directory hierarchies.
-  - all experiments assumed that tags where calibrated at 5m, and tags have presision +-5 (spise +) cm at 5 m
-  - Experiment "timestamp_ESP32_presouvani_tag_2.txt":
-    - shows that when getting closer to tag, distance is lesser than the actual (max deviation is 20cm, but usually 15 cm). Otherwise, when getting father from anchors, distance gets greater than the actual is (again max deviation is 20 cm, but most common is 15 cm).
-    - Therefore I can conclude that calibration factor is precised only for the distance at which it was calibrated
-    - also, at the end of the experiment I placed that tag before the wall, and I think the wall does not have reflexion (искажение)
-      - this comes from the 8 m part of the experiment. I placed Tag 2, at the center (second) line, and swithced off other tags (before it was at the first line). I though that tags placed at parallel lines will affect Tag 2 (which was moved), but it seems that they are not. And distance between tags more than 1 m is sufficient and they do not hide(cover) each other.
+1. Experiment "timestamp_ESP32_test_1_po_kalibraci.txt":
+
+   - At this experiment all anchors where placed at the same line parallel to and 5m far from the anchor baseline.
+   - During the experiment all anchors where static (were not moved).
+   - anchor 102 was placed at the first walking line (same line as Tag 2), Anchor 101 was placed at the 2nd walking line
+   - Using distances between anchors and ground truth papers on the floor we can manually perform calculations and check whether all distances received from tags are correct
+   - TODO: try to compute the actual distances (based on geometry and ground truth distances)
+
+2. Exepriment "timestamp_ESP32-Petr prekryl anchor 2":
+
+   - Peter covered himself Tag 2
+   - I can conclude that when tag is very close to a person, maybe within 5cm, or when it is touching a person, connection between tag and anchors is getting lost.
+   - OBSERVATION: But when a person is not touching a tag and holds a tag at more than 5cm, but still covering a tag, signal is reaching the anchors, maybe because of signal propagation (reflection)? The only thing is that a distance is getting higher, around +30 cm, may it be that signal goes through the person, but because of the liquids inside a person it takes more time to reach beacons, or it cannot go though the person at all, and signal only reflects from the walls?
+
+3. Experiment "timestamp_ESP32_presouvani_tag_2.txt":
+
+   - During this experiments we have conclude that when tag is getting closer to anchor baseline, distance is lesser than the actual (max deviation is 20cm, but usually 15 cm), remember that tags were calibrated at 5m. Otherwise, when getting father from anchors, distance gets greater than the actual is (again max deviation is 20 cm, but most common is 15 cm).
+   - Therefore I can conclude that calibration factor is precised only for the distance at which it was calibrated!!
+   - also, at the end of the experiment I placed that tag before the wall, and it looks like the wall does not have reflexion (искажение)
+     - this comes from the 8 m part of the experiment. I placed Tag 2, at the center (second) line, and swithced off other tags (before Tag 2 was at the first line and other tags were switcehd on). I though that tags placed at parallel lines (not necessary at the same distance from the baseline) will affect Tag 2 (which was moved), but it seems that they are not. And distance between tags more than 1 m is sufficient and they do not hide(cover) each other; for example when Tag 1 moved along the 2nd line is placed closer to the anchor baseline than Tag 2 moved along the 1st line, then it may block the Tag 2, such that anchor do not see Tag 2.
+
+4. Experiment "timestamp_ESP32_experiment_s_otocenim_Petra_taky_se_nahralo_audio":
+
+- During this experiment Peter was holding a tag in hands and was spinning in place
+  - we have also recorded audio file with each step
+- This experiments consists of several miniexperiments:
+
+  - 1. Peter were facing himself the anchor bacesline and holding the Tag 2 such that antenna were facing anchors.
+  - 2. Peter was still facing the anchor baseline, but this time he has rotated the tag, such that tag were directed in another, opposit direction
+  - 3. Peter switched the direction, so that he was looking to the anchor baseline by back (looking in opposite direction), and holding the tag, so that it was facing the anchor baseline.
+  - 4. Peter was still in the direction opposite to the anchor baseline, but this time, tag was also in the direction opposite to the anchor baseline.
+
+  OBSERVATION: When tag and Peter were facing the anchor baseline, communication was smooth whithout drops in the connection. When tag was facing the anchor baseline but Peter was in the opposite direction, signal was good only when tag where at the distance less than 4-5 m, in further distances signal was getting lost. When Peter and a tag where directed in the opposite direction to the anchor baseline, signal were lost, and tag was able to reach anchors. When Peter was facing the anchor baseline and tag was directed in the direction opposite to the anchor baseline, communication was stable, but distance was greater than the actual due to the signal propagation. In all cases it holds that when a tag is very close or even touching a person, signal was lost. Only when both: tag and a person were facing the anchor baseline, connection was good (considering that tag was too close to the person)
+
+- TODO: Think about the organization of files, naming conventions, file, directory hierarchies.
+
+# September 30, 2023 - Experiments at university
+
+Considering 2 anchors and 1 tag only, we have decided to perform two types of experiments:
+
+1. Place tag at one place for cca 1 minut and measure the distances; for each meter (1m, 2m, 3m etc.) create a separate file containing measured distances.
+2. Do not create separate files, but rather create one containing all the data, and use aruco markers in a way, that id of the marker will how the actual distance at which a tag is placed (id 1 corresponds to 1m, id 2 to 2m etc.).
+   - markers can be easer places along side with tag, or right before the camera - second leads to the better accuracy of marker recognition
+
+We did three experiments:
+
+1. Separate measurements
+2. Aruco markers
+3. Tag-Anchor facing each other - was not recorded due to the bug in the program
+   - Anchor 101 and Tag 2 calculations
+   - With known distances between anchors and ground truth distance between Anchor 102 and Tag 2, we can compute the distance between Anchor 101 and Tag 2 and compare it we measured distance
+   - Distance between 1 and 2 lines is 1.64 m
+   - from 1 m to 5 m anchor and tag was facing each other, and result was better/closer to ground truth. But after 5m (starting from 4m), even at 5 m it didn't matter if tag and anchor were parallel or not
+   - When tag is placed in 1 m from A101, it showed distance 1.82 m to A102 and ground truth is 1.92 m
+   - This experiment also have separate files showing difference between parallel and facing placements
+
+Questions:
+
+- Does it matter when tag and anchor facing each other (should be rotated to face each other when placed on different lines)
+  - YES, otherwise it adds some cm
+
+TODO: From measured data create sketter plot showing the correlation/deviatoin from the groud truth value.
+
+TODO: To sync aruco markers captured using camera and measurements from the anchors.
+
+# 7 October, 2023
+
+Mention in the text about large behavioral model
+
+1. During the first experiment I have noticed that when anchors are places close to the cabinet (шкаф), the distance appears to be smaller (4.96 instead of 5)
+
+2. Tag 2 vs Anchor angle experiment:
+
+- Popis: Tag 2 is communicating with anchors 101 and 102, Anchor 101 and Tag 2 are placed on the same line 1, andhor 102 is placed on the line 2 which is parallel to line 1. Tag 2 is moving along the line 1 only and at step 1 m. Therefore distance between anchor 101 and tag 2 must be precidsed.
+
+  1. Anchor and tag are facing each other, placed at the angle such that they see each other.
+
+     - naming convention of the file: distance\_{x}m_anchor_facing_tag.txt
+
+  2. Anchor and tag are not facing each other, parallel placement
+
+     - naming convention of the file: distance\_{x}m_anchor_is_parallel_to_tag.txt
+
+3. one Tag ID=2, two anchors 101 and 102, stereo camera
+
+At this experiment I did not focus on precision, but rather on camera and beacno synchronization
+Therefore at the distance 5 m (calibration distance) beacons showed 4.90~4.96 (before was 4.97~5.02) why?
+Camera calibration is also not good. At the distance 4m it was precised, but at the distance 6.46 it showed 6.2, at the distance 8.46 it showed 8m, why? bad calibration?
+
+- distance between cameras 13.3 cm
+- distance between anchors 1.67
+- distance between camera baseline and anchor baseline is 1.46~1.47m

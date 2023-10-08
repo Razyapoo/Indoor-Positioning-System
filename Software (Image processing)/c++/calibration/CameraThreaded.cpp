@@ -38,7 +38,7 @@ const cv::Mat& Camera::getFrame() {
         else throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(cameraIndex));
     }
 
-    if (cameraURL != "") cv::resize(frame, frame, cv::Size(620, 480)); 
+    if (cameraURL != "") cv::resize(frame, frame, cv::Size(640, 360)); 
     
     return frame;
 }

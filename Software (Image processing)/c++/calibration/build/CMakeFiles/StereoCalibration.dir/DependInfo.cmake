@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/Disparity.cpp" "CMakeFiles/StereoCalibration.dir/Disparity.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/Disparity.cpp.o.d"
+  "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/HumanDetector.cpp" "CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.o.d"
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/StereoCalibrator.cpp" "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o.d"
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/StereoCamera.cpp" "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o.d"
   "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/VideoManager.cpp" "CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o" "gcc" "CMakeFiles/StereoCalibration.dir/VideoManager.cpp.o.d"

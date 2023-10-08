@@ -73,6 +73,7 @@ void Server::runServer()
     }
 
     std::ofstream timestampFile("timestamp_ESP32.txt");
+    timestampFile.clear();
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open timestamp_ESP32.txt file");
 
@@ -82,11 +83,11 @@ void Server::runServer()
         clientSocketList[socketID] = 0;
     }
 
-    int width = 640;
-    int height = 480;
-    cv::Mat redColor(height, width, CV_8UC3, cv::Scalar(0, 0, 255));
-    cv::Mat greenColor(height, width, CV_8UC3, cv::Scalar(0, 255, 0));
-    cv::namedWindow("Color Window", cv::WINDOW_NORMAL);
+    // int width = 640;
+    // int height = 480;
+    // cv::Mat redColor(height, width, CV_8UC3, cv::Scalar(0, 0, 255));
+    // cv::Mat greenColor(height, width, CV_8UC3, cv::Scalar(0, 255, 0));
+    // cv::namedWindow("Color Window", cv::WINDOW_NORMAL);
 
     while (true)
     {
@@ -127,14 +128,14 @@ void Server::runServer()
         // tmpFDS = readFDS;
         activity = select(maxSocketFD + 1, &readFDS, NULL, NULL, &timeout);
 
-        if (activity == 0)
-        {
-            cv::imshow("Color Window", redColor);
-        }
-        else if (activity > 0)
-        {
-            cv::imshow("Color Window", greenColor);
-        }
+        // if (activity == 0)
+        // {
+        //     cv::imshow("Color Window", redColor);
+        // }
+        // else if (activity > 0)
+        // {
+        //     cv::imshow("Color Window", greenColor);
+        // }
 
         if ((activity < 0) && (errno != EINTR))
         {
@@ -270,7 +271,7 @@ void Server::runServer()
         }
     }
     timestampFile.close();
-    cv::destroyWindow("Color Window");
+    // cv::destroyWindow("Color Window");
 }
 
 int main()

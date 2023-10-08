@@ -49,7 +49,7 @@ const cv::Mat& StereoCamera::getLeftFrame() {
         else throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(leftCameraIndex));
     }
 
-    if (leftCameraURL != "") cv::resize(readLeftFrame, readLeftFrame, cv::Size(620, 480)); 
+    if (leftCameraURL != "") cv::resize(readLeftFrame, readLeftFrame, cv::Size(640, 360)); 
     
     return readLeftFrame;
 }
@@ -60,7 +60,7 @@ const cv::Mat& StereoCamera::getRightFrame() {
         else throw std::runtime_error("Failed to read the frame from the camera " + rightCameraIndex);
     }
 
-    if (rightCameraURL != "") cv::resize(readRightFrame, readRightFrame, cv::Size(620, 480));
+    if (rightCameraURL != "") cv::resize(readRightFrame, readRightFrame, cv::Size(640, 360));
 
     return readRightFrame;
 }

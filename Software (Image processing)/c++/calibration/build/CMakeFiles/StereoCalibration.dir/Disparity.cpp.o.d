@@ -373,4 +373,7 @@ CMakeFiles/StereoCalibration.dir/Disparity.cpp.o: \
  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
- /usr/include/opencv4/opencv2/video/background_segm.hpp
+ /usr/include/opencv4/opencv2/video/background_segm.hpp \
+ /home/oskar/Documents/Master\ Thesis/Software\ (Image\ processing)/c++/calibration/HumanDetector.hpp \
+ /usr/include/opencv4/opencv2/aruco.hpp \
+ /usr/include/opencv4/opencv2/aruco/dictionary.hpp

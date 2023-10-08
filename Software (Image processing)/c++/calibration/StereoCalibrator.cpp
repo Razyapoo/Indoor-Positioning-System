@@ -1,6 +1,6 @@
 #include "StereoCalibrator.hpp"
 
-bool StereoCalibrator::videoAsSource = false;
+// bool StereoCalibrator::videoAsSource = false;
 cv::VideoCapture StereoCalibrator::leftVideoSource, StereoCalibrator::rightVideoSource;
 
 bool StereoCalibrator::intrinsicParamsSaved = false, StereoCalibrator::extrinsicParamsSaved = false, StereoCalibrator::rectificationParamsSaved = false;

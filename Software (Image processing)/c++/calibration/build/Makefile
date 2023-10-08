@@ -153,6 +153,30 @@ Disparity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/Disparity.cpp.s
 .PHONY : Disparity.cpp.s
 
+HumanDetector.o: HumanDetector.cpp.o
+.PHONY : HumanDetector.o
+
+# target to build an object file
+HumanDetector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.o
+.PHONY : HumanDetector.cpp.o
+
+HumanDetector.i: HumanDetector.cpp.i
+.PHONY : HumanDetector.i
+
+# target to preprocess a source file
+HumanDetector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.i
+.PHONY : HumanDetector.cpp.i
+
+HumanDetector.s: HumanDetector.cpp.s
+.PHONY : HumanDetector.s
+
+# target to generate assembly for a file
+HumanDetector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/StereoCalibration.dir/build.make CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.s
+.PHONY : HumanDetector.cpp.s
+
 StereoCalibrator.o: StereoCalibrator.cpp.o
 .PHONY : StereoCalibrator.o
 
@@ -261,6 +285,9 @@ help:
 	@echo "... Disparity.o"
 	@echo "... Disparity.i"
 	@echo "... Disparity.s"
+	@echo "... HumanDetector.o"
+	@echo "... HumanDetector.i"
+	@echo "... HumanDetector.s"
 	@echo "... StereoCalibrator.o"
 	@echo "... StereoCalibrator.i"
 	@echo "... StereoCalibrator.s"

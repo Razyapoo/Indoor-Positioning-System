@@ -1,0 +1,3 @@
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/aruco/build/CMakeFiles/Aruco.dir
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/aruco/build/CMakeFiles/edit_cache.dir
+/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/aruco/build/CMakeFiles/rebuild_cache.dir

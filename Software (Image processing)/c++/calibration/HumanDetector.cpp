@@ -1,62 +1,103 @@
 #include "HumanDetector.hpp"
 
+// const std::string HumanDetector::modelConfiguration = "../weights/yolov4-tiny.cfg";
+// const std::string HumanDetector::modelWeights = "../weights/yolov4-tiny.weights";
 
-void HumanDetector::initHumanDetection() {
+cv::dnn::Net HumanDetector::net;
+// cv::Mat HumanDetector::blob;
+// std::vector<std::string> HumanDetector::layerNames, HumanDetector::outputNames;
+// std::vector<int> HumanDetector::outLayers, HumanDetector::classIDs, HumanDetector::indices;
+// std::vector<cv::Mat> HumanDetector::outputs;
+// std::vector<float> HumanDetector::confidences;
+// std::vector<cv::Rect> HumanDetector::boxes;
+// cv::Point HumanDetector::classIDPoint;
+// double HumanDetector::confidence;
+// int HumanDetector::centerX, HumanDetector::centerY, HumanDetector::width, HumanDetector::height, HumanDetector::left, HumanDetector::top;
 
+void HumanDetector::initHumanDetection(const std::string &modelConfiguration, const std::string &modelWeights)
+{
     net = cv::dnn::readNetFromDarknet(modelConfiguration, modelWeights);
 
     net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
     net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
-    
 }
 
-std::pair<std::vector<cv::Rect>, std::vector<int>>& HumanDetector::detectPeople(cv::Mat& frame) {
-    HumanDetector::blob = cv::Mat();
-    HumanDetector::classIDs.clear();
-    HumanDetector::classIDs.shrink_to_fit();
-    HumanDetector::confidences.clear();
-    HumanDetector::confidences.shrink_to_fit();
-    HumanDetector::boxes.clear();
-    HumanDetector::boxes.shrink_to_fit();
+std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(const cv::Mat &frame)
+{
+    cv::Mat blob = cv::Mat();
+    std::vector<int> outLayers, indices;
+    std::vector<float> confidences;
+    std::vector<cv::Rect> boxes;
+    std::vector<std::string> layerNames, outputNames;
+    std::vector<cv::Mat> outputs;
+    cv::Point classIDPoint;
+    double confidence;
+    int centerX, centerY, width, height, left, top, classID;
 
-    cv::dnn::blobFromImage(frame, HumanDetector::blob, 1/255.0, cv::Size(608, 608), cv::Scalar(0, 0, 0), true, false);
+    // classIDs.clear();
+    // classIDs.shrink_to_fit();
+    // confidences.clear();
+    // confidences.shrink_to_fit();
+    // boxes.clear();
+    // boxes.shrink_to_fit();
 
-    HumanDetector::net.setInput(HumanDetector::blob);
+    cv::dnn::blobFromImage(frame, blob, 1 / 255.0, cv::Size(416, 416), cv::Scalar(0, 0, 0), true, false);
 
-    HumanDetector::layerNames = HumanDetector::net.getLayerNames();
-    HumanDetector::outLayers = HumanDetector::net.getUnconnectedOutLayers();
-    HumanDetector::outputNames.resize(HumanDetector::outLayers.size());
-    for (size_t i = 0; i < HumanDetector::outLayers.size(); i++) HumanDetector::outputNames[i] = HumanDetector::layerNames[HumanDetector::outLayers[i] - 1];
+    net.setInput(blob);
 
-    HumanDetector::net.forward(HumanDetector::outputs, HumanDetector::outputNames);
+    layerNames = net.getLayerNames();
+    outLayers = net.getUnconnectedOutLayers();
+    outputNames.resize(outLayers.size());
+    for (size_t i = 0; i < outLayers.size(); i++)
+        outputNames[i] = layerNames[outLayers[i] - 1];
 
-    for (const cv::Mat& output: HumanDetector::outputs) {
-        for (size_t i = 0; i < output.rows; i++) {
-            const cv::Mat& scores = output.row(i).colRange(5, output.cols);
-            cv::minMaxLoc(scores, 0, &HumanDetector::confidence, 0, &HumanDetector::classIDPoint);
-            if (HumanDetector::confidence > 0.5) {
-                HumanDetector::centerX = static_cast<int>(output.at<float>(i, 0) * frame.cols);
-                HumanDetector::centerY = static_cast<int>(output.at<float>(i, 1) * frame.rows);
-                HumanDetector::width = static_cast<int>(output.at<float>(i, 2) * frame.cols);
-                HumanDetector::height = static_cast<int>(output.at<float>(i, 3) * frame.rows);
-                HumanDetector::left = HumanDetector::centerX - HumanDetector::width / 2;
-                HumanDetector::top = HumanDetector::centerY - HumanDetector::height / 2;
+    net.forward(outputs, outputNames);
 
-                HumanDetector::classIDs.push_back(HumanDetector::classIDPoint.x);
-                HumanDetector::confidences.push_back(static_cast<float>(HumanDetector::confidence));
-                HumanDetector::boxes.emplace_back(HumanDetector::left, HumanDetector::top, HumanDetector::width, HumanDetector::height);
+    for (const cv::Mat &output : outputs)
+    {
+        for (size_t i = 0; i < output.rows; i++)
+        {
+            const cv::Mat &scores = output.row(i).colRange(5, output.cols);
+            cv::minMaxLoc(scores, 0, &confidence, 0, &classIDPoint);
+            if (confidence > 0.5)
+            {
+                centerX = static_cast<int>(output.at<float>(i, 0) * frame.cols);
+                centerY = static_cast<int>(output.at<float>(i, 1) * frame.rows);
+                width = static_cast<int>(output.at<float>(i, 2) * frame.cols);
+                height = static_cast<int>(output.at<float>(i, 3) * frame.rows);
+                left = centerX - width / 2;
+                top = centerY - height / 2;
+
+                int classID = classIDPoint.x;
+                if (classID == 0)
+                {
+                    confidences.push_back(static_cast<float>(confidence));
+                    boxes.emplace_back(left, top, width, height);
+                }
             }
         }
     }
 
-    cv::dnn::NMSBoxes(HumanDetector::boxes, HumanDetector::confidences, 0.5, 0.4, HumanDetector::indices);
-    for (size_t i = 0; i < HumanDetector::indices.size(); i++) {
-        const cv::Rect& box = HumanDetector::boxes[HumanDetector::indices[i]];
-        cv::rectangle(frame, box, cv::Scalar(0, 0, 255), 2);
-    }
-    HumanDetector::pair = std::make_pair(HumanDetector::boxes, HumanDetector::indices);
+    cv::dnn::NMSBoxes(boxes, confidences, 0.5, 0.4, indices);
+    // for (size_t i = 0; i < indices.size(); i++)
+    // {
+    //     const cv::Rect &box = boxes[indices[i]];
+    //     cv::rectangle(frame, box, cv::Scalar(0, 0, 255), 2);
+    // }
+    std::pair<std::vector<cv::Rect>, std::vector<int>> pair = std::make_pair(boxes, indices);
     // cv::imshow("People Detection", frame);
 
     return pair;
+}
 
+std::pair<std::vector<std::vector<cv::Point2f>>, std::vector<int>> HumanDetector::detectAruco(const cv::Mat &frame)
+{
+    cv::Ptr<cv::aruco::Dictionary> dict = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_7X7_250);
+
+    std::vector<std::vector<cv::Point2f>> corners;
+    std::vector<int> ids;
+    cv::aruco::detectMarkers(frame, dict, corners, ids);
+
+    std::pair<std::vector<std::vector<cv::Point2f>>, std::vector<int>> pair = std::make_pair(corners, ids);
+    return pair;
 }

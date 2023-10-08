@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/StereoCalibration.dir/Disparity.cpp.o"
   "CMakeFiles/StereoCalibration.dir/Disparity.cpp.o.d"
+  "CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.o"
+  "CMakeFiles/StereoCalibration.dir/HumanDetector.cpp.o.d"
   "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o"
   "CMakeFiles/StereoCalibration.dir/StereoCalibrator.cpp.o.d"
   "CMakeFiles/StereoCalibration.dir/StereoCamera.cpp.o"

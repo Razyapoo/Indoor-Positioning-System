@@ -13,7 +13,7 @@ find_package(OpenCV REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
 # Add your source files
-add_executable(StereoCalibration main.cpp Disparity.cpp StereoCalibrator.cpp StereoCamera.cpp VideoManager.cpp)
+add_executable(StereoCalibration main.cpp Disparity.cpp StereoCalibrator.cpp StereoCamera.cpp VideoManager.cpp HumanDetector.cpp)
 
 # Link against OpenCV
 target_link_libraries(StereoCalibration ${OpenCV_LIBS})
