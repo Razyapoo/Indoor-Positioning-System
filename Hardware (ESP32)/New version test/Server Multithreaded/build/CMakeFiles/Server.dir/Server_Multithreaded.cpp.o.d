@@ -362,5 +362,6 @@ CMakeFiles/Server.dir/Server_Multithreaded.cpp.o: \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
+ /home/oskar/Documents/Master\ Thesis/Hardware\ (ESP32)/New\ version\ test/Server\ Multithreaded/SharedData.hpp \
  /home/oskar/Documents/Master\ Thesis/Hardware\ (ESP32)/New\ version\ test/Server\ Multithreaded/VideoManager.hpp \
  /home/oskar/Documents/Master\ Thesis/Hardware\ (ESP32)/New\ version\ test/Server\ Multithreaded/StereoCamera.hpp

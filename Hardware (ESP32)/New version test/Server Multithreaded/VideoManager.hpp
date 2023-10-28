@@ -9,6 +9,7 @@
 #include <thread>
 
 #include "StereoCamera.hpp"
+#include "SharedData.hpp"
 
 class VideoManager
 {
@@ -21,7 +22,7 @@ public:
     static std::time_t timestamp;
     static cv::Mat timestampMat;
     static uint8_t key;
-    static bool isPause;
+    // static bool isPause;
 
     // static std::string getTimestamp();
     static void videoRecorder();

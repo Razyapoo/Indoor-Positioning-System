@@ -3,13 +3,15 @@
 size_t VideoManager::frameIndex = 1;
 const double VideoManager::fps = 25.0;
 const cv::Size VideoManager::frameSize = cv::Size(640, 360);
-bool VideoManager::isPause = false;
+// bool VideoManager::isPause = false;
 
 cv::Mat VideoManager::leftFrame, VideoManager::rightFrame;
 std::chrono::milliseconds VideoManager::currentTime;
 std::time_t VideoManager::timestamp;
 cv::Mat VideoManager::timestampMat;
 uint8_t VideoManager::key;
+
+extern SharedData sharedData;
 
 void VideoManager::videoRecorder()
 {
@@ -35,6 +37,8 @@ void VideoManager::videoRecorder()
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open timestamp.txt file");
 
+    sharedData.startRecording();
+
     std::cout << "Video is recording..." << std::endl;
     std::cout << "Possible interactions" << std::endl;
     std::cout << "  p: pause recording" << std::endl;
@@ -43,7 +47,7 @@ void VideoManager::videoRecorder()
 
     while (true)
     {
-        if (!isPause)
+        if (!sharedData.isRecordingPaused())
         {
             leftFrame = StereoCamera::getLeftFrame();
             rightFrame = StereoCamera::getRightFrame();
@@ -66,11 +70,16 @@ void VideoManager::videoRecorder()
 
         key = cv::waitKey(1);
         if (key == 'p')
-            isPause = true;
+            // isPause = true;
+            sharedData.pauseRecording();
         if (key == 'c')
-            isPause = false;
+            // isPause = false;
+            sharedData.startRecording();
         if (key == 's')
+        {
+            sharedData.setTerminationFlag();
             break;
+        }
 
         // std::cout << "Press \"p + Enter\" to pause recording" << std::endl;
         // std::cout << "Press \"c + Enter\" to continue recording" << std::endl;

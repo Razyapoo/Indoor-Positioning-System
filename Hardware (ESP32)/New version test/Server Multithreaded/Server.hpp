@@ -17,6 +17,7 @@
 #include <future>
 #include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
+#include "SharedData.hpp"
 
 class Server
 {
@@ -32,6 +33,7 @@ public:
     static size_t nbytes;
     static const size_t MAX_CLIENTS;
     static std::chrono::milliseconds currentTime;
+    static std::chrono::time_point<std::chrono::high_resolution_clock> requestTime, responseTime;
     static std::time_t timestamp;
     static size_t dataIndex;
     static bool isBusy;

@@ -334,4 +334,5 @@ CMakeFiles/Server.dir/VideoManager.cpp.o: \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
  /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/oskar/Documents/Master\ Thesis/Hardware\ (ESP32)/New\ version\ test/Server\ Multithreaded/StereoCamera.hpp
+ /home/oskar/Documents/Master\ Thesis/Hardware\ (ESP32)/New\ version\ test/Server\ Multithreaded/StereoCamera.hpp \
+ /home/oskar/Documents/Master\ Thesis/Hardware\ (ESP32)/New\ version\ test/Server\ Multithreaded/SharedData.hpp

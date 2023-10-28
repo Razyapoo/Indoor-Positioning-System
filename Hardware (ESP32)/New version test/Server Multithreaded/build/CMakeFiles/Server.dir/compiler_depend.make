@@ -433,7 +433,8 @@ CMakeFiles/Server.dir/Server.cpp.o: ../Server.cpp \
   /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
   /usr/include/opencv4/opencv2/video.hpp \
   /usr/include/opencv4/opencv2/video/tracking.hpp \
-  /usr/include/opencv4/opencv2/video/background_segm.hpp
+  /usr/include/opencv4/opencv2/video/background_segm.hpp \
+  ../SharedData.hpp
 
 CMakeFiles/Server.dir/Server_Multithreaded.cpp.o: ../Server_Multithreaded.cpp \
   /usr/include/stdc-predef.h \
@@ -868,6 +869,7 @@ CMakeFiles/Server.dir/Server_Multithreaded.cpp.o: ../Server_Multithreaded.cpp \
   /usr/include/opencv4/opencv2/video.hpp \
   /usr/include/opencv4/opencv2/video/tracking.hpp \
   /usr/include/opencv4/opencv2/video/background_segm.hpp \
+  ../SharedData.hpp \
   ../VideoManager.hpp \
   ../StereoCamera.hpp
 
@@ -1665,10 +1667,13 @@ CMakeFiles/Server.dir/VideoManager.cpp.o: ../VideoManager.cpp \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
   /usr/include/c++/11/bits/this_thread_sleep.h \
-  ../StereoCamera.hpp
+  ../StereoCamera.hpp \
+  ../SharedData.hpp
 
 
 ../StereoCamera.hpp:
+
+../SharedData.hpp:
 
 /usr/include/opencv4/opencv2/video/background_segm.hpp:
 

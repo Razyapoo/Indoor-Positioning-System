@@ -40,22 +40,23 @@ void detectAruco()
     std::vector<int> ids;
     int key;
     std::string videoRecordId, videoTimestamp; // video
-    std::string beaconRecordId, beaconTimestamp;
+    std::string beaconRecordId;
 
     // Video
-    std::string filePath = "../aruco_video.avi";
-    cv::VideoCapture cap(filePath);
+    // std::string filePath = "../aruco_video.avi";
+    // cv::VideoCapture cap(filePath);
+    cv::VideoCapture cap(2);
     std::ifstream inputVideoTimestamps("../aruco_video_timestamps.txt");
 
     // Beacons
     std::ifstream inputBeaconTimestamps("../temp.txt");
-    std::string beaconTimestamp, distanceFromAnchor101, distanceFromAnchor102;
+    // std::string beaconTimestamp, distanceFromAnchor101, distanceFromAnchor102;
 
     while (true)
     {
         cap >> markerImage;
-        inputVideoTimestamps >> videoRecordId >> videoTimestamp;
-        inputBeaconTimestamps >> beaconTimestamp >> distanceFromAnchor101 >> distanceFromAnchor102;
+        // inputVideoTimestamps >> videoRecordId >> videoTimestamp;
+        // inputBeaconTimestamps >> beaconTimestamp >> distanceFromAnchor101 >> distanceFromAnchor102;
 
         cv::aruco::detectMarkers(markerImage, dict, corners, ids);
         if (ids.size() > 0)

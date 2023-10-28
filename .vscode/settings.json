@@ -79,7 +79,10 @@
         "__hash_table": "cpp",
         "__tree": "cpp",
         "shared_mutex": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "any": "cpp",
+        "forward_list": "cpp",
+        "ranges": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }

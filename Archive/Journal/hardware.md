@@ -323,7 +323,7 @@ TODO: From measured data create sketter plot showing the correlation/deviatoin f
 
 TODO: To sync aruco markers captured using camera and measurements from the anchors.
 
-# 7 October, 2023
+# 7 October, 2023 (Experiments)
 
 Mention in the text about large behavioral model
 
@@ -350,3 +350,20 @@ Camera calibration is also not good. At the distance 4m it was precised, but at 
 - distance between cameras 13.3 cm
 - distance between anchors 1.67
 - distance between camera baseline and anchor baseline is 1.46~1.47m
+
+# 26 October, 2023
+
+Changed the message format to json
+Added time profiling
+
+# 28 October, 2023
+
+Small experiment at university
+
+- This experiment is mainly focused on comparison of distance measured by beacons and the actual distance (ground truth). Ground truth is defined by the papers on the floor as well as using aruco markers. Unique ID of the aruco marker shows the ground truth distance.
+
+- Server is multithreaded. One thread is responsible for communication with beacons (Server) and another is responsible for video recording.
+
+- The outcome of this experiment must be scatter plot showing the shift of measured distances using beacons against the ground truth distances.
+
+- Tag was placed at each meter from 1 to 9. Distance between anchors is 131 cm.

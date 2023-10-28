@@ -20,6 +20,7 @@ struct timeval Server::timeout;
 socklen_t Server::clientAddrLength;
 std::queue<int> Server::clientQueue;
 std::chrono::milliseconds Server::currentTime;
+std::chrono::time_point<std::chrono::high_resolution_clock> Server::requestTime, Server::responseTime;
 std::time_t Server::timestamp;
 
 // DEBUG
@@ -84,7 +85,6 @@ void Server::runServer()
 
     while (true)
     {
-        std::cout << "Clearing socket set...\n";
         // Clear socket set
         FD_ZERO(&readFDS);
 
@@ -109,7 +109,7 @@ void Server::runServer()
             }
         }
 
-        std::cout << "Select phase. Max Socket FD: " << maxSocketFD << "\n";
+        // std::cout << "Select phase. Max Socket FD: " << maxSocketFD << std::endl;
         activity = select(maxSocketFD + 1, &readFDS, NULL, NULL, &timeout);
 
         if ((activity < 0) && (errno != EINTR))
@@ -126,14 +126,14 @@ void Server::runServer()
             }
 
             clientQueue.push(clientSocketFD);
-            std::cout << "New client connected, address: " << inet_ntoa(clientAddress.sin_addr) << ":" << ntohs(clientAddress.sin_port) << ", socketFD: " << clientSocketFD << "\n";
+            std::cout << "New client connected, address: " << inet_ntoa(clientAddress.sin_addr) << ":" << ntohs(clientAddress.sin_port) << ", socketFD: " << clientSocketFD << std::endl;
 
             for (size_t socketID = 0; socketID < MAX_CLIENTS; socketID++)
             {
                 if (clientSocketList[socketID] == 0)
                 {
                     clientSocketList[socketID] = clientSocketFD;
-                    std::cout << "Adding to list of sockets at " << socketID << " index \n";
+                    std::cout << "Adding to list of sockets at " << socketID << " index" << std::endl;
 
                     break;
                 }
@@ -151,16 +151,22 @@ void Server::runServer()
                 {
                     nbytes = read(clientSocketFD, buffer, sizeof(buffer));
 
+                    currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+                    responseTime = std::chrono::high_resolution_clock::now();
+
                     std::cout << "Read request \n";
                     std::string request(buffer, nbytes);
-                    std::cout << "Received distance " << request << " from client: " << clientSocketFD << "\n";
+                    std::cout << "Received distance " << request << " from client: " << clientSocketFD << std::endl;
 
-                    currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
                     timestamp = currentTime.count();
                     timestampFile << dataIndex << " " << timestamp << " " << request << "\n";
+                    const auto duration = std::chrono::duration_cast<std::chrono::microseconds>(requestTime - responseTime);
+                    timestampFile << "Overall time of the request: " << duration.count() << std::endl;
 
                     if (debugMode)
-                        std::cout << "Data " << dataIndex << " is recorded \n";
+                    {
+                        std::cout << "Data " << dataIndex << " is recorded" << std::endl;
+                    }
                     dataIndex++;
 
                     std::string responseToTag = "7\n";
@@ -175,7 +181,7 @@ void Server::runServer()
                 if (isBusy && !FD_ISSET(serverSocketFD, &readFDS))
                 {
                     isBusy = false;
-                    std::cout << "Client " << clientSocketFD << " was disconnected! \n";
+                    std::cout << "Client " << clientSocketFD << " was disconnected!" << std::endl;
                     close(currentClientSocketFD);
                     FD_CLR(currentClientSocketFD, &readFDS);
                     clientSocketList[socketID] = 0;
@@ -183,20 +189,21 @@ void Server::runServer()
                     break;
                 }
             }
-                }
+        }
 
-        std::cout << "isBusy: " << isBusy << "\n";
+        std::cout << "isBusy: " << isBusy << std::endl;
         if (!clientQueue.empty() && !isBusy)
         {
             clientSocketFD = clientQueue.front();
             clientQueue.pop();
 
             std::string request = "1\n";
+            requestTime = std::chrono::high_resolution_clock::now();
             write(clientSocketFD, request.c_str(), request.length());
             isBusy = true;
             currentClientSocketFD = clientSocketFD;
 
-            std::cout << "Sent request for distance to the client with socketID: " << clientSocketFD << "\n";
+            std::cout << "Sent request for distance to the client with socketID: " << clientSocketFD << std::endl;
         }
     }
     timestampFile.close();
