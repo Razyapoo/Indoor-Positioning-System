@@ -367,3 +367,30 @@ Small experiment at university
 - The outcome of this experiment must be scatter plot showing the shift of measured distances using beacons against the ground truth distances.
 
 - Tag was placed at each meter from 1 to 9. Distance between anchors is 131 cm.
+
+# 4 November, 2023
+
+First of all, we should prove the theory that data collected from beacons can be used as a Golden Standard (GS) or Ground Truth (GT), i.e. they correspond to the actual GS data showing the true distance, such as aruco markers or papers on the floor.
+
+To collect such data, we need to know that the data at the given time corresponds exactly to the GT data given by papers on the floor or Aruco markers. And the fewer preprocessing the recorded data involves the better and more precise the data analysis performed during the proof step is. There are several different methods how to record data from beacons: place a tag at different positions and use Aruco markers to show what the actual distance is.
+
+As an another example we can use a predefined template/plan consisting of different stages where each stage will show where each tag should be placed and place tags accordingly (plan can be a simple draft on the paper). To show that this is the time to measure the data there are many different methods that can be used, such as the use of a pause/continue button to stop/start recording when the environment should be prepared, or when it is ready to be recorded.
+
+Another example is to use some object which when appearing in the recorded video shows that this is the time to collect the data from beacons. This object can be anything such as simple white paper or some aruco marker.
+
+There are two types of data processing:
+
+1. Online
+2. Offline
+
+## Online
+
+There can be a single program combining data collection (beacon data as well as data from video) and data processing including further data analysis. It can be a multithreaded program where one thread is running server which communicates with beacons, and another thread is running stereo vision camera with people and mutual distance detection. In this case there is no need for, or it is not mandatory to have a synchronization, because once we get data from server we can immidiately compare it with the data collected from video at the given time. Data analysis then can compare the distnaces collected via beacons and via video.
+
+## Offline
+
+Offline method can be split into several separate parts or modules: Data Acquisition, Data processing, Analysis of processed data. As our main next step is to prove that the data collected from beacons can be used as GS data, data acquisition step may consist of collecting positions of / distances between beacons as well as collecting video frames from video stream but without immidiate processing. Those collected data may be used by other researchers as the base which they can rely on and design their own methods for distance calculation.
+
+As the next step, data from beacons that are making GS can be used as a reference system for several other methods used in video processing. For example, beacon data can be used to decide whether stereo vision method works good and computes the position of a person precisely. As another example, data collected from beacons may be used as annotations for machine learning model which then can predict the position of a person given a single camera video stream only.
+
+And as the last but not least step the processed video data given by the evaluated model can be compared with GS data collected via beacons in data analysis step.
