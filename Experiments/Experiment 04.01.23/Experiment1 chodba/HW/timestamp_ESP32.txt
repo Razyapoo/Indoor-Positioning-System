@@ -1,0 +1,702 @@
+1 1680361974 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.65 }, { "Anchor ID": 102, "distance": 3.20 }]}
+2 1680361974 MyID: 1 No anchor is detected. STATE DISCOVERY.
+3 1680361975 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.67 }]}
+4 1680361975 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.71 }, { "Anchor ID": 101, "distance": 3.76 }]}
+5 1680361975 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.90 }, { "Anchor ID": 102, "distance": 3.79 }]}
+6 1680361975 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.78 }, { "Anchor ID": 101, "distance": 3.97 }]}
+7 1680361976 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.80 }]}
+8 1680361976 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.82 }]}
+9 1680361976 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.70 }]}
+10 1680361976 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.02 }, { "Anchor ID": 102, "distance": 3.71 }]}
+11 1680361977 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.09 }, { "Anchor ID": 102, "distance": 3.73 }]}
+12 1680361977 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.49 }]}
+13 1680361977 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.25 }]}
+14 1680361977 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.87 }]}
+15 1680361978 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.82 }]}
+16 1680361978 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.82 }]}
+17 1680361978 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.66 }]}
+18 1680361978 MyID: 1 No anchor is detected. STATE DISCOVERY.
+19 1680361979 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.00 }]}
+20 1680361979 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.04 }, { "Anchor ID": 102, "distance": 3.78 }]}
+21 1680361979 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.79 }]}
+22 1680361979 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.61 }, { "Anchor ID": 101, "distance": 4.10 }]}
+23 1680361980 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.65 }, { "Anchor ID": 101, "distance": 4.11 }]}
+24 1680361980 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.08 }, { "Anchor ID": 102, "distance": 3.73 }]}
+25 1680361980 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.75 }, { "Anchor ID": 101, "distance": 4.06 }]}
+26 1680361980 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.67 }, { "Anchor ID": 101, "distance": 4.10 }]}
+27 1680361981 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.63 }]}
+28 1680361981 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.70 }, { "Anchor ID": 101, "distance": 4.03 }]}
+29 1680361981 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.03 }, { "Anchor ID": 102, "distance": 3.68 }]}
+30 1680361981 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.67 }, { "Anchor ID": 101, "distance": 4.03 }]}
+31 1680361982 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.97 }, { "Anchor ID": 102, "distance": 3.69 }]}
+32 1680361982 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.69 }, { "Anchor ID": 101, "distance": 3.99 }]}
+33 1680361982 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.95 }, { "Anchor ID": 102, "distance": 3.64 }]}
+34 1680361982 MyID: 1 No anchor is detected. STATE DISCOVERY.
+35 1680361983 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.58 }, { "Anchor ID": 101, "distance": 3.79 }]}
+36 1680361983 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.73 }, { "Anchor ID": 102, "distance": 3.58 }]}
+37 1680361983 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.58 }]}
+38 1680361983 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.67 }, { "Anchor ID": 102, "distance": 3.54 }]}
+39 1680361984 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.58 }, { "Anchor ID": 101, "distance": 3.69 }]}
+40 1680361984 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.61 }, { "Anchor ID": 101, "distance": 3.74 }]}
+41 1680361984 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.61 }, { "Anchor ID": 101, "distance": 3.75 }]}
+42 1680361984 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.68 }, { "Anchor ID": 102, "distance": 3.63 }]}
+43 1680361985 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.65 }, { "Anchor ID": 102, "distance": 3.54 }]}
+44 1680361985 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.53 }, { "Anchor ID": 101, "distance": 3.53 }]}
+45 1680361985 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.50 }]}
+46 1680361985 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.49 }, { "Anchor ID": 102, "distance": 3.52 }]}
+47 1680361986 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.55 }, { "Anchor ID": 101, "distance": 3.43 }]}
+48 1680361986 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.63 }, { "Anchor ID": 101, "distance": 3.41 }]}
+49 1680361986 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.63 }, { "Anchor ID": 101, "distance": 3.39 }]}
+50 1680361986 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.43 }, { "Anchor ID": 102, "distance": 3.65 }]}
+51 1680361987 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }]}
+52 1680361987 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.65 }]}
+53 1680361987 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.61 }]}
+54 1680361987 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.58 }]}
+55 1680361988 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.58 }]}
+56 1680361988 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.51 }, { "Anchor ID": 101, "distance": 3.38 }]}
+57 1680361988 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.58 }, { "Anchor ID": 101, "distance": 3.37 }]}
+58 1680361988 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.57 }]}
+59 1680361989 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.55 }]}
+60 1680361989 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 3.58 }]}
+61 1680361989 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.63 }, { "Anchor ID": 101, "distance": 3.38 }]}
+62 1680361989 {"Tag ID": 1, "anchors": [, { "Anchor ID": 101, "distance": 3.35 }]}
+63 1680361990 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.65 }, { "Anchor ID": 101, "distance": 3.38 }]}
+64 1680361990 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.65 }, { "Anchor ID": 101, "distance": 3.38 }]}
+65 1680361990 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.65 }, { "Anchor ID": 101, "distance": 3.40 }]}
+66 1680361990 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.67 }, { "Anchor ID": 101, "distance": 3.41 }]}
+67 1680361991 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }, { "Anchor ID": 102, "distance": 3.65 }]}
+68 1680361991 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.62 }, { "Anchor ID": 101, "distance": 3.38 }]}
+69 1680361991 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.67 }]}
+70 1680361991 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.60 }, { "Anchor ID": 101, "distance": 3.35 }]}
+71 1680361992 MyID: 1 No anchor is detected. STATE DISCOVERY.
+72 1680361992 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.51 }]}
+73 1680361992 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.28 }, { "Anchor ID": 102, "distance": 3.50 }]}
+74 1680361992 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.46 }, { "Anchor ID": 101, "distance": 3.31 }]}
+75 1680361993 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.41 }]}
+76 1680361993 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.46 }, { "Anchor ID": 101, "distance": 3.35 }]}
+77 1680361993 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.32 }, { "Anchor ID": 102, "distance": 3.50 }]}
+78 1680361993 MyID: 1 No anchor is detected. STATE DISCOVERY.
+79 1680361994 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }]}
+80 1680361994 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.65 }]}
+81 1680361994 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.66 }, { "Anchor ID": 101, "distance": 3.38 }]}
+82 1680361994 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.63 }]}
+83 1680361995 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.67 }, { "Anchor ID": 101, "distance": 3.43 }]}
+84 1680361995 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.65 }, { "Anchor ID": 101, "distance": 3.45 }]}
+85 1680361995 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.52 }, { "Anchor ID": 102, "distance": 3.77 }]}
+86 1680361995 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.55 }, { "Anchor ID": 102, "distance": 3.75 }]}
+87 1680361996 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.57 }, { "Anchor ID": 102, "distance": 3.81 }]}
+88 1680361996 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.59 }]}
+89 1680361996 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.81 }]}
+90 1680361996 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.84 }, { "Anchor ID": 101, "distance": 3.55 }]}
+91 1680361997 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.88 }, { "Anchor ID": 101, "distance": 3.55 }]}
+92 1680361997 MyID: 1 No anchor is detected. STATE DISCOVERY.
+93 1680361997 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.84 }, { "Anchor ID": 101, "distance": 3.56 }]}
+94 1680361997 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.82 }, { "Anchor ID": 101, "distance": 3.59 }]}
+95 1680361998 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.59 }, { "Anchor ID": 102, "distance": 3.67 }]}
+96 1680361998 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.55 }, { "Anchor ID": 102, "distance": 3.71 }]}
+97 1680361998 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.54 }, { "Anchor ID": 102, "distance": 3.71 }]}
+98 1680361998 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.52 }, { "Anchor ID": 102, "distance": 3.67 }]}
+99 1680361999 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.68 }, { "Anchor ID": 101, "distance": 3.59 }]}
+100 1680361999 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.56 }, { "Anchor ID": 102, "distance": 3.68 }]}
+101 1680361999 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.58 }]}
+102 1680361999 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.68 }]}
+103 1680362000 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.55 }, { "Anchor ID": 102, "distance": 3.67 }]}
+104 1680362000 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.68 }, { "Anchor ID": 101, "distance": 3.58 }]}
+105 1680362000 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.61 }, { "Anchor ID": 102, "distance": 3.71 }]}
+106 1680362000 MyID: 1 No anchor is detected. STATE DISCOVERY.
+107 1680362001 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.72 }, { "Anchor ID": 101, "distance": 3.58 }]}
+108 1680362001 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.73 }, { "Anchor ID": 101, "distance": 3.51 }]}
+109 1680362001 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.60 }, { "Anchor ID": 102, "distance": 3.76 }]}
+110 1680362001 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.53 }, { "Anchor ID": 102, "distance": 3.70 }]}
+111 1680362002 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.56 }]}
+112 1680362002 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.72 }, { "Anchor ID": 101, "distance": 3.53 }]}
+113 1680362002 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.83 }, { "Anchor ID": 101, "distance": 3.59 }]}
+114 1680362002 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.56 }, { "Anchor ID": 102, "distance": 3.73 }]}
+115 1680362003 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.72 }, { "Anchor ID": 101, "distance": 3.65 }]}
+116 1680362003 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.75 }, { "Anchor ID": 101, "distance": 3.62 }]}
+117 1680362003 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.65 }, { "Anchor ID": 102, "distance": 3.76 }]}
+118 1680362003 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.63 }, { "Anchor ID": 102, "distance": 3.95 }]}
+119 1680362004 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.93 }, { "Anchor ID": 101, "distance": 3.59 }]}
+120 1680362004 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.67 }, { "Anchor ID": 102, "distance": 3.91 }]}
+121 1680362004 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.61 }, { "Anchor ID": 102, "distance": 3.87 }]}
+122 1680362004 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.93 }, { "Anchor ID": 101, "distance": 3.68 }]}
+123 1680362005 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.88 }, { "Anchor ID": 101, "distance": 3.64 }]}
+124 1680362005 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.64 }, { "Anchor ID": 102, "distance": 3.99 }]}
+125 1680362005 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.61 }, { "Anchor ID": 102, "distance": 3.92 }]}
+126 1680362005 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.63 }]}
+127 1680362006 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.65 }, { "Anchor ID": 102, "distance": 3.96 }]}
+128 1680362006 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.62 }, { "Anchor ID": 102, "distance": 3.88 }]}
+129 1680362006 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.64 }, { "Anchor ID": 102, "distance": 3.88 }]}
+130 1680362006 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.95 }, { "Anchor ID": 101, "distance": 3.61 }]}
+131 1680362007 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.58 }, { "Anchor ID": 102, "distance": 3.89 }]}
+132 1680362007 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.89 }, { "Anchor ID": 101, "distance": 3.60 }]}
+133 1680362007 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.63 }, { "Anchor ID": 102, "distance": 3.86 }]}
+134 1680362007 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.85 }, { "Anchor ID": 101, "distance": 3.64 }]}
+135 1680362008 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.77 }]}
+136 1680362008 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.63 }, { "Anchor ID": 102, "distance": 3.82 }]}
+137 1680362008 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.64 }, { "Anchor ID": 102, "distance": 3.83 }]}
+138 1680362008 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.64 }, { "Anchor ID": 102, "distance": 3.83 }]}
+139 1680362009 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.86 }, { "Anchor ID": 101, "distance": 3.66 }]}
+140 1680362009 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.66 }, { "Anchor ID": 102, "distance": 3.87 }]}
+141 1680362009 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.84 }]}
+142 1680362009 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.68 }, { "Anchor ID": 102, "distance": 3.81 }]}
+143 1680362010 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.89 }, { "Anchor ID": 101, "distance": 3.73 }]}
+144 1680362010 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.86 }, { "Anchor ID": 101, "distance": 3.86 }]}
+145 1680362010 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.91 }, { "Anchor ID": 101, "distance": 3.76 }]}
+146 1680362010 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.90 }, { "Anchor ID": 101, "distance": 3.75 }]}
+147 1680362011 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.72 }, { "Anchor ID": 102, "distance": 3.94 }]}
+148 1680362011 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.73 }, { "Anchor ID": 102, "distance": 3.88 }]}
+149 1680362011 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.58 }, { "Anchor ID": 102, "distance": 3.84 }]}
+150 1680362011 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.49 }, { "Anchor ID": 102, "distance": 3.86 }]}
+151 1680362012 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.80 }, { "Anchor ID": 101, "distance": 3.47 }]}
+152 1680362012 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.51 }, { "Anchor ID": 102, "distance": 3.88 }]}
+153 1680362012 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.95 }, { "Anchor ID": 101, "distance": 3.61 }]}
+154 1680362012 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.66 }, { "Anchor ID": 102, "distance": 4.02 }]}
+155 1680362013 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.67 }, { "Anchor ID": 102, "distance": 4.12 }]}
+156 1680362013 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.69 }, { "Anchor ID": 102, "distance": 4.15 }]}
+157 1680362013 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.14 }, { "Anchor ID": 101, "distance": 3.65 }]}
+158 1680362013 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.64 }, { "Anchor ID": 102, "distance": 4.16 }]}
+159 1680362014 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.10 }, { "Anchor ID": 101, "distance": 3.59 }]}
+160 1680362014 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.10 }, { "Anchor ID": 101, "distance": 3.55 }]}
+161 1680362014 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.10 }, { "Anchor ID": 101, "distance": 3.54 }]}
+162 1680362014 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.54 }, { "Anchor ID": 102, "distance": 4.13 }]}
+163 1680362015 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.20 }]}
+164 1680362015 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.73 }, { "Anchor ID": 102, "distance": 4.24 }]}
+165 1680362015 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.37 }, { "Anchor ID": 101, "distance": 3.68 }]}
+166 1680362015 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.42 }, { "Anchor ID": 101, "distance": 3.70 }]}
+167 1680362016 1 - No anchor is detected. STATE RANGING
+168 1680362016 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.72 }]}
+169 1680362016 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.70 }]}
+170 1680362016 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.26 }, { "Anchor ID": 101, "distance": 3.80 }]}
+171 1680362017 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.29 }, { "Anchor ID": 101, "distance": 3.83 }]}
+172 1680362017 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.88 }, { "Anchor ID": 102, "distance": 4.34 }]}
+173 1680362017 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.40 }, { "Anchor ID": 101, "distance": 3.94 }]}
+174 1680362017 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.45 }, { "Anchor ID": 101, "distance": 3.96 }]}
+175 1680362018 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.48 }, { "Anchor ID": 101, "distance": 4.00 }]}
+176 1680362018 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.03 }, { "Anchor ID": 102, "distance": 4.51 }]}
+177 1680362018 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.48 }, { "Anchor ID": 101, "distance": 4.07 }]}
+178 1680362018 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.13 }]}
+179 1680362019 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.22 }]}
+180 1680362019 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.22 }]}
+181 1680362019 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.33 }, { "Anchor ID": 102, "distance": 4.98 }]}
+182 1680362019 1 - No anchor is detected. STATE RANGING
+183 1680362020 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.45 }]}
+184 1680362020 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.57 }]}
+185 1680362020 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.05 }, { "Anchor ID": 101, "distance": 4.65 }]}
+186 1680362020 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.68 }]}
+187 1680362021 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.76 }, { "Anchor ID": 102, "distance": 5.11 }]}
+188 1680362021 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.00 }, { "Anchor ID": 101, "distance": 4.78 }]}
+189 1680362021 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.67 }, { "Anchor ID": 102, "distance": 4.99 }]}
+190 1680362021 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.91 }, { "Anchor ID": 101, "distance": 4.61 }]}
+191 1680362022 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.79 }, { "Anchor ID": 101, "distance": 4.64 }]}
+192 1680362022 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.65 }, { "Anchor ID": 102, "distance": 4.79 }]}
+193 1680362022 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.77 }, { "Anchor ID": 101, "distance": 4.64 }]}
+194 1680362022 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.84 }, { "Anchor ID": 101, "distance": 4.71 }]}
+195 1680362023 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.80 }, { "Anchor ID": 101, "distance": 4.75 }]}
+196 1680362023 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.75 }, { "Anchor ID": 101, "distance": 4.69 }]}
+197 1680362023 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.76 }, { "Anchor ID": 101, "distance": 4.77 }]}
+198 1680362023 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.76 }, { "Anchor ID": 102, "distance": 4.64 }]}
+199 1680362024 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.65 }]}
+200 1680362024 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.78 }, { "Anchor ID": 102, "distance": 4.65 }]}
+201 1680362024 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.72 }, { "Anchor ID": 101, "distance": 4.77 }]}
+202 1680362024 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.76 }, { "Anchor ID": 101, "distance": 4.73 }]}
+203 1680362025 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.82 }, { "Anchor ID": 102, "distance": 4.73 }]}
+204 1680362025 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.78 }, { "Anchor ID": 101, "distance": 4.90 }]}
+205 1680362025 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.97 }, { "Anchor ID": 102, "distance": 4.81 }]}
+206 1680362025 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.77 }, { "Anchor ID": 101, "distance": 4.90 }]}
+207 1680362026 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.83 }, { "Anchor ID": 101, "distance": 4.95 }]}
+208 1680362026 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.86 }]}
+209 1680362026 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.87 }]}
+210 1680362026 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.81 }]}
+211 1680362027 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.95 }, { "Anchor ID": 102, "distance": 4.72 }]}
+212 1680362027 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.71 }, { "Anchor ID": 101, "distance": 5.08 }]}
+213 1680362027 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.07 }, { "Anchor ID": 102, "distance": 4.66 }]}
+214 1680362027 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.05 }]}
+215 1680362028 MyID: 1 No anchor is detected. STATE DISCOVERY.
+216 1680362028 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.95 }]}
+217 1680362028 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.97 }]}
+218 1680362028 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.62 }, { "Anchor ID": 101, "distance": 5.09 }]}
+219 1680362029 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.96 }, { "Anchor ID": 102, "distance": 4.63 }]}
+220 1680362029 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.92 }, { "Anchor ID": 102, "distance": 4.75 }]}
+221 1680362029 1 - No anchor is detected. STATE RANGING
+222 1680362029 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.77 }, { "Anchor ID": 101, "distance": 5.05 }]}
+223 1680362030 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.05 }, { "Anchor ID": 102, "distance": 4.70 }]}
+224 1680362030 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.05 }, { "Anchor ID": 102, "distance": 4.81 }]}
+225 1680362030 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.00 }, { "Anchor ID": 102, "distance": 4.78 }]}
+226 1680362030 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.99 }]}
+227 1680362031 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.08 }]}
+228 1680362031 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.08 }]}
+229 1680362031 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.12 }, { "Anchor ID": 101, "distance": 5.26 }]}
+230 1680362031 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.34 }]}
+231 1680362032 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.23 }, { "Anchor ID": 101, "distance": 5.40 }]}
+232 1680362032 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.32 }, { "Anchor ID": 101, "distance": 5.35 }]}
+233 1680362032 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.29 }]}
+234 1680362032 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.35 }, { "Anchor ID": 101, "distance": 5.35 }]}
+235 1680362033 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.39 }, { "Anchor ID": 102, "distance": 5.35 }]}
+236 1680362033 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.42 }, { "Anchor ID": 101, "distance": 5.38 }]}
+237 1680362033 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.40 }, { "Anchor ID": 102, "distance": 5.48 }]}
+238 1680362033 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.44 }, { "Anchor ID": 102, "distance": 5.48 }]}
+239 1680362034 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.49 }]}
+240 1680362034 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.25 }, { "Anchor ID": 102, "distance": 5.41 }]}
+241 1680362034 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.18 }]}
+242 1680362034 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.09 }]}
+243 1680362035 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.11 }, { "Anchor ID": 101, "distance": 4.97 }]}
+244 1680362035 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.05 }, { "Anchor ID": 101, "distance": 4.92 }]}
+245 1680362035 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.96 }]}
+246 1680362035 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.69 }, { "Anchor ID": 102, "distance": 4.83 }]}
+247 1680362036 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.67 }, { "Anchor ID": 101, "distance": 4.51 }]}
+248 1680362036 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.44 }, { "Anchor ID": 102, "distance": 4.53 }]}
+249 1680362036 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.35 }, { "Anchor ID": 102, "distance": 4.45 }]}
+250 1680362036 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.20 }, { "Anchor ID": 102, "distance": 4.34 }]}
+251 1680362037 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.26 }, { "Anchor ID": 101, "distance": 4.09 }]}
+252 1680362037 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.00 }]}
+253 1680362037 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.01 }]}
+254 1680362037 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.86 }, { "Anchor ID": 101, "distance": 3.69 }]}
+255 1680362038 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.74 }, { "Anchor ID": 101, "distance": 3.60 }]}
+256 1680362038 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.59 }, { "Anchor ID": 102, "distance": 3.65 }]}
+257 1680362038 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.55 }, { "Anchor ID": 101, "distance": 3.76 }]}
+258 1680362038 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.46 }]}
+259 1680362039 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.47 }, { "Anchor ID": 101, "distance": 3.83 }]}
+260 1680362039 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.33 }, { "Anchor ID": 101, "distance": 3.56 }]}
+261 1680362039 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.46 }, { "Anchor ID": 102, "distance": 3.14 }]}
+262 1680362039 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.00 }, { "Anchor ID": 101, "distance": 3.26 }]}
+263 1680362040 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.89 }, { "Anchor ID": 101, "distance": 3.10 }]}
+264 1680362040 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.95 }, { "Anchor ID": 102, "distance": 2.83 }]}
+265 1680362040 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 2.68 }]}
+266 1680362040 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.69 }]}
+267 1680362041 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.94 }, { "Anchor ID": 102, "distance": 2.61 }]}
+268 1680362041 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.50 }, { "Anchor ID": 101, "distance": 2.87 }]}
+269 1680362041 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.39 }]}
+270 1680362041 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.31 }, { "Anchor ID": 101, "distance": 2.51 }]}
+271 1680362042 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.36 }, { "Anchor ID": 101, "distance": 2.53 }]}
+272 1680362042 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.48 }, { "Anchor ID": 102, "distance": 2.33 }]}
+273 1680362042 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.44 }, { "Anchor ID": 102, "distance": 2.32 }]}
+274 1680362042 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.39 }, { "Anchor ID": 102, "distance": 2.28 }]}
+275 1680362043 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.29 }, { "Anchor ID": 101, "distance": 2.35 }]}
+276 1680362043 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.24 }, { "Anchor ID": 101, "distance": 2.26 }]}
+277 1680362043 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.22 }, { "Anchor ID": 102, "distance": 2.23 }]}
+278 1680362043 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.21 }, { "Anchor ID": 101, "distance": 2.14 }]}
+279 1680362044 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.03 }, { "Anchor ID": 102, "distance": 2.20 }]}
+280 1680362044 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.93 }]}
+281 1680362044 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.87 }, { "Anchor ID": 102, "distance": 1.91 }]}
+282 1680362044 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.91 }, { "Anchor ID": 101, "distance": 1.84 }]}
+283 1680362045 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.84 }]}
+284 1680362045 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.80 }, { "Anchor ID": 102, "distance": 1.79 }]}
+285 1680362045 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.73 }, { "Anchor ID": 102, "distance": 1.67 }]}
+286 1680362045 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.67 }, { "Anchor ID": 101, "distance": 1.82 }]}
+287 1680362046 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.54 }, { "Anchor ID": 101, "distance": 1.68 }]}
+288 1680362046 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.55 }, { "Anchor ID": 101, "distance": 1.47 }]}
+289 1680362046 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.34 }, { "Anchor ID": 102, "distance": 1.39 }]}
+290 1680362046 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.28 }, { "Anchor ID": 101, "distance": 1.24 }]}
+291 1680362047 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.15 }, { "Anchor ID": 102, "distance": 1.24 }]}
+292 1680362047 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.23 }]}
+293 1680362047 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.14 }, { "Anchor ID": 102, "distance": 1.23 }]}
+294 1680362047 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.26 }, { "Anchor ID": 101, "distance": 0.79 }]}
+295 1680362048 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 0.92 }, { "Anchor ID": 102, "distance": 1.21 }]}
+296 1680362048 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 0.94 }, { "Anchor ID": 102, "distance": 1.10 }]}
+297 1680362048 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.03 }, { "Anchor ID": 101, "distance": 0.82 }]}
+298 1680362048 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 0.95 }, { "Anchor ID": 101, "distance": 0.91 }]}
+299 1680362049 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 0.91 }, { "Anchor ID": 102, "distance": 0.92 }]}
+300 1680362049 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 0.94 }, { "Anchor ID": 101, "distance": 1.04 }]}
+301 1680362049 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 0.97 }, { "Anchor ID": 102, "distance": 0.96 }]}
+302 1680362049 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 0.95 }]}
+303 1680362050 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.03 }, { "Anchor ID": 101, "distance": 1.14 }]}
+304 1680362050 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.10 }, { "Anchor ID": 101, "distance": 0.94 }]}
+305 1680362050 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.20 }]}
+306 1680362050 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.13 }, { "Anchor ID": 102, "distance": 1.26 }]}
+307 1680362051 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.37 }, { "Anchor ID": 101, "distance": 1.34 }]}
+308 1680362051 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.53 }]}
+309 1680362051 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.11 }, { "Anchor ID": 102, "distance": 1.59 }]}
+310 1680362051 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.53 }, { "Anchor ID": 101, "distance": 1.76 }]}
+311 1680362052 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.60 }]}
+312 1680362052 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.53 }, { "Anchor ID": 102, "distance": 1.62 }]}
+313 1680362052 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.69 }, { "Anchor ID": 101, "distance": 1.66 }]}
+314 1680362052 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.63 }, { "Anchor ID": 101, "distance": 1.75 }]}
+315 1680362053 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.62 }]}
+316 1680362053 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.56 }]}
+317 1680362053 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.87 }, { "Anchor ID": 102, "distance": 1.68 }]}
+318 1680362053 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.78 }, { "Anchor ID": 101, "distance": 1.91 }]}
+319 1680362054 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.82 }, { "Anchor ID": 102, "distance": 1.81 }]}
+320 1680362054 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.75 }, { "Anchor ID": 102, "distance": 1.78 }]}
+321 1680362054 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.72 }, { "Anchor ID": 102, "distance": 1.79 }]}
+322 1680362054 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 1.86 }, { "Anchor ID": 101, "distance": 1.67 }]}
+323 1680362055 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 1.70 }]}
+324 1680362055 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.00 }, { "Anchor ID": 101, "distance": 1.78 }]}
+325 1680362055 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.03 }, { "Anchor ID": 101, "distance": 1.85 }]}
+326 1680362055 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.18 }, { "Anchor ID": 101, "distance": 2.01 }]}
+327 1680362056 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.11 }, { "Anchor ID": 102, "distance": 2.12 }]}
+328 1680362056 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.19 }, { "Anchor ID": 101, "distance": 2.12 }]}
+329 1680362056 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.14 }, { "Anchor ID": 102, "distance": 2.19 }]}
+330 1680362056 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.12 }]}
+331 1680362057 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.20 }, { "Anchor ID": 102, "distance": 2.42 }]}
+332 1680362057 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.26 }]}
+333 1680362057 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.37 }, { "Anchor ID": 102, "distance": 2.58 }]}
+334 1680362057 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.65 }, { "Anchor ID": 101, "distance": 2.46 }]}
+335 1680362058 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.77 }, { "Anchor ID": 101, "distance": 2.60 }]}
+336 1680362058 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.64 }, { "Anchor ID": 102, "distance": 2.81 }]}
+337 1680362058 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.73 }]}
+338 1680362058 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.71 }, { "Anchor ID": 102, "distance": 2.93 }]}
+339 1680362059 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.82 }, { "Anchor ID": 102, "distance": 2.97 }]}
+340 1680362059 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.92 }, { "Anchor ID": 102, "distance": 2.99 }]}
+341 1680362059 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.04 }, { "Anchor ID": 101, "distance": 2.99 }]}
+342 1680362059 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.10 }, { "Anchor ID": 101, "distance": 2.97 }]}
+343 1680362060 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.05 }, { "Anchor ID": 102, "distance": 3.19 }]}
+344 1680362060 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.12 }, { "Anchor ID": 102, "distance": 3.26 }]}
+345 1680362060 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.19 }]}
+346 1680362060 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.13 }]}
+347 1680362061 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.21 }, { "Anchor ID": 101, "distance": 3.15 }]}
+348 1680362061 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.13 }, { "Anchor ID": 102, "distance": 3.21 }]}
+349 1680362061 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.16 }]}
+350 1680362061 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.15 }, { "Anchor ID": 101, "distance": 3.12 }]}
+351 1680362062 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }, { "Anchor ID": 101, "distance": 3.15 }]}
+352 1680362062 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.15 }, { "Anchor ID": 102, "distance": 3.25 }]}
+353 1680362062 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.16 }]}
+354 1680362062 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.17 }, { "Anchor ID": 102, "distance": 3.22 }]}
+355 1680362063 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.15 }, { "Anchor ID": 102, "distance": 3.23 }]}
+356 1680362063 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.19 }]}
+357 1680362063 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.15 }, { "Anchor ID": 102, "distance": 3.20 }]}
+358 1680362063 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.20 }, { "Anchor ID": 102, "distance": 3.20 }]}
+359 1680362064 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.20 }, { "Anchor ID": 102, "distance": 3.19 }]}
+360 1680362064 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.21 }, { "Anchor ID": 101, "distance": 3.15 }]}
+361 1680362064 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.17 }, { "Anchor ID": 102, "distance": 3.21 }]}
+362 1680362064 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.17 }, { "Anchor ID": 102, "distance": 3.23 }]}
+363 1680362065 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.16 }, { "Anchor ID": 102, "distance": 3.19 }]}
+364 1680362065 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.18 }]}
+365 1680362065 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.16 }]}
+366 1680362065 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.16 }, { "Anchor ID": 102, "distance": 3.23 }]}
+367 1680362066 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }, { "Anchor ID": 101, "distance": 3.12 }]}
+368 1680362066 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.11 }, { "Anchor ID": 102, "distance": 3.24 }]}
+369 1680362066 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.13 }]}
+370 1680362066 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.14 }, { "Anchor ID": 102, "distance": 3.24 }]}
+371 1680362067 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.15 }, { "Anchor ID": 102, "distance": 3.24 }]}
+372 1680362067 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.17 }]}
+373 1680362067 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.18 }, { "Anchor ID": 102, "distance": 3.26 }]}
+374 1680362067 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.34 }, { "Anchor ID": 101, "distance": 3.20 }]}
+375 1680362068 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.18 }, { "Anchor ID": 102, "distance": 3.34 }]}
+376 1680362068 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.38 }]}
+377 1680362068 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.43 }, { "Anchor ID": 101, "distance": 3.32 }]}
+378 1680362068 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.41 }, { "Anchor ID": 102, "distance": 3.54 }]}
+379 1680362069 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }, { "Anchor ID": 102, "distance": 3.55 }]}
+380 1680362069 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }]}
+381 1680362069 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.56 }, { "Anchor ID": 101, "distance": 3.37 }]}
+382 1680362069 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.54 }, { "Anchor ID": 101, "distance": 3.37 }]}
+383 1680362070 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.53 }, { "Anchor ID": 101, "distance": 3.34 }]}
+384 1680362070 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.54 }, { "Anchor ID": 101, "distance": 3.35 }]}
+385 1680362070 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.53 }, { "Anchor ID": 101, "distance": 3.38 }]}
+386 1680362070 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.41 }, { "Anchor ID": 102, "distance": 3.57 }]}
+387 1680362071 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }]}
+388 1680362071 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.53 }]}
+389 1680362071 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.50 }, { "Anchor ID": 101, "distance": 3.36 }]}
+390 1680362071 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.50 }]}
+391 1680362072 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.54 }, { "Anchor ID": 101, "distance": 3.38 }]}
+392 1680362072 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.50 }, { "Anchor ID": 101, "distance": 3.40 }]}
+393 1680362072 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.53 }]}
+394 1680362072 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.52 }]}
+395 1680362073 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 3.50 }]}
+396 1680362073 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.48 }, { "Anchor ID": 101, "distance": 3.41 }]}
+397 1680362073 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.46 }, { "Anchor ID": 101, "distance": 3.44 }]}
+398 1680362073 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.56 }, { "Anchor ID": 102, "distance": 3.46 }]}
+399 1680362074 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.52 }, { "Anchor ID": 101, "distance": 3.71 }]}
+400 1680362074 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.56 }, { "Anchor ID": 101, "distance": 3.42 }]}
+401 1680362074 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.59 }, { "Anchor ID": 102, "distance": 3.96 }]}
+402 1680362074 1 - No anchor is detected. STATE RANGING
+403 1680362075 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.99 }]}
+404 1680362075 {"Tag ID": 1, "anchors": [, { "Anchor ID": 101, "distance": 3.62 }]}
+405 1680362075 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.73 }]}
+406 1680362076 {"Tag ID": 1, "anchors": [, { "Anchor ID": 101, "distance": 3.64 }]}
+407 1680362076 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.03 }]}
+408 1680362076 MyID: 1 No anchor is detected. STATE DISCOVERY.
+409 1680362077 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.41 }]}
+410 1680362077 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.97 }]}
+411 1680362077 MyID: 1 No anchor is detected. STATE DISCOVERY.
+412 1680362077 MyID: 1 No anchor is detected. STATE DISCOVERY.
+413 1680362078 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.27 }]}
+414 1680362078 1 - No anchor is detected. STATE RANGING
+415 1680362078 MyID: 1 No anchor is detected. STATE DISCOVERY.
+416 1680362078 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.08 }]}
+417 1680362079 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.16 }]}
+418 1680362079 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.24 }, { "Anchor ID": 101, "distance": 4.12 }]}
+419 1680362079 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.13 }]}
+420 1680362079 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.14 }, { "Anchor ID": 101, "distance": 4.15 }]}
+421 1680362080 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.11 }, { "Anchor ID": 102, "distance": 4.09 }]}
+422 1680362080 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.07 }, { "Anchor ID": 102, "distance": 4.12 }]}
+423 1680362080 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.26 }, { "Anchor ID": 101, "distance": 4.12 }]}
+424 1680362080 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.24 }, { "Anchor ID": 101, "distance": 4.15 }]}
+425 1680362081 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.20 }, { "Anchor ID": 101, "distance": 4.16 }]}
+426 1680362081 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.26 }, { "Anchor ID": 102, "distance": 4.29 }]}
+427 1680362081 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.30 }]}
+428 1680362081 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.42 }, { "Anchor ID": 101, "distance": 4.41 }]}
+429 1680362082 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.47 }, { "Anchor ID": 102, "distance": 4.50 }]}
+430 1680362082 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.50 }, { "Anchor ID": 101, "distance": 4.48 }]}
+431 1680362082 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.49 }, { "Anchor ID": 101, "distance": 4.56 }]}
+432 1680362082 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.47 }, { "Anchor ID": 102, "distance": 4.42 }]}
+433 1680362083 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.46 }, { "Anchor ID": 102, "distance": 4.44 }]}
+434 1680362083 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.40 }, { "Anchor ID": 101, "distance": 4.41 }]}
+435 1680362083 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.45 }, { "Anchor ID": 101, "distance": 4.41 }]}
+436 1680362083 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.44 }]}
+437 1680362084 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.44 }, { "Anchor ID": 101, "distance": 4.40 }]}
+438 1680362084 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.46 }, { "Anchor ID": 101, "distance": 4.39 }]}
+439 1680362084 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.52 }, { "Anchor ID": 101, "distance": 4.46 }]}
+440 1680362084 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.50 }, { "Anchor ID": 101, "distance": 4.46 }]}
+441 1680362085 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.51 }, { "Anchor ID": 102, "distance": 4.58 }]}
+442 1680362085 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.56 }]}
+443 1680362085 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.75 }, { "Anchor ID": 101, "distance": 4.67 }]}
+444 1680362085 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.82 }, { "Anchor ID": 101, "distance": 4.73 }]}
+445 1680362086 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.85 }, { "Anchor ID": 101, "distance": 4.75 }]}
+446 1680362086 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.83 }, { "Anchor ID": 101, "distance": 4.80 }]}
+447 1680362086 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.79 }, { "Anchor ID": 102, "distance": 4.87 }]}
+448 1680362086 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.80 }, { "Anchor ID": 102, "distance": 4.87 }]}
+449 1680362087 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.89 }, { "Anchor ID": 101, "distance": 4.84 }]}
+450 1680362087 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.92 }, { "Anchor ID": 101, "distance": 4.86 }]}
+451 1680362087 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.95 }, { "Anchor ID": 101, "distance": 5.00 }]}
+452 1680362087 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.05 }]}
+453 1680362088 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.16 }, { "Anchor ID": 102, "distance": 5.25 }]}
+454 1680362088 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.18 }, { "Anchor ID": 102, "distance": 5.29 }]}
+455 1680362088 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.36 }, { "Anchor ID": 101, "distance": 5.23 }]}
+456 1680362088 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.21 }, { "Anchor ID": 102, "distance": 5.36 }]}
+457 1680362089 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.40 }]}
+458 1680362089 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.48 }, { "Anchor ID": 101, "distance": 5.28 }]}
+459 1680362089 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.57 }, { "Anchor ID": 101, "distance": 5.40 }]}
+460 1680362089 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.84 }, { "Anchor ID": 101, "distance": 5.57 }]}
+461 1680362090 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.90 }, { "Anchor ID": 101, "distance": 5.67 }]}
+462 1680362090 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.94 }, { "Anchor ID": 101, "distance": 5.69 }]}
+463 1680362090 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.70 }, { "Anchor ID": 102, "distance": 5.96 }]}
+464 1680362090 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.94 }, { "Anchor ID": 101, "distance": 5.77 }]}
+465 1680362091 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.86 }, { "Anchor ID": 102, "distance": 6.06 }]}
+466 1680362091 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.87 }, { "Anchor ID": 102, "distance": 6.14 }]}
+467 1680362091 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.00 }, { "Anchor ID": 102, "distance": 6.26 }]}
+468 1680362091 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.32 }, { "Anchor ID": 101, "distance": 6.04 }]}
+469 1680362092 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.33 }, { "Anchor ID": 101, "distance": 6.04 }]}
+470 1680362092 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.38 }, { "Anchor ID": 101, "distance": 6.01 }]}
+471 1680362092 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.39 }, { "Anchor ID": 101, "distance": 5.96 }]}
+472 1680362092 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.02 }, { "Anchor ID": 102, "distance": 6.35 }]}
+473 1680362093 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.40 }, { "Anchor ID": 101, "distance": 6.00 }]}
+474 1680362093 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.47 }, { "Anchor ID": 101, "distance": 6.09 }]}
+475 1680362093 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.17 }, { "Anchor ID": 102, "distance": 6.55 }]}
+476 1680362093 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.23 }]}
+477 1680362094 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.66 }, { "Anchor ID": 101, "distance": 6.36 }]}
+478 1680362094 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.43 }, { "Anchor ID": 102, "distance": 6.72 }]}
+479 1680362094 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.72 }, { "Anchor ID": 101, "distance": 6.53 }]}
+480 1680362094 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.62 }, { "Anchor ID": 102, "distance": 6.84 }]}
+481 1680362095 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.66 }]}
+482 1680362095 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.72 }, { "Anchor ID": 102, "distance": 6.99 }]}
+483 1680362095 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.02 }, { "Anchor ID": 101, "distance": 6.77 }]}
+484 1680362095 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.15 }, { "Anchor ID": 101, "distance": 6.81 }]}
+485 1680362096 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.22 }, { "Anchor ID": 101, "distance": 6.88 }]}
+486 1680362096 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.87 }, { "Anchor ID": 102, "distance": 7.27 }]}
+487 1680362096 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.27 }, { "Anchor ID": 101, "distance": 6.95 }]}
+488 1680362096 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.08 }, { "Anchor ID": 102, "distance": 7.31 }]}
+489 1680362097 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.30 }, { "Anchor ID": 101, "distance": 7.09 }]}
+490 1680362097 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.35 }, { "Anchor ID": 101, "distance": 7.11 }]}
+491 1680362097 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.41 }, { "Anchor ID": 101, "distance": 7.12 }]}
+492 1680362097 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.46 }, { "Anchor ID": 101, "distance": 7.22 }]}
+493 1680362098 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.58 }, { "Anchor ID": 101, "distance": 7.33 }]}
+494 1680362098 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.65 }, { "Anchor ID": 101, "distance": 7.37 }]}
+495 1680362098 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.45 }, { "Anchor ID": 102, "distance": 7.69 }]}
+496 1680362098 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.51 }, { "Anchor ID": 102, "distance": 7.75 }]}
+497 1680362099 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.78 }, { "Anchor ID": 101, "distance": 7.53 }]}
+498 1680362099 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.86 }, { "Anchor ID": 101, "distance": 7.67 }]}
+499 1680362099 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.67 }, { "Anchor ID": 102, "distance": 7.89 }]}
+500 1680362099 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.88 }]}
+501 1680362100 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.78 }, { "Anchor ID": 101, "distance": 7.65 }]}
+502 1680362100 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.73 }, { "Anchor ID": 101, "distance": 7.61 }]}
+503 1680362100 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.66 }, { "Anchor ID": 101, "distance": 7.48 }]}
+504 1680362100 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.50 }]}
+505 1680362101 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.53 }, { "Anchor ID": 102, "distance": 7.62 }]}
+506 1680362101 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.54 }, { "Anchor ID": 102, "distance": 7.62 }]}
+507 1680362101 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.51 }, { "Anchor ID": 102, "distance": 7.56 }]}
+508 1680362101 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.42 }, { "Anchor ID": 102, "distance": 7.53 }]}
+509 1680362102 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.47 }]}
+510 1680362102 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.43 }, { "Anchor ID": 102, "distance": 7.39 }]}
+511 1680362102 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.31 }, { "Anchor ID": 102, "distance": 7.36 }]}
+512 1680362102 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.30 }, { "Anchor ID": 102, "distance": 7.34 }]}
+513 1680362103 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.30 }, { "Anchor ID": 102, "distance": 7.28 }]}
+514 1680362103 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.31 }, { "Anchor ID": 101, "distance": 7.31 }]}
+515 1680362103 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.27 }, { "Anchor ID": 102, "distance": 7.22 }]}
+516 1680362103 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.41 }, { "Anchor ID": 102, "distance": 7.18 }]}
+517 1680362104 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.36 }, { "Anchor ID": 102, "distance": 7.07 }]}
+518 1680362104 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.40 }, { "Anchor ID": 102, "distance": 7.09 }]}
+519 1680362104 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.07 }, { "Anchor ID": 101, "distance": 7.32 }]}
+520 1680362104 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.09 }, { "Anchor ID": 101, "distance": 7.24 }]}
+521 1680362105 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.00 }, { "Anchor ID": 101, "distance": 7.20 }]}
+522 1680362105 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.98 }, { "Anchor ID": 101, "distance": 7.23 }]}
+523 1680362105 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.91 }, { "Anchor ID": 101, "distance": 7.17 }]}
+524 1680362105 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.82 }, { "Anchor ID": 101, "distance": 6.89 }]}
+525 1680362106 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.74 }, { "Anchor ID": 101, "distance": 6.78 }]}
+526 1680362106 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.65 }, { "Anchor ID": 101, "distance": 6.98 }]}
+527 1680362106 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.59 }, { "Anchor ID": 101, "distance": 6.84 }]}
+528 1680362106 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.78 }]}
+529 1680362107 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.78 }, { "Anchor ID": 102, "distance": 6.43 }]}
+530 1680362107 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.69 }, { "Anchor ID": 102, "distance": 6.42 }]}
+531 1680362107 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.47 }, { "Anchor ID": 101, "distance": 6.63 }]}
+532 1680362107 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.67 }, { "Anchor ID": 102, "distance": 6.37 }]}
+533 1680362108 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.44 }, { "Anchor ID": 101, "distance": 6.72 }]}
+534 1680362108 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.45 }, { "Anchor ID": 101, "distance": 6.71 }]}
+535 1680362108 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.49 }, { "Anchor ID": 101, "distance": 6.71 }]}
+536 1680362108 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.56 }, { "Anchor ID": 101, "distance": 6.78 }]}
+537 1680362109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.85 }, { "Anchor ID": 102, "distance": 6.62 }]}
+538 1680362109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.71 }, { "Anchor ID": 101, "distance": 6.90 }]}
+539 1680362109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.67 }, { "Anchor ID": 101, "distance": 6.91 }]}
+540 1680362109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.72 }, { "Anchor ID": 101, "distance": 6.94 }]}
+541 1680362110 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.96 }, { "Anchor ID": 102, "distance": 6.75 }]}
+542 1680362110 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.81 }, { "Anchor ID": 101, "distance": 6.93 }]}
+543 1680362110 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.85 }, { "Anchor ID": 101, "distance": 7.08 }]}
+544 1680362110 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.98 }, { "Anchor ID": 101, "distance": 7.19 }]}
+545 1680362111 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.18 }]}
+546 1680362111 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.27 }]}
+547 1680362111 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.46 }]}
+548 1680362112 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.49 }]}
+549 1680362112 {"Tag ID": 1, "anchors": [, { "Anchor ID": 101, "distance": 7.66 }]}
+550 1680362112 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.78 }]}
+551 1680362113 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.76 }]}
+552 1680362113 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.93 }]}
+553 1680362113 MyID: 1 No anchor is detected. STATE DISCOVERY.
+554 1680362113 MyID: 1 No anchor is detected. STATE DISCOVERY.
+555 1680362114 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.16 }]}
+556 1680362114 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.30 }]}
+557 1680362114 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.42 }]}
+558 1680362115 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.36 }]}
+559 1680362115 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.50 }]}
+560 1680362115 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.44 }]}
+561 1680362115 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.76 }, { "Anchor ID": 101, "distance": 8.61 }]}
+562 1680362116 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.70 }]}
+563 1680362116 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.79 }, { "Anchor ID": 101, "distance": 8.77 }]}
+564 1680362116 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.77 }]}
+565 1680362116 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.91 }, { "Anchor ID": 101, "distance": 8.86 }]}
+566 1680362117 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.98 }, { "Anchor ID": 101, "distance": 8.94 }]}
+567 1680362117 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.07 }, { "Anchor ID": 101, "distance": 9.02 }]}
+568 1680362117 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.18 }, { "Anchor ID": 101, "distance": 9.13 }]}
+569 1680362117 MyID: 1 No anchor is detected. STATE DISCOVERY.
+570 1680362118 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.29 }, { "Anchor ID": 101, "distance": 9.26 }]}
+571 1680362118 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.32 }, { "Anchor ID": 102, "distance": 9.37 }]}
+572 1680362118 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.41 }, { "Anchor ID": 101, "distance": 9.36 }]}
+573 1680362118 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.49 }, { "Anchor ID": 101, "distance": 9.42 }]}
+574 1680362119 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.48 }, { "Anchor ID": 102, "distance": 9.51 }]}
+575 1680362119 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.58 }, { "Anchor ID": 101, "distance": 9.55 }]}
+576 1680362119 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.67 }, { "Anchor ID": 102, "distance": 9.71 }]}
+577 1680362119 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.83 }, { "Anchor ID": 101, "distance": 9.84 }]}
+578 1680362120 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.89 }]}
+579 1680362120 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.89 }, { "Anchor ID": 102, "distance": 9.92 }]}
+580 1680362120 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.93 }, { "Anchor ID": 101, "distance": 9.97 }]}
+581 1680362120 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.97 }, { "Anchor ID": 102, "distance": 10.00 }]}
+582 1680362121 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.02 }, { "Anchor ID": 102, "distance": 9.96 }]}
+583 1680362121 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.94 }, { "Anchor ID": 102, "distance": 10.01 }]}
+584 1680362121 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.97 }, { "Anchor ID": 102, "distance": 10.07 }]}
+585 1680362121 {"Tag ID": 1, "anchors": [, { "Anchor ID": 101, "distance": 10.03 }]}
+586 1680362122 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.06 }, { "Anchor ID": 102, "distance": 10.16 }]}
+587 1680362122 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.13 }, { "Anchor ID": 102, "distance": 10.18 }]}
+588 1680362122 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.17 }, { "Anchor ID": 102, "distance": 10.26 }]}
+589 1680362122 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.14 }, { "Anchor ID": 102, "distance": 10.21 }]}
+590 1680362123 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.19 }]}
+591 1680362123 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 10.17 }, { "Anchor ID": 101, "distance": 10.13 }]}
+592 1680362123 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.08 }, { "Anchor ID": 102, "distance": 10.12 }]}
+593 1680362123 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.02 }, { "Anchor ID": 102, "distance": 10.11 }]}
+594 1680362124 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.97 }, { "Anchor ID": 102, "distance": 10.09 }]}
+595 1680362124 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.97 }, { "Anchor ID": 102, "distance": 10.12 }]}
+596 1680362124 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 10.09 }, { "Anchor ID": 102, "distance": 10.12 }]}
+597 1680362124 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 10.15 }, { "Anchor ID": 101, "distance": 10.02 }]}
+598 1680362125 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 10.17 }, { "Anchor ID": 101, "distance": 10.00 }]}
+599 1680362125 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 10.14 }, { "Anchor ID": 101, "distance": 10.00 }]}
+600 1680362125 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.97 }]}
+601 1680362125 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.82 }, { "Anchor ID": 102, "distance": 9.99 }]}
+602 1680362126 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.88 }]}
+603 1680362126 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.63 }, { "Anchor ID": 102, "distance": 9.82 }]}
+604 1680362126 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.69 }, { "Anchor ID": 102, "distance": 9.80 }]}
+605 1680362126 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.59 }, { "Anchor ID": 102, "distance": 9.75 }]}
+606 1680362127 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.56 }, { "Anchor ID": 102, "distance": 9.73 }]}
+607 1680362127 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.51 }, { "Anchor ID": 102, "distance": 9.68 }]}
+608 1680362127 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.60 }, { "Anchor ID": 101, "distance": 9.39 }]}
+609 1680362127 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.49 }, { "Anchor ID": 101, "distance": 9.28 }]}
+610 1680362128 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.27 }, { "Anchor ID": 102, "distance": 9.43 }]}
+611 1680362128 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.39 }, { "Anchor ID": 101, "distance": 9.13 }]}
+612 1680362128 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 9.28 }, { "Anchor ID": 101, "distance": 9.04 }]}
+613 1680362128 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.97 }, { "Anchor ID": 102, "distance": 9.27 }]}
+614 1680362129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 9.02 }, { "Anchor ID": 102, "distance": 9.16 }]}
+615 1680362129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.94 }, { "Anchor ID": 102, "distance": 9.15 }]}
+616 1680362129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.99 }, { "Anchor ID": 101, "distance": 8.78 }]}
+617 1680362129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.81 }, { "Anchor ID": 101, "distance": 8.60 }]}
+618 1680362130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.73 }, { "Anchor ID": 101, "distance": 8.47 }]}
+619 1680362130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.66 }, { "Anchor ID": 101, "distance": 8.39 }]}
+620 1680362130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.37 }]}
+621 1680362130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.53 }, { "Anchor ID": 101, "distance": 8.29 }]}
+622 1680362131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 8.19 }, { "Anchor ID": 102, "distance": 8.46 }]}
+623 1680362131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 8.37 }, { "Anchor ID": 101, "distance": 8.08 }]}
+624 1680362131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.92 }, { "Anchor ID": 102, "distance": 8.26 }]}
+625 1680362131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.83 }, { "Anchor ID": 102, "distance": 8.14 }]}
+626 1680362132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.75 }, { "Anchor ID": 102, "distance": 8.06 }]}
+627 1680362132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.99 }, { "Anchor ID": 101, "distance": 7.68 }]}
+628 1680362132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.90 }, { "Anchor ID": 101, "distance": 7.63 }]}
+629 1680362132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.56 }, { "Anchor ID": 102, "distance": 7.82 }]}
+630 1680362133 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.72 }, { "Anchor ID": 101, "distance": 7.46 }]}
+631 1680362133 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 7.31 }, { "Anchor ID": 102, "distance": 7.59 }]}
+632 1680362133 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.49 }, { "Anchor ID": 101, "distance": 7.15 }]}
+633 1680362133 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.33 }, { "Anchor ID": 101, "distance": 7.04 }]}
+634 1680362134 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.96 }, { "Anchor ID": 102, "distance": 7.24 }]}
+635 1680362134 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.87 }, { "Anchor ID": 102, "distance": 7.18 }]}
+636 1680362134 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.11 }, { "Anchor ID": 101, "distance": 6.78 }]}
+637 1680362134 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 7.06 }, { "Anchor ID": 101, "distance": 6.71 }]}
+638 1680362135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.63 }, { "Anchor ID": 102, "distance": 6.95 }]}
+639 1680362135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.85 }, { "Anchor ID": 101, "distance": 6.44 }]}
+640 1680362135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.31 }, { "Anchor ID": 102, "distance": 6.68 }]}
+641 1680362135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.21 }]}
+642 1680362136 MyID: 1 No anchor is detected. STATE DISCOVERY.
+643 1680362136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 6.09 }, { "Anchor ID": 102, "distance": 6.40 }]}
+644 1680362136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.32 }, { "Anchor ID": 101, "distance": 6.01 }]}
+645 1680362136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 6.26 }, { "Anchor ID": 101, "distance": 5.92 }]}
+646 1680362137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.84 }, { "Anchor ID": 102, "distance": 6.13 }]}
+647 1680362137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.99 }, { "Anchor ID": 101, "distance": 5.67 }]}
+648 1680362137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.52 }, { "Anchor ID": 102, "distance": 5.84 }]}
+649 1680362137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.77 }, { "Anchor ID": 101, "distance": 5.45 }]}
+650 1680362138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.70 }]}
+651 1680362138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.33 }, { "Anchor ID": 102, "distance": 5.57 }]}
+652 1680362138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 5.26 }, { "Anchor ID": 102, "distance": 5.53 }]}
+653 1680362138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.48 }, { "Anchor ID": 101, "distance": 5.12 }]}
+654 1680362139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.43 }, { "Anchor ID": 101, "distance": 5.00 }]}
+655 1680362139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.99 }, { "Anchor ID": 102, "distance": 5.30 }]}
+656 1680362139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.89 }, { "Anchor ID": 102, "distance": 5.14 }]}
+657 1680362139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 5.10 }, { "Anchor ID": 101, "distance": 4.77 }]}
+658 1680362140 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.76 }, { "Anchor ID": 102, "distance": 5.05 }]}
+659 1680362140 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.96 }]}
+660 1680362140 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.65 }, { "Anchor ID": 102, "distance": 4.94 }]}
+661 1680362140 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.84 }, { "Anchor ID": 101, "distance": 4.56 }]}
+662 1680362141 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.80 }, { "Anchor ID": 101, "distance": 4.49 }]}
+663 1680362141 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.48 }, { "Anchor ID": 102, "distance": 4.68 }]}
+664 1680362141 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.35 }, { "Anchor ID": 102, "distance": 4.60 }]}
+665 1680362141 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.22 }, { "Anchor ID": 102, "distance": 4.50 }]}
+666 1680362142 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.16 }, { "Anchor ID": 102, "distance": 4.38 }]}
+667 1680362142 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.40 }, { "Anchor ID": 101, "distance": 4.08 }]}
+668 1680362142 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 4.10 }, { "Anchor ID": 102, "distance": 4.33 }]}
+669 1680362142 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.27 }]}
+670 1680362143 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.23 }, { "Anchor ID": 101, "distance": 3.94 }]}
+671 1680362143 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.13 }, { "Anchor ID": 101, "distance": 3.92 }]}
+672 1680362143 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 4.03 }]}
+673 1680362143 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.74 }, { "Anchor ID": 102, "distance": 3.90 }]}
+674 1680362144 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.78 }, { "Anchor ID": 101, "distance": 3.58 }]}
+675 1680362144 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.50 }, { "Anchor ID": 102, "distance": 3.68 }]}
+676 1680362144 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.67 }, { "Anchor ID": 101, "distance": 3.45 }]}
+677 1680362144 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 3.60 }]}
+678 1680362145 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.50 }]}
+679 1680362145 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.32 }, { "Anchor ID": 102, "distance": 3.47 }]}
+680 1680362145 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.27 }, { "Anchor ID": 102, "distance": 3.46 }]}
+681 1680362145 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.26 }, { "Anchor ID": 102, "distance": 3.44 }]}
+682 1680362146 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.33 }, { "Anchor ID": 101, "distance": 3.12 }]}
+683 1680362146 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.07 }, { "Anchor ID": 102, "distance": 3.22 }]}
+684 1680362146 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.09 }, { "Anchor ID": 101, "distance": 2.97 }]}
+685 1680362146 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.08 }, { "Anchor ID": 101, "distance": 2.88 }]}
+686 1680362147 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.75 }, { "Anchor ID": 102, "distance": 2.99 }]}
+687 1680362147 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.97 }, { "Anchor ID": 101, "distance": 2.78 }]}
+688 1680362147 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.72 }, { "Anchor ID": 102, "distance": 2.97 }]}
+689 1680362147 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.98 }, { "Anchor ID": 101, "distance": 2.71 }]}
+690 1680362148 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.95 }, { "Anchor ID": 101, "distance": 2.73 }]}
+691 1680362148 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.71 }, { "Anchor ID": 102, "distance": 2.95 }]}
+692 1680362148 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.73 }, { "Anchor ID": 102, "distance": 2.91 }]}
+693 1680362148 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.97 }, { "Anchor ID": 101, "distance": 2.76 }]}
+694 1680362149 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.00 }, { "Anchor ID": 101, "distance": 2.74 }]}
+695 1680362149 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.71 }, { "Anchor ID": 102, "distance": 2.97 }]}
+696 1680362149 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.88 }, { "Anchor ID": 101, "distance": 2.72 }]}
+697 1680362149 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.98 }, { "Anchor ID": 101, "distance": 2.71 }]}
+698 1680362150 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.97 }, { "Anchor ID": 101, "distance": 2.71 }]}
+699 1680362150 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.72 }, { "Anchor ID": 102, "distance": 2.91 }]}
+700 1680362150 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 2.93 }, { "Anchor ID": 101, "distance": 2.75 }]}
+701 1680362150 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.76 }]}
+702 1680362151 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 2.80 }, { "Anchor ID": 102, "distance": 2.93 }]}

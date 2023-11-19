@@ -1,0 +1,11 @@
+Alignment: 
+   Anchor 1<-----2.5m----->Anchor 2
+      |           |           |
+      |<--1,25m-->|<--1,25m-->|
+      |           |           |
+     Tag 1      Tag 3       Tag 2
+
+Distances:
+    - between anchors: 2.5 m
+    - Tag 1 <-> Tag 3: 1.25m
+    - Tag 2 <-> Tag 3: 1.25m

@@ -366,7 +366,10 @@ Small experiment at university
 
 - The outcome of this experiment must be scatter plot showing the shift of measured distances using beacons against the ground truth distances.
 
-- Tag was placed at each meter from 1 to 9. Distance between anchors is 131 cm.
+- Tag was placed at each meter from 1 to 9. Each meter has its own aruco marker assigned, for example 1m corresponds to Aruco marker with id 1, 2m - id 2, 3m - id 3 etc. 
+
+- Distance between anchors is 131 cm.
+- Only one tag (ID=2) was utilized during this experiment.
 
 # 4 November, 2023
 
@@ -394,3 +397,80 @@ Offline method can be split into several separate parts or modules: Data Acquisi
 As the next step, data from beacons that are making GS can be used as a reference system for several other methods used in video processing. For example, beacon data can be used to decide whether stereo vision method works good and computes the position of a person precisely. As another example, data collected from beacons may be used as annotations for machine learning model which then can predict the position of a person given a single camera video stream only.
 
 And as the last but not least step the processed video data given by the evaluated model can be compared with GS data collected via beacons in data analysis step.
+
+# 5 November, 2023
+
+- Experiment at school. Set up: One tag ID = 2; two anchors.
+
+- The first goal of this experiment in comparison to 28.10.23 experiemnt is to understand when tag was moved and when was stood at one place. For this purpose it is sufficient to use only one aruco marker just to show the moving stage. 
+  - When aruco is shown - stationary stage
+  - When aruco is hidden - moving stage
+
+- Second goal is to:
+  - have a manual plan of tag placement (at each meter it must be placed).
+  - compare ground truth distance from plan to the actually measured data
+
+# 12 November, 2023
+
+- Experiment at school. 
+- Setup: 3 tags, 2 anchors. Calibration distance is 5m. Max test distance is 12m.
+
+Alignment: 
+   Anchor 1<------2.087m------>Anchor 2
+    (Orange)                    (White)
+      |             |             |
+      |<--1,0485m-->|<--1,0485m-->|
+      |             |             |
+     Tag 1         Tag 3         Tag 2
+    (Green)        (Pink)       (Yellow)
+    
+Distances:
+    - between anchors: 2.087m
+    - Tag 1 <-> Tag 3: 1,0485m
+    - Tag 2 <-> Tag 3: 1,0485m
+
+- Two experiments were carried out: 
+
+First experiemnt:
+  - The goal is to measure the precision of the measurements. 
+  - Tags were placed sequentailly every meter starting from 1 to 12 meters.
+  - Calibration were perfomed for 5m
+  - aruco is used to show the stationary and moving stages.
+
+Second experiemnt:
+  - Random placement of tags.
+  - aruco is used to show the stationary and moving stages.
+  - The goal is to detect some anomalies such as reflexion, tag overlay etc.
+  - more in photo showng the plan of the experiment.
+
+# 18 November, 2023
+
+- Experiment at school
+- Setup: 3 tags, 2 anchors. Calibration distance is 5m. Max test distance is 15m.
+
+Alignment: 
+  Anchor 1<-----2.5m----->Anchor 2
+  (Orange)                (White)
+    |           |           |
+    |<--1,25m-->|<--1,25m-->|
+    |           |           |
+    Tag 1      Tag 3       Tag 2
+   (Orange)    (Pink)      (White)
+
+Distances:
+    - between anchors: 2.5 m
+    - Tag 1 <-> Tag 3: 1.25m
+    - Tag 2 <-> Tag 3: 1.25m
+
+- Two experiments were carried out:
+
+- First experiment:
+
+  - The goal of this experiment is to measure precision of the measurements. The differemce from the previous experiment (12.11.23) is that tags were moved more rapidly with less time between stages (movements).
+  - aruco is used to show the stationary and moving stages.
+  
+- Second experiment: 
+
+  - The goal of this experiemnt is to place tags at random places and analize their behavoir, detect some anomalies. 
+
+  - The main difference from the prevoius experiments: aruco marker were shown during the whole experiment. So, now it cannot be used as a reference when tags were moved and when were stood. 

@@ -1,543 +1,835 @@
-1 1696691593899 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.21
-2 1696691594226 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-3 1696691594722 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-4 1696691594971 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-5 1696691595224 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.18
-6 1696691595476 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-7 1696691595725 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.17
-8 1696691595978 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-9 1696691596471 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.19
-10 1696691596722 Tag ID: 2 - Anchor ID: 101 Distance: 4.99; Anchor ID: 102 Distance: 5.21
-11 1696691596981 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.20
-12 1696691597475 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-13 1696691597725 Tag ID: 2 - Anchor ID: 101 Distance: 5.01; Anchor ID: 102 Distance: 5.20
-14 1696691598226 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-15 1696691598479 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.22
-16 1696691598978 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.23
-17 1696691599477 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.22
-18 1696691599727 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.21
-19 1696691599982 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-20 1696691600475 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.19
-21 1696691600725 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-22 1696691600976 Tag ID: 2 - Anchor ID: 101 Distance: 4.99; Anchor ID: 102 Distance: 5.21
-23 1696691601226 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-24 1696691601477 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-25 1696691602426 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.20
-26 1696691602728 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-27 1696691602977 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-28 1696691603233 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.22
-29 1696691603729 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.23
-30 1696691604222 Tag ID: 2 - Anchor ID: 101 Distance: 4.99; Anchor ID: 102 Distance: 5.25
-31 1696691604470 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.21
-32 1696691604725 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.23
-33 1696691604973 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-34 1696691605223 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-35 1696691605472 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-36 1696691605722 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.21
-37 1696691605972 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.21
-38 1696691606223 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.20
-39 1696691606475 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.22
-40 1696691606725 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.23
-41 1696691606977 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.21
-42 1696691607224 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.20
-43 1696691607473 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-44 1696691607722 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.19
-45 1696691607972 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.21
-46 1696691608221 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-47 1696691608473 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-48 1696691608727 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.18
-49 1696691608979 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.20
-50 1696691609470 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.23
-51 1696691609724 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.22
-52 1696691609975 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.23
-53 1696691610222 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.20
-54 1696691610476 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.22
-55 1696691610725 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.18
-56 1696691610976 Tag ID: 2 - Anchor ID: 101 Distance: 4.99; Anchor ID: 102 Distance: 5.20
-57 1696691611225 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.18
-58 1696691611474 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.20
-59 1696691611724 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.21
-60 1696691611977 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.23
-61 1696691612226 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.25
-62 1696691612476 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.19
-63 1696691612724 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-64 1696691612976 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-65 1696691613224 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.22
-66 1696691613471 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.18
-67 1696691613727 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.19
-68 1696691613974 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.18
-69 1696691614223 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.21
-70 1696691614477 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-71 1696691614730 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-72 1696691615224 Tag ID: 2 - Anchor ID: 101 Distance: 4.93; Anchor ID: 102 Distance: 5.25
-73 1696691615474 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.23
-74 1696691615724 Tag ID: 2 - Anchor ID: 101 Distance: 5.00; Anchor ID: 102 Distance: 5.21
-75 1696691615975 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.22
-76 1696691616229 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-77 1696691616728 Tag ID: 2 - Anchor ID: 101 Distance: 4.99; Anchor ID: 102 Distance: 5.20
-78 1696691616978 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-79 1696691617477 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-80 1696691617728 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.24
-81 1696691617979 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.22
-82 1696691618228 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-83 1696691618478 Tag ID: 2 - Anchor ID: 101 Distance: 4.93; Anchor ID: 102 Distance: 5.22
-84 1696691618727 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.20
-85 1696691618977 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-86 1696691619227 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-87 1696691619477 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.19
-88 1696691619728 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.19
-89 1696691619979 Tag ID: 2 - Anchor ID: 101 Distance: 4.97; Anchor ID: 102 Distance: 5.18
-90 1696691620227 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.22
-91 1696691620477 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-92 1696691620725 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-93 1696691620975 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.21
-94 1696691621224 Tag ID: 2 - Anchor ID: 101 Distance: 4.92; Anchor ID: 102 Distance: 5.19
-95 1696691621473 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-96 1696691621724 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.20
-97 1696691621976 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.21
-98 1696691622226 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-99 1696691622476 Tag ID: 2 - Anchor ID: 101 Distance: 4.93; Anchor ID: 102 Distance: 5.20
-100 1696691622726 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.21
-101 1696691622975 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-102 1696691623225 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.18
-103 1696691623476 Tag ID: 2 - Anchor ID: 101 Distance: 4.98; Anchor ID: 102 Distance: 5.20
-104 1696691623723 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.20
-105 1696691623973 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.22
-106 1696691624226 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.19
-107 1696691624476 Tag ID: 2 - Anchor ID: 101 Distance: 4.93; Anchor ID: 102 Distance: 5.20
-108 1696691624723 Tag ID: 2 - Anchor ID: 101 Distance: 4.92; Anchor ID: 102 Distance: 5.20
-109 1696691624974 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.19
-110 1696691625222 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.22
-111 1696691625480 Tag ID: 2 - Anchor ID: 101 Distance: 4.95; Anchor ID: 102 Distance: 5.22
-112 1696691625729 Tag ID: 2 - Anchor ID: 101 Distance: 4.93; Anchor ID: 102 Distance: 5.23
-113 1696691625979 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.23
-114 1696691626227 Tag ID: 2 - Anchor ID: 101 Distance: 4.96; Anchor ID: 102 Distance: 5.22
-115 1696691626476 Tag ID: 2 - Anchor ID: 101 Distance: 4.94; Anchor ID: 102 Distance: 5.21
-116 1696691627735 Tag ID: 2 - Anchor ID: 101 Distance: 4.79; Anchor ID: 102 Distance: 5.03
-117 1696691628228 Tag ID: 2 - Anchor ID: 101 Distance: 4.44; Anchor ID: 102 Distance: 4.73
-118 1696691628478 Tag ID: 2 - Anchor ID: 101 Distance: 4.28; Anchor ID: 102 Distance: 4.58
-119 1696691628730 Tag ID: 2 - Anchor ID: 101 Distance: 4.15; Anchor ID: 102 Distance: 4.46
-120 1696691628983 Tag ID: 2 - Anchor ID: 101 Distance: 4.04; Anchor ID: 102 Distance: 4.39
-121 1696691629494 Tag ID: 2 - Anchor ID: 101 Distance: 3.96; Anchor ID: 102 Distance: 4.28
-122 1696691630009 Tag ID: 2 - Anchor ID: 101 Distance: 3.89; Anchor ID: 102 Distance: 4.26
-123 1696691630477 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.26
-124 1696691630727 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.26
-125 1696691630977 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.27
-126 1696691631235 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.24
-127 1696691631728 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.26
-128 1696691631977 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.33
-129 1696691632227 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.30
-130 1696691632479 Tag ID: 2 - Anchor ID: 101 Distance: 3.89; Anchor ID: 102 Distance: 4.28
-131 1696691632729 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.31
-132 1696691632979 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.29
-133 1696691633230 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.24
-134 1696691633482 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.26
-135 1696691633732 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.25
-136 1696691633981 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.30
-137 1696691634239 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.27
-138 1696691634742 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.27
-139 1696691635229 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.25
-140 1696691635488 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.26
-141 1696691635982 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.26
-142 1696691636233 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.26
-143 1696691636482 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.24
-144 1696691636733 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.26
-145 1696691636982 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.27
-146 1696691637232 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.27
-147 1696691637480 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.28
-148 1696691637728 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.24
-149 1696691637980 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.22
-150 1696691638232 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.28
-151 1696691638482 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.26
-152 1696691638731 Tag ID: 2 - Anchor ID: 101 Distance: 3.87; Anchor ID: 102 Distance: 4.26
-153 1696691638980 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.25
-154 1696691639232 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.28
-155 1696691639481 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.26
-156 1696691639731 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.26
-157 1696691639978 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.24
-158 1696691640231 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.28
-159 1696691640479 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.28
-160 1696691640729 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.25
-161 1696691640983 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.25
-162 1696691641231 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.26
-163 1696691641480 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.26
-164 1696691641730 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.28
-165 1696691641977 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.28
-166 1696691642231 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.25
-167 1696691642484 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.26
-168 1696691642730 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.25
-169 1696691642982 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.28
-170 1696691643480 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.29
-171 1696691643729 Tag ID: 2 - Anchor ID: 101 Distance: 3.89; Anchor ID: 102 Distance: 4.25
-172 1696691643982 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.25
-173 1696691644233 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.27
-174 1696691644481 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.28
-175 1696691644734 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.26
-176 1696691644979 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.26
-177 1696691645229 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.26
-178 1696691645482 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.25
-179 1696691645732 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.18
-180 1696691645981 Tag ID: 2 - Anchor ID: 101 Distance: 3.79; Anchor ID: 102 Distance: 4.11
-181 1696691646230 Tag ID: 2 - Anchor ID: 101 Distance: 3.67; Anchor ID: 102 Distance: 3.99
-182 1696691646484 Tag ID: 2 - Anchor ID: 101 Distance: 3.50; Anchor ID: 102 Distance: 3.89
-183 1696691646746 Tag ID: 2 - Anchor ID: 101 Distance: 3.35; Anchor ID: 102 Distance: 3.81
-184 1696691647233 Tag ID: 2 - Anchor ID: 101 Distance: 3.11; Anchor ID: 102 Distance: 3.61
-185 1696691647481 Tag ID: 2 - Anchor ID: 101 Distance: 3.01; Anchor ID: 102 Distance: 3.54
-186 1696691647734 Tag ID: 2 - Anchor ID: 101 Distance: 2.96; Anchor ID: 102 Distance: 3.55
-187 1696691647982 Tag ID: 2 - Anchor ID: 101 Distance: 2.93; Anchor ID: 102 Distance: 3.55
-188 1696691648236 Tag ID: 2 - Anchor ID: 101 Distance: 2.91; Anchor ID: 102 Distance: 3.51
-189 1696691648734 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.48
-190 1696691648984 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.49
-191 1696691649236 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.48
-192 1696691649733 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.45
-193 1696691649983 Tag ID: 2 - Anchor ID: 101 Distance: 2.85; Anchor ID: 102 Distance: 3.41
-194 1696691650238 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.42
-195 1696691650737 Tag ID: 2 - Anchor ID: 101 Distance: 2.85; Anchor ID: 102 Distance: 3.43
-196 1696691651232 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.40
-197 1696691651481 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-198 1696691651731 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.41
-199 1696691651981 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.38
-200 1696691652232 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.40
-201 1696691652482 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.39
-202 1696691652732 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.41
-203 1696691652983 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.43
-204 1696691653233 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.40
-205 1696691653482 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-206 1696691653732 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.42
-207 1696691653981 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.42
-208 1696691654230 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-209 1696691654484 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.39
-210 1696691654733 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-211 1696691654981 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.41
-212 1696691655233 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.39
-213 1696691655483 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.41
-214 1696691655733 Tag ID: 2 - Anchor ID: 101 Distance: 2.85; Anchor ID: 102 Distance: 3.41
-215 1696691655982 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-216 1696691656236 Tag ID: 2 - Anchor ID: 101 Distance: 2.84; Anchor ID: 102 Distance: 3.40
-217 1696691656486 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.41
-218 1696691656735 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.38
-219 1696691656985 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.42
-220 1696691657235 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.39
-221 1696691657485 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-222 1696691657734 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.43
-223 1696691657983 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.41
-224 1696691658233 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.41
-225 1696691658482 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.42
-226 1696691658736 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.41
-227 1696691658983 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.38
-228 1696691659230 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.40
-229 1696691659481 Tag ID: 2 - Anchor ID: 101 Distance: 2.84; Anchor ID: 102 Distance: 3.41
-230 1696691659734 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.40
-231 1696691659982 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.41
-232 1696691660236 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-233 1696691660483 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.37
-234 1696691660736 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.43
-235 1696691660987 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-236 1696691661235 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.43
-237 1696691661488 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.41
-238 1696691661986 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.43
-239 1696691662237 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.41
-240 1696691662483 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.42
-241 1696691662736 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.43
-242 1696691662985 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.41
-243 1696691663234 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.40
-244 1696691663484 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.41
-245 1696691663739 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-246 1696691664237 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.42
-247 1696691664735 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.42
-248 1696691664983 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.43
-249 1696691665232 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.42
-250 1696691665488 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.41
-251 1696691665739 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-252 1696691666239 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-253 1696691666486 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.43
-254 1696691666736 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.41
-255 1696691666986 Tag ID: 2 - Anchor ID: 101 Distance: 2.94; Anchor ID: 102 Distance: 3.54
-256 1696691667236 Tag ID: 2 - Anchor ID: 101 Distance: 3.09; Anchor ID: 102 Distance: 3.69
-257 1696691667486 Tag ID: 2 - Anchor ID: 101 Distance: 3.31; Anchor ID: 102 Distance: 3.79
-258 1696691667742 Tag ID: 2 - Anchor ID: 101 Distance: 3.44; Anchor ID: 102 Distance: 3.93
-259 1696691668241 Tag ID: 2 - Anchor ID: 101 Distance: 3.69; Anchor ID: 102 Distance: 4.14
-260 1696691668497 Tag ID: 2 - Anchor ID: 101 Distance: 3.79; Anchor ID: 102 Distance: 4.21
-261 1696691668990 Tag ID: 2 - Anchor ID: 101 Distance: 3.87; Anchor ID: 102 Distance: 4.29
-262 1696691669267 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.33
-263 1696691669739 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.35
-264 1696691669989 Tag ID: 2 - Anchor ID: 101 Distance: 3.96; Anchor ID: 102 Distance: 4.31
-265 1696691670252 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.33
-266 1696691670745 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.32
-267 1696691671240 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.37
-268 1696691671490 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.35
-269 1696691671740 Tag ID: 2 - Anchor ID: 101 Distance: 3.96; Anchor ID: 102 Distance: 4.34
-270 1696691671987 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.29
-271 1696691672236 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.31
-272 1696691672490 Tag ID: 2 - Anchor ID: 101 Distance: 3.96; Anchor ID: 102 Distance: 4.34
-273 1696691672740 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.35
-274 1696691672988 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.31
-275 1696691673237 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.34
-276 1696691673486 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.33
-277 1696691673740 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.30
-278 1696691673989 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.32
-279 1696691674239 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.31
-280 1696691674488 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.34
-281 1696691675745 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.34
-282 1696691676237 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.36
-283 1696691676492 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.36
-284 1696691676744 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.33
-285 1696691677251 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.33
-286 1696691677758 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.31
-287 1696691678235 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.30
-288 1696691678493 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.34
-289 1696691678995 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.34
-290 1696691679497 Tag ID: 2 - Anchor ID: 101 Distance: 3.89; Anchor ID: 102 Distance: 4.31
-291 1696691679989 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.33
-292 1696691680238 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.33
-293 1696691680488 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.31
-294 1696691680743 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.30
-295 1696691680992 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.34
-296 1696691681241 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.30
-297 1696691681501 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.32
-298 1696691681991 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.30
-299 1696691682240 Tag ID: 2 - Anchor ID: 101 Distance: 3.97; Anchor ID: 102 Distance: 4.32
-300 1696691682494 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.33
-301 1696691682993 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.32
-302 1696691684503 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.32
-303 1696691684994 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.31
-304 1696691685251 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.32
-305 1696691685741 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.31
-306 1696691685992 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.29
-307 1696691686247 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.34
-308 1696691686741 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.39
-309 1696691686992 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.45
-310 1696691687240 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.49
-311 1696691687489 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.49
-312 1696691687740 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.45
-313 1696691687994 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.33
-314 1696691688244 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.32
-315 1696691688497 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.33
-316 1696691690005 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.34
-317 1696691690491 Tag ID: 2 - Anchor ID: 101 Distance: 3.96; Anchor ID: 102 Distance: 4.30
-318 1696691690741 Tag ID: 2 - Anchor ID: 101 Distance: 3.95; Anchor ID: 102 Distance: 4.32
-319 1696691690991 Tag ID: 2 - Anchor ID: 101 Distance: 3.97; Anchor ID: 102 Distance: 4.35
-320 1696691691244 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.33
-321 1696691691490 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.32
-322 1696691691744 Tag ID: 2 - Anchor ID: 101 Distance: 3.90; Anchor ID: 102 Distance: 4.31
-323 1696691692000 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.36
-324 1696691692490 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.32
-325 1696691692743 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.32
-326 1696691692989 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.34
-327 1696691693241 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.32
-328 1696691693493 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.34
-329 1696691693740 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.32
-330 1696691695097 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.33
-331 1696691695494 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.33
-332 1696691695745 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.33
-333 1696691695992 Tag ID: 2 - Anchor ID: 101 Distance: 3.91; Anchor ID: 102 Distance: 4.33
-334 1696691696240 Tag ID: 2 - Anchor ID: 101 Distance: 3.92; Anchor ID: 102 Distance: 4.30
-335 1696691696489 Tag ID: 2 - Anchor ID: 101 Distance: 3.93; Anchor ID: 102 Distance: 4.32
-336 1696691696739 Tag ID: 2 - Anchor ID: 101 Distance: 3.94; Anchor ID: 102 Distance: 4.32
-337 1696691696995 Tag ID: 2 - Anchor ID: 101 Distance: 3.86; Anchor ID: 102 Distance: 4.23
-338 1696691697243 Tag ID: 2 - Anchor ID: 101 Distance: 3.77; Anchor ID: 102 Distance: 4.12
-339 1696691697493 Tag ID: 2 - Anchor ID: 101 Distance: 3.59; Anchor ID: 102 Distance: 3.93
-340 1696691697749 Tag ID: 2 - Anchor ID: 101 Distance: 3.42; Anchor ID: 102 Distance: 3.79
-341 1696691698239 Tag ID: 2 - Anchor ID: 101 Distance: 3.09; Anchor ID: 102 Distance: 3.56
-342 1696691698488 Tag ID: 2 - Anchor ID: 101 Distance: 3.01; Anchor ID: 102 Distance: 3.49
-343 1696691698741 Tag ID: 2 - Anchor ID: 101 Distance: 2.93; Anchor ID: 102 Distance: 3.48
-344 1696691698989 Tag ID: 2 - Anchor ID: 101 Distance: 2.93; Anchor ID: 102 Distance: 3.43
-345 1696691699241 Tag ID: 2 - Anchor ID: 101 Distance: 2.92; Anchor ID: 102 Distance: 3.42
-346 1696691699490 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.40
-347 1696691699743 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.45
-348 1696691699993 Tag ID: 2 - Anchor ID: 101 Distance: 2.91; Anchor ID: 102 Distance: 3.42
-349 1696691700244 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.44
-350 1696691700493 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.41
-351 1696691700743 Tag ID: 2 - Anchor ID: 101 Distance: 2.84; Anchor ID: 102 Distance: 3.40
-352 1696691700994 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.42
-353 1696691701244 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.40
-354 1696691701494 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.43
-355 1696691701743 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.41
-356 1696691701993 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.40
-357 1696691702243 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.40
-358 1696691702494 Tag ID: 2 - Anchor ID: 101 Distance: 2.85; Anchor ID: 102 Distance: 3.40
-359 1696691702745 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.42
-360 1696691702995 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.45
-361 1696691703245 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.43
-362 1696691703496 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.44
-363 1696691703747 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.43
-364 1696691704242 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.43
-365 1696691704493 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.43
-366 1696691704744 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.39
-367 1696691704995 Tag ID: 2 - Anchor ID: 101 Distance: 2.92; Anchor ID: 102 Distance: 3.40
-368 1696691705245 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.42
-369 1696691705496 Tag ID: 2 - Anchor ID: 101 Distance: 2.93; Anchor ID: 102 Distance: 3.41
-370 1696691705747 Tag ID: 2 - Anchor ID: 101 Distance: 2.91; Anchor ID: 102 Distance: 3.40
-371 1696691705996 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.41
-372 1696691706246 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.41
-373 1696691706494 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.43
-374 1696691706742 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.39
-375 1696691706997 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.44
-376 1696691707244 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.44
-377 1696691707495 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.42
-378 1696691707746 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-379 1696691708000 Tag ID: 2 - Anchor ID: 101 Distance: 2.88; Anchor ID: 102 Distance: 3.40
-380 1696691708498 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.41
-381 1696691708997 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.42
-382 1696691709245 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-383 1696691709494 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.42
-384 1696691709744 Tag ID: 2 - Anchor ID: 101 Distance: 2.87; Anchor ID: 102 Distance: 3.39
-385 1696691709993 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.39
-386 1696691710248 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.42
-387 1696691710496 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.43
-388 1696691710745 Tag ID: 2 - Anchor ID: 101 Distance: 2.86; Anchor ID: 102 Distance: 3.39
-389 1696691710992 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.46
-390 1696691711244 Tag ID: 2 - Anchor ID: 101 Distance: 2.90; Anchor ID: 102 Distance: 3.43
-391 1696691711492 Tag ID: 2 - Anchor ID: 101 Distance: 2.92; Anchor ID: 102 Distance: 3.41
-392 1696691711744 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.44
-393 1696691711991 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.42
-394 1696691712245 Tag ID: 2 - Anchor ID: 101 Distance: 2.89; Anchor ID: 102 Distance: 3.41
-395 1696691712495 Tag ID: 2 - Anchor ID: 101 Distance: 2.84; Anchor ID: 102 Distance: 3.33
-396 1696691712746 Tag ID: 2 - Anchor ID: 101 Distance: 2.73; Anchor ID: 102 Distance: 3.22
-397 1696691712995 Tag ID: 2 - Anchor ID: 101 Distance: 2.59; Anchor ID: 102 Distance: 3.09
-398 1696691713244 Tag ID: 2 - Anchor ID: 101 Distance: 2.46; Anchor ID: 102 Distance: 2.96
-399 1696691713493 Tag ID: 2 - Anchor ID: 101 Distance: 2.30; Anchor ID: 102 Distance: 2.87
-400 1696691713748 Tag ID: 2 - Anchor ID: 101 Distance: 2.16; Anchor ID: 102 Distance: 2.75
-401 1696691713997 Tag ID: 2 - Anchor ID: 101 Distance: 2.02; Anchor ID: 102 Distance: 2.67
-402 1696691714245 Tag ID: 2 - Anchor ID: 101 Distance: 2.00; Anchor ID: 102 Distance: 2.67
-403 1696691714496 Tag ID: 2 - Anchor ID: 101 Distance: 1.93; Anchor ID: 102 Distance: 2.67
-404 1696691714743 Tag ID: 2 - Anchor ID: 101 Distance: 1.90; Anchor ID: 102 Distance: 2.65
-405 1696691714997 Tag ID: 2 - Anchor ID: 101 Distance: 1.92; Anchor ID: 102 Distance: 2.62
-406 1696691715246 Tag ID: 2 - Anchor ID: 101 Distance: 1.88; Anchor ID: 102 Distance: 2.65
-407 1696691715499 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.61
-408 1696691715744 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.63
-409 1696691715992 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.60
-410 1696691716247 Tag ID: 2 - Anchor ID: 101 Distance: 1.81; Anchor ID: 102 Distance: 2.60
-411 1696691716496 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.65
-412 1696691716745 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.66
-413 1696691717696 Tag ID: 2 - Anchor ID: 101 Distance: 1.84; Anchor ID: 102 Distance: 2.63
-414 1696691718000 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.66
-415 1696691718250 Tag ID: 2 - Anchor ID: 101 Distance: 1.85; Anchor ID: 102 Distance: 2.62
-416 1696691718745 Tag ID: 2 - Anchor ID: 101 Distance: 1.81; Anchor ID: 102 Distance: 2.62
-417 1696691718995 Tag ID: 2 - Anchor ID: 101 Distance: 1.85; Anchor ID: 102 Distance: 2.66
-418 1696691719245 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.66
-419 1696691719495 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.65
-420 1696691719745 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.67
-421 1696691719997 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.63
-422 1696691720246 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.60
-423 1696691720496 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.64
-424 1696691720746 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.66
-425 1696691720996 Tag ID: 2 - Anchor ID: 101 Distance: 1.87; Anchor ID: 102 Distance: 2.60
-426 1696691721246 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.61
-427 1696691721497 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.61
-428 1696691721748 Tag ID: 2 - Anchor ID: 101 Distance: 1.81; Anchor ID: 102 Distance: 2.64
-429 1696691721997 Tag ID: 2 - Anchor ID: 101 Distance: 1.84; Anchor ID: 102 Distance: 2.61
-430 1696691722248 Tag ID: 2 - Anchor ID: 101 Distance: 1.85; Anchor ID: 102 Distance: 2.60
-431 1696691722500 Tag ID: 2 - Anchor ID: 101 Distance: 1.84; Anchor ID: 102 Distance: 2.66
-432 1696691723000 Tag ID: 2 - Anchor ID: 101 Distance: 1.85; Anchor ID: 102 Distance: 2.60
-433 1696691723249 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.63
-434 1696691723500 Tag ID: 2 - Anchor ID: 101 Distance: 1.86; Anchor ID: 102 Distance: 2.64
-435 1696691723748 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.60
-436 1696691723996 Tag ID: 2 - Anchor ID: 101 Distance: 1.85; Anchor ID: 102 Distance: 2.60
-437 1696691724249 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.61
-438 1696691724498 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.64
-439 1696691724748 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.64
-440 1696691724996 Tag ID: 2 - Anchor ID: 101 Distance: 1.84; Anchor ID: 102 Distance: 2.63
-441 1696691725252 Tag ID: 2 - Anchor ID: 101 Distance: 1.84; Anchor ID: 102 Distance: 2.60
-442 1696691725501 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.61
-443 1696691725749 Tag ID: 2 - Anchor ID: 101 Distance: 1.81; Anchor ID: 102 Distance: 2.64
-444 1696691725999 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.63
-445 1696691726249 Tag ID: 2 - Anchor ID: 101 Distance: 1.80; Anchor ID: 102 Distance: 2.65
-446 1696691726497 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.60
-447 1696691726746 Tag ID: 2 - Anchor ID: 101 Distance: 1.83; Anchor ID: 102 Distance: 2.65
-448 1696691727001 Tag ID: 2 - Anchor ID: 101 Distance: 1.85; Anchor ID: 102 Distance: 2.62
-449 1696691727249 Tag ID: 2 - Anchor ID: 101 Distance: 1.82; Anchor ID: 102 Distance: 2.62
-450 1696691727499 Tag ID: 2 - Anchor ID: 101 Distance: 1.72; Anchor ID: 102 Distance: 2.51
-451 1696691727751 Tag ID: 2 - Anchor ID: 101 Distance: 1.63; Anchor ID: 102 Distance: 2.43
-452 1696691728002 Tag ID: 2 - Anchor ID: 101 Distance: 1.49; Anchor ID: 102 Distance: 2.36
-453 1696691728251 Tag ID: 2 - Anchor ID: 101 Distance: 1.29; Anchor ID: 102 Distance: 2.26
-454 1696691728497 Tag ID: 2 - Anchor ID: 101 Distance: 1.14; Anchor ID: 102 Distance: 2.18
-455 1696691728750 Tag ID: 2 - Anchor ID: 101 Distance: 0.98; Anchor ID: 102 Distance: 2.11
-456 1696691728999 Tag ID: 2 - Anchor ID: 101 Distance: 0.91; Anchor ID: 102 Distance: 2.10
-457 1696691729250 Tag ID: 2 - Anchor ID: 101 Distance: 0.81; Anchor ID: 102 Distance: 2.05
-458 1696691729499 Tag ID: 2 - Anchor ID: 101 Distance: 0.81; Anchor ID: 102 Distance: 1.98
-459 1696691729747 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 1.96
-460 1696691729996 Tag ID: 2 - Anchor ID: 101 Distance: 0.79; Anchor ID: 102 Distance: 1.98
-461 1696691730250 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 1.97
-462 1696691730500 Tag ID: 2 - Anchor ID: 101 Distance: 0.77; Anchor ID: 102 Distance: 1.98
-463 1696691730748 Tag ID: 2 - Anchor ID: 101 Distance: 0.77; Anchor ID: 102 Distance: 1.97
-464 1696691730997 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.01
-465 1696691731252 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 1.98
-466 1696691731502 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.00
-467 1696691731752 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.07
-468 1696691732001 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.03
-469 1696691732251 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.05
-470 1696691732501 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.04
-471 1696691732748 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 1.99
-472 1696691733002 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.05
-473 1696691733251 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.01
-474 1696691733502 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 2.08
-475 1696691733751 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 2.04
-476 1696691734005 Tag ID: 2 - Anchor ID: 101 Distance: 0.78; Anchor ID: 102 Distance: 2.08
-477 1696691735123 Tag ID: 2 - Anchor ID: 102 Distance: 2.05; Anchor ID: 101 Distance: 0.75
-478 1696691735507 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-479 1696691736005 Tag ID: 2 - Anchor ID: 101 Distance: 0.78; Anchor ID: 102 Distance: 2.02
-480 1696691736256 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.00
-481 1696691736506 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-482 1696691737002 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.04
-483 1696691737250 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.02
-484 1696691737499 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.02
-485 1696691737755 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.00
-486 1696691738004 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.03
-487 1696691738254 Tag ID: 2 - Anchor ID: 101 Distance: 0.77; Anchor ID: 102 Distance: 2.02
-488 1696691738503 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.03
-489 1696691738754 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 1.99
-490 1696691739006 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.03
-491 1696691739255 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.02
-492 1696691739755 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.04
-493 1696691740005 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.04
-494 1696691740256 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 2.02
-495 1696691740506 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.02
-496 1696691740756 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.03
-497 1696691741003 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.06
-498 1696691741254 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.01
-499 1696691741508 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.03
-500 1696691742001 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.01
-501 1696691742250 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.05
-502 1696691742504 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.00
-503 1696691742754 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-504 1696691743004 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.04
-505 1696691743253 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.02
-506 1696691743503 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.00
-507 1696691743753 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.02
-508 1696691744004 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.05
-509 1696691744255 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.04
-510 1696691744504 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.04
-511 1696691744757 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-512 1696691745007 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 2.02
-513 1696691745256 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.01
-514 1696691745503 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.01
-515 1696691745756 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.02
-516 1696691746006 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.03
-517 1696691746257 Tag ID: 2 - Anchor ID: 101 Distance: 0.72; Anchor ID: 102 Distance: 2.02
-518 1696691746506 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-519 1696691746754 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.02
-520 1696691747004 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.01
-521 1696691747257 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.02
-522 1696691747505 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.01
-523 1696691747754 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.02
-524 1696691748006 Tag ID: 2 - Anchor ID: 101 Distance: 0.73; Anchor ID: 102 Distance: 2.00
-525 1696691748254 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.01
-526 1696691748505 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.03
-527 1696691748757 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.00
-528 1696691749005 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-529 1696691749259 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.01
-530 1696691749509 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.03
-531 1696691749757 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-532 1696691750009 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.03
-533 1696691750258 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.01
-534 1696691750512 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.02
-535 1696691751006 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-536 1696691751255 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.01
-537 1696691751510 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.01
-538 1696691751758 Tag ID: 2 - Anchor ID: 101 Distance: 0.74; Anchor ID: 102 Distance: 2.03
-539 1696691752008 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.02
-540 1696691752260 Tag ID: 2 - Anchor ID: 101 Distance: 0.75; Anchor ID: 102 Distance: 2.01
-541 1696691752508 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.05
-542 1696691752758 Tag ID: 2 - Anchor ID: 101 Distance: 0.76; Anchor ID: 102 Distance: 2.03
-543 1696691753010
+1 1699181319574 1 101 4.3445731 102 4.194437
+Request time: 1699181319490557564
+Response time: 1699181319574239399
+Overall time of the request: 83
+
+2 1699181319912 1 101 4.3492651 102 4.006766
+Request time: 1699181319574645323
+Response time: 1699181319912255716
+Overall time of the request: 337
+
+3 1699181320160 1 101 4.3351901 102 4.025533
+Request time: 1699181319912575163
+Response time: 1699181320160897468
+Overall time of the request: 248
+
+4 1699181321113 1 101 4.3445731 102 4.039608
+Request time: 1699181320161182911
+Response time: 1699181321113099380
+Overall time of the request: 951
+
+5 1699181321421 1 101 4.3351901 102 4.016150
+Request time: 1699181321113340300
+Response time: 1699181321421158288
+Overall time of the request: 307
+
+6 1699181321914 1 101 4.3351901 102 4.058376
+Request time: 1699181321421357239
+Response time: 1699181321914982544
+Overall time of the request: 493
+
+7 1699181322410 1 101 4.3164221 102 4.044301
+Request time: 1699181321915181960
+Response time: 1699181322410041762
+Overall time of the request: 494
+
+8 1699181322662 1 101 4.3258061 102 4.011458
+Request time: 1699181322410311464
+Response time: 1699181322662602717
+Overall time of the request: 252
+
+9 1699181322916 1 101 4.3351901 102 4.025533
+Request time: 1699181322662690321
+Response time: 1699181322916448010
+Overall time of the request: 253
+
+10 1699181323434 1 101 4.3821071 102 4.048992
+Request time: 1699181322916511891
+Response time: 1699181323434241655
+Overall time of the request: 517
+
+11 1699181323911 1 101 4.3492651 102 4.020842
+Request time: 1699181323434346437
+Response time: 1699181323911891825
+Overall time of the request: 477
+
+12 1699181324409 1 101 4.3398811 102 4.030225
+Request time: 1699181323912182975
+Response time: 1699181324409235117
+Overall time of the request: 497
+
+13 1699181324670 1 101 4.3070391 102 4.063067
+Request time: 1699181324409456085
+Response time: 1699181324670616030
+Overall time of the request: 261
+
+14 1699181325168 1 101 4.3398811 102 4.034917
+Request time: 1699181324670847809
+Response time: 1699181325168965526
+Overall time of the request: 498
+
+15 1699181325664 1 101 4.3211151 102 4.044301
+Request time: 1699181325169121821
+Response time: 1699181325664135111
+Overall time of the request: 495
+
+16 1699181326160 1 101 4.3445731 102 4.044301
+Request time: 1699181325664234735
+Response time: 1699181326160868804
+Overall time of the request: 496
+
+17 1699181326421 1 101 4.3727241 102 4.006766
+Request time: 1699181326161147442
+Response time: 1699181326421482786
+Overall time of the request: 260
+
+18 1699181326911 1 101 4.3304981 102 4.048992
+Request time: 1699181326421705075
+Response time: 1699181326911274675
+Overall time of the request: 489
+
+19 1699181327165 1 101 4.3727241 102 4.044301
+Request time: 1699181326911502990
+Response time: 1699181327165789093
+Overall time of the request: 254
+
+20 1699181327682 1 101 4.3539571 102 4.034917
+Request time: 1699181327165985998
+Response time: 1699181327682400823
+Overall time of the request: 516
+
+21 1699181328166 1 101 4.3774161 102 4.086526
+Request time: 1699181327682592564
+Response time: 1699181328166730323
+Overall time of the request: 484
+
+22 1699181328656 1 101 4.3258061 102 4.039608
+Request time: 1699181328166926725
+Response time: 1699181328656779720
+Overall time of the request: 489
+
+23 1699181328913 1 101 4.3539571 102 4.044301
+Request time: 1699181328657009443
+Response time: 1699181328913333154
+Overall time of the request: 256
+
+24 1699181329409 1 101 4.3351901 102 4.006766
+Request time: 1699181328913536354
+Response time: 1699181329409350891
+Overall time of the request: 495
+
+25 1699181329659 1 101 4.3586491 102 4.025533
+Request time: 1699181329409573182
+Response time: 1699181329659656090
+Overall time of the request: 250
+
+26 1699181329913 1 101 4.3023471 102 4.016150
+Request time: 1699181329659862710
+Response time: 1699181329913349921
+Overall time of the request: 253
+
+27 1699181330170 1 101 4.3398811 102 3.997383
+Request time: 1699181329913600273
+Response time: 1699181330170289822
+Overall time of the request: 256
+
+28 1699181330661 1 101 4.3492651 102 4.025533
+Request time: 1699181330170488802
+Response time: 1699181330661305792
+Overall time of the request: 490
+
+29 1699181330930 1 101 4.3351901 102 3.997383
+Request time: 1699181330661545498
+Response time: 1699181330930208458
+Overall time of the request: 268
+
+30 1699181331433 1 101 4.3351901 102 4.039608
+Request time: 1699181330930409052
+Response time: 1699181331433286126
+Overall time of the request: 502
+
+31 1699181331924 1 101 4.3492651 102 4.020842
+Request time: 1699181331433482113
+Response time: 1699181331924082911
+Overall time of the request: 490
+
+32 1699181332409 1 101 4.3492651 102 4.020842
+Request time: 1699181331924281211
+Response time: 1699181332409180510
+Overall time of the request: 484
+
+33 1699181332657 1 101 4.3586491 102 4.034917
+Request time: 1699181332409382312
+Response time: 1699181332657805589
+Overall time of the request: 248
+
+34 1699181332916 1 101 4.3117311 102 4.020842
+Request time: 1699181332658003810
+Response time: 1699181332916418695
+Overall time of the request: 258
+
+35 1699181333412 1 101 4.3351901 102 4.034917
+Request time: 1699181332916684467
+Response time: 1699181333412461339
+Overall time of the request: 495
+
+36 1699181333669 1 101 4.3304981 102 4.039608
+Request time: 1699181333412716468
+Response time: 1699181333669153814
+Overall time of the request: 256
+
+37 1699181334169 1 101 4.3211151 102 4.048992
+Request time: 1699181333669357721
+Response time: 1699181334169261668
+Overall time of the request: 499
+
+38 1699181334682 1 101 4.3398811 102 4.063067
+Request time: 1699181334169454453
+Response time: 1699181334682835828
+Overall time of the request: 513
+
+39 1699181335162 1 101 4.3258061 102 4.039608
+Request time: 1699181334683270719
+Response time: 1699181335162343387
+Overall time of the request: 479
+
+40 1699181335430 1 101 4.3821071 102 4.039608
+Request time: 1699181335162570157
+Response time: 1699181335430912578
+Overall time of the request: 268
+
+41 1699181335914 1 101 4.3304981 102 4.039608
+Request time: 1699181335431113146
+Response time: 1699181335914631702
+Overall time of the request: 483
+
+42 1699181336409 1 101 4.3680321 102 4.072451
+Request time: 1699181335914831113
+Response time: 1699181336409913908
+Overall time of the request: 495
+
+43 1699181336691 1 101 4.3398811 102 3.992691
+Request time: 1699181336410107834
+Response time: 1699181336691603070
+Overall time of the request: 281
+
+44 1699181337163 1 101 4.3398811 102 4.025533
+Request time: 1699181336691823938
+Response time: 1699181337163099798
+Overall time of the request: 471
+
+45 1699181337669 1 101 4.3492651 102 4.039608
+Request time: 1699181337163328131
+Response time: 1699181337669055523
+Overall time of the request: 505
+
+46 1699181338167 1 101 4.3586491 102 4.030225
+Request time: 1699181337669259401
+Response time: 1699181338167062259
+Overall time of the request: 497
+
+47 1699181338678 1 101 4.3117311 102 4.006766
+Request time: 1699181338167281133
+Response time: 1699181338678254535
+Overall time of the request: 510
+
+48 1699181339164 1 101 4.3633401 102 4.020842
+Request time: 1699181338678494789
+Response time: 1699181339164050757
+Overall time of the request: 485
+
+49 1699181339672 1 101 4.3492651 102 4.030225
+Request time: 1699181339164202088
+Response time: 1699181339672240909
+Overall time of the request: 508
+
+50 1699181340171 1 101 4.3727241 102 4.030225
+Request time: 1699181339672387926
+Response time: 1699181340171902781
+Overall time of the request: 499
+
+51 1699181340662 1 101 4.3445731 102 4.034917
+Request time: 1699181340172145153
+Response time: 1699181340662594336
+Overall time of the request: 490
+
+52 1699181340916 1 101 4.3445731 102 4.034917
+Request time: 1699181340662829270
+Response time: 1699181340916318792
+Overall time of the request: 253
+
+53 1699181341409 1 101 4.3539571 102 4.053684
+Request time: 1699181340916517346
+Response time: 1699181341409728514
+Overall time of the request: 493
+
+54 1699181341658 1 101 4.3774161 102 4.044301
+Request time: 1699181341409914001
+Response time: 1699181341658823619
+Overall time of the request: 248
+
+55 1699181341913 1 101 4.3774161 102 4.016150
+Request time: 1699181341658920997
+Response time: 1699181341913885422
+Overall time of the request: 254
+
+56 1699181342161 1 101 4.3445731 102 4.067759
+Request time: 1699181341914048377
+Response time: 1699181342161354912
+Overall time of the request: 247
+
+57 1699181342411 1 101 4.3633401 102 4.063067
+Request time: 1699181342161636728
+Response time: 1699181342411973069
+Overall time of the request: 250
+
+58 1699181342665 1 101 4.3023471 102 4.030225
+Request time: 1699181342412225358
+Response time: 1699181342665609644
+Overall time of the request: 253
+
+59 1699181343188 1 101 4.3727241 102 4.039608
+Request time: 1699181342665833623
+Response time: 1699181343188631999
+Overall time of the request: 522
+
+60 1699181343665 1 101 4.3633401 102 4.034917
+Request time: 1699181343188868259
+Response time: 1699181343665177110
+Overall time of the request: 476
+
+61 1699181344165 1 101 4.3492651 102 4.025533
+Request time: 1699181343665377407
+Response time: 1699181344165340403
+Overall time of the request: 499
+
+62 1699181344667 1 101 4.3304981 102 4.034917
+Request time: 1699181344165540441
+Response time: 1699181344667392027
+Overall time of the request: 501
+
+63 1699181345164 1 101 4.3586491 102 4.039608
+Request time: 1699181344667592993
+Response time: 1699181345164960888
+Overall time of the request: 497
+
+64 1699181345708 1 101 4.3398811 102 4.025533
+Request time: 1699181345165158465
+Response time: 1699181345708112126
+Overall time of the request: 542
+
+65 1699181346165 1 101 4.3398811 102 4.063067
+Request time: 1699181345708566501
+Response time: 1699181346165334850
+Overall time of the request: 456
+
+66 1699181346663 1 101 4.3633401 102 4.020842
+Request time: 1699181346165548823
+Response time: 1699181346663069150
+Overall time of the request: 497
+
+67 1699181347169 1 101 4.3023471 102 4.002075
+Request time: 1699181346663267705
+Response time: 1699181347169319171
+Overall time of the request: 506
+
+68 1699181347665 1 101 4.3304981 102 4.030225
+Request time: 1699181347169575484
+Response time: 1699181347665522516
+Overall time of the request: 495
+
+69 1699181348160 1 101 4.3304981 102 4.025533
+Request time: 1699181347665726032
+Response time: 1699181348160974389
+Overall time of the request: 495
+
+70 1699181348410 1 101 4.3164221 102 4.011458
+Request time: 1699181348161170431
+Response time: 1699181348410351914
+Overall time of the request: 249
+
+71 1699181348661 1 101 4.3258061 102 4.039608
+Request time: 1699181348410547902
+Response time: 1699181348661342629
+Overall time of the request: 250
+
+72 1699181348912 1 101 4.3633401 102 3.992691
+Request time: 1699181348661544907
+Response time: 1699181348912274648
+Overall time of the request: 250
+
+73 1699181349160 1 101 4.3586491 102 4.030225
+Request time: 1699181348912503725
+Response time: 1699181349160089067
+Overall time of the request: 247
+
+74 1699181349415 1 101 4.3586491 102 4.011458
+Request time: 1699181349160263865
+Response time: 1699181349415076415
+Overall time of the request: 254
+
+75 1699181349914 1 101 4.3633401 102 4.048992
+Request time: 1699181349415208399
+Response time: 1699181349914255034
+Overall time of the request: 499
+
+76 1699181350412 1 101 4.3821071 102 4.011458
+Request time: 1699181349914388257
+Response time: 1699181350412018014
+Overall time of the request: 497
+
+77 1699181350670 1 101 4.3633401 102 4.006766
+Request time: 1699181350412262752
+Response time: 1699181350670378079
+Overall time of the request: 258
+
+78 1699181351163 1 101 4.3539571 102 4.030225
+Request time: 1699181350670612157
+Response time: 1699181351163569010
+Overall time of the request: 492
+
+79 1699181351414 1 101 4.3680321 102 3.983307
+Request time: 1699181351163777139
+Response time: 1699181351414760180
+Overall time of the request: 250
+
+80 1699181351670 1 101 4.3633401 102 4.044301
+Request time: 1699181351414966808
+Response time: 1699181351670435557
+Overall time of the request: 255
+
+81 1699181352164 1 101 4.3304981 102 4.006766
+Request time: 1699181351670684710
+Response time: 1699181352164211079
+Overall time of the request: 493
+
+82 1699181352412 1 101 4.3821071 102 4.016150
+Request time: 1699181352164350925
+Response time: 1699181352412443837
+Overall time of the request: 248
+
+83 1699181352927 1 101 4.3539571 102 4.039608
+Request time: 1699181352412698534
+Response time: 1699181352927944640
+Overall time of the request: 515
+
+84 1699181353419 1 101 4.3351901 102 4.039608
+Request time: 1699181352928177883
+Response time: 1699181353419564144
+Overall time of the request: 491
+
+85 1699181353911 1 101 4.3351901 102 4.030225
+Request time: 1699181353419715460
+Response time: 1699181353911120992
+Overall time of the request: 491
+
+86 1699181354167 1 101 4.3445731 102 4.020842
+Request time: 1699181353911257638
+Response time: 1699181354167352155
+Overall time of the request: 256
+
+87 1699181354659 1 101 4.3633401 102 4.058376
+Request time: 1699181354167554126
+Response time: 1699181354659347526
+Overall time of the request: 491
+
+88 1699181354914 1 101 4.3445731 102 4.044301
+Request time: 1699181354659579950
+Response time: 1699181354914416902
+Overall time of the request: 254
+
+89 1699181355162 1 101 4.3351901 102 4.016150
+Request time: 1699181354914689406
+Response time: 1699181355162632387
+Overall time of the request: 247
+
+90 1699181355412 1 101 4.3445731 102 4.034917
+Request time: 1699181355162838452
+Response time: 1699181355412574732
+Overall time of the request: 249
+
+91 1699181355668 1 101 4.3680321 102 4.016150
+Request time: 1699181355412827711
+Response time: 1699181355668465427
+Overall time of the request: 255
+
+92 1699181356167 1 101 4.3445731 102 4.034917
+Request time: 1699181355668702220
+Response time: 1699181356167400132
+Overall time of the request: 498
+
+93 1699181356671 1 101 4.3680321 102 4.011458
+Request time: 1699181356167535312
+Response time: 1699181356671302929
+Overall time of the request: 503
+
+94 1699181357165 1 101 4.3023471 102 4.039608
+Request time: 1699181356671382933
+Response time: 1699181357165372209
+Overall time of the request: 493
+
+95 1699181357415 1 101 4.3633401 102 4.006766
+Request time: 1699181357165567446
+Response time: 1699181357415274166
+Overall time of the request: 249
+
+96 1699181357663 1 101 4.3586491 102 4.025533
+Request time: 1699181357415461518
+Response time: 1699181357663301947
+Overall time of the request: 247
+
+97 1699181357912 1 101 4.3727241 102 4.002075
+Request time: 1699181357663477923
+Response time: 1699181357912499126
+Overall time of the request: 249
+
+98 1699181358173 1 101 4.3586491 102 4.058376
+Request time: 1699181357912809173
+Response time: 1699181358173389238
+Overall time of the request: 260
+
+99 1699181358668 1 101 4.3351901 102 4.030225
+Request time: 1699181358173572822
+Response time: 1699181358668775265
+Overall time of the request: 495
+
+100 1699181359166 1 101 4.3586491 102 4.011458
+Request time: 1699181358668952019
+Response time: 1699181359166454950
+Overall time of the request: 497
+
+101 1699181359410 1 101 4.3492651 102 4.025533
+Request time: 1699181359166631367
+Response time: 1699181359410967101
+Overall time of the request: 244
+
+102 1699181359672 1 101 4.3398811 102 4.044301
+Request time: 1699181359411164171
+Response time: 1699181359672294652
+Overall time of the request: 261
+
+103 1699181360182 1 101 4.3539571 102 4.030225
+Request time: 1699181359672469249
+Response time: 1699181360182072458
+Overall time of the request: 509
+
+104 1699181360672 1 101 4.3633401 102 4.030225
+Request time: 1699181360182272096
+Response time: 1699181360672910188
+Overall time of the request: 490
+
+105 1699181361163 1 101 4.3633401 102 4.011458
+Request time: 1699181360673023647
+Response time: 1699181361163952405
+Overall time of the request: 490
+
+106 1699181361424 1 101 4.3539571 102 4.034917
+Request time: 1699181361164147102
+Response time: 1699181361424107191
+Overall time of the request: 259
+
+107 1699181361914 1 101 4.3492651 102 4.063067
+Request time: 1699181361424183703
+Response time: 1699181361914634330
+Overall time of the request: 490
+
+108 1699181362160 1 101 4.3539571 102 4.016150
+Request time: 1699181361914848716
+Response time: 1699181362160141337
+Overall time of the request: 245
+
+109 1699181362429 1 101 4.3821071 102 4.002075
+Request time: 1699181362160379021
+Response time: 1699181362429113909
+Overall time of the request: 268
+
+110 1699181362913 1 101 4.3774161 102 4.020842
+Request time: 1699181362429346166
+Response time: 1699181362913982847
+Overall time of the request: 484
+
+111 1699181363166 1 101 4.3398811 102 4.044301
+Request time: 1699181362914352779
+Response time: 1699181363166520830
+Overall time of the request: 252
+
+112 1699181363413 1 101 4.3492651 102 4.048992
+Request time: 1699181363166747591
+Response time: 1699181363413123005
+Overall time of the request: 246
+
+113 1699181363665 1 101 4.3070391 102 4.034917
+Request time: 1699181363413333003
+Response time: 1699181363665671351
+Overall time of the request: 252
+
+114 1699181363918 1 101 4.3586491 102 4.030225
+Request time: 1699181363665794369
+Response time: 1699181363918058028
+Overall time of the request: 252
+
+115 1699181364408 1 101 4.3492651 102 4.025533
+Request time: 1699181363918221903
+Response time: 1699181364408861417
+Overall time of the request: 490
+
+116 1699181364664 1 101 4.3445731 102 4.020842
+Request time: 1699181364408987425
+Response time: 1699181364664374953
+Overall time of the request: 255
+
+117 1699181365482 1 101 4.3680321 102 4.006766
+Request time: 1699181364664615013
+Response time: 1699181365482399480
+Overall time of the request: 817
+
+118 1699181365912 1 101 4.3445731 102 4.020842
+Request time: 1699181365482737709
+Response time: 1699181365912704321
+Overall time of the request: 429
+
+119 1699181366163 1 101 4.3727241 102 4.039608
+Request time: 1699181365912945450
+Response time: 1699181366163751536
+Overall time of the request: 250
+
+120 1699181366414 1 101 4.3398811 102 4.039608
+Request time: 1699181366163968432
+Response time: 1699181366414984129
+Overall time of the request: 251
+
+121 1699181366915 1 101 4.3351901 102 4.011458
+Request time: 1699181366415157960
+Response time: 1699181366915980727
+Overall time of the request: 500
+
+122 1699181367161 1 101 4.3633401 102 4.034917
+Request time: 1699181366916159352
+Response time: 1699181367161794608
+Overall time of the request: 245
+
+123 1699181367413 1 101 4.3258061 102 4.016150
+Request time: 1699181367161972197
+Response time: 1699181367413769088
+Overall time of the request: 251
+
+124 1699181367664 1 101 4.3351901 102 4.034917
+Request time: 1699181367413945513
+Response time: 1699181367664987828
+Overall time of the request: 251
+
+125 1699181367922 1 101 4.3539571 102 4.011458
+Request time: 1699181367665180687
+Response time: 1699181367922697066
+Overall time of the request: 257
+
+126 1699181368418 1 101 4.3445731 102 4.016150
+Request time: 1699181367923131139
+Response time: 1699181368418016279
+Overall time of the request: 494
+
+127 1699181368919 1 101 4.3633401 102 4.044301
+Request time: 1699181368418256399
+Response time: 1699181368919286831
+Overall time of the request: 501
+
+128 1699181369416 1 101 4.3539571 102 4.020842
+Request time: 1699181368919426765
+Response time: 1699181369416503845
+Overall time of the request: 497
+
+129 1699181369665 1 101 4.3633401 102 4.002075
+Request time: 1699181369416684756
+Response time: 1699181369665407641
+Overall time of the request: 248
+
+130 1699181369912 1 101 4.3445731 102 4.030225
+Request time: 1699181369665676804
+Response time: 1699181369912341053
+Overall time of the request: 246
+
+131 1699181370165 1 101 4.3304981 102 4.030225
+Request time: 1699181369912576723
+Response time: 1699181370165280700
+Overall time of the request: 252
+
+132 1699181370417 1 101 4.3211151 102 3.997383
+Request time: 1699181370165534037
+Response time: 1699181370417883871
+Overall time of the request: 252
+
+133 1699181370926 1 101 4.3492651 102 4.006766
+Request time: 1699181370418113930
+Response time: 1699181370926916194
+Overall time of the request: 508
+
+134 1699181371410 1 101 4.3586491 102 4.025533
+Request time: 1699181370927120709
+Response time: 1699181371410770975
+Overall time of the request: 483
+
+135 1699181371661 1 101 4.3821071 102 4.048992
+Request time: 1699181371410862719
+Response time: 1699181371661848602
+Overall time of the request: 250
+
+136 1699181371924 1 101 4.3211151 102 4.002075
+Request time: 1699181371661933343
+Response time: 1699181371924529200
+Overall time of the request: 262
+
+137 1699181372421 1 101 4.3304981 102 4.002075
+Request time: 1699181371924734409
+Response time: 1699181372421339026
+Overall time of the request: 496
+
+138 1699181372913 1 101 4.3539571 102 4.030225
+Request time: 1699181372421572222
+Response time: 1699181372913003711
+Overall time of the request: 491
+
+139 1699181373164 1 101 4.3070391 102 4.011458
+Request time: 1699181372913277900
+Response time: 1699181373164974136
+Overall time of the request: 251
+
+140 1699181373666 1 101 4.3680321 102 4.030225
+Request time: 1699181373165184880
+Response time: 1699181373666639368
+Overall time of the request: 501
+
+141 1699181373923 1 101 4.3821071 102 4.077143
+Request time: 1699181373666736845
+Response time: 1699181373923834675
+Overall time of the request: 257
+
+142 1699181374444 1 101 4.3492651 102 4.039608
+Request time: 1699181373923970301
+Response time: 1699181374444134275
+Overall time of the request: 520
+
+143 1699181374913 1 101 4.3633401 102 4.048992
+Request time: 1699181374444238723
+Response time: 1699181374913137813
+Overall time of the request: 468
+
+144 1699181375429 1 101 4.3680321 102 4.034917
+Request time: 1699181374913230912
+Response time: 1699181375429417133
+Overall time of the request: 516
+
+145 1699181375911 1 101 4.3304981 102 4.020842
+Request time: 1699181375429607436
+Response time: 1699181375911067209
+Overall time of the request: 481
+
+146 1699181377171 1 101 4.3727241 102 4.053684
+Request time: 1699181375911209275
+Response time: 1699181377171378205
+Overall time of the request: 1260
+
+147 1699181377672 1 101 4.3398811 102 4.025533
+Request time: 1699181377171456243
+Response time: 1699181377672072697
+Overall time of the request: 500
+
+148 1699181378163 1 101 4.3398811 102 4.030225
+Request time: 1699181377672159289
+Response time: 1699181378163480949
+Overall time of the request: 491
+
+149 1699181378418 1 101 4.3821071 102 4.044301
+Request time: 1699181378163727372
+Response time: 1699181378418708745
+Overall time of the request: 254
+
+150 1699181378921 1 101 4.3258061 102 4.063067
+Request time: 1699181378418983110
+Response time: 1699181378921598708
+Overall time of the request: 502
+
+151 1699181379418 1 101 4.3445731 102 4.039608
+Request time: 1699181378921876662
+Response time: 1699181379418265322
+Overall time of the request: 496
+
+152 1699181379912 1 101 4.3304981 102 4.039608
+Request time: 1699181379418528670
+Response time: 1699181379912415533
+Overall time of the request: 493
+
+153 1699181380161 1 101 4.3492651 102 4.030225
+Request time: 1699181379912749707
+Response time: 1699181380161602951
+Overall time of the request: 248
+
+154 1699181380418 1 101 4.3445731 102 4.044301
+Request time: 1699181380161865963
+Response time: 1699181380418506026
+Overall time of the request: 256
+
+155 1699181380923 1 101 4.3633401 102 4.006766
+Request time: 1699181380418783446
+Response time: 1699181380923240328
+Overall time of the request: 504
+
+156 1699181381414 1 101 4.3633401 102 4.016150
+Request time: 1699181380923530993
+Response time: 1699181381414161701
+Overall time of the request: 490
+
+157 1699181381663 1 101 4.3680321 102 4.039608
+Request time: 1699181381414370993
+Response time: 1699181381663923111
+Overall time of the request: 249
+
+158 1699181381918 1 101 4.2882721 102 4.016150
+Request time: 1699181381664197820
+Response time: 1699181381918076407
+Overall time of the request: 253
+
+159 1699181382165 1 101 4.3633401 102 3.987999
+Request time: 1699181381918343478
+Response time: 1699181382165340053
+Overall time of the request: 246
+
+160 1699181382415 1 101 4.3586491 102 4.025533
+Request time: 1699181382165408593
+Response time: 1699181382415221459
+Overall time of the request: 249
+
+161 1699181382666 1 101 4.3445731 102 4.016150
+Request time: 1699181382415301326
+Response time: 1699181382666746699
+Overall time of the request: 251
+
+162 1699181382916 1 101 4.3492651 102 4.011458
+Request time: 1699181382666930742
+Response time: 1699181382916054381
+Overall time of the request: 249
+
+163 1699181383174 1 101 4.3727241 102 4.020842
+Request time: 1699181382916233090
+Response time: 1699181383174674904
+Overall time of the request: 258
+
+164 1699181383671 1 101 4.3445731 102 4.053684
+Request time: 1699181383174876372
+Response time: 1699181383671063970
+Overall time of the request: 496
+
+165 1699181384162 1 101 4.3492651 102 4.030225
+Request time: 1699181383671297565
+Response time: 1699181384162407858
+Overall time of the request: 491
+
+166 1699181384412 1 101 4.3680321 102 4.044301
+Request time: 1699181384162669207
+Response time: 1699181384412352955
+Overall time of the request: 249
+
+167 1699181384669 1 101 4.3867991 102 4.011458
+Request time: 1699181384412469151
+Response time: 1699181384669994428
+Overall time of the request: 257
+

@@ -152,21 +152,22 @@ void Server::runServer()
                     nbytes = read(clientSocketFD, buffer, sizeof(buffer));
 
                     currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+                    timestamp = currentTime.count();
                     responseTime = std::chrono::high_resolution_clock::now();
 
-                    std::cout << "Read request \n";
+                    // std::cout << "Read request \n";
                     std::string request(buffer, nbytes);
-                    std::cout << "Received distance " << request << " from client: " << clientSocketFD << std::endl;
+                    // std::cout << "Received distance " << request << " from client: " << clientSocketFD << std::endl;
 
-                    timestamp = currentTime.count();
-                    timestampFile << dataIndex << " " << timestamp << " " << request << "\n";
-                    const auto duration = std::chrono::duration_cast<std::chrono::microseconds>(requestTime - responseTime);
-                    timestampFile << "Overall time of the request: " << duration.count() << std::endl;
+                    timestampFile << dataIndex << " " << timestamp << " " << request;
+                    const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(responseTime - requestTime);
+                    timestampFile << "Overall time of the request: " << duration.count() << "\n"
+                                  << std::endl;
 
-                    if (debugMode)
-                    {
-                        std::cout << "Data " << dataIndex << " is recorded" << std::endl;
-                    }
+                    // if (debugMode)
+                    // {
+                    //     std::cout << "Data " << dataIndex << " is recorded" << std::endl;
+                    // }
                     dataIndex++;
 
                     std::string responseToTag = "7\n";
@@ -191,7 +192,7 @@ void Server::runServer()
             }
         }
 
-        std::cout << "isBusy: " << isBusy << std::endl;
+        // std::cout << "isBusy: " << isBusy << std::endl;
         if (!clientQueue.empty() && !isBusy)
         {
             clientSocketFD = clientQueue.front();
@@ -203,7 +204,7 @@ void Server::runServer()
             isBusy = true;
             currentClientSocketFD = clientSocketFD;
 
-            std::cout << "Sent request for distance to the client with socketID: " << clientSocketFD << std::endl;
+            // std::cout << "Sent request for distance to the client with socketID: " << clientSocketFD << std::endl;
         }
     }
     timestampFile.close();
