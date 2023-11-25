@@ -207,8 +207,10 @@ void Server::runServer()
                     FD_CLR(currentClientSocketFD, &readFDS);
                     clientSocketList[socketID] = 0;
                     currentClientSocketFD = -1;
-                    break;
+                    // break;
                 }
+
+                break;
             }
         }
 

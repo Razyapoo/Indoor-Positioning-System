@@ -474,3 +474,35 @@ Distances:
   - The goal of this experiemnt is to place tags at random places and analize their behavoir, detect some anomalies. 
 
   - The main difference from the prevoius experiments: aruco marker were shown during the whole experiment. So, now it cannot be used as a reference when tags were moved and when were stood. 
+
+
+
+  # 20 November, 2023
+
+  - Decide speed of moving, decide how many time we need to stay on the place
+  - Call Peter at saturday
+
+  # 23 November, 2023
+
+  During epxeriments at school I have realized that the answer from tag sometime take longer than usual, common time is 250 ms. The time is measured starting when the signal sent to the tag (Mer!) and till response with distances is reseived.
+
+  - I have checked the time of beacon communication at the level of beacons and the whole process starting from discovering anchors and communication with all of them takes around 230-250 ms (need to correct again, because I have used arduino timestamps in the arduino terminal, and these timestamps are not so precise).
+  
+  - Therefore I can conclude that there is the time delay on the server side. There is no delay inside loops, but it looks like there is delay with the socket function "select".
+
+  - TODO: to show where can be the problem. Show the time spent on beacon communication (direct, not including server), and overall time of the communication including server side.
+
+
+# 25 November, 2023
+
+- Experiment at school
+
+- Before experiment:
+  
+  - There is a need to check the speed and reach. I have changed the timer for the blink from 1000 to 80 ms. Whould this change affect the speed and reach?
+
+  - Also, it would be good to measure distances with tags calibrated at 1 m and at 12 m.
+
+  - Do we need to measure such long distances?
+
+- After the experiment:

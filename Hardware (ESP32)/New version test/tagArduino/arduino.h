@@ -82,7 +82,7 @@ bool isTagBusy = false;
 #define HARD_RESET_TIMEOUT 3000
 #define SERVER_TIMEOUT_MS 20
 #define SLEEP 100 // 300
-#define BLINK_DELAY 1000
+#define BLINK_DELAY 80
 
 /* WiFi settings */
 WiFiClient client;
