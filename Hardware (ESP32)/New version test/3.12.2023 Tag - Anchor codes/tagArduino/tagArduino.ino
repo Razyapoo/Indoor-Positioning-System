@@ -308,7 +308,7 @@ void initTag()
   DW1000.setNetworkId(networkId);
   DW1000.setDeviceAddress(myID);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16510);
+  DW1000.setAntennaDelay(16460);
   // 16536 - 5 m/
   // 16384 - standard
   // Tag 2: 16424
@@ -498,9 +498,7 @@ void loop()
       sendDistancesToServer();
 
       while (client.connected() && !client.available())
-      {
-        continue;
-      }
+        ;
 
       ack = client.readStringUntil('\n');
       if (ack == "7")
@@ -523,15 +521,6 @@ void loop()
       discoveredAnchorsCount = 0;
       discoveryTimer = discoveryTimeout;
       noteActivity();
-
-      // if (discoveredAnchorsCount == 1)
-      // {
-      //   delayForOneAnchor = millis();
-      //   while (millis() - delayForOneAnchor < SLEEP)
-      //   {
-      //     continue;
-      //   }
-      // }
       return;
     }
 

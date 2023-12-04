@@ -506,3 +506,13 @@ Distances:
   - Do we need to measure such long distances?
 
 - After the experiment:
+  - Distance between anchors: 250,5 cm
+  - Distance from camera to anchor baseline is 160,5 cm
+  
+
+
+- First experiemnt:
+
+  - Without aruco marker, moving faster. 
+  - Tags are calibrated at 5 m
+  - blink 80 ms

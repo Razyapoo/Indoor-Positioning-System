@@ -143,7 +143,7 @@ byte message[FRAME_SIZE] = {0};
 byte currentMessage[FRAME_SIZE] = {0};
 byte receivedMessage[FRAME_SIZE] = {0};
 byte expectedMessageType;
-unsigned long blinkTimer, blinkCurrentMillis, discoveryTimeout, discoveryTimer, delayForOneAnchor;
+unsigned long blinkTimer, blinkCurrentMillis, discoveryTimeout, discoveryTimer;
 // byte rxFrame[FRAME_SIZE];
 
 char msgToSend[150];

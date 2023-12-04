@@ -13,11 +13,6 @@ uint16_t getMyID()
   {
     return 102;
   }
-  else if (macAddr == "70:B8:F6:D8:F6:24")
-  {
-    return 103;
-  }
-
   else
   {
     if (debug)
