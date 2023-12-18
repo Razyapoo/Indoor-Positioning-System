@@ -308,7 +308,7 @@ void initTag()
   DW1000.setNetworkId(networkId);
   DW1000.setDeviceAddress(myID);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16510);
+  DW1000.setAntennaDelay(16515);
   // 16536 - 5 m/
   // 16384 - standard
   // Tag 2: 16424

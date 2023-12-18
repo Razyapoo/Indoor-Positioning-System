@@ -1,0 +1,3605 @@
+1 1702812882636 3 102 4.921660 round1: 40668.570312 reply1: 37390.527344 round2: 37390.527344 reply2: 37390.566406 tof: 0.016417 
+Request time: 1702812882535
+Response time: 1702812882636
+Overall time of the request (response time - request time): 101
+
+2 1702812882885 3 102 4.931044 round1: 40669.105469 reply1: 37399.496094 round2: 37399.496094 reply2: 37399.539062 tof: 0.016448 
+Request time: 1702812882637
+Response time: 1702812882885
+Overall time of the request (response time - request time): 248
+
+3 1702812883152 3 102 4.973269 round1: 40668.347656 reply1: 37380.640625 round2: 37380.640625 reply2: 37380.679688 tof: 0.016589 
+Request time: 1702812882885
+Response time: 1702812883152
+Overall time of the request (response time - request time): 266
+
+4 1702812883383 3 102 4.940427 round1: 40669.453125 reply1: 37402.953125 round2: 37402.953125 reply2: 37402.996094 tof: 0.016479 
+Request time: 1702812883152
+Response time: 1702812883383
+Overall time of the request (response time - request time): 231
+
+5 1702812883646 3 102 4.940427 round1: 40669.042969 reply1: 37376.359375 round2: 37376.359375 reply2: 37376.398438 tof: 0.016479 
+Request time: 1702812883384
+Response time: 1702812883646
+Overall time of the request (response time - request time): 262
+
+6 1702812883901 3 102 4.926352 round1: 40669.601562 reply1: 37408.574219 round2: 37408.574219 reply2: 37408.617188 tof: 0.016433 
+Request time: 1702812883646
+Response time: 1702812883901
+Overall time of the request (response time - request time): 254
+
+7 1702812884134 3 102 4.879434 round1: 40674.113281 reply1: 37380.144531 round2: 37380.144531 reply2: 37380.187500 tof: 0.016276 
+Request time: 1702812883901
+Response time: 1702812884134
+Overall time of the request (response time - request time): 232
+
+8 1702812884393 3 102 4.949811 round1: 40673.750000 reply1: 37393.316406 round2: 37393.316406 reply2: 37393.355469 tof: 0.016511 
+Request time: 1702812884134
+Response time: 1702812884393
+Overall time of the request (response time - request time): 258
+
+9 1702812884649 3 102 4.902893 round1: 40669.054688 reply1: 37397.226562 round2: 37397.226562 reply2: 37397.265625 tof: 0.016354 
+Request time: 1702812884393
+Response time: 1702812884649
+Overall time of the request (response time - request time): 255
+
+10 1702812884907 3 102 4.921660 round1: 40670.058594 reply1: 37392.132812 round2: 37392.132812 reply2: 37392.171875 tof: 0.016417 
+Request time: 1702812884649
+Response time: 1702812884907
+Overall time of the request (response time - request time): 257
+
+11 1702812885137 3 102 4.940427 round1: 40668.410156 reply1: 37400.597656 round2: 37400.597656 reply2: 37400.640625 tof: 0.016479 
+Request time: 1702812884907
+Response time: 1702812885137
+Overall time of the request (response time - request time): 229
+
+12 1702812885385 3 102 4.945119 round1: 40675.734375 reply1: 37382.386719 round2: 37382.386719 reply2: 37382.425781 tof: 0.016495 
+Request time: 1702812885137
+Response time: 1702812885385
+Overall time of the request (response time - request time): 247
+
+13 1702812885654 3 102 4.949811 round1: 40668.421875 reply1: 37374.699219 round2: 37374.699219 reply2: 37374.738281 tof: 0.016511 
+Request time: 1702812885385
+Response time: 1702812885654
+Overall time of the request (response time - request time): 268
+
+14 1702812885890 3 102 4.931044 round1: 40671.281250 reply1: 37376.953125 round2: 37376.953125 reply2: 37376.992188 tof: 0.016448 
+Request time: 1702812885654
+Response time: 1702812885890
+Overall time of the request (response time - request time): 236
+
+15 1702812886146 3 102 4.921660 round1: 40674.148438 reply1: 37377.738281 round2: 37377.738281 reply2: 37377.777344 tof: 0.016417 
+Request time: 1702812885891
+Response time: 1702812886146
+Overall time of the request (response time - request time): 255
+
+16 1702812886381 3 102 4.959194 round1: 40668.675781 reply1: 37379.589844 round2: 37379.589844 reply2: 37379.628906 tof: 0.016542 
+Request time: 1702812886149
+Response time: 1702812886381
+Overall time of the request (response time - request time): 232
+
+17 1702812886642 3 102 4.926352 round1: 40669.996094 reply1: 37372.367188 round2: 37372.367188 reply2: 37372.406250 tof: 0.016433 
+Request time: 1702812886382
+Response time: 1702812886642
+Overall time of the request (response time - request time): 260
+
+18 1702812886879 3 102 4.982653 round1: 40667.535156 reply1: 37403.066406 round2: 37403.066406 reply2: 37403.101562 tof: 0.016620 
+Request time: 1702812886642
+Response time: 1702812886879
+Overall time of the request (response time - request time): 236
+
+19 1702812887133 3 102 4.926352 round1: 40670.035156 reply1: 37390.316406 round2: 37390.316406 reply2: 37390.355469 tof: 0.016433 
+Request time: 1702812886879
+Response time: 1702812887133
+Overall time of the request (response time - request time): 253
+
+20 1702812887379 3 102 4.935736 round1: 40668.441406 reply1: 37394.792969 round2: 37394.792969 reply2: 37394.832031 tof: 0.016464 
+Request time: 1702812887133
+Response time: 1702812887379
+Overall time of the request (response time - request time): 245
+
+21 1702812887650 3 102 4.977962 round1: 40671.792969 reply1: 37397.906250 round2: 37397.906250 reply2: 37397.945312 tof: 0.016605 
+Request time: 1702812887379
+Response time: 1702812887650
+Overall time of the request (response time - request time): 271
+
+22 1702812887903 3 102 4.921660 round1: 40669.015625 reply1: 37401.226562 round2: 37401.226562 reply2: 37401.269531 tof: 0.016417 
+Request time: 1702812887651
+Response time: 1702812887903
+Overall time of the request (response time - request time): 252
+
+23 1702812888157 3 102 4.935736 round1: 40668.406250 reply1: 37395.859375 round2: 37395.859375 reply2: 37395.898438 tof: 0.016464 
+Request time: 1702812887903
+Response time: 1702812888157
+Overall time of the request (response time - request time): 253
+
+24 1702812888409 3 102 4.921660 round1: 40668.343750 reply1: 37408.320312 round2: 37408.320312 reply2: 37408.359375 tof: 0.016417 
+Request time: 1702812888158
+Response time: 1702812888409
+Overall time of the request (response time - request time): 251
+
+25 1702812888628 3 102 4.982653 round1: 40669.914062 reply1: 37383.199219 round2: 37383.199219 reply2: 37383.238281 tof: 0.016620 
+Request time: 1702812888409
+Response time: 1702812888628
+Overall time of the request (response time - request time): 218
+
+26 1702812888889 3 102 4.926352 round1: 40669.179688 reply1: 37394.269531 round2: 37394.269531 reply2: 37394.308594 tof: 0.016433 
+Request time: 1702812888628
+Response time: 1702812888889
+Overall time of the request (response time - request time): 260
+
+27 1702812889130 3 102 4.912277 round1: 40675.046875 reply1: 37391.738281 round2: 37391.738281 reply2: 37391.777344 tof: 0.016386 
+Request time: 1702812888891
+Response time: 1702812889130
+Overall time of the request (response time - request time): 239
+
+28 1702812889429 3 102 4.996728 round1: 40670.546875 reply1: 37382.863281 round2: 37382.863281 reply2: 37382.902344 tof: 0.016667 
+Request time: 1702812889131
+Response time: 1702812889429
+Overall time of the request (response time - request time): 298
+
+29 1702812889650 3 102 4.940427 round1: 40668.367188 reply1: 37391.406250 round2: 37391.406250 reply2: 37391.445312 tof: 0.016479 
+Request time: 1702812889430
+Response time: 1702812889650
+Overall time of the request (response time - request time): 220
+
+30 1702812889879 3 102 4.982653 round1: 40669.171875 reply1: 37388.660156 round2: 37388.660156 reply2: 37388.699219 tof: 0.016620 
+Request time: 1702812889650
+Response time: 1702812889879
+Overall time of the request (response time - request time): 229
+
+31 1702812890147 3 102 4.931044 round1: 40669.230469 reply1: 37405.960938 round2: 37405.960938 reply2: 37406.000000 tof: 0.016448 
+Request time: 1702812889880
+Response time: 1702812890147
+Overall time of the request (response time - request time): 267
+
+32 1702812890381 3 102 4.945119 round1: 40669.851562 reply1: 37386.996094 round2: 37386.996094 reply2: 37387.039062 tof: 0.016495 
+Request time: 1702812890149
+Response time: 1702812890381
+Overall time of the request (response time - request time): 231
+
+33 1702812890653 3 102 4.940427 round1: 40670.777344 reply1: 37385.335938 round2: 37385.335938 reply2: 37385.375000 tof: 0.016479 
+Request time: 1702812890381
+Response time: 1702812890653
+Overall time of the request (response time - request time): 272
+
+34 1702812890874 3 102 5.006112 round1: 40668.371094 reply1: 37390.312500 round2: 37390.312500 reply2: 37390.351562 tof: 0.016699 
+Request time: 1702812890653
+Response time: 1702812890874
+Overall time of the request (response time - request time): 221
+
+35 1702812891150 3 102 4.959194 round1: 40669.167969 reply1: 37381.156250 round2: 37381.156250 reply2: 37381.195312 tof: 0.016542 
+Request time: 1702812890874
+Response time: 1702812891150
+Overall time of the request (response time - request time): 275
+
+36 1702812891387 3 102 4.992037 round1: 40669.222656 reply1: 37405.863281 round2: 37405.863281 reply2: 37405.902344 tof: 0.016652 
+Request time: 1702812891153
+Response time: 1702812891387
+Overall time of the request (response time - request time): 234
+
+37 1702812891632 3 102 4.940427 round1: 40667.570312 reply1: 37374.613281 round2: 37374.613281 reply2: 37374.652344 tof: 0.016479 
+Request time: 1702812891387
+Response time: 1702812891632
+Overall time of the request (response time - request time): 244
+
+38 1702812891886 3 102 4.940427 round1: 40674.183594 reply1: 37409.402344 round2: 37409.402344 reply2: 37409.441406 tof: 0.016479 
+Request time: 1702812891632
+Response time: 1702812891886
+Overall time of the request (response time - request time): 253
+
+39 1702812892157 3 102 4.945119 round1: 40670.222656 reply1: 37394.062500 round2: 37394.062500 reply2: 37394.101562 tof: 0.016495 
+Request time: 1702812891886
+Response time: 1702812892157
+Overall time of the request (response time - request time): 270
+
+40 1702812892388 3 102 4.931044 round1: 40671.890625 reply1: 37382.792969 round2: 37382.792969 reply2: 37382.835938 tof: 0.016448 
+Request time: 1702812892157
+Response time: 1702812892388
+Overall time of the request (response time - request time): 231
+
+41 1702812893654 3 102 4.982653 round1: 40669.058594 reply1: 37371.003906 round2: 37371.003906 reply2: 37371.042969 tof: 0.016620 
+Request time: 1702812892388
+Response time: 1702812893654
+Overall time of the request (response time - request time): 1265
+
+42 1702812893925 3 102 4.898201 round1: 40668.324219 reply1: 37391.929688 round2: 37391.929688 reply2: 37391.968750 tof: 0.016339 
+Request time: 1702812893657
+Response time: 1702812893925
+Overall time of the request (response time - request time): 268
+
+43 1702812894134 3 102 4.968578 round1: 40670.218750 reply1: 37381.648438 round2: 37381.648438 reply2: 37381.683594 tof: 0.016573 
+Request time: 1702812893925
+Response time: 1702812894134
+Overall time of the request (response time - request time): 208
+
+44 1702812894377 3 102 4.907585 round1: 40671.375000 reply1: 37381.769531 round2: 37381.769531 reply2: 37381.808594 tof: 0.016370 
+Request time: 1702812894134
+Response time: 1702812894377
+Overall time of the request (response time - request time): 242
+
+45 1702812894647 3 102 4.954503 round1: 40668.449219 reply1: 37381.546875 round2: 37381.546875 reply2: 37381.589844 tof: 0.016526 
+Request time: 1702812894377
+Response time: 1702812894647
+Overall time of the request (response time - request time): 269
+
+46 1702812894877 3 102 4.926352 round1: 40673.382812 reply1: 37387.214844 round2: 37387.214844 reply2: 37387.253906 tof: 0.016433 
+Request time: 1702812894647
+Response time: 1702812894877
+Overall time of the request (response time - request time): 229
+
+47 1702812895158 3 102 4.916968 round1: 40668.414062 reply1: 37396.429688 round2: 37396.429688 reply2: 37396.468750 tof: 0.016401 
+Request time: 1702812894877
+Response time: 1702812895158
+Overall time of the request (response time - request time): 281
+
+48 1702812895390 3 102 4.973269 round1: 40672.132812 reply1: 37397.230469 round2: 37397.230469 reply2: 37397.269531 tof: 0.016589 
+Request time: 1702812895159
+Response time: 1702812895390
+Overall time of the request (response time - request time): 230
+
+49 1702812895631 3 102 4.926352 round1: 40671.523438 reply1: 37375.226562 round2: 37375.226562 reply2: 37375.265625 tof: 0.016433 
+Request time: 1702812895391
+Response time: 1702812895631
+Overall time of the request (response time - request time): 239
+
+50 1702812895875 3 102 4.916968 round1: 40668.375000 reply1: 37406.644531 round2: 37406.644531 reply2: 37406.683594 tof: 0.016401 
+Request time: 1702812895634
+Response time: 1702812895875
+Overall time of the request (response time - request time): 241
+
+51 1702812896169 3 102 4.959194 round1: 40668.347656 reply1: 37373.843750 round2: 37373.843750 reply2: 37373.882812 tof: 0.016542 
+Request time: 1702812895878
+Response time: 1702812896169
+Overall time of the request (response time - request time): 291
+
+52 1702812896391 3 102 4.968578 round1: 40668.332031 reply1: 37383.742188 round2: 37383.742188 reply2: 37383.781250 tof: 0.016573 
+Request time: 1702812896178
+Response time: 1702812896391
+Overall time of the request (response time - request time): 213
+
+53 1702812896628 3 102 4.949811 round1: 40668.675781 reply1: 37386.449219 round2: 37386.449219 reply2: 37386.488281 tof: 0.016511 
+Request time: 1702812896394
+Response time: 1702812896628
+Overall time of the request (response time - request time): 234
+
+54 1702812896881 3 102 4.940427 round1: 40669.101562 reply1: 37388.308594 round2: 37388.308594 reply2: 37388.347656 tof: 0.016479 
+Request time: 1702812896631
+Response time: 1702812896881
+Overall time of the request (response time - request time): 250
+
+55 1702812897151 3 102 4.940427 round1: 40669.855469 reply1: 37373.242188 round2: 37373.242188 reply2: 37373.285156 tof: 0.016479 
+Request time: 1702812896881
+Response time: 1702812897151
+Overall time of the request (response time - request time): 269
+
+56 1702812897384 3 102 4.973269 round1: 40670.406250 reply1: 37386.824219 round2: 37386.824219 reply2: 37386.863281 tof: 0.016589 
+Request time: 1702812897153
+Response time: 1702812897384
+Overall time of the request (response time - request time): 230
+
+57 1702812897626 3 102 4.949811 round1: 40668.382812 reply1: 37391.449219 round2: 37391.449219 reply2: 37391.484375 tof: 0.016511 
+Request time: 1702812897385
+Response time: 1702812897626
+Overall time of the request (response time - request time): 241
+
+58 1702812897884 3 102 4.954503 round1: 40669.097656 reply1: 37393.468750 round2: 37393.468750 reply2: 37393.503906 tof: 0.016526 
+Request time: 1702812897627
+Response time: 1702812897884
+Overall time of the request (response time - request time): 256
+
+59 1702812898131 3 102 4.916968 round1: 40667.656250 reply1: 37380.753906 round2: 37380.753906 reply2: 37380.796875 tof: 0.016401 
+Request time: 1702812897885
+Response time: 1702812898131
+Overall time of the request (response time - request time): 246
+
+60 1702812898382 3 102 4.963886 round1: 40667.621094 reply1: 37397.031250 round2: 37397.031250 reply2: 37397.070312 tof: 0.016558 
+Request time: 1702812898134
+Response time: 1702812898382
+Overall time of the request (response time - request time): 248
+
+61 1702812898640 3 102 4.987345 round1: 40673.441406 reply1: 37402.347656 round2: 37402.347656 reply2: 37402.382812 tof: 0.016636 
+Request time: 1702812898384
+Response time: 1702812898640
+Overall time of the request (response time - request time): 256
+
+62 1702812898941 3 102 4.968578 round1: 40674.898438 reply1: 37381.597656 round2: 37381.597656 reply2: 37381.636719 tof: 0.016573 
+Request time: 1702812898640
+Response time: 1702812898941
+Overall time of the request (response time - request time): 300
+
+63 1702812899152 3 102 4.926352 round1: 40669.156250 reply1: 37374.066406 round2: 37374.066406 reply2: 37374.101562 tof: 0.016433 
+Request time: 1702812898941
+Response time: 1702812899152
+Overall time of the request (response time - request time): 211
+
+64 1702812899387 3 102 4.935736 round1: 40668.437500 reply1: 37386.222656 round2: 37386.222656 reply2: 37386.265625 tof: 0.016464 
+Request time: 1702812899153
+Response time: 1702812899387
+Overall time of the request (response time - request time): 234
+
+65 1702812899634 3 102 4.912277 round1: 40670.062500 reply1: 37378.460938 round2: 37378.460938 reply2: 37378.500000 tof: 0.016386 
+Request time: 1702812899387
+Response time: 1702812899634
+Overall time of the request (response time - request time): 246
+
+66 1702812899883 3 102 4.996728 round1: 40672.113281 reply1: 37402.589844 round2: 37402.589844 reply2: 37402.625000 tof: 0.016667 
+Request time: 1702812899634
+Response time: 1702812899883
+Overall time of the request (response time - request time): 248
+
+67 1702812900145 3 102 4.926352 round1: 40668.687500 reply1: 37387.265625 round2: 37387.265625 reply2: 37387.300781 tof: 0.016433 
+Request time: 1702812899883
+Response time: 1702812900145
+Overall time of the request (response time - request time): 262
+
+68 1702812900385 3 102 4.977962 round1: 40667.867188 reply1: 37392.328125 round2: 37392.328125 reply2: 37392.371094 tof: 0.016605 
+Request time: 1702812900145
+Response time: 1702812900385
+Overall time of the request (response time - request time): 239
+
+69 1702812900638 3 102 4.921660 round1: 40670.105469 reply1: 37403.992188 round2: 37403.992188 reply2: 37404.031250 tof: 0.016417 
+Request time: 1702812900385
+Response time: 1702812900638
+Overall time of the request (response time - request time): 252
+
+70 1702812900895 3 102 4.912277 round1: 40668.464844 reply1: 37401.875000 round2: 37401.875000 reply2: 37401.910156 tof: 0.016386 
+Request time: 1702812900639
+Response time: 1702812900895
+Overall time of the request (response time - request time): 256
+
+71 1702812901141 3 102 5.006112 round1: 40668.312500 reply1: 37395.472656 round2: 37395.472656 reply2: 37395.507812 tof: 0.016699 
+Request time: 1702812900895
+Response time: 1702812901141
+Overall time of the request (response time - request time): 245
+
+72 1702812901380 3 102 4.959194 round1: 40670.312500 reply1: 37404.289062 round2: 37404.289062 reply2: 37404.324219 tof: 0.016542 
+Request time: 1702812901142
+Response time: 1702812901380
+Overall time of the request (response time - request time): 237
+
+73 1702812901986 3 102 4.959194 round1: 40669.195312 reply1: 37373.285156 round2: 37373.285156 reply2: 37373.324219 tof: 0.016542 
+Request time: 1702812901380
+Response time: 1702812901986
+Overall time of the request (response time - request time): 605
+
+74 1702812902129 3 102 4.973269 round1: 40674.992188 reply1: 37392.402344 round2: 37392.402344 reply2: 37392.441406 tof: 0.016589 
+Request time: 1702812901987
+Response time: 1702812902129
+Overall time of the request (response time - request time): 141
+
+75 1702812902398 3 102 4.945119 round1: 40670.648438 reply1: 37379.890625 round2: 37379.890625 reply2: 37379.925781 tof: 0.016495 
+Request time: 1702812902129
+Response time: 1702812902398
+Overall time of the request (response time - request time): 268
+
+76 1702812902633 3 102 4.921660 round1: 40667.664062 reply1: 37383.000000 round2: 37383.000000 reply2: 37383.039062 tof: 0.016417 
+Request time: 1702812902399
+Response time: 1702812902633
+Overall time of the request (response time - request time): 233
+
+77 1702812902907 3 102 4.921660 round1: 40670.699219 reply1: 37387.789062 round2: 37387.789062 reply2: 37387.832031 tof: 0.016417 
+Request time: 1702812902633
+Response time: 1702812902907
+Overall time of the request (response time - request time): 273
+
+78 1702812903129 3 102 4.902893 round1: 40669.425781 reply1: 37395.062500 round2: 37395.062500 reply2: 37395.097656 tof: 0.016354 
+Request time: 1702812902908
+Response time: 1702812903129
+Overall time of the request (response time - request time): 220
+
+79 1702812903389 3 102 4.926352 round1: 40669.109375 reply1: 37382.539062 round2: 37382.539062 reply2: 37382.578125 tof: 0.016433 
+Request time: 1702812903130
+Response time: 1702812903389
+Overall time of the request (response time - request time): 258
+
+80 1702812903632 3 102 4.940427 round1: 40667.675781 reply1: 37405.757812 round2: 37405.757812 reply2: 37405.800781 tof: 0.016479 
+Request time: 1702812903391
+Response time: 1702812903632
+Overall time of the request (response time - request time): 241
+
+81 1702812903883 3 102 4.973269 round1: 40669.898438 reply1: 37384.687500 round2: 37384.687500 reply2: 37384.722656 tof: 0.016589 
+Request time: 1702812903635
+Response time: 1702812903883
+Overall time of the request (response time - request time): 248
+
+82 1702812904133 3 102 4.959194 round1: 40668.304688 reply1: 37407.253906 round2: 37407.253906 reply2: 37407.292969 tof: 0.016542 
+Request time: 1702812903885
+Response time: 1702812904133
+Overall time of the request (response time - request time): 247
+
+83 1702812904382 3 102 4.992037 round1: 40675.984375 reply1: 37390.347656 round2: 37390.347656 reply2: 37390.382812 tof: 0.016652 
+Request time: 1702812904134
+Response time: 1702812904382
+Overall time of the request (response time - request time): 247
+
+84 1702812904625 3 102 4.959194 round1: 40674.921875 reply1: 37380.644531 round2: 37380.644531 reply2: 37380.683594 tof: 0.016542 
+Request time: 1702812904383
+Response time: 1702812904625
+Overall time of the request (response time - request time): 241
+
+85 1702812904895 3 102 4.963886 round1: 40675.261719 reply1: 37393.398438 round2: 37393.398438 reply2: 37393.437500 tof: 0.016558 
+Request time: 1702812904625
+Response time: 1702812904895
+Overall time of the request (response time - request time): 269
+
+86 1702812905129 3 102 5.006112 round1: 40669.691406 reply1: 37409.042969 round2: 37409.042969 reply2: 37409.082031 tof: 0.016699 
+Request time: 1702812904895
+Response time: 1702812905129
+Overall time of the request (response time - request time): 233
+
+87 1702812905400 3 102 4.931044 round1: 40668.402344 reply1: 37373.164062 round2: 37373.164062 reply2: 37373.203125 tof: 0.016448 
+Request time: 1702812905130
+Response time: 1702812905400
+Overall time of the request (response time - request time): 269
+
+88 1702812905626 3 102 4.926352 round1: 40669.574219 reply1: 37398.871094 round2: 37398.871094 reply2: 37398.910156 tof: 0.016433 
+Request time: 1702812905401
+Response time: 1702812905626
+Overall time of the request (response time - request time): 224
+
+89 1702812905896 3 102 4.912277 round1: 40669.191406 reply1: 37371.457031 round2: 37371.457031 reply2: 37371.492188 tof: 0.016386 
+Request time: 1702812905626
+Response time: 1702812905896
+Overall time of the request (response time - request time): 269
+
+90 1702812906140 3 102 5.038954 round1: 40667.601562 reply1: 37373.988281 round2: 37373.988281 reply2: 37374.027344 tof: 0.016808 
+Request time: 1702812905896
+Response time: 1702812906140
+Overall time of the request (response time - request time): 243
+
+91 1702812906402 3 102 4.954503 round1: 40668.773438 reply1: 37380.488281 round2: 37380.488281 reply2: 37380.527344 tof: 0.016526 
+Request time: 1702812906140
+Response time: 1702812906402
+Overall time of the request (response time - request time): 262
+
+92 1702812906630 3 102 4.926352 round1: 40667.679688 reply1: 37401.187500 round2: 37401.187500 reply2: 37401.226562 tof: 0.016433 
+Request time: 1702812906403
+Response time: 1702812906630
+Overall time of the request (response time - request time): 227
+
+93 1702812906877 3 102 5.001420 round1: 40668.351562 reply1: 37381.609375 round2: 37381.609375 reply2: 37381.644531 tof: 0.016683 
+Request time: 1702812906630
+Response time: 1702812906877
+Overall time of the request (response time - request time): 246
+
+94 1702812907125 3 102 4.977962 round1: 40667.628906 reply1: 37396.898438 round2: 37396.898438 reply2: 37396.933594 tof: 0.016605 
+Request time: 1702812906877
+Response time: 1702812907125
+Overall time of the request (response time - request time): 247
+
+95 1702812907405 3 102 4.940427 round1: 40667.765625 reply1: 37402.074219 round2: 37402.074219 reply2: 37402.109375 tof: 0.016479 
+Request time: 1702812907125
+Response time: 1702812907405
+Overall time of the request (response time - request time): 280
+
+96 1702812907629 3 102 4.940427 round1: 40668.480469 reply1: 37385.007812 round2: 37385.007812 reply2: 37385.042969 tof: 0.016479 
+Request time: 1702812907405
+Response time: 1702812907629
+Overall time of the request (response time - request time): 223
+
+97 1702812907892 3 102 4.959194 round1: 40668.421875 reply1: 37388.601562 round2: 37388.601562 reply2: 37388.640625 tof: 0.016542 
+Request time: 1702812907629
+Response time: 1702812907892
+Overall time of the request (response time - request time): 262
+
+98 1702812908135 3 102 4.926352 round1: 40669.195312 reply1: 37383.613281 round2: 37383.613281 reply2: 37383.652344 tof: 0.016433 
+Request time: 1702812907892
+Response time: 1702812908135
+Overall time of the request (response time - request time): 242
+
+99 1702812908377 3 102 4.954503 round1: 40667.621094 reply1: 37387.035156 round2: 37387.035156 reply2: 37387.070312 tof: 0.016526 
+Request time: 1702812908135
+Response time: 1702812908377
+Overall time of the request (response time - request time): 242
+
+100 1702812908645 3 102 4.963886 round1: 40668.386719 reply1: 37404.242188 round2: 37404.242188 reply2: 37404.277344 tof: 0.016558 
+Request time: 1702812908378
+Response time: 1702812908645
+Overall time of the request (response time - request time): 267
+
+101 1702812908885 3 102 4.931044 round1: 40667.617188 reply1: 37387.562500 round2: 37387.562500 reply2: 37387.601562 tof: 0.016448 
+Request time: 1702812908646
+Response time: 1702812908885
+Overall time of the request (response time - request time): 239
+
+102 1702812909153 3 102 4.940427 round1: 40675.261719 reply1: 37403.289062 round2: 37403.289062 reply2: 37403.324219 tof: 0.016479 
+Request time: 1702812908885
+Response time: 1702812909153
+Overall time of the request (response time - request time): 268
+
+103 1702812909383 3 102 4.945119 round1: 40669.925781 reply1: 37391.222656 round2: 37391.222656 reply2: 37391.265625 tof: 0.016495 
+Request time: 1702812909154
+Response time: 1702812909383
+Overall time of the request (response time - request time): 229
+
+104 1702812909638 3 102 4.945119 round1: 40668.753906 reply1: 37392.585938 round2: 37392.585938 reply2: 37392.621094 tof: 0.016495 
+Request time: 1702812909384
+Response time: 1702812909638
+Overall time of the request (response time - request time): 254
+
+105 1702812909878 3 102 4.982653 round1: 40669.148438 reply1: 37387.750000 round2: 37387.750000 reply2: 37387.785156 tof: 0.016620 
+Request time: 1702812909639
+Response time: 1702812909878
+Overall time of the request (response time - request time): 239
+
+106 1702812910129 3 102 4.949811 round1: 40669.992188 reply1: 37389.582031 round2: 37389.582031 reply2: 37389.621094 tof: 0.016511 
+Request time: 1702812909879
+Response time: 1702812910129
+Overall time of the request (response time - request time): 250
+
+107 1702812910397 3 102 4.982653 round1: 40668.371094 reply1: 37394.089844 round2: 37394.089844 reply2: 37394.125000 tof: 0.016620 
+Request time: 1702812910129
+Response time: 1702812910397
+Overall time of the request (response time - request time): 267
+
+108 1702812910633 3 102 4.977962 round1: 40668.339844 reply1: 37392.613281 round2: 37392.613281 reply2: 37392.648438 tof: 0.016605 
+Request time: 1702812910400
+Response time: 1702812910633
+Overall time of the request (response time - request time): 232
+
+109 1702812910907 3 102 4.959194 round1: 40668.308594 reply1: 37406.496094 round2: 37406.496094 reply2: 37406.535156 tof: 0.016542 
+Request time: 1702812910633
+Response time: 1702812910907
+Overall time of the request (response time - request time): 274
+
+110 1702812911144 3 102 4.916968 round1: 40668.382812 reply1: 37389.085938 round2: 37389.085938 reply2: 37389.121094 tof: 0.016401 
+Request time: 1702812910907
+Response time: 1702812911144
+Overall time of the request (response time - request time): 236
+
+111 1702812911383 3 102 4.963886 round1: 40669.230469 reply1: 37376.519531 round2: 37376.519531 reply2: 37376.562500 tof: 0.016558 
+Request time: 1702812911144
+Response time: 1702812911383
+Overall time of the request (response time - request time): 238
+
+112 1702812911633 3 102 4.912277 round1: 40673.750000 reply1: 37377.519531 round2: 37377.519531 reply2: 37377.554688 tof: 0.016386 
+Request time: 1702812911383
+Response time: 1702812911633
+Overall time of the request (response time - request time): 250
+
+113 1702812911904 3 102 4.954503 round1: 40668.367188 reply1: 37389.488281 round2: 37389.488281 reply2: 37389.531250 tof: 0.016526 
+Request time: 1702812911634
+Response time: 1702812911904
+Overall time of the request (response time - request time): 270
+
+114 1702812913137 3 102 5.015495 round1: 40669.089844 reply1: 37381.152344 round2: 37381.152344 reply2: 37381.187500 tof: 0.016730 
+Request time: 1702812911905
+Response time: 1702812913137
+Overall time of the request (response time - request time): 1232
+
+115 1702812913392 3 102 4.931044 round1: 40669.746094 reply1: 37383.855469 round2: 37383.855469 reply2: 37383.894531 tof: 0.016448 
+Request time: 1702812913137
+Response time: 1702812913392
+Overall time of the request (response time - request time): 254
+
+116 1702812913656 3 102 4.977962 round1: 40670.574219 reply1: 37396.843750 round2: 37396.843750 reply2: 37396.882812 tof: 0.016605 
+Request time: 1702812913392
+Response time: 1702812913656
+Overall time of the request (response time - request time): 264
+
+117 1702812913893 3 102 4.987345 round1: 40669.820312 reply1: 37381.734375 round2: 37381.734375 reply2: 37381.769531 tof: 0.016636 
+Request time: 1702812913657
+Response time: 1702812913893
+Overall time of the request (response time - request time): 236
+
+118 1702812914127 3 102 4.982653 round1: 40675.019531 reply1: 37392.054688 round2: 37392.054688 reply2: 37392.093750 tof: 0.016620 
+Request time: 1702812913893
+Response time: 1702812914127
+Overall time of the request (response time - request time): 233
+
+119 1702812914390 3 102 4.973269 round1: 40670.007812 reply1: 37391.972656 round2: 37391.972656 reply2: 37392.007812 tof: 0.016589 
+Request time: 1702812914129
+Response time: 1702812914390
+Overall time of the request (response time - request time): 261
+
+120 1702812914628 3 102 4.935736 round1: 40674.218750 reply1: 37397.769531 round2: 37397.769531 reply2: 37397.804688 tof: 0.016464 
+Request time: 1702812914390
+Response time: 1702812914628
+Overall time of the request (response time - request time): 238
+
+121 1702812914894 3 102 4.916968 round1: 40674.976562 reply1: 37386.230469 round2: 37386.230469 reply2: 37386.269531 tof: 0.016401 
+Request time: 1702812914629
+Response time: 1702812914894
+Overall time of the request (response time - request time): 265
+
+122 1702812915127 3 102 4.940427 round1: 40669.882812 reply1: 37392.789062 round2: 37392.789062 reply2: 37392.832031 tof: 0.016479 
+Request time: 1702812914895
+Response time: 1702812915127
+Overall time of the request (response time - request time): 231
+
+123 1702812915377 3 102 4.940427 round1: 40668.644531 reply1: 37389.867188 round2: 37389.867188 reply2: 37389.902344 tof: 0.016479 
+Request time: 1702812915127
+Response time: 1702812915377
+Overall time of the request (response time - request time): 250
+
+124 1702812915634 3 102 4.926352 round1: 40669.890625 reply1: 37396.378906 round2: 37396.378906 reply2: 37396.421875 tof: 0.016433 
+Request time: 1702812915377
+Response time: 1702812915634
+Overall time of the request (response time - request time): 256
+
+125 1702812915884 3 102 4.954503 round1: 40668.304688 reply1: 37376.582031 round2: 37376.582031 reply2: 37376.621094 tof: 0.016526 
+Request time: 1702812915634
+Response time: 1702812915884
+Overall time of the request (response time - request time): 249
+
+126 1702812916138 3 102 4.982653 round1: 40670.386719 reply1: 37389.253906 round2: 37389.253906 reply2: 37389.289062 tof: 0.016620 
+Request time: 1702812915891
+Response time: 1702812916138
+Overall time of the request (response time - request time): 246
+
+127 1702812916377 3 102 4.945119 round1: 40670.296875 reply1: 37458.652344 round2: 37458.652344 reply2: 37458.687500 tof: 0.016495 
+Request time: 1702812916139
+Response time: 1702812916377
+Overall time of the request (response time - request time): 238
+
+128 1702812916662 3 102 4.982653 round1: 40675.242188 reply1: 37385.335938 round2: 37385.335938 reply2: 37385.371094 tof: 0.016620 
+Request time: 1702812916378
+Response time: 1702812916662
+Overall time of the request (response time - request time): 284
+
+129 1702812916879 3 102 4.926352 round1: 40671.781250 reply1: 37392.906250 round2: 37392.906250 reply2: 37392.941406 tof: 0.016433 
+Request time: 1702812916662
+Response time: 1702812916879
+Overall time of the request (response time - request time): 216
+
+130 1702812917156 3 102 4.959194 round1: 40669.246094 reply1: 37369.859375 round2: 37369.859375 reply2: 37369.894531 tof: 0.016542 
+Request time: 1702812916881
+Response time: 1702812917156
+Overall time of the request (response time - request time): 275
+
+131 1702812917403 3 102 4.963886 round1: 40670.203125 reply1: 37415.437500 round2: 37415.437500 reply2: 37415.476562 tof: 0.016558 
+Request time: 1702812917159
+Response time: 1702812917403
+Overall time of the request (response time - request time): 244
+
+132 1702812917640 3 102 4.963886 round1: 40668.656250 reply1: 37406.644531 round2: 37406.644531 reply2: 37406.683594 tof: 0.016558 
+Request time: 1702812917406
+Response time: 1702812917640
+Overall time of the request (response time - request time): 234
+
+133 1702812917883 3 102 4.931044 round1: 40668.359375 reply1: 37397.226562 round2: 37397.226562 reply2: 37397.261719 tof: 0.016448 
+Request time: 1702812917642
+Response time: 1702812917883
+Overall time of the request (response time - request time): 240
+
+134 1702812918162 3 102 4.954503 round1: 40669.687500 reply1: 37404.023438 round2: 37404.023438 reply2: 37404.062500 tof: 0.016526 
+Request time: 1702812917885
+Response time: 1702812918162
+Overall time of the request (response time - request time): 276
+
+135 1702812918382 3 102 4.968578 round1: 40669.687500 reply1: 37394.808594 round2: 37394.808594 reply2: 37394.847656 tof: 0.016573 
+Request time: 1702812918162
+Response time: 1702812918382
+Overall time of the request (response time - request time): 220
+
+136 1702812918980 3 102 4.954503 round1: 40669.226562 reply1: 37404.273438 round2: 37404.273438 reply2: 37404.312500 tof: 0.016526 
+Request time: 1702812918382
+Response time: 1702812918980
+Overall time of the request (response time - request time): 598
+
+137 1702812919125 3 102 5.043646 round1: 40674.261719 reply1: 37382.410156 round2: 37382.410156 reply2: 37382.449219 tof: 0.016824 
+Request time: 1702812918982
+Response time: 1702812919125
+Overall time of the request (response time - request time): 143
+
+138 1702812919417 3 102 4.949811 round1: 40676.527344 reply1: 37408.894531 round2: 37408.894531 reply2: 37408.933594 tof: 0.016511 
+Request time: 1702812919125
+Response time: 1702812919417
+Overall time of the request (response time - request time): 291
+
+139 1702812919632 3 102 4.931044 round1: 40670.750000 reply1: 37373.558594 round2: 37373.558594 reply2: 37373.597656 tof: 0.016448 
+Request time: 1702812919417
+Response time: 1702812919632
+Overall time of the request (response time - request time): 215
+
+140 1702812919889 3 102 4.954503 round1: 40668.281250 reply1: 37379.179688 round2: 37379.179688 reply2: 37379.218750 tof: 0.016526 
+Request time: 1702812919635
+Response time: 1702812919889
+Overall time of the request (response time - request time): 254
+
+141 1702812920136 3 102 4.954503 round1: 40669.062500 reply1: 37404.386719 round2: 37404.386719 reply2: 37404.421875 tof: 0.016526 
+Request time: 1702812919889
+Response time: 1702812920136
+Overall time of the request (response time - request time): 246
+
+142 1702812920380 3 102 4.954503 round1: 40669.089844 reply1: 37398.230469 round2: 37398.230469 reply2: 37398.269531 tof: 0.016526 
+Request time: 1702812920136
+Response time: 1702812920380
+Overall time of the request (response time - request time): 244
+
+143 1702812920643 3 102 4.921660 round1: 40672.636719 reply1: 37369.707031 round2: 37369.707031 reply2: 37369.746094 tof: 0.016417 
+Request time: 1702812920382
+Response time: 1702812920643
+Overall time of the request (response time - request time): 261
+
+144 1702812920936 3 102 4.963886 round1: 40668.480469 reply1: 37372.097656 round2: 37372.097656 reply2: 37372.132812 tof: 0.016558 
+Request time: 1702812920644
+Response time: 1702812920936
+Overall time of the request (response time - request time): 292
+
+145 1702812921131 3 102 4.949811 round1: 40669.421875 reply1: 37395.449219 round2: 37395.449219 reply2: 37395.488281 tof: 0.016511 
+Request time: 1702812920938
+Response time: 1702812921131
+Overall time of the request (response time - request time): 192
+
+146 1702812921379 3 102 4.963886 round1: 40674.875000 reply1: 37401.378906 round2: 37401.378906 reply2: 37401.421875 tof: 0.016558 
+Request time: 1702812921131
+Response time: 1702812921379
+Overall time of the request (response time - request time): 248
+
+147 1702812921635 3 102 4.982653 round1: 40674.179688 reply1: 37377.734375 round2: 37377.734375 reply2: 37377.769531 tof: 0.016620 
+Request time: 1702812921380
+Response time: 1702812921635
+Overall time of the request (response time - request time): 255
+
+148 1702812921893 3 102 4.926352 round1: 40670.394531 reply1: 37395.320312 round2: 37395.320312 reply2: 37395.355469 tof: 0.016433 
+Request time: 1702812921635
+Response time: 1702812921893
+Overall time of the request (response time - request time): 257
+
+149 1702812922134 3 102 4.992037 round1: 40669.996094 reply1: 37398.750000 round2: 37398.750000 reply2: 37398.785156 tof: 0.016652 
+Request time: 1702812921893
+Response time: 1702812922134
+Overall time of the request (response time - request time): 240
+
+150 1702812922423 3 102 4.963886 round1: 40670.625000 reply1: 37401.554688 round2: 37401.554688 reply2: 37401.593750 tof: 0.016558 
+Request time: 1702812922134
+Response time: 1702812922423
+Overall time of the request (response time - request time): 288
+
+151 1702812922626 3 102 5.006112 round1: 40668.496094 reply1: 37381.640625 round2: 37381.640625 reply2: 37381.675781 tof: 0.016699 
+Request time: 1702812922424
+Response time: 1702812922626
+Overall time of the request (response time - request time): 201
+
+152 1702812922899 3 102 5.001420 round1: 40676.421875 reply1: 37385.109375 round2: 37385.109375 reply2: 37385.144531 tof: 0.016683 
+Request time: 1702812922627
+Response time: 1702812922899
+Overall time of the request (response time - request time): 272
+
+153 1702812923143 3 102 4.935736 round1: 40668.339844 reply1: 37386.855469 round2: 37386.855469 reply2: 37386.898438 tof: 0.016464 
+Request time: 1702812922901
+Response time: 1702812923143
+Overall time of the request (response time - request time): 241
+
+154 1702812923432 3 102 4.954503 round1: 40674.937500 reply1: 37399.628906 round2: 37399.628906 reply2: 37399.664062 tof: 0.016526 
+Request time: 1702812923145
+Response time: 1702812923432
+Overall time of the request (response time - request time): 286
+
+155 1702812923637 3 102 4.954503 round1: 40668.664062 reply1: 37384.000000 round2: 37384.000000 reply2: 37384.039062 tof: 0.016526 
+Request time: 1702812923432
+Response time: 1702812923637
+Overall time of the request (response time - request time): 205
+
+156 1702812923888 3 102 4.926352 round1: 40669.136719 reply1: 37412.925781 round2: 37412.925781 reply2: 37412.968750 tof: 0.016433 
+Request time: 1702812923638
+Response time: 1702812923888
+Overall time of the request (response time - request time): 250
+
+157 1702812924139 3 102 4.963886 round1: 40668.394531 reply1: 37384.015625 round2: 37384.015625 reply2: 37384.050781 tof: 0.016558 
+Request time: 1702812923888
+Response time: 1702812924139
+Overall time of the request (response time - request time): 250
+
+158 1702812924401 3 102 4.949811 round1: 40669.566406 reply1: 37385.300781 round2: 37385.300781 reply2: 37385.343750 tof: 0.016511 
+Request time: 1702812924139
+Response time: 1702812924401
+Overall time of the request (response time - request time): 261
+
+159 1702812924643 3 102 4.921660 round1: 40669.964844 reply1: 37374.656250 round2: 37374.656250 reply2: 37374.695312 tof: 0.016417 
+Request time: 1702812924401
+Response time: 1702812924643
+Overall time of the request (response time - request time): 242
+
+160 1702812924878 3 102 4.977962 round1: 40668.507812 reply1: 37386.339844 round2: 37386.339844 reply2: 37386.375000 tof: 0.016605 
+Request time: 1702812924644
+Response time: 1702812924878
+Overall time of the request (response time - request time): 234
+
+161 1702812925133 3 102 4.968578 round1: 40669.226562 reply1: 37398.390625 round2: 37398.390625 reply2: 37398.429688 tof: 0.016573 
+Request time: 1702812924878
+Response time: 1702812925133
+Overall time of the request (response time - request time): 255
+
+162 1702812925377 3 102 4.893509 round1: 40667.996094 reply1: 37403.742188 round2: 37403.742188 reply2: 37403.781250 tof: 0.016323 
+Request time: 1702812925134
+Response time: 1702812925377
+Overall time of the request (response time - request time): 242
+
+163 1702812925644 3 102 4.902893 round1: 40667.613281 reply1: 37382.785156 round2: 37382.785156 reply2: 37382.824219 tof: 0.016354 
+Request time: 1702812925377
+Response time: 1702812925644
+Overall time of the request (response time - request time): 267
+
+164 1702812925883 3 102 4.888818 round1: 40668.324219 reply1: 37393.000000 round2: 37393.000000 reply2: 37393.035156 tof: 0.016307 
+Request time: 1702812925644
+Response time: 1702812925883
+Overall time of the request (response time - request time): 238
+
+165 1702812926126 3 102 4.879434 round1: 40669.183594 reply1: 37376.425781 round2: 37376.425781 reply2: 37376.460938 tof: 0.016276 
+Request time: 1702812925883
+Response time: 1702812926126
+Overall time of the request (response time - request time): 242
+
+166 1702812926379 3 102 4.959194 round1: 40669.949219 reply1: 37396.500000 round2: 37396.500000 reply2: 37396.535156 tof: 0.016542 
+Request time: 1702812926126
+Response time: 1702812926379
+Overall time of the request (response time - request time): 253
+
+167 1702812926632 3 102 4.973269 round1: 40667.656250 reply1: 37402.855469 round2: 37402.855469 reply2: 37402.894531 tof: 0.016589 
+Request time: 1702812926380
+Response time: 1702812926632
+Overall time of the request (response time - request time): 252
+
+168 1702812926896 3 102 5.057721 round1: 40668.449219 reply1: 37395.742188 round2: 37395.742188 reply2: 37395.781250 tof: 0.016871 
+Request time: 1702812926632
+Response time: 1702812926896
+Overall time of the request (response time - request time): 263
+
+169 1702812927140 3 102 5.071796 round1: 40667.628906 reply1: 37394.621094 round2: 37394.621094 reply2: 37394.656250 tof: 0.016918 
+Request time: 1702812926897
+Response time: 1702812927140
+Overall time of the request (response time - request time): 243
+
+170 1702812927387 3 102 5.184399 round1: 40669.304688 reply1: 37395.945312 round2: 37395.945312 reply2: 37395.980469 tof: 0.017293 
+Request time: 1702812927142
+Response time: 1702812927387
+Overall time of the request (response time - request time): 244
+
+171 1702812927642 3 102 5.282926 round1: 40667.656250 reply1: 37396.898438 round2: 37396.898438 reply2: 37396.933594 tof: 0.017622 
+Request time: 1702812927389
+Response time: 1702812927642
+Overall time of the request (response time - request time): 253
+
+172 1702812927878 3 102 5.376761 round1: 40668.359375 reply1: 37405.101562 round2: 37405.101562 reply2: 37405.136719 tof: 0.017935 
+Request time: 1702812927647
+Response time: 1702812927878
+Overall time of the request (response time - request time): 231
+
+173 1702812928131 3 102 5.400220 round1: 40668.542969 reply1: 37405.203125 round2: 37405.203125 reply2: 37405.234375 tof: 0.018013 
+Request time: 1702812927885
+Response time: 1702812928131
+Overall time of the request (response time - request time): 245
+
+174 1702812928457 3 102 5.461213 round1: 40668.656250 reply1: 37396.875000 round2: 37396.875000 reply2: 37396.910156 tof: 0.018217 
+Request time: 1702812928133
+Response time: 1702812928457
+Overall time of the request (response time - request time): 324
+
+175 1702812928627 3 102 5.569124 round1: 40669.167969 reply1: 37399.457031 round2: 37399.457031 reply2: 37399.488281 tof: 0.018577 
+Request time: 1702812928458
+Response time: 1702812928627
+Overall time of the request (response time - request time): 168
+
+176 1702812928900 3 102 5.578507 round1: 40669.371094 reply1: 37395.820312 round2: 37395.820312 reply2: 37395.851562 tof: 0.018608 
+Request time: 1702812928628
+Response time: 1702812928900
+Overall time of the request (response time - request time): 272
+
+177 1702812929155 3 102 5.545665 round1: 40670.039062 reply1: 37387.148438 round2: 37387.148438 reply2: 37387.187500 tof: 0.018498 
+Request time: 1702812928901
+Response time: 1702812929155
+Overall time of the request (response time - request time): 253
+
+178 1702812929375 3 102 5.601966 round1: 40668.289062 reply1: 37411.003906 round2: 37411.003906 reply2: 37411.035156 tof: 0.018686 
+Request time: 1702812929157
+Response time: 1702812929375
+Overall time of the request (response time - request time): 218
+
+179 1702812929647 3 102 5.587891 round1: 40669.097656 reply1: 37388.621094 round2: 37388.621094 reply2: 37388.656250 tof: 0.018639 
+Request time: 1702812929377
+Response time: 1702812929647
+Overall time of the request (response time - request time): 270
+
+180 1702812929881 3 102 5.620733 round1: 40669.046875 reply1: 37397.359375 round2: 37397.359375 reply2: 37397.390625 tof: 0.018749 
+Request time: 1702812929648
+Response time: 1702812929881
+Overall time of the request (response time - request time): 233
+
+181 1702812930153 3 102 5.587891 round1: 40669.480469 reply1: 37372.160156 round2: 37372.160156 reply2: 37372.199219 tof: 0.018639 
+Request time: 1702812929881
+Response time: 1702812930153
+Overall time of the request (response time - request time): 272
+
+182 1702812930386 3 102 5.545665 round1: 40668.457031 reply1: 37385.945312 round2: 37385.945312 reply2: 37385.980469 tof: 0.018498 
+Request time: 1702812930153
+Response time: 1702812930386
+Overall time of the request (response time - request time): 232
+
+183 1702812930644 3 102 5.606658 round1: 40672.753906 reply1: 37388.085938 round2: 37388.085938 reply2: 37388.125000 tof: 0.018702 
+Request time: 1702812930387
+Response time: 1702812930644
+Overall time of the request (response time - request time): 257
+
+184 1702812930902 3 102 5.550356 round1: 40667.601562 reply1: 37407.929688 round2: 37407.929688 reply2: 37407.960938 tof: 0.018514 
+Request time: 1702812930645
+Response time: 1702812930902
+Overall time of the request (response time - request time): 257
+
+185 1702812931133 3 102 5.597274 round1: 40669.960938 reply1: 37413.238281 round2: 37413.238281 reply2: 37413.269531 tof: 0.018670 
+Request time: 1702812930902
+Response time: 1702812931133
+Overall time of the request (response time - request time): 231
+
+186 1702812931388 3 102 5.573815 round1: 40669.097656 reply1: 37396.933594 round2: 37396.933594 reply2: 37396.964844 tof: 0.018592 
+Request time: 1702812931134
+Response time: 1702812931388
+Overall time of the request (response time - request time): 254
+
+187 1702812931631 3 102 5.555048 round1: 40668.441406 reply1: 37397.917969 round2: 37397.917969 reply2: 37397.949219 tof: 0.018530 
+Request time: 1702812931389
+Response time: 1702812931631
+Overall time of the request (response time - request time): 242
+
+188 1702812931922 3 102 5.597274 round1: 40668.320312 reply1: 37385.964844 round2: 37385.964844 reply2: 37385.996094 tof: 0.018670 
+Request time: 1702812931631
+Response time: 1702812931922
+Overall time of the request (response time - request time): 290
+
+189 1702812932136 3 102 5.569124 round1: 40669.085938 reply1: 37390.542969 round2: 37390.542969 reply2: 37390.574219 tof: 0.018577 
+Request time: 1702812931922
+Response time: 1702812932136
+Overall time of the request (response time - request time): 213
+
+190 1702812932382 3 102 5.662959 round1: 40668.656250 reply1: 37390.957031 round2: 37390.957031 reply2: 37390.988281 tof: 0.018890 
+Request time: 1702812932136
+Response time: 1702812932382
+Overall time of the request (response time - request time): 245
+
+191 1702812932634 3 102 5.569124 round1: 40675.320312 reply1: 37394.062500 round2: 37394.062500 reply2: 37394.093750 tof: 0.018577 
+Request time: 1702812932382
+Response time: 1702812932634
+Overall time of the request (response time - request time): 251
+
+192 1702812932880 3 102 5.620733 round1: 40669.242188 reply1: 37391.363281 round2: 37391.363281 reply2: 37391.394531 tof: 0.018749 
+Request time: 1702812932634
+Response time: 1702812932880
+Overall time of the request (response time - request time): 245
+
+193 1702812933131 3 102 5.583199 round1: 40668.921875 reply1: 37405.347656 round2: 37405.347656 reply2: 37405.378906 tof: 0.018624 
+Request time: 1702812932881
+Response time: 1702812933131
+Overall time of the request (response time - request time): 250
+
+194 1702812933406 3 102 5.583199 round1: 40669.203125 reply1: 37397.769531 round2: 37397.769531 reply2: 37397.800781 tof: 0.018624 
+Request time: 1702812933131
+Response time: 1702812933406
+Overall time of the request (response time - request time): 275
+
+195 1702812933637 3 102 5.578507 round1: 40668.328125 reply1: 37377.878906 round2: 37377.878906 reply2: 37377.910156 tof: 0.018608 
+Request time: 1702812933407
+Response time: 1702812933637
+Overall time of the request (response time - request time): 229
+
+196 1702812933894 3 102 5.564432 round1: 40674.976562 reply1: 37375.304688 round2: 37375.304688 reply2: 37375.339844 tof: 0.018561 
+Request time: 1702812933638
+Response time: 1702812933894
+Overall time of the request (response time - request time): 256
+
+197 1702812934152 3 102 5.587891 round1: 40669.152344 reply1: 37395.636719 round2: 37395.636719 reply2: 37395.667969 tof: 0.018639 
+Request time: 1702812933896
+Response time: 1702812934152
+Overall time of the request (response time - request time): 255
+
+198 1702812934387 3 102 5.555048 round1: 40674.433594 reply1: 37400.640625 round2: 37400.640625 reply2: 37400.675781 tof: 0.018530 
+Request time: 1702812934152
+Response time: 1702812934387
+Overall time of the request (response time - request time): 234
+
+199 1702812934641 3 102 5.630116 round1: 40674.304688 reply1: 37387.644531 round2: 37387.644531 reply2: 37387.679688 tof: 0.018780 
+Request time: 1702812934389
+Response time: 1702812934641
+Overall time of the request (response time - request time): 252
+
+200 1702812934895 3 102 5.564432 round1: 40670.683594 reply1: 37376.371094 round2: 37376.371094 reply2: 37376.406250 tof: 0.018561 
+Request time: 1702812934643
+Response time: 1702812934895
+Overall time of the request (response time - request time): 252
+
+201 1702812935163 3 102 5.578507 round1: 40669.093750 reply1: 37411.542969 round2: 37411.542969 reply2: 37411.578125 tof: 0.018608 
+Request time: 1702812934898
+Response time: 1702812935163
+Overall time of the request (response time - request time): 265
+
+202 1702812935398 3 102 5.583199 round1: 40669.074219 reply1: 37410.449219 round2: 37410.449219 reply2: 37410.484375 tof: 0.018624 
+Request time: 1702812935164
+Response time: 1702812935398
+Overall time of the request (response time - request time): 234
+
+203 1702812935689 3 102 5.573815 round1: 40668.632812 reply1: 37405.347656 round2: 37405.347656 reply2: 37405.378906 tof: 0.018592 
+Request time: 1702812935398
+Response time: 1702812935689
+Overall time of the request (response time - request time): 291
+
+204 1702812935887 3 102 5.540973 round1: 40668.539062 reply1: 37405.773438 round2: 37405.773438 reply2: 37405.808594 tof: 0.018483 
+Request time: 1702812935689
+Response time: 1702812935887
+Overall time of the request (response time - request time): 198
+
+205 1702812936136 3 102 5.503439 round1: 40669.121094 reply1: 37377.285156 round2: 37377.285156 reply2: 37377.316406 tof: 0.018357 
+Request time: 1702812935887
+Response time: 1702812936136
+Overall time of the request (response time - request time): 248
+
+206 1702812936382 3 102 5.583199 round1: 40667.523438 reply1: 37386.929688 round2: 37386.929688 reply2: 37386.960938 tof: 0.018624 
+Request time: 1702812936137
+Response time: 1702812936382
+Overall time of the request (response time - request time): 244
+
+207 1702812936715 3 102 5.583199 round1: 40674.992188 reply1: 37388.875000 round2: 37388.875000 reply2: 37388.910156 tof: 0.018624 
+Request time: 1702812936382
+Response time: 1702812936715
+Overall time of the request (response time - request time): 332
+
+208 1702812936939 3 102 5.555048 round1: 40671.304688 reply1: 37394.910156 round2: 37394.910156 reply2: 37394.941406 tof: 0.018530 
+Request time: 1702812936716
+Response time: 1702812936939
+Overall time of the request (response time - request time): 223
+
+209 1702812937131 3 102 5.569124 round1: 40669.109375 reply1: 37402.773438 round2: 37402.773438 reply2: 37402.800781 tof: 0.018577 
+Request time: 1702812936939
+Response time: 1702812937131
+Overall time of the request (response time - request time): 192
+
+210 1702812937378 3 102 5.550356 round1: 40669.230469 reply1: 37415.488281 round2: 37415.488281 reply2: 37415.519531 tof: 0.018514 
+Request time: 1702812937131
+Response time: 1702812937378
+Overall time of the request (response time - request time): 246
+
+211 1702812937636 3 102 5.606658 round1: 40670.402344 reply1: 37381.281250 round2: 37381.281250 reply2: 37381.308594 tof: 0.018702 
+Request time: 1702812937378
+Response time: 1702812937636
+Overall time of the request (response time - request time): 258
+
+212 1702812937882 3 102 5.573815 round1: 40669.339844 reply1: 37410.109375 round2: 37410.109375 reply2: 37410.140625 tof: 0.018592 
+Request time: 1702812937636
+Response time: 1702812937882
+Overall time of the request (response time - request time): 245
+
+213 1702812938157 3 102 5.559740 round1: 40668.375000 reply1: 37380.851562 round2: 37380.851562 reply2: 37380.882812 tof: 0.018545 
+Request time: 1702812937882
+Response time: 1702812938157
+Overall time of the request (response time - request time): 274
+
+214 1702812938387 3 102 5.597274 round1: 40669.523438 reply1: 37398.945312 round2: 37398.945312 reply2: 37398.976562 tof: 0.018670 
+Request time: 1702812938157
+Response time: 1702812938387
+Overall time of the request (response time - request time): 229
+
+215 1702812938635 3 102 5.587891 round1: 40667.632812 reply1: 37391.746094 round2: 37391.746094 reply2: 37391.777344 tof: 0.018639 
+Request time: 1702812938387
+Response time: 1702812938635
+Overall time of the request (response time - request time): 248
+
+216 1702812938883 3 102 5.583199 round1: 40669.800781 reply1: 37400.468750 round2: 37400.468750 reply2: 37400.500000 tof: 0.018624 
+Request time: 1702812938635
+Response time: 1702812938883
+Overall time of the request (response time - request time): 248
+
+217 1702812939133 3 102 5.601966 round1: 40669.875000 reply1: 37395.160156 round2: 37395.160156 reply2: 37395.187500 tof: 0.018686 
+Request time: 1702812938884
+Response time: 1702812939133
+Overall time of the request (response time - request time): 249
+
+218 1702812939388 3 102 5.555048 round1: 40670.031250 reply1: 37398.187500 round2: 37398.187500 reply2: 37398.218750 tof: 0.018530 
+Request time: 1702812939133
+Response time: 1702812939388
+Overall time of the request (response time - request time): 254
+
+219 1702812939631 3 102 5.616041 round1: 40669.980469 reply1: 37400.523438 round2: 37400.523438 reply2: 37400.550781 tof: 0.018733 
+Request time: 1702812939388
+Response time: 1702812939631
+Overall time of the request (response time - request time): 243
+
+220 1702812939888 3 102 5.611350 round1: 40669.066406 reply1: 37407.843750 round2: 37407.843750 reply2: 37407.871094 tof: 0.018717 
+Request time: 1702812939632
+Response time: 1702812939888
+Overall time of the request (response time - request time): 256
+
+221 1702812940132 3 102 5.606658 round1: 40668.636719 reply1: 37401.800781 round2: 37401.800781 reply2: 37401.832031 tof: 0.018702 
+Request time: 1702812939889
+Response time: 1702812940132
+Overall time of the request (response time - request time): 243
+
+222 1702812940404 3 102 5.573815 round1: 40670.062500 reply1: 37380.550781 round2: 37380.550781 reply2: 37380.582031 tof: 0.018592 
+Request time: 1702812940134
+Response time: 1702812940404
+Overall time of the request (response time - request time): 269
+
+223 1702812940628 3 102 5.597274 round1: 40668.472656 reply1: 37387.273438 round2: 37387.273438 reply2: 37387.300781 tof: 0.018670 
+Request time: 1702812940406
+Response time: 1702812940628
+Overall time of the request (response time - request time): 221
+
+224 1702812940915 3 102 5.564432 round1: 40669.140625 reply1: 37403.128906 round2: 37403.128906 reply2: 37403.156250 tof: 0.018561 
+Request time: 1702812940635
+Response time: 1702812940915
+Overall time of the request (response time - request time): 279
+
+225 1702812941136 3 102 5.564432 round1: 40668.351562 reply1: 37383.488281 round2: 37383.488281 reply2: 37383.519531 tof: 0.018561 
+Request time: 1702812940917
+Response time: 1702812941136
+Overall time of the request (response time - request time): 218
+
+226 1702812941421 3 102 5.522206 round1: 40669.078125 reply1: 37410.398438 round2: 37410.398438 reply2: 37410.429688 tof: 0.018420 
+Request time: 1702812941136
+Response time: 1702812941421
+Overall time of the request (response time - request time): 284
+
+227 1702812941654 3 102 5.606658 round1: 40668.320312 reply1: 37405.343750 round2: 37405.343750 reply2: 37405.371094 tof: 0.018702 
+Request time: 1702812941422
+Response time: 1702812941654
+Overall time of the request (response time - request time): 231
+
+228 1702812942247 3 102 5.592582 round1: 40667.574219 reply1: 37397.953125 round2: 37397.953125 reply2: 37397.984375 tof: 0.018655 
+Request time: 1702812941656
+Response time: 1702812942247
+Overall time of the request (response time - request time): 590
+
+229 1702812942384 3 102 5.634808 round1: 40669.054688 reply1: 37387.125000 round2: 37387.125000 reply2: 37387.152344 tof: 0.018796 
+Request time: 1702812942247
+Response time: 1702812942384
+Overall time of the request (response time - request time): 136
+
+230 1702812942628 3 102 5.616041 round1: 40669.082031 reply1: 37388.609375 round2: 37388.609375 reply2: 37388.640625 tof: 0.018733 
+Request time: 1702812942385
+Response time: 1702812942628
+Overall time of the request (response time - request time): 242
+
+231 1702812942885 3 102 5.672342 round1: 40668.351562 reply1: 37404.964844 round2: 37404.964844 reply2: 37404.992188 tof: 0.018921 
+Request time: 1702812942628
+Response time: 1702812942885
+Overall time of the request (response time - request time): 256
+
+232 1702812943131 3 102 5.625425 round1: 40669.707031 reply1: 37399.003906 round2: 37399.003906 reply2: 37399.031250 tof: 0.018764 
+Request time: 1702812942887
+Response time: 1702812943131
+Overall time of the request (response time - request time): 244
+
+233 1702812943387 3 102 5.587891 round1: 40669.343750 reply1: 37391.609375 round2: 37391.609375 reply2: 37391.636719 tof: 0.018639 
+Request time: 1702812943133
+Response time: 1702812943387
+Overall time of the request (response time - request time): 253
+
+234 1702812943641 3 102 5.573815 round1: 40669.421875 reply1: 37410.960938 round2: 37410.960938 reply2: 37410.992188 tof: 0.018592 
+Request time: 1702812943387
+Response time: 1702812943641
+Overall time of the request (response time - request time): 253
+
+235 1702812943879 3 102 5.639500 round1: 40667.628906 reply1: 37394.863281 round2: 37394.863281 reply2: 37394.890625 tof: 0.018811 
+Request time: 1702812943641
+Response time: 1702812943879
+Overall time of the request (response time - request time): 237
+
+236 1702812944133 3 102 5.601966 round1: 40667.714844 reply1: 37407.625000 round2: 37407.625000 reply2: 37407.660156 tof: 0.018686 
+Request time: 1702812943880
+Response time: 1702812944133
+Overall time of the request (response time - request time): 252
+
+237 1702812944390 3 102 5.573815 round1: 40668.519531 reply1: 37387.578125 round2: 37387.578125 reply2: 37387.605469 tof: 0.018592 
+Request time: 1702812944133
+Response time: 1702812944390
+Overall time of the request (response time - request time): 256
+
+238 1702812944629 3 102 5.601966 round1: 40670.003906 reply1: 37389.042969 round2: 37389.042969 reply2: 37389.074219 tof: 0.018686 
+Request time: 1702812944390
+Response time: 1702812944629
+Overall time of the request (response time - request time): 239
+
+239 1702812944876 3 102 5.578507 round1: 40668.457031 reply1: 37375.660156 round2: 37375.660156 reply2: 37375.691406 tof: 0.018608 
+Request time: 1702812944629
+Response time: 1702812944876
+Overall time of the request (response time - request time): 246
+
+240 1702812945175 3 102 5.456522 round1: 40674.980469 reply1: 37402.042969 round2: 37402.042969 reply2: 37402.074219 tof: 0.018201 
+Request time: 1702812944876
+Response time: 1702812945175
+Overall time of the request (response time - request time): 298
+
+241 1702812945400 3 102 5.348611 round1: 40672.660156 reply1: 37371.320312 round2: 37371.320312 reply2: 37371.351562 tof: 0.017841 
+Request time: 1702812945175
+Response time: 1702812945400
+Overall time of the request (response time - request time): 224
+
+242 1702812945628 3 102 5.240700 round1: 40669.898438 reply1: 37400.531250 round2: 37400.531250 reply2: 37400.562500 tof: 0.017481 
+Request time: 1702812945402
+Response time: 1702812945628
+Overall time of the request (response time - request time): 226
+
+243 1702812945916 3 102 5.137481 round1: 40670.644531 reply1: 37394.984375 round2: 37394.984375 reply2: 37395.019531 tof: 0.017137 
+Request time: 1702812945629
+Response time: 1702812945916
+Overall time of the request (response time - request time): 287
+
+244 1702812946132 3 102 5.057721 round1: 40669.203125 reply1: 37403.398438 round2: 37403.398438 reply2: 37403.437500 tof: 0.016871 
+Request time: 1702812945916
+Response time: 1702812946132
+Overall time of the request (response time - request time): 215
+
+245 1702812946377 3 102 4.987345 round1: 40674.175781 reply1: 37395.898438 round2: 37395.898438 reply2: 37395.929688 tof: 0.016636 
+Request time: 1702812946132
+Response time: 1702812946377
+Overall time of the request (response time - request time): 245
+
+246 1702812946665 3 102 4.987345 round1: 40669.101562 reply1: 37389.398438 round2: 37389.398438 reply2: 37389.429688 tof: 0.016636 
+Request time: 1702812946378
+Response time: 1702812946665
+Overall time of the request (response time - request time): 287
+
+247 1702812946899 3 102 4.992037 round1: 40668.406250 reply1: 37406.398438 round2: 37406.398438 reply2: 37406.437500 tof: 0.016652 
+Request time: 1702812946667
+Response time: 1702812946899
+Overall time of the request (response time - request time): 231
+
+248 1702812947135 3 102 4.977962 round1: 40669.757812 reply1: 37392.296875 round2: 37392.296875 reply2: 37392.328125 tof: 0.016605 
+Request time: 1702812946899
+Response time: 1702812947135
+Overall time of the request (response time - request time): 235
+
+249 1702812947383 3 102 4.945119 round1: 40669.937500 reply1: 37394.882812 round2: 37394.882812 reply2: 37394.914062 tof: 0.016495 
+Request time: 1702812947136
+Response time: 1702812947383
+Overall time of the request (response time - request time): 247
+
+250 1702812947636 3 102 4.945119 round1: 40674.902344 reply1: 37392.632812 round2: 37392.632812 reply2: 37392.667969 tof: 0.016495 
+Request time: 1702812947384
+Response time: 1702812947636
+Overall time of the request (response time - request time): 251
+
+251 1702812947895 3 102 4.996728 round1: 40676.011719 reply1: 37387.433594 round2: 37387.433594 reply2: 37387.468750 tof: 0.016667 
+Request time: 1702812947636
+Response time: 1702812947895
+Overall time of the request (response time - request time): 258
+
+252 1702812948139 3 102 4.949811 round1: 40669.898438 reply1: 37402.671875 round2: 37402.671875 reply2: 37402.703125 tof: 0.016511 
+Request time: 1702812947897
+Response time: 1702812948139
+Overall time of the request (response time - request time): 242
+
+253 1702812948378 3 102 4.968578 round1: 40667.519531 reply1: 37403.015625 round2: 37403.015625 reply2: 37403.046875 tof: 0.016573 
+Request time: 1702812948142
+Response time: 1702812948378
+Overall time of the request (response time - request time): 235
+
+254 1702812948629 3 102 4.954503 round1: 40671.449219 reply1: 37366.078125 round2: 37366.078125 reply2: 37366.113281 tof: 0.016526 
+Request time: 1702812948378
+Response time: 1702812948629
+Overall time of the request (response time - request time): 250
+
+255 1702812948905 3 102 4.935736 round1: 40669.871094 reply1: 37394.980469 round2: 37394.980469 reply2: 37395.015625 tof: 0.016464 
+Request time: 1702812948629
+Response time: 1702812948905
+Overall time of the request (response time - request time): 275
+
+256 1702812949127 3 102 4.940427 round1: 40668.410156 reply1: 37396.886719 round2: 37396.886719 reply2: 37396.921875 tof: 0.016479 
+Request time: 1702812948907
+Response time: 1702812949127
+Overall time of the request (response time - request time): 220
+
+257 1702812949382 3 102 4.940427 round1: 40673.367188 reply1: 37370.707031 round2: 37370.707031 reply2: 37370.738281 tof: 0.016479 
+Request time: 1702812949127
+Response time: 1702812949382
+Overall time of the request (response time - request time): 255
+
+258 1702812949635 3 102 4.982653 round1: 40668.339844 reply1: 37382.468750 round2: 37382.468750 reply2: 37382.507812 tof: 0.016620 
+Request time: 1702812949384
+Response time: 1702812949635
+Overall time of the request (response time - request time): 251
+
+259 1702812949881 3 102 4.949811 round1: 40670.996094 reply1: 37389.929688 round2: 37389.929688 reply2: 37389.960938 tof: 0.016511 
+Request time: 1702812949636
+Response time: 1702812949881
+Overall time of the request (response time - request time): 245
+
+260 1702812950145 3 102 4.940427 round1: 40675.914062 reply1: 37389.769531 round2: 37389.769531 reply2: 37389.800781 tof: 0.016479 
+Request time: 1702812949883
+Response time: 1702812950145
+Overall time of the request (response time - request time): 262
+
+261 1702812950391 3 102 4.949811 round1: 40668.414062 reply1: 37381.652344 round2: 37381.652344 reply2: 37381.683594 tof: 0.016511 
+Request time: 1702812950145
+Response time: 1702812950391
+Overall time of the request (response time - request time): 245
+
+262 1702812950659 3 102 4.945119 round1: 40673.449219 reply1: 37407.250000 round2: 37407.250000 reply2: 37407.285156 tof: 0.016495 
+Request time: 1702812950391
+Response time: 1702812950659
+Overall time of the request (response time - request time): 267
+
+263 1702812950878 3 102 4.977962 round1: 40673.468750 reply1: 37377.136719 round2: 37377.136719 reply2: 37377.167969 tof: 0.016605 
+Request time: 1702812950662
+Response time: 1702812950878
+Overall time of the request (response time - request time): 215
+
+264 1702812951133 3 102 4.982653 round1: 40668.449219 reply1: 37377.367188 round2: 37377.367188 reply2: 37377.398438 tof: 0.016620 
+Request time: 1702812950878
+Response time: 1702812951133
+Overall time of the request (response time - request time): 255
+
+265 1702812951378 3 102 4.916968 round1: 40668.445312 reply1: 37400.179688 round2: 37400.179688 reply2: 37400.214844 tof: 0.016401 
+Request time: 1702812951134
+Response time: 1702812951378
+Overall time of the request (response time - request time): 243
+
+266 1702812951627 3 102 4.973269 round1: 40669.867188 reply1: 37384.730469 round2: 37384.730469 reply2: 37384.761719 tof: 0.016589 
+Request time: 1702812951379
+Response time: 1702812951627
+Overall time of the request (response time - request time): 247
+
+267 1702812951882 3 102 4.926352 round1: 40669.847656 reply1: 37397.191406 round2: 37397.191406 reply2: 37397.226562 tof: 0.016433 
+Request time: 1702812951627
+Response time: 1702812951882
+Overall time of the request (response time - request time): 254
+
+268 1702812952128 3 102 4.949811 round1: 40669.140625 reply1: 37383.562500 round2: 37383.562500 reply2: 37383.597656 tof: 0.016511 
+Request time: 1702812951884
+Response time: 1702812952128
+Overall time of the request (response time - request time): 243
+
+269 1702812952383 3 102 4.945119 round1: 40668.363281 reply1: 37394.734375 round2: 37394.734375 reply2: 37394.765625 tof: 0.016495 
+Request time: 1702812952130
+Response time: 1702812952383
+Overall time of the request (response time - request time): 253
+
+270 1702812952631 3 102 4.959194 round1: 40669.183594 reply1: 37387.285156 round2: 37387.285156 reply2: 37387.316406 tof: 0.016542 
+Request time: 1702812952384
+Response time: 1702812952631
+Overall time of the request (response time - request time): 246
+
+271 1702812952880 3 102 4.954503 round1: 40670.101562 reply1: 37390.187500 round2: 37390.187500 reply2: 37390.222656 tof: 0.016526 
+Request time: 1702812952633
+Response time: 1702812952880
+Overall time of the request (response time - request time): 246
+
+272 1702812953172 3 102 4.949811 round1: 40669.222656 reply1: 37401.078125 round2: 37401.078125 reply2: 37401.113281 tof: 0.016511 
+Request time: 1702812952881
+Response time: 1702812953172
+Overall time of the request (response time - request time): 291
+
+273 1702812953425 3 102 4.959194 round1: 40669.957031 reply1: 37373.066406 round2: 37373.066406 reply2: 37373.097656 tof: 0.016542 
+Request time: 1702812953173
+Response time: 1702812953425
+Overall time of the request (response time - request time): 252
+
+274 1702812953681 3 102 4.935736 round1: 40669.289062 reply1: 37376.371094 round2: 37376.371094 reply2: 37376.406250 tof: 0.016464 
+Request time: 1702812953425
+Response time: 1702812953681
+Overall time of the request (response time - request time): 255
+
+275 1702812953881 3 102 4.977962 round1: 40667.667969 reply1: 37411.914062 round2: 37411.914062 reply2: 37411.945312 tof: 0.016605 
+Request time: 1702812953681
+Response time: 1702812953881
+Overall time of the request (response time - request time): 200
+
+276 1702812954146 3 102 4.963886 round1: 40669.585938 reply1: 37377.914062 round2: 37377.914062 reply2: 37377.949219 tof: 0.016558 
+Request time: 1702812953882
+Response time: 1702812954146
+Overall time of the request (response time - request time): 264
+
+277 1702812954385 3 102 4.977962 round1: 40668.398438 reply1: 37388.171875 round2: 37388.171875 reply2: 37388.207031 tof: 0.016605 
+Request time: 1702812954147
+Response time: 1702812954385
+Overall time of the request (response time - request time): 238
+
+278 1702812954633 3 102 4.931044 round1: 40671.277344 reply1: 37381.375000 round2: 37381.375000 reply2: 37381.414062 tof: 0.016448 
+Request time: 1702812954385
+Response time: 1702812954633
+Overall time of the request (response time - request time): 248
+
+279 1702812954880 3 102 4.954503 round1: 40668.328125 reply1: 37390.253906 round2: 37390.253906 reply2: 37390.289062 tof: 0.016526 
+Request time: 1702812954634
+Response time: 1702812954880
+Overall time of the request (response time - request time): 246
+
+280 1702812955132 3 102 4.954503 round1: 40669.953125 reply1: 37389.398438 round2: 37389.398438 reply2: 37389.433594 tof: 0.016526 
+Request time: 1702812954881
+Response time: 1702812955132
+Overall time of the request (response time - request time): 251
+
+281 1702812955386 3 102 4.954503 round1: 40675.640625 reply1: 37391.687500 round2: 37391.687500 reply2: 37391.722656 tof: 0.016526 
+Request time: 1702812955132
+Response time: 1702812955386
+Overall time of the request (response time - request time): 253
+
+282 1702812955640 3 102 4.982653 round1: 40669.765625 reply1: 37383.976562 round2: 37383.976562 reply2: 37384.011719 tof: 0.016620 
+Request time: 1702812955387
+Response time: 1702812955640
+Overall time of the request (response time - request time): 253
+
+283 1702812955884 3 102 4.945119 round1: 40673.496094 reply1: 37390.808594 round2: 37390.808594 reply2: 37390.843750 tof: 0.016495 
+Request time: 1702812955641
+Response time: 1702812955884
+Overall time of the request (response time - request time): 243
+
+284 1702812956136 3 102 4.973269 round1: 40670.570312 reply1: 37380.984375 round2: 37380.984375 reply2: 37381.019531 tof: 0.016589 
+Request time: 1702812955884
+Response time: 1702812956136
+Overall time of the request (response time - request time): 252
+
+285 1702812956391 3 102 4.987345 round1: 40670.003906 reply1: 37379.117188 round2: 37379.117188 reply2: 37379.152344 tof: 0.016636 
+Request time: 1702812956136
+Response time: 1702812956391
+Overall time of the request (response time - request time): 255
+
+286 1702812956638 3 102 4.977962 round1: 40674.933594 reply1: 37385.406250 round2: 37385.406250 reply2: 37385.437500 tof: 0.016605 
+Request time: 1702812956393
+Response time: 1702812956638
+Overall time of the request (response time - request time): 245
+
+287 1702812956883 3 102 4.954503 round1: 40668.363281 reply1: 37397.167969 round2: 37397.167969 reply2: 37397.203125 tof: 0.016526 
+Request time: 1702812956640
+Response time: 1702812956883
+Overall time of the request (response time - request time): 243
+
+288 1702812957135 3 102 4.959194 round1: 40669.929688 reply1: 37400.316406 round2: 37400.316406 reply2: 37400.347656 tof: 0.016542 
+Request time: 1702812956885
+Response time: 1702812957135
+Overall time of the request (response time - request time): 250
+
+289 1702812957415 3 102 4.973269 round1: 40674.949219 reply1: 37390.707031 round2: 37390.707031 reply2: 37390.742188 tof: 0.016589 
+Request time: 1702812957137
+Response time: 1702812957415
+Overall time of the request (response time - request time): 278
+
+290 1702812957629 3 102 5.001420 round1: 40674.882812 reply1: 37382.714844 round2: 37382.714844 reply2: 37382.750000 tof: 0.016683 
+Request time: 1702812957416
+Response time: 1702812957629
+Overall time of the request (response time - request time): 213
+
+291 1702812957876 3 102 4.935736 round1: 40668.351562 reply1: 37392.273438 round2: 37392.273438 reply2: 37392.308594 tof: 0.016464 
+Request time: 1702812957629
+Response time: 1702812957876
+Overall time of the request (response time - request time): 246
+
+292 1702812958143 3 102 4.977962 round1: 40668.480469 reply1: 37387.742188 round2: 37387.742188 reply2: 37387.773438 tof: 0.016605 
+Request time: 1702812957876
+Response time: 1702812958143
+Overall time of the request (response time - request time): 266
+
+293 1702812958433 3 102 4.963886 round1: 40675.011719 reply1: 37384.253906 round2: 37384.253906 reply2: 37384.289062 tof: 0.016558 
+Request time: 1702812958143
+Response time: 1702812958433
+Overall time of the request (response time - request time): 289
+
+294 1702812958654 3 102 4.916968 round1: 40667.664062 reply1: 37379.367188 round2: 37379.367188 reply2: 37379.402344 tof: 0.016401 
+Request time: 1702812958434
+Response time: 1702812958654
+Overall time of the request (response time - request time): 219
+
+295 1702812958880 3 102 4.968578 round1: 40669.816406 reply1: 37378.328125 round2: 37378.328125 reply2: 37378.359375 tof: 0.016573 
+Request time: 1702812958656
+Response time: 1702812958880
+Overall time of the request (response time - request time): 223
+
+296 1702812959128 3 102 4.902893 round1: 40668.449219 reply1: 37389.109375 round2: 37389.109375 reply2: 37389.144531 tof: 0.016354 
+Request time: 1702812958880
+Response time: 1702812959128
+Overall time of the request (response time - request time): 247
+
+297 1702812959461 3 102 4.954503 round1: 40669.222656 reply1: 37398.261719 round2: 37398.261719 reply2: 37398.300781 tof: 0.016526 
+Request time: 1702812959130
+Response time: 1702812959461
+Overall time of the request (response time - request time): 331
+
+298 1702812959641 3 102 4.954503 round1: 40667.886719 reply1: 37380.531250 round2: 37380.531250 reply2: 37380.562500 tof: 0.016526 
+Request time: 1702812959461
+Response time: 1702812959641
+Overall time of the request (response time - request time): 179
+
+299 1702812959882 3 102 4.954503 round1: 40669.074219 reply1: 37392.933594 round2: 37392.933594 reply2: 37392.968750 tof: 0.016526 
+Request time: 1702812959642
+Response time: 1702812959882
+Overall time of the request (response time - request time): 239
+
+300 1702812960135 3 102 4.963886 round1: 40669.074219 reply1: 37409.164062 round2: 37409.164062 reply2: 37409.199219 tof: 0.016558 
+Request time: 1702812959884
+Response time: 1702812960135
+Overall time of the request (response time - request time): 250
+
+301 1702812960388 3 102 4.912277 round1: 40674.167969 reply1: 37393.437500 round2: 37393.437500 reply2: 37393.472656 tof: 0.016386 
+Request time: 1702812960135
+Response time: 1702812960388
+Overall time of the request (response time - request time): 252
+
+302 1702812960629 3 102 4.916968 round1: 40669.320312 reply1: 37404.718750 round2: 37404.718750 reply2: 37404.753906 tof: 0.016401 
+Request time: 1702812960389
+Response time: 1702812960629
+Overall time of the request (response time - request time): 239
+
+303 1702812960887 3 102 4.959194 round1: 40668.410156 reply1: 37415.843750 round2: 37415.843750 reply2: 37415.878906 tof: 0.016542 
+Request time: 1702812960630
+Response time: 1702812960887
+Overall time of the request (response time - request time): 257
+
+304 1702812961144 3 102 4.916968 round1: 40668.328125 reply1: 37382.023438 round2: 37382.023438 reply2: 37382.062500 tof: 0.016401 
+Request time: 1702812960887
+Response time: 1702812961144
+Overall time of the request (response time - request time): 257
+
+305 1702812961384 3 102 4.963886 round1: 40667.953125 reply1: 37395.281250 round2: 37395.281250 reply2: 37395.320312 tof: 0.016558 
+Request time: 1702812961146
+Response time: 1702812961384
+Overall time of the request (response time - request time): 237
+
+306 1702812961633 3 102 4.949811 round1: 40669.031250 reply1: 37398.570312 round2: 37398.570312 reply2: 37398.609375 tof: 0.016511 
+Request time: 1702812961385
+Response time: 1702812961633
+Overall time of the request (response time - request time): 247
+
+307 1702812961899 3 102 4.982653 round1: 40669.898438 reply1: 37408.917969 round2: 37408.917969 reply2: 37408.953125 tof: 0.016620 
+Request time: 1702812961633
+Response time: 1702812961899
+Overall time of the request (response time - request time): 265
+
+308 1702812962127 3 102 4.935736 round1: 40667.609375 reply1: 37397.789062 round2: 37397.789062 reply2: 37397.828125 tof: 0.016464 
+Request time: 1702812961900
+Response time: 1702812962127
+Overall time of the request (response time - request time): 226
+
+309 1702812962379 3 102 4.949811 round1: 40674.160156 reply1: 37379.390625 round2: 37379.390625 reply2: 37379.425781 tof: 0.016511 
+Request time: 1702812962127
+Response time: 1702812962379
+Overall time of the request (response time - request time): 252
+
+310 1702812962638 3 102 4.959194 round1: 40668.437500 reply1: 37398.886719 round2: 37398.886719 reply2: 37398.925781 tof: 0.016542 
+Request time: 1702812962380
+Response time: 1702812962638
+Overall time of the request (response time - request time): 257
+
+311 1702812962882 3 102 4.907585 round1: 40675.660156 reply1: 37380.039062 round2: 37380.039062 reply2: 37380.074219 tof: 0.016370 
+Request time: 1702812962638
+Response time: 1702812962882
+Overall time of the request (response time - request time): 244
+
+312 1702812963152 3 102 4.959194 round1: 40668.710938 reply1: 37405.640625 round2: 37405.640625 reply2: 37405.675781 tof: 0.016542 
+Request time: 1702812962883
+Response time: 1702812963152
+Overall time of the request (response time - request time): 269
+
+313 1702812963382 3 102 4.954503 round1: 40668.695312 reply1: 37383.652344 round2: 37383.652344 reply2: 37383.687500 tof: 0.016526 
+Request time: 1702812963153
+Response time: 1702812963382
+Overall time of the request (response time - request time): 229
+
+314 1702812963654 3 102 4.959194 round1: 40670.851562 reply1: 37385.640625 round2: 37385.640625 reply2: 37385.675781 tof: 0.016542 
+Request time: 1702812963383
+Response time: 1702812963654
+Overall time of the request (response time - request time): 271
+
+315 1702812963884 3 102 4.921660 round1: 40670.660156 reply1: 37398.714844 round2: 37398.714844 reply2: 37398.753906 tof: 0.016417 
+Request time: 1702812963654
+Response time: 1702812963884
+Overall time of the request (response time - request time): 230
+
+316 1702812964146 3 102 4.940427 round1: 40668.406250 reply1: 37384.398438 round2: 37384.398438 reply2: 37384.433594 tof: 0.016479 
+Request time: 1702812963887
+Response time: 1702812964146
+Overall time of the request (response time - request time): 258
+
+317 1702812964381 3 102 4.968578 round1: 40669.406250 reply1: 37403.894531 round2: 37403.894531 reply2: 37403.933594 tof: 0.016573 
+Request time: 1702812964147
+Response time: 1702812964381
+Overall time of the request (response time - request time): 234
+
+318 1702812964643 3 102 4.945119 round1: 40674.496094 reply1: 37395.605469 round2: 37395.605469 reply2: 37395.644531 tof: 0.016495 
+Request time: 1702812964383
+Response time: 1702812964643
+Overall time of the request (response time - request time): 259
+
+319 1702812964910 3 102 4.963886 round1: 40668.437500 reply1: 37376.050781 round2: 37376.050781 reply2: 37376.085938 tof: 0.016558 
+Request time: 1702812964644
+Response time: 1702812964910
+Overall time of the request (response time - request time): 266
+
+320 1702812965140 3 102 5.006112 round1: 40670.003906 reply1: 37383.789062 round2: 37383.789062 reply2: 37383.824219 tof: 0.016699 
+Request time: 1702812964911
+Response time: 1702812965140
+Overall time of the request (response time - request time): 228
+
+321 1702812965390 3 102 5.010804 round1: 40669.441406 reply1: 37401.316406 round2: 37401.316406 reply2: 37401.347656 tof: 0.016714 
+Request time: 1702812965141
+Response time: 1702812965390
+Overall time of the request (response time - request time): 248
+
+322 1702812965654 3 102 4.963886 round1: 40668.386719 reply1: 37374.023438 round2: 37374.023438 reply2: 37374.062500 tof: 0.016558 
+Request time: 1702812965390
+Response time: 1702812965654
+Overall time of the request (response time - request time): 263
+
+323 1702812965891 3 102 4.931044 round1: 40669.820312 reply1: 37380.761719 round2: 37380.761719 reply2: 37380.800781 tof: 0.016448 
+Request time: 1702812965654
+Response time: 1702812965891
+Overall time of the request (response time - request time): 236
+
+324 1702812966147 3 102 4.959194 round1: 40675.667969 reply1: 37404.445312 round2: 37404.445312 reply2: 37404.480469 tof: 0.016542 
+Request time: 1702812965892
+Response time: 1702812966147
+Overall time of the request (response time - request time): 254
+
+325 1702812966406 3 102 4.945119 round1: 40668.472656 reply1: 37409.597656 round2: 37409.597656 reply2: 37409.632812 tof: 0.016495 
+Request time: 1702812966147
+Response time: 1702812966406
+Overall time of the request (response time - request time): 259
+
+326 1702812966633 3 102 4.977962 round1: 40668.378906 reply1: 37415.804688 round2: 37415.804688 reply2: 37415.839844 tof: 0.016605 
+Request time: 1702812966407
+Response time: 1702812966633
+Overall time of the request (response time - request time): 226
+
+327 1702812966878 3 102 4.935736 round1: 40667.695312 reply1: 37387.105469 round2: 37387.105469 reply2: 37387.140625 tof: 0.016464 
+Request time: 1702812966633
+Response time: 1702812966878
+Overall time of the request (response time - request time): 244
+
+328 1702812967146 3 102 4.945119 round1: 40668.390625 reply1: 37387.218750 round2: 37387.218750 reply2: 37387.253906 tof: 0.016495 
+Request time: 1702812966878
+Response time: 1702812967146
+Overall time of the request (response time - request time): 267
+
+329 1702812967384 3 102 4.931044 round1: 40668.343750 reply1: 37390.656250 round2: 37390.656250 reply2: 37390.691406 tof: 0.016448 
+Request time: 1702812967146
+Response time: 1702812967384
+Overall time of the request (response time - request time): 237
+
+330 1702812967644 3 102 4.977962 round1: 40668.511719 reply1: 37376.921875 round2: 37376.921875 reply2: 37376.957031 tof: 0.016605 
+Request time: 1702812967384
+Response time: 1702812967644
+Overall time of the request (response time - request time): 259
+
+331 1702812967887 3 102 4.982653 round1: 40669.257812 reply1: 37383.820312 round2: 37383.820312 reply2: 37383.855469 tof: 0.016620 
+Request time: 1702812967645
+Response time: 1702812967887
+Overall time of the request (response time - request time): 242
+
+332 1702812968170 3 102 4.968578 round1: 40671.292969 reply1: 37388.667969 round2: 37388.667969 reply2: 37388.703125 tof: 0.016573 
+Request time: 1702812967889
+Response time: 1702812968170
+Overall time of the request (response time - request time): 280
+
+333 1702812968383 3 102 4.926352 round1: 40668.371094 reply1: 37393.175781 round2: 37393.175781 reply2: 37393.210938 tof: 0.016433 
+Request time: 1702812968170
+Response time: 1702812968383
+Overall time of the request (response time - request time): 213
+
+334 1702812968632 3 102 4.921660 round1: 40669.148438 reply1: 37386.511719 round2: 37386.511719 reply2: 37386.542969 tof: 0.016417 
+Request time: 1702812968384
+Response time: 1702812968632
+Overall time of the request (response time - request time): 248
+
+335 1702812968893 3 102 4.954503 round1: 40676.785156 reply1: 37400.761719 round2: 37400.761719 reply2: 37400.800781 tof: 0.016526 
+Request time: 1702812968632
+Response time: 1702812968893
+Overall time of the request (response time - request time): 261
+
+336 1702812969137 3 102 4.949811 round1: 40672.082031 reply1: 37397.933594 round2: 37397.933594 reply2: 37397.972656 tof: 0.016511 
+Request time: 1702812968893
+Response time: 1702812969137
+Overall time of the request (response time - request time): 243
+
+337 1702812969377 3 102 4.954503 round1: 40668.667969 reply1: 37395.617188 round2: 37395.617188 reply2: 37395.656250 tof: 0.016526 
+Request time: 1702812969137
+Response time: 1702812969377
+Overall time of the request (response time - request time): 239
+
+338 1702812969633 3 102 4.945119 round1: 40676.011719 reply1: 37410.871094 round2: 37410.871094 reply2: 37410.906250 tof: 0.016495 
+Request time: 1702812969377
+Response time: 1702812969633
+Overall time of the request (response time - request time): 255
+
+339 1702812969917 3 102 4.977962 round1: 40675.015625 reply1: 37371.148438 round2: 37371.148438 reply2: 37371.183594 tof: 0.016605 
+Request time: 1702812969634
+Response time: 1702812969917
+Overall time of the request (response time - request time): 283
+
+340 1702812970127 3 102 4.959194 round1: 40670.007812 reply1: 37398.410156 round2: 37398.410156 reply2: 37398.445312 tof: 0.016542 
+Request time: 1702812969920
+Response time: 1702812970127
+Overall time of the request (response time - request time): 207
+
+341 1702812970394 3 102 4.968578 round1: 40670.425781 reply1: 37400.480469 round2: 37400.480469 reply2: 37400.515625 tof: 0.016573 
+Request time: 1702812970129
+Response time: 1702812970394
+Overall time of the request (response time - request time): 264
+
+342 1702812970631 3 102 4.982653 round1: 40669.210938 reply1: 37405.390625 round2: 37405.390625 reply2: 37405.425781 tof: 0.016620 
+Request time: 1702812970394
+Response time: 1702812970631
+Overall time of the request (response time - request time): 237
+
+343 1702812970883 3 102 5.029571 round1: 40667.597656 reply1: 37383.632812 round2: 37383.632812 reply2: 37383.664062 tof: 0.016777 
+Request time: 1702812970632
+Response time: 1702812970883
+Overall time of the request (response time - request time): 251
+
+344 1702812971142 3 102 4.973269 round1: 40669.242188 reply1: 37384.023438 round2: 37384.023438 reply2: 37384.054688 tof: 0.016589 
+Request time: 1702812970885
+Response time: 1702812971142
+Overall time of the request (response time - request time): 257
+
+345 1702812971398 3 102 4.926352 round1: 40675.718750 reply1: 37397.046875 round2: 37397.046875 reply2: 37397.082031 tof: 0.016433 
+Request time: 1702812971142
+Response time: 1702812971398
+Overall time of the request (response time - request time): 255
+
+346 1702812971644 3 102 4.973269 round1: 40668.640625 reply1: 37374.867188 round2: 37374.867188 reply2: 37374.898438 tof: 0.016589 
+Request time: 1702812971398
+Response time: 1702812971644
+Overall time of the request (response time - request time): 246
+
+347 1702812971877 3 102 4.945119 round1: 40677.593750 reply1: 37444.246094 round2: 37444.246094 reply2: 37444.277344 tof: 0.016495 
+Request time: 1702812971644
+Response time: 1702812971877
+Overall time of the request (response time - request time): 233
+
+348 1702812972138 3 102 4.907585 round1: 40674.179688 reply1: 37396.628906 round2: 37396.628906 reply2: 37396.664062 tof: 0.016370 
+Request time: 1702812971879
+Response time: 1702812972138
+Overall time of the request (response time - request time): 259
+
+349 1702812972398 3 102 4.902893 round1: 40669.445312 reply1: 37383.042969 round2: 37383.042969 reply2: 37383.074219 tof: 0.016354 
+Request time: 1702812972138
+Response time: 1702812972398
+Overall time of the request (response time - request time): 259
+
+350 1702812972651 3 102 4.959194 round1: 40668.363281 reply1: 37388.914062 round2: 37388.914062 reply2: 37388.949219 tof: 0.016542 
+Request time: 1702812972398
+Response time: 1702812972651
+Overall time of the request (response time - request time): 252
+
+351 1702812972880 3 102 4.935736 round1: 40667.722656 reply1: 37381.945312 round2: 37381.945312 reply2: 37381.976562 tof: 0.016464 
+Request time: 1702812972651
+Response time: 1702812972880
+Overall time of the request (response time - request time): 229
+
+352 1702812973144 3 102 5.001420 round1: 40672.156250 reply1: 37390.335938 round2: 37390.335938 reply2: 37390.371094 tof: 0.016683 
+Request time: 1702812972881
+Response time: 1702812973144
+Overall time of the request (response time - request time): 263
+
+353 1702812973400 3 102 4.954503 round1: 40669.109375 reply1: 37409.808594 round2: 37409.808594 reply2: 37409.847656 tof: 0.016526 
+Request time: 1702812973144
+Response time: 1702812973400
+Overall time of the request (response time - request time): 255
+
+354 1702812974055 3 102 4.996728 round1: 40670.957031 reply1: 37374.550781 round2: 37374.550781 reply2: 37374.585938 tof: 0.016667 
+Request time: 1702812973400
+Response time: 1702812974055
+Overall time of the request (response time - request time): 655
+
+355 1702812974406 3 102 5.020187 round1: 40669.250000 reply1: 37386.226562 round2: 37386.226562 reply2: 37386.261719 tof: 0.016746 
+Request time: 1702812974055
+Response time: 1702812974406
+Overall time of the request (response time - request time): 350
+
+356 1702812974648 3 102 4.949811 round1: 40670.039062 reply1: 37377.464844 round2: 37377.464844 reply2: 37377.500000 tof: 0.016511 
+Request time: 1702812974408
+Response time: 1702812974648
+Overall time of the request (response time - request time): 240
+
+357 1702812974929 3 102 4.963886 round1: 40673.519531 reply1: 37394.261719 round2: 37394.261719 reply2: 37394.296875 tof: 0.016558 
+Request time: 1702812974648
+Response time: 1702812974929
+Overall time of the request (response time - request time): 280
+
+358 1702812975143 3 102 4.935736 round1: 40667.722656 reply1: 37380.769531 round2: 37380.769531 reply2: 37380.808594 tof: 0.016464 
+Request time: 1702812974931
+Response time: 1702812975143
+Overall time of the request (response time - request time): 212
+
+359 1702812975405 3 102 4.982653 round1: 40669.109375 reply1: 37411.214844 round2: 37411.214844 reply2: 37411.250000 tof: 0.016620 
+Request time: 1702812975146
+Response time: 1702812975405
+Overall time of the request (response time - request time): 259
+
+360 1702812975521 3 102 4.992037 round1: 40669.417969 reply1: 37393.062500 round2: 37393.062500 reply2: 37393.093750 tof: 0.016652 
+Request time: 1702812975407
+Response time: 1702812975521
+Overall time of the request (response time - request time): 114
+
+361 1702812975893 3 102 4.959194 round1: 40669.109375 reply1: 37395.660156 round2: 37395.660156 reply2: 37395.695312 tof: 0.016542 
+Request time: 1702812975521
+Response time: 1702812975893
+Overall time of the request (response time - request time): 371
+
+362 1702812976137 3 102 5.001420 round1: 40675.691406 reply1: 37377.890625 round2: 37377.890625 reply2: 37377.925781 tof: 0.016683 
+Request time: 1702812975894
+Response time: 1702812976137
+Overall time of the request (response time - request time): 243
+
+363 1702812976427 3 102 4.982653 round1: 40669.019531 reply1: 37385.265625 round2: 37385.265625 reply2: 37385.300781 tof: 0.016620 
+Request time: 1702812976139
+Response time: 1702812976427
+Overall time of the request (response time - request time): 288
+
+364 1702812976656 3 102 4.954503 round1: 40668.371094 reply1: 37379.875000 round2: 37379.875000 reply2: 37379.910156 tof: 0.016526 
+Request time: 1702812976436
+Response time: 1702812976656
+Overall time of the request (response time - request time): 220
+
+365 1702812976880 3 102 4.977962 round1: 40668.675781 reply1: 37398.050781 round2: 37398.050781 reply2: 37398.082031 tof: 0.016605 
+Request time: 1702812976658
+Response time: 1702812976880
+Overall time of the request (response time - request time): 222
+
+366 1702812977159 3 102 4.935736 round1: 40674.953125 reply1: 37382.500000 round2: 37382.500000 reply2: 37382.535156 tof: 0.016464 
+Request time: 1702812976880
+Response time: 1702812977159
+Overall time of the request (response time - request time): 278
+
+367 1702812977388 3 102 4.973269 round1: 40669.882812 reply1: 37397.640625 round2: 37397.640625 reply2: 37397.679688 tof: 0.016589 
+Request time: 1702812977161
+Response time: 1702812977388
+Overall time of the request (response time - request time): 227
+
+368 1702812977640 3 102 4.963886 round1: 40670.675781 reply1: 37402.312500 round2: 37402.312500 reply2: 37402.351562 tof: 0.016558 
+Request time: 1702812977390
+Response time: 1702812977640
+Overall time of the request (response time - request time): 249
+
+369 1702812977904 3 102 4.959194 round1: 40668.531250 reply1: 37400.531250 round2: 37400.531250 reply2: 37400.566406 tof: 0.016542 
+Request time: 1702812977640
+Response time: 1702812977904
+Overall time of the request (response time - request time): 264
+
+370 1702812978128 3 102 4.945119 round1: 40670.656250 reply1: 37398.343750 round2: 37398.343750 reply2: 37398.378906 tof: 0.016495 
+Request time: 1702812977905
+Response time: 1702812978128
+Overall time of the request (response time - request time): 222
+
+371 1702812978396 3 102 4.963886 round1: 40675.675781 reply1: 37385.625000 round2: 37385.625000 reply2: 37385.660156 tof: 0.016558 
+Request time: 1702812978129
+Response time: 1702812978396
+Overall time of the request (response time - request time): 267
+
+372 1702812978630 3 102 4.977962 round1: 40669.910156 reply1: 37380.269531 round2: 37380.269531 reply2: 37380.300781 tof: 0.016605 
+Request time: 1702812978397
+Response time: 1702812978630
+Overall time of the request (response time - request time): 233
+
+373 1702812978923 3 102 4.949811 round1: 40674.128906 reply1: 37384.582031 round2: 37384.582031 reply2: 37384.617188 tof: 0.016511 
+Request time: 1702812978631
+Response time: 1702812978923
+Overall time of the request (response time - request time): 292
+
+374 1702812979134 3 102 4.963886 round1: 40668.296875 reply1: 37409.222656 round2: 37409.222656 reply2: 37409.257812 tof: 0.016558 
+Request time: 1702812978925
+Response time: 1702812979134
+Overall time of the request (response time - request time): 209
+
+375 1702812979379 3 102 4.945119 round1: 40668.683594 reply1: 37389.378906 round2: 37389.378906 reply2: 37389.414062 tof: 0.016495 
+Request time: 1702812979137
+Response time: 1702812979379
+Overall time of the request (response time - request time): 242
+
+376 1702812979647 3 102 4.977962 round1: 40675.683594 reply1: 37379.042969 round2: 37379.042969 reply2: 37379.082031 tof: 0.016605 
+Request time: 1702812979382
+Response time: 1702812979647
+Overall time of the request (response time - request time): 265
+
+377 1702812979939 3 102 4.945119 round1: 40669.542969 reply1: 37391.828125 round2: 37391.828125 reply2: 37391.863281 tof: 0.016495 
+Request time: 1702812979648
+Response time: 1702812979939
+Overall time of the request (response time - request time): 291
+
+378 1702812980155 3 102 4.945119 round1: 40671.648438 reply1: 37379.406250 round2: 37379.406250 reply2: 37379.437500 tof: 0.016495 
+Request time: 1702812979955
+Response time: 1702812980155
+Overall time of the request (response time - request time): 199
+
+379 1702812980410 3 102 4.959194 round1: 40669.992188 reply1: 37393.562500 round2: 37393.562500 reply2: 37393.597656 tof: 0.016542 
+Request time: 1702812980155
+Response time: 1702812980410
+Overall time of the request (response time - request time): 255
+
+380 1702812980641 3 102 4.921660 round1: 40674.910156 reply1: 37378.808594 round2: 37378.808594 reply2: 37378.843750 tof: 0.016417 
+Request time: 1702812980418
+Response time: 1702812980641
+Overall time of the request (response time - request time): 222
+
+381 1702812980893 3 102 4.977962 round1: 40667.718750 reply1: 37404.804688 round2: 37404.804688 reply2: 37404.843750 tof: 0.016605 
+Request time: 1702812980644
+Response time: 1702812980893
+Overall time of the request (response time - request time): 248
+
+382 1702812981137 3 102 4.987345 round1: 40669.179688 reply1: 37411.203125 round2: 37411.203125 reply2: 37411.238281 tof: 0.016636 
+Request time: 1702812980895
+Response time: 1702812981137
+Overall time of the request (response time - request time): 241
+
+383 1702812981378 3 102 4.959194 round1: 40669.871094 reply1: 37393.218750 round2: 37393.218750 reply2: 37393.250000 tof: 0.016542 
+Request time: 1702812981138
+Response time: 1702812981378
+Overall time of the request (response time - request time): 239
+
+384 1702812981642 3 102 4.940427 round1: 40668.535156 reply1: 37396.703125 round2: 37396.703125 reply2: 37396.742188 tof: 0.016479 
+Request time: 1702812981380
+Response time: 1702812981642
+Overall time of the request (response time - request time): 262
+
+385 1702812981888 3 102 4.982653 round1: 40668.343750 reply1: 37385.976562 round2: 37385.976562 reply2: 37386.011719 tof: 0.016620 
+Request time: 1702812981645
+Response time: 1702812981888
+Overall time of the request (response time - request time): 243
+
+386 1702812982177 3 102 4.963886 round1: 40678.214844 reply1: 37382.574219 round2: 37382.574219 reply2: 37382.605469 tof: 0.016558 
+Request time: 1702812981890
+Response time: 1702812982177
+Overall time of the request (response time - request time): 287
+
+387 1702812982407 3 102 5.001420 round1: 40668.468750 reply1: 37388.195312 round2: 37388.195312 reply2: 37388.226562 tof: 0.016683 
+Request time: 1702812982179
+Response time: 1702812982407
+Overall time of the request (response time - request time): 228
+
+388 1702812982649 3 102 4.996728 round1: 40668.429688 reply1: 37406.683594 round2: 37406.683594 reply2: 37406.722656 tof: 0.016667 
+Request time: 1702812982409
+Response time: 1702812982649
+Overall time of the request (response time - request time): 240
+
+389 1702812982894 3 102 4.945119 round1: 40669.253906 reply1: 37373.160156 round2: 37373.160156 reply2: 37373.195312 tof: 0.016495 
+Request time: 1702812982651
+Response time: 1702812982894
+Overall time of the request (response time - request time): 242
+
+390 1702812984161 3 102 4.963886 round1: 40667.617188 reply1: 37404.312500 round2: 37404.312500 reply2: 37404.347656 tof: 0.016558 
+Request time: 1702812982895
+Response time: 1702812984161
+Overall time of the request (response time - request time): 1265
+
+391 1702812984388 3 102 4.916968 round1: 40670.003906 reply1: 37372.906250 round2: 37372.906250 reply2: 37372.941406 tof: 0.016401 
+Request time: 1702812984161
+Response time: 1702812984388
+Overall time of the request (response time - request time): 227
+
+392 1702812984652 3 102 4.963886 round1: 40668.683594 reply1: 37404.714844 round2: 37404.714844 reply2: 37404.750000 tof: 0.016558 
+Request time: 1702812984389
+Response time: 1702812984652
+Overall time of the request (response time - request time): 262
+
+393 1702812984883 3 102 4.935736 round1: 40669.101562 reply1: 37375.136719 round2: 37375.136719 reply2: 37375.175781 tof: 0.016464 
+Request time: 1702812984652
+Response time: 1702812984883
+Overall time of the request (response time - request time): 231
+
+394 1702812985137 3 102 4.945119 round1: 40669.121094 reply1: 37390.832031 round2: 37390.832031 reply2: 37390.867188 tof: 0.016495 
+Request time: 1702812984883
+Response time: 1702812985137
+Overall time of the request (response time - request time): 253
+
+395 1702812985387 3 102 4.954503 round1: 40669.847656 reply1: 37394.765625 round2: 37394.765625 reply2: 37394.796875 tof: 0.016526 
+Request time: 1702812985137
+Response time: 1702812985387
+Overall time of the request (response time - request time): 249
+
+396 1702812985637 3 102 4.963886 round1: 40668.824219 reply1: 37396.183594 round2: 37396.183594 reply2: 37396.218750 tof: 0.016558 
+Request time: 1702812985387
+Response time: 1702812985637
+Overall time of the request (response time - request time): 250
+
+397 1702812985891 3 102 4.949811 round1: 40670.664062 reply1: 37372.597656 round2: 37372.597656 reply2: 37372.632812 tof: 0.016511 
+Request time: 1702812985637
+Response time: 1702812985891
+Overall time of the request (response time - request time): 253
+
+398 1702812986150 3 102 4.921660 round1: 40674.984375 reply1: 37397.707031 round2: 37397.707031 reply2: 37397.742188 tof: 0.016417 
+Request time: 1702812985891
+Response time: 1702812986150
+Overall time of the request (response time - request time): 259
+
+399 1702812986378 3 102 4.973269 round1: 40675.000000 reply1: 37398.488281 round2: 37398.488281 reply2: 37398.523438 tof: 0.016589 
+Request time: 1702812986153
+Response time: 1702812986378
+Overall time of the request (response time - request time): 225
+
+400 1702812986630 3 102 4.940427 round1: 40670.582031 reply1: 37384.671875 round2: 37384.671875 reply2: 37384.710938 tof: 0.016479 
+Request time: 1702812986378
+Response time: 1702812986630
+Overall time of the request (response time - request time): 251
+
+401 1702812986896 3 102 4.954503 round1: 40669.191406 reply1: 37393.835938 round2: 37393.835938 reply2: 37393.871094 tof: 0.016526 
+Request time: 1702812986630
+Response time: 1702812986896
+Overall time of the request (response time - request time): 265
+
+402 1702812987133 3 102 4.931044 round1: 40668.398438 reply1: 37394.292969 round2: 37394.292969 reply2: 37394.328125 tof: 0.016448 
+Request time: 1702812986896
+Response time: 1702812987133
+Overall time of the request (response time - request time): 237
+
+403 1702812987396 3 102 4.959194 round1: 40669.898438 reply1: 37390.156250 round2: 37390.156250 reply2: 37390.187500 tof: 0.016542 
+Request time: 1702812987134
+Response time: 1702812987396
+Overall time of the request (response time - request time): 262
+
+404 1702812987633 3 102 4.931044 round1: 40667.617188 reply1: 37393.875000 round2: 37393.875000 reply2: 37393.910156 tof: 0.016448 
+Request time: 1702812987396
+Response time: 1702812987633
+Overall time of the request (response time - request time): 236
+
+405 1702812987914 3 102 4.963886 round1: 40668.699219 reply1: 37393.949219 round2: 37393.949219 reply2: 37393.980469 tof: 0.016558 
+Request time: 1702812987634
+Response time: 1702812987914
+Overall time of the request (response time - request time): 280
+
+406 1702812988133 3 102 4.954503 round1: 40668.492188 reply1: 37390.101562 round2: 37390.101562 reply2: 37390.132812 tof: 0.016526 
+Request time: 1702812987916
+Response time: 1702812988133
+Overall time of the request (response time - request time): 216
+
+407 1702812988393 3 102 4.935736 round1: 40667.703125 reply1: 37411.472656 round2: 37411.472656 reply2: 37411.507812 tof: 0.016464 
+Request time: 1702812988134
+Response time: 1702812988393
+Overall time of the request (response time - request time): 259
+
+408 1702812988632 3 102 4.949811 round1: 40675.003906 reply1: 37384.308594 round2: 37384.308594 reply2: 37384.343750 tof: 0.016511 
+Request time: 1702812988393
+Response time: 1702812988632
+Overall time of the request (response time - request time): 238
+
+409 1702812988950 3 102 4.963886 round1: 40668.695312 reply1: 37398.730469 round2: 37398.730469 reply2: 37398.769531 tof: 0.016558 
+Request time: 1702812988632
+Response time: 1702812988950
+Overall time of the request (response time - request time): 317
+
+410 1702812989132 3 102 4.949811 round1: 40668.464844 reply1: 37393.988281 round2: 37393.988281 reply2: 37394.023438 tof: 0.016511 
+Request time: 1702812988950
+Response time: 1702812989132
+Overall time of the request (response time - request time): 182
+
+411 1702812989384 3 102 4.954503 round1: 40673.441406 reply1: 37401.671875 round2: 37401.671875 reply2: 37401.707031 tof: 0.016526 
+Request time: 1702812989132
+Response time: 1702812989384
+Overall time of the request (response time - request time): 252
+
+412 1702812989628 3 102 4.963886 round1: 40668.375000 reply1: 37379.222656 round2: 37379.222656 reply2: 37379.257812 tof: 0.016558 
+Request time: 1702812989388
+Response time: 1702812989628
+Overall time of the request (response time - request time): 240
+
+413 1702812989883 3 102 4.982653 round1: 40669.113281 reply1: 37397.714844 round2: 37397.714844 reply2: 37397.750000 tof: 0.016620 
+Request time: 1702812989629
+Response time: 1702812989883
+Overall time of the request (response time - request time): 253
+
+414 1702812990195 3 102 4.945119 round1: 40670.230469 reply1: 37378.265625 round2: 37378.265625 reply2: 37378.300781 tof: 0.016495 
+Request time: 1702812989883
+Response time: 1702812990195
+Overall time of the request (response time - request time): 312
+
+415 1702812990394 3 102 5.015495 round1: 40671.691406 reply1: 37381.859375 round2: 37381.859375 reply2: 37381.894531 tof: 0.016730 
+Request time: 1702812990196
+Response time: 1702812990394
+Overall time of the request (response time - request time): 198
+
+416 1702812990643 3 102 5.001420 round1: 40667.613281 reply1: 37369.222656 round2: 37369.222656 reply2: 37369.257812 tof: 0.016683 
+Request time: 1702812990395
+Response time: 1702812990643
+Overall time of the request (response time - request time): 248
+
+417 1702812990889 3 102 4.987345 round1: 40669.867188 reply1: 37388.390625 round2: 37388.390625 reply2: 37388.421875 tof: 0.016636 
+Request time: 1702812990644
+Response time: 1702812990889
+Overall time of the request (response time - request time): 245
+
+418 1702812991163 3 102 4.987345 round1: 40671.894531 reply1: 37405.671875 round2: 37405.671875 reply2: 37405.707031 tof: 0.016636 
+Request time: 1702812990890
+Response time: 1702812991163
+Overall time of the request (response time - request time): 272
+
+419 1702812991396 3 102 4.945119 round1: 40669.156250 reply1: 37402.402344 round2: 37402.402344 reply2: 37402.433594 tof: 0.016495 
+Request time: 1702812991163
+Response time: 1702812991396
+Overall time of the request (response time - request time): 233
+
+420 1702812991636 3 102 5.015495 round1: 40669.039062 reply1: 37427.421875 round2: 37427.421875 reply2: 37427.453125 tof: 0.016730 
+Request time: 1702812991396
+Response time: 1702812991636
+Overall time of the request (response time - request time): 239
+
+421 1702812991929 3 102 4.982653 round1: 40667.597656 reply1: 37393.562500 round2: 37393.562500 reply2: 37393.601562 tof: 0.016620 
+Request time: 1702812991636
+Response time: 1702812991929
+Overall time of the request (response time - request time): 292
+
+422 1702812992143 3 102 4.959194 round1: 40669.199219 reply1: 37380.039062 round2: 37380.039062 reply2: 37380.074219 tof: 0.016542 
+Request time: 1702812991929
+Response time: 1702812992143
+Overall time of the request (response time - request time): 213
+
+423 1702812992411 3 102 4.963886 round1: 40669.210938 reply1: 37397.003906 round2: 37397.003906 reply2: 37397.039062 tof: 0.016558 
+Request time: 1702812992144
+Response time: 1702812992411
+Overall time of the request (response time - request time): 267
+
+424 1702812992641 3 102 4.912277 round1: 40669.828125 reply1: 37382.738281 round2: 37382.738281 reply2: 37382.769531 tof: 0.016386 
+Request time: 1702812992412
+Response time: 1702812992641
+Overall time of the request (response time - request time): 229
+
+425 1702812992908 3 102 4.973269 round1: 40668.492188 reply1: 37384.710938 round2: 37384.710938 reply2: 37384.742188 tof: 0.016589 
+Request time: 1702812992642
+Response time: 1702812992908
+Overall time of the request (response time - request time): 266
+
+426 1702812993136 3 102 4.973269 round1: 40669.089844 reply1: 37384.445312 round2: 37384.445312 reply2: 37384.480469 tof: 0.016589 
+Request time: 1702812992908
+Response time: 1702812993136
+Overall time of the request (response time - request time): 228
+
+427 1702812993380 3 102 4.987345 round1: 40670.382812 reply1: 37379.304688 round2: 37379.304688 reply2: 37379.339844 tof: 0.016636 
+Request time: 1702812993136
+Response time: 1702812993380
+Overall time of the request (response time - request time): 243
+
+428 1702812993644 3 102 4.968578 round1: 40667.699219 reply1: 37404.625000 round2: 37404.625000 reply2: 37404.660156 tof: 0.016573 
+Request time: 1702812993380
+Response time: 1702812993644
+Overall time of the request (response time - request time): 263
+
+429 1702812993884 3 102 4.987345 round1: 40670.652344 reply1: 37378.304688 round2: 37378.304688 reply2: 37378.335938 tof: 0.016636 
+Request time: 1702812993644
+Response time: 1702812993884
+Overall time of the request (response time - request time): 239
+
+430 1702812994163 3 102 4.916968 round1: 40674.257812 reply1: 37406.570312 round2: 37406.570312 reply2: 37406.605469 tof: 0.016401 
+Request time: 1702812993884
+Response time: 1702812994163
+Overall time of the request (response time - request time): 278
+
+431 1702812994381 3 102 4.940427 round1: 40668.378906 reply1: 37398.031250 round2: 37398.031250 reply2: 37398.066406 tof: 0.016479 
+Request time: 1702812994163
+Response time: 1702812994381
+Overall time of the request (response time - request time): 217
+
+432 1702812994643 3 102 4.968578 round1: 40668.359375 reply1: 37381.289062 round2: 37381.289062 reply2: 37381.324219 tof: 0.016573 
+Request time: 1702812994382
+Response time: 1702812994643
+Overall time of the request (response time - request time): 261
+
+433 1702812994915 3 102 4.968578 round1: 40676.003906 reply1: 37397.195312 round2: 37397.195312 reply2: 37397.230469 tof: 0.016573 
+Request time: 1702812994643
+Response time: 1702812994915
+Overall time of the request (response time - request time): 271
+
+434 1702812995145 3 102 5.006112 round1: 40667.613281 reply1: 37385.894531 round2: 37385.894531 reply2: 37385.929688 tof: 0.016699 
+Request time: 1702812994915
+Response time: 1702812995145
+Overall time of the request (response time - request time): 229
+
+435 1702812995379 3 102 4.963886 round1: 40668.343750 reply1: 37374.148438 round2: 37374.148438 reply2: 37374.183594 tof: 0.016558 
+Request time: 1702812995146
+Response time: 1702812995379
+Overall time of the request (response time - request time): 233
+
+436 1702812995637 3 102 4.959194 round1: 40668.402344 reply1: 37405.820312 round2: 37405.820312 reply2: 37405.855469 tof: 0.016542 
+Request time: 1702812995380
+Response time: 1702812995637
+Overall time of the request (response time - request time): 256
+
+437 1702812995882 3 102 4.992037 round1: 40670.246094 reply1: 37400.289062 round2: 37400.289062 reply2: 37400.328125 tof: 0.016652 
+Request time: 1702812995637
+Response time: 1702812995882
+Overall time of the request (response time - request time): 245
+
+438 1702812996136 3 102 4.935736 round1: 40667.554688 reply1: 37388.816406 round2: 37388.816406 reply2: 37388.851562 tof: 0.016464 
+Request time: 1702812995883
+Response time: 1702812996136
+Overall time of the request (response time - request time): 253
+
+439 1702812996404 3 102 5.029571 round1: 40669.167969 reply1: 37393.562500 round2: 37393.562500 reply2: 37393.601562 tof: 0.016777 
+Request time: 1702812996136
+Response time: 1702812996404
+Overall time of the request (response time - request time): 268
+
+440 1702812996640 3 102 4.954503 round1: 40672.210938 reply1: 37386.992188 round2: 37386.992188 reply2: 37387.023438 tof: 0.016526 
+Request time: 1702812996405
+Response time: 1702812996640
+Overall time of the request (response time - request time): 235
+
+441 1702812996889 3 102 4.963886 round1: 40674.257812 reply1: 37379.542969 round2: 37379.542969 reply2: 37379.578125 tof: 0.016558 
+Request time: 1702812996641
+Response time: 1702812996889
+Overall time of the request (response time - request time): 248
+
+442 1702812997132 3 102 4.954503 round1: 40669.414062 reply1: 37409.226562 round2: 37409.226562 reply2: 37409.261719 tof: 0.016526 
+Request time: 1702812996889
+Response time: 1702812997132
+Overall time of the request (response time - request time): 242
+
+443 1702812997393 3 102 4.977962 round1: 40670.765625 reply1: 37412.125000 round2: 37412.125000 reply2: 37412.160156 tof: 0.016605 
+Request time: 1702812997132
+Response time: 1702812997393
+Overall time of the request (response time - request time): 261
+
+444 1702812997638 3 102 4.949811 round1: 40667.750000 reply1: 37387.667969 round2: 37387.667969 reply2: 37387.703125 tof: 0.016511 
+Request time: 1702812997395
+Response time: 1702812997638
+Overall time of the request (response time - request time): 243
+
+445 1702812997882 3 102 4.949811 round1: 40669.171875 reply1: 37367.292969 round2: 37367.292969 reply2: 37367.328125 tof: 0.016511 
+Request time: 1702812997641
+Response time: 1702812997882
+Overall time of the request (response time - request time): 241
+
+446 1702812998153 3 102 4.987345 round1: 40669.976562 reply1: 37388.476562 round2: 37388.476562 reply2: 37388.511719 tof: 0.016636 
+Request time: 1702812997883
+Response time: 1702812998153
+Overall time of the request (response time - request time): 269
+
+447 1702812998382 3 102 4.996728 round1: 40669.183594 reply1: 37405.582031 round2: 37405.582031 reply2: 37405.617188 tof: 0.016667 
+Request time: 1702812998153
+Response time: 1702812998382
+Overall time of the request (response time - request time): 228
+
+448 1702812998629 3 102 4.949811 round1: 40668.324219 reply1: 37403.152344 round2: 37403.152344 reply2: 37403.187500 tof: 0.016511 
+Request time: 1702812998382
+Response time: 1702812998629
+Overall time of the request (response time - request time): 246
+
+449 1702812998899 3 102 4.959194 round1: 40675.015625 reply1: 37400.964844 round2: 37400.964844 reply2: 37401.000000 tof: 0.016542 
+Request time: 1702812998630
+Response time: 1702812998899
+Overall time of the request (response time - request time): 269
+
+450 1702812999131 3 102 4.945119 round1: 40668.464844 reply1: 37381.671875 round2: 37381.671875 reply2: 37381.707031 tof: 0.016495 
+Request time: 1702812998901
+Response time: 1702812999131
+Overall time of the request (response time - request time): 229
+
+451 1702812999408 3 102 4.949811 round1: 40668.363281 reply1: 37390.562500 round2: 37390.562500 reply2: 37390.597656 tof: 0.016511 
+Request time: 1702812999131
+Response time: 1702812999408
+Overall time of the request (response time - request time): 277
+
+452 1702812999645 3 102 4.949811 round1: 40673.226562 reply1: 37370.304688 round2: 37370.304688 reply2: 37370.343750 tof: 0.016511 
+Request time: 1702812999408
+Response time: 1702812999645
+Overall time of the request (response time - request time): 236
+
+453 1702812999899 3 102 4.945119 round1: 40667.699219 reply1: 37404.464844 round2: 37404.464844 reply2: 37404.500000 tof: 0.016495 
+Request time: 1702812999647
+Response time: 1702812999899
+Overall time of the request (response time - request time): 252
+
+454 1702813000139 3 102 4.949811 round1: 40672.078125 reply1: 37371.625000 round2: 37371.625000 reply2: 37371.660156 tof: 0.016511 
+Request time: 1702812999900
+Response time: 1702813000139
+Overall time of the request (response time - request time): 239
+
+455 1702813000427 3 102 4.977962 round1: 40668.457031 reply1: 37394.015625 round2: 37394.015625 reply2: 37394.046875 tof: 0.016605 
+Request time: 1702813000141
+Response time: 1702813000427
+Overall time of the request (response time - request time): 285
+
+456 1702813000652 3 102 4.945119 round1: 40669.062500 reply1: 37368.847656 round2: 37368.847656 reply2: 37368.882812 tof: 0.016495 
+Request time: 1702813000429
+Response time: 1702813000652
+Overall time of the request (response time - request time): 222
+
+457 1702813000897 3 102 4.959194 round1: 40670.234375 reply1: 37402.546875 round2: 37402.546875 reply2: 37402.582031 tof: 0.016542 
+Request time: 1702813000653
+Response time: 1702813000897
+Overall time of the request (response time - request time): 243
+
+458 1702813001163 3 102 4.973269 round1: 40669.527344 reply1: 37395.761719 round2: 37395.761719 reply2: 37395.800781 tof: 0.016589 
+Request time: 1702813000897
+Response time: 1702813001163
+Overall time of the request (response time - request time): 266
+
+459 1702813001385 3 102 4.968578 round1: 40669.203125 reply1: 37385.363281 round2: 37385.363281 reply2: 37385.398438 tof: 0.016573 
+Request time: 1702813001165
+Response time: 1702813001385
+Overall time of the request (response time - request time): 220
+
+460 1702813001649 3 102 4.987345 round1: 40674.167969 reply1: 37396.687500 round2: 37396.687500 reply2: 37396.726562 tof: 0.016636 
+Request time: 1702813001387
+Response time: 1702813001649
+Overall time of the request (response time - request time): 261
+
+461 1702813001880 3 102 5.006112 round1: 40668.464844 reply1: 37398.257812 round2: 37398.257812 reply2: 37398.296875 tof: 0.016699 
+Request time: 1702813001649
+Response time: 1702813001880
+Overall time of the request (response time - request time): 230
+
+462 1702813002140 3 102 4.921660 round1: 40669.894531 reply1: 37387.476562 round2: 37387.476562 reply2: 37387.515625 tof: 0.016417 
+Request time: 1702813001880
+Response time: 1702813002140
+Overall time of the request (response time - request time): 260
+
+463 1702813002380 3 102 4.921660 round1: 40671.699219 reply1: 37382.433594 round2: 37382.433594 reply2: 37382.468750 tof: 0.016417 
+Request time: 1702813002140
+Response time: 1702813002380
+Overall time of the request (response time - request time): 239
+
+464 1702813002634 3 102 4.949811 round1: 40669.101562 reply1: 37406.140625 round2: 37406.140625 reply2: 37406.175781 tof: 0.016511 
+Request time: 1702813002382
+Response time: 1702813002634
+Overall time of the request (response time - request time): 252
+
+465 1702813002883 3 102 4.992037 round1: 40670.722656 reply1: 37399.460938 round2: 37399.460938 reply2: 37399.496094 tof: 0.016652 
+Request time: 1702813002634
+Response time: 1702813002883
+Overall time of the request (response time - request time): 249
+
+466 1702813003147 3 102 4.982653 round1: 40669.191406 reply1: 37371.816406 round2: 37371.816406 reply2: 37371.851562 tof: 0.016620 
+Request time: 1702813002883
+Response time: 1702813003147
+Overall time of the request (response time - request time): 263
+
+467 1702813003403 3 102 4.935736 round1: 40669.347656 reply1: 37377.773438 round2: 37377.773438 reply2: 37377.812500 tof: 0.016464 
+Request time: 1702813003147
+Response time: 1702813003403
+Overall time of the request (response time - request time): 255
+
+468 1702813003645 3 102 4.954503 round1: 40667.707031 reply1: 37391.820312 round2: 37391.820312 reply2: 37391.855469 tof: 0.016526 
+Request time: 1702813003406
+Response time: 1702813003645
+Overall time of the request (response time - request time): 239
+
+469 1702813003904 3 102 4.977962 round1: 40669.933594 reply1: 37393.222656 round2: 37393.222656 reply2: 37393.257812 tof: 0.016605 
+Request time: 1702813003645
+Response time: 1702813003904
+Overall time of the request (response time - request time): 259
+
+470 1702813004146 3 102 4.954503 round1: 40668.464844 reply1: 37387.812500 round2: 37387.812500 reply2: 37387.847656 tof: 0.016526 
+Request time: 1702813003905
+Response time: 1702813004146
+Overall time of the request (response time - request time): 241
+
+471 1702813004404 3 102 4.963886 round1: 40670.496094 reply1: 37384.859375 round2: 37384.859375 reply2: 37384.894531 tof: 0.016558 
+Request time: 1702813004147
+Response time: 1702813004404
+Overall time of the request (response time - request time): 257
+
+472 1702813004675 3 102 4.959194 round1: 40668.363281 reply1: 37403.230469 round2: 37403.230469 reply2: 37403.265625 tof: 0.016542 
+Request time: 1702813004405
+Response time: 1702813004675
+Overall time of the request (response time - request time): 269
+
+473 1702813004903 3 102 4.959194 round1: 40669.222656 reply1: 37386.476562 round2: 37386.476562 reply2: 37386.511719 tof: 0.016542 
+Request time: 1702813004675
+Response time: 1702813004903
+Overall time of the request (response time - request time): 227
+
+474 1702813005136 3 102 4.954503 round1: 40674.132812 reply1: 37388.113281 round2: 37388.113281 reply2: 37388.148438 tof: 0.016526 
+Request time: 1702813004903
+Response time: 1702813005136
+Overall time of the request (response time - request time): 233
+
+475 1702813005388 3 102 4.996728 round1: 40667.718750 reply1: 37398.113281 round2: 37398.113281 reply2: 37398.152344 tof: 0.016667 
+Request time: 1702813005136
+Response time: 1702813005388
+Overall time of the request (response time - request time): 251
+
+476 1702813005633 3 102 4.996728 round1: 40669.109375 reply1: 37401.460938 round2: 37401.460938 reply2: 37401.496094 tof: 0.016667 
+Request time: 1702813005390
+Response time: 1702813005633
+Overall time of the request (response time - request time): 242
+
+477 1702813005884 3 102 5.029571 round1: 40669.089844 reply1: 37394.558594 round2: 37394.558594 reply2: 37394.593750 tof: 0.016777 
+Request time: 1702813005633
+Response time: 1702813005884
+Overall time of the request (response time - request time): 250
+
+478 1702813006148 3 102 5.043646 round1: 40668.214844 reply1: 37393.371094 round2: 37393.371094 reply2: 37393.406250 tof: 0.016824 
+Request time: 1702813005884
+Response time: 1702813006148
+Overall time of the request (response time - request time): 264
+
+479 1702813006409 3 102 5.029571 round1: 40669.023438 reply1: 37376.585938 round2: 37376.585938 reply2: 37376.621094 tof: 0.016777 
+Request time: 1702813006149
+Response time: 1702813006409
+Overall time of the request (response time - request time): 260
+
+480 1702813006654 3 102 5.062413 round1: 40669.156250 reply1: 37389.343750 round2: 37389.343750 reply2: 37389.382812 tof: 0.016886 
+Request time: 1702813006412
+Response time: 1702813006654
+Overall time of the request (response time - request time): 241
+
+481 1702813006880 3 102 5.104639 round1: 40669.195312 reply1: 37408.351562 round2: 37408.351562 reply2: 37408.386719 tof: 0.017027 
+Request time: 1702813006655
+Response time: 1702813006880
+Overall time of the request (response time - request time): 224
+
+482 1702813007131 3 102 5.156249 round1: 40676.574219 reply1: 37388.210938 round2: 37388.210938 reply2: 37388.246094 tof: 0.017199 
+Request time: 1702813006881
+Response time: 1702813007131
+Overall time of the request (response time - request time): 250
+
+483 1702813007388 3 102 5.118714 round1: 40674.167969 reply1: 37400.144531 round2: 37400.144531 reply2: 37400.179688 tof: 0.017074 
+Request time: 1702813007133
+Response time: 1702813007388
+Overall time of the request (response time - request time): 255
+
+484 1702813007638 3 102 5.254776 round1: 40674.269531 reply1: 37378.496094 round2: 37378.496094 reply2: 37378.531250 tof: 0.017528 
+Request time: 1702813007390
+Response time: 1702813007638
+Overall time of the request (response time - request time): 247
+
+485 1702813007885 3 102 5.240700 round1: 40669.191406 reply1: 37398.656250 round2: 37398.656250 reply2: 37398.687500 tof: 0.017481 
+Request time: 1702813007640
+Response time: 1702813007885
+Overall time of the request (response time - request time): 244
+
+486 1702813008133 3 102 5.264159 round1: 40668.335938 reply1: 37383.699219 round2: 37383.699219 reply2: 37383.734375 tof: 0.017559 
+Request time: 1702813007888
+Response time: 1702813008133
+Overall time of the request (response time - request time): 244
+
+487 1702813008410 3 102 5.268851 round1: 40669.097656 reply1: 37392.507812 round2: 37392.507812 reply2: 37392.542969 tof: 0.017575 
+Request time: 1702813008133
+Response time: 1702813008410
+Overall time of the request (response time - request time): 276
+
+488 1702813008633 3 102 5.264159 round1: 40669.089844 reply1: 37396.492188 round2: 37396.492188 reply2: 37396.523438 tof: 0.017559 
+Request time: 1702813008410
+Response time: 1702813008633
+Overall time of the request (response time - request time): 222
+
+489 1702813008890 3 102 5.311077 round1: 40668.464844 reply1: 37402.515625 round2: 37402.515625 reply2: 37402.550781 tof: 0.017716 
+Request time: 1702813008635
+Response time: 1702813008890
+Overall time of the request (response time - request time): 254
+
+490 1702813009140 3 102 5.297001 round1: 40669.199219 reply1: 37394.425781 round2: 37394.425781 reply2: 37394.457031 tof: 0.017669 
+Request time: 1702813008891
+Response time: 1702813009140
+Overall time of the request (response time - request time): 248
+
+491 1702813009380 3 102 5.292310 round1: 40670.433594 reply1: 37387.605469 round2: 37387.605469 reply2: 37387.636719 tof: 0.017653 
+Request time: 1702813009142
+Response time: 1702813009380
+Overall time of the request (response time - request time): 238
+
+492 1702813009633 3 102 5.311077 round1: 40668.359375 reply1: 37377.140625 round2: 37377.140625 reply2: 37377.171875 tof: 0.017716 
+Request time: 1702813009381
+Response time: 1702813009633
+Overall time of the request (response time - request time): 252
+
+493 1702813009895 3 102 5.278234 round1: 40676.843750 reply1: 37386.531250 round2: 37386.531250 reply2: 37386.566406 tof: 0.017606 
+Request time: 1702813009634
+Response time: 1702813009895
+Overall time of the request (response time - request time): 261
+
+494 1702813010160 3 102 5.250083 round1: 40674.957031 reply1: 37378.507812 round2: 37378.507812 reply2: 37378.539062 tof: 0.017512 
+Request time: 1702813009896
+Response time: 1702813010160
+Overall time of the request (response time - request time): 264
+
+495 1702813010385 3 102 5.245392 round1: 40669.097656 reply1: 37382.800781 round2: 37382.800781 reply2: 37382.839844 tof: 0.017497 
+Request time: 1702813010161
+Response time: 1702813010385
+Overall time of the request (response time - request time): 224
+
+496 1702813010647 3 102 5.236008 round1: 40667.753906 reply1: 37398.742188 round2: 37398.742188 reply2: 37398.781250 tof: 0.017465 
+Request time: 1702813010386
+Response time: 1702813010647
+Overall time of the request (response time - request time): 261
+
+497 1702813010888 3 102 5.250083 round1: 40673.046875 reply1: 37392.503906 round2: 37392.503906 reply2: 37392.535156 tof: 0.017512 
+Request time: 1702813010647
+Response time: 1702813010888
+Overall time of the request (response time - request time): 240
+
+498 1702813011145 3 102 5.254776 round1: 40668.792969 reply1: 37402.914062 round2: 37402.914062 reply2: 37402.949219 tof: 0.017528 
+Request time: 1702813010889
+Response time: 1702813011145
+Overall time of the request (response time - request time): 256
+
+499 1702813011394 3 102 5.278234 round1: 40669.121094 reply1: 37406.750000 round2: 37406.750000 reply2: 37406.781250 tof: 0.017606 
+Request time: 1702813011147
+Response time: 1702813011394
+Overall time of the request (response time - request time): 247
+
+500 1702813011649 3 102 5.245392 round1: 40668.378906 reply1: 37405.675781 round2: 37405.675781 reply2: 37405.710938 tof: 0.017497 
+Request time: 1702813011396
+Response time: 1702813011649
+Overall time of the request (response time - request time): 252
+
+501 1702813011921 3 102 5.254776 round1: 40675.808594 reply1: 37383.171875 round2: 37383.171875 reply2: 37383.203125 tof: 0.017528 
+Request time: 1702813011650
+Response time: 1702813011921
+Overall time of the request (response time - request time): 270
+
+502 1702813012163 3 102 5.278234 round1: 40670.851562 reply1: 37371.894531 round2: 37371.894531 reply2: 37371.925781 tof: 0.017606 
+Request time: 1702813011921
+Response time: 1702813012163
+Overall time of the request (response time - request time): 242
+
+503 1702813012384 3 102 5.282926 round1: 40670.156250 reply1: 37398.320312 round2: 37398.320312 reply2: 37398.351562 tof: 0.017622 
+Request time: 1702813012163
+Response time: 1702813012384
+Overall time of the request (response time - request time): 220
+
+504 1702813012694 3 102 5.254776 round1: 40669.257812 reply1: 37393.964844 round2: 37393.964844 reply2: 37394.000000 tof: 0.017528 
+Request time: 1702813012384
+Response time: 1702813012694
+Overall time of the request (response time - request time): 309
+
+505 1702813012895 3 102 5.221933 round1: 40670.000000 reply1: 37402.726562 round2: 37402.726562 reply2: 37402.761719 tof: 0.017418 
+Request time: 1702813012694
+Response time: 1702813012895
+Overall time of the request (response time - request time): 201
+
+506 1702813013137 3 102 5.264159 round1: 40668.406250 reply1: 37406.972656 round2: 37406.972656 reply2: 37407.003906 tof: 0.017559 
+Request time: 1702813012897
+Response time: 1702813013137
+Overall time of the request (response time - request time): 239
+
+507 1702813013391 3 102 5.250083 round1: 40668.488281 reply1: 37382.472656 round2: 37382.472656 reply2: 37382.511719 tof: 0.017512 
+Request time: 1702813013138
+Response time: 1702813013391
+Overall time of the request (response time - request time): 253
+
+508 1702813013633 3 102 5.268851 round1: 40669.863281 reply1: 37409.714844 round2: 37409.714844 reply2: 37409.750000 tof: 0.017575 
+Request time: 1702813013393
+Response time: 1702813013633
+Overall time of the request (response time - request time): 240
+
+509 1702813013882 3 102 5.254776 round1: 40669.835938 reply1: 37373.761719 round2: 37373.761719 reply2: 37373.792969 tof: 0.017528 
+Request time: 1702813013635
+Response time: 1702813013882
+Overall time of the request (response time - request time): 246
+
+510 1702813014137 3 102 5.231317 round1: 40669.109375 reply1: 37403.488281 round2: 37403.488281 reply2: 37403.523438 tof: 0.017450 
+Request time: 1702813013882
+Response time: 1702813014137
+Overall time of the request (response time - request time): 255
+
+511 1702813014382 3 102 5.217241 round1: 40668.507812 reply1: 37392.144531 round2: 37392.144531 reply2: 37392.175781 tof: 0.017403 
+Request time: 1702813014137
+Response time: 1702813014382
+Overall time of the request (response time - request time): 244
+
+512 1702813014663 3 102 5.240700 round1: 40670.214844 reply1: 37414.238281 round2: 37414.238281 reply2: 37414.269531 tof: 0.017481 
+Request time: 1702813014383
+Response time: 1702813014663
+Overall time of the request (response time - request time): 280
+
+513 1702813014896 3 102 5.278234 round1: 40671.058594 reply1: 37377.437500 round2: 37377.437500 reply2: 37377.468750 tof: 0.017606 
+Request time: 1702813014663
+Response time: 1702813014896
+Overall time of the request (response time - request time): 232
+
+514 1702813015148 3 102 5.221933 round1: 40672.617188 reply1: 37375.679688 round2: 37375.679688 reply2: 37375.710938 tof: 0.017418 
+Request time: 1702813014896
+Response time: 1702813015148
+Overall time of the request (response time - request time): 252
+
+515 1702813015391 3 102 5.264159 round1: 40668.453125 reply1: 37410.347656 round2: 37410.347656 reply2: 37410.382812 tof: 0.017559 
+Request time: 1702813015148
+Response time: 1702813015391
+Overall time of the request (response time - request time): 242
+
+516 1702813015630 3 102 5.268851 round1: 40668.355469 reply1: 37389.269531 round2: 37389.269531 reply2: 37389.300781 tof: 0.017575 
+Request time: 1702813015391
+Response time: 1702813015630
+Overall time of the request (response time - request time): 238
+
+517 1702813015900 3 102 5.245392 round1: 40668.503906 reply1: 37391.613281 round2: 37391.613281 reply2: 37391.644531 tof: 0.017497 
+Request time: 1702813015630
+Response time: 1702813015900
+Overall time of the request (response time - request time): 270
+
+518 1702813016148 3 102 5.287618 round1: 40667.687500 reply1: 37371.781250 round2: 37371.781250 reply2: 37371.812500 tof: 0.017638 
+Request time: 1702813015902
+Response time: 1702813016148
+Overall time of the request (response time - request time): 245
+
+519 1702813016390 3 102 5.259467 round1: 40675.730469 reply1: 37392.550781 round2: 37392.550781 reply2: 37392.582031 tof: 0.017544 
+Request time: 1702813016149
+Response time: 1702813016390
+Overall time of the request (response time - request time): 241
+
+520 1702813016660 3 102 5.250083 round1: 40676.007812 reply1: 37391.953125 round2: 37391.953125 reply2: 37391.984375 tof: 0.017512 
+Request time: 1702813016392
+Response time: 1702813016660
+Overall time of the request (response time - request time): 268
+
+521 1702813016895 3 102 5.287618 round1: 40668.644531 reply1: 37383.164062 round2: 37383.164062 reply2: 37383.195312 tof: 0.017638 
+Request time: 1702813016661
+Response time: 1702813016895
+Overall time of the request (response time - request time): 234
+
+522 1702813018226 3 102 5.282926 round1: 40669.457031 reply1: 37332.253906 round2: 37332.253906 reply2: 37332.285156 tof: 0.017622 
+Request time: 1702813016896
+Response time: 1702813018226
+Overall time of the request (response time - request time): 1330
+
+523 1702813018392 3 102 5.250083 round1: 40669.886719 reply1: 37399.566406 round2: 37399.566406 reply2: 37399.597656 tof: 0.017512 
+Request time: 1702813018226
+Response time: 1702813018392
+Overall time of the request (response time - request time): 165
+
+524 1702813018632 3 102 5.245392 round1: 40670.449219 reply1: 37389.113281 round2: 37389.113281 reply2: 37389.144531 tof: 0.017497 
+Request time: 1702813018394
+Response time: 1702813018632
+Overall time of the request (response time - request time): 238
+
+525 1702813018899 3 102 5.240700 round1: 40671.000000 reply1: 37383.898438 round2: 37383.898438 reply2: 37383.933594 tof: 0.017481 
+Request time: 1702813018634
+Response time: 1702813018899
+Overall time of the request (response time - request time): 265
+
+526 1702813019168 3 102 5.282926 round1: 40672.523438 reply1: 37414.742188 round2: 37414.742188 reply2: 37414.773438 tof: 0.017622 
+Request time: 1702813018902
+Response time: 1702813019168
+Overall time of the request (response time - request time): 266
+
+527 1702813019383 3 102 5.273542 round1: 40669.242188 reply1: 37378.855469 round2: 37378.855469 reply2: 37378.886719 tof: 0.017591 
+Request time: 1702813019170
+Response time: 1702813019383
+Overall time of the request (response time - request time): 213
+
+528 1702813019639 3 102 5.250083 round1: 40670.707031 reply1: 37392.125000 round2: 37392.125000 reply2: 37392.156250 tof: 0.017512 
+Request time: 1702813019383
+Response time: 1702813019639
+Overall time of the request (response time - request time): 256
+
+529 1702813019881 3 102 5.254776 round1: 40668.410156 reply1: 37405.867188 round2: 37405.867188 reply2: 37405.894531 tof: 0.017528 
+Request time: 1702813019642
+Response time: 1702813019881
+Overall time of the request (response time - request time): 239
+
+530 1702813020133 3 102 5.240700 round1: 40668.296875 reply1: 37399.433594 round2: 37399.433594 reply2: 37399.464844 tof: 0.017481 
+Request time: 1702813019883
+Response time: 1702813020133
+Overall time of the request (response time - request time): 249
+
+531 1702813020379 3 102 5.231317 round1: 40675.109375 reply1: 37385.371094 round2: 37385.371094 reply2: 37385.398438 tof: 0.017450 
+Request time: 1702813020134
+Response time: 1702813020379
+Overall time of the request (response time - request time): 245
+
+532 1702813020629 3 102 5.254776 round1: 40675.019531 reply1: 37392.765625 round2: 37392.765625 reply2: 37392.796875 tof: 0.017528 
+Request time: 1702813020380
+Response time: 1702813020629
+Overall time of the request (response time - request time): 249
+
+533 1702813020884 3 102 5.236008 round1: 40669.921875 reply1: 37399.910156 round2: 37399.910156 reply2: 37399.937500 tof: 0.017465 
+Request time: 1702813020630
+Response time: 1702813020884
+Overall time of the request (response time - request time): 254
+
+534 1702813021139 3 102 5.254776 round1: 40669.242188 reply1: 37413.476562 round2: 37413.476562 reply2: 37413.503906 tof: 0.017528 
+Request time: 1702813020885
+Response time: 1702813021139
+Overall time of the request (response time - request time): 254
+
+535 1702813021390 3 102 5.306385 round1: 40667.589844 reply1: 37376.496094 round2: 37376.496094 reply2: 37376.523438 tof: 0.017700 
+Request time: 1702813021139
+Response time: 1702813021390
+Overall time of the request (response time - request time): 251
+
+536 1702813021635 3 102 5.357994 round1: 40671.820312 reply1: 37389.042969 round2: 37389.042969 reply2: 37389.074219 tof: 0.017872 
+Request time: 1702813021390
+Response time: 1702813021635
+Overall time of the request (response time - request time): 245
+
+537 1702813021880 3 102 5.287618 round1: 40669.816406 reply1: 37394.648438 round2: 37394.648438 reply2: 37394.679688 tof: 0.017638 
+Request time: 1702813021636
+Response time: 1702813021880
+Overall time of the request (response time - request time): 243
+
+538 1702813022144 3 102 5.254776 round1: 40668.359375 reply1: 37375.101562 round2: 37375.101562 reply2: 37375.128906 tof: 0.017528 
+Request time: 1702813021880
+Response time: 1702813022144
+Overall time of the request (response time - request time): 263
+
+539 1702813022394 3 102 5.236008 round1: 40670.609375 reply1: 37393.582031 round2: 37393.582031 reply2: 37393.617188 tof: 0.017465 
+Request time: 1702813022144
+Response time: 1702813022394
+Overall time of the request (response time - request time): 250
+
+540 1702813022631 3 102 5.207858 round1: 40671.187500 reply1: 37394.289062 round2: 37394.289062 reply2: 37394.320312 tof: 0.017372 
+Request time: 1702813022394
+Response time: 1702813022631
+Overall time of the request (response time - request time): 236
+
+541 1702813022883 3 102 5.170324 round1: 40669.191406 reply1: 37390.484375 round2: 37390.484375 reply2: 37390.515625 tof: 0.017246 
+Request time: 1702813022631
+Response time: 1702813022883
+Overall time of the request (response time - request time): 252
+
+542 1702813023130 3 102 5.132790 round1: 40673.644531 reply1: 37390.761719 round2: 37390.761719 reply2: 37390.792969 tof: 0.017121 
+Request time: 1702813022884
+Response time: 1702813023130
+Overall time of the request (response time - request time): 246
+
+543 1702813023419 3 102 5.170324 round1: 40669.976562 reply1: 37408.058594 round2: 37408.058594 reply2: 37408.085938 tof: 0.017246 
+Request time: 1702813023130
+Response time: 1702813023419
+Overall time of the request (response time - request time): 288
+
+544 1702813023635 3 102 5.132790 round1: 40668.394531 reply1: 37399.406250 round2: 37399.406250 reply2: 37399.437500 tof: 0.017121 
+Request time: 1702813023419
+Response time: 1702813023635
+Overall time of the request (response time - request time): 216
+
+545 1702813023881 3 102 5.118714 round1: 40668.414062 reply1: 37392.117188 round2: 37392.117188 reply2: 37392.148438 tof: 0.017074 
+Request time: 1702813023637
+Response time: 1702813023881
+Overall time of the request (response time - request time): 243
+
+546 1702813024129 3 102 5.057721 round1: 40668.500000 reply1: 37396.800781 round2: 37396.800781 reply2: 37396.832031 tof: 0.016871 
+Request time: 1702813023881
+Response time: 1702813024129
+Overall time of the request (response time - request time): 247
+
+547 1702813024388 3 102 5.038954 round1: 40670.070312 reply1: 37377.417969 round2: 37377.417969 reply2: 37377.449219 tof: 0.016808 
+Request time: 1702813024129
+Response time: 1702813024388
+Overall time of the request (response time - request time): 258
+
+548 1702813024634 3 102 5.034263 round1: 40675.214844 reply1: 37391.640625 round2: 37391.640625 reply2: 37391.671875 tof: 0.016792 
+Request time: 1702813024388
+Response time: 1702813024634
+Overall time of the request (response time - request time): 245
+
+549 1702813024883 3 102 5.029571 round1: 40669.906250 reply1: 37369.503906 round2: 37369.503906 reply2: 37369.539062 tof: 0.016777 
+Request time: 1702813024635
+Response time: 1702813024883
+Overall time of the request (response time - request time): 247
+
+550 1702813025131 3 102 4.977962 round1: 40668.511719 reply1: 37393.785156 round2: 37393.785156 reply2: 37393.816406 tof: 0.016605 
+Request time: 1702813024883
+Response time: 1702813025131
+Overall time of the request (response time - request time): 247
+
+551 1702813025392 3 102 5.024879 round1: 40674.984375 reply1: 37395.988281 round2: 37395.988281 reply2: 37396.019531 tof: 0.016761 
+Request time: 1702813025131
+Response time: 1702813025392
+Overall time of the request (response time - request time): 261
+
+552 1702813025634 3 102 4.996728 round1: 40669.054688 reply1: 37387.089844 round2: 37387.089844 reply2: 37387.121094 tof: 0.016667 
+Request time: 1702813025392
+Response time: 1702813025634
+Overall time of the request (response time - request time): 241
+
+553 1702813025888 3 102 4.968578 round1: 40669.855469 reply1: 37401.273438 round2: 37401.273438 reply2: 37401.304688 tof: 0.016573 
+Request time: 1702813025635
+Response time: 1702813025888
+Overall time of the request (response time - request time): 253
+
+554 1702813026134 3 102 4.982653 round1: 40669.156250 reply1: 37400.058594 round2: 37400.058594 reply2: 37400.093750 tof: 0.016620 
+Request time: 1702813025889
+Response time: 1702813026134
+Overall time of the request (response time - request time): 244
+
+555 1702813026403 3 102 4.949811 round1: 40667.625000 reply1: 37398.308594 round2: 37398.308594 reply2: 37398.339844 tof: 0.016511 
+Request time: 1702813026134
+Response time: 1702813026403
+Overall time of the request (response time - request time): 269
+
+556 1702813026650 3 102 4.963886 round1: 40669.437500 reply1: 37386.503906 round2: 37386.503906 reply2: 37386.535156 tof: 0.016558 
+Request time: 1702813026403
+Response time: 1702813026650
+Overall time of the request (response time - request time): 246
+
+557 1702813026885 3 102 4.968578 round1: 40667.898438 reply1: 37386.664062 round2: 37386.664062 reply2: 37386.695312 tof: 0.016573 
+Request time: 1702813026650
+Response time: 1702813026885
+Overall time of the request (response time - request time): 234
+
+558 1702813027148 3 102 4.992037 round1: 40674.257812 reply1: 37393.007812 round2: 37393.007812 reply2: 37393.039062 tof: 0.016652 
+Request time: 1702813026885
+Response time: 1702813027148
+Overall time of the request (response time - request time): 262
+
+559 1702813027379 3 102 4.963886 round1: 40669.296875 reply1: 37406.414062 round2: 37406.414062 reply2: 37406.445312 tof: 0.016558 
+Request time: 1702813027150
+Response time: 1702813027379
+Overall time of the request (response time - request time): 228
+
+560 1702813027634 3 102 4.963886 round1: 40669.253906 reply1: 37375.542969 round2: 37375.542969 reply2: 37375.574219 tof: 0.016558 
+Request time: 1702813027379
+Response time: 1702813027634
+Overall time of the request (response time - request time): 254
+
+561 1702813027879 3 102 4.963886 round1: 40669.996094 reply1: 37407.640625 round2: 37407.640625 reply2: 37407.679688 tof: 0.016558 
+Request time: 1702813027636
+Response time: 1702813027879
+Overall time of the request (response time - request time): 242
+
+562 1702813028130 3 102 4.996728 round1: 40668.390625 reply1: 37395.324219 round2: 37395.324219 reply2: 37395.355469 tof: 0.016667 
+Request time: 1702813027879
+Response time: 1702813028130
+Overall time of the request (response time - request time): 250
+
+563 1702813028379 3 102 4.949811 round1: 40669.468750 reply1: 37388.851562 round2: 37388.851562 reply2: 37388.882812 tof: 0.016511 
+Request time: 1702813028130
+Response time: 1702813028379
+Overall time of the request (response time - request time): 249
+
+564 1702813028630 3 102 4.954503 round1: 40671.046875 reply1: 37384.628906 round2: 37384.628906 reply2: 37384.660156 tof: 0.016526 
+Request time: 1702813028379
+Response time: 1702813028630
+Overall time of the request (response time - request time): 250
+
+565 1702813028880 3 102 4.921660 round1: 40674.937500 reply1: 37396.109375 round2: 37396.109375 reply2: 37396.140625 tof: 0.016417 
+Request time: 1702813028630
+Response time: 1702813028880
+Overall time of the request (response time - request time): 249
+
+566 1702813029140 3 102 4.945119 round1: 40670.105469 reply1: 37384.976562 round2: 37384.976562 reply2: 37385.011719 tof: 0.016495 
+Request time: 1702813028880
+Response time: 1702813029140
+Overall time of the request (response time - request time): 260
+
+567 1702813029379 3 102 4.945119 round1: 40668.480469 reply1: 37414.457031 round2: 37414.457031 reply2: 37414.488281 tof: 0.016495 
+Request time: 1702813029141
+Response time: 1702813029379
+Overall time of the request (response time - request time): 238
+
+568 1702813029631 3 102 4.949811 round1: 40668.410156 reply1: 37416.929688 round2: 37416.929688 reply2: 37416.960938 tof: 0.016511 
+Request time: 1702813029381
+Response time: 1702813029631
+Overall time of the request (response time - request time): 249
+
+569 1702813029887 3 102 4.977962 round1: 40670.230469 reply1: 37380.093750 round2: 37380.093750 reply2: 37380.125000 tof: 0.016605 
+Request time: 1702813029634
+Response time: 1702813029887
+Overall time of the request (response time - request time): 253
+
+570 1702813030130 3 102 4.954503 round1: 40671.507812 reply1: 37396.917969 round2: 37396.917969 reply2: 37396.949219 tof: 0.016526 
+Request time: 1702813029887
+Response time: 1702813030130
+Overall time of the request (response time - request time): 242
+
+571 1702813030399 3 102 4.945119 round1: 40674.902344 reply1: 37382.335938 round2: 37382.335938 reply2: 37382.371094 tof: 0.016495 
+Request time: 1702813030133
+Response time: 1702813030399
+Overall time of the request (response time - request time): 266
+
+572 1702813030633 3 102 4.973269 round1: 40670.734375 reply1: 37388.257812 round2: 37388.257812 reply2: 37388.292969 tof: 0.016589 
+Request time: 1702813030400
+Response time: 1702813030633
+Overall time of the request (response time - request time): 232
+
+573 1702813030881 3 102 4.921660 round1: 40668.460938 reply1: 37391.320312 round2: 37391.320312 reply2: 37391.351562 tof: 0.016417 
+Request time: 1702813030635
+Response time: 1702813030881
+Overall time of the request (response time - request time): 246
+
+574 1702813031134 3 102 4.945119 round1: 40669.976562 reply1: 37409.558594 round2: 37409.558594 reply2: 37409.593750 tof: 0.016495 
+Request time: 1702813030882
+Response time: 1702813031134
+Overall time of the request (response time - request time): 252
+
+575 1702813031380 3 102 4.940427 round1: 40669.902344 reply1: 37399.742188 round2: 37399.742188 reply2: 37399.773438 tof: 0.016479 
+Request time: 1702813031142
+Response time: 1702813031380
+Overall time of the request (response time - request time): 238
+
+576 1702813031638 3 102 4.949811 round1: 40673.773438 reply1: 37397.589844 round2: 37397.589844 reply2: 37397.625000 tof: 0.016511 
+Request time: 1702813031381
+Response time: 1702813031638
+Overall time of the request (response time - request time): 257
+
+577 1702813031885 3 102 4.982653 round1: 40668.441406 reply1: 37387.046875 round2: 37387.046875 reply2: 37387.078125 tof: 0.016620 
+Request time: 1702813031639
+Response time: 1702813031885
+Overall time of the request (response time - request time): 245
+
+578 1702813032131 3 102 4.954503 round1: 40674.914062 reply1: 37392.421875 round2: 37392.421875 reply2: 37392.453125 tof: 0.016526 
+Request time: 1702813031885
+Response time: 1702813032131
+Overall time of the request (response time - request time): 246
+
+579 1702813032381 3 102 4.954503 round1: 40674.957031 reply1: 37392.707031 round2: 37392.707031 reply2: 37392.738281 tof: 0.016526 
+Request time: 1702813032131
+Response time: 1702813032381
+Overall time of the request (response time - request time): 249
+
+580 1702813032632 3 102 4.931044 round1: 40667.710938 reply1: 37403.863281 round2: 37403.863281 reply2: 37403.894531 tof: 0.016448 
+Request time: 1702813032382
+Response time: 1702813032632
+Overall time of the request (response time - request time): 250
+
+581 1702813032887 3 102 5.010804 round1: 40669.437500 reply1: 37392.570312 round2: 37392.570312 reply2: 37392.601562 tof: 0.016714 
+Request time: 1702813032633
+Response time: 1702813032887
+Overall time of the request (response time - request time): 253
+
+582 1702813033131 3 102 4.935736 round1: 40668.363281 reply1: 37390.226562 round2: 37390.226562 reply2: 37390.261719 tof: 0.016464 
+Request time: 1702813032887
+Response time: 1702813033131
+Overall time of the request (response time - request time): 243
+
+583 1702813033392 3 102 4.968578 round1: 40669.222656 reply1: 37408.820312 round2: 37408.820312 reply2: 37408.851562 tof: 0.016573 
+Request time: 1702813033132
+Response time: 1702813033392
+Overall time of the request (response time - request time): 260
+
+584 1702813033631 3 102 4.945119 round1: 40668.335938 reply1: 37399.660156 round2: 37399.660156 reply2: 37399.699219 tof: 0.016495 
+Request time: 1702813033392
+Response time: 1702813033631
+Overall time of the request (response time - request time): 238
+
+585 1702813033882 3 102 4.954503 round1: 40668.039062 reply1: 37391.699219 round2: 37391.699219 reply2: 37391.734375 tof: 0.016526 
+Request time: 1702813033632
+Response time: 1702813033882
+Overall time of the request (response time - request time): 250
+
+586 1702813034133 3 102 4.954503 round1: 40674.980469 reply1: 37388.546875 round2: 37388.546875 reply2: 37388.578125 tof: 0.016526 
+Request time: 1702813033882
+Response time: 1702813034133
+Overall time of the request (response time - request time): 250
+
+587 1702813034382 3 102 4.949811 round1: 40669.898438 reply1: 37372.832031 round2: 37372.832031 reply2: 37372.863281 tof: 0.016511 
+Request time: 1702813034133
+Response time: 1702813034382
+Overall time of the request (response time - request time): 249
+
+588 1702813034633 3 102 4.977962 round1: 40669.238281 reply1: 37406.437500 round2: 37406.437500 reply2: 37406.472656 tof: 0.016605 
+Request time: 1702813034382
+Response time: 1702813034633
+Overall time of the request (response time - request time): 250
+
+589 1702813034880 3 102 4.954503 round1: 40669.066406 reply1: 37399.828125 round2: 37399.828125 reply2: 37399.867188 tof: 0.016526 
+Request time: 1702813034633
+Response time: 1702813034880
+Overall time of the request (response time - request time): 246
+
+590 1702813035138 3 102 4.954503 round1: 40670.359375 reply1: 37381.351562 round2: 37381.351562 reply2: 37381.382812 tof: 0.016526 
+Request time: 1702813034882
+Response time: 1702813035138
+Overall time of the request (response time - request time): 255
+
+591 1702813035385 3 102 4.931044 round1: 40669.097656 reply1: 37401.582031 round2: 37401.582031 reply2: 37401.613281 tof: 0.016448 
+Request time: 1702813035140
+Response time: 1702813035385
+Overall time of the request (response time - request time): 245
+
+592 1702813035629 3 102 4.963886 round1: 40674.195312 reply1: 37369.250000 round2: 37369.250000 reply2: 37369.285156 tof: 0.016558 
+Request time: 1702813035387
+Response time: 1702813035629
+Overall time of the request (response time - request time): 242
+
+593 1702813035881 3 102 4.949811 round1: 40669.144531 reply1: 37391.152344 round2: 37391.152344 reply2: 37391.187500 tof: 0.016511 
+Request time: 1702813035630
+Response time: 1702813035881
+Overall time of the request (response time - request time): 251
+
+594 1702813036134 3 102 4.973269 round1: 40674.937500 reply1: 37379.328125 round2: 37379.328125 reply2: 37379.359375 tof: 0.016589 
+Request time: 1702813035881
+Response time: 1702813036134
+Overall time of the request (response time - request time): 252
+
+595 1702813036382 3 102 4.977962 round1: 40670.000000 reply1: 37398.851562 round2: 37398.851562 reply2: 37398.882812 tof: 0.016605 
+Request time: 1702813036134
+Response time: 1702813036382
+Overall time of the request (response time - request time): 247
+
+596 1702813036661 3 102 4.973269 round1: 40669.191406 reply1: 37411.203125 round2: 37411.203125 reply2: 37411.234375 tof: 0.016589 
+Request time: 1702813036382
+Response time: 1702813036661
+Overall time of the request (response time - request time): 278
+
+597 1702813036885 3 102 4.973269 round1: 40670.402344 reply1: 37401.269531 round2: 37401.269531 reply2: 37401.300781 tof: 0.016589 
+Request time: 1702813036663
+Response time: 1702813036885
+Overall time of the request (response time - request time): 221
+
+598 1702813037159 3 102 4.968578 round1: 40668.382812 reply1: 37389.871094 round2: 37389.871094 reply2: 37389.906250 tof: 0.016573 
+Request time: 1702813036887
+Response time: 1702813037159
+Overall time of the request (response time - request time): 271
+
+599 1702813037394 3 102 4.982653 round1: 40667.722656 reply1: 37406.566406 round2: 37406.566406 reply2: 37406.601562 tof: 0.016620 
+Request time: 1702813037160
+Response time: 1702813037394
+Overall time of the request (response time - request time): 233
+
+600 1702813037631 3 102 4.935736 round1: 40669.214844 reply1: 37391.378906 round2: 37391.378906 reply2: 37391.417969 tof: 0.016464 
+Request time: 1702813037395
+Response time: 1702813037631
+Overall time of the request (response time - request time): 236
+
+601 1702813037907 3 102 5.029571 round1: 40667.597656 reply1: 37379.457031 round2: 37379.457031 reply2: 37379.488281 tof: 0.016777 
+Request time: 1702813037632
+Response time: 1702813037907
+Overall time of the request (response time - request time): 275
+
+602 1702813038130 3 102 5.006112 round1: 40674.984375 reply1: 37374.082031 round2: 37374.082031 reply2: 37374.113281 tof: 0.016699 
+Request time: 1702813037908
+Response time: 1702813038130
+Overall time of the request (response time - request time): 221
+
+603 1702813038400 3 102 4.945119 round1: 40669.089844 reply1: 37377.921875 round2: 37377.921875 reply2: 37377.957031 tof: 0.016495 
+Request time: 1702813038131
+Response time: 1702813038400
+Overall time of the request (response time - request time): 269
+
+604 1702813038659 3 102 4.935736 round1: 40669.246094 reply1: 37381.093750 round2: 37381.093750 reply2: 37381.128906 tof: 0.016464 
+Request time: 1702813038402
+Response time: 1702813038659
+Overall time of the request (response time - request time): 256
+
+605 1702813038913 3 102 4.968578 round1: 40669.191406 reply1: 37378.808594 round2: 37378.808594 reply2: 37378.839844 tof: 0.016573 
+Request time: 1702813038660
+Response time: 1702813038913
+Overall time of the request (response time - request time): 252
+
+606 1702813039139 3 102 4.992037 round1: 40674.925781 reply1: 37375.414062 round2: 37375.414062 reply2: 37375.445312 tof: 0.016652 
+Request time: 1702813038913
+Response time: 1702813039139
+Overall time of the request (response time - request time): 225
+
+607 1702813039412 3 102 4.977962 round1: 40669.843750 reply1: 37393.984375 round2: 37393.984375 reply2: 37394.015625 tof: 0.016605 
+Request time: 1702813039139
+Response time: 1702813039412
+Overall time of the request (response time - request time): 272
+
+608 1702813039639 3 102 4.959194 round1: 40667.722656 reply1: 37395.652344 round2: 37395.652344 reply2: 37395.687500 tof: 0.016542 
+Request time: 1702813039412
+Response time: 1702813039639
+Overall time of the request (response time - request time): 227
+
+609 1702813039906 3 102 4.963886 round1: 40669.113281 reply1: 37377.878906 round2: 37377.878906 reply2: 37377.910156 tof: 0.016558 
+Request time: 1702813039640
+Response time: 1702813039906
+Overall time of the request (response time - request time): 265
+
+610 1702813040168 3 102 4.973269 round1: 40669.117188 reply1: 37403.035156 round2: 37403.035156 reply2: 37403.066406 tof: 0.016589 
+Request time: 1702813039908
+Response time: 1702813040168
+Overall time of the request (response time - request time): 259
+
+611 1702813040387 3 102 4.949811 round1: 40669.117188 reply1: 37402.710938 round2: 37402.710938 reply2: 37402.746094 tof: 0.016511 
+Request time: 1702813040170
+Response time: 1702813040387
+Overall time of the request (response time - request time): 216
+
+612 1702813040641 3 102 4.921660 round1: 40669.214844 reply1: 37381.199219 round2: 37381.199219 reply2: 37381.230469 tof: 0.016417 
+Request time: 1702813040389
+Response time: 1702813040641
+Overall time of the request (response time - request time): 251
+
+613 1702813040882 3 102 4.982653 round1: 40674.183594 reply1: 37390.640625 round2: 37390.640625 reply2: 37390.675781 tof: 0.016620 
+Request time: 1702813040643
+Response time: 1702813040882
+Overall time of the request (response time - request time): 238
+
+614 1702813041145 3 102 4.935736 round1: 40667.570312 reply1: 37391.003906 round2: 37391.003906 reply2: 37391.039062 tof: 0.016464 
+Request time: 1702813040883
+Response time: 1702813041145
+Overall time of the request (response time - request time): 262
+
+615 1702813041439 3 102 4.968578 round1: 40670.058594 reply1: 37404.613281 round2: 37404.613281 reply2: 37404.648438 tof: 0.016573 
+Request time: 1702813041147
+Response time: 1702813041439
+Overall time of the request (response time - request time): 291
+
+616 1702813041633 3 102 4.959194 round1: 40674.500000 reply1: 37390.953125 round2: 37390.953125 reply2: 37390.984375 tof: 0.016542 
+Request time: 1702813041441
+Response time: 1702813041633
+Overall time of the request (response time - request time): 191
+
+617 1702813041903 3 102 5.020187 round1: 40668.460938 reply1: 37388.957031 round2: 37388.957031 reply2: 37388.988281 tof: 0.016746 
+Request time: 1702813041635
+Response time: 1702813041903
+Overall time of the request (response time - request time): 267
+
+618 1702813042184 3 102 4.968578 round1: 40672.582031 reply1: 37410.089844 round2: 37410.089844 reply2: 37410.121094 tof: 0.016573 
+Request time: 1702813041903
+Response time: 1702813042184
+Overall time of the request (response time - request time): 280
+
+619 1702813042384 3 102 4.959194 round1: 40667.585938 reply1: 37399.609375 round2: 37399.609375 reply2: 37399.644531 tof: 0.016542 
+Request time: 1702813042184
+Response time: 1702813042384
+Overall time of the request (response time - request time): 199
+
+620 1702813042636 3 102 4.931044 round1: 40669.089844 reply1: 37383.144531 round2: 37383.144531 reply2: 37383.175781 tof: 0.016448 
+Request time: 1702813042384
+Response time: 1702813042636
+Overall time of the request (response time - request time): 251
+
+621 1702813042898 3 102 5.001420 round1: 40668.492188 reply1: 37398.570312 round2: 37398.570312 reply2: 37398.605469 tof: 0.016683 
+Request time: 1702813042637
+Response time: 1702813042898
+Overall time of the request (response time - request time): 261
+
+622 1702813043160 3 102 4.968578 round1: 40670.660156 reply1: 37406.312500 round2: 37406.312500 reply2: 37406.347656 tof: 0.016573 
+Request time: 1702813042898
+Response time: 1702813043160
+Overall time of the request (response time - request time): 262
+
+623 1702813043386 3 102 4.963886 round1: 40668.281250 reply1: 37372.324219 round2: 37372.324219 reply2: 37372.359375 tof: 0.016558 
+Request time: 1702813043161
+Response time: 1702813043386
+Overall time of the request (response time - request time): 225
+
+624 1702813043641 3 102 4.982653 round1: 40673.414062 reply1: 37384.109375 round2: 37384.109375 reply2: 37384.144531 tof: 0.016620 
+Request time: 1702813043386
+Response time: 1702813043641
+Overall time of the request (response time - request time): 255
+
+625 1702813043901 3 102 5.024879 round1: 40674.183594 reply1: 37392.968750 round2: 37392.968750 reply2: 37393.000000 tof: 0.016761 
+Request time: 1702813043644
+Response time: 1702813043901
+Overall time of the request (response time - request time): 256
+
+626 1702813044153 3 102 4.968578 round1: 40668.417969 reply1: 37394.925781 round2: 37394.925781 reply2: 37394.957031 tof: 0.016573 
+Request time: 1702813043902
+Response time: 1702813044153
+Overall time of the request (response time - request time): 251
+
+627 1702813044401 3 102 4.959194 round1: 40667.894531 reply1: 37384.386719 round2: 37384.386719 reply2: 37384.417969 tof: 0.016542 
+Request time: 1702813044153
+Response time: 1702813044401
+Overall time of the request (response time - request time): 247
+
+628 1702813044653 3 102 4.968578 round1: 40672.417969 reply1: 37386.828125 round2: 37386.828125 reply2: 37386.863281 tof: 0.016573 
+Request time: 1702813044402
+Response time: 1702813044653
+Overall time of the request (response time - request time): 251
+
+629 1702813044887 3 102 4.963886 round1: 40669.078125 reply1: 37396.683594 round2: 37396.683594 reply2: 37396.722656 tof: 0.016558 
+Request time: 1702813044653
+Response time: 1702813044887
+Overall time of the request (response time - request time): 233
+
+630 1702813045142 3 102 4.996728 round1: 40668.339844 reply1: 37402.402344 round2: 37402.402344 reply2: 37402.433594 tof: 0.016667 
+Request time: 1702813044887
+Response time: 1702813045142
+Overall time of the request (response time - request time): 255
+
+631 1702813045382 3 102 4.954503 round1: 40669.187500 reply1: 37388.863281 round2: 37388.863281 reply2: 37388.898438 tof: 0.016526 
+Request time: 1702813045143
+Response time: 1702813045382
+Overall time of the request (response time - request time): 238
+
+632 1702813045640 3 102 5.001420 round1: 40668.382812 reply1: 37383.648438 round2: 37383.648438 reply2: 37383.679688 tof: 0.016683 
+Request time: 1702813045382
+Response time: 1702813045640
+Overall time of the request (response time - request time): 258
+
+633 1702813045888 3 102 4.982653 round1: 40674.191406 reply1: 37380.707031 round2: 37380.707031 reply2: 37380.738281 tof: 0.016620 
+Request time: 1702813045641
+Response time: 1702813045888
+Overall time of the request (response time - request time): 246
+
+634 1702813046152 3 102 4.959194 round1: 40670.304688 reply1: 37387.320312 round2: 37387.320312 reply2: 37387.355469 tof: 0.016542 
+Request time: 1702813045888
+Response time: 1702813046152
+Overall time of the request (response time - request time): 263
+
+635 1702813046403 3 102 4.968578 round1: 40669.195312 reply1: 37409.644531 round2: 37409.644531 reply2: 37409.675781 tof: 0.016573 
+Request time: 1702813046153
+Response time: 1702813046403
+Overall time of the request (response time - request time): 249
+
+636 1702813046632 3 102 4.973269 round1: 40669.058594 reply1: 37389.144531 round2: 37389.144531 reply2: 37389.175781 tof: 0.016589 
+Request time: 1702813046403
+Response time: 1702813046632
+Overall time of the request (response time - request time): 228
+
+637 1702813046888 3 102 4.968578 round1: 40669.984375 reply1: 37404.757812 round2: 37404.757812 reply2: 37404.792969 tof: 0.016573 
+Request time: 1702813046632
+Response time: 1702813046888
+Overall time of the request (response time - request time): 256
+
+638 1702813047130 3 102 4.982653 round1: 40672.679688 reply1: 37385.636719 round2: 37385.636719 reply2: 37385.667969 tof: 0.016620 
+Request time: 1702813046889
+Response time: 1702813047130
+Overall time of the request (response time - request time): 241
+
+639 1702813047401 3 102 4.954503 round1: 40667.562500 reply1: 37385.183594 round2: 37385.183594 reply2: 37385.214844 tof: 0.016526 
+Request time: 1702813047131
+Response time: 1702813047401
+Overall time of the request (response time - request time): 270
+
+640 1702813047635 3 102 4.968578 round1: 40669.148438 reply1: 37399.015625 round2: 37399.015625 reply2: 37399.050781 tof: 0.016573 
+Request time: 1702813047402
+Response time: 1702813047635
+Overall time of the request (response time - request time): 233
+
+641 1702813047887 3 102 4.968578 round1: 40673.734375 reply1: 37373.355469 round2: 37373.355469 reply2: 37373.390625 tof: 0.016573 
+Request time: 1702813047636
+Response time: 1702813047887
+Overall time of the request (response time - request time): 251
+
+642 1702813048144 3 102 4.949811 round1: 40670.070312 reply1: 37384.367188 round2: 37384.367188 reply2: 37384.406250 tof: 0.016511 
+Request time: 1702813047889
+Response time: 1702813048144
+Overall time of the request (response time - request time): 254
+
+643 1702813048389 3 102 4.954503 round1: 40669.789062 reply1: 37382.800781 round2: 37382.800781 reply2: 37382.835938 tof: 0.016526 
+Request time: 1702813048145
+Response time: 1702813048389
+Overall time of the request (response time - request time): 244
+
+644 1702813048641 3 102 4.921660 round1: 40669.269531 reply1: 37394.535156 round2: 37394.535156 reply2: 37394.566406 tof: 0.016417 
+Request time: 1702813048391
+Response time: 1702813048641
+Overall time of the request (response time - request time): 249
+
+645 1702813048888 3 102 4.935736 round1: 40670.164062 reply1: 37366.492188 round2: 37366.492188 reply2: 37366.523438 tof: 0.016464 
+Request time: 1702813048643
+Response time: 1702813048888
+Overall time of the request (response time - request time): 245
+
+646 1702813049173 3 102 4.987345 round1: 40669.156250 reply1: 37387.667969 round2: 37387.667969 reply2: 37387.699219 tof: 0.016636 
+Request time: 1702813048890
+Response time: 1702813049173
+Overall time of the request (response time - request time): 282
+
+647 1702813049404 3 102 4.954503 round1: 40669.765625 reply1: 37412.523438 round2: 37412.523438 reply2: 37412.554688 tof: 0.016526 
+Request time: 1702813049173
+Response time: 1702813049404
+Overall time of the request (response time - request time): 230
+
+648 1702813049688 3 102 4.912277 round1: 40668.453125 reply1: 37394.121094 round2: 37394.121094 reply2: 37394.156250 tof: 0.016386 
+Request time: 1702813049407
+Response time: 1702813049688
+Overall time of the request (response time - request time): 280
+
+649 1702813049891 3 102 5.001420 round1: 40669.109375 reply1: 37370.007812 round2: 37370.007812 reply2: 37370.039062 tof: 0.016683 
+Request time: 1702813049688
+Response time: 1702813049891
+Overall time of the request (response time - request time): 202
+
+650 1702813050140 3 102 4.949811 round1: 40668.468750 reply1: 37383.218750 round2: 37383.218750 reply2: 37383.250000 tof: 0.016511 
+Request time: 1702813049891
+Response time: 1702813050140
+Overall time of the request (response time - request time): 249
+
+651 1702813050399 3 102 5.001420 round1: 40669.957031 reply1: 37401.855469 round2: 37401.855469 reply2: 37401.890625 tof: 0.016683 
+Request time: 1702813050141
+Response time: 1702813050399
+Overall time of the request (response time - request time): 257
+
+652 1702813050631 3 102 4.963886 round1: 40669.558594 reply1: 37399.050781 round2: 37399.050781 reply2: 37399.085938 tof: 0.016558 
+Request time: 1702813050399
+Response time: 1702813050631
+Overall time of the request (response time - request time): 231
+
+653 1702813050889 3 102 4.963886 round1: 40668.636719 reply1: 37405.503906 round2: 37405.503906 reply2: 37405.535156 tof: 0.016558 
+Request time: 1702813050635
+Response time: 1702813050889
+Overall time of the request (response time - request time): 254
+
+654 1702813051140 3 102 4.982653 round1: 40667.738281 reply1: 37389.925781 round2: 37389.925781 reply2: 37389.957031 tof: 0.016620 
+Request time: 1702813050890
+Response time: 1702813051140
+Overall time of the request (response time - request time): 250
+
+655 1702813051426 3 102 4.968578 round1: 40668.507812 reply1: 37372.921875 round2: 37372.921875 reply2: 37372.953125 tof: 0.016573 
+Request time: 1702813051140
+Response time: 1702813051426
+Overall time of the request (response time - request time): 286
+
+656 1702813051633 3 102 4.977962 round1: 40668.410156 reply1: 37409.187500 round2: 37409.187500 reply2: 37409.222656 tof: 0.016605 
+Request time: 1702813051426
+Response time: 1702813051633
+Overall time of the request (response time - request time): 206
+
+657 1702813051882 3 102 4.954503 round1: 40669.722656 reply1: 37397.980469 round2: 37397.980469 reply2: 37398.015625 tof: 0.016526 
+Request time: 1702813051634
+Response time: 1702813051882
+Overall time of the request (response time - request time): 248
+
+658 1702813052149 3 102 4.987345 round1: 40669.921875 reply1: 37384.457031 round2: 37384.457031 reply2: 37384.488281 tof: 0.016636 
+Request time: 1702813051883
+Response time: 1702813052149
+Overall time of the request (response time - request time): 266
+
+659 1702813052390 3 102 4.996728 round1: 40669.210938 reply1: 37372.253906 round2: 37372.253906 reply2: 37372.285156 tof: 0.016667 
+Request time: 1702813052149
+Response time: 1702813052390
+Overall time of the request (response time - request time): 241
+
+660 1702813052695 3 102 4.996728 round1: 40668.632812 reply1: 37402.429688 round2: 37402.429688 reply2: 37402.460938 tof: 0.016667 
+Request time: 1702813052391
+Response time: 1702813052695
+Overall time of the request (response time - request time): 303
+
+661 1702813052904 3 102 4.987345 round1: 40669.441406 reply1: 37382.191406 round2: 37382.191406 reply2: 37382.222656 tof: 0.016636 
+Request time: 1702813052695
+Response time: 1702813052904
+Overall time of the request (response time - request time): 209
+
+662 1702813053132 3 102 4.977962 round1: 40669.082031 reply1: 37398.089844 round2: 37398.089844 reply2: 37398.128906 tof: 0.016605 
+Request time: 1702813052905
+Response time: 1702813053132
+Overall time of the request (response time - request time): 227
+
+663 1702813053399 3 102 5.006112 round1: 40676.035156 reply1: 37378.335938 round2: 37378.335938 reply2: 37378.367188 tof: 0.016699 
+Request time: 1702813053133
+Response time: 1702813053399
+Overall time of the request (response time - request time): 265
+
+664 1702813053650 3 102 5.020187 round1: 40669.417969 reply1: 37393.894531 round2: 37393.894531 reply2: 37393.929688 tof: 0.016746 
+Request time: 1702813053399
+Response time: 1702813053650
+Overall time of the request (response time - request time): 250
+
+665 1702813053888 3 102 4.935736 round1: 40668.343750 reply1: 37406.394531 round2: 37406.394531 reply2: 37406.429688 tof: 0.016464 
+Request time: 1702813053650
+Response time: 1702813053888
+Overall time of the request (response time - request time): 237
+
+666 1702813054141 3 102 4.973269 round1: 40668.449219 reply1: 37407.261719 round2: 37407.261719 reply2: 37407.292969 tof: 0.016589 
+Request time: 1702813053889
+Response time: 1702813054141
+Overall time of the request (response time - request time): 251
+
+667 1702813054386 3 102 4.996728 round1: 40674.925781 reply1: 37389.507812 round2: 37389.507812 reply2: 37389.542969 tof: 0.016667 
+Request time: 1702813054141
+Response time: 1702813054386
+Overall time of the request (response time - request time): 244
+
+668 1702813054657 3 102 4.977962 round1: 40670.812500 reply1: 37414.812500 round2: 37414.812500 reply2: 37414.851562 tof: 0.016605 
+Request time: 1702813054386
+Response time: 1702813054657
+Overall time of the request (response time - request time): 270
+
+669 1702813054904 3 102 5.024879 round1: 40667.531250 reply1: 37412.207031 round2: 37412.207031 reply2: 37412.242188 tof: 0.016761 
+Request time: 1702813054657
+Response time: 1702813054904
+Overall time of the request (response time - request time): 246
+
+670 1702813055134 3 102 4.973269 round1: 40669.167969 reply1: 37374.113281 round2: 37374.113281 reply2: 37374.144531 tof: 0.016589 
+Request time: 1702813054905
+Response time: 1702813055134
+Overall time of the request (response time - request time): 229
+
+671 1702813055406 3 102 4.968578 round1: 40672.988281 reply1: 37382.386719 round2: 37382.386719 reply2: 37382.417969 tof: 0.016573 
+Request time: 1702813055136
+Response time: 1702813055406
+Overall time of the request (response time - request time): 270
+
+672 1702813055641 3 102 4.982653 round1: 40669.976562 reply1: 37378.703125 round2: 37378.703125 reply2: 37378.734375 tof: 0.016620 
+Request time: 1702813055406
+Response time: 1702813055641
+Overall time of the request (response time - request time): 234
+
+673 1702813055894 3 102 4.940427 round1: 40669.179688 reply1: 37408.058594 round2: 37408.058594 reply2: 37408.089844 tof: 0.016479 
+Request time: 1702813055641
+Response time: 1702813055894
+Overall time of the request (response time - request time): 253
+
+674 1702813056139 3 102 4.982653 round1: 40668.148438 reply1: 37393.445312 round2: 37393.445312 reply2: 37393.476562 tof: 0.016620 
+Request time: 1702813055894
+Response time: 1702813056139
+Overall time of the request (response time - request time): 244
+
+675 1702813056420 3 102 4.992037 round1: 40667.886719 reply1: 37371.218750 round2: 37371.218750 reply2: 37371.253906 tof: 0.016652 
+Request time: 1702813056139
+Response time: 1702813056420
+Overall time of the request (response time - request time): 280
+
+676 1702813056652 3 102 4.963886 round1: 40673.042969 reply1: 37374.097656 round2: 37374.097656 reply2: 37374.132812 tof: 0.016558 
+Request time: 1702813056421
+Response time: 1702813056652
+Overall time of the request (response time - request time): 231
+
+677 1702813056893 3 102 4.968578 round1: 40673.550781 reply1: 37373.175781 round2: 37373.175781 reply2: 37373.207031 tof: 0.016573 
+Request time: 1702813056653
+Response time: 1702813056893
+Overall time of the request (response time - request time): 240
+
+678 1702813057153 3 102 4.945119 round1: 40676.468750 reply1: 37370.644531 round2: 37370.644531 reply2: 37370.675781 tof: 0.016495 
+Request time: 1702813056894
+Response time: 1702813057153
+Overall time of the request (response time - request time): 258
+
+679 1702813057401 3 102 4.977962 round1: 40668.664062 reply1: 37384.539062 round2: 37384.539062 reply2: 37384.570312 tof: 0.016605 
+Request time: 1702813057155
+Response time: 1702813057401
+Overall time of the request (response time - request time): 245
+
+680 1702813057660 3 102 4.977962 round1: 40674.195312 reply1: 37392.531250 round2: 37392.531250 reply2: 37392.562500 tof: 0.016605 
+Request time: 1702813057402
+Response time: 1702813057660
+Overall time of the request (response time - request time): 257
+
+681 1702813057893 3 102 4.968578 round1: 40668.398438 reply1: 37407.667969 round2: 37407.667969 reply2: 37407.703125 tof: 0.016573 
+Request time: 1702813057661
+Response time: 1702813057893
+Overall time of the request (response time - request time): 232
+
+682 1702813058173 3 102 4.982653 round1: 40669.167969 reply1: 37388.945312 round2: 37388.945312 reply2: 37388.976562 tof: 0.016620 
+Request time: 1702813057893
+Response time: 1702813058173
+Overall time of the request (response time - request time): 279
+
+683 1702813058393 3 102 5.006112 round1: 40670.750000 reply1: 37406.890625 round2: 37406.890625 reply2: 37406.921875 tof: 0.016699 
+Request time: 1702813058175
+Response time: 1702813058393
+Overall time of the request (response time - request time): 218
+
+684 1702813058645 3 102 4.973269 round1: 40669.992188 reply1: 37392.632812 round2: 37392.632812 reply2: 37392.667969 tof: 0.016589 
+Request time: 1702813058394
+Response time: 1702813058645
+Overall time of the request (response time - request time): 251
+
+685 1702813058900 3 102 4.973269 round1: 40668.421875 reply1: 37386.425781 round2: 37386.425781 reply2: 37386.460938 tof: 0.016589 
+Request time: 1702813058646
+Response time: 1702813058900
+Overall time of the request (response time - request time): 253
+
+686 1702813059159 3 102 5.001420 round1: 40669.828125 reply1: 37407.785156 round2: 37407.785156 reply2: 37407.820312 tof: 0.016683 
+Request time: 1702813058901
+Response time: 1702813059159
+Overall time of the request (response time - request time): 257
+
+687 1702813059400 3 102 4.982653 round1: 40670.183594 reply1: 37385.390625 round2: 37385.390625 reply2: 37385.421875 tof: 0.016620 
+Request time: 1702813059161
+Response time: 1702813059400
+Overall time of the request (response time - request time): 239
+
+688 1702813059671 3 102 4.968578 round1: 40669.937500 reply1: 37405.441406 round2: 37405.441406 reply2: 37405.476562 tof: 0.016573 
+Request time: 1702813059401
+Response time: 1702813059671
+Overall time of the request (response time - request time): 269
+
+689 1702813059898 3 102 5.020187 round1: 40668.519531 reply1: 37405.964844 round2: 37405.964844 reply2: 37405.996094 tof: 0.016746 
+Request time: 1702813059671
+Response time: 1702813059898
+Overall time of the request (response time - request time): 226
+
+690 1702813060132 3 102 4.954503 round1: 40667.703125 reply1: 37411.058594 round2: 37411.058594 reply2: 37411.093750 tof: 0.016526 
+Request time: 1702813059898
+Response time: 1702813060132
+Overall time of the request (response time - request time): 234
+
+691 1702813060389 3 102 4.996728 round1: 40669.105469 reply1: 37385.144531 round2: 37385.144531 reply2: 37385.179688 tof: 0.016667 
+Request time: 1702813060135
+Response time: 1702813060389
+Overall time of the request (response time - request time): 254
+
+692 1702813060642 3 102 4.935736 round1: 40669.582031 reply1: 37391.738281 round2: 37391.738281 reply2: 37391.769531 tof: 0.016464 
+Request time: 1702813060389
+Response time: 1702813060642
+Overall time of the request (response time - request time): 252
+
+693 1702813060881 3 102 4.940427 round1: 40669.089844 reply1: 37383.824219 round2: 37383.824219 reply2: 37383.855469 tof: 0.016479 
+Request time: 1702813060642
+Response time: 1702813060881
+Overall time of the request (response time - request time): 239
+
+694 1702813061165 3 102 4.982653 round1: 40674.890625 reply1: 37374.656250 round2: 37374.656250 reply2: 37374.691406 tof: 0.016620 
+Request time: 1702813060882
+Response time: 1702813061165
+Overall time of the request (response time - request time): 283
+
+695 1702813061407 3 102 4.963886 round1: 40675.007812 reply1: 37391.433594 round2: 37391.433594 reply2: 37391.464844 tof: 0.016558 
+Request time: 1702813061165
+Response time: 1702813061407
+Overall time of the request (response time - request time): 241
+
+696 1702813061637 3 102 4.992037 round1: 40669.421875 reply1: 37392.792969 round2: 37392.792969 reply2: 37392.828125 tof: 0.016652 
+Request time: 1702813061407
+Response time: 1702813061637
+Overall time of the request (response time - request time): 229
+
+697 1702813061881 3 102 4.959194 round1: 40669.136719 reply1: 37391.234375 round2: 37391.234375 reply2: 37391.269531 tof: 0.016542 
+Request time: 1702813061637
+Response time: 1702813061881
+Overall time of the request (response time - request time): 244
+
+698 1702813062135 3 102 4.992037 round1: 40674.214844 reply1: 37378.074219 round2: 37378.074219 reply2: 37378.105469 tof: 0.016652 
+Request time: 1702813061881
+Response time: 1702813062135
+Overall time of the request (response time - request time): 253
+
+699 1702813062385 3 102 4.968578 round1: 40669.449219 reply1: 37393.441406 round2: 37393.441406 reply2: 37393.472656 tof: 0.016573 
+Request time: 1702813062135
+Response time: 1702813062385
+Overall time of the request (response time - request time): 250
+
+700 1702813062703 3 102 4.977962 round1: 40671.117188 reply1: 37407.285156 round2: 37407.285156 reply2: 37407.316406 tof: 0.016605 
+Request time: 1702813062386
+Response time: 1702813062703
+Overall time of the request (response time - request time): 317
+
+701 1702813062896 3 102 4.907585 round1: 40668.785156 reply1: 37378.070312 round2: 37378.070312 reply2: 37378.101562 tof: 0.016370 
+Request time: 1702813062705
+Response time: 1702813062896
+Overall time of the request (response time - request time): 190
+
+702 1702813063141 3 102 4.973269 round1: 40670.152344 reply1: 37397.488281 round2: 37397.488281 reply2: 37397.523438 tof: 0.016589 
+Request time: 1702813062896
+Response time: 1702813063141
+Overall time of the request (response time - request time): 245
+
+703 1702813063409 3 102 4.973269 round1: 40668.656250 reply1: 37414.273438 round2: 37414.273438 reply2: 37414.304688 tof: 0.016589 
+Request time: 1702813063142
+Response time: 1702813063409
+Overall time of the request (response time - request time): 267
+
+704 1702813063650 3 102 4.996728 round1: 40667.597656 reply1: 37380.957031 round2: 37380.957031 reply2: 37380.988281 tof: 0.016667 
+Request time: 1702813063409
+Response time: 1702813063650
+Overall time of the request (response time - request time): 240
+
+705 1702813063885 3 102 4.949811 round1: 40668.695312 reply1: 37384.792969 round2: 37384.792969 reply2: 37384.824219 tof: 0.016511 
+Request time: 1702813063651
+Response time: 1702813063885
+Overall time of the request (response time - request time): 234
+
+706 1702813064135 3 102 4.916968 round1: 40670.796875 reply1: 37411.957031 round2: 37411.957031 reply2: 37411.988281 tof: 0.016401 
+Request time: 1702813063885
+Response time: 1702813064135
+Overall time of the request (response time - request time): 249
+
+707 1702813064390 3 102 4.987345 round1: 40671.199219 reply1: 37398.597656 round2: 37398.597656 reply2: 37398.628906 tof: 0.016636 
+Request time: 1702813064135
+Response time: 1702813064390
+Overall time of the request (response time - request time): 254
+
+708 1702813064638 3 102 4.907585 round1: 40673.847656 reply1: 37388.703125 round2: 37388.703125 reply2: 37388.734375 tof: 0.016370 
+Request time: 1702813064392
+Response time: 1702813064638
+Overall time of the request (response time - request time): 245
+
+709 1702813064885 3 102 5.029571 round1: 40668.531250 reply1: 37380.695312 round2: 37380.695312 reply2: 37380.726562 tof: 0.016777 
+Request time: 1702813064640
+Response time: 1702813064885
+Overall time of the request (response time - request time): 244
+
+710 1702813065136 3 102 4.987345 round1: 40674.214844 reply1: 37389.437500 round2: 37389.437500 reply2: 37389.468750 tof: 0.016636 
+Request time: 1702813064885
+Response time: 1702813065136
+Overall time of the request (response time - request time): 251
+
+711 1702813065388 3 102 4.959194 round1: 40667.593750 reply1: 37393.308594 round2: 37393.308594 reply2: 37393.339844 tof: 0.016542 
+Request time: 1702813065137
+Response time: 1702813065388
+Overall time of the request (response time - request time): 250
+
+712 1702813065636 3 102 4.977962 round1: 40669.859375 reply1: 37370.351562 round2: 37370.351562 reply2: 37370.378906 tof: 0.016605 
+Request time: 1702813065388
+Response time: 1702813065636
+Overall time of the request (response time - request time): 247
+
+713 1702813065883 3 102 4.945119 round1: 40671.566406 reply1: 37436.394531 round2: 37436.394531 reply2: 37436.429688 tof: 0.016495 
+Request time: 1702813065636
+Response time: 1702813065883
+Overall time of the request (response time - request time): 246
+
+714 1702813066145 3 102 5.010804 round1: 40672.289062 reply1: 37395.296875 round2: 37395.296875 reply2: 37395.328125 tof: 0.016714 
+Request time: 1702813065883
+Response time: 1702813066145
+Overall time of the request (response time - request time): 261
+
+715 1702813066382 3 102 4.977962 round1: 40669.183594 reply1: 37385.417969 round2: 37385.417969 reply2: 37385.449219 tof: 0.016605 
+Request time: 1702813066148
+Response time: 1702813066382
+Overall time of the request (response time - request time): 233
+
+716 1702813066643 3 102 5.010804 round1: 40674.875000 reply1: 37381.644531 round2: 37381.644531 reply2: 37381.675781 tof: 0.016714 
+Request time: 1702813066382
+Response time: 1702813066643
+Overall time of the request (response time - request time): 261
+
+717 1702813066884 3 102 4.992037 round1: 40669.445312 reply1: 37383.042969 round2: 37383.042969 reply2: 37383.074219 tof: 0.016652 
+Request time: 1702813066646
+Response time: 1702813066884
+Overall time of the request (response time - request time): 238
+
+718 1702813067140 3 102 4.935736 round1: 40669.265625 reply1: 37400.636719 round2: 37400.636719 reply2: 37400.667969 tof: 0.016464 
+Request time: 1702813066887
+Response time: 1702813067140
+Overall time of the request (response time - request time): 253
+
+719 1702813067258 3 102 4.968578 round1: 40673.500000 reply1: 37384.238281 round2: 37384.238281 reply2: 37384.269531 tof: 0.016573 
+Request time: 1702813067142
+Response time: 1702813067258
+Overall time of the request (response time - request time): 115
+
+720 1702813067389 3 102 4.959194 round1: 40673.445312 reply1: 37392.914062 round2: 37392.914062 reply2: 37392.945312 tof: 0.016542 
+Request time: 1702813067260
+Response time: 1702813067389
+Overall time of the request (response time - request time): 128
+
+721 1702813067670 3 102 4.996728 round1: 40670.246094 reply1: 37411.816406 round2: 37411.816406 reply2: 37411.847656 tof: 0.016667 
+Request time: 1702813067390
+Response time: 1702813067670
+Overall time of the request (response time - request time): 280
+

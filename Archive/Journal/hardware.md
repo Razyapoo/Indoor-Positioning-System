@@ -11,27 +11,31 @@ It doesn't record all changes, but the most important.
 - trial run of ESP32 UWB chips
 
   - uploading existing code from official **[arduino-dw1000](https://github.com/thotro/arduino-dw1000)** library (examples/DW1000Ranging_ANCHOR/DW1000Ranging_ANCHOR.ino and examples/DW1000Ranging_TAG/DW1000Ranging_TAG.ino)
-    - it works perfectly just for one tag and one anchor
-    - To support more anchors, we have used already implemented linked list of anchors:
+    - it works perfectly, but only for one tag and one anchor
+    - To support more anchors, we have to use already implemented linked list of anchors:
       - integration of [link.cpp](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.cpp) and [link.h](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.h) to detect multiple anchors from a tag
 
-- The main idea of the project is to implement synchronized system which uses several methods for distance estimation and then estimates the final distance based on those estimated distances. For example it can use average.
+- The main idea of the project is to implement synchronized system which uses several methods for distance measurement and then estimates final distance based on measured distances. For example it can use average.
 
   - this requires synchronization between each method
 
 - First thing which comes to mind is to use some machine which will collect data from every method and then make final decision about the distance estimation. This machine can be a server.
 
-- There are two ways to store the distances measured by UWB chips: in anchors and in tags. The former is not good desicion since two anchors must be synchronized as well to send the sync data to the server related to a particular tag. Therefore we decided to implement the letter method, because each tag collects data related only to it.
+- There are two ways to store the distances measured by UWB chips: in anchors and in tags. 
 
-- As the first step we desided to implement decentralized system. We have implemented the server which will get data from tags, but let tags operate on their own. So, when they will collect the desired number of estimated distances from anchors, they will send the distance to the server.
+  - The former is not good desicion since two anchors must be synchronized as well to send the sync data to the server related to a particular tag, or server must know that received data from anchors belong to the same tag. Therefore we decided to implement the letter method, because each tag collects data related only to it.
 
-- Unfortunatelly, during experiments we have realized that tags overloaded the server, so the servee showed distances with significant delay. And then after a while it showed all the received distances at once. This was a complete mess.
+- As the first step we desided to implement decentralized system. We have implemented the server which will get data from tags, but let tags operate on their own, i.e. they initiate the communication with anchors and collect the desired number of estimated distances from anchors; then they send measured distances to the server.
+
+- Unfortunatelly, during experiments we have realized that tags overloaded the server, so the server showed distances with significant delay. And then after a while it showed all the received distances at once. This was a complete mess.
 
 - As an improvement of the communication between server and tags we have added acknoledgements as a step of the communication between server and tags. This helped to overcome the problem.
 
-- Unfortunatelly, after some tests, we have realized that the official implementation of the TWR protocol from the DW1000 library it happens that if we have a set up where two tags and one anchor are located at the same line, the tag in the middle overwrites data that are specific for the farther tag, therefore the farthest tag receives wrong estimated distances. Do not know exactly why, I think the library uses myDistantDevice->getDistance() in tags which reads distance from the anchor (distance is computed in the anchor). We desided not to overwrite the whole library and go with another existing solution.
+- Unfortunatelly, after some tests, we have realized that the official implementation of the TWR protocol from the DW1000 library it happens that if we have a system with two tags and one anchor which are located at the same line, the tag in the middle overwrites data that are specific for the farther tag, therefore the farthest tag receives wrong estimated distances. Do not know exactly why, I think the library uses myDistantDevice->getDistance() in tags which reads distance from the anchor (distance is computed in the anchor). We desided not to overwrite the whole library and go with another existing solution.
   - new try with ESP32 UWB chips
     - source: [anchor](https://github.com/gsongsong/dw1000-positioning/blob/ee5e2c9e57f42ad23014cc470b6478d3fb0dbe57/anchorArduino/anchorArduino.ino) and [tag](https://github.com/gsongsong/dw1000-positioning/tree/ee5e2c9e57f42ad23014cc470b6478d3fb0dbe57/tagArduino) (changed) + added sender to server
+
+    - The reason is that distance is measured on the anchor side, and this is a global variable, not specific to tag. Therefore, if we have in the system 2 or more anchors and 2 or more tags operating at the same time, tag might overwrite measured distance on the anchor side which belongs to another tag. This again leads to synchronization of data received from anchors on the server side.
 
 # Oct 29, 2022
 
@@ -157,6 +161,8 @@ Overall results:
   The best is when anchors are placed in the opposite direction.
 
 - v5.1 decentralized. Working good, but data coming less frequently than in v6. Sometimes can happen deadlocks. But thanks to the delay in tags it resolves automatically.
+
+Another problem of decentralized system is that requests/data coming from tags are not evenly distributed, meaning that some data coming from some tags more frequently than from others. It even happen that one tag locks both anchors and do not allow other tags to communicate with anchors.
 
 # Nov 24, 2022
 
@@ -475,11 +481,9 @@ Distances:
 
   - The main difference from the prevoius experiments: aruco marker were shown during the whole experiment. So, now it cannot be used as a reference when tags were moved and when were stood. 
 
-
-
   # 20 November, 2023
 
-  - Decide speed of moving, decide how many time we need to stay on the place
+  - Need to choose speed of moving, and how much time we need to stay on the place
   - Call Peter at saturday
 
   # 23 November, 2023
@@ -502,17 +506,202 @@ Distances:
   - There is a need to check the speed and reach. I have changed the timer for the blink from 1000 to 80 ms. Whould this change affect the speed and reach?
 
   - Also, it would be good to measure distances with tags calibrated at 1 m and at 12 m.
+    - Do we need to measure such long distances?
 
-  - Do we need to measure such long distances?
-
-- After the experiment:
+- Experiment:
   - Distance between anchors: 250,5 cm
   - Distance from camera to anchor baseline is 160,5 cm
   
-
-
 - First experiemnt:
 
   - Without aruco marker, moving faster. 
   - Tags are calibrated at 5 m
   - blink 80 ms
+ 
+Previous experiments were focused mainly on the measurement of distance when tag is placed at the line of anchor. The distance between LOS (Line of sight) anchor and tag was 5m. An another anchor and the tag was not aligned on the same line and didn’t have direct line of sight - but they was parallel. Result of the experiment showed that first anchor and tag (aligned measurement) had precise 5m distance, but another anchor and tag had a bit higher distance than the actual was.
+
+As the next step it was needed check the precision of distance measurement along the diagonal (tag and another anchor).
+
+During previous experiments it was detected that some of the measurements take longer than the other. Due to this fact I have decided to change blink from 1000 to 80 ms. This didn’t affect the communication between beacons themselves and between tags and server, but improved time of measurement. 
+
+This experiment is performed at the corridor where Peter is sitting (at 3th floor). 
+
+There are 3 lines along which tags are moved. Two lines are aligned with anchors. //TODO: create plan of corridor and placement of beacons. 
+
+
+The goal of the experiment is to check the quality and precision of the UWB beacons measurements. During all experiments system were consisting of 2 anchors and 1 tag: 
+
+1. Check the quality of the first tag. 
+2. Check the quality of the second tag 
+
+- Setup for the first experiment: 
+  - Anchor 101, Anchor 102, tag 1. 
+
+  - step 1: Alignment with Anchor 101.
+    - Objective: To evaluate the communication and distance measurement bertween Tag 1 and Anchor 101.
+    - Process: Tag 1 is aligned with Anchor 101, ensuring they have a Line of Sight (LOS)
+    - Observation: The measured distances between Tag 1 nad anchor 101 remain accurate and consistent throughout this step pf the experiment.
+
+  - step 2: Alignment with Anchor 102 
+    - Objective: To evaluate the communication and distance measurement between Tag 1 and Anchor 102.
+    - Process: Tag 1 is aligned with Anchor 102 ensuring LOS.
+    Initial observation: The distance measurements between Tag 1 and Anchor 102 appear to be accurate.
+    Subsequent observation: After a period of communication, the measured distances between Tag 1 and Anchor 102 start decrease, indicating a potential issue or anomaly in the measurement or communication.
+
+  - step 2.1: Alignment with Anchor 102
+    - Additional tests: Upon reconnecting the tag to anchor 102 after a break (repeating this several times), the distance measurements still show a reduction.
+
+  - Outcome of the step 2: The observed erro in measurements is about 40 cm, with the measurements showing stable behaviour (+-5cm fluctuation) and not exhibitig large jumps between vastly different values. 
+
+
+- Overall outcome of the experiment: 
+  - In repeated testsm sometimes the distances are correctly measured, but other times they do not. 
+  - Hypotheses for the issue:
+    - TWR Implementation problem: There might be an issue in the implementation of the Two-Way Ranging protocol, leading to ineffective communication when the beacons are overwhelmed. 
+    - Manufacturer issue: Te problem might also be a manufacturing defect inside the beacons.
+    
+- Next steps:
+  - Further investigation and checks are needed to isolate the case of the inconsistent distance measurements.
+
+
+# 2 December, 2023
+
+//TODO
+
+# 9 December, 2023
+
+- Experiemnt 1 Tag 1 Anchor 103
+
+  - Schema is shown in the video
+
+  - Tag 1 (which was working perfectly in previous tests) starts blinking. There is a difference in powerbank power. Tag has powerbank with 4/4 (full) power. Anchor has powerbank with 3/4 power 
+
+- Experiemnt 2 Tag 1 Anchor 101
+
+  - Schema is shown in the video
+
+  - Tag 1 not Anchor 101 are not blinking. Both have 4/4 power.
+
+- Experiment 3 Tag 1 Anchor 102 (not recorded)
+
+  - Surprisingly, Anchor 102 worked good. 
+    - But here is strange thing observed:
+      - measurements where done when diagonal was 5.15 ~ (sqrt(25+(1.2525)^2)) (half diagonal)
+      - first measurement was when Tag was placed at the center, and anchor was placed near window. Measured distance was 5.32
+      - Tag - center, Anchor - Wall, distance: 5.22m
+      - Tag - wall, anchor - center, distance: 5.34m
+      - Tag - window, anchor - center, distance: 5.20m
+
+    
+      This can explain why fully diagonal test 5.59 ~ (sqrt(25+(2.5050)^2)) showed different values (Tag - wall, anchor - Window; Tag - window, Anchor - wall)
+
+- Experiment 4 (Recorded).
+
+  - Last experiment showed that there might be interferention caused by USB cable. 
+  - Therefore, in this experiment, tag 1 and anchor 102 are rotated such that they facing each other by the corner of antenna, and cable is placed in the back part. Beacons are facing each other by open end (counterpart of where cable is connected).
+
+  In all cases distance was ~5.4 m.
+
+- Experiment 5 (cables)
+
+  - Finally, I found issue. It is cable connection. OMG.
+
+- Experiment 6 (Tag 2, Anchor 102)
+
+- Testing all cases
+
+- Including half-diagonal test
+
+
+Pozorovani: Tags may start blinking, and thus showing values a bit shifted from Ground Truth values. Try to place Tag vertically to detect cable interference.
+
+Diagonal tests show that there may be diagobal interference.
+
+
+
+What to do next: Place beacons inside box and check.
+
+
+# 16 December, 2023
+
+- Distance between anchors: 250,5 cm
+- Diagonal and straight tests
+
+
+Experiment set 1 - Straight line of sight:
+Anchor and Tag are placed at direct line of sight at each line (Near door, center, near window)
+These set of experiments aims to check reflextions/distortions that might be caused by some conditions
+Anchors are without changed antenna delay (default)
+All (roury) are aligned using electric lasers.
+
+- Experiment 1.1 (Straight test - Anchor 102, Tag 2)
+
+- Tag 2 (Antenna delay - 16530. With this antenna delay, Anchor 102 and tag 2 were showing 5m at callibration stage)
+- Anchor 102
+
+At each line distance where correct 4.98-5.02
+
+- Experiment 1.2 (Straight test - Anchor 102, Tag 1. With this antenna delay, Anchor 102 and tag 2 were showing 5m at callibration stage) 
+
+- Tag 1 (Antenna delay - 16500)
+- Anchor 102
+
+First part of the experiment was OK, but at some point distances started detected wrong. May it be because of cable connection? - Yes (understand from next experiment)
+
+- Experiment 1.3 (Straight test - Anchor 101, Tag 1) - After change of cable
+
+Distance is about 5.20 - 5.30 at each line.
+
+- Experiment 1.4 (Straight test - Anchor 101, Tag 2)
+
+All cables seems to be deffected. Data are not stable, sometimes ranging between 5.15-5.25, sometimes between 4.70-4.80 even with calibration for 5m. See previous experiments 1.1, 1.2, 1.3 - in all tests distance were correct, or it was accidentally?
+
+Need to check with new cables.
+
+# 17 December, 2023
+
+- Experiment 1.5 (Straight test - Anchor 102, Tag 3)
+
+Antenna delay is set to 16515 for all tags. Experiments are performed using new cables from Alza.
+All (roury) are aligned using electric laser (see photo). I draw lines on (roury) to be able to put beacons on them faster.
+
+Result are correct at all lines
+
+- Experiment 1.6 (Straight test - Achor 101, Tag 3)
+
+Results are correct at all lines. It might happen that at some point tag starts showing 5 cm more values. See beginnign of the recorded data and end (at those parts tag and anchor where placed on the line near Window - window line).
+
+- Experiment 1.7 (Straight test - Anchor 101, Tag 2) - Repetition of unsuccessful yesterday's test.
+
+All distances are about 5.07. Based on the fact that Anchors have default antenna delay and based on Experiment 1.6 (which has also measured distances ~5.07), there might be a need to calibrate antenna delay on Anchor 101. Distances between tags and Anchor 102 are about 5.00.
+
+- Experiment 1.8 (Straight test - Anchor 102, Tag 2) - Repetition of yesterday's test, but with another antenna delay.
+
+No, there is no need to calibrate anchor 101. Now all distances between Tag 2 and Anchor 102 are around 5.07-5.10. In this experiment I have found that (roury - pipes?) on tag line are not aligned. 
+
+- Experiment 1.9 (Straight test - Anchor 102, Tag 1) - Repetition of yesterday's test
+
+Tag 1 shows ~5.00 at each line. I thought that after some while tag starts showing a bit higher values. At this experiment I have left Tag 1 to tun for a while (at center line). Experiment shows that even after some time of work, tag shows same distance. Measured distance at all lines where ~5.00.
+
+- Experiment 1.10 (Straight test - Anchor 101, Tag 1) - Repetition of yesterday's test
+
+This setup also showing distance ~5.07. There is need to a bit upper antenna delay.
+
+- Experiment 1.11 (Straight test; Door line - Anchor 102, all tags)
+
+This experiment showed that all tags show ~5.00 m measured distance. 
+
+ - The only tag 3 shows ~4.90; but previous experiments 1.5-1.6 showed that after some time, measured distances get normalized, maybe some deffect inside chip.
+
+Therefore, I may conclude that anchor 102 might require some calibration. Because all tags show distance 5.07 with this anchor.
+
+
+- Experiment 1.12 (Straight test; Door line - Anchor 101, all tags)
+
+This experiment show that Anchor 101 - Tag 1, Anchor 101 - Tag 3 distances are 5.00. Anchor 101 - Tag 2 is 5.07.
+
+Ahcnor 102 - Tag 2 distance (end of the experiment) is 5.00 m.
+
+The only thing is that tag 3 might increase distance in a time. Therefore, Tag 2 and Tag 3 show ~5.07 measured distance with Anchor 101. Therefore, there is a need to upper antenna delay on Anchor 101. The only thing is Anchor 101 - Tag 1 which is 5.00m. Strange.
+
+What to do next: 1. Try diagonal test. 2. Put tags into boxes and test for interference and reflexion.
