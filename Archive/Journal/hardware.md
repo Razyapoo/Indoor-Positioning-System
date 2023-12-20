@@ -566,7 +566,17 @@ The goal of the experiment is to check the quality and precision of the UWB beac
 
 # 2 December, 2023
 
-//TODO
+All experiments are performend on the 1st floor of Mala Strana
+
+- First experiment. Review of Tag 1
+
+  This experiment consists of several sub-experiments:
+    
+    1.1 Setup:
+      - Anchor 101 is placed on Door line
+      - Anchor 102 is placed on Window Line
+       
+ 
 
 # 9 December, 2023
 
