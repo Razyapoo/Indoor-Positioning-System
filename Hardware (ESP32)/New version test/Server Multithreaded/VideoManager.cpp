@@ -17,9 +17,10 @@ void VideoManager::videoRecorder()
 {
 
     // cv::Size frameSize(StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_WIDTH), StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_HEIGHT));
+    // cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('X', 'V', 'I', 'D'), fps, frameSize);
 
     cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
-    cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+    // cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
     if (!leftVideoWriter.isOpened())
     {
@@ -27,11 +28,11 @@ void VideoManager::videoRecorder()
         return;
     }
 
-    if (!rightVideoWriter.isOpened())
-    {
-        std::cerr << "Failed to open right video writer" << std::endl;
-        return;
-    }
+    // if (!rightVideoWriter.isOpened())
+    // {
+    //     std::cerr << "Failed to open right video writer" << std::endl;
+    //     return;
+    // }
 
     std::ofstream timestampFile("timestamp.txt");
     if (!timestampFile.is_open())
@@ -50,10 +51,10 @@ void VideoManager::videoRecorder()
         if (!sharedData.isRecordingPaused())
         {
             leftFrame = StereoCamera::getLeftFrame();
-            rightFrame = StereoCamera::getRightFrame();
+            // rightFrame = StereoCamera::getRightFrame();
 
             leftVideoWriter.write(leftFrame);
-            rightVideoWriter.write(rightFrame);
+            // rightVideoWriter.write(rightFrame);
 
             // currentTime = std::chrono::system_clock::now();
             currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
@@ -66,7 +67,7 @@ void VideoManager::videoRecorder()
         }
 
         cv::imshow("Left frame", leftFrame);
-        cv::imshow("Right frame", rightFrame);
+        // cv::imshow("Right frame", rightFrame);
 
         key = cv::waitKey(1);
         if (key == 'p')
@@ -106,7 +107,7 @@ void VideoManager::videoRecorder()
     try
     {
         leftVideoWriter.release();
-        rightVideoWriter.release();
+        // rightVideoWriter.release();
         timestampFile.close();
         std::cout << "Video saved successfully!" << std::endl;
     }
@@ -116,54 +117,54 @@ void VideoManager::videoRecorder()
     }
 }
 
-void VideoManager::videoLoader()
-{
-    cv::VideoCapture leftvideoLoader("video_from_left_camera.avi");
-    cv::VideoCapture rightvideoLoader("video_from_right_camera.avi");
+// void VideoManager::videoLoader()
+// {
+//     cv::VideoCapture leftvideoLoader("video_from_left_camera.avi");
+//     cv::VideoCapture rightvideoLoader("video_from_right_camera.avi");
 
-    if (!leftvideoLoader.isOpened())
-        throw std::runtime_error("Failed to open video from left camera");
+//     if (!leftvideoLoader.isOpened())
+//         throw std::runtime_error("Failed to open video from left camera");
 
-    if (!rightvideoLoader.isOpened())
-        throw std::runtime_error("Failed to open video from right camera");
+//     if (!rightvideoLoader.isOpened())
+//         throw std::runtime_error("Failed to open video from right camera");
 
-    std::ifstream timestampFile("timestamp.txt");
-    if (!timestampFile.is_open())
-        throw std::runtime_error("Failed to open timestamp.txt file");
+//     std::ifstream timestampFile("timestamp.txt");
+//     if (!timestampFile.is_open())
+//         throw std::runtime_error("Failed to open timestamp.txt file");
 
-    leftvideoLoader.set(cv::CAP_PROP_FPS, fps);
-    rightvideoLoader.set(cv::CAP_PROP_FPS, fps);
+//     leftvideoLoader.set(cv::CAP_PROP_FPS, fps);
+//     rightvideoLoader.set(cv::CAP_PROP_FPS, fps);
 
-    while (true)
-    {
+//     while (true)
+//     {
 
-        leftvideoLoader >> leftFrame;
-        rightvideoLoader >> rightFrame;
+//         leftvideoLoader >> leftFrame;
+//         rightvideoLoader >> rightFrame;
 
-        if (leftFrame.empty() || rightFrame.empty())
-        {
-            std::cout << "End of video file" << std::endl;
-            break;
-        }
+//         if (leftFrame.empty() || rightFrame.empty())
+//         {
+//             std::cout << "End of video file" << std::endl;
+//             break;
+//         }
 
-        cv::imshow("Left Frame", leftFrame);
-        cv::imshow("Right Frame", rightFrame);
+//         cv::imshow("Left Frame", leftFrame);
+//         cv::imshow("Right Frame", rightFrame);
 
-        timestampFile >> frameIndex >> timestamp;
+//         timestampFile >> frameIndex >> timestamp;
 
-        // convert the absolute time to a cv::Mat timestamp
-        // timestampMat = cv::Mat::zeros(1, 1, CV_64F);
-        // *timestampMat.ptr<double>(0) = static_cast<double>(std::chrono::system_clock::to_time_t(std::chrono::system_clock::from_time_t(timestamp)));
+//         // convert the absolute time to a cv::Mat timestamp
+//         // timestampMat = cv::Mat::zeros(1, 1, CV_64F);
+//         // *timestampMat.ptr<double>(0) = static_cast<double>(std::chrono::system_clock::to_time_t(std::chrono::system_clock::from_time_t(timestamp)));
 
-        std::cout << "Left frame with index: " << frameIndex << " was captured at " << std::ctime(&timestamp) << std::endl;
-        std::cout << "Right frame with index: " << frameIndex << " was captured at " << std::ctime(&timestamp) << std::endl;
+//         std::cout << "Left frame with index: " << frameIndex << " was captured at " << std::ctime(&timestamp) << std::endl;
+//         std::cout << "Right frame with index: " << frameIndex << " was captured at " << std::ctime(&timestamp) << std::endl;
 
-        key = cv::waitKey(40); // correspond to 25 fps
-        if (key == 'q')
-            break;
-    }
+//         key = cv::waitKey(40); // correspond to 25 fps
+//         if (key == 'q')
+//             break;
+//     }
 
-    leftvideoLoader.release();
-    rightvideoLoader.release();
-    cv::destroyAllWindows();
-}
+//     leftvideoLoader.release();
+//     rightvideoLoader.release();
+//     cv::destroyAllWindows();
+// }

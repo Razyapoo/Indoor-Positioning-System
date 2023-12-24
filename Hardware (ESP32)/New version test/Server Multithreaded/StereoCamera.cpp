@@ -11,46 +11,46 @@ cv::VideoCapture StereoCamera::leftCamera, StereoCamera::rightCamera;
 void StereoCamera::initStereoCamera(const int &leftCameraIndex, const int &rightCameraIndex)
 {
     StereoCamera::leftCameraIndex = leftCameraIndex;
-    StereoCamera::rightCameraIndex = rightCameraIndex;
+    // StereoCamera::rightCameraIndex = rightCameraIndex;
     leftCamera = cv::VideoCapture(leftCameraIndex);
-    rightCamera = cv::VideoCapture(rightCameraIndex);
+    // rightCamera = cv::VideoCapture(rightCameraIndex);
 
     if (!leftCamera.isOpened())
     {
         throw std::runtime_error("Failed to open camera " + std::to_string(leftCameraIndex));
     }
 
-    if (!rightCamera.isOpened())
-    {
-        throw std::runtime_error("Failed to open camera " + std::to_string(rightCameraIndex));
-    }
+    // if (!rightCamera.isOpened())
+    // {
+    //     throw std::runtime_error("Failed to open camera " + std::to_string(rightCameraIndex));
+    // }
 }
 
 void StereoCamera::initStereoCamera(const std::string &leftCameraURL, const std::string &rightCameraURL)
 {
     StereoCamera::leftCameraURL = leftCameraURL;
-    StereoCamera::rightCameraURL = rightCameraURL;
+    // StereoCamera::rightCameraURL = rightCameraURL;
 
     setenv(envvar.c_str(), options.c_str(), 1);
 
     leftCamera = cv::VideoCapture(leftCameraURL, cv::CAP_FFMPEG);
-    rightCamera = cv::VideoCapture(rightCameraURL, cv::CAP_FFMPEG);
+    // rightCamera = cv::VideoCapture(rightCameraURL, cv::CAP_FFMPEG);
 
     if (!leftCamera.isOpened())
     {
         throw std::runtime_error("Failed to open camera " + leftCameraURL);
     }
 
-    if (!rightCamera.isOpened())
-    {
-        throw std::runtime_error("Failed to open camera " + rightCameraURL);
-    }
+    // if (!rightCamera.isOpened())
+    // {
+    //     throw std::runtime_error("Failed to open camera " + rightCameraURL);
+    // }
 }
 
 void StereoCamera::release()
 {
     leftCamera.release();
-    rightCamera.release();
+    // rightCamera.release();
     cv::destroyAllWindows();
 }
 
@@ -71,19 +71,19 @@ cv::Mat &StereoCamera::getLeftFrame()
     return readLeftFrame;
 }
 
-cv::Mat &StereoCamera::getRightFrame()
-{
+// cv::Mat &StereoCamera::getRightFrame()
+// {
 
-    if (!rightCamera.read(readRightFrame))
-    {
-        if (rightCameraURL != "")
-            throw std::runtime_error("Failed to read the frame from the camera " + StereoCamera::rightCameraURL);
-        else
-            throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(StereoCamera::rightCameraIndex));
-    }
+//     if (!rightCamera.read(readRightFrame))
+//     {
+//         if (rightCameraURL != "")
+//             throw std::runtime_error("Failed to read the frame from the camera " + StereoCamera::rightCameraURL);
+//         else
+//             throw std::runtime_error("Failed to read the frame from the camera " + std::to_string(StereoCamera::rightCameraIndex));
+//     }
 
-    if (rightCameraURL != "")
-        cv::resize(readRightFrame, readRightFrame, cv::Size(620, 480));
+//     if (rightCameraURL != "")
+//         cv::resize(readRightFrame, readRightFrame, cv::Size(620, 480));
 
-    return readRightFrame;
-}
+//     return readRightFrame;
+// }

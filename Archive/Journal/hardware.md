@@ -566,17 +566,107 @@ The goal of the experiment is to check the quality and precision of the UWB beac
 
 # 2 December, 2023
 
-All experiments are performend on the 1st floor of Mala Strana
+Experiment overview: 
+  - All experiments are conudcted on the 1st floor of Mala Strana. The data collected is limited to tagging, with no video recordings involved.
 
-- First experiment. Review of Tag 1
+Experiment 1: Review of Tag 1.
 
-  This experiment consists of several sub-experiments:
+Tag 1 is calibrated on 5m.
+
+Common Setup:
+  - Distance between Anchors is 250,5 cm
+
+Objective: 
+  - Test the influence of the enviroment on distance estimation
+
+This experiment comprises of multiple sub-experiments:
+
+Sub-experiment 1.1:
+  
+  Setup details:
     
-    1.1 Setup:
-      - Anchor 101 is placed on Door line
-      - Anchor 102 is placed on Window Line
-       
- 
+    Anchor placement:
+      - Anchor 101: Placed on the Door Line.
+      - Anchor 102: Placed on the Window Line.
+    
+    Tag placement:
+      - Center
+
+    Data collection: 
+      - Data are collected from both anchors at the same ranging cycle.
+
+  Result:
+    Median and average values:
+      Anchor 101:
+        Median: 4.9404271
+        Average: 4.938610753198653
+      Anchor 102:
+        Median: 4.940427
+        Average: 4.94042727946128
+      - from Anchor 101 and Anchor 102 are 4.94. By Pythagorean theorem, they should equal to sqrt(5^2 + 1.2525^2) = 5.155.
+    
+    Minimum and Maximum values:
+      Anchor 101:
+        - Min: 4.8278251
+        - Max: 4.9826531
+
+      Anchor 102:
+        - Min: 4.879434
+        - Max: 4.996728
+
+    - I can conclude that Tags have offset
+    
+  Conclusion:
+    - The calculated values suggest that there is an offset in the tags. 
+
+Sub-experiment 1.2:
+  
+  Setup details:
+    
+    Anchor placement:
+      - Anchor 101: Placed on the Door Line.
+      - Anchor 102: Placed on the Window Line.
+    
+    Tag placement:
+      - Door line
+      - Line Of Sight with Anchor 101
+      - Parallel to Anchor 102  
+
+    Data collection: 
+      - Data are collected from both anchors at the same ranging cycle.
+
+  Result:
+   Median and average values:
+      Anchor 101:
+        Median: 4.8559761
+        Average: 4.8574475549019605
+      Anchor 102:
+        Median: 5.569124
+        Average: 5.568626788235295
+      
+    By Pythagorean theorem, distance between Tag 1 and Anchor 102 should be equal to sqrt(5^2 + 2.5050^2) = 5.5924.
+    
+    Minimum and Maximum values:
+      Anchor 101:
+        - Min: 4.8043661
+        - Max: 4.9169681
+
+      Anchor 102:
+        - Min: 5.484672
+        - Max: 5.630116
+
+    - I can conclude that Tags have offset
+    
+  Conclusion:
+    - Median and average distances to Anchor 101 suggest that there is an offset. Also, based on the previous measurements: when tag and anchor are places in parallel and non facing each other (has no LOS), measured distance between them must be higher than the actual is. This dact also signals that there is some offset in measurements.
+
+ Sub-experiment 1.2:
+  
+  Setup details:
+    
+    Anchor placement:
+      - Anchor 101: Placed on the Door Line.
+      - Anchor 102: Placed on the Window Line.
 
 # 9 December, 2023
 
@@ -670,20 +760,20 @@ Need to check with new cables.
 
 # 17 December, 2023
 
-- Experiment 1.5 (Straight test - Anchor 102, Tag 3)
-
 Antenna delay is set to 16515 for all tags. Experiments are performed using new cables from Alza.
 All (roury) are aligned using electric laser (see photo). I draw lines on (roury) to be able to put beacons on them faster.
+
+- Experiment 1.5 (Straight test - Anchor 102, Tag 3)
 
 Result are correct at all lines
 
 - Experiment 1.6 (Straight test - Achor 101, Tag 3)
 
-Results are correct at all lines. It might happen that at some point tag starts showing 5 cm more values. See beginnign of the recorded data and end (at those parts tag and anchor where placed on the line near Window - window line).
+Results are correct at all lines. It might happen that at some point tag starts showing +5 cm higher values. See beginnign of the recorded data and end (at those parts tag and anchor where placed on the line near Window - window line).
 
 - Experiment 1.7 (Straight test - Anchor 101, Tag 2) - Repetition of unsuccessful yesterday's test.
 
-All distances are about 5.07. Based on the fact that Anchors have default antenna delay and based on Experiment 1.6 (which has also measured distances ~5.07), there might be a need to calibrate antenna delay on Anchor 101. Distances between tags and Anchor 102 are about 5.00.
+All distances are about 5.07. Based on the fact that Anchors have default antenna delay and based on Experiment 1.6 (which has also measured distances ~5.07), there might be a need to calibrate antenna delay on Anchor 101. Because distances between tags and Anchor 102 are about 5.00.
 
 - Experiment 1.8 (Straight test - Anchor 102, Tag 2) - Repetition of yesterday's test, but with another antenna delay.
 
@@ -703,7 +793,7 @@ This experiment showed that all tags show ~5.00 m measured distance.
 
  - The only tag 3 shows ~4.90; but previous experiments 1.5-1.6 showed that after some time, measured distances get normalized, maybe some deffect inside chip.
 
-Therefore, I may conclude that anchor 102 might require some calibration. Because all tags show distance 5.07 with this anchor.
+Therefore, I may conclude that anchor 101 might require some calibration. Because all tags show distance 5.07 with this anchor.
 
 
 - Experiment 1.12 (Straight test; Door line - Anchor 101, all tags)
@@ -712,6 +802,245 @@ This experiment show that Anchor 101 - Tag 1, Anchor 101 - Tag 3 distances are 5
 
 Ahcnor 102 - Tag 2 distance (end of the experiment) is 5.00 m.
 
-The only thing is that tag 3 might increase distance in a time. Therefore, Tag 2 and Tag 3 show ~5.07 measured distance with Anchor 101. Therefore, there is a need to upper antenna delay on Anchor 101. The only thing is Anchor 101 - Tag 1 which is 5.00m. Strange.
+Overall result of today:
+
+  - The only thing is that tag 3 might increase distance in a time. Therefore, Tag 2 and Tag 3 show ~5.07 measured distance with Anchor 101. Therefore, there is a need to upper antenna delay on Anchor 101. The only thing is Anchor 101 - Tag 1 which is 5.00m. Strange.
 
 What to do next: 1. Try diagonal test. 2. Put tags into boxes and test for interference and reflexion.
+
+
+# 22 December, 2023
+
+- Experiment in dormitory
+
+Objective: To test different environment with calibration parameters for another environment (1st floor of MS). Antenna delay: 16515. 
+
+- 
+
+# 23 December, 2023
+
+1st try: 
+
+Experiment overview: 
+  - All experiments are conudcted on the 3st floor of Kajetanka dormitory. Experiment involves recording of tag data as well as video recording 
+
+Setup (As seen on camera):
+  - Left Wall <--- 0.5 m ---> Left Anchor Line <--- 0.6 m ---> Central Anchor Line <--- 0.6 m ---> Right Anchor Line <--- 0.3 m ---> Right Wall
+  - Anchor baseline <--- 1.28 m ---> Camera
+  - Camera <--- Unknown ---> Right Wall
+
+Tags are calibrated on 5m (1st floor in MS).
+
+Disclamer: Because of the situation happened I decided to perfrom experiments at the dormitory. This has a benefit that I can test antenna calibration parameter calibrated at 1st floor of MS in different environments. Worser thing is that antenna was calibrated a bit wrong. At 5m GT distance it shows 5.05-5.12 (~5.07). The reason is that at the first run, tags show a bit lesser values/distances, and after a while, they start showing +5-10 cm. 
+
+Experiment 1: Review of Tag 2 and Anchor 102 in dormitory.
+
+
+Common Setup:
+  - Distance between Anchors is 250,5 cm
+
+Objective: 
+  - Test wether calibrated antenna delay from 1st floor of MS works for other environments.
+
+Observation:
+  - The floor is not straight. Therefore, pipes might have some tilting. This might influence the precision of measurements.
+
+Result:
+  - Same behaviour as in MS observed: At the first, tag is showing average distance 4.98, but after a while it starts showing 5.07 m on average.
+
+
+What to do next: 
+- Check why tag 1 was showing distance 4.98-5.00 at 1st floor of MS, and now showing ~5.07 on average. Check with which anchor Tag 1 showed 4.98 in MS.
+- Why after some time of run, tags start to show +5-10 cm? Do they need warm up stage?
+
+
+Experiment 1.2: Review of Tag 1 and Anchor 102 in dormitory.
+
+# 24 December, 2023
+
+Change of setup:
+  - Camera position is changed
+  - Left Wall <--- 0.5 m ---> Left Anchor Line <--- 0.6 m ---> Central Anchor Line <--- 0.6 m ---> Right Anchor Line <--- 0.3 m ---> Right Wall
+  - Anchor baseline <--- 1.3 m ---> Camera
+  - Camera <--- 1.20m ---> Right Wall                 <--- Change from yesterday
+
+Experiment 1.3: Review of Tag 3 and Anchor 102 in dormitory.
+
+
+Results:
+  - Overall values get a bit higher after some while of running.
+  - There is some level of interference near Right Wall (Values get higher ~ +5 cm).
+
+Experiment 2.1: Review of Tag 1 and Anchor 101 in dormitory.
+
+Results:
+  - Values are immidiately around ~5,07 m. (without warm up).
+  - There is also some level of interference near Right Wall (+10 cm).
+
+Experiment 2.2: Review of Tag 2 and Anchor 101 in dormitory.
+
+Results:
+  - Why values are around 5.15? Higher than between Anchor 101 and Tag 1.
+  - This confirms previous result of experiments performed on 17. of December: Anchor 101 shows a bit higher values on average for Tag 2 and Tag 3.
+  - Level of intereference on the Left Line is present.
+
+Experiment 2.3: Review of Tag 3 and Anchor 101 in dormitory.
+
+Results:
+  - Average distance measurement is 5.07-5.10, same as for Tag 2 <--> Anchor 101. This confirms the fact that anchor 101 need to adjust antenna delay.
+  - 
+
+Experiment 2.3.1: Review of Tag 3 and Anchor 101. Long run test.
+
+Objective:
+  - To test the change in measurements in time.
+
+Results:
+  - This test confirms that distance measurements get higher in time for Tag 3.
+
+Experiment 3: Interference of Right Wall for Tag 1 and Anchor 101
+
+Result:
+  - There is a light interference +3-5 cm on Right Wall Line.
+  - Why with Anchor 102 all tags had higher interference on Right Wall Line?
+
+
+
+2nd try:
+
+Experiment overview: 
+  - All experiments are conudcted on the 3st floor of Kajetanka dormitory. Experiment involves recording of tag data as well as video recording 
+
+Setup (As seen on camera):
+  - Left Wall <--- 0.6 m ---> Left Anchor Line <--- 0.5 m ---> Central Anchor Line <--- 0.5 m ---> Right Anchor Line <--- 0.4 m ---> Right Wall
+  - Anchor baseline <--- 1.31 m ---> Camera
+  - Camera <--- 1.2 m ---> Right Wall
+
+Tags are calibrated on 5m (1st floor in MS).
+
+Experiment 1.1: Anchor 101, Tag 1
+
+Result:
+  - Right Wall Line:
+    - Min: 5.01
+    - Max: 5.10 (once 5.13)
+    - Avg: 5.05
+  - Central Line:
+    - Min: 5.04
+    - Max: 5.16 (once 5.17)
+    - Avg: 5.09
+  - Left Wall Line:
+    - Min: 5.03
+    - Max: 5.15
+    - Avg: 5.10
+  - Right Wall Line (2nd):
+    - Min: 5.05
+    - Max: 5.13
+    - Avg: 5.08
+  - Central Line (2nd):
+    - Min: 5.08
+    - Max: 5.17
+    - Avg: 5.11
+  - Left Wall Line (2nd):
+    - Min: 5.08 (once 5.07)
+    - Max: 5.16 (once 5.17)
+    - Avg: 5.10-11
+
+Result:
+  - I may conclude that after some time values get higher.
+
+
+Experiment 1.2: Anchor 101, Tag 2
+
+Result:
+  - Right Wall Line:
+    - Min: 5.05
+    - Max: 5.14
+    - Avg: 5.09
+  - Central Line:
+    - Min: 5.09
+    - Max: 5.20
+    - Avg: 5.15
+  - Left Wall Line:
+    - Min: 5.11 (sometimes 5.09)
+    - Max: 5.17
+    - Avg: 5.14
+  - Right Wall Line (2nd):
+    - Min: 5.09
+    - Max: 5.17 (sometimes 5.19)
+    - Avg: 5.12
+  - Central Line (2nd):
+    - Min: 5.12 (sometimes 5.10)
+    - Max: 5.21
+    - Avg: 5.17
+  - Left Wall Line (2nd):
+    - Min: 5.10
+    - Max: 5.17 (sometimes 5.19)
+    - Avg: 5.13
+
+Result:
+  - I may conclude that after some time values get higher. Looks like after first move of beacons.
+  - After values get normalized. 1st (Central Line, Left Wall line) and 2nd runs have same meausrements on average.
+
+Experiment 1.3: Anchor 101, Tag 3
+
+Result:
+  - Right Wall Line:
+    - Min: 5.02 (once 5.00)
+    - Max: 5.12 (once 5.15)
+    - Avg: 5.07
+  - Central Line:
+    - Min: 5.08
+    - Max: 5.15
+    - Avg: 5.13
+  - Left Wall Line:
+    - Min: 5.07
+    - Max: 5.14
+    - Avg: 5.09
+  - Right Wall Line (2nd):
+    - Min: 5.07 (once 5.02)
+    - Max: 5.12
+    - Avg: 5.07-09
+  - Central Line (2nd):
+    - Min: 5.08
+    - Max: 5.14 (once 5.17)
+    - Avg: 5.10
+  - Left Wall Line (2nd):
+    - Min: 5.05
+    - Max: 5.14 (once 5.17)
+    - Avg: 5.10
+
+Result:
+  - This also confirms that after some time of run, values are getting higher
+
+Experiment 2.1: Anchor 102, Tag 1
+
+Result:
+  - Right Wall Line:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - Central Line:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - Left Wall Line:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - Right Wall Line (2nd):
+    - Min: 
+    - Max: 
+    - Avg: 
+  - Central Line (2nd):
+    - Min: 
+    - Max: 
+    - Avg: 
+  - Left Wall Line (2nd):
+    - Min: 
+    - Max: 
+    - Avg: 
+
+Result:
+  - This also confirms that after some time of run, values are getting higher
+
