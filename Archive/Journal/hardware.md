@@ -871,26 +871,26 @@ Results:
   - Overall values get a bit higher after some while of running.
   - There is some level of interference near Right Wall (Values get higher ~ +5 cm).
 
-Experiment 2.1: Review of Tag 1 and Anchor 101 in dormitory.
+Experiment 1.4: Review of Tag 1 and Anchor 101 in dormitory.
 
 Results:
   - Values are immidiately around ~5,07 m. (without warm up).
   - There is also some level of interference near Right Wall (+10 cm).
 
-Experiment 2.2: Review of Tag 2 and Anchor 101 in dormitory.
+Experiment 1.5: Review of Tag 2 and Anchor 101 in dormitory.
 
 Results:
   - Why values are around 5.15? Higher than between Anchor 101 and Tag 1.
   - This confirms previous result of experiments performed on 17. of December: Anchor 101 shows a bit higher values on average for Tag 2 and Tag 3.
   - Level of intereference on the Left Line is present.
 
-Experiment 2.3: Review of Tag 3 and Anchor 101 in dormitory.
+Experiment 1.6: Review of Tag 3 and Anchor 101 in dormitory.
 
 Results:
   - Average distance measurement is 5.07-5.10, same as for Tag 2 <--> Anchor 101. This confirms the fact that anchor 101 need to adjust antenna delay.
   - 
 
-Experiment 2.3.1: Review of Tag 3 and Anchor 101. Long run test.
+Experiment 1.6.1: Review of Tag 3 and Anchor 101. Long run test.
 
 Objective:
   - To test the change in measurements in time.
@@ -898,7 +898,7 @@ Objective:
 Results:
   - This test confirms that distance measurements get higher in time for Tag 3.
 
-Experiment 3: Interference of Right Wall for Tag 1 and Anchor 101
+Experiment 2: Interference of Right Wall for Tag 1 and Anchor 101
 
 Result:
   - There is a light interference +3-5 cm on Right Wall Line.
@@ -906,7 +906,7 @@ Result:
 
 
 
-2nd try:
+2nd try (Determining which and for how much to adjust antenna delay):
 
 Experiment overview: 
   - All experiments are conudcted on the 3st floor of Kajetanka dormitory. Experiment involves recording of tag data as well as video recording 
@@ -1013,34 +1013,457 @@ Result:
 Result:
   - This also confirms that after some time of run, values are getting higher
 
-Experiment 2.1: Anchor 102, Tag 1
+
+# 25 December, 2023
+
+Experiment 1.4: Anchor 102, Tag 1
 
 Result:
   - Right Wall Line:
-    - Min: 
-    - Max: 
-    - Avg: 
+    - Min: 4.91
+    - Max: 5.02 (sometimes 5.03)
+    - Avg: 4.98
   - Central Line:
-    - Min: 
-    - Max: 
-    - Avg: 
+    - Min: 4.99 (once 4.95)
+    - Max: 5.09
+    - Avg: 5.03
   - Left Wall Line:
-    - Min: 
-    - Max: 
-    - Avg: 
+    - Min: 4.99
+    - Max: 5.09
+    - Avg: 5.03
   - Right Wall Line (2nd):
-    - Min: 
-    - Max: 
-    - Avg: 
+    - Min: 4.96
+    - Max: 5.07
+    - Avg: 5.02
   - Central Line (2nd):
-    - Min: 
-    - Max: 
-    - Avg: 
+    - Min: 5.02 (sometimes 5.00) 
+    - Max: 5.09 (sometimes 5.10)
+    - Avg: 5.03 
   - Left Wall Line (2nd):
-    - Min: 
-    - Max: 
-    - Avg: 
+    - Min: 5.01 (sometimes 4.99)
+    - Max: 5.08
+    - Avg: 5.02
 
 Result:
-  - This also confirms that after some time of run, values are getting higher
+  - This test confirms that Tag 1 and Anchor 102 are calibrated almost correct and has lower values that Tag 1 and Anchor 101
+  - Also it confirms that in a time values get higher (small change here)
+
+Experiment 1.5: Anchor 102, Tag 2
+
+Result:
+  - Right Wall Line:
+    - Min: 4.99
+    - Max: 5.07
+    - Avg: 5.02
+  - Central Line:
+    - Min: 5.00
+    - Max: 5.11 (sometimes 5.13)
+    - Avg: 5.07
+  - Left Wall Line:
+    - Min: 5.03
+    - Max: 5.11 (sometimes 5.15)
+    - Avg: 5.08
+  - Right Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.10
+    - Avg: 5.06
+  - Central Line (2nd):
+    - Min: 5.00
+    - Max: 5.12 (sometimes 5.14)
+    - Avg: 5.08 
+  - Left Wall Line (2nd):
+    - Min: 5.04
+    - Max: 5.10
+    - Avg: 5.09
+
+Result:
+  - All measurements are almost same. No value drifting in time observed
+  - Maybe small correction of antenna delay needed
+
+Experiment 1.6: Anchor 102, Tag 3
+
+Result:
+  - Right Wall Line:
+    - Min: 4.88 (once 4.84)
+    - Max: 5.01 (once 5.03)
+    - Avg: 4.95
+  - Central Line:
+    - Min: 4.97
+    - Max: 5.06
+    - Avg: 5.02
+  - Left Wall Line:
+    - Min: 4.97 (sometiems 4.95) 
+    - Max: 5.06
+    - Avg: 5.02
+  - Right Wall Line (2nd):
+    - Min: 4.99 (somestimes 4.94)
+    - Max: 5.04 (once 5.07)
+    - Avg: 4.99-5.00
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.09
+    - Avg: 5.03
+  - Left Wall Line (2nd):
+    - Min: 4.99
+    - Max: 5.06
+    - Avg: 5.02
+
+Result:
+  - Tag 3 requies warm up for sure.
+  -
+
+
+Overall result of experiments above:
+  - Tag 1 has good calibration - 16515
+  - Anchor 102 has good calibration - default: 16384
+  - Tag 2 must be recalibrated - 16536
+  - TAg 3 must be recalibrated since in a time it shows a bit higher values - 16526
+  - Anchor 101 must be calibrated - 16390
+  - 
+
+Experiment 2 (after calibration)
+
+Experiment 2.1: Anchor 101, Tag 1
+
+Result:
+  - Right Wall Line:
+    - Min: 4.96
+    - Max: 5.04
+    - Avg: 4.99
+  - Central Line:
+    - Min: 5.01
+    - Max: 5.09
+    - Avg: 5.05
+  - Left Wall Line:
+    - Min: 5.00
+    - Max: 5.08
+    - Avg: 5.05
+  - Right Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.06 (sometimes 5.08)
+    - Avg: 5.02
+  - Central Line (2nd):
+    - Min: 5.02
+    - Max: 5.12
+    - Avg: 5.07
+  - Left Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.08 (sometimes 5.10)
+    - Avg: 5.03 
+
+Result:
+  - Sometimes values are higher. Is it when tag and anchor restarted or values change in time?
+  - Should I change antenna delay also on Tag 1? Need to check with Anchor 102
+
+Experiment 2.2: Anchor 101, Tag 2
+
+Result:
+  - Right Wall Line:
+    - Min: 4.90
+    - Max: 4.99
+    - Avg: 4.95
+  - Central Line:
+    - Min: 4.96
+    - Max: 5.02
+    - Avg: 4.99
+  - Left Wall Line:
+    - Min: 4.94
+    - Max: 5.01
+    - Avg: 4.98
+  - Right Wall Line (2nd):
+    - Min: 4.92
+    - Max: 5.00
+    - Avg: 4.96
+  - Central Line (2nd):
+    - Min: 4.98
+    - Max: 5.03
+    - Avg: 5.00
+  - Left Wall Line (2nd):
+    - Min: 4.96 (once 4.94)
+    - Max: 5.02
+    - Avg: 4.99
+
+Result:
+  - Overall values are OK.
+  - Left Wall has some level of interference. Values are lower than average among all lines.
+  - Does this tag requires warm-up?
+
+Experiment 2.3: Anchor 101, Tag 3
+
+Result:
+  - Right Wall Line:
+    - Min: 4.85
+    - Max: 4.95
+    - Avg: 4.91
+  - Central Line:
+    - Min: 4.91
+    - Max: 5.02
+    - Avg: 4.98
+  - Left Wall Line:
+    - Min: 4.92
+    - Max: 5.03
+    - Avg: 4.97
+  - Right Wall Line (2nd):
+    - Min: 4.91 (once 4.88)
+    - Max: 5.01
+    - Avg: 4.95
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.03
+    - Avg: 4.99
+  - Left Wall Line (2nd):
+    - Min: 4.96 (once 4.94)
+    - Max: 5.03
+    - Avg: 5.00
+
+Result:
+  - Left Wall again show some level of interference.
+  - In a time value get higher.
+
+Experiment 2.4: Anchor 102, Tag 1
+
+Result:
+  - Right Wall Line:
+    - Min: 4.91
+    - Max: 5.02
+    - Avg: 4.95
+  - Central Line:
+    - Min: 4.98
+    - Max: 5.09
+    - Avg: 5.02
+  - Left Wall Line:
+    - Min: 4.97 (sometimes 4.95)
+    - Max: 5.08
+    - Avg: 5.03
+  - Right Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.06
+    - Avg: 5.00-5.02
+  - Central Line (2nd):
+    - Min: 5.01
+    - Max: 5.11
+    - Avg: 5.05 (get lower values in a time)
+  - Left Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.06
+    - Avg: 5.02
+  - Central Line (3rd):
+    - Min: 5.00
+    - Max: 5.08
+    - Avg: 5.04 (get lower values in a time)
+
+Result:
+  - May be an interference from walls?
+  - Why values at center line are higher?
+    - No, need to upper antenna delay, set same as on Tag 3.
+
+Experiment 2.5: Anchor 102, Tag 2
+
+Result:
+  - Right Wall Line:
+    - Min: 4.94 (at the beginning 4.92)
+    - Max: 5.03
+    - Avg: 4.97
+  - Central Line:
+    - Min: 4.95
+    - Max: 5.03
+    - Avg: 5.00
+  - Left Wall Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+  - Right Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.03
+    - Avg: 4.98-4.99
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.04
+    - Avg: 4.99-5.00
+  - Left Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.04
+    - Avg: 4.99-5.00
+
+Result:
+  - OK
+  -
+
+Experiment 2.6: Anchor 102, Tag 3
+
+Result:
+  - Right Wall Line:
+    - Min: 4.85
+    - Max: 4.97
+    - Avg: 4.90
+  - Central Line:
+    - Min: 4.92
+    - Max: 5.02
+    - Avg: 4.94
+  - Left Wall Line:
+    - Min: 4.92
+    - Max: 5.01
+    - Avg: 4.97
+  - Right Wall Line (2nd):
+    - Min: 4.94
+    - Max: 5.01
+    - Avg: 4.96
+  - Central Line (2nd):
+    - Min: 4.94
+    - Max: 5.04
+    - Avg: 4.99
+  - Left Wall Line (2nd):
+    - Min: 4.94
+    - Max: 5.02
+    - Avg: 4.99
+
+Result:
+  - Need warm up!
+  -
+
+Overall result:
+  - Need to lower (a bit) antenna delay on Tag 3, to upper values.
+  - Need to adjust antenna delay (same as on Tag 3?) on Tag 1.
+
+# 26 December, 2023
+
+Setup (As seen on camera):
+  - Left Wall <--- 0.6 m ---> Left Anchor Line <--- 0.5 m ---> Central Anchor Line <--- 0.5 m ---> Right Anchor Line <--- 0.4 m ---> Right Wall
+  - Anchor baseline <--- 1.31 m ---> Camera
+  - Camera <--- 1.2 m ---> Right Wall
+  - Warm up is 1-2 min
+
+Experiment 3: Adjusting calibration for Tag 1 and Tag 3 - 16521
+
+Experiment 3.1: Anchor 101, Tag 1 (After warm-up)
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.95
+    - Max: 5.02
+    - Avg: 5.00
+  - Central Line:
+    - Min: 4.99
+    - Max: 5.08
+    - Avg: 5.02
+  - Left Wall Line:
+    - Min: 4.96 (once 4.93)
+    - Max: 5.01-5.02
+    - Avg: 5.04
+  - Right Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.03
+    - Avg: 4.99-5.01
+  - Central Line (2nd):
+    - Min: 4.99
+    - Max: 5.07 (once 5.11)
+    - Avg: 5.02-5.05
+  - Left Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.06 (once 5.08)
+    - Avg: 5.02
+
+Result:
+  - Overall is OK.
+  - Why central line show a bit higher values?
+
+
+Experiment 3.2.1: Anchor 101, Tag 3 (Warm-up & Long run)
+
+Result:
+  - Long run does not affect values once they are normalized.
+
+Experiment 3.2: Anchor 101, Tag 3 (After warm-up)
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.98
+    - Max: 5.06
+    - Avg: 5.02
+  - Central Line:
+    - Min: 5.00 (once 4.98-4.99)
+    - Max: 5.06
+    - Avg: 5.02-5.04
+  - Left Wall Line:
+    - Min: 4.96
+    - Max: 5.06
+    - Avg: 4.98-5.02
+  - Right Wall Line (2nd):
+    - Min: 4.97
+    - Max: 5.04
+    - Avg: 4.99-5.00
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.02-03
+    - Avg: 5.08
+  - Left Wall Line (2nd):
+    - Min: 4.97
+    - Max: 5.05
+    - Avg: 4.99-5.01
+
+Result:
+  -
+
+Experiment 3.3: Anchor 102, Tag 1 (After warm-up)
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.96
+    - Max: 5.04
+    - Avg: 4.99-5.02
+  - Central Line:
+    - Min: 4.98
+    - Max: 5.04
+    - Avg: 4.99-5.02
+  - Left Wall Line:
+    - Min: 4.97
+    - Max: 5.04
+    - Avg: 4.98-5.02
+  - Right Wall Line (2nd):
+    - Min: 4.95
+    - Max: 5.02
+    - Avg: 4.98-5.00
+  - Central Line (2nd):
+    - Min: 4.98
+    - Max: 5.04
+    - Avg: 5.01-5.02
+  - Left Wall Line (2nd):
+    - Min: 4.97
+    - Max: 5.03
+    - Avg: 5.00
+
+Result:
+  - Tag 1 also requires warm-up!
+  - all tags and anchors require warm-up!
+
+Experiment 3.4: Anchor 102, Tag 3 (After warm-up)
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.94
+    - Max: 5.02
+    - Avg: 4.97-4.99
+  - Central Line:
+    - Min: 4.96
+    - Max: 5.03
+    - Avg: 4.99-5.01
+  - Left Wall Line:
+    - Min: 4.96
+    - Max: 5.03
+    - Avg: 4.99-5.00
+  - Right Wall Line (2nd):
+    - Min: 4.94
+    - Max: 5.03
+    - Avg: 4.99
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.05
+    - Avg: 5.00-5.02
+  - Left Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.03
+    - Avg: 4.99-5.00
+
+Result:
+  -
 
