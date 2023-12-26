@@ -1348,8 +1348,8 @@ Result:
     - Avg: 5.02
   - Left Wall Line:
     - Min: 4.96 (once 4.93)
-    - Max: 5.01-5.02
-    - Avg: 5.04
+    - Max: 5.04
+    - Avg: 5.01-5.02
   - Right Wall Line (2nd):
     - Min: 4.96
     - Max: 5.03
@@ -1466,4 +1466,197 @@ Result:
 
 Result:
   -
+
+Experiment 4: 
+
+Objective:
+
+  - Desks are now enclosed into boxes.
+  - Test of influence of box.
+
+Experiment 4.1: Anchor 101, Tag 1
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.97
+    - Max: 5.03
+    - Avg: 4.99-5.00
+  - Central Line:
+    - Min: 4.98
+    - Max: 5.07
+    - Avg: 5.02-5.03
+  - Left Wall Line:
+    - Min: 4.97
+    - Max: 5.04
+    - Avg: 5.00-5.01
+  - Right Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.03
+    - Avg: 4.99-5.01
+  - Central Line (2nd):
+    - Min: 4.98
+    - Max: 5.06 (mosty 5.04)
+    - Avg: 5.01-5.03
+  - Left Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.04
+    - Avg: 4.99-5.02
+
+Result:
+  - Looks like no interference is caused by boxes
+
+Experiment 4.2: Anchor 101, Tag 2
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.95
+    - Max: 5.01
+    - Avg: 4.98-99
+  - Central Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.01
+  - Left Wall Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+  - Right Wall Line (2nd):
+    - Min: 4.95
+    - Max: 4.98 (once 5.01)
+    - Avg: 5.97
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.03
+    - Avg: 4.99-5.00
+  - Left Wall Line (2nd):
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+
+Result:
+  - Does box have some affect on chips?
+
+Experiment 4.3: Anchor 101, Tag 3
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.92
+    - Max: 5.01
+    - Avg: 4.96
+  - Central Line:
+    - Min: 4.98
+    - Max: 5.02
+    - Avg: 4.99-5.01
+  - Left Wall Line:
+    - Min: 4.98
+    - Max: 5.03
+    - Avg: 4.99-5.01
+  - Right Wall Line (2nd):
+    - Min: 4.96 (somestimes 4.94)
+    - Max: 5.02
+    - Avg: 4.98-4.99
+  - Central Line (2nd):
+    - Min: 4.98
+    - Max: 5.04
+    - Avg: 5.02
+  - Left Wall Line (2nd):
+    - Min: 4.98
+    - Max: 5.04
+    - Avg: 5.01
+
+Result:
+  -
+
+Experiment 4.4: Anchor 102, Tag 1
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.93
+    - Max: 5.00
+    - Avg: 4.97
+  - Central Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99
+  - Left Wall Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+  - Right Wall Line (2nd):
+    - Min: 4.96
+    - Max: 5.01
+    - Avg: 4.97
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+  - Left Wall Line (2nd):
+    - Min: 4.97
+    - Max: 5.03
+    - Avg: 4.99-5.01
+
+Result:
+  -
+
+Experiment 4.5: Anchor 102, Tag 2
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.90
+    - Max: 4.95
+    - Avg: 4.94
+  - Central Line:
+    - Min: 4.94
+    - Max: 4.98
+    - Avg: 4.96
+  - Left Wall Line:
+    - Min: 4.96
+    - Max: 5.00
+    - Avg: 4.97
+  - Right Wall Line (2nd):
+    - Min: 4.94 (once 4.90)
+    - Max: 4.97 (once 4.99)
+    - Avg: 4.94-4.97
+  - Central Line (2nd):
+    - Min: 4.96 (sometimes 4.94)
+    - Max: 5.01
+    - Avg: 4.97-4.99
+  - Left Wall Line (2nd):
+    - Min: 4.96 (once 4.94)
+    - Max: 5.00
+    - Avg: 4.97-4.99
+
+Result:
+  -
+
+Experiment 4.6: Anchor 102, Tag 3
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.91
+    - Max: 4.96
+    - Avg: 4.94
+  - Central Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+  - Left Wall Line:
+    - Min: 4.96
+    - Max: 5.04
+    - Avg: 4.99-5.00
+  - Right Wall Line (2nd):
+    - Min: 4.95
+    - Max: 5.02
+    - Avg: 4.97-99
+  - Central Line (2nd):
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.00
+  - Left Wall Line (2nd):
+    - Min: 4.98 (sometimes 4.97)
+    - Max: 5.03 (sometimes 5.04)
+    - Avg: 4.99-5.00
+
+Result:
+  - At some point values get higher, and than again lower. Is it true? Looks like no
 
