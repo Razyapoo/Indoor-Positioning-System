@@ -1534,7 +1534,7 @@ Result:
     - Avg: 4.99-5.00
 
 Result:
-  - Does box have some affect on chips?
+  - Does box affects chips?
 
 Experiment 4.3: Anchor 101, Tag 3
  
@@ -1660,3 +1660,302 @@ Result:
 Result:
   - At some point values get higher, and than again lower. Is it true? Looks like no
 
+
+
+Overall result:
+  - Need to lower antenna delay at Anchor 102. 
+
+# 27 December, 2023
+
+Experiment 5: Diagoal test
+
+Objective:
+  - Test different azimuth angles: tag and anchor are parallel or facing each other. Do we need to place anchors at some angle along azimuth? 
+
+Setup:
+  - Placement of HW is same as yesterday.
+  - Tags and anchors are inside boxes.
+  - Anchor 101 AD: 16392
+  - Anchor 102 AD: 16380
+  - Left Wall <--- 0.6 m ---> Left Anchor Line <--- 0.5 m ---> Central Anchor Line <--- 0.5 m ---> Right Anchor Line <--- 0.4 m ---> Right Wall
+  - Anchor baseline <--- 1.31 m ---> Camera
+  - Camera <--- 1.2 m ---> Right Wall
+  - Warm up is 1-2 min
+  - Small Diagonal is sqrt(25+0.25) = 5.024938
+  - Large Diagonal is sqrt(25+1) = 5.099
+  - Tests are performed at 5m distance because this is the average size of the room
+
+Experiment 5.0: Anchor 101, Tag 1 - test of precision
+ 
+Result:
+  - Right Wall Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99 - 5.00
+  - Central Line:
+    - Min: 4.98 (once 4.96)
+    - Max: 5.03 (once 5.05)
+    - Avg: 5.00-5.01
+  - Left Wall Line:
+    - Min: 4.98
+    - Max: 5.02
+    - Avg: 5.00-5.01
+  
+Experiment 5.1: Anchor 101, Tag 1
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.97 (sometimes 4.94)
+    - Max: 5.03
+    - Avg: 4.98-5.00
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.02
+    - Max: 5.04-5.05
+    - Avg: 5.09
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.10 (sometimes 5.09)
+    - Max: 5.18
+    - Avg: 5.14
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.07
+    - Max: 5.12
+    - Avg: 5.09-5.10
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 5.00 (once 4.98)
+    - Max: 5.06
+    - Avg: 5.02
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.03
+    - Max: 5.09
+    - Avg: 5.06
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.14
+    - Max: 5.22
+    - Avg: 5.17
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.03
+    - Max: 5.11
+    - Avg: 5.05-5.07
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 5.00
+    - Max: 5.07
+    - Avg: 5.02
+
+Result:
+  - 
+
+
+Experiment 5.2: Anchor 101, Tag 2
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.96
+    - Max: 4.99 (once 5.01)
+    - Avg: 4.96-99
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.03 (sometimes 5.02)
+    - Max: 5.07
+    - Avg: 5.06
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.09 (sometimes 5.08)
+    - Max: 5.15 (sometimes 5.16)
+    - Avg: 5.11-13
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.04
+    - Max: 5.10
+    - Avg: 5.05-07
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 4.97
+    - Max: 5.03
+    - Avg: 4.99-5.02
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.00
+    - Max: 5.05
+    - Avg: 5.02-03
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.12
+    - Max: 5.17
+    - Avg: 5.13-16
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.02
+    - Max: 5.08
+    - Avg: 5.05
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 5.00-01
+
+Result:
+  - 
+
+Experiment 5.3: Anchor 101, Tag 3
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.97
+    - Max: 5.02
+    - Avg: 4.99-5.01
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.04
+    - Max: 5.08
+    - Avg: 5.07
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.11
+    - Max: 5.17
+    - Avg: 5.13-5.15
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.05
+    - Max: 5.11 (once 5.13)
+    - Avg: 5.07-09
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 5.00
+    - Max: 5.05
+    - Avg: 5.02
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.03 (sometimes 5.02)
+    - Max: 5.07 (sometimes 5.08)
+    - Avg: 5.04-5.05
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.15 (sometimes 5.14)
+    - Max: 5.21
+    - Avg: 5.17
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.05
+    - Max: 5.12
+    - Avg: 5.08
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 5.00 (sometimes 4.98)
+    - Max: 5.05 (sometimes 5.06)
+    - Avg: 5.02-5.03
+
+Result:
+  - 
+
+Experiment 5.4: Anchor 102, Tag 1
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.98 (once 4.96)
+    - Max: 5.02
+    - Avg: 4.99-5.02
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.04
+    - Max: 5.09
+    - Avg: 5.07
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.13
+    - Max: 5.17
+    - Avg: 5.15
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.07
+    - Max: 5.12 (once 5.14)
+    - Avg: 5.09
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 4.99
+    - Max: 5.08
+    - Avg: 5.02-06
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.04
+    - Max: 5.12 (sometimes 5.14)
+    - Avg: 5.08-09
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.14
+    - Max: 5.21 (sometimes 5.22)
+    - Avg: 5.17
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.04
+    - Max: 5.12
+    - Avg: 5.07-09
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 5.02 (sometimes 5.01)
+    - Max: 5.08
+    - Avg: 5.03-04
+
+Result:
+  - 
+
+Experiment 5.5: Anchor 102, Tag 2
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.95
+    - Max: 5.02
+    - Avg: 4.97-5.01
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.03
+    - Max: 5.08
+    - Avg: 5.05-06
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.09
+    - Max: 5.13
+    - Avg: 5.11-12
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.05 (once 5.04)
+    - Max: 5.10
+    - Avg: 5.06-07
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 4.98
+    - Max: 5.04
+    - Avg: 5.00-5.01
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.02
+    - Max: 5.09
+    - Avg: 5.02-5.05
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.14
+    - Max: 5.18
+    - Avg: 5.15
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.03 (sometimes 5.02)
+    - Max: 5.08
+    - Avg: 5.06
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 4.98
+    - Max: 5.03
+    - Avg: 5.00-5.01
+
+Result:
+  - 
+
+Experiment 5.6: Anchor 102, Tag 3
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.97
+    - Max: 5.01
+    - Avg: 4.97-5.00
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.03
+    - Max: 5.09
+    - Avg: 5.06
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.10
+    - Max: 5.17
+    - Avg: 5.13-14
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.07
+    - Max: 5.12
+    - Avg: 5.08-09
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 4.99
+    - Max: 5.05
+    - Avg: 5.02-04
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.03
+    - Max: 5.07 (once 5.10)
+    - Avg: 5.05
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.17
+    - Max: 5.21
+    - Avg: 5.19-20
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.06
+    - Max: 5.12
+    - Avg: 5.08
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 5.00 (once 4.99)
+    - Max: 5.07
+    - Avg: 5.02-5.05
+
+Result:
+  - 
