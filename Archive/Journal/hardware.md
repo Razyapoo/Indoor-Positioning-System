@@ -1710,8 +1710,8 @@ Result:
     - Avg: 4.98-5.00
   - Tag Right Wall Line - Anchor Central Wall Line:
     - Min: 5.02
-    - Max: 5.04-5.05
-    - Avg: 5.09
+    - Max: 5.09
+    - Avg: 5.04-5.05
   - Tag Right Wall Line - Anchor Left Wall Line:
     - Min: 5.10 (sometimes 5.09)
     - Max: 5.18
