@@ -13,11 +13,6 @@ uint16_t getMyID()
   {
     return 102;
   }
-  else if (macAddr == "70:B8:F6:D8:F6:24")
-  {
-    return 103;
-  }
-
   else
   {
     if (debug)
@@ -208,7 +203,7 @@ void initAnchor()
   DW1000.setDeviceAddress(myID);
   DW1000.setNetworkId(networkId);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16390);
+  DW1000.setAntennaDelay(16380);
   // Anchor 101: 16530
   // Anchor 102: 16516
   DW1000.commitConfiguration();

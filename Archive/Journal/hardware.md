@@ -1959,3 +1959,618 @@ Result:
 
 Result:
   - 
+
+Analysis of diagonal test:
+
+  - Observations from today's diagonal-parallel test and the december 9th experiment shows that reveal the influence of the USB connection on measurements. Notably, when anchor and tag see each other from USB connection side, values are registered lower in comparison to scenarios observed from the opposite side. In this context, USB connection side is for example when tag is plased at the window line and anchor is placed at the central line (as per experiment on December 9th), and opposite side is for example when tag is placed at central line and anchor is at the window line.   
+    - At today's experiment and at experiment on December 9th I have used different USB cables
+    - The reason can be is that usb cable might enchance UWB signal. Or the reason can be inside the UWB ESP32 itself.
+
+  - Even the smallest measured value exceeds the true distance. Therefore, there is need to rotate anchors to have direct line-of-sight with tags.
+    - TODO: rotate anchors to have direct line-of-sight with tags.
+
+
+# 29 December, 2023
+
+Experiment 6: Rotated diagonal test. Anchor 101, Tag 1
+
+Objective:
+  - Add rotation along azimuth for anchor and tag. Check results.
+ 
+Result:
+  - Tag Right Wall Line - Anchor Right Wall Line:
+    - Min: 4.96
+    - Max: 5.06
+    - Avg: 5.00-5.02
+  - Tag Right Wall Line - Anchor Central Wall Line:
+    - Min: 5.03 (sometimes 5.02)
+    - Max: 5.09 (sometimes 5.12)
+    - Avg: 5.05
+  - Tag Right Wall Line - Anchor Left Wall Line:
+    - Min: 5.08
+    - Max: 5.17
+    - Avg: 5.14
+  - Tag Central Line - Anchor Right Wall Line:
+    - Min: 5.06 (once 5.03)
+    - Max: 5.11
+    - Avg: 5.08
+  - Tag Central Line - Anchor Central Wall Line:
+    - Min: 5.02 (once 5.00)
+    - Max: 5.05 (once 5.06)
+    - Avg: 5.02-5.04
+  - Tag Central Line - Anchor Left Wall Line:
+    - Min: 5.00
+    - Max: 5.09
+    - Avg: 5.02-5.07 (jumping)
+  - Tag Left Wall Line - Anchor Right Wall Line:
+    - Min: 5.10
+    - Max: 5.16
+    - Avg: 5.11-5.13
+  - Tag Left Wall Line - Anchor Central Wall Line:
+    - Min: 5.03
+    - Max: 5.10 (once 5.12)
+    - Avg: 5.05
+  - Tag Left Wall Line - Anchor Left Wall Line:
+    - Min: 4.98
+    - Max: 5.06
+    - Avg: 5.02
+
+Result:
+  - 
+
+
+Overall result shows that rotation improves measurements by 1-2 cm, but still values are high comparing to ground truth distances.
+
+Experiment 7: 2 Anchors and 3 Tags at once.
+
+Antenna delay setup:
+  - Tag 1 and Tag 3: 16521
+  - Tag 2: 16536
+  - Anchor 101: 16392
+  - Anchor 102: 16380
+
+Result:
+  - Tag 1 Left Wall Line - Tag 2 Central Line - Tag 3 Right Wall Line. 
+        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+
+
+  - Tag 1 Left Wall Line - Tag 3 Central Line - Tag 2 Right Wall Line. 
+        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+  
+  - Tag 2 Left Wall Line - Tag 1 Central Line - Tag 3 Right Wall Line. 
+        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  - Tag 2 Left Wall Line - Tag 3 Central Line - Tag 1 Right Wall Line. 
+        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+  
+  - Tag 3 Left Wall Line - Tag 1 Central Line - Tag 2 Right Wall Line. 
+        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  - Tag 3 Left Wall Line - Tag 2 Central Line - Tag 1 Right Wall Line. 
+        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  
+  - Tag 1 Left Wall Line - Tag 2 Central Line - Tag 3 Right Wall Line. 
+        Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  - Tag 1 Left Wall Line - Tag 3 Central Line - Tag 2 Right Wall Line. 
+        Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+  
+  - Tag 2 Left Wall Line - Tag 1 Central Line - Tag 3 Right Wall Line. 
+        Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  - Tag 2 Left Wall Line - Tag 3 Central Line - Tag 1 Right Wall Line. 
+        Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+  
+  - Tag 3 Left Wall Line - Tag 1 Central Line - Tag 2 Right Wall Line. 
+        Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  - Tag 3 Left Wall Line - Tag 2 Central Line - Tag 1 Right Wall Line. 
+        Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
+    
+    Tag 1:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+
+    Tag 2:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102: 
+        
+    Tag 3:
+    
+      - Min:
+        Anchor 101:
+        Anchor 102: 
+
+      - Max: 
+        Anchor 101:
+        Anchor 102: 
+      
+      - Avg: 
+        Anchor 101:
+        Anchor 102:
+  
+  

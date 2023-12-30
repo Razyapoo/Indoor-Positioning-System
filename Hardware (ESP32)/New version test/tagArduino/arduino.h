@@ -42,7 +42,7 @@ const byte MSG_TYPE_RANGE = 5;
 const byte MSG_TYPE_RANGE_REPORT = 6;
 
 const size_t MAX_ANCHORS = 2;
-const size_t MIN_ANCHORS = 1;
+const size_t MIN_ANCHORS = 2;
 byte discoveredAnchors[MAX_ANCHORS] = {0};
 size_t discoveredAnchorsCount = 0;
 size_t anchorIndex = 0;
@@ -105,11 +105,11 @@ DW1000Time timePollAckSent;
 DW1000Time timePollAckReceived;
 DW1000Time timeRangeSent;
 DW1000Time timeRangeReceived;
-DW1000Time round1;
-DW1000Time reply1;
-DW1000Time round2;
-DW1000Time reply2;
-DW1000Time tof;
+// DW1000Time round1;
+// DW1000Time reply1;
+// DW1000Time round2;
+// DW1000Time reply2;
+// DW1000Time tof;
 
 /* const */
 const uint16_t networkId = 10;
@@ -143,16 +143,19 @@ byte message[FRAME_SIZE] = {0};
 byte currentMessage[FRAME_SIZE] = {0};
 byte receivedMessage[FRAME_SIZE] = {0};
 byte expectedMessageType;
-unsigned long blinkTimer, blinkCurrentMillis, discoveryTimeout, discoveryTimer, delayForOneAnchor;
+unsigned long blinkTimer, blinkCurrentMillis, discoveryTimeout, discoveryTimer;
 // byte rxFrame[FRAME_SIZE];
 
-char msgToSend[150];
-char roundTimestamps[2][60];
+// For rounds
+// char msgToSend[150];
+// char roundTimestamps[2][60];
+
+char msgToSend[30];
 String serverRequest;
 bool toSend = false;
 bool sentAck = false;
 bool receivedAck = false;
-bool debug = false;
+bool debug = true;
 bool protocolFailed = false;
 bool isRequestFromServerReceived = false;
 bool isRequestToServerSent = false;

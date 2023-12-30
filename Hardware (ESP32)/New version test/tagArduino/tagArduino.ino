@@ -97,7 +97,8 @@ void sendDistancesToServer()
   if (debug)
     Serial.println("Sending distances to server");
 
-  int position = sprintf(msgToSend, "%d %d %f %s", myID, discoveredAnchors[0], distances[0], roundTimestamps[0]);
+  //  int position = sprintf(msgToSend, "%d %d %f %s", myID, discoveredAnchors[0], distances[0], roundTimestamps[0]);
+  int position = sprintf(msgToSend, "%d %d %f", myID, discoveredAnchors[0], distances[0]);
 
   // msgToSend = String(myID) + String(discoveredAnchors[0]) + distances[0];
   if (discoveredAnchorsCount > 1)
@@ -105,7 +106,8 @@ void sendDistancesToServer()
     for (int i = 1; i < discoveredAnchorsCount; i++)
     {
       // msgToSend += "; Anchor ID: " + String(discoveredAnchors[i]) + " Distance: " + distances[i];
-      position += sprintf(msgToSend + position, " %d %d %f %s", myID, discoveredAnchors[i], distances[i], roundTimestamps[i]);
+      //      position += sprintf(msgToSend + position, " %d %d %f %s", myID, discoveredAnchors[i], distances[i], roundTimestamps[i]);
+      position += sprintf(msgToSend + position, " %d %d %f", myID, discoveredAnchors[i], distances[i]);
     }
   }
 
@@ -172,11 +174,11 @@ bool checkSourceAndDestination()
 
 float computeRangeAsymmetric()
 {
-  round1 = (timePollAckReceived - timePollSent).wrap();
-  reply1 = (timePollAckSent - timePollReceived).wrap();
-  round2 = (timeRangeReceived - timePollAckSent).wrap();
-  reply2 = (timeRangeSent - timePollAckReceived).wrap();
-  tof = (round1 * round2 - reply1 * reply2) / (round1 + round2 + reply1 + reply2);
+  DW1000Time round1 = (timePollAckReceived - timePollSent).wrap();
+  DW1000Time reply1 = (timePollAckSent - timePollReceived).wrap();
+  DW1000Time round2 = (timeRangeReceived - timePollAckSent).wrap();
+  DW1000Time reply2 = (timeRangeSent - timePollAckReceived).wrap();
+  DW1000Time tof = (round1 * round2 - reply1 * reply2) / (round1 + round2 + reply1 + reply2);
   return tof.getAsMeters();
 }
 
@@ -445,7 +447,7 @@ void loop()
             float distance = computeRangeAsymmetric();
 
             // Remember all round timestamps for debugging
-            sprintf(roundTimestamps[discoveredAnchorsCount - 1], "round1: %f reply1: %f round2: %f reply2: %f tof: %f ", round1.getAsMicroSeconds(), round2.getAsMicroSeconds(), round2.getAsMicroSeconds(), reply2.getAsMicroSeconds(), tof.getAsMicroSeconds());
+            //            /sprintf(roundTimestamps[discoveredAnchorsCount - 1], "round1: %f reply1: %f round2: %f reply2: %f tof: %f ", round1.getAsMicroSeconds(), round2.getAsMicroSeconds(), round2.getAsMicroSeconds(), reply2.getAsMicroSeconds(), tof.getAsMicroSeconds());
 
             if (debug)
             {
@@ -498,9 +500,7 @@ void loop()
       sendDistancesToServer();
 
       while (client.connected() && !client.available())
-      {
-        continue;
-      }
+        ;
 
       ack = client.readStringUntil('\n');
       if (ack == "7")
@@ -523,15 +523,6 @@ void loop()
       discoveredAnchorsCount = 0;
       discoveryTimer = discoveryTimeout;
       noteActivity();
-
-      // if (discoveredAnchorsCount == 1)
-      // {
-      //   delayForOneAnchor = millis();
-      //   while (millis() - delayForOneAnchor < SLEEP)
-      //   {
-      //     continue;
-      //   }
-      // }
       return;
     }
 
