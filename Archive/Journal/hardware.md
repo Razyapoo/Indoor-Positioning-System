@@ -2018,7 +2018,7 @@ Result:
 Result:
   - 
 
-
+-
 Overall result shows that rotation improves measurements by 1-2 cm, but still values are high comparing to ground truth distances.
 
 Experiment 7: 2 Anchors and 3 Tags at once.
@@ -2030,547 +2030,566 @@ Antenna delay setup:
   - Anchor 102: 16380
 
 Result:
+  Experiment 7.1:
   - Tag 1 Left Wall Line - Tag 2 Central Line - Tag 3 Right Wall Line. 
-        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+        Anchor 101 Left Wall Line - Anchor 102 Right Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.048338 
+            Mean: 5.045450538461539
+            Min: 4.987345
+            Max: 5.114023
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.198474 
+            Mean: 5.199977987179487
+            Min: 5.156249
+            Max: 5.254776
 
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
 
-      - Max: 
+    Tag 2: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.00142 
+            Mean: 5.002803576923077
+            Min: 4.973269
+            Max: 5.05303
       
-      - Avg: 
+        Anchor 102:
+            Median: 5.0413 
+            Mean: 5.041540820512821
+            Min: 4.987345
+            Max: 5.085872
+
+
+    Tag 3: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.106985 
+            Mean: 5.109992410256411
+            Min: 5.067105
+            Max: 5.146865
+      
+        Anchor 102:
+            Median: 4.987345 
+            Mean: 4.987585461538463
+            Min: 4.949811
+            Max: 5.024879 
         
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
 
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-
-
+  Experiment 7.2:
   - Tag 1 Left Wall Line - Tag 3 Central Line - Tag 2 Right Wall Line. 
-        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+        Anchor 101 Left Wall Line - Anchor 102 Right Wall Line.
 
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.05303 
+            Mean: 5.053517025974026
+            Min: 5.010804
+            Max: 5.090564
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.207858 
+            Mean: 5.209015493506493
+            Min: 5.16094
+            Max: 5.245392
 
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
 
-      - Max: 
+    Tag 2: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.085872 
+            Mean: 5.087415157894737
+            Min: 5.057721
+            Max: 5.142173
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 4.968578 
+            Mean: 4.970923684210526
+            Min: 4.935736
+            Max: 5.010804
 
-      - Max: 
+
+    Tag 3: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.05303 
+            Mean: 5.052782592105262
+            Min: 5.015495
+            Max: 5.104639
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.095255 
+            Mean: 5.095502328947369
+            Min: 5.057721
+            Max: 5.123406
   
+  Intermediate observation: 
+
+    - Tag 1 start showing higher values for both Anchors in comparison to Experiment 7.1.
+
+  Experiment 7.3:
   - Tag 2 Left Wall Line - Tag 1 Central Line - Tag 3 Right Wall Line. 
-        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+        Anchor 101 Left Wall Line - Anchor 102 Right Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.095255 
+            Mean: 5.096390483870967
+            Min: 5.057721
+            Max: 5.128098
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
+            Median: 5.128098 
+            Mean: 5.127795145161289
+            Min: 5.090564
+            Max: 5.165632
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 4.996728 
+            Mean: 4.994760870967743
+            Min: 4.968578
+            Max: 5.034263
+      
+        Anchor 102:
+            Median: 5.156249 
+            Mean: 5.156778096774192
+            Min: 5.123406
+            Max: 5.193782
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.13279 
+            Mean: 5.131957225806452
+            Min: 5.085872
+            Max: 5.165632
+      
+        Anchor 102:
+            Median: 5.010804 
+            Mean: 5.011636080645161
+            Min: 4.992037
+            Max: 5.034263
   
+  Experiment 7.4:
   - Tag 2 Left Wall Line - Tag 3 Central Line - Tag 1 Right Wall Line. 
-        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+        Anchor 101 Left Wall Line - Anchor 102 Right Wall Line.
     
-    Tag 1:
-    
-      - Min:
+ Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.170324 
+            Mean: 5.171475309090909
+            Min: 5.128098
+            Max: 5.203166
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.029571 
+            Mean: 5.0302532181818185
+            Min: 4.987345
+            Max: 5.062413
 
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
 
-      - Max: 
+    Tag 2: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.00142 
+            Mean: 5.001842837837838
+            Min: 4.977962
+            Max: 5.029571
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.16094 
+            Mean: 5.1610247477477476
+            Min: 5.123406
+            Max: 5.207858
 
-      - Max: 
+
+    Tag 3: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.067105 
+            Mean: 5.064991369369369
+            Min: 5.024879
+            Max: 5.095255
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.104639 
+            Mean: 5.105188468468468
+            Min: 5.067105
+            Max: 5.146865
   
+  Experiment 7.5:
   - Tag 3 Left Wall Line - Tag 1 Central Line - Tag 2 Right Wall Line. 
-        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+        Anchor 101 Left Wall Line - Anchor 102 Right Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.104639 
+            Mean: 5.105386956521739
+            Min: 5.062413
+            Max: 5.16094
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
+            Median: 5.128098 
+            Mean: 5.125921963768116
+            Min: 5.085872
+            Max: 5.16094
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 5.109331 
+            Mean: 5.108956760869565
+            Min: 5.071796
+            Max: 5.156249
+      
+        Anchor 102:
+            Median: 4.996728 
+            Mean: 4.995572449275363
+            Min: 4.959194
+            Max: 5.024879
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.029571 
+            Mean: 5.031916644927536
+            Min: 4.992037
+            Max: 5.071796
+      
+        Anchor 102:
+            Median: 5.203166 
+            Mean: 5.205035913043478
+            Min: 5.165632
+            Max: 5.250083
   
+  Experiment 7.6:
   - Tag 3 Left Wall Line - Tag 2 Central Line - Tag 1 Right Wall Line. 
-        Anchor 101 Right Wall Line - Anchor 102 Left Wall Line.
+        Anchor 101 Left Wall Line - Anchor 102 Right Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.179707 
+            Mean: 5.177055260869564
+            Min: 5.123406
+            Max: 5.217241
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
-  
-  
+            Median: 5.034263 
+            Mean: 5.036353489130435
+            Min: 4.992037
+            Max: 5.067105
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 5.038954 
+            Mean: 5.038648358695652
+            Min: 4.996728
+            Max: 5.08118
+      
+        Anchor 102:
+            Median: 5.085872 
+            Mean: 5.085514826086956
+            Min: 5.057721
+            Max: 5.118714
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.034263 
+            Mean: 5.031866797872341
+            Min: 4.992037
+            Max: 5.071796
+      
+        Anchor 102:
+            Median: 5.207858 
+            Mean: 5.209504861702128
+            Min: 5.175015
+            Max: 5.254776
+
+  Experiment 8.1:
   - Tag 1 Left Wall Line - Tag 2 Central Line - Tag 3 Right Wall Line. 
         Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.226625 
+            Mean: 5.228520821917808
+            Min: 5.184399
+            Max: 5.273542
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
+            Median: 5.057721 
+            Mean: 5.059938589041096
+            Min: 5.010804
+            Max: 5.099947
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 5.076488 
+            Mean: 5.0758134109589035
+            Min: 5.029571
+            Max: 5.114023
+      
+        Anchor 102:
+            Median: 5.05303 
+            Mean: 5.050073109589041
+            Min: 5.00142
+            Max: 5.095255
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.010804 
+            Mean: 5.0131657655172415
+            Min: 4.973269
+            Max: 5.057721
+      
+        Anchor 102:
+            Median: 5.137481 
+            Mean: 5.136769531034483
+            Min: 5.085872
+            Max: 5.175015
   
+  Experiment 8.2:
   - Tag 1 Left Wall Line - Tag 3 Central Line - Tag 2 Right Wall Line. 
         Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.226625 
+            Mean: 5.2271703875969
+            Min: 5.193782
+            Max: 5.278234
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.062413 
+            Mean: 5.060885472868216
+            Min: 4.996728
+            Max: 5.104639
 
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
 
-      - Max: 
+    Tag 2: 
         Anchor 101:
-        Anchor 102: 
+            Median: 4.982653 
+            Mean: 4.98432623255814
+            Min: 4.954503
+            Max: 5.024879
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.13279 
+            Mean: 5.131007426356589
+            Min: 5.08118
+            Max: 5.184399
 
-      - Max: 
+
+    Tag 3: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.109331 
+            Mean: 5.109803573643411
+            Min: 5.062413
+            Max: 5.156249
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.057721 
+            Mean: 5.058448689922481
+            Min: 5.020187
+            Max: 5.095255
   
+  Experiment 8.3:
   - Tag 2 Left Wall Line - Tag 1 Central Line - Tag 3 Right Wall Line. 
         Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.137481 
+            Mean: 5.135514948529412
+            Min: 5.090564
+            Max: 5.231317
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
+            Median: 5.104639 
+            Mean: 5.104086963235295
+            Min: 5.057721
+            Max: 5.142173
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 5.175015 
+            Mean: 5.175610582089552
+            Min: 5.142173
+            Max: 5.21255
+      
+        Anchor 102:
+            Median: 5.015495 
+            Mean: 5.017000985074627
+            Min: 4.982653
+            Max: 5.057721
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.006112 
+            Mean: 5.008352708955225
+            Min: 4.973269
+            Max: 5.048338
+      
+        Anchor 102:
+            Median: 5.128098 
+            Mean: 5.129638410447761
+            Min: 5.076488
+            Max: 5.184399
   
+  Experiment 8.4:
   - Tag 2 Left Wall Line - Tag 3 Central Line - Tag 1 Right Wall Line. 
         Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.043646 
+            Mean: 5.044502782608695
+            Min: 4.992037
+            Max: 5.08118
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.170324 
+            Mean: 5.171466026086956
+            Min: 5.137481
+            Max: 5.221933
 
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
 
-      - Max: 
+    Tag 2: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.170324 
+            Mean: 5.172426905172414
+            Min: 5.123406
+            Max: 5.207858
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.015495 
+            Mean: 5.016951482758621
+            Min: 4.992037
+            Max: 5.048338
 
-      - Max: 
+
+    Tag 3: 
         Anchor 101:
-        Anchor 102: 
+            Median: 5.106985 
+            Mean: 5.10595602631579
+            Min: 5.071796
+            Max: 5.146865
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
+        Anchor 102:
+            Median: 5.057721 
+            Mean: 5.058626684210527
+            Min: 5.010804
+            Max: 5.099947
   
+  Experiment 8.5:
   - Tag 3 Left Wall Line - Tag 1 Central Line - Tag 2 Right Wall Line. 
         Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.13279 
+            Mean: 5.133247284552845
+            Min: 5.08118
+            Max: 5.184399
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
+            Median: 5.095255 
+            Mean: 5.093729569105691
+            Min: 5.05303
+            Max: 5.128098
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 4.977962 
+            Mean: 4.978533520325203
+            Min: 4.935736
+            Max: 5.015495
+      
+        Anchor 102:
+            Median: 5.114023 
+            Mean: 5.113488536585366
+            Min: 5.071796
+            Max: 5.16094
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.217241 
+            Mean: 5.2148000487804875
+            Min: 5.165632
+            Max: 5.259467
+      
+        Anchor 102:
+            Median: 5.038954 
+            Mean: 5.036818235772357
+            Min: 4.996728
+            Max: 5.067105
   
+  Experiment 8.6:
   - Tag 3 Left Wall Line - Tag 2 Central Line - Tag 1 Right Wall Line. 
         Anchor 102 Right Wall Line - Anchor 101 Left Wall Line.
     
-    Tag 1:
-    
-      - Min:
+    Tag 1: 
         Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
+            Median: 5.048338 
+            Mean: 5.050342846153845
+            Min: 5.010804
+            Max: 5.099947
       
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-
-    Tag 2:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
-        Anchor 102: 
-        
-    Tag 3:
-    
-      - Min:
-        Anchor 101:
-        Anchor 102: 
-
-      - Max: 
-        Anchor 101:
-        Anchor 102: 
-      
-      - Avg: 
-        Anchor 101:
         Anchor 102:
+            Median: 5.165632 
+            Mean: 5.163506547008547
+            Min: 5.13279
+            Max: 5.207858
+
+
+    Tag 2: 
+        Anchor 101:
+            Median: 5.085872 
+            Mean: 5.0840921637931045
+            Min: 5.034263
+            Max: 5.118714
+      
+        Anchor 102:
+            Median: 5.048338 
+            Mean: 5.047286163793103
+            Min: 5.00142
+            Max: 5.090564
+
+
+    Tag 3: 
+        Anchor 101:
+            Median: 5.21255 
+            Mean: 5.214955589743589
+            Min: 5.175015
+            Max: 5.254776
+      
+        Anchor 102:
+            Median: 5.038954 
+            Mean: 5.037991880341881
+            Min: 5.00142
+            Max: 5.08118
   
+
+  Overall results of Experiments 7 and 8:
+    - Tags have good diagonal measurements from cable connection side. Otherwise diagonal measurements are higher than ground truth.
+      - Note: Tag 2 shows a bit lower values on average compare to Tag 1 and Tag 3 in direct test.
+
+Experiment 9: Movements
+
+Experiment 9.1: Experiment 9.1 - From Anchors, by 1 m together
+
+
+Experiment 9.2: Experiment 9.2 - To Anchors, by 1 m each
+
+Results:
+
+  - When Two Tags are on the same line towards Anchors, and a person is between them, then tag does not see anchor.
+    - Everything is stopped
   
+  - But when tag is overlapping with another tag only or a person only, it works OK.

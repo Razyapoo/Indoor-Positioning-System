@@ -17,8 +17,10 @@ uint16_t getMyID()
   }
   else
   {
-    if (debug)
+    if (debug) {
       Serial.println("Wrong tag MAC address.");
+      }
+      
     return 0;
   }
 }
@@ -310,7 +312,7 @@ void initTag()
   DW1000.setNetworkId(networkId);
   DW1000.setDeviceAddress(myID);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16521);
+  DW1000.setAntennaDelay(16536);
   // 16536 - 5 m/
   // 16384 - standard
   // Tag 2: 16424
