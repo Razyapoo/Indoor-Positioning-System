@@ -82,7 +82,8 @@
         "ios": "cpp",
         "any": "cpp",
         "forward_list": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "test": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }

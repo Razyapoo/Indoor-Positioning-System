@@ -1471,7 +1471,7 @@ Experiment 4:
 
 Objective:
 
-  - Desks are now enclosed into boxes.
+  - Boards are now enclosed into boxes.
   - Test of influence of box.
 
 Experiment 4.1: Anchor 101, Tag 1
@@ -2591,5 +2591,96 @@ Results:
 
   - When Two Tags are on the same line towards Anchors, and a person is between them, then tag does not see anchor.
     - Everything is stopped
+    - TODO: need to investigate more.
+    - Maybe when more than 3 UWB chips are placed at the same line.
   
   - But when tag is overlapping with another tag only or a person only, it works OK.
+
+
+  # 6 January, 2024
+
+Experiments: Distances
+
+Setup:
+  Camera distance:
+  - 155 cm from the anchor baseline
+  - 71 cm from the right wall
+
+  Antenna delay setup:
+  - Tag 1: 16528 - changed
+  - Anchor 101: 16392
+  - Anchor 102: 16380
+  - Tag and Anchor are placed at the central line
+
+
+Objective: 
+  - Trending in distance measurements. How values is changed along with distance.
+
+Experiment 1: Anchor 101, Tag 1. Dynamic test. Focus on precision using electric laser.
+
+Result: //TODO
+  - 1m
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 2m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 3m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 4m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 5m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 6m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 7m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 8m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 9m:
+    - Min: 
+    - Max: 
+    - Avg: 
+  - 10m:
+    - Min: 
+    - Max: 
+    - Avg: 
+
+Experiment 2: Anchor 101 and 102, Tag 1. Dynamic test. Focus on precision using electric laser. //TODO
+
+
+# 7-8 January, 2024
+
+The entire system, comprising 2 anchors and 3 tags demonstrates good functionality, but not so good performance (can be improved).
+
+In order to improve performance, debug part (Serial.print) can be removed in the next experiments.
+
+During the upload process, the board type was changed from ESP Dev to ESP Wrover.
+
+Result: This modification resulted in sustainable speed improvement, with the speed boost of at least 2-3 times.
+
+
+However, while uploading code to Tag 1, the board was malfunctioned, such that it is no more recognizable through the USB port. 
+
+Repair of USB connection pins is required.
+
+ESP Dev mode has same speed. Maybe faster?
+
+# 11 January, 2024
+
+Prozkoumat frekvenci, jaky ma vliv
+
