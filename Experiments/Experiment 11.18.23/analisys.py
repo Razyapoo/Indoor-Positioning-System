@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-uwb_data = pd.read_csv('Experiment 1/test_5m.txt', header=None)
+uwb_data = pd.read_csv(
+    "/home/oskar/Documents/Master Thesis/Experiments/Experiment 11.18.23/Experiment 1/test_5m.txt", header=None)
 
 ground_truth_data = pd.DataFrame(np.tile(5, 82))
 

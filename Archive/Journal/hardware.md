@@ -2671,8 +2671,9 @@ In order to improve performance, debug part (Serial.print) can be removed in the
 
 During the upload process, the board type was changed from ESP Dev to ESP Wrover.
 
-Result: This modification resulted in sustainable speed improvement, with the speed boost of at least 2-3 times.
+Result: This modification resulted in sustainable speed improvement, with the speed boost of at least 2 times.
 
+Time measurement showed that new takes around 145 ms from sending request till receiving measurement.
 
 However, while uploading code to Tag 1, the board was malfunctioned, such that it is no more recognizable through the USB port. 
 
@@ -2684,3 +2685,23 @@ ESP Dev mode has same speed. Maybe faster?
 
 Prozkoumat frekvenci, jaky ma vliv
 
+# 14 January, 2024
+
+The primary aim at this stage is to consolidate the individual components of the project into one unified system. Components are: 1. UWB Server, 2. Stereo vision distance estimator, 3. Data Analysis.
+
+Development in python: Initial development of the GUI was done in the pythonm due to its ease of use and extensive library support.
+
+Issues with python: Duting the development phase I have encountered challenges with Stereo Vision implementation and decided to switch to C++.
+
+GUI in C++: for the development of the GUI in c++ I have decided to go with Qt framework.
+
+Current status: 
+  - As an initial step I have implemented a simple video player using opencv library, which shows synchronized recorded UWB data and Video Frames. 
+  - Application also supports trackbar, so the user can easily choose the part of the video he wants to work with. There is also possibility to stop and play video.
+  - However, opencv is not optimized for good user experience: video is playing very slowly, due to update of the trackbar.
+
+Next steps: Try Qt library and make video player. 
+
+Observation of an issue: After creating Qt Video Player, I faced an issue with opening .avi and .mp4 video files. I got issues: [h264_cuvid @ 0x5555568aed80] Codec h264_cuvid is not supported. Player error: QMediaPlayer::FormatError and [hevc_cuvid @ 0x5590f55eecc0] Codec hevc_cuvid is not supported, respectively. 
+
+Solution: Installing libnvidia-decode-535, x265 and libx265-199 libraries helped.

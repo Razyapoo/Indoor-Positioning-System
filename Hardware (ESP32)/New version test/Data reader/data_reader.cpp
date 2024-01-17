@@ -59,7 +59,7 @@ UWBData DataReader::findUWBMeasurement(const std::vector<UWBData> &uwbData, long
 
 void DataReader::runDataReader()
 {
-    cap = cv::VideoCapture("/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Data reader/data/Experiment 3.1 - Anchor 101, Tag 1/video_from_left_camera.avi");
+    cap = cv::VideoCapture("/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Data reader/data/Experiment 3.1 - Anchor 101, Tag 1/video_from_left_camera.mp4");
 
     if (!cap.isOpened())
     {
