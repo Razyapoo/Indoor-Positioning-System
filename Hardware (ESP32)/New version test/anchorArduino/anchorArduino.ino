@@ -137,7 +137,7 @@ void initAnchor()
   DW1000.setDeviceAddress(myID);
   DW1000.setNetworkId(networkId);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16392);
+  DW1000.setAntennaDelay(16380);
   DW1000.commitConfiguration();
 
   DW1000.attachSentHandler(handleSent);

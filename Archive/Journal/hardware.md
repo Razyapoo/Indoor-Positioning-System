@@ -2705,3 +2705,76 @@ Next steps: Try Qt library and make video player.
 Observation of an issue: After creating Qt Video Player, I faced an issue with opening .avi and .mp4 video files. I got issues: [h264_cuvid @ 0x5555568aed80] Codec h264_cuvid is not supported. Player error: QMediaPlayer::FormatError and [hevc_cuvid @ 0x5590f55eecc0] Codec hevc_cuvid is not supported, respectively. 
 
 Solution: Installing libnvidia-decode-535, x265 and libx265-199 libraries helped.
+
+# 16 January, 2024
+
+Simple video player in Qt framework is implemented. However, standard Qt player does not allow to access and work with each frame. Integration of the OpenCV library is required.
+
+After integrating opnecv library into Qt player, I have realized that performance issues are still present - same as when I have implemented video player with only OpenCV library. Therefore, some optimizations might be needed.
+
+The first optimization is to update QImage and not recreate it every time. As another improvement, it would be better to have a separate thread for frame processing using OpenCV library.  
+
+# 20 January, 2024
+
+Multithreaded Qt application is implemented. As a first step, separate thread for GUI and for OpenCV is created. OpenCV reads file and triggers GUI to update frames. However, this setup has disadvantage that OpenCV reads frames without delay, so video plays very fast. 
+
+In order to solve this, I have added a timer, which ticks every 40 ms (for 25 fps video), and signals OpenCV library to prepare frame. This approach has disadvantage when OpenCV might require more time to process frame, and therefor GUI will wait for frame to be prepared by OpenCV.
+
+This can be solved in two ways: 1. In GUI use a pool of frames, which is filled by OpenCV. Then just read frames from pool every 40ms. 2. Use locked shared variable "frame". When reading frame by GUI, lock it, read, and signal OpenCV to prepare next frame.
+
+The downside of the 2. approach is that it speeds up the workflow just for a small amount of time. Although it is simplier that 1. approach, it might not help in case of complex, computationally expensive operations on OpenCV side. 
+
+Therefore, based on the previous experience on working with threads I decided to go with pool. 
+
+# 26 January, 2024
+
+Issue:
+
+Multithreaded pool is implemented correctly. However, I faced several issues when trying to implement slider to be able to go the the desired position of the video.
+
+What was tried:
+1. camera.set(cv::CAP_PROP_POS_FRAMES, position)
+2. camera.set(cv::CAP_PROP_POS_MSEC, position)
+
+1. option crashes when position is set to non-existing position in camera (VideoCapture). Since frame pool is implemented, it is possible to see position of each frame, using camera.get(cv::CAP_PROP_POS_FRAMES).
+
+2. option works bad, since get method on Linux return random value (random time) due to ffmpeg: https://github.com/opencv/opencv/issues/23472.
+
+Also Multithreading works bad with OpenCV
+
+
+Solution: 
+
+Handling multithreading in coorect way helped. VideoProcessor::processvideo function was called directly in VideoProcessor thread after seeking the right frame. This led to thread conflicts. Introducing IndoorPositioningSystem::requestProvessVideo signal slot to run VideoProcessor::processVideo helped. This signal is emitted when frameTimer has started and videoProcessor thread become free to perform further work.
+
+
+Next step: Add synchronization between video frames and uwb data.
+
+Solution: 
+
+Since player is showing frames in 25 fps, I decided to run another thread to find uwb data before they will be displayed. Maybe this does not make sence for small data, but it make sence for GBs of data. As a further improvement I decided to implement logarithmic search because data are sorted by timestamps.
+
+
+
+
+# 3 February, 2024
+
+Experiment 1: 2 Anchors standing on rours and 3 Tags with People walking.
+From 3m to 15 m
+
+Antenna delay setup:
+  - Tag 1: 16528
+  - Tag 2: 16536
+  - Tag 3: 16521
+  - Anchor 101: 16392
+  - Anchor 102: 16380
+
+
+Anchor baseline: 2,5 m
+Camera to anchor baseline: 2,14 m
+
+Petr drzel tag primo u bricha, ja jsem drzel trochu dal
+
+Experiment 2: Stejny setup, vsichni drzime tag trochu dal od bricha. Jdeme po 1 metru kazdy spolehlive, spolu. Stojime po 1 vterine.
+
+Experiment 3: Chodime po 1 metru, ale kazdy chodi nahodne. Na konci ja jdu bez zastavek

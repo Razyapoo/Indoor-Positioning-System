@@ -1,6 +1,6 @@
-#include "videopalyer.h"
+#include "videoprocessor.h"
 
-VideoPalyer::VideoPalyer()
+VideoPalyer::VideoProcessor()
 {
 
 }

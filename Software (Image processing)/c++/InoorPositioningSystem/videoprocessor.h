@@ -1,5 +1,5 @@
-#ifndef VIDEOPALYER_H
-#define VIDEOPALYER_H
+#ifndef VIDEOPROCESSOR_H
+#define VIDEOPROCESSOR_H
 
 #include <QObject>
 #include <QWidget>
@@ -19,4 +19,4 @@ private:
 
 };
 
-#endif // VIDEOPALYER_H
+#endif // VIDEOPROCESSOR_H
