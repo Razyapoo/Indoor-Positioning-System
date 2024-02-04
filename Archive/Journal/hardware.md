@@ -2808,3 +2808,9 @@ Experiment 2: 2 Anchors standing on rours and 3 Tags on rours.
 From 3m to 15 m
 
 This experiments aims to proof precision of UWB chips.
+
+
+
+Epxeriment 3:
+Changed anchor ID: 100-103. This affects timer delay -> communication speed must be larger. - DOES NOT WORK!!! -> returned to rage 101-104. Formula (2*(myID-100)+1)*DEFAULT_REPLY_DELAY_TIME does not work
+Lowered reset timeout from 500 ms to 200 ms

@@ -11,6 +11,14 @@ uint16_t getMyID()
   {
     return 102;
   }
+  else if (macAddr == "D8:BC:38:42:D7:0C")
+  {
+    return 103;
+  }
+  else if (macAddr == "D8:BC:38:43:13:18")
+  {
+    return 104;
+  }
 }
 
 void checkForReset()
