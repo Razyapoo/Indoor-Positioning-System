@@ -74,7 +74,7 @@ void Server::runServer()
         exit(EXIT_FAILURE);
     }
 
-    std::ofstream timestampFile("timestamp_ESP32.txt");
+    std::ofstream timestampFile("UWB_timestamps.txt");
     timestampFile.clear();
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open timestamp_ESP32.txt file");

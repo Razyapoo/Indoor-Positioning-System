@@ -1,8 +1,8 @@
 #include "VideoManager.hpp"
 
 size_t VideoManager::frameIndex = 1;
-const double VideoManager::fps = 25.0;
-const cv::Size VideoManager::frameSize = cv::Size(640, 360);
+double VideoManager::fps = 18.0;
+cv::Size VideoManager::frameSize = cv::Size(640, 360);
 // bool VideoManager::isPause = false;
 
 cv::Mat VideoManager::leftFrame, VideoManager::rightFrame;
@@ -19,7 +19,12 @@ void VideoManager::videoRecorder()
     // cv::Size frameSize(StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_WIDTH), StereoCamera::leftCamera.get(cv::CAP_PROP_FRAME_HEIGHT));
     // cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('X', 'V', 'I', 'D'), fps, frameSize);
 
-    cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+    // fps = StereoCamera::getCameraFPS();
+    // frameSize = StereoCamera::getCameraSize();
+
+    // std::cout << "FPS: " << fps << std::endl;
+
+    cv::VideoWriter leftVideoWriter("video.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
     // cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
     if (!leftVideoWriter.isOpened())
@@ -34,7 +39,7 @@ void VideoManager::videoRecorder()
     //     return;
     // }
 
-    std::ofstream timestampFile("timestamp.txt");
+    std::ofstream timestampFile("video_timestamps.txt");
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open timestamp.txt file");
 
@@ -52,6 +57,10 @@ void VideoManager::videoRecorder()
         {
             leftFrame = StereoCamera::getLeftFrame();
             // rightFrame = StereoCamera::getRightFrame();
+            // leftCamera >> leftFrame;
+
+            if (leftFrame.empty())
+                break;
 
             leftVideoWriter.write(leftFrame);
             // rightVideoWriter.write(rightFrame);
@@ -69,7 +78,7 @@ void VideoManager::videoRecorder()
         cv::imshow("Left frame", leftFrame);
         // cv::imshow("Right frame", rightFrame);
 
-        key = cv::waitKey(1);
+        key = cv::waitKey(50);
         if (key == 'p')
             // isPause = true;
             sharedData.pauseRecording();
@@ -106,6 +115,7 @@ void VideoManager::videoRecorder()
     std::cout << "Saving video! Please wait..." << std::endl;
     try
     {
+
         leftVideoWriter.release();
         // rightVideoWriter.release();
         timestampFile.close();

@@ -20,6 +20,11 @@ void StereoCamera::initStereoCamera(const int &leftCameraIndex, const int &right
         throw std::runtime_error("Failed to open camera " + std::to_string(leftCameraIndex));
     }
 
+    // leftCamera.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('H', '2', '6', '4'));
+    // leftCamera.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
+    // leftCamera.set(cv::CAP_PROP_FRAME_HEIGHT, 1080);
+    // leftCamera.set(cv::CAP_PROP_FPS, 30.0);
+
     // if (!rightCamera.isOpened())
     // {
     //     throw std::runtime_error("Failed to open camera " + std::to_string(rightCameraIndex));
@@ -51,7 +56,7 @@ void StereoCamera::release()
 {
     leftCamera.release();
     // rightCamera.release();
-    cv::destroyAllWindows();
+    // cv::destroyAllWindows();
 }
 
 cv::Mat &StereoCamera::getLeftFrame()
@@ -87,3 +92,13 @@ cv::Mat &StereoCamera::getLeftFrame()
 
 //     return readRightFrame;
 // }
+
+cv::Size StereoCamera::getCameraSize()
+{
+    return cv::Size(leftCamera.get(cv::CAP_PROP_FRAME_WIDTH), leftCamera.get(cv::CAP_PROP_FRAME_HEIGHT));
+}
+
+double StereoCamera::getCameraFPS()
+{
+    return leftCamera.get(cv::CAP_PROP_FPS);
+}

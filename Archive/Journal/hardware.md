@@ -2772,9 +2772,39 @@ Antenna delay setup:
 
 Anchor baseline: 2,5 m
 Camera to anchor baseline: 2,14 m
+camera height: height of roura
 
 Petr drzel tag primo u bricha, ja jsem drzel trochu dal
 
 Experiment 2: Stejny setup, vsichni drzime tag trochu dal od bricha. Jdeme po 1 metru kazdy spolehlive, spolu. Stojime po 1 vterine.
 
 Experiment 3: Chodime po 1 metru, ale kazdy chodi nahodne. Na konci ja jdu bez zastavek
+
+Co pridat: Vyber usek a automatickou analyzu pro usek. Bud pridat zoom na video, anebo export obrazku, aby se to dalo exportovat
+
+//TODO Issue: video are recorded very fast, why? there are missing frames. This happened (maybe) after I have installed Qt library. Before video was recorded ok (considering same settings for opencv).
+
+# 4 February, 2024
+
+Antenna delay setup:
+  - Tag 1: 16528
+  - Tag 2: 16536
+  - Tag 3: 16521
+  - Anchor 101: 16392
+  - Anchor 102: 16380
+
+
+Anchor baseline: 2,5 m
+Camera to anchor baseline: 2,08 m
+Camera to anchors width (perpendicular): 1,25m 
+camera to anchors actual: 2.08^2 + 1,25^2
+camera height: 63,5 m
+
+Experiment 1: 2 Anchors standing on rours and 3 Tags on rours
+
+This experiment is axiliary. from 5 to 3 meters.
+
+Experiment 2: 2 Anchors standing on rours and 3 Tags on rours.
+From 3m to 15 m
+
+This experiments aims to proof precision of UWB chips.

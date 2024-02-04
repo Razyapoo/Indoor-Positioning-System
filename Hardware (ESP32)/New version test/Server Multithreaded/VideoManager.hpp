@@ -15,8 +15,8 @@ class VideoManager
 {
 public:
     static size_t frameIndex;
-    const static double fps;
-    const static cv::Size frameSize;
+    static double fps;
+    static cv::Size frameSize;
     static cv::Mat leftFrame, rightFrame;
     static std::chrono::milliseconds currentTime;
     static std::time_t timestamp;
