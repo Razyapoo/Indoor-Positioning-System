@@ -2814,3 +2814,36 @@ This experiments aims to proof precision of UWB chips.
 Epxeriment 3:
 Changed anchor ID: 100-103. This affects timer delay -> communication speed must be larger. - DOES NOT WORK!!! -> returned to rage 101-104. Formula (2*(myID-100)+1)*DEFAULT_REPLY_DELAY_TIME does not work
 Lowered reset timeout from 500 ms to 200 ms
+
+Setup:
+
+Anchor baseline: 2,5 m
+Camera to anchor baseline: 3m
+Camera to anchors width (perpendicular): 1,25m 
+camera to anchors actual: 2.08^2 + 1,25^2
+camera height: 1,062 m 
+
+
+# 8 February, 2024
+
+Meeting with teacher.
+
+- Depth test is now sufficient. We need to perform width/angle test.
+- First of all we need to develop methods within ideal environment. Once everything works, we can test interference.
+- Use cases: 1. Only video. 2. Video + UWB
+- Where to put camera when recording video + collecting UWB data? Anchor baseline vs. 3 m behind baseline, such that everything is visible (inlcuding anchors)
+- On sunday we can perform angle test, on saturday I can perform depth test and collect data from each 0.5 m.
+- As next step we can compute position of person and then try to train neural network.
+- Need to add analysis and range selection to GUI.
+
+# 10 February, 2024
+
+After changing reset timeout on the anchor side. The issue is observed with Tag. Tag starts smelling.
+
+Changing hard reset on anchor from 200 to 500 ms resolved issue.
+
+Anchor baseline: 2,5 m
+Camera to anchor baseline: 2,08 m
+Camera to anchors width (perpendicular): 1,25m 
+camera to anchors actual: 2.08^2 + 1,25^2
+camera height: 63,5 m

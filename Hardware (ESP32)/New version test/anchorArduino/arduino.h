@@ -64,7 +64,7 @@ const byte MSG_TYPE_RANGE_REPORT = 6;
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
 #define DEFAULT_REPLY_DELAY_TIME    7000
-#define DEFAULT_RESET_TIMEOUT       200
+#define DEFAULT_RESET_TIMEOUT       500
 #define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
 #define SLEEP                       100//300

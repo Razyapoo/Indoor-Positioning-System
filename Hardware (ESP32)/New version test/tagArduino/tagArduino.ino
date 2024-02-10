@@ -4,7 +4,7 @@ uint16_t getMyID()
 {
   String macAddr = WiFi.macAddress();
 
-  if (macAddr == "D8:BC:38:43:13:18") //"70:B8:F6:D8:F6:48"
+  if (macAddr == "D8:BC:38:42:D7:0C") //"70:B8:F6:D8:F6:48"
   {
     return 1;
   }
@@ -27,7 +27,7 @@ void checkForReset()
   currentTime = millis();
   if (!sentAck && !receivedAck)
   {
-    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT && isRequestFromServerReceived)
+    if (((currentTime - lastActivity) > DEFAULT_RESET_TIMEOUT) && isRequestFromServerReceived)
     {
       for (size_t i = 0; i < MAX_ANCHORS; i++)
         discoveredAnchors[i] = 0;
@@ -217,7 +217,9 @@ void initTag()
 
   initReceiver();
 
-  delay(1000);
+  currentTime = millis();
+  while (millis() - currentTime < 1000) { continue; }
+  noteActivity();
 }
 
 void setup()
@@ -232,10 +234,10 @@ void loop()
 {
 
   checkForReset();
-
   if (!client.connected())
   {
     connectToServer();
+    noteActivity();
   }
 
   if (client.available() && !isRequestFromServerReceived)

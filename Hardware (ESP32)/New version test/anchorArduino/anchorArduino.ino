@@ -26,7 +26,7 @@ void checkForReset()
   currentTime = millis();
   if ((!sentAck && !receivedAck))
   {
-    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT)
+    if ((currentTime - lastActivity) > DEFAULT_RESET_TIMEOUT)
     {
       currentTagAddress = 0;
       isAnchorBusy = false;
@@ -145,7 +145,7 @@ void initAnchor()
   DW1000.setDeviceAddress(myID);
   DW1000.setNetworkId(networkId);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16380);
+  DW1000.setAntennaDelay(16392);
   DW1000.commitConfiguration();
 
   DW1000.attachSentHandler(handleSent);
@@ -153,7 +153,13 @@ void initAnchor()
 
   initReceiver();
 
-  delay(1000);
+  //  delay(1000);/
+  currentTime = millis();
+  while (millis() - currentTime < 1000)
+  {
+    continue;
+  }
+  noteActivity();
 }
 
 void setup()
