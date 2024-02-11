@@ -3,7 +3,7 @@
 uint16_t getMyID()
 {
   String macAddr = WiFi.macAddress();
-  if (macAddr == "70:B8:F6:D8:F6:48")
+  if (macAddr == "D8:BC:38:42:D7:0C") //"70:B8:F6:D8:F6:48"
   {
     return 1;
   }
@@ -17,10 +17,10 @@ uint16_t getMyID()
   }
   else
   {
-//    if (debug)
-//    {
-//      Serial.println("Wrong tag MAC address.");
-//    }
+    //    if (debug)
+    //    {
+    //      Serial.println("Wrong tag MAC address.");
+    //    }
     return 0;
   }
 }
@@ -37,14 +37,14 @@ void checkForReset()
     //   Serial.print("lastActivity: ");
     //   Serial.println(lastActivity);
     // }
-    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT && isRequestFromServerReceived)
+    if (((currentTime - lastActivity) > DEFAULT_RESET_TIMEOUT) && isRequestFromServerReceived)
     {
       for (size_t i = 0; i < MAX_ANCHORS; i++)
         discoveredAnchors[i] = 0;
       discoveredAnchorsCount = 0;
       initReceiver();
-//      if (debug)
-//        Serial.println("Reinit....");
+      //      if (debug)
+      //        Serial.println("Reinit....");
       // blinkTimer = millis();
       isTagBusy = true;
       expectedMessageType = MSG_TYPE_POLL_ACK;
@@ -71,11 +71,11 @@ void connectToWiFi()
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(300);
-//    if (debug)
-//      Serial.print('.');
+    //    if (debug)
+    //      Serial.print('.');
   }
-//  if (debug)
-//    Serial.println("Connected to WiFi");
+  //  if (debug)
+  //    Serial.println("Connected to WiFi");
 }
 
 void connectToServer()
@@ -110,7 +110,7 @@ void sendDistancesToServer()
     {
       // msgToSend += "; Anchor ID: " + String(discoveredAnchors[i]) + " Distance: " + distances[i];
       //      position += sprintf(msgToSend + position, " %d %d %f %s", myID, discoveredAnchors[i], distances[i], roundTimestamps[i]);
-      position += sprintf(msgToSend + position, " %d %d %f", myID, discoveredAnchors[i], distances[i]);
+      position += sprintf(msgToSend + position, " %d %f", discoveredAnchors[i], distances[i]);
     }
   }
 
@@ -329,7 +329,13 @@ void initTag()
 
   if (debug)
     Serial.println("TAG");
-  delay(1000);
+  // delay(1000);
+  currentTime = millis();
+  while (millis() - currentTime < 1000)
+  {
+    continue;
+  }
+  noteActivity();
 }
 
 void setup()
@@ -355,6 +361,7 @@ void loop()
   if (!client.connected())
   {
     connectToServer();
+    noteActivity();
   }
 
   if (client.available() && !isRequestFromServerReceived)

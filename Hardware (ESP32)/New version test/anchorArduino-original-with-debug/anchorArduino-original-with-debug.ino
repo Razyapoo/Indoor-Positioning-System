@@ -27,7 +27,7 @@ void checkForReset()
   if ((!sentAck && !receivedAck))
   {
     //    if(!repeatedSoftInit && (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT || errorWatch)) {
-    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT)
+    if ((currentTime - lastActivity) > DEFAULT_RESET_TIMEOUT)
     {
       currentTagAddress = 0;
       isAnchorBusy = false;
@@ -141,11 +141,13 @@ void sendMessage(byte messageType)
     if (debug)
       Serial.println("  MSG_TYPE_POLL_ACK");
     replyDelay = (2 * (myID - 100) + 1) * DEFAULT_REPLY_DELAY_TIME;
+
     if (debug)
     {
       Serial.print("Reply Delay: ");
       Serial.println(replyDelay);
     }
+
     prepareMessageToSend(MSG_TYPE_POLL_ACK, myID, currentTagAddress);
     pollackReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
     DW1000.setDelay(pollackReplyDelay);
@@ -215,7 +217,13 @@ void initAnchor()
   if (debug)
     Serial.println("ANCHOR");
 
-  delay(1000);
+  //  delay(1000);/
+  currentTime = millis();
+  while (millis() - currentTime < 1000)
+  {
+    continue;
+  }
+  noteActivity();
 }
 
 void setup()

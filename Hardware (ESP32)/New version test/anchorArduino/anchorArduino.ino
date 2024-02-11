@@ -15,7 +15,7 @@ uint16_t getMyID()
   {
     return 103;
   }
-  else if (macAddr == "D8:BC:38:43:13:18")
+  else if (macAddr == "70:B8:F6:D8:F6:24") // D8:BC:38:43:13:18
   {
     return 104;
   }
@@ -99,6 +99,7 @@ void sendMessage(byte messageType)
 
   if (messageType == MSG_TYPE_POLL_ACK)
   {
+
     replyDelay = (2 * (myID - 100) + 1) * DEFAULT_REPLY_DELAY_TIME;
 
     prepareMessageToSend(MSG_TYPE_POLL_ACK, myID, currentTagAddress);

@@ -209,7 +209,7 @@ void initTag()
   DW1000.setNetworkId(networkId);
   DW1000.setDeviceAddress(myID);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16528);
+  DW1000.setAntennaDelay(16536);
   DW1000.commitConfiguration();
 
   DW1000.attachSentHandler(handleSent);
@@ -218,7 +218,10 @@ void initTag()
   initReceiver();
 
   currentTime = millis();
-  while (millis() - currentTime < 1000) { continue; }
+  while (millis() - currentTime < 1000)
+  {
+    continue;
+  }
   noteActivity();
 }
 

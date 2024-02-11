@@ -2838,12 +2838,24 @@ Meeting with teacher.
 
 # 10 February, 2024
 
-After changing reset timeout on the anchor side. The issue is observed with Tag. Tag starts smelling.
+After changing reset timeout on the anchor side to 200ms. The issue is observed with Tag. Tag starts smelling. // TODO - is that true? Is it because of timeout on the anchor side? Why tag was burned.
 
-Changing hard reset on anchor from 200 to 500 ms resolved issue.
+Changing hard reset on anchor from 200 back to 500 ms resolved issue.
 
 Anchor baseline: 2,5 m
 Camera to anchor baseline: 2,08 m
 Camera to anchors width (perpendicular): 1,25m 
 camera to anchors actual: 2.08^2 + 1,25^2
 camera height: 63,5 m
+
+Check experiments folder for experiment data.
+
+# 11 February, 2024
+
+I have tried to run a system with 3 anchors. Anchors were placed on lamps cca 2,5 m high. It works OK even when only 2 anchors were placed on lamps and 1 anchor was placed on the roura.
+
+Then I tried a system with 4 anchors, but unfortunatelly 4th anchor gives strange numbers. Is it due to replyDelay (too long?).
+
+According to this, I have tried to change replyDelay. Working state is when each anchor has a different replyDelay. I have tried to only delay anchor's response to tag and then use same replyDelay value for all anchors, but it DOES NOT WORK!! I also tried to use different replyDelay, but lower value for each anchor. Also does not help. Only works the way which is implemented in main library.
+
+So I decided t stick only with 3 anchors, which is useful for position estimation.

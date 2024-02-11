@@ -6,26 +6,26 @@
 #include "debug.h"
 
 /* Define chip select, reset and interrupt pins for ESP32 desk */
-#define PIN_IRQ  34
-#define PIN_RST  27
-#define PIN_SS  4
+#define PIN_IRQ 34
+#define PIN_RST 27
+#define PIN_SS 4
 
 // Macros in order to avoid hard coding
-//#define STATE_IDLE          0
-//#define STATE_DISCOVERY     1
-//#define STATE_RANGING_INIT  2 
-//#define STATE_RANGING       3
-//#define STATE_POLL          4
-//#define STATE_POLLACK       5
-//#define STATE_RANGE         6
-//#define STATE_RANGEREPORT   7
+// #define STATE_IDLE          0
+// #define STATE_DISCOVERY     1
+// #define STATE_RANGING_INIT  2
+// #define STATE_RANGING       3
+// #define STATE_POLL          4
+// #define STATE_POLLACK       5
+// #define STATE_RANGE         6
+// #define STATE_RANGEREPORT   7
 
-//#define BLINK       0
-//#define RANGINGINIT 1
-//#define POLL        2
-//#define POLLACK     3
-//#define RANGE       4
-//#define RANGEREPORT 5
+// #define BLINK       0
+// #define RANGINGINIT 1
+// #define POLL        2
+// #define POLLACK     3
+// #define RANGE       4
+// #define RANGEREPORT 5
 
 const byte MSG_TYPE_BLINK = 1;
 const byte MSG_TYPE_ANCHOR_ADDR = 2;
@@ -47,31 +47,30 @@ const byte MSG_TYPE_RANGE_REPORT = 6;
 // Parameters are tunable, but anchors and tags must have the same values
 #warning "TODO: Temporary values"
 /* Close setting */
-//#define DISCOVERY_TIMEOUT           100
-//#define POLLACK_TIMEOUT             10
-//#define RANGE_TIMEOUT               10
-//#define RANGEREPORT_TIMEOUT         10
-//#define RANGING_INIT_TIMEOUT        10
-//#define DEFAULT_REPLY_DELAY_TIME                 3
-//#define DEFAULT_RESET_TIMEOUT       1000
-//#define SERVER_TIMEOUT_MS           20
-//#define SLEEP                       100//300
+// #define DISCOVERY_TIMEOUT           100
+// #define POLLACK_TIMEOUT             10
+// #define RANGE_TIMEOUT               10
+// #define RANGEREPORT_TIMEOUT         10
+// #define RANGING_INIT_TIMEOUT        10
+// #define DEFAULT_REPLY_DELAY_TIME                 3
+// #define DEFAULT_RESET_TIMEOUT       1000
+// #define SERVER_TIMEOUT_MS           20
+// #define SLEEP                       100//300
 
 /* distance setting */
-#define DISCOVERY_TIMEOUT           100
-#define POLLACK_TIMEOUT             10
-#define RANGE_TIMEOUT               10
-#define RANGEREPORT_TIMEOUT         10
-#define RANGING_INIT_TIMEOUT        10
-#define DEFAULT_REPLY_DELAY_TIME    7000
-#define DEFAULT_RESET_TIMEOUT       1000
-#define HARD_RESET_TIMEOUT          3000
-#define SERVER_TIMEOUT_MS           20
-#define SLEEP                       100//300
+#define DISCOVERY_TIMEOUT 100
+#define POLLACK_TIMEOUT 10
+#define RANGE_TIMEOUT 10
+#define RANGEREPORT_TIMEOUT 10
+#define RANGING_INIT_TIMEOUT 10
+#define DEFAULT_REPLY_DELAY_TIME 7000
+#define DEFAULT_RESET_TIMEOUT 500
+#define HARD_RESET_TIMEOUT 3000
+#define SERVER_TIMEOUT_MS 20
+#define SLEEP 100 // 300
 
-
-/* time */ 
-//DW1000Time pollackReplyDelay = DW1000Time(DEFAULT_REPLY_DELAY_TIME, DW1000Time::MICROSECONDS);
+/* time */
+// DW1000Time pollackReplyDelay = DW1000Time(DEFAULT_REPLY_DELAY_TIME, DW1000Time::MICROSECONDS);
 DW1000Time pollackReplyDelay;
 DW1000Time timePollSent;
 DW1000Time timePollReceived;
@@ -91,7 +90,7 @@ uint16_t replyDelay;
 size_t pollCounterForReset = 0;
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
 
-//byte state = STATE_IDLE;
+// byte state = STATE_IDLE;
 byte currentTagAddress;
 const byte broadcastAddress = 255;
 byte message[FRAME_SIZE] = {0};

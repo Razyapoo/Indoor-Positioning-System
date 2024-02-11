@@ -14,25 +14,25 @@
 #define PIN_SS 4
 
 // Macros in order to avoid hard coding
-//#define STATE_IDLE 0
-//#define STATE_SCAN 1
-//#define STATE_DISCOVERY 2
-//#define STATE_RANGING 3
-//#define STATE_POLL 4
-//#define STATE_POLLACK 5
-//#define STATE_RANGE 6
-//#define STATE_RANGEREPORT 7
-//#define STATE_RANGING_INIT 8
-//#define STATE_SEND_REQUEST_TO_SERVER 9
-//#define STATE_REQUEST_ACK_FROM_SERVER 10
-//#define STATE_SEND_DISTANCE_TO_SERVER 11
+// #define STATE_IDLE 0
+// #define STATE_SCAN 1
+// #define STATE_DISCOVERY 2
+// #define STATE_RANGING 3
+// #define STATE_POLL 4
+// #define STATE_POLLACK 5
+// #define STATE_RANGE 6
+// #define STATE_RANGEREPORT 7
+// #define STATE_RANGING_INIT 8
+// #define STATE_SEND_REQUEST_TO_SERVER 9
+// #define STATE_REQUEST_ACK_FROM_SERVER 10
+// #define STATE_SEND_DISTANCE_TO_SERVER 11
 
-//#define BLINK 0
-//#define RANGINGINIT 1
-//#define POLL 2
-//#define POLLACK 3
-//#define RANGE 4
-//#define RANGEREPORT 5
+// #define BLINK 0
+// #define RANGINGINIT 1
+// #define POLL 2
+// #define POLLACK 3
+// #define RANGE 4
+// #define RANGEREPORT 5
 
 const byte MSG_TYPE_BLINK = 1;
 const byte MSG_TYPE_ANCHOR_ADDR = 2;
@@ -41,13 +41,13 @@ const byte MSG_TYPE_POLL_ACK = 4;
 const byte MSG_TYPE_RANGE = 5;
 const byte MSG_TYPE_RANGE_REPORT = 6;
 
-const size_t MAX_ANCHORS = 2;
-const size_t MIN_ANCHORS = 2;
+const size_t MAX_ANCHORS = 3;
+const size_t MIN_ANCHORS = 3;
 byte discoveredAnchors[MAX_ANCHORS] = {0};
 size_t discoveredAnchorsCount = 0;
 size_t anchorIndex = 0;
 byte currentAnchorAddress, anchorAddress;
-//const byte broadcastAddress = 255;
+// const byte broadcastAddress = 255;
 bool isTagBusy = false;
 
 #define setSenderAddr(frame, addr) memcpy(frame + 1, &addr, 2)
@@ -132,13 +132,13 @@ uint8_t mac[6];
 uint16_t num_anchors = 0;
 uint16_t idx_anchor = 0;
 uint16_t counterBlink = 0;
-uint16_t anchors[2];
+uint16_t anchors[MAX_ANCHORS];
 uint16_t myID, anchorID; // range of tag ids: 0..99, anchor: 100..199
 uint16_t replyDelay;
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;
-float distances[2] = {0, 0};
+float distances[MAX_ANCHORS] = {0};
 
-//byte state = STATE_IDLE;
+// byte state = STATE_IDLE;
 byte message[FRAME_SIZE] = {0};
 byte currentMessage[FRAME_SIZE] = {0};
 byte receivedMessage[FRAME_SIZE] = {0};
@@ -156,6 +156,6 @@ bool toSend = false;
 bool sentAck = false;
 bool receivedAck = false;
 bool debug = true;
-//bool protocolFailed = false;
+// bool protocolFailed = false;
 bool isRequestFromServerReceived = false;
 bool isRequestToServerSent = false;

@@ -19,10 +19,10 @@ void startServer()
 
 int main()
 {
-    std::thread camera_thread(startCamera);
+    // std::thread camera_thread(startCamera);
     std::thread server_thread(startServer);
 
-    camera_thread.join();
+    // camera_thread.join();
     server_thread.join();
 
     return 0;
