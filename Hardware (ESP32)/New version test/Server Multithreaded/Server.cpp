@@ -12,6 +12,8 @@ bool Server::isBusy = false;
 size_t Server::dataIndex = 1;
 const size_t Server::MAX_CLIENTS = 5;
 size_t Server::nbytes;
+int Server::statusImageHeight = 640;
+int Server::statusImageWidth = 360;
 std::vector<int> Server::clientSocketList(MAX_CLIENTS, 0);
 
 struct sockaddr_in Server::serverAddress, Server::clientAddress;
@@ -42,8 +44,34 @@ void Server::printFDSet(fd_set *set)
     std::cout << "} \n";
 }
 
+void Server::checkForActive()
+{
+    cv::Mat statusImage;
+    std::chrono::high_resolution_clock::time_point currentTimePoint;
+    std::chrono::duration<double> idlenessDuration;
+
+    while (!sharedData.terminationFlag())
+    {
+        currentTimePoint = std::chrono::high_resolution_clock::now();
+        idlenessDuration = std::chrono::duration_cast<std::chrono::duration<double>>(currentTimePoint - sharedData.getLastActivityTimePoint());
+
+        if (idlenessDuration.count() > 1)
+        {
+            statusImage = cv::Mat(statusImageHeight, statusImageWidth, CV_8UC3, cv::Scalar(0, 0, 255));
+        }
+        else
+        {
+            statusImage = cv::Mat(statusImageHeight, statusImageWidth, CV_8UC3, cv::Scalar(0, 255, 0));
+        }
+
+        cv::imshow("Activeness", statusImage);
+        cv::waitKey(1);
+    }
+}
+
 void Server::runServer()
 {
+    cv::namedWindow("Activeness", 1);
     // Create socket file descriptor
     if ((serverSocketFD = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
@@ -130,6 +158,9 @@ void Server::runServer()
         {
             perror("Error during select");
         }
+
+        std::chrono::high_resolution_clock::time_point currentTimePoint = std::chrono::high_resolution_clock::now();
+        sharedData.updateLastActivityTimePoint(currentTimePoint);
 
         if (FD_ISSET(serverSocketFD, &readFDS))
         {

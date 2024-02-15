@@ -37,6 +37,7 @@ public:
     static std::time_t timestamp;
     static size_t dataIndex;
     static bool isBusy;
+    static int statusImageWidth, statusImageHeight;
 
     static std::queue<int> clientQueue;
     static fd_set readFDS, tmpFDS;
@@ -45,6 +46,7 @@ public:
     static void runServer();
     static void printFDSet(fd_set *set);
     static void showQueue(std::queue<int> queue);
+    static void checkForActive();
 
     static bool debugMode;
 };
