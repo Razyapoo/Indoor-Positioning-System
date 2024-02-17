@@ -61,6 +61,10 @@ void initReceiver()
   DW1000.setDefaults();
   DW1000.receivePermanently(true);
   DW1000.startReceive();
+  while (millis() - currentTime < 1000)
+  {
+    continue;
+  }
 }
 
 void connectToWiFi()
@@ -252,7 +256,7 @@ void sendMessage(byte messageType)
       Serial.print("Reply Delay: ");
       Serial.println(replyDelay);
     }
-    rangeReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
+    rangeReplyDelay = DW1000Time(replyDelay, DW1000Time::MILLISECONDS);
     DW1000.setDelay(rangeReplyDelay);
   }
 
@@ -331,10 +335,7 @@ void initTag()
     Serial.println("TAG");
   // delay(1000);
   currentTime = millis();
-  while (millis() - currentTime < 1000)
-  {
-    continue;
-  }
+
   noteActivity();
 }
 

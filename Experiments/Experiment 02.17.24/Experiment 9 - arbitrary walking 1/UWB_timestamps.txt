@@ -1,0 +1,1950 @@
+1 1708177797713 3 101 2.341190 103 15.651724
+Request time: 1708177797624
+Response time: 1708177797713
+Overall time of the request (response time - request time): 88
+
+2 1708177797863 1 102 1.975233 1 103 16.045832
+Request time: 1708177797713
+Response time: 1708177797863
+Overall time of the request (response time - request time): 150
+
+3 1708177798062 3 101 2.336498 102 3.687726
+Request time: 1708177797863
+Response time: 1708177798062
+Overall time of the request (response time - request time): 199
+
+4 1708177798181 1 102 1.989308 1 103 16.050524
+Request time: 1708177798063
+Response time: 1708177798181
+Overall time of the request (response time - request time): 118
+
+5 1708177798323 3 102 3.687726 103 15.642341
+Request time: 1708177798182
+Response time: 1708177798323
+Overall time of the request (response time - request time): 141
+
+6 1708177798443 1 102 2.003383 1 103 16.045832
+Request time: 1708177798323
+Response time: 1708177798443
+Overall time of the request (response time - request time): 119
+
+7 1708177798590 3 103 15.665799 104 17.439285
+Request time: 1708177798443
+Response time: 1708177798590
+Overall time of the request (response time - request time): 146
+
+8 1708177798717 1 102 2.069068 1 103 16.031757
+Request time: 1708177798592
+Response time: 1708177798717
+Overall time of the request (response time - request time): 125
+
+9 1708177798847 3 103 15.618881 104 17.415827
+Request time: 1708177798718
+Response time: 1708177798847
+Overall time of the request (response time - request time): 129
+
+10 1708177799106 1 102 2.040917 1 103 16.059908
+Request time: 1708177798848
+Response time: 1708177799106
+Overall time of the request (response time - request time): 258
+
+11 1708177799237 3 103 15.637649 104 17.434595
+Request time: 1708177799107
+Response time: 1708177799237
+Overall time of the request (response time - request time): 130
+
+12 1708177799357 1 102 2.031534 1 103 16.078674
+Request time: 1708177799238
+Response time: 1708177799357
+Overall time of the request (response time - request time): 118
+
+13 1708177799577 3 102 3.509439 103 15.600115
+Request time: 1708177799357
+Response time: 1708177799577
+Overall time of the request (response time - request time): 220
+
+14 1708177800284 1 102 2.050301 1 103 16.088058
+Request time: 1708177799578
+Response time: 1708177800284
+Overall time of the request (response time - request time): 705
+
+15 1708177800397 3 101 2.242663 103 15.445287
+Request time: 1708177800284
+Response time: 1708177800397
+Overall time of the request (response time - request time): 112
+
+16 1708177800588 1 102 2.083143 1 103 16.102133
+Request time: 1708177800397
+Response time: 1708177800588
+Overall time of the request (response time - request time): 190
+
+17 1708177800722 3 103 15.356143 104 17.120247
+Request time: 1708177800593
+Response time: 1708177800722
+Overall time of the request (response time - request time): 128
+
+18 1708177800840 1 102 2.111294 1 103 16.144360
+Request time: 1708177800722
+Response time: 1708177800840
+Overall time of the request (response time - request time): 118
+
+19 1708177801071 3 102 3.500056 103 15.262307
+Request time: 1708177800840
+Response time: 1708177801071
+Overall time of the request (response time - request time): 230
+
+20 1708177801189 1 102 2.420950 1 103 16.163126
+Request time: 1708177801072
+Response time: 1708177801189
+Overall time of the request (response time - request time): 117
+
+21 1708177801922 3 101 2.064376 103 15.074637
+Request time: 1708177801189
+Response time: 1708177801922
+Overall time of the request (response time - request time): 732
+
+22 1708177802040 1 102 1.689035 1 103 16.116209
+Request time: 1708177801922
+Response time: 1708177802040
+Overall time of the request (response time - request time): 118
+
+23 1708177804443 3 101 2.298964 102 3.101256
+Request time: 1708177802041
+Response time: 1708177804443
+Overall time of the request (response time - request time): 2402
+
+24 1708177804563 1 102 1.834480 1 103 15.876928
+Request time: 1708177804443
+Response time: 1708177804563
+Overall time of the request (response time - request time): 120
+
+25 1708177804683 3 102 3.063722 103 14.675838
+Request time: 1708177804564
+Response time: 1708177804683
+Overall time of the request (response time - request time): 119
+
+26 1708177804844 1 102 2.022150 1 103 15.773710
+Request time: 1708177804684
+Response time: 1708177804844
+Overall time of the request (response time - request time): 160
+
+27 1708177804961 3 102 3.082489 103 14.605461
+Request time: 1708177804844
+Response time: 1708177804961
+Overall time of the request (response time - request time): 116
+
+28 1708177805088 1 102 2.266122 1 103 15.693950
+Request time: 1708177804963
+Response time: 1708177805088
+Overall time of the request (response time - request time): 124
+
+29 1708177806436 3 102 3.396837 103 14.206660
+Request time: 1708177805088
+Response time: 1708177806436
+Overall time of the request (response time - request time): 1347
+
+30 1708177806554 1 102 1.538898 1 103 15.206006
+Request time: 1708177806436
+Response time: 1708177806554
+Overall time of the request (response time - request time): 117
+
+31 1708177806669 3 103 14.155051 101 1.951774
+Request time: 1708177806555
+Response time: 1708177806669
+Overall time of the request (response time - request time): 113
+
+32 1708177806849 1 102 1.487289 1 103 15.041795
+Request time: 1708177806671
+Response time: 1708177806849
+Overall time of the request (response time - request time): 178
+
+33 1708177806978 3 103 14.126901 104 16.008299
+Request time: 1708177806849
+Response time: 1708177806978
+Overall time of the request (response time - request time): 128
+
+34 1708177807104 1 102 1.567049 1 103 15.008952
+Request time: 1708177806978
+Response time: 1708177807104
+Overall time of the request (response time - request time): 126
+
+35 1708177808483 3 103 13.690567 104 15.651724
+Request time: 1708177807105
+Response time: 1708177808483
+Overall time of the request (response time - request time): 1377
+
+36 1708177808615 1 103 14.516317 1 104 15.562580
+Request time: 1708177808483
+Response time: 1708177808615
+Overall time of the request (response time - request time): 132
+
+37 1708177808817 3 101 2.012767 103 13.596731
+Request time: 1708177808616
+Response time: 1708177808817
+Overall time of the request (response time - request time): 200
+
+38 1708177809528 1 101 3.880089 1 102 1.750028
+Request time: 1708177808817
+Response time: 1708177809528
+Overall time of the request (response time - request time): 710
+
+39 1708177809662 3 103 13.319918 104 15.145014
+Request time: 1708177809530
+Response time: 1708177809662
+Overall time of the request (response time - request time): 131
+
+40 1708177809842 1 101 3.894164 1 102 2.078451
+Request time: 1708177809662
+Response time: 1708177809842
+Overall time of the request (response time - request time): 180
+
+41 1708177809983 3 103 13.122864 104 15.140322
+Request time: 1708177809843
+Response time: 1708177809983
+Overall time of the request (response time - request time): 140
+
+42 1708177810091 1 101 3.964540 1 102 1.984616
+Request time: 1708177809983
+Response time: 1708177810091
+Overall time of the request (response time - request time): 108
+
+43 1708177811579 3 103 12.573927 104 14.802515
+Request time: 1708177810091
+Response time: 1708177811579
+Overall time of the request (response time - request time): 1487
+
+44 1708177811694 1 101 4.128752 1 103 13.390294
+Request time: 1708177811580
+Response time: 1708177811694
+Overall time of the request (response time - request time): 114
+
+45 1708177811835 3 103 12.437866 104 14.206660
+Request time: 1708177811696
+Response time: 1708177811835
+Overall time of the request (response time - request time): 139
+
+46 1708177811947 1 101 4.124060 1 103 13.291767
+Request time: 1708177811836
+Response time: 1708177811947
+Overall time of the request (response time - request time): 111
+
+47 1708177812081 3 103 12.329955 104 14.436557
+Request time: 1708177811947
+Response time: 1708177812081
+Overall time of the request (response time - request time): 134
+
+48 1708177812213 1 103 13.277692 1 104 14.352105
+Request time: 1708177812081
+Response time: 1708177812213
+Overall time of the request (response time - request time): 132
+
+49 1708177812359 3 103 12.250196 104 14.417790
+Request time: 1708177812214
+Response time: 1708177812359
+Overall time of the request (response time - request time): 144
+
+50 1708177812490 1 103 13.141630 1 104 14.201969
+Request time: 1708177812359
+Response time: 1708177812490
+Overall time of the request (response time - request time): 130
+
+51 1708177812621 3 103 12.161052 104 14.277038
+Request time: 1708177812490
+Response time: 1708177812621
+Overall time of the request (response time - request time): 131
+
+52 1708177812869 1 103 13.010261 1 104 14.070600
+Request time: 1708177812621
+Response time: 1708177812869
+Overall time of the request (response time - request time): 247
+
+53 1708177812999 3 103 12.020299 104 14.225428
+Request time: 1708177812869
+Response time: 1708177812999
+Overall time of the request (response time - request time): 129
+
+54 1708177813134 1 103 12.916426 1 104 13.943922
+Request time: 1708177812999
+Response time: 1708177813134
+Overall time of the request (response time - request time): 135
+
+55 1708177813333 3 103 11.973381 104 13.812552
+Request time: 1708177813134
+Response time: 1708177813333
+Overall time of the request (response time - request time): 198
+
+56 1708177813471 1 103 12.752214 1 104 13.859470
+Request time: 1708177813333
+Response time: 1708177813471
+Overall time of the request (response time - request time): 138
+
+57 1708177813602 3 103 11.832628 104 13.807860
+Request time: 1708177813472
+Response time: 1708177813602
+Overall time of the request (response time - request time): 130
+
+58 1708177813742 1 103 12.695912 1 104 13.737484
+Request time: 1708177813603
+Response time: 1708177813742
+Overall time of the request (response time - request time): 139
+
+59 1708177813871 3 103 11.691875 104 13.545122
+Request time: 1708177813742
+Response time: 1708177813871
+Overall time of the request (response time - request time): 129
+
+60 1708177814140 1 103 12.451941 1 104 13.653032
+Request time: 1708177813872
+Response time: 1708177814140
+Overall time of the request (response time - request time): 268
+
+61 1708177814273 3 103 11.560506 104 13.723409
+Request time: 1708177814143
+Response time: 1708177814273
+Overall time of the request (response time - request time): 130
+
+62 1708177814409 1 103 12.484783 1 104 13.568581
+Request time: 1708177814274
+Response time: 1708177814409
+Overall time of the request (response time - request time): 135
+
+63 1708177815203 3 103 11.213315 104 12.953959
+Request time: 1708177814410
+Response time: 1708177815203
+Overall time of the request (response time - request time): 793
+
+64 1708177815333 1 103 12.118826 1 104 13.226082
+Request time: 1708177815203
+Response time: 1708177815333
+Overall time of the request (response time - request time): 130
+
+65 1708177816212 3 104 12.569235 103 10.603386
+Request time: 1708177815335
+Response time: 1708177816212
+Overall time of the request (response time - request time): 876
+
+66 1708177816346 1 103 11.668417 1 104 12.663071
+Request time: 1708177816212
+Response time: 1708177816346
+Overall time of the request (response time - request time): 133
+
+67 1708177819523 3 103 9.177090 104 11.175781
+Request time: 1708177816346
+Response time: 1708177819523
+Overall time of the request (response time - request time): 3176
+
+68 1708177819663 1 103 10.335956 1 104 11.339993
+Request time: 1708177819523
+Response time: 1708177819663
+Overall time of the request (response time - request time): 139
+
+69 1708177820455 3 103 8.712605 104 10.645612
+Request time: 1708177819663
+Response time: 1708177820455
+Overall time of the request (response time - request time): 792
+
+70 1708177820586 1 103 10.045066 1 104 10.927118
+Request time: 1708177820455
+Response time: 1708177820586
+Overall time of the request (response time - request time): 130
+
+71 1708177820852 3 103 8.515552 104 10.415715
+Request time: 1708177820586
+Response time: 1708177820852
+Overall time of the request (response time - request time): 266
+
+72 1708177820984 1 103 9.857396 1 104 10.786365
+Request time: 1708177820852
+Response time: 1708177820984
+Overall time of the request (response time - request time): 131
+
+73 1708177821115 3 103 8.374799 104 10.345339
+Request time: 1708177820984
+Response time: 1708177821115
+Overall time of the request (response time - request time): 131
+
+74 1708177821263 1 103 9.744793 1 104 10.622153
+Request time: 1708177821115
+Response time: 1708177821263
+Overall time of the request (response time - request time): 147
+
+75 1708177821403 3 103 8.276271 104 10.213970
+Request time: 1708177821263
+Response time: 1708177821403
+Overall time of the request (response time - request time): 139
+
+76 1708177821637 1 103 9.608732 1 104 10.467325
+Request time: 1708177821403
+Response time: 1708177821637
+Overall time of the request (response time - request time): 233
+
+77 1708177822803 3 103 7.502131 104 9.580582
+Request time: 1708177821637
+Response time: 1708177822803
+Overall time of the request (response time - request time): 1165
+
+78 1708177822943 1 103 9.055104 1 104 9.866779
+Request time: 1708177822803
+Response time: 1708177822943
+Overall time of the request (response time - request time): 139
+
+79 1708177823105 3 103 7.384836 104 9.458596
+Request time: 1708177822943
+Response time: 1708177823105
+Overall time of the request (response time - request time): 162
+
+80 1708177823253 1 103 8.928427 1 104 9.697876
+Request time: 1708177823106
+Response time: 1708177823253
+Overall time of the request (response time - request time): 147
+
+81 1708177823382 3 103 7.258159 104 9.275617
+Request time: 1708177823253
+Response time: 1708177823382
+Overall time of the request (response time - request time): 128
+
+82 1708177823516 1 103 8.825208 1 104 9.613424
+Request time: 1708177823382
+Response time: 1708177823516
+Overall time of the request (response time - request time): 133
+
+83 1708177823650 3 103 7.159632 104 9.148939
+Request time: 1708177823516
+Response time: 1708177823650
+Overall time of the request (response time - request time): 133
+
+84 1708177823893 1 103 8.628154 1 104 9.402294
+Request time: 1708177823650
+Response time: 1708177823893
+Overall time of the request (response time - request time): 243
+
+85 1708177824026 3 103 6.915660 104 8.961268
+Request time: 1708177823893
+Response time: 1708177824026
+Overall time of the request (response time - request time): 132
+
+86 1708177824175 1 103 8.501476 1 104 9.205240
+Request time: 1708177824026
+Response time: 1708177824175
+Overall time of the request (response time - request time): 149
+
+87 1708177824332 3 103 6.742064 104 8.858050
+Request time: 1708177824176
+Response time: 1708177824332
+Overall time of the request (response time - request time): 156
+
+88 1708177824463 1 103 8.370107 1 104 9.102022
+Request time: 1708177824334
+Response time: 1708177824463
+Overall time of the request (response time - request time): 129
+
+89 1708177824611 3 103 6.657613 104 8.759523
+Request time: 1708177824464
+Response time: 1708177824611
+Overall time of the request (response time - request time): 147
+
+90 1708177824742 1 103 8.238737 1 104 8.980036
+Request time: 1708177824612
+Response time: 1708177824742
+Overall time of the request (response time - request time): 130
+
+91 1708177824883 3 103 6.535627 104 8.590619
+Request time: 1708177824742
+Response time: 1708177824883
+Overall time of the request (response time - request time): 141
+
+92 1708177825643 1 103 7.844629 1 104 8.581236
+Request time: 1708177824884
+Response time: 1708177825643
+Overall time of the request (response time - request time): 758
+
+93 1708177825778 3 103 6.127443 104 8.168361
+Request time: 1708177825643
+Response time: 1708177825778
+Overall time of the request (response time - request time): 135
+
+94 1708177825911 1 103 7.694493 1 104 8.417025
+Request time: 1708177825779
+Response time: 1708177825911
+Overall time of the request (response time - request time): 132
+
+95 1708177826095 3 103 5.967924 104 8.093292
+Request time: 1708177825912
+Response time: 1708177826095
+Overall time of the request (response time - request time): 183
+
+96 1708177826231 1 103 7.619424 1 104 8.351339
+Request time: 1708177826096
+Response time: 1708177826231
+Overall time of the request (response time - request time): 134
+
+97 1708177826925 3 103 5.573815 104 7.675725
+Request time: 1708177826231
+Response time: 1708177826925
+Overall time of the request (response time - request time): 694
+
+98 1708177827072 1 103 7.328535 1 104 7.957232
+Request time: 1708177826926
+Response time: 1708177827072
+Overall time of the request (response time - request time): 146
+
+99 1708177827202 3 103 5.498747 104 7.572507
+Request time: 1708177827074
+Response time: 1708177827202
+Overall time of the request (response time - request time): 128
+
+100 1708177827408 1 103 7.178399 1 104 7.783636
+Request time: 1708177827202
+Response time: 1708177827408
+Overall time of the request (response time - request time): 205
+
+101 1708177827588 3 103 5.320460 104 7.398911
+Request time: 1708177827408
+Response time: 1708177827588
+Overall time of the request (response time - request time): 180
+
+102 1708177827723 1 103 7.065796 1 104 7.577199
+Request time: 1708177827588
+Response time: 1708177827723
+Overall time of the request (response time - request time): 135
+
+103 1708177827855 3 103 5.156249 104 7.314460
+Request time: 1708177827724
+Response time: 1708177827855
+Overall time of the request (response time - request time): 131
+
+104 1708177827994 1 103 6.981345 1 104 7.530281
+Request time: 1708177827855
+Response time: 1708177827994
+Overall time of the request (response time - request time): 138
+
+105 1708177832590 3 103 3.054338 104 5.409604
+Request time: 1708177827994
+Response time: 1708177832590
+Overall time of the request (response time - request time): 4595
+
+106 1708177832726 1 103 5.418987 1 104 5.611350
+Request time: 1708177832590
+Response time: 1708177832726
+Overall time of the request (response time - request time): 136
+
+107 1708177832863 3 103 2.894818 104 5.315768
+Request time: 1708177832727
+Response time: 1708177832863
+Overall time of the request (response time - request time): 135
+
+108 1708177833007 1 103 5.348611 1 104 5.517514
+Request time: 1708177832864
+Response time: 1708177833007
+Overall time of the request (response time - request time): 143
+
+109 1708177833147 3 103 2.730607 104 5.198474
+Request time: 1708177833009
+Response time: 1708177833147
+Overall time of the request (response time - request time): 138
+
+110 1708177833292 1 103 5.217241 1 104 5.465905
+Request time: 1708177833147
+Response time: 1708177833292
+Overall time of the request (response time - request time): 144
+
+111 1708177833783 3 103 2.505402 104 4.977962
+Request time: 1708177833294
+Response time: 1708177833783
+Overall time of the request (response time - request time): 489
+
+112 1708177833918 1 103 5.090564 1 104 5.390837
+Request time: 1708177833784
+Response time: 1708177833918
+Overall time of the request (response time - request time): 134
+
+113 1708177834120 3 103 2.444409 104 4.855976
+Request time: 1708177833918
+Response time: 1708177834120
+Overall time of the request (response time - request time): 201
+
+114 1708177834257 1 103 5.053030 1 104 5.357994
+Request time: 1708177834120
+Response time: 1708177834257
+Overall time of the request (response time - request time): 136
+
+115 1708177834393 3 103 2.275506 104 4.733990
+Request time: 1708177834258
+Response time: 1708177834393
+Overall time of the request (response time - request time): 134
+
+116 1708177834527 1 103 4.945119 1 104 5.395528
+Request time: 1708177834394
+Response time: 1708177834527
+Overall time of the request (response time - request time): 133
+
+117 1708177834658 3 103 2.233279 104 4.691764
+Request time: 1708177834527
+Response time: 1708177834658
+Overall time of the request (response time - request time): 130
+
+118 1708177834909 1 103 4.902893 1 104 5.390837
+Request time: 1708177834658
+Response time: 1708177834909
+Overall time of the request (response time - request time): 250
+
+119 1708177835061 3 103 2.111294 104 4.593237
+Request time: 1708177834910
+Response time: 1708177835061
+Overall time of the request (response time - request time): 150
+
+120 1708177835198 1 103 4.804366 1 104 5.428370
+Request time: 1708177835061
+Response time: 1708177835198
+Overall time of the request (response time - request time): 136
+
+121 1708177837033 3 103 1.867322 104 4.081834
+Request time: 1708177835198
+Response time: 1708177837033
+Overall time of the request (response time - request time): 1834
+
+122 1708177837754 1 103 4.386799 1 104 5.475288
+Request time: 1708177837034
+Response time: 1708177837754
+Overall time of the request (response time - request time): 720
+
+123 1708177839104 3 104 4.030225 103 2.069068
+Request time: 1708177837755
+Response time: 1708177839104
+Overall time of the request (response time - request time): 1348
+
+124 1708177839226 1 101 10.884892 1 103 4.499402
+Request time: 1708177839105
+Response time: 1708177839226
+Overall time of the request (response time - request time): 120
+
+125 1708177839362 3 103 2.054992 104 4.030225
+Request time: 1708177839226
+Response time: 1708177839362
+Overall time of the request (response time - request time): 135
+
+126 1708177839479 1 101 10.898967 1 102 10.795749
+Request time: 1708177839363
+Response time: 1708177839479
+Overall time of the request (response time - request time): 116
+
+127 1708177851108 3 101 12.794440 102 12.161052
+Request time: 1708177839480
+Response time: 1708177851108
+Overall time of the request (response time - request time): 11628
+
+128 1708177851214 1 101 10.955269 1 102 10.837975
+Request time: 1708177851108
+Response time: 1708177851214
+Overall time of the request (response time - request time): 105
+
+129 1708177851325 3 101 12.756906 102 12.132901
+Request time: 1708177851215
+Response time: 1708177851325
+Overall time of the request (response time - request time): 110
+
+130 1708177851435 1 101 10.922426 1 102 10.786365
+Request time: 1708177851325
+Response time: 1708177851435
+Overall time of the request (response time - request time): 109
+
+131 1708177851559 3 101 12.700604 102 12.015607
+Request time: 1708177851436
+Response time: 1708177851559
+Overall time of the request (response time - request time): 122
+
+132 1708177851667 1 101 10.898967 1 102 10.805132
+Request time: 1708177851559
+Response time: 1708177851667
+Overall time of the request (response time - request time): 107
+
+133 1708177852971 3 101 12.057833 102 11.555814
+Request time: 1708177851667
+Response time: 1708177852971
+Overall time of the request (response time - request time): 1304
+
+134 1708177853083 1 101 10.978727 1 102 10.809824
+Request time: 1708177852972
+Response time: 1708177853083
+Overall time of the request (response time - request time): 111
+
+135 1708177853314 3 101 11.963998 102 11.410370
+Request time: 1708177853084
+Response time: 1708177853314
+Overall time of the request (response time - request time): 230
+
+136 1708177853422 1 101 10.898967 1 102 10.762906
+Request time: 1708177853315
+Response time: 1708177853422
+Overall time of the request (response time - request time): 107
+
+137 1708177855313 3 101 11.382219 102 10.678454
+Request time: 1708177853424
+Response time: 1708177855313
+Overall time of the request (response time - request time): 1888
+
+138 1708177855421 1 101 10.547085 1 102 10.387565
+Request time: 1708177855313
+Response time: 1708177855421
+Overall time of the request (response time - request time): 107
+
+139 1708177857226 3 101 10.715988 102 9.885547
+Request time: 1708177855421
+Response time: 1708177857226
+Overall time of the request (response time - request time): 1804
+
+140 1708177857338 1 101 9.951231 1 102 9.829246
+Request time: 1708177857226
+Response time: 1708177857338
+Overall time of the request (response time - request time): 111
+
+141 1708177859902 3 101 9.491438 102 8.773599
+Request time: 1708177857338
+Response time: 1708177859902
+Overall time of the request (response time - request time): 2563
+
+142 1708177860015 1 101 9.167706 1 102 8.984728
+Request time: 1708177859904
+Response time: 1708177860015
+Overall time of the request (response time - request time): 110
+
+143 1708177860721 3 101 9.186474 102 8.379490
+Request time: 1708177860017
+Response time: 1708177860721
+Overall time of the request (response time - request time): 703
+
+144 1708177860833 1 101 8.886201 1 102 8.703222
+Request time: 1708177860721
+Response time: 1708177860833
+Overall time of the request (response time - request time): 111
+
+145 1708177861061 3 101 9.069180 102 8.252812
+Request time: 1708177860834
+Response time: 1708177861061
+Overall time of the request (response time - request time): 227
+
+146 1708177861167 1 101 8.773599 1 102 8.600003
+Request time: 1708177861062
+Response time: 1708177861167
+Overall time of the request (response time - request time): 105
+
+147 1708177861315 3 101 8.947193 102 8.112060
+Request time: 1708177861168
+Response time: 1708177861315
+Overall time of the request (response time - request time): 146
+
+148 1708177861440 1 101 8.698530 1 102 8.468634
+Request time: 1708177861316
+Response time: 1708177861440
+Overall time of the request (response time - request time): 124
+
+149 1708177861568 3 101 8.862741 102 8.069834
+Request time: 1708177861441
+Response time: 1708177861568
+Overall time of the request (response time - request time): 127
+
+150 1708177861682 1 101 8.595311 1 102 8.412333
+Request time: 1708177861569
+Response time: 1708177861682
+Overall time of the request (response time - request time): 113
+
+151 1708177861824 3 101 8.764215 102 7.952539
+Request time: 1708177861683
+Response time: 1708177861824
+Overall time of the request (response time - request time): 140
+
+152 1708177861961 1 101 8.501476 1 102 8.323189
+Request time: 1708177861824
+Response time: 1708177861961
+Overall time of the request (response time - request time): 137
+
+153 1708177862077 3 101 8.665688 102 7.830554
+Request time: 1708177861962
+Response time: 1708177862077
+Overall time of the request (response time - request time): 115
+
+154 1708177862233 1 101 8.318498 1 102 8.177744
+Request time: 1708177862077
+Response time: 1708177862233
+Overall time of the request (response time - request time): 155
+
+155 1708177862338 3 101 8.524935 102 7.717951
+Request time: 1708177862233
+Response time: 1708177862338
+Overall time of the request (response time - request time): 105
+
+156 1708177862444 1 101 8.219970 1 102 8.046375
+Request time: 1708177862339
+Response time: 1708177862444
+Overall time of the request (response time - request time): 105
+
+157 1708177862561 3 101 8.482709 102 7.656959
+Request time: 1708177862445
+Response time: 1708177862561
+Overall time of the request (response time - request time): 116
+
+158 1708177862667 1 101 8.149593 1 102 7.952539
+Request time: 1708177862561
+Response time: 1708177862667
+Overall time of the request (response time - request time): 105
+
+159 1708177862811 3 101 8.435791 102 7.539664
+Request time: 1708177862667
+Response time: 1708177862811
+Overall time of the request (response time - request time): 144
+
+160 1708177862919 1 101 8.097984 1 102 7.854012
+Request time: 1708177862811
+Response time: 1708177862919
+Overall time of the request (response time - request time): 107
+
+161 1708177863059 3 101 8.323189 102 7.417678
+Request time: 1708177862919
+Response time: 1708177863059
+Overall time of the request (response time - request time): 139
+
+162 1708177863169 1 101 7.961923 1 102 7.750794
+Request time: 1708177863059
+Response time: 1708177863169
+Overall time of the request (response time - request time): 109
+
+163 1708177863309 3 101 8.177744 102 7.319151
+Request time: 1708177863169
+Response time: 1708177863309
+Overall time of the request (response time - request time): 139
+
+164 1708177863421 1 101 7.835246 1 102 7.699184
+Request time: 1708177863309
+Response time: 1708177863421
+Overall time of the request (response time - request time): 112
+
+165 1708177863559 3 101 8.130827 102 7.220624
+Request time: 1708177863422
+Response time: 1708177863559
+Overall time of the request (response time - request time): 137
+
+166 1708177863665 1 101 7.807095 1 102 7.553740
+Request time: 1708177863559
+Response time: 1708177863665
+Overall time of the request (response time - request time): 105
+
+167 1708177863813 3 101 8.065142 102 7.112714
+Request time: 1708177863665
+Response time: 1708177863813
+Overall time of the request (response time - request time): 147
+
+168 1708177864498 1 101 7.492747 1 102 7.234700
+Request time: 1708177863813
+Response time: 1708177864498
+Overall time of the request (response time - request time): 684
+
+169 1708177864603 3 101 7.882163 102 6.971961
+Request time: 1708177864498
+Response time: 1708177864603
+Overall time of the request (response time - request time): 104
+
+170 1708177864709 1 101 7.384836 1 102 7.173707
+Request time: 1708177864604
+Response time: 1708177864709
+Overall time of the request (response time - request time): 105
+
+171 1708177864820 3 101 7.891547 102 6.957886
+Request time: 1708177864710
+Response time: 1708177864820
+Overall time of the request (response time - request time): 109
+
+172 1708177864930 1 101 7.323843 1 102 7.150248
+Request time: 1708177864820
+Response time: 1708177864930
+Overall time of the request (response time - request time): 110
+
+173 1708177865061 3 101 7.891547 102 7.023571
+Request time: 1708177864931
+Response time: 1708177865061
+Overall time of the request (response time - request time): 130
+
+174 1708177865183 1 101 7.230008 1 102 7.004803
+Request time: 1708177865061
+Response time: 1708177865183
+Overall time of the request (response time - request time): 121
+
+175 1708177865313 3 101 7.957232 102 7.042337
+Request time: 1708177865183
+Response time: 1708177865313
+Overall time of the request (response time - request time): 129
+
+176 1708177865424 1 101 7.201858 1 102 6.986036
+Request time: 1708177865313
+Response time: 1708177865424
+Overall time of the request (response time - request time): 110
+
+177 1708177865560 3 101 7.924389 102 7.004803
+Request time: 1708177865425
+Response time: 1708177865560
+Overall time of the request (response time - request time): 135
+
+178 1708177865670 1 101 7.112714 1 102 6.868742
+Request time: 1708177865561
+Response time: 1708177865670
+Overall time of the request (response time - request time): 108
+
+179 1708177865810 3 101 7.929081 102 7.061104
+Request time: 1708177865670
+Response time: 1708177865810
+Overall time of the request (response time - request time): 140
+
+180 1708177865921 1 101 7.042337 1 102 6.770215
+Request time: 1708177865811
+Response time: 1708177865921
+Overall time of the request (response time - request time): 110
+
+181 1708177866058 3 101 7.971307 102 7.103330
+Request time: 1708177865921
+Response time: 1708177866058
+Overall time of the request (response time - request time): 136
+
+182 1708177866178 1 101 6.962577 1 102 6.746757
+Request time: 1708177866058
+Response time: 1708177866178
+Overall time of the request (response time - request time): 119
+
+183 1708177866313 3 101 8.018225 102 7.159632
+Request time: 1708177866178
+Response time: 1708177866313
+Overall time of the request (response time - request time): 134
+
+184 1708177866441 1 101 6.882817 1 102 6.634154
+Request time: 1708177866313
+Response time: 1708177866441
+Overall time of the request (response time - request time): 127
+
+185 1708177866570 3 101 8.051066 102 7.169015
+Request time: 1708177866441
+Response time: 1708177866570
+Overall time of the request (response time - request time): 128
+
+186 1708177866693 1 101 6.840591 1 102 6.610695
+Request time: 1708177866570
+Response time: 1708177866693
+Overall time of the request (response time - request time): 123
+
+187 1708177866808 3 101 8.065142 102 7.244083
+Request time: 1708177866693
+Response time: 1708177866808
+Overall time of the request (response time - request time): 114
+
+188 1708177866929 1 101 6.737373 1 102 6.512168
+Request time: 1708177866809
+Response time: 1708177866929
+Overall time of the request (response time - request time): 120
+
+189 1708177867058 3 101 8.126135 102 7.267542
+Request time: 1708177866929
+Response time: 1708177867058
+Overall time of the request (response time - request time): 129
+
+190 1708177867180 1 101 6.643538 1 102 6.437100
+Request time: 1708177867059
+Response time: 1708177867180
+Overall time of the request (response time - request time): 121
+
+191 1708177867311 3 101 8.215279 102 7.342610
+Request time: 1708177867180
+Response time: 1708177867311
+Overall time of the request (response time - request time): 130
+
+192 1708177867436 1 101 6.591928 1 102 6.333881
+Request time: 1708177867311
+Response time: 1708177867436
+Overall time of the request (response time - request time): 124
+
+193 1708177867562 3 101 8.341956 102 7.464596
+Request time: 1708177867437
+Response time: 1708177867562
+Overall time of the request (response time - request time): 125
+
+194 1708177867678 1 101 6.484017 1 102 6.258813
+Request time: 1708177867562
+Response time: 1708177867678
+Overall time of the request (response time - request time): 115
+
+195 1708177867810 3 101 8.327881 102 7.488055
+Request time: 1708177867679
+Response time: 1708177867810
+Overall time of the request (response time - request time): 131
+
+196 1708177867943 1 101 6.413641 1 102 6.211895
+Request time: 1708177867810
+Response time: 1708177867943
+Overall time of the request (response time - request time): 132
+
+197 1708177868644 3 101 8.590619 102 7.755486
+Request time: 1708177867944
+Response time: 1708177868644
+Overall time of the request (response time - request time): 700
+
+198 1708177868761 1 101 6.188437 1 102 5.921006
+Request time: 1708177868644
+Response time: 1708177868761
+Overall time of the request (response time - request time): 117
+
+199 1708177868872 3 101 8.642229 102 7.886855
+Request time: 1708177868762
+Response time: 1708177868872
+Overall time of the request (response time - request time): 109
+
+200 1708177868989 1 101 6.132135 1 102 5.822479
+Request time: 1708177868873
+Response time: 1708177868989
+Overall time of the request (response time - request time): 116
+
+201 1708177869095 3 101 8.736064 102 7.980690
+Request time: 1708177868991
+Response time: 1708177869095
+Overall time of the request (response time - request time): 104
+
+202 1708177869202 1 101 6.057067 1 102 5.752102
+Request time: 1708177869096
+Response time: 1708177869202
+Overall time of the request (response time - request time): 105
+
+203 1708177869325 3 101 8.820516 102 8.060451
+Request time: 1708177869205
+Response time: 1708177869325
+Overall time of the request (response time - request time): 120
+
+204 1708177869435 1 101 5.981999 1 102 5.695801
+Request time: 1708177869327
+Response time: 1708177869435
+Overall time of the request (response time - request time): 108
+
+205 1708177871890 3 101 9.561814 102 8.778290
+Request time: 1708177869435
+Response time: 1708177871890
+Overall time of the request (response time - request time): 2454
+
+206 1708177872004 1 101 5.156249 1 102 4.823133
+Request time: 1708177871890
+Response time: 1708177872004
+Overall time of the request (response time - request time): 113
+
+207 1708177872121 3 101 9.646266 102 8.820516
+Request time: 1708177872004
+Response time: 1708177872121
+Overall time of the request (response time - request time): 116
+
+208 1708177872245 1 101 5.076488 1 102 4.743373
+Request time: 1708177872123
+Response time: 1708177872245
+Overall time of the request (response time - request time): 122
+
+209 1708177875783 3 102 8.088601 101 8.867434
+Request time: 1708177872246
+Response time: 1708177875783
+Overall time of the request (response time - request time): 3537
+
+210 1708177875889 1 101 3.978616 1 102 3.622042
+Request time: 1708177875784
+Response time: 1708177875889
+Overall time of the request (response time - request time): 105
+
+211 1708177876631 3 101 8.524935 102 7.647575
+Request time: 1708177875890
+Response time: 1708177876631
+Overall time of the request (response time - request time): 741
+
+212 1708177876740 1 101 3.781562 1 102 3.373378
+Request time: 1708177876632
+Response time: 1708177876740
+Overall time of the request (response time - request time): 107
+
+213 1708177877418 3 101 8.121443 102 7.211241
+Request time: 1708177876741
+Response time: 1708177877418
+Overall time of the request (response time - request time): 677
+
+214 1708177877524 1 101 3.631425 1 102 3.185708
+Request time: 1708177877418
+Response time: 1708177877524
+Overall time of the request (response time - request time): 105
+
+215 1708177877630 3 101 8.046375 102 7.084563
+Request time: 1708177877524
+Response time: 1708177877630
+Overall time of the request (response time - request time): 106
+
+216 1708177877738 1 101 3.561049 1 102 3.143482
+Request time: 1708177877631
+Response time: 1708177877738
+Overall time of the request (response time - request time): 107
+
+217 1708177877846 3 101 7.971307 102 6.990728
+Request time: 1708177877739
+Response time: 1708177877846
+Overall time of the request (response time - request time): 106
+
+218 1708177877953 1 101 3.490672 1 102 3.101256
+Request time: 1708177877846
+Response time: 1708177877953
+Overall time of the request (response time - request time): 106
+
+219 1708177878066 3 101 7.863396 102 6.882817
+Request time: 1708177877953
+Response time: 1708177878066
+Overall time of the request (response time - request time): 112
+
+220 1708177878191 1 101 3.429679 1 102 3.077797
+Request time: 1708177878066
+Response time: 1708177878191
+Overall time of the request (response time - request time): 124
+
+221 1708177878889 3 101 7.502131 102 6.493401
+Request time: 1708177878191
+Response time: 1708177878889
+Overall time of the request (response time - request time): 697
+
+222 1708177879004 1 101 3.256084 1 102 2.805675
+Request time: 1708177878891
+Response time: 1708177879004
+Overall time of the request (response time - request time): 113
+
+223 1708177879109 3 101 7.375453 102 6.343265
+Request time: 1708177879004
+Response time: 1708177879109
+Overall time of the request (response time - request time): 104
+
+224 1708177879216 1 101 3.199783 1 102 2.815058
+Request time: 1708177879111
+Response time: 1708177879216
+Overall time of the request (response time - request time): 105
+
+225 1708177879321 3 101 7.220624 102 6.230662
+Request time: 1708177879217
+Response time: 1708177879321
+Overall time of the request (response time - request time): 104
+
+226 1708177879449 1 101 3.110639 1 102 2.800983
+Request time: 1708177879322
+Response time: 1708177879449
+Overall time of the request (response time - request time): 126
+
+227 1708177879558 3 101 7.206549 102 6.127443
+Request time: 1708177879449
+Response time: 1708177879558
+Overall time of the request (response time - request time): 109
+
+228 1708177879697 1 101 3.115331 1 102 2.777524
+Request time: 1708177879559
+Response time: 1708177879697
+Overall time of the request (response time - request time): 138
+
+229 1708177879808 3 101 7.122097 102 6.010149
+Request time: 1708177879697
+Response time: 1708177879808
+Overall time of the request (response time - request time): 111
+
+230 1708177879947 1 101 3.044955 1 102 2.702456
+Request time: 1708177879809
+Response time: 1708177879947
+Overall time of the request (response time - request time): 138
+
+231 1708177880060 3 101 6.943810 102 5.902239
+Request time: 1708177879947
+Response time: 1708177880060
+Overall time of the request (response time - request time): 112
+
+232 1708177880208 1 101 2.988653 1 102 2.603929
+Request time: 1708177880060
+Response time: 1708177880208
+Overall time of the request (response time - request time): 147
+
+233 1708177880906 3 101 6.662304 102 5.414295
+Request time: 1708177880214
+Response time: 1708177880906
+Overall time of the request (response time - request time): 691
+
+234 1708177881012 1 101 2.866668 1 102 2.477251
+Request time: 1708177880906
+Response time: 1708177881012
+Overall time of the request (response time - request time): 105
+
+235 1708177881124 3 101 6.554394 102 5.287618
+Request time: 1708177881013
+Response time: 1708177881124
+Overall time of the request (response time - request time): 111
+
+236 1708177881234 1 101 2.890126 1 102 2.561703
+Request time: 1708177881124
+Response time: 1708177881234
+Overall time of the request (response time - request time): 110
+
+237 1708177881346 3 101 6.451175 102 5.193782
+Request time: 1708177881235
+Response time: 1708177881346
+Overall time of the request (response time - request time): 111
+
+238 1708177881466 1 101 2.969887 1 102 2.561703
+Request time: 1708177881347
+Response time: 1708177881466
+Overall time of the request (response time - request time): 118
+
+239 1708177881572 3 101 6.347956 102 5.048338
+Request time: 1708177881466
+Response time: 1708177881572
+Overall time of the request (response time - request time): 106
+
+240 1708177882861 1 102 2.115985 1 101 2.805675
+Request time: 1708177881573
+Response time: 1708177882861
+Overall time of the request (response time - request time): 1288
+
+241 1708177882970 3 101 5.794328 102 4.400875
+Request time: 1708177882861
+Response time: 1708177882970
+Overall time of the request (response time - request time): 109
+
+242 1708177884950 1 101 2.754065 1 102 2.181670
+Request time: 1708177882971
+Response time: 1708177884950
+Overall time of the request (response time - request time): 1979
+
+243 1708177885637 3 102 3.138790 101 4.729298
+Request time: 1708177884950
+Response time: 1708177885637
+Overall time of the request (response time - request time): 686
+
+244 1708177896195 1 101 2.308348 1 102 3.828479
+Request time: 1708177885637
+Response time: 1708177896195
+Overall time of the request (response time - request time): 10557
+
+245 1708177909743 3 101 3.748719 102 2.115985
+Request time: 1708177896195
+Response time: 1708177909743
+Overall time of the request (response time - request time): 13547
+
+246 1708177909890 1 103 10.664379 1 104 12.531701
+Request time: 1708177909743
+Response time: 1708177909890
+Overall time of the request (response time - request time): 146
+
+247 1708177910646 3 101 3.809712 102 1.857938
+Request time: 1708177909890
+Response time: 1708177910646
+Overall time of the request (response time - request time): 755
+
+248 1708177910789 1 103 10.209278 1 104 12.161052
+Request time: 1708177910646
+Response time: 1708177910789
+Overall time of the request (response time - request time): 143
+
+249 1708177911484 3 101 3.725260 102 1.956465
+Request time: 1708177910789
+Response time: 1708177911484
+Overall time of the request (response time - request time): 694
+
+250 1708177911621 1 103 9.876163 1 104 11.790402
+Request time: 1708177911486
+Response time: 1708177911621
+Overall time of the request (response time - request time): 135
+
+251 1708177912400 3 101 3.819096 102 1.853247
+Request time: 1708177911621
+Response time: 1708177912400
+Overall time of the request (response time - request time): 778
+
+252 1708177912538 1 103 9.430446 1 104 11.330609
+Request time: 1708177912400
+Response time: 1708177912538
+Overall time of the request (response time - request time): 137
+
+253 1708177912647 3 101 3.758103 102 1.839171
+Request time: 1708177912538
+Response time: 1708177912647
+Overall time of the request (response time - request time): 108
+
+254 1708177912789 1 103 9.308459 1 104 11.227390
+Request time: 1708177912647
+Response time: 1708177912789
+Overall time of the request (response time - request time): 141
+
+255 1708177918495 3 101 2.294272 102 5.733335
+Request time: 1708177912789
+Response time: 1708177918495
+Overall time of the request (response time - request time): 5705
+
+256 1708177918779 1 103 6.732681 1 104 8.797057
+Request time: 1708177918495
+Response time: 1708177918779
+Overall time of the request (response time - request time): 283
+
+257 1708177918890 3 101 2.237971 102 5.081180
+Request time: 1708177918780
+Response time: 1708177918890
+Overall time of the request (response time - request time): 110
+
+258 1708177919022 1 103 6.498093 1 104 8.618770
+Request time: 1708177918890
+Response time: 1708177919022
+Overall time of the request (response time - request time): 131
+
+259 1708177920292 3 101 2.345882 102 3.279543
+Request time: 1708177919023
+Response time: 1708177920292
+Overall time of the request (response time - request time): 1269
+
+260 1708177920449 1 103 5.878780 1 104 7.999457
+Request time: 1708177920292
+Response time: 1708177920449
+Overall time of the request (response time - request time): 156
+
+261 1708177920560 3 101 2.219204 102 3.298310
+Request time: 1708177920450
+Response time: 1708177920560
+Overall time of the request (response time - request time): 110
+
+262 1708177921182 1 103 5.606658 1 104 7.774252
+Request time: 1708177920560
+Response time: 1708177921182
+Overall time of the request (response time - request time): 621
+
+263 1708177921331 3 102 3.288926 103 14.811898
+Request time: 1708177921182
+Response time: 1708177921331
+Overall time of the request (response time - request time): 149
+
+264 1708177921539 1 103 5.390837 1 104 7.525589
+Request time: 1708177921332
+Response time: 1708177921539
+Overall time of the request (response time - request time): 206
+
+265 1708177922306 3 103 14.474092 104 16.303879
+Request time: 1708177921539
+Response time: 1708177922306
+Overall time of the request (response time - request time): 766
+
+266 1708177922443 1 103 4.968578 1 104 7.164323
+Request time: 1708177922306
+Response time: 1708177922443
+Overall time of the request (response time - request time): 136
+
+267 1708177922584 3 103 14.328647 104 16.191277
+Request time: 1708177922443
+Response time: 1708177922584
+Overall time of the request (response time - request time): 140
+
+268 1708177922763 1 103 4.809058 1 104 7.018878
+Request time: 1708177922584
+Response time: 1708177922763
+Overall time of the request (response time - request time): 178
+
+269 1708177923501 3 104 15.637649 101 2.036226
+Request time: 1708177922763
+Response time: 1708177923501
+Overall time of the request (response time - request time): 738
+
+270 1708177923635 1 103 4.429025 1 104 6.629462
+Request time: 1708177923503
+Response time: 1708177923635
+Overall time of the request (response time - request time): 131
+
+271 1708177924945 3 103 13.038411 104 15.229465
+Request time: 1708177923635
+Response time: 1708177924945
+Overall time of the request (response time - request time): 1310
+
+272 1708177925087 1 103 3.706493 1 104 6.042992
+Request time: 1708177924945
+Response time: 1708177925087
+Overall time of the request (response time - request time): 141
+
+273 1708177925221 3 103 12.855433 104 14.553851
+Request time: 1708177925087
+Response time: 1708177925221
+Overall time of the request (response time - request time): 133
+
+274 1708177925364 1 103 3.579816 1 104 5.949156
+Request time: 1708177925221
+Response time: 1708177925364
+Overall time of the request (response time - request time): 142
+
+275 1708177926681 3 103 12.118826 104 14.347414
+Request time: 1708177925365
+Response time: 1708177926681
+Overall time of the request (response time - request time): 1315
+
+276 1708177926817 1 103 2.871359 1 104 5.381453
+Request time: 1708177926682
+Response time: 1708177926817
+Overall time of the request (response time - request time): 135
+
+277 1708177926950 3 103 11.907697 104 14.051832
+Request time: 1708177926819
+Response time: 1708177926950
+Overall time of the request (response time - request time): 131
+
+278 1708177927086 1 103 2.725915 1 104 5.278234
+Request time: 1708177926950
+Response time: 1708177927086
+Overall time of the request (response time - request time): 136
+
+279 1708177927217 3 103 11.785710 104 13.681183
+Request time: 1708177927087
+Response time: 1708177927217
+Overall time of the request (response time - request time): 130
+
+280 1708177927382 1 103 2.599237 1 104 5.184399
+Request time: 1708177927217
+Response time: 1708177927382
+Overall time of the request (response time - request time): 164
+
+281 1708177927584 3 103 11.654342 104 13.470054
+Request time: 1708177927382
+Response time: 1708177927584
+Overall time of the request (response time - request time): 201
+
+282 1708177927799 1 103 2.406875 1 104 5.043646
+Request time: 1708177927584
+Response time: 1708177927799
+Overall time of the request (response time - request time): 214
+
+283 1708177927946 3 103 11.532355 104 13.333993
+Request time: 1708177927800
+Response time: 1708177927946
+Overall time of the request (response time - request time): 145
+
+284 1708177928086 1 103 2.280197 1 104 4.902893
+Request time: 1708177927946
+Response time: 1708177928086
+Overall time of the request (response time - request time): 140
+
+285 1708177933312 3 103 8.670380 104 10.617461
+Request time: 1708177928086
+Response time: 1708177933312
+Overall time of the request (response time - request time): 5226
+
+286 1708177933445 1 103 3.795637 1 104 2.983962
+Request time: 1708177933312
+Response time: 1708177933445
+Overall time of the request (response time - request time): 132
+
+287 1708177933700 3 103 8.492092 104 10.490784
+Request time: 1708177933445
+Response time: 1708177933700
+Overall time of the request (response time - request time): 255
+
+288 1708177935634 1 104 2.594545 1 101 14.239503
+Request time: 1708177933701
+Response time: 1708177935634
+Overall time of the request (response time - request time): 1933
+
+289 1708177935809 3 103 7.314460 104 9.238083
+Request time: 1708177935634
+Response time: 1708177935809
+Overall time of the request (response time - request time): 174
+
+290 1708177936592 1 101 14.173819 1 102 13.629574
+Request time: 1708177935809
+Response time: 1708177936592
+Overall time of the request (response time - request time): 782
+
+291 1708177937835 3 103 6.160286 104 8.201203
+Request time: 1708177936593
+Response time: 1708177937835
+Overall time of the request (response time - request time): 1241
+
+292 1708177937951 1 101 14.084675 1 102 13.681183
+Request time: 1708177937838
+Response time: 1708177937951
+Overall time of the request (response time - request time): 112
+
+293 1708177941049 3 103 4.438408 104 6.652921
+Request time: 1708177937952
+Response time: 1708177941049
+Overall time of the request (response time - request time): 3096
+
+294 1708177941176 1 101 14.131593 1 102 13.704642
+Request time: 1708177941050
+Response time: 1708177941176
+Overall time of the request (response time - request time): 125
+
+295 1708177942804 3 102 10.195203 101 9.890238
+Request time: 1708177941176
+Response time: 1708177942804
+Overall time of the request (response time - request time): 1628
+
+296 1708177942913 1 101 13.723409 1 102 13.338684
+Request time: 1708177942804
+Response time: 1708177942913
+Overall time of the request (response time - request time): 108
+
+297 1708177943061 3 101 9.848012 102 10.073216
+Request time: 1708177942916
+Response time: 1708177943061
+Overall time of the request (response time - request time): 145
+
+298 1708177943246 1 101 13.699950 1 102 13.183856
+Request time: 1708177943062
+Response time: 1708177943246
+Overall time of the request (response time - request time): 184
+
+299 1708177943354 3 101 9.843321 102 9.969998
+Request time: 1708177943247
+Response time: 1708177943354
+Overall time of the request (response time - request time): 106
+
+300 1708177943498 1 101 13.596731 1 102 13.061871
+Request time: 1708177943354
+Response time: 1708177943498
+Overall time of the request (response time - request time): 143
+
+301 1708177943606 3 101 9.655650 102 9.894930
+Request time: 1708177943498
+Response time: 1708177943606
+Overall time of the request (response time - request time): 108
+
+302 1708177943756 1 101 13.554505 1 103 3.983307
+Request time: 1708177943606
+Response time: 1708177943756
+Overall time of the request (response time - request time): 149
+
+303 1708177944436 3 101 9.205240 102 9.575890
+Request time: 1708177943757
+Response time: 1708177944436
+Overall time of the request (response time - request time): 679
+
+304 1708177944546 1 101 13.244849 1 102 12.611461
+Request time: 1708177944437
+Response time: 1708177944546
+Overall time of the request (response time - request time): 109
+
+305 1708177944654 3 101 9.130173 102 9.444521
+Request time: 1708177944547
+Response time: 1708177944654
+Overall time of the request (response time - request time): 107
+
+306 1708177945334 1 101 12.808516 1 102 12.339338
+Request time: 1708177944655
+Response time: 1708177945334
+Overall time of the request (response time - request time): 679
+
+307 1708177945441 3 102 9.059796 101 8.637537
+Request time: 1708177945335
+Response time: 1708177945441
+Overall time of the request (response time - request time): 106
+
+308 1708177945549 1 101 12.686529 1 102 12.189202
+Request time: 1708177945441
+Response time: 1708177945549
+Overall time of the request (response time - request time): 107
+
+309 1708177945664 3 101 8.576544 102 8.937810
+Request time: 1708177945549
+Response time: 1708177945664
+Overall time of the request (response time - request time): 114
+
+310 1708177946314 1 101 12.433174 1 102 11.827936
+Request time: 1708177945664
+Response time: 1708177946314
+Overall time of the request (response time - request time): 649
+
+311 1708177946422 3 101 8.173053 102 8.506167
+Request time: 1708177946315
+Response time: 1708177946422
+Overall time of the request (response time - request time): 107
+
+312 1708177946535 1 101 12.348722 1 102 11.687183
+Request time: 1708177946423
+Response time: 1708177946535
+Overall time of the request (response time - request time): 112
+
+313 1708177946643 3 101 8.032300 102 8.393565
+Request time: 1708177946536
+Response time: 1708177946643
+Overall time of the request (response time - request time): 106
+
+314 1708177946765 1 101 12.245503 1 102 11.579273
+Request time: 1708177946644
+Response time: 1708177946765
+Overall time of the request (response time - request time): 121
+
+315 1708177946872 3 101 7.868088 102 8.252812
+Request time: 1708177946765
+Response time: 1708177946872
+Overall time of the request (response time - request time): 107
+
+316 1708177947005 1 101 12.104751 1 102 11.471362
+Request time: 1708177946873
+Response time: 1708177947005
+Overall time of the request (response time - request time): 132
+
+317 1708177947110 3 101 7.760177 102 8.149593
+Request time: 1708177947006
+Response time: 1708177947110
+Overall time of the request (response time - request time): 104
+
+318 1708177947277 1 101 11.992148 1 102 11.349377
+Request time: 1708177947110
+Response time: 1708177947277
+Overall time of the request (response time - request time): 166
+
+319 1708177947393 3 101 7.614733 102 8.004149
+Request time: 1708177947278
+Response time: 1708177947393
+Overall time of the request (response time - request time): 115
+
+320 1708177947513 1 101 11.907697 1 102 11.274308
+Request time: 1708177947393
+Response time: 1708177947513
+Overall time of the request (response time - request time): 120
+
+321 1708177947619 3 101 7.502131 102 7.858705
+Request time: 1708177947514
+Response time: 1708177947619
+Overall time of the request (response time - request time): 104
+
+322 1708177947765 1 101 11.813861 1 102 11.208624
+Request time: 1708177947620
+Response time: 1708177947765
+Overall time of the request (response time - request time): 144
+
+323 1708177947875 3 101 7.361377 102 7.778944
+Request time: 1708177947765
+Response time: 1708177947875
+Overall time of the request (response time - request time): 110
+
+324 1708177948025 1 101 11.757560 1 102 11.039721
+Request time: 1708177947877
+Response time: 1708177948025
+Overall time of the request (response time - request time): 147
+
+325 1708177948140 3 101 7.253467 102 7.694493
+Request time: 1708177948025
+Response time: 1708177948140
+Overall time of the request (response time - request time): 114
+
+326 1708177948268 1 101 11.565198 1 102 10.927118
+Request time: 1708177948141
+Response time: 1708177948268
+Overall time of the request (response time - request time): 127
+
+327 1708177948381 3 101 7.093947 102 7.549048
+Request time: 1708177948268
+Response time: 1708177948381
+Overall time of the request (response time - request time): 112
+
+328 1708177948519 1 101 11.513588 1 102 10.809824
+Request time: 1708177948381
+Response time: 1708177948519
+Overall time of the request (response time - request time): 138
+
+329 1708177948629 3 101 6.971961 102 7.516206
+Request time: 1708177948520
+Response time: 1708177948629
+Overall time of the request (response time - request time): 109
+
+330 1708177948788 1 101 11.368144 1 102 10.697222
+Request time: 1708177948629
+Response time: 1708177948788
+Overall time of the request (response time - request time): 158
+
+331 1708177948901 3 101 6.854667 102 7.431754
+Request time: 1708177948788
+Response time: 1708177948901
+Overall time of the request (response time - request time): 113
+
+332 1708177949030 1 101 11.279000 1 102 10.565852
+Request time: 1708177948902
+Response time: 1708177949030
+Overall time of the request (response time - request time): 127
+
+333 1708177949143 3 101 6.756140 102 7.276926
+Request time: 1708177949031
+Response time: 1708177949143
+Overall time of the request (response time - request time): 111
+
+334 1708177949275 1 101 11.175781 1 102 10.528317
+Request time: 1708177949143
+Response time: 1708177949275
+Overall time of the request (response time - request time): 131
+
+335 1708177949383 3 101 6.643538 102 7.140864
+Request time: 1708177949276
+Response time: 1708177949383
+Overall time of the request (response time - request time): 107
+
+336 1708177949522 1 101 11.006878 1 102 10.340648
+Request time: 1708177949383
+Response time: 1708177949522
+Overall time of the request (response time - request time): 138
+
+337 1708177949627 3 101 6.615387 102 7.061104
+Request time: 1708177949522
+Response time: 1708177949627
+Overall time of the request (response time - request time): 105
+
+338 1708177949785 1 101 10.922426 1 102 10.213970
+Request time: 1708177949628
+Response time: 1708177949785
+Overall time of the request (response time - request time): 157
+
+339 1708177951618 3 103 7.849321 104 9.758868
+Request time: 1708177949786
+Response time: 1708177951618
+Overall time of the request (response time - request time): 1832
+
+340 1708177951737 1 101 10.045066 1 102 9.360068
+Request time: 1708177951620
+Response time: 1708177951737
+Overall time of the request (response time - request time): 117
+
+341 1708177951902 3 103 7.713260 104 9.613424
+Request time: 1708177951737
+Response time: 1708177951902
+Overall time of the request (response time - request time): 165
+
+342 1708177952035 1 101 9.937156 1 102 9.209932
+Request time: 1708177951903
+Response time: 1708177952035
+Overall time of the request (response time - request time): 131
+
+343 1708177952203 3 103 7.572507 104 9.510205
+Request time: 1708177952035
+Response time: 1708177952203
+Overall time of the request (response time - request time): 168
+
+344 1708177952313 1 101 9.787019 1 102 9.078563
+Request time: 1708177952203
+Response time: 1708177952313
+Overall time of the request (response time - request time): 109
+
+345 1708177952452 3 103 7.323843 104 9.416369
+Request time: 1708177952313
+Response time: 1708177952452
+Overall time of the request (response time - request time): 138
+
+346 1708177952559 1 101 9.730718 1 102 8.984728
+Request time: 1708177952452
+Response time: 1708177952559
+Overall time of the request (response time - request time): 107
+
+347 1708177952703 3 103 7.187782 104 9.294384
+Request time: 1708177952559
+Response time: 1708177952703
+Overall time of the request (response time - request time): 143
+
+348 1708177952810 1 101 9.632191 1 102 8.853358
+Request time: 1708177952704
+Response time: 1708177952810
+Overall time of the request (response time - request time): 106
+
+349 1708177952968 3 103 7.023571 104 9.158323
+Request time: 1708177952811
+Response time: 1708177952968
+Overall time of the request (response time - request time): 157
+
+350 1708177953076 1 101 9.519588 1 102 8.782982
+Request time: 1708177952969
+Response time: 1708177953076
+Overall time of the request (response time - request time): 107
+
+351 1708177953337 3 103 6.821825 104 8.914351
+Request time: 1708177953077
+Response time: 1708177953337
+Overall time of the request (response time - request time): 259
+
+352 1708177953450 1 101 9.364760 1 102 8.600003
+Request time: 1708177953337
+Response time: 1708177953450
+Overall time of the request (response time - request time): 113
+
+353 1708177953597 3 103 6.638846 104 8.745448
+Request time: 1708177953451
+Response time: 1708177953597
+Overall time of the request (response time - request time): 146
+
+354 1708177953779 1 101 9.228700 1 102 8.417025
+Request time: 1708177953597
+Response time: 1708177953779
+Overall time of the request (response time - request time): 181
+
+355 1708177955597 3 103 5.540973 104 7.647575
+Request time: 1708177953779
+Response time: 1708177955597
+Overall time of the request (response time - request time): 1817
+
+356 1708177955705 1 101 8.370107 1 102 7.464596
+Request time: 1708177955597
+Response time: 1708177955705
+Overall time of the request (response time - request time): 107
+
+357 1708177960301 3 103 2.510094 104 5.081180
+Request time: 1708177955706
+Response time: 1708177960301
+Overall time of the request (response time - request time): 4595
+
+358 1708177960414 1 101 6.545011 1 102 5.372069
+Request time: 1708177960301
+Response time: 1708177960414
+Overall time of the request (response time - request time): 112
+
+359 1708177960597 3 103 2.341190 104 4.851284
+Request time: 1708177960414
+Response time: 1708177960597
+Overall time of the request (response time - request time): 183
+
+360 1708177960784 1 101 6.432408 1 102 5.217241
+Request time: 1708177960597
+Response time: 1708177960784
+Overall time of the request (response time - request time): 186
+
+361 1708177962619 3 103 2.026842 104 3.856630
+Request time: 1708177960784
+Response time: 1708177962619
+Overall time of the request (response time - request time): 1834
+
+362 1708177962739 1 101 5.770869 1 102 4.504093
+Request time: 1708177962621
+Response time: 1708177962739
+Overall time of the request (response time - request time): 117
+
+363 1708177974045 3 101 10.870816 102 10.106059
+Request time: 1708177962742
+Response time: 1708177974045
+Overall time of the request (response time - request time): 11302
+
+364 1708177977470 1 101 3.514131 1 102 2.355265
+Request time: 1708177974045
+Response time: 1708177977470
+Overall time of the request (response time - request time): 3424
+
+365 1708177977580 3 101 9.036337 102 8.210587
+Request time: 1708177977471
+Response time: 1708177977580
+Overall time of the request (response time - request time): 109
+
+366 1708177977787 1 101 3.453138 1 102 2.449101
+Request time: 1708177977580
+Response time: 1708177977787
+Overall time of the request (response time - request time): 207
+
+367 1708177977895 3 101 8.815825 102 8.065142
+Request time: 1708177977788
+Response time: 1708177977895
+Overall time of the request (response time - request time): 106
+
+368 1708177982102 1 101 3.359303 1 102 2.552320
+Request time: 1708177977895
+Response time: 1708177982102
+Overall time of the request (response time - request time): 4207
+
+369 1708177982209 3 101 6.821825 102 5.766178
+Request time: 1708177982103
+Response time: 1708177982209
+Overall time of the request (response time - request time): 106
+
+370 1708177982317 1 101 3.453138 1 102 2.458484
+Request time: 1708177982209
+Response time: 1708177982317
+Overall time of the request (response time - request time): 107
+
+371 1708177983163 3 101 6.437100 102 5.343919
+Request time: 1708177982318
+Response time: 1708177983163
+Overall time of the request (response time - request time): 845
+
+372 1708177983271 1 101 3.420296 1 102 2.439717
+Request time: 1708177983163
+Response time: 1708177983271
+Overall time of the request (response time - request time): 107
+
+373 1708177983380 3 101 6.385490 102 5.189091
+Request time: 1708177983271
+Response time: 1708177983380
+Overall time of the request (response time - request time): 108
+
+374 1708177984122 1 101 3.453138 1 102 3.659576
+Request time: 1708177983380
+Response time: 1708177984122
+Overall time of the request (response time - request time): 742
+
+375 1708177984232 3 101 5.986691 102 4.757449
+Request time: 1708177984123
+Response time: 1708177984232
+Overall time of the request (response time - request time): 109
+
+376 1708177984339 1 101 3.378070 1 102 2.683689
+Request time: 1708177984232
+Response time: 1708177984339
+Overall time of the request (response time - request time): 107
+
+377 1708177986890 3 102 3.420296 101 4.987345
+Request time: 1708177984340
+Response time: 1708177986890
+Overall time of the request (response time - request time): 2549
+
+378 1708177987018 1 102 2.327115 1 103 15.008952
+Request time: 1708177986890
+Response time: 1708177987018
+Overall time of the request (response time - request time): 127
+
+379 1708177987129 3 102 3.368686 101 4.973269
+Request time: 1708177987018
+Response time: 1708177987129
+Overall time of the request (response time - request time): 111
+
+380 1708177987304 1 101 2.904202 1 102 2.378724
+Request time: 1708177987130
+Response time: 1708177987304
+Overall time of the request (response time - request time): 174
+
+381 1708177993707 3 101 3.368686 102 2.350574
+Request time: 1708177987309
+Response time: 1708177993707
+Overall time of the request (response time - request time): 6397
+
+382 1708177993839 1 103 11.926463 1 104 13.315226
+Request time: 1708177993708
+Response time: 1708177993839
+Overall time of the request (response time - request time): 130
+
+383 1708177994066 3 101 3.199783 102 2.059684
+Request time: 1708177993839
+Response time: 1708177994066
+Overall time of the request (response time - request time): 227
+
+384 1708177994204 1 103 11.724718 1 104 13.207315
+Request time: 1708177994068
+Response time: 1708177994204
+Overall time of the request (response time - request time): 136
+
+385 1708177994312 3 101 3.091872 102 2.111294
+Request time: 1708177994205
+Response time: 1708177994312
+Overall time of the request (response time - request time): 107
+
+386 1708177994581 1 103 11.532355 1 104 13.075946
+Request time: 1708177994313
+Response time: 1708177994581
+Overall time of the request (response time - request time): 267
+
+387 1708177994691 3 101 2.876051 102 2.228588
+Request time: 1708177994583
+Response time: 1708177994691
+Overall time of the request (response time - request time): 108
+
+388 1708177996506 1 101 3.894164 1 102 3.875397
+Request time: 1708177994692
+Response time: 1708177996506
+Overall time of the request (response time - request time): 1814
+
+389 1708177997758 3 101 2.087835 102 3.265468
+Request time: 1708177996506
+Response time: 1708177997758
+Overall time of the request (response time - request time): 1251
+
+390 1708177997866 1 101 3.997383 1 102 3.551665
+Request time: 1708177997759
+Response time: 1708177997866
+Overall time of the request (response time - request time): 107
+

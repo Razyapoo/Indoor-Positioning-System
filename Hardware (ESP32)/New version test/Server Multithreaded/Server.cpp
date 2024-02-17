@@ -13,7 +13,7 @@ size_t Server::dataIndex = 1;
 const size_t Server::MAX_CLIENTS = 5;
 size_t Server::nbytes;
 int Server::statusImageHeight = 640;
-int Server::statusImageWidth = 360;
+int Server::statusImageWidth = 720;
 std::vector<int> Server::clientSocketList(MAX_CLIENTS, 0);
 
 struct sockaddr_in Server::serverAddress, Server::clientAddress;

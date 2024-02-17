@@ -100,7 +100,8 @@ void sendMessage(byte messageType)
   if (messageType == MSG_TYPE_POLL_ACK)
   {
 
-    replyDelay = (2 * (myID - 100) + 1) * DEFAULT_REPLY_DELAY_TIME;
+    //replyDelay = (2 * (myID - 100) + 1) * DEFAULT_REPLY_DELAY_TIME;
+    replyDelay = DEFAULT_REPLY_DELAY_TIME;
 
     prepareMessageToSend(MSG_TYPE_POLL_ACK, myID, currentTagAddress);
     pollackReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);

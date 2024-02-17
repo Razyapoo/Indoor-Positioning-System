@@ -13,6 +13,14 @@ uint16_t getMyID()
   {
     return 102;
   }
+  else if (macAddr == "D8:BC:38:42:D7:0C")
+  {
+    return 103;
+  }
+  else if (macAddr == "70:B8:F6:D8:F6:24") // D8:BC:38:43:13:18
+  {
+    return 104;
+  }
   else
   {
     if (debug)
@@ -56,6 +64,10 @@ void initReceiver()
   DW1000.setDefaults();
   DW1000.receivePermanently(true);
   DW1000.startReceive();
+  while (millis() - currentTime < 1000)
+  {
+    continue;
+  }
 }
 
 bool checkTagAddress()
@@ -140,7 +152,14 @@ void sendMessage(byte messageType)
   {
     if (debug)
       Serial.println("  MSG_TYPE_POLL_ACK");
-    replyDelay = (2 * (myID - 100) + 1) * DEFAULT_REPLY_DELAY_TIME;
+//     uint16_t waitTimeStart = millis();
+//     uint16_t waitTimeEnd = random(0, 50);
+    replyDelay = DEFAULT_REPLY_DELAY_TIME;
+
+//     while ((millis() - waitTimeStart) < waitTimeEnd)
+//     {
+//       continue;
+//     }
 
     if (debug)
     {
@@ -149,7 +168,7 @@ void sendMessage(byte messageType)
     }
 
     prepareMessageToSend(MSG_TYPE_POLL_ACK, myID, currentTagAddress);
-    pollackReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
+    pollackReplyDelay = DW1000Time(replyDelay, DW1000Time::MILLISECONDS);
     DW1000.setDelay(pollackReplyDelay);
   }
   else if (messageType == MSG_TYPE_RANGE_REPORT)
@@ -218,11 +237,6 @@ void initAnchor()
     Serial.println("ANCHOR");
 
   //  delay(1000);/
-  currentTime = millis();
-  while (millis() - currentTime < 1000)
-  {
-    continue;
-  }
   noteActivity();
 }
 

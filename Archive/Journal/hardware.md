@@ -2858,4 +2858,41 @@ Then I tried a system with 4 anchors, but unfortunatelly 4th anchor gives strang
 
 According to this, I have tried to change replyDelay. Working state is when each anchor has a different replyDelay. I have tried to only delay anchor's response to tag and then use same replyDelay value for all anchors, but it DOES NOT WORK!! I also tried to use different replyDelay, but lower value for each anchor. Also does not help. Only works the way which is implemented in main library.
 
+This is not true. Not only the way from library works. See below (16 February)
+
 So I decided t stick only with 3 anchors, which is useful for position estimation.
+
+# 16 February, 2024
+
+Analysis of the past experiments: 
+
+1. After lowering the reset timeout on the anchor side to 200 ms, tags were burned twice. It happened when tag got the value from one anchor and lost connection with another anchor. 
+  - In the first experiment in Rotunda tag lost the connection with anchor and stucked in infinite loop (maybe). Tag was placed at visible distance from anchors.
+  - In the second experiment near S8, I was standing at 1 meter from the Anchor baseline. Distance between anchors was 2.5 m. One of the anchors lost the connection with tag, and tag were burned. 
+
+  After resetting the reset timeout on the anchor back to the previous 500 ms solved the issue. I have tried same scenario as in second experiment. It was ok. Tag lost the connection, but was not burned. 
+  
+  Maybe this was happened occasionally, because Timout was changed on the Anchor side, but Tag was burned.
+
+  2. Different anchors use different replyDelay when sending poll and range signals. This delays must be different. Same value does not work. Even more, I think when anchors send signal at the same time, signal from one anchor gets blocked by another signal and gets lost. Tag cannot see the signal sent by anchor. This happens even with different replyDelay values, but when signals get collided.
+
+  I have observed that difference between replyDelay on anchors must be at least 12 ms, otherwise communication does not work good. Either gets stucked or distances arriving randomly (to server) with signifficant delay. Another thing is that maximum difference must be 50 ms. Otherwise one of the anchors shows strange distances like 4500.00 or even negative values like -5000.00.
+
+  replyDelay does have to be like in library. Difference between each pair of anchors (replyDealys) must be at least 12-14ms and at most 50 ms. Difference between two following replyDelays must be 12-14 ms. - Not True
+
+  I have managed to run all 4 anchors with the following setup:
+
+  Anchor 101 - 17 ms
+  Anchor 102 - 20 ms
+  Anchor 103 - 23 ms
+  Anchor 104 - 26 ms
+
+# 17 February, 2024
+
+Experiments at school
+
+Observation: 
+  During experimets strange phenomenon was observed. Tag 3 with mac address 70:B8:F6:D8:F6:60 (which was burned) does not receive signal near server (HW server which is placed in the wall). Another Tag 1 with mac address "70:B8:F6:D8:F6:48" (which was also burned), however, works OK. Maybe this is specific to ESP32 board, or it is because the board was burned. 
+  
+  This also happened when anchor line was far away. When anchors are placed closer (Experiment 7), signal is strong enough to be received and handled (on both tags).
+

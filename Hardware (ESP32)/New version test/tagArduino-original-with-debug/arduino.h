@@ -67,7 +67,7 @@ bool isTagBusy = false;
 // #define RANGEREPORT_TIMEOUT         10
 // #define RANGING_INIT_TIMEOUT        10
 // #define REPLY_DELAY                 3
-// #define DEFAULT_RESET_TIMEOUT       1000
+// #define DEFAULT_RESET_TIMEOUT       500
 // #define SERVER_TIMEOUT_MS           20
 // #define SLEEP                       100//300
 
