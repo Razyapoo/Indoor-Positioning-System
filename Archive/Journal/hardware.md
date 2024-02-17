@@ -2896,3 +2896,4 @@ Observation:
   
   This also happened when anchor line was far away. When anchors are placed closer (Experiment 7), signal is strong enough to be received and handled (on both tags).
 
+For best anchor - tag communication, anchor baselines must be placed close to each other as shown in Experiment 12 and 13. At such positions, the problem with angle of vision of antenna is resolved. Experiment 13 shown that a bit larger distance between anchor baselines also works and sufficient. Such placement of anchors requires less anchors to be used to cover the whole space.
