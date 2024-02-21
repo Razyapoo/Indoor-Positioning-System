@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>2136</width>
+    <height>971</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="pushButton_Play_Pause">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>510</y>
+      <x>10</x>
+      <y>880</y>
       <width>41</width>
-      <height>41</height>
+      <height>40</height>
      </rect>
     </property>
     <property name="text">
@@ -30,10 +30,10 @@
    <widget class="QSlider" name="horizontalSlider_Duration">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>480</y>
-      <width>641</width>
-      <height>20</height>
+      <x>100</x>
+      <y>840</y>
+      <width>1141</width>
+      <height>19</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -46,10 +46,10 @@
    <widget class="QLabel" name="label_Current_Time">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>480</y>
+      <x>30</x>
+      <y>840</y>
       <width>67</width>
-      <height>17</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
@@ -59,10 +59,10 @@
    <widget class="QLabel" name="label_Total_Time">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>480</y>
+      <x>1250</x>
+      <y>840</y>
       <width>67</width>
-      <height>17</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
@@ -72,14 +72,527 @@
    <widget class="QLabel" name="label_Video">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>771</width>
-      <height>441</height>
+      <x>30</x>
+      <y>90</y>
+      <width>1281</width>
+      <height>721</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Frame_ID">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Frame ID:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Frame_Timestamp">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>30</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Frame Timestamp:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_ID_1">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>150</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_timestamp_1">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>172</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Timestamp:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor101_1">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>200</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anchor 101:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor102_1">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>230</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anchor 102:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Frame_ID_value">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>30</y>
+      <width>131</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Frame_Timestamp_value">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>30</y>
+      <width>151</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_ID_value_1">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>150</y>
+      <width>111</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_timestamp_value_1">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>173</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor101_value_1">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>200</y>
+      <width>191</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor102_value_1">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>230</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_ID_value_2">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>260</y>
+      <width>111</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor102_2">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>340</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anchor 102:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_ID_2">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>260</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor101_value_2">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>310</y>
+      <width>191</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor102_value_2">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>340</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor101_2">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>310</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anchor 101:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_timestamp_2">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>282</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Timestamp:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_timestamp_value_2">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>285</y>
+      <width>161</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_ID_value_3">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>380</y>
+      <width>111</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor102_3">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>460</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anchor 102:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_ID_3">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>380</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor101_value_3">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>430</y>
+      <width>191</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor102_value_3">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>460</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Anchor101_3">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>430</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anchor 101:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_timestamp_3">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>402</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Timestamp:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_timestamp_value_3">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>406</y>
+      <width>161</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Data_Analysis_Start">
+    <property name="geometry">
+     <rect>
+      <x>1412</x>
+      <y>691</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start time:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Dat_Analisys_End">
+    <property name="geometry">
+     <rect>
+      <x>1419</x>
+      <y>724</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>End time:</string>
+    </property>
+   </widget>
+   <widget class="QTimeEdit" name="timeEdit_Data_Analysis_Start">
+    <property name="geometry">
+     <rect>
+      <x>1492</x>
+      <y>687</y>
+      <width>118</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTimeEdit" name="timeEdit_Data_Analysis_End">
+    <property name="geometry">
+     <rect>
+      <x>1492</x>
+      <y>720</y>
+      <width>118</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_UWB_Data_Analysis">
+    <property name="geometry">
+     <rect>
+      <x>1560</x>
+      <y>760</y>
+      <width>141</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Analyse UWB Data</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Stream">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 13pt &quot;Ubuntu&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Video Stream:</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>0</y>
+      <width>21</width>
+      <height>851</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Stream_2">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>30</y>
+      <width>151</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 13pt &quot;Ubuntu&quot;;</string>
+    </property>
+    <property name="text">
+     <string>UWB Data Stream:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Video_Data_Analysis">
+    <property name="geometry">
+     <rect>
+      <x>1410</x>
+      <y>760</y>
+      <width>141</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Analyse Video Data</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="uwbDataContainer">
+    <property name="geometry">
+     <rect>
+      <x>1730</x>
+      <y>50</y>
+      <width>381</width>
+      <height>701</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Video_Stream_3">
+    <property name="geometry">
+     <rect>
+      <x>1380</x>
+      <y>650</y>
+      <width>151</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 13pt &quot;Ubuntu&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Analyse Data:</string>
     </property>
    </widget>
   </widget>
@@ -88,7 +601,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>2136</width>
      <height>22</height>
     </rect>
    </property>

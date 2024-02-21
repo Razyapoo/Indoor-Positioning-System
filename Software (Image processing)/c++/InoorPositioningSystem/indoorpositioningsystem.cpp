@@ -4,163 +4,258 @@
 IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::IndoorPositioningSystem)
+    , frameQueue(100)
+
 {
-    player = new QMediaPlayer();
-    frameTimer = new QTimer();
     ui->setupUi(this);
+
+    // dataProcessor = new DataProcessor(frameQueue);
+    dataProcessor = std::make_unique<DataProcessor>(frameQueue);
+    dataProcessor->moveToThread(&uwbDataThread);
+
+    // videoProcessor = new VideoProcessor(frameQueue, dataProcessor);
+    videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
+    videoProcessor->moveToThread(&videoThread);
+
+    // frameTimer = new QTimer(this);
+    frameTimer = std::make_unique<QTimer>(this);
+    frameTimer->setInterval(58);
+
+    // checkForDisplayThread = std::thread(&IndoorPositioningSystem::checkForDisplay, this);
+    // connect(&videoThread, &QThread::started, this, &IndoorPositioningSystem::startProcessVideo);
+    connect(this, &IndoorPositioningSystem::requestProcessVideo, videoProcessor.get(), &VideoProcessor::processVideo);
+    connect(this, &IndoorPositioningSystem::requestLoadData, dataProcessor.get(), &DataProcessor::loadData, Qt::DirectConnection);
+    // connect(videoProcessor, &VideoProcessor::latestFrame, this, &IndoorPositioningSystem::updateDataDisplay);
+
+    connect(frameTimer.get(), &QTimer::timeout, this, &IndoorPositioningSystem::checkForDisplay);
+    connect(this, &IndoorPositioningSystem::frameIsReady, this, &IndoorPositioningSystem::updateDataDisplay, Qt::QueuedConnection);
+    connect(videoProcessor.get(), &VideoProcessor::requestFindUWBMeasurement, dataProcessor.get(), &DataProcessor::findUWBMeasurementAndEnqueue, Qt::DirectConnection);
+
+    connect(this, &IndoorPositioningSystem::requestStopProcessing, videoProcessor.get(),  &VideoProcessor::stopProcessing, Qt::DirectConnection);
+    // connect(this, &IndoorPositioningSystem::requestContinueProcessing, videoProcessor,  &VideoProcessor::continueProcessing, Qt::BlockingQueuedConnection);
+    connect(this, &IndoorPositioningSystem::requestSeekToFrame, videoProcessor.get(),  &VideoProcessor::seekToFrame, Qt::DirectConnection);
+    connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystem::seekToFrame);
+    connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystem::afterSeeking, Qt::DirectConnection);
+
+    connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::analyseData, Qt::DirectConnection);
+
+    connect(this, &IndoorPositioningSystem::finishedVideoProcessing, &videoThread, &QThread::quit);
+    connect(this, &IndoorPositioningSystem::finishedVideoProcessing, videoProcessor.get(), &VideoProcessor::deleteLater);
+    // connect(videoProcessor, &VideoProcessor::finished, this, &IndoorPositioningSystem::stopCheckingForDisplayThread);
+    // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
+
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    ui->timeEdit_Data_Analysis_Start->setDisplayFormat("HH:mm:ss");
+    ui->timeEdit_Data_Analysis_End->setDisplayFormat("HH:mm:ss");
 
-    // connect(player, &QMediaPlayer::positionChanged, this, &IndoorPositioningSystem::updateDuration);
-    // connect(player, &QMediaPlayer::positionChanged, this, &IndoorPositioningSystem::updatePosition);
-
-    // connect(ui->horizontalSlider_Duration, &QSlider::valueChanged, this, &IndoorPositioningSystem::onSliderMoved);
-    connect(frameTimer, &QTimer::timeout, this, &IndoorPositioningSystem::updateFrame);
-
-    // ui->horizontalSlider_Duration->setRange(0, player->duration() / 1000);
+    // ClickEventFilter *filter = new ClickEventFilter(this);
+    ui->timeEdit_Data_Analysis_Start->installEventFilter(this);
 }
 
 IndoorPositioningSystem::~IndoorPositioningSystem()
 {
+    frameQueue.notify_all();
+
+    // if (checkForDisplayThread.joinable()) {
+    //     checkForDisplayThread.join();
+    // }
+    videoThread.quit();
+    videoThread.wait();
     delete ui;
+    // delete videoProcessor;
+    // delete dataProcessor;
 }
 
-// Private
-// void IndoorPositioningSystem::setDuration(qint64 duration)
-// {
-//     if (duration || mDuration) {
-//         QTime currentTime((duration / 3600) % 60, (duration / 60) % 60, duration % 60, (duration * 1000) % 1000);
-//         QTime totalTime((mDuration / 3600) % 60, (mDuration / 60) % 60, mDuration % 60, (mDuration * 1000) % 1000);
-//         QString format = "";
-//         if (mDuration > 3600) {
-//             format = "hh:mm:ss";
-//         } else {
-//             format = "mm:ss";
-//         }
 
-//         ui->label_Current_Time->setText(currentTime.toString(format));
-//         ui->label_Total_Time->setText(totalTime.toString(format));
-//     }
-// }
+void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
 
-void IndoorPositioningSystem::setFrame() {
-    QImage qImage = matToQImage(frame);
-    QPixmap pixmap = QPixmap::fromImage(qImage);
-    ui->label_Video->setPixmap(pixmap.scaled( ui->label_Video->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-}
-
-QImage IndoorPositioningSystem::matToQImage(const cv::Mat& mat) {
-    switch (mat.type()) {
-    case CV_8UC4:
-        return QImage(mat.data, mat.cols, mat.rows, mat.step, QImage::Format_ARGB32);
-    case CV_8UC3:
-        return QImage(mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888).rgbSwapped();
-    case CV_8UC1:
-        return QImage(mat.data, mat.cols, mat.rows, mat.step, QImage::Format_Grayscale8);
-    default:
-        qWarning("Unsupported format in matToQImage conversion");
-        break;
-    }
-    return QImage();
-}
-
-// Private Slots
-// void IndoorPositioningSystem::updateDuration(qint64 duration)
-// {
-//     mDuration = duration / 1000;
-//     ui->horizontalSlider_Duration->setMaximum(mDuration);
-
-// }
-
-// void IndoorPositioningSystem::updatePosition(qint64 duration)
-// {
-//     if (!ui->horizontalSlider_Duration->isSliderDown()){
-//         ui->horizontalSlider_Duration->setValue(duration / 1000);
-//     }
-
-//     setDuration(duration / 1000);
-// }
-
-void IndoorPositioningSystem::updateFrame() {
-    if (!camera.read(frame)) {
+    if (data.videoData.qImage.isNull() && data.videoData.id == -1) {
         frameTimer->stop();
-        return;
+        // stopCheckingForDisplayThread();
+        std::cout << "No frames left" << std::endl;
+        emit finishedVideoProcessing();
+    } else {
+        qPixmap = QPixmap::fromImage(data.videoData.qImage);
+        qPixmap = qPixmap.scaled(ui->label_Video->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+        ui->label_Video->setPixmap(qPixmap);
+
+        ui->label_Video_Frame_ID_value->setNum(data.videoData.id);
+        QString videoTimestampText = QString::number(data.videoData.timestamp);
+        ui->label_Video_Frame_Timestamp_value->setText(videoTimestampText);
+
+        // QLayout* uwbDataContainerLayout = ui->uwbDataContainer->layout();
+
+        // if (uwbDataContainerLayout != NULL) {
+        //     QLayoutItem* item;
+        //     item = uwbDataContainerLayout->takeAt(0);
+        //     while (item != NULL) {
+        //         if (QWidget* widget = item->widget()) {
+        //             widget->hide();
+        //             delete widget;
+        //         }
+        //         delete item;
+        //         item = uwbDataContainerLayout->takeAt(0);
+        //     }
+        // }
+
+
+        // // for (const auto& tagData : data.uwbData) {
+        // QLabel* tagLabel = new QLabel(this);
+        // tagLabel->setText(QString("ID: %1  Timestamp: %2").arg(data.uwbData.tagID).arg(data.uwbData.timestamp));
+        // // QLabel* tagLabel = new QLabel(tr("ID: %1  Timestamp: %2").arg(data.uwbData.tagID).arg(data.uwbData.timestamp), this);
+        // uwbDataContainerLayout->addWidget(tagLabel);
+
+        // for (const auto& anchor : data.uwbData.anchorList) {
+        //     QLabel* anchorLabel = new QLabel(this);
+        //     anchorLabel->setText(QString("Anchor %1: %2").arg(anchor.anchorID).arg(anchor.distance));
+        //     uwbDataContainerLayout->addWidget(anchorLabel);
+        // }
+        // // }
+
+
+        // ui->uwbDataContainer->setLayout(uwbDataContainerLayout);
+
+        QString tagTimestampText = QString::number(data.uwbData.timestamp);
+        QString anchor101DistanceText = QString::number(data.uwbData.anchorList[0].distance, 'f', 6);
+        QString anchor102DistanceText = QString::number(data.uwbData.anchorList[1].distance, 'f', 6);
+
+        switch (data.uwbData.tagID) {
+            case 1:
+                ui->label_Tag_ID_value_1->setNum(data.uwbData.tagID);
+                ui->label_Tag_timestamp_value_1->setText(tagTimestampText);
+                ui->label_Anchor101_value_1->setText(anchor101DistanceText);
+                ui->label_Anchor102_value_1->setText(anchor102DistanceText);
+                break;
+            case 2:
+                ui->label_Tag_ID_value_2->setNum(data.uwbData.tagID);
+                ui->label_Tag_timestamp_value_2->setText(tagTimestampText);
+                ui->label_Anchor101_value_2->setText(anchor101DistanceText);
+                ui->label_Anchor102_value_2->setText(anchor102DistanceText);
+                break;
+            case 3:
+                ui->label_Tag_ID_value_3->setNum(data.uwbData.tagID);
+                ui->label_Tag_timestamp_value_3->setText(tagTimestampText);
+                ui->label_Anchor101_value_3->setText(anchor101DistanceText);
+                ui->label_Anchor102_value_3->setText(anchor102DistanceText);
+                break;
+            }
+
+        if (!ui->horizontalSlider_Duration->isSliderDown()){
+            double currentTimeInSeconds = data.videoData.id / fps;
+            QTime currentTime = QTime(0, 0).addSecs(static_cast<int>(currentTimeInSeconds));
+            ui->horizontalSlider_Duration->setValue(data.videoData.id);
+            ui->label_Current_Time->setText(currentTime.toString("HH:mm:ss"));
+        }
     }
 
-    setFrame();
-    int currentFrame = int(camera.get(cv::CAP_PROP_POS_FRAMES));
-    ui->horizontalSlider_Duration->setValue(currentFrame);
 }
-
-// void IndoorPositioningSystem::onSliderMoved(int position) {
-//     camera.set(cv::CAP_PROP_POS_FRAMES, position);
-//     ui->label_Current_Time->setText(QString::number(position));
-
-//     // updateFrame();
-
-// }
 
 void IndoorPositioningSystem::on_pushButton_Play_Pause_clicked()
 {
-    if (isPause) {
-        // player->play();
-        frameTimer->start();
-        ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
-    } else {
-        // player->pause();
+    if (frameTimer->isActive()) {
+        isPlayPauseSetToPlay = false;
         frameTimer->stop();
         ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    } else {
+        isPlayPauseSetToPlay = true;
+        frameTimer->start();
+        ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     }
-
-    isPause = !isPause;
-
 }
 
+void IndoorPositioningSystem::checkForDisplay() {
+    UWBVideoData data;
 
+    // qDebug() << "Checking for frame to be displayed...";
+
+    if (videoProcessor->isRunning()) {
+        if (frameQueue.dequeue(data)) {
+            emit frameIsReady(data);
+        }
+    }
+}
 
 void IndoorPositioningSystem::on_actionOpen_Video_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Video"), "", tr("Video Files (*.avi)"));
+    // QString filename = QFileDialog::getOpenFileName(this, tr("Open Video"), "", tr("Video Files (*.avi)"));
+    QString videoFileName, videotTimestampsFileName, UWBDataFileName;
 
-    // video = new QVideoWidget(ui->label_Video);
-    // QVBoxLayout* layout = new QVBoxLayout(ui->label_Video);
-    // layout->addWidget(video);
+    QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", (QFileDialog::ShowDirsOnly, QFileDialog::DontResolveSymlinks));
 
-    // video->setGeometry(5,5,ui->label_Video->width() - 10, ui->label_Video->height() - 10);
+    if (!directory.isEmpty()) {
+        QDir qDirecroty(directory);
 
-    // player->setSource(QUrl::fromLocalFile(fileName));
-    // player->setVideoOutput(video);
+        videoFileName = qDirecroty.filePath("video.avi");
+        UWBDataFileName = qDirecroty.filePath("UWB_timestamps.txt");/*qDirecroty.entryList(QStringList() << "UWB_*.txt", QDir::Files);*/
+        videotTimestampsFileName = qDirecroty.filePath("video_timestamps.txt");/*qDirecroty.entryList(QStringList() << "video_*.txt", QDir::Files);*/
+    } /*else {
+        throw QException('Directory is empty!');
+    }*/
 
-    // connect(player, &QMediaPlayer::errorOccurred, [](QMediaPlayer::Error error) {
-    //     qDebug() << "Player error:" << error;
-    // });
+    videoProcessor->init(videoFileName);
+    emit requestLoadData(UWBDataFileName, videotTimestampsFileName);
 
-    // video->show();
+    videoDuration = videoProcessor->getVideoDuration();
+    fps = videoProcessor->getFPS();
+    totalFrames = videoProcessor->getTotalFrames();
+    // if (totalFrames == -1) throw std::runtime_error("Error opening video file");
 
-    camera.open(filename.toStdString());
-    if (!camera.isOpened()) {
-        throw std::runtime_error("Failed to open video " + filename.toStdString());
-    }
+    isPlayPauseSetToPlay = true;
+    frameTimer->start();
+    videoThread.start();
 
-    totalFrames = int(camera.get(cv::CAP_PROP_FRAME_COUNT));
+    emit requestProcessVideo();
+
     ui->horizontalSlider_Duration->setRange(1, totalFrames);
-    frameRate = camera.get(cv::CAP_PROP_FPS);
-    frameTimer->setInterval(1000 / frameRate);
+    QTime totalTime = QTime(0, 0).addSecs(static_cast<int>(videoDuration));
+    ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
+    ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
 
 }
 
-
-void IndoorPositioningSystem::on_horizontalSlider_Duration_valueChanged(int position)
-{
-    camera.set(cv::CAP_PROP_POS_FRAMES, position);
-    ui->label_Current_Time->setText(QString::number(position));
-
-    if (!camera.read(frame)) {
+void IndoorPositioningSystem::on_horizontalSlider_Duration_valueChanged(int position) {
+    if (ui->horizontalSlider_Duration->isSliderDown()) {
         frameTimer->stop();
-        return;
+        std::cout << "Position: " << position << std::endl;
+        double setTimeInSeconds = position / fps;
+        QTime setTime = QTime(0, 0).addSecs(static_cast<int>(setTimeInSeconds));
+        ui->label_Current_Time->setText(setTime.toString("HH:mm:ss"));
+        latestPosition = position;
     }
+}
 
-    setFrame();
+void IndoorPositioningSystem::seekToFrame() {
+    emit requestSeekToFrame(latestPosition);
+}
+
+void IndoorPositioningSystem::afterSeeking() {
+    if (isPlayPauseSetToPlay) {
+        frameTimer->start();
+    }
+    frameQueue.notify_all();
+    emit requestProcessVideo();
 }
 
 
-// public
+
+void IndoorPositioningSystem::on_horizontalSlider_Duration_sliderReleased()
+{
+    emit requestStopProcessing();
+    frameQueue.notify_all();
+}
+
+
+void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
+{
+    dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get());
+    dataAnalysisWindow->show();
+    QTime startTime = ui->timeEdit_Data_Analysis_Start->time();
+    QTime endTime = ui->timeEdit_Data_Analysis_End->time();
+    long long startFrameIndex = startTime.second() * fps;
+    long long endFrameIndex = endTime.second() * fps;
+    emit requestAnalyseData(startFrameIndex, endFrameIndex);
+}
+
+
+

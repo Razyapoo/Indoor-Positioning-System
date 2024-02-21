@@ -176,4 +176,4 @@ Why we cannot reconstruct 3D from 2D using single camera:
   6. During tests in dormitory and in school I realized that the maximal estimated distance is around 9~9,5 meters. Is it true?
 
   - in the dormitory I had bad light conditions
-  - in school there is a big whole behind at distance 10 m. May be that is the reason?
+  - in school there is a big wall behind at distance 10 m. May be that is the reason?

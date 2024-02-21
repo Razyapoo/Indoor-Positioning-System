@@ -110,7 +110,7 @@ int main(int argc, char **argv)
     case 's': // stream
         // StereoCalibrator::videoAsSource = false;
         StereoCamera::initStereoCamera(std::stoi(options["input_camera_left"]), std::stoi(options["input_camera_right"]));
-        HumanDetector::initHumanDetection(modelConfiguration, modelWeights);
+//        HumanDetector::initHumanDetection(modelConfiguration, modelWeights);
         if (!skipCalibration)
         {
             StereoCalibrator::intrinsicFilePath = options["intrinsic_file_path"];

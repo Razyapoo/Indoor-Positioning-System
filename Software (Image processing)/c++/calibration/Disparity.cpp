@@ -290,40 +290,40 @@ void Disparity::computeDepth(const std::string &intrinsicFilePath, const std::st
         // cv::imshow("Depth map", depthMap);
         cv::setMouseCallback("Disparity map", onMouse, NULL);
 
-        if (detectPeople)
-        {
-            cv::resize(detectionImage, detectionImage, cv::Size(416, 416));
-            detectedPeople = HumanDetector::detectPeople(detectionImage);
-            if (!detectedPeople.first.empty() && !detectedPeople.second.empty())
-            {
-                for (size_t i = 0; i < detectedPeople.second.size(); i++)
-                {
-                    idx = detectedPeople.second[i];
-                    box = detectedPeople.first[idx];
-                    centerX = box.x + (box.width / 2);
-                    centerY = box.y + (box.height / 2);
-                    p = points3D.at<cv::Point3f>(centerY, centerX);
-                    ss.str("");
-                    ss << "Coordinates are (" << p.x << ", " << p.y << ", " << p.z << ")";
-                    cv::putText(detectionImage, ss.str(), cv::Point(centerX, centerY), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
-                    std::cout << ss.str() << "\n";
+        // if (detectPeople)
+        // {
+        //     cv::resize(detectionImage, detectionImage, cv::Size(416, 416));
+        //     detectedPeople = HumanDetector::detectPeople(detectionImage);
+        //     if (!detectedPeople.first.empty() && !detectedPeople.second.empty())
+        //     {
+        //         for (size_t i = 0; i < detectedPeople.second.size(); i++)
+        //         {
+        //             idx = detectedPeople.second[i];
+        //             box = detectedPeople.first[idx];
+        //             centerX = box.x + (box.width / 2);
+        //             centerY = box.y + (box.height / 2);
+        //             p = points3D.at<cv::Point3f>(centerY, centerX);
+        //             ss.str("");
+        //             ss << "Coordinates are (" << p.x << ", " << p.y << ", " << p.z << ")";
+        //             cv::putText(detectionImage, ss.str(), cv::Point(centerX, centerY), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
+        //             std::cout << ss.str() << "\n";
 
-                    cv::rectangle(detectionImage, box, cv::Scalar(0, 0, 255), 2);
-                }
+        //             cv::rectangle(detectionImage, box, cv::Scalar(0, 0, 255), 2);
+        //         }
 
-                cv::imshow("Detection Frame", detectionImage);
-            }
-        }
-        else if (detectAruco)
-        {
-            detectedAruco = HumanDetector::detectAruco(detectionImage);
+        //         cv::imshow("Detection Frame", detectionImage);
+        //     }
+        // }
+        // else if (detectAruco)
+        // {
+        //     detectedAruco = HumanDetector::detectAruco(detectionImage);
 
-            if (detectedAruco.second.size())
-            {
-                cv::aruco::drawDetectedMarkers(detectionImage, detectedAruco.first, detectedAruco.second);
-                cv::imshow("Detection Frame", detectionImage);
-            }
-        }
+        //     if (detectedAruco.second.size())
+        //     {
+        //         cv::aruco::drawDetectedMarkers(detectionImage, detectedAruco.first, detectedAruco.second);
+        //         cv::imshow("Detection Frame", detectionImage);
+        //     }
+        // }
 
         // Visualize 3D point cloud
         // pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);

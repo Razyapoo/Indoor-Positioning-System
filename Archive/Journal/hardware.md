@@ -2820,7 +2820,6 @@ Setup:
 Anchor baseline: 2,5 m
 Camera to anchor baseline: 3m
 Camera to anchors width (perpendicular): 1,25m 
-camera to anchors actual: 2.08^2 + 1,25^2
 camera height: 1,062 m 
 
 
@@ -2846,7 +2845,7 @@ Anchor baseline: 2,5 m
 Camera to anchor baseline: 2,08 m
 Camera to anchors width (perpendicular): 1,25m 
 camera to anchors actual: 2.08^2 + 1,25^2
-camera height: 63,5 m
+camera height: 63,5 cm
 
 Check experiments folder for experiment data.
 
@@ -2887,9 +2886,15 @@ Analysis of the past experiments:
   Anchor 103 - 23 ms
   Anchor 104 - 26 ms
 
-# 17 February, 2024
+# 17 February, 2024 - test in school with Stepan and Peter
 
 Experiments at school
+
+Anchor baseline: 2,5 m
+Camera to anchor baseline: 2,08 m
+Camera to anchors width (perpendicular): 1,25m 
+camera to anchors actual: 2.08^2 + 1,25^2
+camera height: 63,5 cm
 
 Observation: 
   During experimets strange phenomenon was observed. Tag 3 with mac address 70:B8:F6:D8:F6:60 (which was burned) does not receive signal near server (HW server which is placed in the wall). Another Tag 1 with mac address "70:B8:F6:D8:F6:48" (which was also burned), however, works OK. Maybe this is specific to ESP32 board, or it is because the board was burned. 
@@ -2897,3 +2902,20 @@ Observation:
   This also happened when anchor line was far away. When anchors are placed closer (Experiment 7), signal is strong enough to be received and handled (on both tags).
 
 For best anchor - tag communication, anchor baselines must be placed close to each other as shown in Experiment 12 and 13. At such positions, the problem with angle of vision of antenna is resolved. Experiment 13 shown that a bit larger distance between anchor baselines also works and sufficient. Such placement of anchors requires less anchors to be used to cover the whole space.
+
+# 18 February, 2024 - stereo vision test in School
+
+Environment settings:
+
+- Anchor baseline: 2,5 m
+- camera baseline: 19,8 cm
+- Anchor and camera baselines are aligned - same line
+- All video and parameters are saved
+- camera height: 63.5 cm
+- Baseline is origin/start of coordiate system, next visible (in video) papers are at 2 m from baseline.
+
+
+# 19 February, 2024 - Monday, Zoom
+
+1. The goal of diploma is to train the model to estimate the position inside the room.
+2. Then position estimation can be tested with Stereo Vision method.

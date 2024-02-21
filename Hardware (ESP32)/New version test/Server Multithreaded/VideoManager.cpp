@@ -24,8 +24,8 @@ void VideoManager::videoRecorder()
 
     // std::cout << "FPS: " << fps << std::endl;
 
-    cv::VideoWriter leftVideoWriter("video.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
-    // cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+    cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+    cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
     if (!leftVideoWriter.isOpened())
     {
@@ -33,11 +33,11 @@ void VideoManager::videoRecorder()
         return;
     }
 
-    // if (!rightVideoWriter.isOpened())
-    // {
-    //     std::cerr << "Failed to open right video writer" << std::endl;
-    //     return;
-    // }
+    if (!rightVideoWriter.isOpened())
+    {
+        std::cerr << "Failed to open right video writer" << std::endl;
+        return;
+    }
 
     std::ofstream timestampFile("video_timestamps.txt");
     if (!timestampFile.is_open())
@@ -56,14 +56,14 @@ void VideoManager::videoRecorder()
         if (!sharedData.isRecordingPaused())
         {
             leftFrame = StereoCamera::getLeftFrame();
-            // rightFrame = StereoCamera::getRightFrame();
+            rightFrame = StereoCamera::getRightFrame();
             // leftCamera >> leftFrame;
 
             if (leftFrame.empty())
                 break;
 
             leftVideoWriter.write(leftFrame);
-            // rightVideoWriter.write(rightFrame);
+            rightVideoWriter.write(rightFrame);
 
             // currentTime = std::chrono::system_clock::now();
             currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
@@ -76,7 +76,7 @@ void VideoManager::videoRecorder()
         }
 
         cv::imshow("Left frame", leftFrame);
-        // cv::imshow("Right frame", rightFrame);
+        cv::imshow("Right frame", rightFrame);
 
         key = cv::waitKey(50);
         if (key == 'p')

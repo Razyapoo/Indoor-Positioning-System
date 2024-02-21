@@ -2,19 +2,35 @@
 #define INDOORPOSITIONINGSYSTEM_H
 
 #include <QMainWindow>
+#include <QtCore>
+#include <QtGui>
 #include <QtMultimedia/QtMultimedia>
 #include <QtWidgets>
 #include <QtMultimediaWidgets/QtMultimediaWidgets>
-#include <QtCore>
-#include <QtGui>
+#include <QImage>
+#include <QThread>
 #include <QTimer>
-#include <opencv2/opencv.hpp>
+#include <QDir>
+#include <QDebug>
+#include <QLayout>
+#include <QLabel>
+
+
+#include <memory>
+#include <QException>
+
+#include "videoprocessor.h"
+#include "structures.h"
+#include "threadsafequeue.h"
+#include "dataprocessor.h"
+#include "dataanalysiswindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class IndoorPositioningSystem;
 }
 QT_END_NAMESPACE
+
 
 class IndoorPositioningSystem : public QMainWindow
 {
@@ -27,32 +43,65 @@ public:
     void loadVideo(const std::string& filename);
 
 private slots:
-    // void updateDuration(qint64 duration);
-    // void updatePosition(qint64 duration);
-    void updateFrame();
+    void updateDataDisplay(const UWBVideoData& data);
+    void on_horizontalSlider_Duration_valueChanged(int position);
 
     void on_pushButton_Play_Pause_clicked();
     void on_actionOpen_Video_triggered();
-    void on_horizontalSlider_Duration_valueChanged(int position);
 
-    // void onSliderMoved(int position);
+    // void stopCheckingForDisplayThread();
+
+    // void on_horizontalSlider_Duration_sliderPressed();
+    void on_horizontalSlider_Duration_sliderReleased();
+    void afterSeeking();
+    void seekToFrame();
+    // void startProcessVideo();
+
+    void on_pushButton_UWB_Data_Analysis_clicked();
+
+signals:
+    void frameIsReady(const UWBVideoData& data);
+    void requestStopProcessing();
+    void requestContinueProcessing();
+    void requestSeekToFrame(int position);
+    void requestProcessVideo();
+    void requestLoadData(const QString& UWBDataFilename, const QString& videoDataFilename);
+    void finishedVideoProcessing();
+    void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
 
 private:
     Ui::IndoorPositioningSystem *ui;
-    QMediaPlayer *player;
-    QTimer *frameTimer;
-    QVideoWidget *video;
+    std::unique_ptr<DataAnalysisWindow> dataAnalysisWindow;
+    std::unique_ptr<VideoProcessor> videoProcessor;
+    std::unique_ptr<DataProcessor> dataProcessor;
+    std::unique_ptr<QTimer> frameTimer;
+    // VideoProcessor* videoProcessor;
+    // DataProcessor* dataProcessor;
+    // QTimer* frameTimer;
+    QPixmap qPixmap;
+    QLayout* uwbContainerLayout;
 
-    cv::VideoCapture camera;
-    cv::Mat frame;
+
+    int latestPosition;
+    double videoDuration;
+    double fps;
     int totalFrames;
-    double frameRate;
-    qint64 mDuration;
-    bool isPause = false;
+    bool isPlayPauseSetToPlay;
 
-    // void setDuration(qint64 duration);
-    void setFrame();
-    QImage matToQImage(const cv::Mat& mat);
+    QThread videoThread;
+    QThread uwbDataThread;
+    ThreadSafeQueue frameQueue;
+    // std::thread checkForDisplayThread;
+
+
+
+    void checkForDisplay();
+    void setDuration(qint64 duration);
+
+
+    // Data Analysis
+    bool setDataAnalysisTimeStart, setDataAnalysisTimeEnd;
+    long long dataAnalysisTimeStart, dataAnalysisTimeEnd;
 
 };
 #endif // INDOORPOSITIONINGSYSTEM_H
