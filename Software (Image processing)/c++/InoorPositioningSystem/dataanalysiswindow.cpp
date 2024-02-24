@@ -25,26 +25,51 @@ DataAnalysisWindow::~DataAnalysisWindow()
 
 
 void DataAnalysisWindow::showPlot() {
-    // Create and add the first chart
-    QChartView* chartView1 = createChartView();
-    // ui->horizontalLayout->addWidget(chartView1);
+    // // Create and add the first chart
+    // QChartView* chartView1 = createChartView();
+    // // ui->horizontalLayout->addWidget(chartView1);
 
 
-    // Create and add the second chart
-    QChartView* chartView2 = createChartView();
+    // // Create and add the second chart
+    // QChartView* chartView2 = createChartView();
 
 
-    QHBoxLayout* myLayout = new QHBoxLayout;
-    QHBoxLayout* myLayout1 = new QHBoxLayout;
-    myLayout->addWidget(chartView1);
-    myLayout1->addWidget(chartView2);
+    // QHBoxLayout* myLayout = new QHBoxLayout;
+    // QHBoxLayout* myLayout1 = new QHBoxLayout;
+    // myLayout->addWidget(chartView1);
+    // myLayout1->addWidget(chartView2);
 
+    QHBoxLayout* myLayout = new QHBoxLayout(this);
 
-    ui->frame->setLayout(myLayout);
-    ui->frame_2->setLayout(myLayout1);
+    // ui->frame->setLayout(myLayout);
+    // ui->frame_2->setLayout(myLayout1);
+    QComboBox* comboBox = new QComboBox();
+    comboBox->addItem("Option 1");
+    comboBox->addItem("Option 2");
+    comboBox->addItem("Option 3");
+    myLayout->addWidget(comboBox);
 
+    QScatterSeries *series = new QScatterSeries();
+    series->setName("Tag Measurements");
+    series->setMarkerShape(QScatterSeries::MarkerShapeCircle); // Optional
+    series->setMarkerSize(10.0); // Visible size for scatter plot
 
+    // Assuming you have a vector of measurements and corresponding timestamps
+    // Here's dummy data for demonstration
+    series->append(1, 5); // Append point at x=1, y=5
+    series->append(2, 15);
+    series->append(3, 8);
 
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Scatter Plot of Tag Measurements");
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    myLayout->addWidget(chartView);
     // ui->horizontalLayout->addWidget(chartView2);
 
     // chartView1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

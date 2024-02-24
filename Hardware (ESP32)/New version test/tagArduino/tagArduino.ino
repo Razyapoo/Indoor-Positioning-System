@@ -1,25 +1,25 @@
 #include "arduino.h"
 
-uint16_t getMyID()
+void setMyProperties()
 {
   String macAddr = WiFi.macAddress();
 
-  if (macAddr == "D8:BC:38:42:D7:0C") //"70:B8:F6:D8:F6:48"
+  if (macAddr == "D8:BC:38:42:FB:74") //"70:B8:F6:D8:F6:48"
   {
-    return 1;
+    aDelay = 16526;
+    myID = 1;
   }
-  else if (macAddr == "70:B8:F6:D8:F6:24")
+  else if (macAddr == "D8:BC:38:42:FF:5C") //70:B8:F6:D8:F6:24
   {
-    return 2;
+    aDelay = 16532;
+    myID = 2;
   }
-  else if (macAddr == "70:B8:F6:D8:F6:60")
+  else if (macAddr == "D8:BC:38:42:F3:C4") //70:B8:F6:D8:F6:60
   {
-    return 3;
+    aDelay = 16524;
+    myID = 3;
   }
-  else
-  {
-    return 0;
-  }
+  
 }
 
 void checkForReset()
@@ -202,14 +202,15 @@ void initTag()
   DW1000.begin(PIN_IRQ, PIN_RST);
   DW1000.select(PIN_SS);
 
-  myID = getMyID();
+//  /myID = getMyID();
+  setMyProperties();
 
   DW1000.newConfiguration();
   DW1000.setDefaults();
   DW1000.setNetworkId(networkId);
   DW1000.setDeviceAddress(myID);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16536);
+  DW1000.setAntennaDelay(aDelay);
   DW1000.commitConfiguration();
 
   DW1000.attachSentHandler(handleSent);

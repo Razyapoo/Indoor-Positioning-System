@@ -491,6 +491,13 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="minimumTime">
+     <time>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>1</second>
+     </time>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_UWB_Data_Analysis">
     <property name="geometry">

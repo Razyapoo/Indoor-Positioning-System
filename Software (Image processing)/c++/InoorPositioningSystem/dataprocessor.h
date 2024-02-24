@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <span>
+#include <algorithm>
 #include <QImage>
 #include <QObject>
 #include <QDebug>
@@ -35,6 +37,8 @@ private:
     std::vector<long long> timestampsVector;
     std::vector<UWBData> uwbDataVector;
     std::vector<UWBVideoData> uwbVideoDataVector;
+
+    std::vector<int> uniqueTagIDs;
 
 
     UWBData linearSearchUWB(const long long& frameTimestamp);

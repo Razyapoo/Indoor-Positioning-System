@@ -44,15 +44,13 @@ void DataProcessor::loadData(const QString& UWBDataFilename, const QString& vide
 
 void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
 
-    long long frameTimestamp = timestampsVector[frameIndex];
+    long long frameTimestamp = timestampsVector[frameIndex - 1];
 
     // qDebug() << "Searching for UWB data...";
 
-
-
     VideoData videoData(frameIndex, std::move(qImage), frameTimestamp);
 
-    UWBData closestUWB = linearSearchUWB(frameTimestamp);
+    UWBData closestUWB = binarySearchUWB(frameTimestamp);
 
     // it is better to make a copy of UWB Data and then move it to the queue rather than push a pointer to existing array, just in case UWBData array will be deleted.
     UWBVideoData uwbVideoData(std::move(videoData), std::move(closestUWB));
@@ -110,11 +108,27 @@ UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
 }
 
 void DataProcessor::analyseData(const long long startFrameIndex, const long long endFrameIndex) {
+
     long long startFrameTimestamp = timestampsVector[startFrameIndex];
     long long endFrameTimestamp = timestampsVector[endFrameIndex];
 
+    // To not copy subarray of elements, it is possible to use span
+    UWBData startUWB = binarySearchUWB(startFrameTimestamp);
+    UWBData endUWB = binarySearchUWB(endFrameTimestamp);
+
+    std::span<UWBData> uwbDataRangeToAnalyze(uwbDataVector.begin() + startUWB.id - 1, uwbDataVector.begin() + endUWB.id - 1);
     // Assuming data are stored sequentially, it is sufficient to find onlt start and then sequentially read till the end
-    // UWBVideoData uwbVideoDataStart = uwbV
+
+
+    // Extract unique Tag IDs
+    uniqueTagIDs.reserve(uwbDataRangeToAnalyze.size());
+
+    std::transform(uwbDataRangeToAnalyze.begin(), uwbDataRangeToAnalyze.end(), std::back_inserter(uniqueTagIDs), [](const UWBData& obj) { return obj.tagID; });
+    std::sort(uniqueTagIDs.begin(), uniqueTagIDs.end());
+    std::vector<int>::iterator last = std::unique(uniqueTagIDs.begin(), uniqueTagIDs.end());
+
+    uniqueTagIDs.erase(last, uniqueTagIDs.end());
+
 
     emit requestShowPlot();
 }

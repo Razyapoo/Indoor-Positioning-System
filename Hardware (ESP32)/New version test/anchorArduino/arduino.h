@@ -63,7 +63,7 @@ const byte MSG_TYPE_RANGE_REPORT = 6;
 #define RANGE_TIMEOUT               10
 #define RANGEREPORT_TIMEOUT         10
 #define RANGING_INIT_TIMEOUT        10
-#define DEFAULT_REPLY_DELAY_TIME    26000
+//#define DEFAULT_REPLY_DELAY_TIME    14000
 #define DEFAULT_RESET_TIMEOUT       500
 #define HARD_RESET_TIMEOUT          3000
 #define SERVER_TIMEOUT_MS           20
@@ -86,7 +86,7 @@ const uint16_t networkId = 10;
 
 /* */
 uint16_t myID, tagID; // range of anchor ids: 100..199, tag: 0..99
-uint16_t Adelay = 16000;
+uint16_t aDelay;
 uint16_t replyDelay;
 size_t pollCounterForReset = 0;
 unsigned long lastSent, lastActivity, currentTime, lastStateChange, rangingInitDelay, runtimeDelay;

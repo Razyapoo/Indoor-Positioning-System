@@ -252,8 +252,10 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
     dataAnalysisWindow->show();
     QTime startTime = ui->timeEdit_Data_Analysis_Start->time();
     QTime endTime = ui->timeEdit_Data_Analysis_End->time();
-    long long startFrameIndex = startTime.second() * fps;
-    long long endFrameIndex = endTime.second() * fps;
+    long long startFrameIndex = (startTime.hour()*3600 + startTime.minute()*60 + startTime.second()) * fps;
+    long long endFrameIndex = (endTime.hour()*3600 + endTime.minute()*60 + endTime.second()) * fps;
+    startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
+    endFrameIndex = endFrameIndex - 1;
     emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
 

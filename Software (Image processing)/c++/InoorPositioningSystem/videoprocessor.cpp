@@ -1,6 +1,6 @@
 #include "videoprocessor.h"
 
-VideoProcessor::VideoProcessor(ThreadSafeQueue& frameQueue, DataProcessor* dataProcessor): frameQueue(frameQueue), dataProcessor(dataProcessor) {}
+VideoProcessor::VideoProcessor(ThreadSafeQueue& frameQueue, DataProcessor* dataProcessor): frameQueue(frameQueue), dataProcessor(dataProcessor), keepProcessingVideo(true) {}
 VideoProcessor::~VideoProcessor() {}
 void VideoProcessor::init(const QString& filename) {
     this->filename = filename.toStdString();

@@ -1,23 +1,31 @@
 #include "arduino.h"
 
-uint16_t getMyID()
+void setMyProperties()
 {
   String macAddr = WiFi.macAddress();
   if (macAddr == "70:B8:F6:D8:F8:B8")
   {
-    return 101;
+    myID = 101;
+    aDelay = 16392;
+    replyDelay = 17000;
   }
   else if (macAddr == "70:B8:F6:D8:F8:28")
   {
-    return 102;
+    myID = 102;
+    aDelay = 16384;
+    replyDelay = 20000;
   }
   else if (macAddr == "D8:BC:38:42:D7:0C")
   {
-    return 103;
+    myID = 103;
+    aDelay = 16372;
+    replyDelay = 23000;
   }
   else if (macAddr == "70:B8:F6:D8:F6:24") // D8:BC:38:43:13:18
   {
-    return 104;
+    myID = 104;
+    aDelay = 16392;
+    replyDelay = 26000;
   }
 }
 
@@ -101,7 +109,7 @@ void sendMessage(byte messageType)
   {
 
     //replyDelay = (2 * (myID - 100) + 1) * DEFAULT_REPLY_DELAY_TIME;
-    replyDelay = DEFAULT_REPLY_DELAY_TIME;
+//    replyDelay = DEFAULT_REPLY_DELAY_TIME + (myID - 100) * 3 * 1000;
 
     prepareMessageToSend(MSG_TYPE_POLL_ACK, myID, currentTagAddress);
     pollackReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
@@ -140,14 +148,14 @@ void initAnchor()
   DW1000.begin(PIN_IRQ, PIN_RST);
   DW1000.select(PIN_SS);
 
-  myID = getMyID();
+  setMyProperties();
 
   DW1000.newConfiguration();
   DW1000.setDefaults();
   DW1000.setDeviceAddress(myID);
   DW1000.setNetworkId(networkId);
   DW1000.enableMode(DW1000.MODE_LONGDATA_RANGE_ACCURACY);
-  DW1000.setAntennaDelay(16392);
+  DW1000.setAntennaDelay(aDelay);
   DW1000.commitConfiguration();
 
   DW1000.attachSentHandler(handleSent);

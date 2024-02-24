@@ -7,6 +7,7 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QChart>
 #include <QRandomGenerator>
+#include <QComboBox>
 
 #include "dataprocessor.h"
 #include <optional>

@@ -2837,6 +2837,8 @@ Meeting with teacher.
 
 # 10 February, 2024
 
+looks like I forgot to set correct antenna delay for Anchor 102
+
 After changing reset timeout on the anchor side to 200ms. The issue is observed with Tag. Tag starts smelling. // TODO - is that true? Is it because of timeout on the anchor side? Why tag was burned.
 
 Changing hard reset on anchor from 200 back to 500 ms resolved issue.
@@ -2888,7 +2890,7 @@ Analysis of the past experiments:
 
 # 17 February, 2024 - test in school with Stepan and Peter
 
-Experiments at school
+Experiments at school - looks like I forgot to set correct antenna delay for Anchor 102
 
 Anchor baseline: 2,5 m
 Camera to anchor baseline: 2,08 m

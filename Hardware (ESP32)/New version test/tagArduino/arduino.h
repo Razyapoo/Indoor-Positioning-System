@@ -41,8 +41,8 @@ const byte MSG_TYPE_POLL_ACK = 4;
 const byte MSG_TYPE_RANGE = 5;
 const byte MSG_TYPE_RANGE_REPORT = 6;
 
-const size_t MAX_ANCHORS = 3;
-const size_t MIN_ANCHORS = 3;
+const size_t MAX_ANCHORS = 2;
+const size_t MIN_ANCHORS = 2;
 byte discoveredAnchors[MAX_ANCHORS] = {0};
 size_t discoveredAnchorsCount = 0;
 size_t anchorIndex = 0;
@@ -132,6 +132,7 @@ uint8_t mac[6];
 uint16_t num_anchors = 0;
 uint16_t idx_anchor = 0;
 uint16_t counterBlink = 0;
+uint16_t aDelay;
 uint16_t anchors[MAX_ANCHORS];
 uint16_t myID, anchorID; // range of tag ids: 0..99, anchor: 100..199
 uint16_t replyDelay;

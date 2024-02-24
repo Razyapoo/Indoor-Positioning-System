@@ -91,6 +91,14 @@ struct UWBData
         return *this;
     }
 
+    // bool operator<(const UWBData& other) const {
+    //     return id < other.id;
+    // }
+
+    // bool operator==(const UWBData& other) const {
+    //     return id == other.id;
+    // }
+
     // UWBData& operator=(const UWBData& other) {
     //     if (this != &other) {
     //         id = other.id;
