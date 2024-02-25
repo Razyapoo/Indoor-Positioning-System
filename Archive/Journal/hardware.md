@@ -2966,3 +2966,21 @@ Cross walking. Everyone goes as he likes. Crossing lines.
 Experiment 6:
 
 Cross walking. Similar to 5, but going outside the area. Opening doors + sitting.
+
+
+
+//TODO:
+
+1. Complete GUI for analysis
+2. Compute poistion using UWB data only
+3. Tain model for camera using corrected UWB measurements
+4. Complete implementation of other methods
+
+Methods:
+
+1. (Camera only) Focal length
+2. (Camera only) HEometrical method 2. Using floor tiles
+3. (UWB + Camera) Calculate position using UWB measurements as distance from camera 
+  - given camera and anchor permanent, it is possible to compute distance from camera
+
+4. (UWB + Camera) Train model
