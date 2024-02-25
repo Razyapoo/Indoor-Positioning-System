@@ -107,7 +107,7 @@ UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
     return *closestUWB;
 }
 
-void DataProcessor::analyseData(const long long startFrameIndex, const long long endFrameIndex) {
+void DataProcessor::dataAnalysisInit(const long long startFrameIndex, const long long endFrameIndex) {
 
     long long startFrameTimestamp = timestampsVector[startFrameIndex];
     long long endFrameTimestamp = timestampsVector[endFrameIndex];
@@ -116,9 +116,7 @@ void DataProcessor::analyseData(const long long startFrameIndex, const long long
     UWBData startUWB = binarySearchUWB(startFrameTimestamp);
     UWBData endUWB = binarySearchUWB(endFrameTimestamp);
 
-    std::span<UWBData> uwbDataRangeToAnalyze(uwbDataVector.begin() + startUWB.id - 1, uwbDataVector.begin() + endUWB.id - 1);
-    // Assuming data are stored sequentially, it is sufficient to find onlt start and then sequentially read till the end
-
+    uwbDataRangeToAnalyze = std::span<UWBData>(uwbDataVector.begin() + startUWB.id - 1, uwbDataVector.begin() + endUWB.id - 1);
 
     // Extract unique Tag IDs
     uniqueTagIDs.reserve(uwbDataRangeToAnalyze.size());
@@ -129,6 +127,19 @@ void DataProcessor::analyseData(const long long startFrameIndex, const long long
 
     uniqueTagIDs.erase(last, uniqueTagIDs.end());
 
+    emit requestShowAvailableTags(uniqueTagIDs);
+}
 
-    emit requestShowPlot();
+// Selecting Tag data and then choosing necassery Anchor ID when plotting is faster, than everytime creating new array of pair Tag - Anchor
+void DataProcessor::analyzeDataForTag(const int tagID) {
+
+    for (const UWBData& data: uwbDataRangeToAnalyze) {
+        if (data.tagID == tagID) {
+            tagDataToAnalyze.push_back(data);
+        }
+    }
+
+    emit requestShowPlotDistancesVsTimestamps(tagDataToAnalyze);
+
+
 }

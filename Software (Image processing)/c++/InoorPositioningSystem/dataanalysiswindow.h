@@ -11,6 +11,7 @@
 
 #include "dataprocessor.h"
 #include <optional>
+#include <vector>
 #include <QGridLayout>
 
 namespace Ui {
@@ -28,12 +29,19 @@ public:
 
 public slots:
     void showPlot();
+    void showAvailableTags(const std::vector<int>& availableTagIDs);
+    void showPlotDistancesVsTimestamps(const std::vector<UWBData>& uwbData);
+
+signals:
+    void requestAnalyzeDataForTag(const int tagID);
 
 private:
     Ui::DataAnalysisWindow *ui;
     DataProcessor* dataProcessor;
-    QVBoxLayout* layout;
+    QVBoxLayout* mainLayout;
     // std::unique_ptr<QScatterSeries> series;
+    QComboBox* comboBoxAvailableTags;
+    QComboBox* comboBoxAvailableAnchors;
 
     QChartView* createChartView();
 

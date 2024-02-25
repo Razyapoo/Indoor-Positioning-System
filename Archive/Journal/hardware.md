@@ -2921,3 +2921,48 @@ Environment settings:
 
 1. The goal of diploma is to train the model to estimate the position inside the room.
 2. Then position estimation can be tested with Stereo Vision method.
+
+
+# 24 February, 2024 - Experiment for neural network
+
+Setup (New tags):
+
+Anchor baseline: 2,5 m
+Camera to anchor baseline: 2,08 m
+Camera to anchors width (perpendicular): 1,25m 
+camera to anchors actual: 2.08^2 + 1,25^2
+camera height: 1,06 m
+
+Antenna delay setup (New tags):
+  - Tag 1: 16526
+  - Tag 2: 16532
+  - Tag 3: 16524
+  - Anchor 101: 16392 Reply delay: 17000
+  - Anchor 102: 16384 Reply delay: 20000
+  - Anchor 103: 16372 Reply delay: 23000
+  - Anchor 104: 16392 Reply delay: 26000
+
+
+Experiment 1: 
+
+All of us are walking same direction same tempo. Going both directions. Walking along papers.
+
+Experiment 2: 
+
+Same as Experiment 1, but walking near papers
+
+Experiment 3:
+
+Each of us has own Area: Tag 1 - line along left papers and line near to it from internal side; Tag 2 - central line, lines from both sides; Tag 3 - right line and line from internal part near to right line 
+
+Experiment 4: 
+
+Recorded for model train - Tag 3 only
+
+Experiment 5:
+
+Cross walking. Everyone goes as he likes. Crossing lines.
+
+Experiment 6:
+
+Cross walking. Similar to 5, but going outside the area. Opening doors + sitting.

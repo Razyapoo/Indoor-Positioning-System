@@ -24,7 +24,7 @@ void VideoManager::videoRecorder()
 
     // std::cout << "FPS: " << fps << std::endl;
 
-    cv::VideoWriter leftVideoWriter("video_from_left_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
+    cv::VideoWriter leftVideoWriter("video.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
     // cv::VideoWriter rightVideoWriter("video_from_right_camera.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
     if (!leftVideoWriter.isOpened())

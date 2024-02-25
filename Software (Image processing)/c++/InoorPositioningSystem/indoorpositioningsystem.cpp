@@ -37,7 +37,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystem::seekToFrame);
     connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystem::afterSeeking, Qt::DirectConnection);
 
-    connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::analyseData, Qt::DirectConnection);
+    connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::dataAnalysisInit, Qt::DirectConnection);
 
     connect(this, &IndoorPositioningSystem::finishedVideoProcessing, &videoThread, &QThread::quit);
     connect(this, &IndoorPositioningSystem::finishedVideoProcessing, videoProcessor.get(), &VideoProcessor::deleteLater);

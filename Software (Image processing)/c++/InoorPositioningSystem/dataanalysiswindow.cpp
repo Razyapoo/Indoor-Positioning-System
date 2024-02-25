@@ -13,14 +13,73 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor* dataProce
 
 
     setWindowTitle("Multiple Charts");
+    mainLayout = new QVBoxLayout(this);
 
-    connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
+    // connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestAnalyzeDataForTag, dataProcessor, &DataProcessor::analyzeDataForTag, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowPlotDistancesVsTimestamps, this, &DataAnalysisWindow::showPlotDistancesVsTimestamps, Qt::DirectConnection);
+
 
 }
 
 DataAnalysisWindow::~DataAnalysisWindow()
 {
     delete ui;
+}
+
+void DataAnalysisWindow::showAvailableTags(const std::vector<int>& availableTagIDs/*, const std::vector<Anchor>& anchorList*/) {
+    comboBoxAvailableTags = new QComboBox();
+    // comboBoxAvailableAnchors = new QComboBox();
+
+    for (const int &tag : availableTagIDs) {
+        comboBoxAvailableTags->addItem(QString::number(tag));
+    }
+
+    // for (const Anchor& anchor: anchorList) {
+    //     comboBoxAvailableAnchors->addItem(QString::number(anchor.anchorID));
+    // }
+
+    int currentTagID = comboBoxAvailableTags->currentData().toInt();
+
+    QHBoxLayout *tagsAndAnchorsListsLayout = QHBoxLayout(this);
+    tagsAndAnchorsListsLayout->addWidget(comboBoxAvailableTags);
+    // tagsAndAnchorsListsLayout->addWidget(comboBoxAvailableAnchors);
+
+    mainLayout->addLayout(tagsAndAnchorsListsLayout);
+
+    emit requestAnalyzeDataForTag(currentTagID);
+}
+
+
+void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<UWBData> &uwbData) {
+    QScatterSeries *series = new QScatterSeries();
+    series->setName("Tag Measurements");
+    series->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+    series->setMarkerSize(10.0);
+
+    int currentAnchorID = comboBoxAvailableAnchors->currentData().toInt();
+
+    for (const UWBData& data: uwbData) {
+        Anchor currentAnchor;
+        for (const Anchor& anchor: data.anchorList) {
+            if (anchor.anchorID == currentAnchorID) {
+                currentAnchor = anchor;
+            }
+        }
+        series->append(data.timestamp, currentAnchor.distance);
+    }
+
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Scatter Plot of Tag Measurements");
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    mainLayout->addWidget(chartView);
 }
 
 
