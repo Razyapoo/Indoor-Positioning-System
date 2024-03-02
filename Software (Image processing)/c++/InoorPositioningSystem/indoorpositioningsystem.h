@@ -67,14 +67,14 @@ signals:
     void requestProcessVideo();
     void requestLoadData(const QString& UWBDataFilename, const QString& videoDataFilename);
     void finishedVideoProcessing();
-    void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
+    // void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
 
 private:
     Ui::IndoorPositioningSystem *ui;
     std::unique_ptr<DataAnalysisWindow> dataAnalysisWindow;
     std::unique_ptr<VideoProcessor> videoProcessor;
     std::unique_ptr<DataProcessor> dataProcessor;
-    std::unique_ptr<QTimer> frameTimer;
+    QTimer* frameTimer;
     // VideoProcessor* videoProcessor;
     // DataProcessor* dataProcessor;
     // QTimer* frameTimer;

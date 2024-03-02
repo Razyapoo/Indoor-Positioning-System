@@ -6,18 +6,21 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
         const QString baseName = "InoorPositioningSystem_" + QLocale(locale).name();
         if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
+            app.installTranslator(&translator);
             break;
         }
     }
-    IndoorPositioningSystem w;
-    w.show();
-    return a.exec();
+
+    IndoorPositioningSystem mainWindow;
+
+    QObject::connect(&mainWindow, &QMainWindow::destroyed, &app, &QApplication::quit);
+    mainWindow.show();
+    return app.exec();
 }

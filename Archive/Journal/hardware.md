@@ -2984,3 +2984,19 @@ Methods:
   - given camera and anchor permanent, it is possible to compute distance from camera
 
 4. (UWB + Camera) Train model
+
+
+#  2 March, 2023. Experiment in school
+
+Experiment 5: Free walking + chair
+
+Chair is placed 4 meters from anchor baseline
+
+Experiment 8: Anchors are at the height of Peter
+
+Setup:
+  - Anchor baseline (same for 101-102 and 103-104 pairs): 
+  - Anchor height: 180 cm (Peter's height)
+  - Camera height: 110 cm (roura)
+  - Camera is aligned with baseline of anchors 101 and 102:
+  - Tag holding height is same as anchor height: Height of Peter.

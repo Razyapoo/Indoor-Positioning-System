@@ -1,17 +1,24 @@
 #include "videoprocessor.h"
 
 VideoProcessor::VideoProcessor(ThreadSafeQueue& frameQueue, DataProcessor* dataProcessor): frameQueue(frameQueue), dataProcessor(dataProcessor), keepProcessingVideo(true) {}
-VideoProcessor::~VideoProcessor() {}
+VideoProcessor::~VideoProcessor() {
+    keepProcessingVideo = false;
+
+    // if (camera.isOpened()) {
+    //     camera.release();
+    // }
+}
+
 void VideoProcessor::init(const QString& filename) {
     this->filename = filename.toStdString();
-    camera = cv::VideoCapture(this->filename);
+    camera.open(this->filename);
 
     if (!camera.isOpened()) {
         emit finished();
         return;
     }
 
-    totalFrames = int(camera.get(cv::CAP_PROP_FRAME_COUNT));
+    totalFrames = static_cast<int>(camera.get(cv::CAP_PROP_FRAME_COUNT));
     fps = camera.get(cv::CAP_PROP_FPS);
     videoDuration = totalFrames / fps;
 }
@@ -38,6 +45,7 @@ void VideoProcessor::processVideo() {
         //     std::cout << "VideoStream is ok" << std::endl;
         // }
         if (!camera.read(frame)) {
+            emit finished();
             return;
         }
 
@@ -57,7 +65,7 @@ void VideoProcessor::processVideo() {
             memcpy(qImage.bits(), frame.data, static_cast<size_t>(frame.cols * frame.rows * frame.channels()));
         }
 
-        int position = int(camera.get(cv::CAP_PROP_POS_FRAMES));
+        int position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
 
         // qDebug() << "Position: " << position;
 

@@ -1,10 +1,20 @@
 #include "dataprocessor.h"
 
 DataProcessor::DataProcessor(ThreadSafeQueue& frameQueue): frameQueue(frameQueue){}
-DataProcessor::~DataProcessor() {}
+DataProcessor::~DataProcessor() {
+    if (uwbDataFile.is_open()){
+        uwbDataFile.close();
+    }
+
+    if (videoDataFile.is_open()) {
+        videoDataFile.close();
+    }
+}
 
 void DataProcessor::loadData(const QString& UWBDataFilename, const QString& videoDataFilename) {
-    std::ifstream videoDataFile(videoDataFilename.toStdString());
+    videoDataFile = std::ifstream(videoDataFilename.toStdString());
+
+    timestampsVector.erase(timestampsVector.begin(), timestampsVector.end());
 
     int id;
     long long timestamp;
@@ -14,12 +24,12 @@ void DataProcessor::loadData(const QString& UWBDataFilename, const QString& vide
         timestampsVector.push_back(timestamp);
     }
 
-    std::ifstream UWBDataFile(UWBDataFilename.toStdString());
+    uwbDataFile = std::ifstream(UWBDataFilename.toStdString());
     UWBData record;
     std::string line;
     Anchor anchor;
-
-    while (std::getline(UWBDataFile, line, '\n'))
+    uwbDataVector.erase(uwbDataVector.begin(), uwbDataVector.end());
+    while (std::getline(uwbDataFile, line, '\n'))
     {
         std::istringstream ss(line);
 
@@ -39,7 +49,7 @@ void DataProcessor::loadData(const QString& UWBDataFilename, const QString& vide
 
 
     videoDataFile.close();
-    UWBDataFile.close();
+    uwbDataFile.close();
 }
 
 void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
@@ -107,7 +117,7 @@ UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
     return *closestUWB;
 }
 
-void DataProcessor::dataAnalysisInit(const long long startFrameIndex, const long long endFrameIndex) {
+void DataProcessor::setRangeForDataAnalysis(const long long startFrameIndex, const long long endFrameIndex) {
 
     long long startFrameTimestamp = timestampsVector[startFrameIndex];
     long long endFrameTimestamp = timestampsVector[endFrameIndex];
@@ -131,15 +141,107 @@ void DataProcessor::dataAnalysisInit(const long long startFrameIndex, const long
 }
 
 // Selecting Tag data and then choosing necassery Anchor ID when plotting is faster, than everytime creating new array of pair Tag - Anchor
-void DataProcessor::analyzeDataForTag(const int tagID) {
+// Tag is selected every time combobox is changed
+void DataProcessor::collectDataForTag(const QString &tagIDText) {
+    bool converted;
+    int tagID = tagIDText.toInt(&converted);
 
+    tagDataToAnalyze.erase(tagDataToAnalyze.begin(), tagDataToAnalyze.end());
+
+    std::vector<int> availableAnchorsForTag;
     for (const UWBData& data: uwbDataRangeToAnalyze) {
         if (data.tagID == tagID) {
             tagDataToAnalyze.push_back(data);
+            for (const Anchor& anchor : data.anchorList) {
+                if (std::find(availableAnchorsForTag.begin(), availableAnchorsForTag.end(), anchor.anchorID) == availableAnchorsForTag.end()) {
+                    availableAnchorsForTag.push_back(anchor.anchorID);
+                }
+            }
+        }
+    }
+    std::sort(availableAnchorsForTag.begin(), availableAnchorsForTag.end());
+    emit requestShowAvailableAnchors(availableAnchorsForTag);
+}
+
+// /* Data for anchor is collected only when Analyze button is pressed.
+// *  The reason it is not like with tag, because whenever anchor is selected from combobox there is still possibility to choose a tag.
+// *  So, when a new tag is chosen, tagDataToAnalyze is changed, but anchorDataToAnalyze stays old, because combobox for anchor was not changed (and corresponding signal was not triggered).
+// *  Therefore it is better to call signal to collect anchor data when Analyze button is pressed.
+// */
+// void DataProcessor::collectDataForAnchor(const int anchorID) {
+
+//     anchorDataToAnalyze.erase(anchorDataToAnalyze.begin(), anchorDataToAnalyze.end());
+
+//     for (const UWBData& data: tagDataToAnalyze) {
+//         for (const Anchor& anchor: data.anchorList) {
+//             if (anchor.anchorID == anchorID) {
+//                 anchorDataToAnalyze.push_back(anchor);
+//             }
+//         }
+//     }
+// }
+
+void DataProcessor::collectDataForPlotDistancesVsTimestamps(const int anchorID) {
+    timestampsToAnalyze.erase(timestampsToAnalyze.begin(), timestampsToAnalyze.end());
+    distancesToAnalyze.erase(distancesToAnalyze.begin(), distancesToAnalyze.end());
+
+
+    for (const UWBData& data: tagDataToAnalyze) {
+        for (const Anchor& anchor: data.anchorList) {
+            if (anchor.anchorID == anchorID) {
+                timestampsToAnalyze.push_back(data.timestamp);
+                distancesToAnalyze.push_back(anchor.distance);
+            }
         }
     }
 
-    emit requestShowPlotDistancesVsTimestamps(tagDataToAnalyze);
+    emit requestShowPlotDistancesVsTimestamps(timestampsToAnalyze, distancesToAnalyze);
 
+}
 
+void DataProcessor::calculateRollingDeviation(const int windowSize) {
+    rollingDeviations.erase(rollingDeviations.begin(), rollingDeviations.end());
+
+    for (int i = 0; i <= distancesToAnalyze.size() - windowSize; ++i) {
+        // Calculate mean for the window
+        double sum = 0.0;
+        for (int j = i; j < i + windowSize; ++j) {
+            sum += distancesToAnalyze[j];
+        }
+        double mean = sum / windowSize;
+
+        // Calculate sum of squares of differences from the mean
+        double sumSquares = 0.0;
+        for (int j = i; j < i + windowSize; ++j) {
+            sumSquares += (distancesToAnalyze[j] - mean) * (distancesToAnalyze[j] - mean);
+        }
+
+        // Calculate standard deviation for the window
+        double deviation = std::sqrt(sumSquares / windowSize);
+        rollingDeviations.push_back(deviation);
+    }
+
+    emit requestShowPlotRollingDeviations(timestampsToAnalyze, rollingDeviations);
+}
+
+void DataProcessor::splitDataset(const double threshold) {
+    datasetSegmentMeans.erase(datasetSegmentMeans.begin(), datasetSegmentMeans.end());
+
+    // Detect segments where tag was standing and calculate mean for each segment
+    // Assuming segments are continuous
+    double segmentSum = 0.0;
+    int segmentSize = 0;
+    for (int i = 0; i < rollingDeviations.size(); ++i) {
+        if (std::isnan(rollingDeviations[i]) || rollingDeviations[i] <= threshold) {
+            segmentSum += distancesToAnalyze[i];
+            segmentSize += 1;
+        } else if (segmentSum > 0 && segmentSize > 0) {
+            double temp = segmentSum / segmentSize;
+            datasetSegmentMeans.push_back(temp);
+            segmentSum = 0;
+            segmentSize = 0;
+        }
+    }
+
+    emit requestShowDatasetSegments(datasetSegmentMeans);
 }

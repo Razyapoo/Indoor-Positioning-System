@@ -32,6 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dataprocessor.h dataprocessor.cpp
         structures.h
         dataanalysiswindow.h dataanalysiswindow.cpp dataanalysiswindow.ui
+        chartview.h chartview.cpp
 
 
 

@@ -17,8 +17,8 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
     videoProcessor->moveToThread(&videoThread);
 
-    // frameTimer = new QTimer(this);
-    frameTimer = std::make_unique<QTimer>(this);
+    frameTimer = new QTimer(this);
+    // frameTimer = std::make_unique<QTimer>(this);
     frameTimer->setInterval(58);
 
     // checkForDisplayThread = std::thread(&IndoorPositioningSystem::checkForDisplay, this);
@@ -27,7 +27,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     connect(this, &IndoorPositioningSystem::requestLoadData, dataProcessor.get(), &DataProcessor::loadData, Qt::DirectConnection);
     // connect(videoProcessor, &VideoProcessor::latestFrame, this, &IndoorPositioningSystem::updateDataDisplay);
 
-    connect(frameTimer.get(), &QTimer::timeout, this, &IndoorPositioningSystem::checkForDisplay);
+    connect(frameTimer, &QTimer::timeout, this, &IndoorPositioningSystem::checkForDisplay);
     connect(this, &IndoorPositioningSystem::frameIsReady, this, &IndoorPositioningSystem::updateDataDisplay, Qt::QueuedConnection);
     connect(videoProcessor.get(), &VideoProcessor::requestFindUWBMeasurement, dataProcessor.get(), &DataProcessor::findUWBMeasurementAndEnqueue, Qt::DirectConnection);
 
@@ -37,10 +37,16 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystem::seekToFrame);
     connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystem::afterSeeking, Qt::DirectConnection);
 
-    connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::dataAnalysisInit, Qt::DirectConnection);
+    // connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::dataAnalysisInit, Qt::DirectConnection);
 
     connect(this, &IndoorPositioningSystem::finishedVideoProcessing, &videoThread, &QThread::quit);
-    connect(this, &IndoorPositioningSystem::finishedVideoProcessing, videoProcessor.get(), &VideoProcessor::deleteLater);
+    connect(this, &IndoorPositioningSystem::finishedVideoProcessing, videoProcessor.get(), &QObject::deleteLater);
+
+    // connect(this, &QMainWindow::destroyed, &videoThread, &QThread::quit);
+    // connect(this, &QMainWindow::destroyed, videoProcessor.get(), &QObject::deleteLater);
+    // connect(this, &QMainWindow::destroyed, &uwbDataThread, &QThread::quit);
+    // connect(this, &QMainWindow::destroyed, dataProcessor.get(), &QObject::deleteLater);
+
     // connect(videoProcessor, &VideoProcessor::finished, this, &IndoorPositioningSystem::stopCheckingForDisplayThread);
     // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
 
@@ -55,15 +61,13 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
 IndoorPositioningSystem::~IndoorPositioningSystem()
 {
     frameQueue.notify_all();
+    frameQueue.clear();
 
-    // if (checkForDisplayThread.joinable()) {
-    //     checkForDisplayThread.join();
-    // }
-    videoThread.quit();
+    videoThread.terminate();
     videoThread.wait();
+    uwbDataThread.terminate();
+    uwbDataThread.wait();
     delete ui;
-    // delete videoProcessor;
-    // delete dataProcessor;
 }
 
 
@@ -248,15 +252,15 @@ void IndoorPositioningSystem::on_horizontalSlider_Duration_sliderReleased()
 
 void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 {
-    dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get());
+    dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get(), fps);
     dataAnalysisWindow->show();
-    QTime startTime = ui->timeEdit_Data_Analysis_Start->time();
-    QTime endTime = ui->timeEdit_Data_Analysis_End->time();
-    long long startFrameIndex = (startTime.hour()*3600 + startTime.minute()*60 + startTime.second()) * fps;
-    long long endFrameIndex = (endTime.hour()*3600 + endTime.minute()*60 + endTime.second()) * fps;
-    startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
-    endFrameIndex = endFrameIndex - 1;
-    emit requestAnalyseData(startFrameIndex, endFrameIndex);
+    // QTime startTime = ui->timeEdit_Data_Analysis_Start->time();
+    // QTime endTime = ui->timeEdit_Data_Analysis_End->time();
+    // long long startFrameIndex = (startTime.hour()*3600 + startTime.minute()*60 + startTime.second()) * fps;
+    // long long endFrameIndex = (endTime.hour()*3600 + endTime.minute()*60 + endTime.second()) * fps;
+    // startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
+    // endFrameIndex = endFrameIndex - 1;
+    // emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
 
 
