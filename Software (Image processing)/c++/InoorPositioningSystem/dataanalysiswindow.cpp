@@ -290,13 +290,7 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
 
 void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations) {
 
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations) {
-            chartsLayout->removeWidget(chartViewRollingDeviations);
-            delete chartViewRollingDeviations;
-            break;
-        }
-    }
+
 
     QLineSeries *seriesRollingDeviations = new QLineSeries(this);
     chartRollingDeviations = new QChart();
@@ -358,3 +352,16 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
 
     chartsLayout->addLayout(segmentMeansLayout);
 }
+
+// void DataAnalysisWindow::chartCleanup(WidgetType widgetType) {
+
+//     for (int i = 0; i < chartsLayout->count(); ++i) {
+//         if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations) {
+//             chartsLayout->removeWidget(chartViewRollingDeviations);
+//             delete chartViewRollingDeviations;
+//             break;
+//         }
+//     }
+// }
+
+

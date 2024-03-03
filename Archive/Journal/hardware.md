@@ -3000,3 +3000,33 @@ Setup:
   - Camera height: 110 cm (roura)
   - Camera is aligned with baseline of anchors 101 and 102:
   - Tag holding height is same as anchor height: Height of Peter.
+
+  Experiment 9: Anchors and Tags are at the height 180 cm
+
+  Setup: 
+  - Anchor baseline: 125 cm
+  - Anchor 101 to Camera: 65,3 cm
+  - Anchor 102 to Camera: 60,6 cm
+
+  Position of anchors: 101 102
+                       
+                       104 103
+
+  Anchor height: 180 cm
+  Camera height: 180 cm
+  Right wall to Anchor 102: 70,5 cm
+  Left wall to Anchor 101: 228,9 cm
+  Height of Mohamad: 180 cm
+  Height of other guy: 170 cm
+  My height: 176 cm
+  Anchors 101 and 102 are aligned with camera
+
+
+
+
+
+Where to use project: 
+
+1. Use it isnide house (smart home) or other buildings to localize perople and make operating thing only in the area where person is located. For example to turn on the light, hitting etc. This will save money, a LOT!!
+
+2. To localize the robot, for example at wharehouses or restaurents, which will bring staff to customer etc.

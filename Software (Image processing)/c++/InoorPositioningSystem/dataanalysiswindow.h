@@ -29,9 +29,10 @@ class DataAnalysisWindow;
 }
 
 
-enum InputType {
+enum WidgetType {
+    DistancesVsTimestamps,
     RollingDeviation,
-    Threshold
+    datasetSegments
 };
 
 class DataAnalysisWindow : public QDialog
@@ -111,6 +112,7 @@ private:
 
     void rollingDeviationInit();
     void initThresholdSetting();
+    // void chartCleanup();
 
 
 };
