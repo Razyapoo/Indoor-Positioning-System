@@ -2,17 +2,12 @@
 #include "ui_dataanalysiswindow.h"
 #include "dataprocessor.h"
 
-DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor* dataProcessor, double fps)
-    : QDialog(parent)
-    , ui(new Ui::DataAnalysisWindow)
-    , dataProcessor(dataProcessor)
-    , fps(fps)
+DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProcessor, double fps)
+    : QDialog(parent), ui(new Ui::DataAnalysisWindow), dataProcessor(dataProcessor), fps(fps)
 {
     ui->setupUi(this);
 
     // layout = new QVBoxLayout(this);
-
-
 
     setWindowTitle("Multiple Charts");
     mainLayout = new QVBoxLayout(this);
@@ -30,7 +25,6 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor* dataProce
     int topMargin = 10;
     int bottomMargin = 10;
     chartsLayout->setContentsMargins(leftMargin, topMargin, rightMargin, bottomMargin);
-
 
     scrollAreaWidget = new QWidget(this);
     scrollAreaWidget->setLayout(chartsLayout);
@@ -63,12 +57,9 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor* dataProce
     tagsAndAnchorsListsLayout->addWidget(analyzeDataButton);
     mainLayout->addLayout(tagsAndAnchorsListsLayout);
 
-
-
     // connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowAvailableAnchors, this, &DataAnalysisWindow::showAvailableAnchors, Qt::DirectConnection);
-
 
     // connect(this, &DataAnalysisWindow::requestCollectDataForTag, dataProcessor, &DataProcessor::collectDataForTag, Qt::DirectConnection);
     connect(comboBoxAvailableTags, &QComboBox::currentTextChanged, dataProcessor, &DataProcessor::collectDataForTag, Qt::DirectConnection);
@@ -86,8 +77,6 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor* dataProce
 
     connect(this, &DataAnalysisWindow::requestSplitDataset, dataProcessor, &DataProcessor::splitDataset, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowDatasetSegments, this, &DataAnalysisWindow::showDatasetSegments, Qt::DirectConnection);
-
-
 }
 
 DataAnalysisWindow::~DataAnalysisWindow()
@@ -101,58 +90,66 @@ DataAnalysisWindow::~DataAnalysisWindow()
     delete segmentMeansLayout;
 }
 
-void DataAnalysisWindow::initDataAnalysis() {
+void DataAnalysisWindow::initDataAnalysis()
+{
     QTime startTime = startAnalysisTime->time();
     QTime endTime = endAnalysisTime->time();
-    long long startFrameIndex = (startTime.hour()*3600 + startTime.minute()*60 + startTime.second()) * fps;
-    long long endFrameIndex = (endTime.hour()*3600 + endTime.minute()*60 + endTime.second()) * fps;
+    long long startFrameIndex = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
+    long long endFrameIndex = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
     startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
     endFrameIndex = ((endFrameIndex - 1) < 0) ? 0 : endFrameIndex - 1;
     emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
 
 // Data are collected for tag every time it is selected in combox via connect
-void DataAnalysisWindow::showAvailableTags(const std::vector<int>& availableTagIDs) {
+void DataAnalysisWindow::showAvailableTags(const std::vector<int> &availableTagIDs)
+{
 
-    if (comboBoxAvailableTags->count()) {
-        for (int i = 0; i < comboBoxAvailableTags->count(); ++i) {
+    if (comboBoxAvailableTags->count())
+    {
+        for (int i = 0; i < comboBoxAvailableTags->count(); ++i)
+        {
             comboBoxAvailableTags->removeItem(i);
         }
     }
 
-    for (const int &tagID : availableTagIDs) {
+    for (const int &tagID : availableTagIDs)
+    {
         comboBoxAvailableTags->addItem(QString::number(tagID));
     }
-
 }
 
 // This only shows available anchors for the given tag. Does not presellected anchor data before analysis starts. Anchor data is selected at the time "Analyze" button is clicked
-void DataAnalysisWindow::showAvailableAnchors(const std::vector<int>& availableAnchorIDs) {
+void DataAnalysisWindow::showAvailableAnchors(const std::vector<int> &availableAnchorIDs)
+{
 
-    if (comboBoxAvailableAnchors->count()) {
-        for (int i = 0; i < comboBoxAvailableAnchors->count(); ++i) {
+    if (comboBoxAvailableAnchors->count())
+    {
+        for (int i = 0; i < comboBoxAvailableAnchors->count(); ++i)
+        {
             comboBoxAvailableAnchors->removeItem(i);
         }
     }
 
-    for (const int& anchorID: availableAnchorIDs) {
+    for (const int &anchorID : availableAnchorIDs)
+    {
         comboBoxAvailableAnchors->addItem(QString::number(anchorID));
     }
-
 }
 
-void DataAnalysisWindow::plotManager() {
+void DataAnalysisWindow::plotManager()
+{
     int currentAnchorID = comboBoxAvailableAnchors->currentText().toInt();
     // emit requestCollectDataForAnchor(currentAnchorID);
     emit requestCollectDataForPlotDistancesVsTimestamps(currentAnchorID);
     rollingDeviationInit();
 }
 
-void DataAnalysisWindow::rollingDeviationInit() {
+void DataAnalysisWindow::rollingDeviationInit()
+{
 
-<<<<<<< HEAD
-=======
-    for (int i = 0; i < rollingDeviationInputLayout->count(); ++i) {
+    for (int i = 0; i < rollingDeviationInputLayout->count(); ++i)
+    {
         // if (rollingDeviationInputLayout->itemAt(i)->widget() == rollingDeviationInputLabel) {
         //     rollingDeviationInputLayout->removeWidget(rollingDeviationInputLabel);
         //     delete rollingDeviationInputLabel;
@@ -167,15 +164,14 @@ void DataAnalysisWindow::rollingDeviationInit() {
         delete rollingDeviationInputLayout->itemAt(i)->widget();
     }
 
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->layout() == rollingDeviationInputLayout) {
+    for (int i = 0; i < chartsLayout->count(); ++i)
+    {
+        if (chartsLayout->itemAt(i)->layout() == rollingDeviationInputLayout)
+        {
             chartsLayout->removeItem(rollingDeviationInputLayout);
             break;
         }
     }
-
-
->>>>>>> 7a6f012 (update IPS)
 
     rollingDeviationInputLabel = new QLabel(this);
     rollingDeviationInputLabel->setText("Please input window size: ");
@@ -200,56 +196,53 @@ void DataAnalysisWindow::rollingDeviationInit() {
     connect(calculateRollingDeviationButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateRollingDeviationInput, Qt::DirectConnection);
 }
 
-void DataAnalysisWindow::validateRollingDeviationInput() {
+void DataAnalysisWindow::validateRollingDeviationInput()
+{
     QString inputText = rollingDeviationInputText->text();
 
     bool ok;
     int inputValue = inputText.toInt(&ok);
 
-    if (!ok) {
+    if (!ok)
+    {
         QMessageBox::critical(nullptr, "Error", "Invalid input: not an integer");
     }
 
-    if (inputValue < 0 || inputValue > sizeOfProcessingData) {
+    if (inputValue < 0 || inputValue > sizeOfProcessingData)
+    {
         QMessageBox::critical(nullptr, "Error", "Invalid input: window size is out of dataset size");
-    } else {
+    }
+    else
+    {
         emit requestCalculateRollingDeviation(inputValue);
     }
-
 }
 
-
-void DataAnalysisWindow::validateThresholdInput() {
+void DataAnalysisWindow::validateThresholdInput()
+{
 
     QString inputText = thresholdInputText->text();
 
     bool ok;
     double inputValue = inputText.toDouble(&ok);
 
-    if (!ok) {
+    if (!ok)
+    {
         QMessageBox::critical(nullptr, "Error", "Invalid input: not an double");
     }
 
-    if (inputValue < 0 || inputValue > maxStdDeviation) {
+    if (inputValue < 0 || inputValue > maxStdDeviation)
+    {
         QMessageBox::critical(nullptr, "Error", "Invalid input: window size is out of dataset size");
-    } else {
+    }
+    else
+    {
         emit requestSplitDataset(inputValue);
     }
-
 }
 
-void DataAnalysisWindow::initThresholdSetting() {
-
-    for (int i = 0; i < thresholdInputLayout->count(); ++i) {
-        thresholdInputLayout->removeWidget(thresholdInputLayout->itemAt(i)->widget());
-        delete rollingDeviationInputLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->layout() == thresholdInputLayout) {
-            chartsLayout->removeItem(thresholdInputLayout);
-        }
-    }
+void DataAnalysisWindow::initThresholdSetting()
+{
 
     thresholdInputLabel = new QLabel(this);
     thresholdInputLabel->setText("Please input threshold value: ");
@@ -273,47 +266,17 @@ void DataAnalysisWindow::initThresholdSetting() {
     connect(thresholdInputButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateThresholdInput, Qt::DirectConnection);
 }
 
-
-
-void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, const std::vector<double> &distances) {
-    
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->widget() == chartViewDistancesVsTimestamps) {
+void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, const std::vector<double> &distances)
+{
+    for (int i = 0; i < chartsLayout->count(); ++i)
+    {
+        if (chartsLayout->itemAt(i)->widget() == chartViewDistancesVsTimestamps)
+        {
             chartsLayout->removeWidget(chartViewDistancesVsTimestamps);
             delete chartViewDistancesVsTimestamps;
             break;
-        } else if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations) {
-            chartsLayout->removeWidget(chartViewRollingDeviations);
-            delete chartViewRollingDeviations;
-            break;
         }
     }
-    
-    for (int i = 0; i < rollingDeviationInputLayout->count(); ++i) {
-        rollingDeviationInputLayout->removeWidget(rollingDeviationInputLayout->itemAt(i)->widget());
-        delete rollingDeviationInputLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < thresholdInputLayout->count(); ++i) {
-        thresholdInputLayout->removeWidget(thresholdInputLayout->itemAt(i)->widget());
-        delete thresholdInputLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < segmentMeansLayout->count(); ++i) {
-        segmentMeansLayout->removeWidget(segmentMeansLayout->itemAt(i)->widget());
-        delete segmentMeansLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->layout() == rollingDeviationInputLayout) {
-            chartsLayout->removeItem(rollingDeviationInputLayout);
-        } else if (chartsLayout->itemAt(i)->layout() == thresholdInputLayout) {
-            chartsLayout->removeItem(thresholdInputLayout);
-        } else if (chartsLayout->itemAt(i)->layout() == segmentMeansLayout) {
-            chartsLayout->removeItem(segmentMeansLayout);
-        }
-    }
-
     sizeOfProcessingData = timestamps.size();
 
     QLineSeries *seriesDistancesVsTimestamps = new QLineSeries(this);
@@ -325,9 +288,11 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
 
     qreal maxDistance = std::numeric_limits<qreal>::min();
 
-    for (int i = 0; i < timestamps.size(); ++i) {
+    for (int i = 0; i < timestamps.size(); ++i)
+    {
         seriesDistancesVsTimestamps->append(timestamps[i], distances[i]);
-        if (distances[i] > maxDistance) maxDistance = distances[i];
+        if (distances[i] > maxDistance)
+            maxDistance = distances[i];
     }
 
     chartDistancesVsTimestamps->addSeries(seriesDistancesVsTimestamps);
@@ -357,33 +322,8 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
     chartsLayout->addWidget(chartViewDistancesVsTimestamps);
 }
 
-void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations) {
-
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations) {
-            chartsLayout->removeWidget(chartViewRollingDeviations);
-            delete chartViewRollingDeviations;
-            break;
-        }
-    }
-
-    for (int i = 0; i < thresholdInputLayout->count(); ++i) {
-        thresholdInputLayout->removeWidget(thresholdInputLayout->itemAt(i)->widget());
-        delete thresholdInputLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < segmentMeansLayout->count(); ++i) {
-        segmentMeansLayout->removeWidget(segmentMeansLayout->itemAt(i)->widget());
-        delete segmentMeansLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < chartsLayout->count(); ++i) {
-        if (chartsLayout->itemAt(i)->layout() == thresholdInputLayout) {
-            chartsLayout->removeItem(thresholdInputLayout);
-        } else if (chartsLayout->itemAt(i)->layout() == segmentMeansLayout) {
-            chartsLayout->removeItem(segmentMeansLayout);
-        }
-    }
+void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> &timestamps, const std::vector<double> &deviations)
+{
 
     QLineSeries *seriesRollingDeviations = new QLineSeries(this);
     chartRollingDeviations = new QChart();
@@ -394,9 +334,11 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long>&
 
     maxStdDeviation = std::numeric_limits<qreal>::min();
 
-    for (int i = 0; i < deviations.size(); ++i) {
+    for (int i = 0; i < deviations.size(); ++i)
+    {
         seriesRollingDeviations->append(timestamps[i], deviations[i]);
-        if (deviations[i] > maxStdDeviation) maxStdDeviation = deviations[i];
+        if (deviations[i] > maxStdDeviation)
+            maxStdDeviation = deviations[i];
     }
 
     chartRollingDeviations->addSeries(seriesRollingDeviations);
@@ -427,10 +369,12 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long>&
     initThresholdSetting();
 }
 
-void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetSegmentMeans) {
+void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetSegmentMeans)
+{
 
     int segmentNumber = 1;
-    for (const double mean: datasetSegmentMeans) {
+    for (const double mean : datasetSegmentMeans)
+    {
         QLabel *segmentMeanLabel = new QLabel(this);
         segmentMeanLabel->setText(QString("Mean value of segment %1: %2").arg(segmentNumber).arg(mean, 0, 'f', 2));
         segmentMeansLayout->addWidget(segmentMeanLabel);
