@@ -148,31 +148,6 @@ void DataAnalysisWindow::plotManager()
 void DataAnalysisWindow::rollingDeviationInit()
 {
 
-    for (int i = 0; i < rollingDeviationInputLayout->count(); ++i)
-    {
-        // if (rollingDeviationInputLayout->itemAt(i)->widget() == rollingDeviationInputLabel) {
-        //     rollingDeviationInputLayout->removeWidget(rollingDeviationInputLabel);
-        //     delete rollingDeviationInputLabel;
-        // } else if (rollingDeviationInputLayout->itemAt(i)->widget() == rollingDeviationInputText) {
-        //     rollingDeviationInputLayout->removeWidget(rollingDeviationInputText);
-        //     delete rollingDeviationInputText;
-        // } else if (rollingDeviationInputLayout->itemAt(i)->widget() == calculateRollingDeviationButton) {
-        //     rollingDeviationInputLayout->removeWidget(calculateRollingDeviationButton);
-        //     delete calculateRollingDeviationButton;
-        // }
-        rollingDeviationInputLayout->removeWidget(rollingDeviationInputLayout->itemAt(i)->widget());
-        delete rollingDeviationInputLayout->itemAt(i)->widget();
-    }
-
-    for (int i = 0; i < chartsLayout->count(); ++i)
-    {
-        if (chartsLayout->itemAt(i)->layout() == rollingDeviationInputLayout)
-        {
-            chartsLayout->removeItem(rollingDeviationInputLayout);
-            break;
-        }
-    }
-
     rollingDeviationInputLabel = new QLabel(this);
     rollingDeviationInputLabel->setText("Please input window size: ");
     rollingDeviationInputLabel->setFixedWidth(180);
@@ -244,6 +219,20 @@ void DataAnalysisWindow::validateThresholdInput()
 void DataAnalysisWindow::initThresholdSetting()
 {
 
+    for (int i = 0; i < thresholdInputLayout->count(); ++i)
+    {
+        thresholdInputLayout->removeWidget(thresholdInputLayout->itemAt(i)->widget());
+        delete rollingDeviationInputLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < chartsLayout->count(); ++i)
+    {
+        if (chartsLayout->itemAt(i)->layout() == thresholdInputLayout)
+        {
+            chartsLayout->removeItem(thresholdInputLayout);
+        }
+    }
+
     thresholdInputLabel = new QLabel(this);
     thresholdInputLabel->setText("Please input threshold value: ");
     thresholdInputLabel->setFixedWidth(210);
@@ -268,6 +257,7 @@ void DataAnalysisWindow::initThresholdSetting()
 
 void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, const std::vector<double> &distances)
 {
+
     for (int i = 0; i < chartsLayout->count(); ++i)
     {
         if (chartsLayout->itemAt(i)->widget() == chartViewDistancesVsTimestamps)
@@ -276,7 +266,48 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
             delete chartViewDistancesVsTimestamps;
             break;
         }
+        else if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
+        {
+            chartsLayout->removeWidget(chartViewRollingDeviations);
+            delete chartViewRollingDeviations;
+            break;
+        }
     }
+
+    for (int i = 0; i < rollingDeviationInputLayout->count(); ++i)
+    {
+        rollingDeviationInputLayout->removeWidget(rollingDeviationInputLayout->itemAt(i)->widget());
+        delete rollingDeviationInputLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < thresholdInputLayout->count(); ++i)
+    {
+        thresholdInputLayout->removeWidget(thresholdInputLayout->itemAt(i)->widget());
+        delete thresholdInputLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < segmentMeansLayout->count(); ++i)
+    {
+        segmentMeansLayout->removeWidget(segmentMeansLayout->itemAt(i)->widget());
+        delete segmentMeansLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < chartsLayout->count(); ++i)
+    {
+        if (chartsLayout->itemAt(i)->layout() == rollingDeviationInputLayout)
+        {
+            chartsLayout->removeItem(rollingDeviationInputLayout);
+        }
+        else if (chartsLayout->itemAt(i)->layout() == thresholdInputLayout)
+        {
+            chartsLayout->removeItem(thresholdInputLayout);
+        }
+        else if (chartsLayout->itemAt(i)->layout() == segmentMeansLayout)
+        {
+            chartsLayout->removeItem(segmentMeansLayout);
+        }
+    }
+
     sizeOfProcessingData = timestamps.size();
 
     QLineSeries *seriesDistancesVsTimestamps = new QLineSeries(this);
@@ -324,6 +355,40 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
 
 void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> &timestamps, const std::vector<double> &deviations)
 {
+
+    for (int i = 0; i < chartsLayout->count(); ++i)
+    {
+        if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
+        {
+            chartsLayout->removeWidget(chartViewRollingDeviations);
+            delete chartViewRollingDeviations;
+            break;
+        }
+    }
+
+    for (int i = 0; i < thresholdInputLayout->count(); ++i)
+    {
+        thresholdInputLayout->removeWidget(thresholdInputLayout->itemAt(i)->widget());
+        delete thresholdInputLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < segmentMeansLayout->count(); ++i)
+    {
+        segmentMeansLayout->removeWidget(segmentMeansLayout->itemAt(i)->widget());
+        delete segmentMeansLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < chartsLayout->count(); ++i)
+    {
+        if (chartsLayout->itemAt(i)->layout() == thresholdInputLayout)
+        {
+            chartsLayout->removeItem(thresholdInputLayout);
+        }
+        else if (chartsLayout->itemAt(i)->layout() == segmentMeansLayout)
+        {
+            chartsLayout->removeItem(segmentMeansLayout);
+        }
+    }
 
     QLineSeries *seriesRollingDeviations = new QLineSeries(this);
     chartRollingDeviations = new QChart();
