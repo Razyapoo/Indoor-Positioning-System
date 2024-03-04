@@ -108,7 +108,7 @@ private:
     QPushButton *thresholdInputButton;
 
     QVBoxLayout* segmentMeansLayout;
-    std::vector<QLabel> segmentMeansLabels;
+    std::vector<QLabel*> segmentMeansLabels;
 
     void rollingDeviationInit();
     void initThresholdSetting();
