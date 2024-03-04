@@ -4,7 +4,7 @@
 IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::IndoorPositioningSystem)
-    , frameQueue(100)
+    , frameQueue(1000)
 
 {
     ui->setupUi(this);

@@ -150,6 +150,32 @@ void DataAnalysisWindow::plotManager() {
 
 void DataAnalysisWindow::rollingDeviationInit() {
 
+<<<<<<< HEAD
+=======
+    for (int i = 0; i < rollingDeviationInputLayout->count(); ++i) {
+        // if (rollingDeviationInputLayout->itemAt(i)->widget() == rollingDeviationInputLabel) {
+        //     rollingDeviationInputLayout->removeWidget(rollingDeviationInputLabel);
+        //     delete rollingDeviationInputLabel;
+        // } else if (rollingDeviationInputLayout->itemAt(i)->widget() == rollingDeviationInputText) {
+        //     rollingDeviationInputLayout->removeWidget(rollingDeviationInputText);
+        //     delete rollingDeviationInputText;
+        // } else if (rollingDeviationInputLayout->itemAt(i)->widget() == calculateRollingDeviationButton) {
+        //     rollingDeviationInputLayout->removeWidget(calculateRollingDeviationButton);
+        //     delete calculateRollingDeviationButton;
+        // }
+        rollingDeviationInputLayout->removeWidget(rollingDeviationInputLayout->itemAt(i)->widget());
+        delete rollingDeviationInputLayout->itemAt(i)->widget();
+    }
+
+    for (int i = 0; i < chartsLayout->count(); ++i) {
+        if (chartsLayout->itemAt(i)->layout() == rollingDeviationInputLayout) {
+            chartsLayout->removeItem(rollingDeviationInputLayout);
+            break;
+        }
+    }
+
+
+>>>>>>> 7a6f012 (update IPS)
 
     rollingDeviationInputLabel = new QLabel(this);
     rollingDeviationInputLabel->setText("Please input window size: ");

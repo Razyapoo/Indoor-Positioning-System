@@ -67,7 +67,7 @@ void VideoProcessor::processVideo() {
 
         int position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
 
-        // qDebug() << "Position: " << position;
+        qDebug() << "Position: " << position;
 
         // Decided to go with copy constructor and not move. Otherwise there is a need to sync videoProcessor and dataProcessor - may introduce difficulties in communication.
         emit requestFindUWBMeasurement(position, qImage);

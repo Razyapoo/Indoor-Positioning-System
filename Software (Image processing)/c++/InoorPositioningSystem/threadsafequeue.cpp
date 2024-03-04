@@ -3,18 +3,6 @@
 ThreadSafeQueue::ThreadSafeQueue(size_t capacity): capacity(capacity) {}
 ThreadSafeQueue::~ThreadSafeQueue() {}
 
-// void ThreadSafeQueue::enqueue(int position, QImage qImage) {
-//     std::unique_lock<std::mutex> lock(mtx);
-//     // Adding capacity to controll the size of queue in case of hours of video
-//     cvar.wait(lock, [this] {return buffer.size() < capacity; });
-//     UWBVideoData data;
-//     data.videoData.qImage = std::move(qImage);
-//     data.videoData.timestamp = -1;
-//     data.uwbData.id = -1; // allows to check later whether uwb data is set
-//     buffer.push(data);
-//     cvar.notify_all();
-// }
-
 
 void ThreadSafeQueue::enqueue(UWBVideoData&& data) {
     std::unique_lock<std::mutex> lock(mtx);
@@ -49,7 +37,3 @@ void ThreadSafeQueue::clear() {
     }
 }
 
-// void ThreadSafeQueue::search(const int& position, UWBVideoData& uwbVideoData) {
-
-
-// }
