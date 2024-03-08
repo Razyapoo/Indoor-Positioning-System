@@ -17,9 +17,12 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QScrollBar>
+#include <QInputDialog>
 
 #include "dataprocessor.h"
-#include "chartview.h"
+#include "customchartview.h"
+#include "custominputdialog.h"
 #include <optional>
 #include <vector>
 #include <QGridLayout>
@@ -47,13 +50,16 @@ public:
 public slots:
     void showAvailableTags(const std::vector<int>& availableTagIDs);
     void showAvailableAnchors(const std::vector<int>& availableAnchorIDs);
-    void showPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, const std::vector<double>& distances);
+    void showPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
     void initDataAnalysis();
-    void plotManager();
+    void startDataAnalysis();
     void showPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
     void validateRollingDeviationInput();
     void validateThresholdInput();
     void showDatasetSegments(const std::vector<double>& datasetSegmentMeans);
+    void showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
+    // void attachReferenceValues();
+    // void calculateLinearRegression();
 
 signals:
     void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
@@ -62,6 +68,10 @@ signals:
     void requestCollectDataForPlotDistancesVsTimestamps(const int anchorID);
     void requestCalculateRollingDeviation(const int windowSize);
     void requestSplitDataset(const double threshold);
+    void requestCalculatePolynomialRegression(const std::vector<double>& referenceValues);
+    void requestUpdateOriginalWithAdjustedValues();
+    // void requestCalculateLinearRegression();
+
 
 
     // void requestPlotDistancesVsTimestamps();
@@ -84,6 +94,7 @@ private:
 
     QScrollArea *scrollArea;
     QWidget* scrollAreaWidget;
+    // QScrollBar *scrollBar;
 
     QPushButton *analyzeDataButton;
     // QPushButton *addGroundTruthValuesButton;
@@ -91,17 +102,20 @@ private:
     QComboBox* comboBoxAvailableTags;
     QComboBox* comboBoxAvailableAnchors;
 
+    // QLineSeries *seriesDistancesVsTimestamps;
     QChart *chartDistancesVsTimestamps;
-    ChartView *chartViewDistancesVsTimestamps;
+    // QLineSeries *seriesRollingDeviations;
+    CustomChartView *chartViewDistancesVsTimestamps;
+
 
     QChart *chartRollingDeviations;
-    ChartView *chartViewRollingDeviations;
+    CustomChartView *chartViewRollingDeviations;
     QHBoxLayout *rollingDeviationInputLayout;
     QLabel *rollingDeviationInputLabel;
     QLineEdit *rollingDeviationInputText;
     QPushButton *calculateRollingDeviationButton;
 
-    ChartView *chartViewThresholdInput;
+    CustomChartView *chartViewThresholdInput;
     QHBoxLayout *thresholdInputLayout;
     QLabel *thresholdInputLabel;
     QLineEdit *thresholdInputText;
@@ -110,8 +124,16 @@ private:
     QVBoxLayout* segmentMeansLayout;
     std::vector<QLabel*> segmentMeansLabels;
 
+    QPushButton* calculatePolynomialRegressionButton;
+
+    QChart *chartOriginalVsAdjustedDistances;
+    CustomChartView *chartViewOriginalVsAdjustedDistances;
+
+    QPushButton* updateOriginalWithAdjustedValuesButton;
+
     void rollingDeviationInit();
     void initThresholdSetting();
+
     // void chartCleanup();
 
 

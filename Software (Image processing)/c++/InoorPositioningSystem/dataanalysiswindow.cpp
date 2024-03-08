@@ -58,6 +58,13 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
     tagsAndAnchorsListsLayout->addWidget(analyzeDataButton);
     mainLayout->addLayout(tagsAndAnchorsListsLayout);
 
+    chartViewDistancesVsTimestamps = nullptr;
+    chartViewRollingDeviations = nullptr;
+    chartViewThresholdInput = nullptr;
+    chartViewOriginalVsAdjustedDistances = nullptr;
+    calculatePolynomialRegressionButton = nullptr;
+    updateOriginalWithAdjustedValuesButton = nullptr;
+
     // connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowAvailableAnchors, this, &DataAnalysisWindow::showAvailableAnchors, Qt::DirectConnection);
@@ -68,7 +75,7 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
 
     connect(setAnalysisTimeRangeButton, &QPushButton::clicked, this, &DataAnalysisWindow::initDataAnalysis, Qt::DirectConnection);
     connect(this, &DataAnalysisWindow::requestAnalyseData, dataProcessor, &DataProcessor::setRangeForDataAnalysis, Qt::DirectConnection);
-    connect(analyzeDataButton, &QPushButton::clicked, this, &DataAnalysisWindow::plotManager, Qt::DirectConnection);
+    connect(analyzeDataButton, &QPushButton::clicked, this, &DataAnalysisWindow::startDataAnalysis, Qt::DirectConnection);
     // connect(this, &DataAnalysisWindow::requestCollectDataForAnchor, dataProcessor, &DataProcessor::collectDataForAnchor, Qt::DirectConnection);
     connect(this, &DataAnalysisWindow::requestCollectDataForPlotDistancesVsTimestamps, dataProcessor, &DataProcessor::collectDataForPlotDistancesVsTimestamps, Qt::DirectConnection);
     connect(this, &DataAnalysisWindow::requestCalculateRollingDeviation, dataProcessor, &DataProcessor::calculateRollingDeviation, Qt::DirectConnection);
@@ -78,6 +85,12 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
 
     connect(this, &DataAnalysisWindow::requestSplitDataset, dataProcessor, &DataProcessor::splitDataset, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowDatasetSegments, this, &DataAnalysisWindow::showDatasetSegments, Qt::DirectConnection);
+
+    connect(this, &DataAnalysisWindow::requestCalculatePolynomialRegression, dataProcessor, &DataProcessor::calculatePolynomialRegression, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowOriginalVsAdjustedDistances, this, &DataAnalysisWindow::showOriginalVsAdjustedDistances, Qt::DirectConnection);
+
+    connect(this, &DataAnalysisWindow::requestUpdateOriginalWithAdjustedValues, dataProcessor, &DataProcessor::updateOriginalWithAdjustedValues, Qt::DirectConnection);
+
 }
 
 DataAnalysisWindow::~DataAnalysisWindow()
@@ -138,12 +151,10 @@ void DataAnalysisWindow::showAvailableAnchors(const std::vector<int> &availableA
     }
 }
 
-void DataAnalysisWindow::plotManager()
+void DataAnalysisWindow::startDataAnalysis()
 {
     int currentAnchorID = comboBoxAvailableAnchors->currentText().toInt();
-    // emit requestCollectDataForAnchor(currentAnchorID);
     emit requestCollectDataForPlotDistancesVsTimestamps(currentAnchorID);
-    rollingDeviationInit();
 }
 
 void DataAnalysisWindow::rollingDeviationInit()
@@ -254,59 +265,111 @@ void DataAnalysisWindow::initThresholdSetting()
     connect(thresholdInputButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateThresholdInput, Qt::DirectConnection);
 }
 
-void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, const std::vector<double> &distances)
+void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, std::vector<double*> distances)
 {
 
-    for (int i = 0; i < chartsLayout->count(); ++i)
-    {
-        if (chartsLayout->itemAt(i)->widget() == chartViewDistancesVsTimestamps)
-        {
-            chartsLayout->removeWidget(chartViewDistancesVsTimestamps);
-            delete chartViewDistancesVsTimestamps;
-            --i;
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i)->widget() == chartViewDistancesVsTimestamps)
+    //     {
+    //         chartsLayout->removeWidget(chartViewDistancesVsTimestamps);
+    //         delete chartViewDistancesVsTimestamps;
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
+    //     {
+    //         chartsLayout->removeWidget(chartViewRollingDeviations);
+    //         delete chartViewRollingDeviations;
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
+    //     {
+    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
+    //         delete chartViewOriginalVsAdjustedDistances;
+    //         --i;
+    //     }
+    // }
+
+    // while (!segmentMeansLabels.empty()) {
+    //     QLabel* label = segmentMeansLabels.back();
+    //     segmentMeansLayout->removeWidget(label);
+    //     segmentMeansLabels.pop_back();
+    //     delete label;
+    // }
+
+    int i = 0;
+    while (i < chartsLayout->count()) {
+        QLayoutItem* item = chartsLayout->itemAt(i);
+        QWidget* widget = item->widget();
+        QLayout* itemLayout = item->layout();
+
+        if (widget) {
+            if (widget == chartViewDistancesVsTimestamps) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewDistancesVsTimestamps = nullptr;
+                continue;
+            } else if (widget == chartViewRollingDeviations) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewRollingDeviations = nullptr;
+                continue;
+            } else if (widget == chartViewOriginalVsAdjustedDistances) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewOriginalVsAdjustedDistances = nullptr;
+                continue;
+            } else if (widget == calculatePolynomialRegressionButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            } else if (widget == updateOriginalWithAdjustedValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            }
         }
-        else if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
-        {
-            chartsLayout->removeWidget(chartViewRollingDeviations);
-            delete chartViewRollingDeviations;
-            --i;
+
+        if (itemLayout) {
+            if (itemLayout == rollingDeviationInputLayout || itemLayout == thresholdInputLayout || itemLayout == segmentMeansLayout) {
+                chartsLayout->removeItem(item);
+                continue;
+            }
         }
+        ++i;
     }
 
-    while (!segmentMeansLabels.empty()) {
-        QLabel* label = segmentMeansLabels.back();
-        segmentMeansLayout->removeWidget(label);
-        segmentMeansLabels.pop_back();
-        delete label;
+    while (segmentMeansLayout->count()) {
+        QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
+        segmentMeansLayout->removeWidget(widgetToDelete);
+        delete widgetToDelete;
     }
 
-    QLayoutItem *item;
-    while ((item = thresholdInputLayout->takeAt(0)) != nullptr) {
-        delete item;
-    }
-
-    for (int i = 0; i < chartsLayout->count(); ++i)
-    {
-        if (chartsLayout->itemAt(i) == rollingDeviationInputLayout)
-        {
-            chartsLayout->removeItem(rollingDeviationInputLayout);
-            --i;
-        }
-        else if (chartsLayout->itemAt(i) == thresholdInputLayout)
-        {
-            chartsLayout->removeItem(thresholdInputLayout);
-            --i;
-        }
-        else if (chartsLayout->itemAt(i) == segmentMeansLayout)
-        {
-            chartsLayout->removeItem(segmentMeansLayout);
-            --i;
-        }
-    }
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i) == rollingDeviationInputLayout)
+    //     {
+    //         chartsLayout->removeItem(rollingDeviationInputLayout);
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i) == thresholdInputLayout)
+    //     {
+    //         chartsLayout->removeItem(thresholdInputLayout);
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i) == segmentMeansLayout)
+    //     {
+    //         chartsLayout->removeItem(segmentMeansLayout);
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i)->widget() == calculatePolynomialRegressionButton) {
+    //         chartsLayout->removeWidget(calculatePolynomialRegressionButton);
+    //         --i;
+    //     }
+    // }
 
     sizeOfProcessingData = timestamps.size();
 
-    QLineSeries *seriesDistancesVsTimestamps = new QLineSeries(this);
+    // seriesDistancesVsTimestamps->clear();
+    QLineSeries* seriesDistancesVsTimestamps = new QLineSeries(this);
     chartDistancesVsTimestamps = new QChart();
 
     seriesDistancesVsTimestamps->setName("Tag Measurements");
@@ -317,9 +380,9 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
 
     for (int i = 0; i < timestamps.size(); ++i)
     {
-        seriesDistancesVsTimestamps->append(timestamps[i], distances[i]);
-        if (distances[i] > maxDistance)
-            maxDistance = distances[i];
+        seriesDistancesVsTimestamps->append(timestamps[i], *distances[i]);
+        if (*distances[i] > maxDistance)
+            maxDistance = *distances[i];
     }
 
     chartDistancesVsTimestamps->addSeries(seriesDistancesVsTimestamps);
@@ -342,56 +405,97 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
     chartDistancesVsTimestamps->addAxis(axisY, Qt::AlignLeft);
     seriesDistancesVsTimestamps->attachAxis(axisY);
 
-    chartViewDistancesVsTimestamps = new ChartView(chartDistancesVsTimestamps);
+    chartViewDistancesVsTimestamps = new CustomChartView(chartDistancesVsTimestamps);
     chartViewDistancesVsTimestamps->setRenderHint(QPainter::Antialiasing);
     chartViewDistancesVsTimestamps->setMinimumHeight(500);
     chartViewDistancesVsTimestamps->setMinimumWidth(1000);
     chartsLayout->addWidget(chartViewDistancesVsTimestamps);
+
+    connect(seriesDistancesVsTimestamps, &QLineSeries::hovered, chartViewDistancesVsTimestamps, &CustomChartView::showTooltip);
+
+    rollingDeviationInit();
+
 }
 
 void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> &timestamps, const std::vector<double> &deviations)
 {
 
-    for (int i = 0; i < chartsLayout->count(); ++i)
-    {
-        if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
-        {
-            chartsLayout->removeWidget(chartViewRollingDeviations);
-            delete chartViewRollingDeviations;
-            break;
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
+    //     {
+    //         chartsLayout->removeWidget(chartViewRollingDeviations);
+    //         delete chartViewRollingDeviations;
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
+    //     {
+    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
+    //         delete chartViewOriginalVsAdjustedDistances;
+    //         --i;
+    //     }
+    // }
+
+    int i = 0;
+    while (i < chartsLayout->count()) {
+        QLayoutItem* item = chartsLayout->itemAt(i);
+        QWidget* widget = item->widget();
+        QLayout* itemLayout = item->layout();
+
+        if (widget) {
+            if (widget == chartViewRollingDeviations) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewRollingDeviations = nullptr;
+                continue;
+            } else if (widget == chartViewOriginalVsAdjustedDistances) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewOriginalVsAdjustedDistances = nullptr;
+                continue;
+            } else if (widget == calculatePolynomialRegressionButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            } else if (widget == updateOriginalWithAdjustedValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            }
         }
-    }
 
-    while (!segmentMeansLabels.empty()) {
-        QLabel* label = segmentMeansLabels.back();
-        segmentMeansLayout->removeWidget(label);
-        segmentMeansLabels.pop_back();
-        delete label;
-    }
-
-    QLayoutItem *item;
-    while ((item = thresholdInputLayout->takeAt(0)) != nullptr) {
-        delete item;
-    }
-
-    for (int i = 0; i < chartsLayout->count(); ++i)
-    {
-        if (chartsLayout->itemAt(i) == thresholdInputLayout)
-        {
-            chartsLayout->removeItem(thresholdInputLayout);
-            --i;
+        if (itemLayout) {
+            if (itemLayout == thresholdInputLayout || itemLayout == segmentMeansLayout) {
+                chartsLayout->removeItem(item);
+                continue;
+            }
         }
-        else if (chartsLayout->itemAt(i) == segmentMeansLayout)
-        {
-            chartsLayout->removeItem(segmentMeansLayout);
-            --i;
-        }
+        ++i;
     }
 
+    while (segmentMeansLayout->count()) {
+        QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
+        segmentMeansLayout->removeWidget(widgetToDelete);
+        delete widgetToDelete;
+    }
 
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i) == thresholdInputLayout)
+    //     {
+    //         chartsLayout->removeItem(thresholdInputLayout);
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i) == segmentMeansLayout)
+    //     {
+    //         chartsLayout->removeItem(segmentMeansLayout);
+    //         --i;
+    //     }
+    //     else if (chartsLayout->itemAt(i) == calculatePolynomialRegressionButton) {
+    //         chartsLayout->removeWidget(calculatePolynomialRegressionButton);
+    //         --i;
+    //     }
+    // }
 
-
-    QLineSeries *seriesRollingDeviations = new QLineSeries(this);
+    QLineSeries* seriesRollingDeviations = new QLineSeries(this);
     chartRollingDeviations = new QChart();
 
     seriesRollingDeviations->setName("Rolling Standard Deviation");
@@ -426,41 +530,240 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
     chartRollingDeviations->addAxis(axisY, Qt::AlignLeft);
     seriesRollingDeviations->attachAxis(axisY);
 
-    chartViewRollingDeviations = new ChartView(chartRollingDeviations);
+    chartViewRollingDeviations = new CustomChartView(chartRollingDeviations);
     chartViewRollingDeviations->setRenderHint(QPainter::Antialiasing);
     chartViewRollingDeviations->setMinimumHeight(500);
     chartViewRollingDeviations->setMinimumWidth(1000);
     chartsLayout->addWidget(chartViewRollingDeviations);
+
+    connect(seriesRollingDeviations, &QLineSeries::hovered, chartViewRollingDeviations, &CustomChartView::showTooltip);
 
     initThresholdSetting();
 }
 
 void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetSegmentMeans)
 {
-    while (!segmentMeansLabels.empty()) {
-        QLabel* label = segmentMeansLabels.back();
-        segmentMeansLayout->removeWidget(label);
-        segmentMeansLabels.pop_back();
-        delete label;
+    // while (!segmentMeansLabels.empty()) {
+    //     QLabel* label = segmentMeansLabels.back();
+    //     segmentMeansLayout->removeWidget(label);
+    //     segmentMeansLabels.pop_back();
+    //     delete label;
+    // }
+
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
+    //     {
+    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
+    //         delete chartViewOriginalVsAdjustedDistances;
+    //     }
+    // }
+
+    int i = 0;
+    while (i < chartsLayout->count()) {
+        QLayoutItem* item = chartsLayout->itemAt(i);
+        QWidget* widget = item->widget();
+        QLayout* itemLayout = item->layout();
+
+        if (widget) {
+            if (widget == chartViewOriginalVsAdjustedDistances) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewOriginalVsAdjustedDistances = nullptr;
+                continue;
+            } else if (widget == calculatePolynomialRegressionButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            } else if (widget == updateOriginalWithAdjustedValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            }
+        }
+        if (itemLayout) {
+            if (itemLayout == segmentMeansLayout) {
+                chartsLayout->removeItem(item);
+                continue;
+            }
+        }
+        ++i;
     }
 
-    for (int i = 0; i < chartsLayout->count(); ++i)
-    {
-        if (chartsLayout->itemAt(i) == segmentMeansLayout)
-        {
-            chartsLayout->removeItem(segmentMeansLayout);
-        }
+    while (segmentMeansLayout->count()) {
+        QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
+        segmentMeansLayout->removeWidget(widgetToDelete);
+        delete widgetToDelete;
     }
+
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i) == segmentMeansLayout)
+    //     {
+    //         chartsLayout->removeItem(segmentMeansLayout);
+    //         --i;
+    //     } else if (chartsLayout->itemAt(i)->widget() == calculatePolynomialRegressionButton) {
+    //         chartsLayout->removeWidget(calculatePolynomialRegressionButton);
+    //         --i;
+    //     }
+    // }
+    referenceValues.clear();
+    referenceValues.reserve(datasetSegmentMeans.size());
 
     int segmentNumber = 1;
     for (const double mean : datasetSegmentMeans)
     {
-        QLabel *segmentMeanLabel = new QLabel(this);
-        segmentMeanLabel->setText(QString("Mean value of segment %1: %2").arg(segmentNumber).arg(mean, 0, 'f', 2));
-        segmentMeansLayout->addWidget(segmentMeanLabel);
+        // QLabel *segmentMeanLabel = new QLabel(this);
+        // segmentMeanLabel->setText(QString("Mean value of segment %1: %2").arg(segmentNumber).arg(mean, 0, 'f', 2));
+        // segmentMeansLayout->addWidget(segmentMeanLabel);
+        // segmentNumber++;
+        // segmentMeansLabels.push_back(segmentMeanLabel);
+
+        referenceValues.push_back(mean);
+
+        QWidget *meanValueContainer = new QWidget(this);
+        QHBoxLayout *meanValueLayout = new QHBoxLayout(meanValueContainer);
+
+        QLabel *label = new QLabel(QString("Mean value of segment %1: %2").arg(segmentNumber).arg(mean, 0, 'f', 2), this);
+        QPushButton *adjustReferenceValueButton = new QPushButton("Set Reference Value", this);
+        adjustReferenceValueButton->setFixedWidth(200);
+
+        meanValueLayout->addWidget(label);
+        meanValueLayout->addWidget(adjustReferenceValueButton);
+        meanValueLayout->setAlignment(adjustReferenceValueButton, Qt::AlignLeft);
+        meanValueLayout->addStretch(0);
+
+        segmentMeansLayout->addWidget(meanValueContainer);
+
+        connect(adjustReferenceValueButton, &QPushButton::clicked, this, [this, label, mean, segmentNumber, adjustReferenceValueButton]() {
+            bool ok;
+            double referenceValue = QInputDialog::getDouble(this, "Set Reference Value",
+                                                   QString("Enter reference value for segment %1:").arg(segmentNumber),
+                                                   0.0, 0.0, 10000.0, 2, &ok);
+            if (ok) {
+                label->setText(QString("Mean value of segment %1: %2 \t\t\t Reference value is set to:  %3").arg(segmentNumber).arg(mean, 0, 'f', 2).arg(referenceValue));
+                adjustReferenceValueButton->setText("Change Reference Value");
+                referenceValues[segmentNumber - 1] = referenceValue;
+            }
+        });
+
         segmentNumber++;
-        segmentMeansLabels.push_back(segmentMeanLabel);
     }
 
     chartsLayout->addLayout(segmentMeansLayout);
+
+    if (calculatePolynomialRegressionButton == nullptr) {
+        calculatePolynomialRegressionButton = new QPushButton("Calculate Linear Regression", this);
+        connect(calculatePolynomialRegressionButton, &QPushButton::clicked, this, [this]() {
+            emit requestCalculatePolynomialRegression(referenceValues);
+        });
+    }
+
+    calculatePolynomialRegressionButton->setFixedWidth(200);
+    chartsLayout->addWidget(calculatePolynomialRegressionButton);
+    chartsLayout->setAlignment(calculatePolynomialRegressionButton, Qt::AlignLeft);
+
 }
+
+void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted){
+
+    // for (int i = 0; i < chartsLayout->count(); ++i)
+    // {
+    //     if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
+    //     {
+    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
+    //         delete chartViewOriginalVsAdjustedDistances;
+    //     }
+    // }
+
+    int i = 0;
+    while (i < chartsLayout->count()) {
+        QWidget* widget = chartsLayout->itemAt(i)->widget();
+
+        if (widget) {
+            if (widget == chartViewOriginalVsAdjustedDistances) {
+                chartsLayout->removeWidget(widget);
+                delete widget;
+                chartViewOriginalVsAdjustedDistances = nullptr;
+                break;
+            } else if (widget == updateOriginalWithAdjustedValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            }
+        }
+        ++i;
+    }
+
+    QLineSeries* seriesOriginalDistancesVsTimestamps = new QLineSeries(this);
+    QLineSeries* seriesAdjustedDistancesVsTimestamps = new QLineSeries(this);
+
+    chartOriginalVsAdjustedDistances = new QChart();
+
+    seriesOriginalDistancesVsTimestamps->setName("Original Measurements");
+    seriesOriginalDistancesVsTimestamps->setMarkerSize(10.0);
+    seriesOriginalDistancesVsTimestamps->setPen(QPen(Qt::blue));
+
+    seriesAdjustedDistancesVsTimestamps->setName("Adjusted Measurements");
+    seriesAdjustedDistancesVsTimestamps->setMarkerSize(10.0);
+    seriesAdjustedDistancesVsTimestamps->setPen(QPen(Qt::green));
+
+    qreal maxDistance = std::numeric_limits<qreal>::min();
+
+    for (int i = 0; i < timestampsToAnalyze.size(); ++i)
+    {
+        seriesOriginalDistancesVsTimestamps->append(timestampsToAnalyze[i], *distancesToAnalyzeOriginal[i]);
+        if (*distancesToAnalyzeOriginal[i] > maxDistance)
+        {
+            maxDistance = *distancesToAnalyzeOriginal[i];
+        }
+
+        seriesAdjustedDistancesVsTimestamps->append(timestampsToAnalyze[i], distancesToAnalyzeAdjusted[i]);
+        if (distancesToAnalyzeAdjusted[i] > maxDistance)
+        {
+            maxDistance = distancesToAnalyzeAdjusted[i];
+        }
+    }
+
+    chartOriginalVsAdjustedDistances->addSeries(seriesOriginalDistancesVsTimestamps);
+    chartOriginalVsAdjustedDistances->addSeries(seriesAdjustedDistancesVsTimestamps);
+    chartOriginalVsAdjustedDistances->setTitle("Comparison of original and adjusted UWB measurements");
+
+    QLegend *legend = chartOriginalVsAdjustedDistances->legend();
+    legend->setVisible(true);
+    legend->setAlignment(Qt::AlignBottom);
+    legend->setPen(QPen(Qt::black));
+
+    QValueAxis *axisX = new QValueAxis(this);
+    chartOriginalVsAdjustedDistances->addAxis(axisX, Qt::AlignBottom);
+    seriesOriginalDistancesVsTimestamps->attachAxis(axisX);
+    seriesAdjustedDistancesVsTimestamps->attachAxis(axisX);
+
+    QValueAxis *axisY = new QValueAxis(this);
+
+    axisY->setTickInterval(1);
+    axisY->setRange(0, maxDistance + 1);
+    axisY->setTickCount(maxDistance + 2);
+    chartOriginalVsAdjustedDistances->addAxis(axisY, Qt::AlignLeft);
+    seriesOriginalDistancesVsTimestamps->attachAxis(axisY);
+    seriesAdjustedDistancesVsTimestamps->attachAxis(axisY);
+
+    chartViewOriginalVsAdjustedDistances= new CustomChartView(chartOriginalVsAdjustedDistances);
+    chartViewOriginalVsAdjustedDistances->setRenderHint(QPainter::Antialiasing);
+    chartViewOriginalVsAdjustedDistances->setMinimumHeight(500);
+    chartViewOriginalVsAdjustedDistances->setMinimumWidth(1000);
+    chartsLayout->addWidget(chartViewOriginalVsAdjustedDistances);
+
+    connect(seriesOriginalDistancesVsTimestamps, &QLineSeries::hovered, chartViewOriginalVsAdjustedDistances, &CustomChartView::showTooltip);
+    connect(seriesAdjustedDistancesVsTimestamps, &QLineSeries::hovered, chartViewOriginalVsAdjustedDistances, &CustomChartView::showTooltip);
+
+    if (updateOriginalWithAdjustedValuesButton == nullptr) {
+        updateOriginalWithAdjustedValuesButton = new QPushButton("Set adjusted values", this);
+        connect(updateOriginalWithAdjustedValuesButton, &QPushButton::clicked, this, [this]() {
+            emit requestUpdateOriginalWithAdjustedValues();
+        });
+    }
+
+    updateOriginalWithAdjustedValuesButton->setFixedWidth(200);
+    chartsLayout->addWidget(updateOriginalWithAdjustedValuesButton);
+    chartsLayout->setAlignment(updateOriginalWithAdjustedValuesButton, Qt::AlignLeft);
+
+}
+

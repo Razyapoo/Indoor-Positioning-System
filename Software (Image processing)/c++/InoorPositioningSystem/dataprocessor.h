@@ -10,7 +10,8 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
-
+#include <eigen3/Eigen/Dense>
+#include <cmath>
 
 #include "threadsafequeue.h"
 #include "structures.h"
@@ -36,14 +37,17 @@ public slots:
     void collectDataForPlotDistancesVsTimestamps(const int anchorID);
     void calculateRollingDeviation(const int windowSize);
     void splitDataset(const double threshold);
+    void calculatePolynomialRegression(const std::vector<double>& referenceValues);
+    void updateOriginalWithAdjustedValues();
 
 signals:
     void requestShowPlot();
     void requestShowAvailableTags(const std::vector<int>& availableTagIDs);
     void requestShowAvailableAnchors(const std::vector<int>& availableAnchorIDs);
-    void requestShowPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, const std::vector<double>& distances);
+    void requestShowPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
     void requestShowPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
     void requestShowDatasetSegments(const std::vector<double>& datasetSegmentMeans);
+    void requestShowOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
 
 private:
     ThreadSafeQueue& frameQueue;
@@ -55,11 +59,12 @@ private:
     std::vector<double> datasetSegmentMeans;
 
     std::span<UWBData> uwbDataRangeToAnalyze;
-    std::vector<UWBData> tagDataToAnalyze;
+    std::vector<UWBData*> tagDataToAnalyze;
     // std::vector<Anchor> anchorDataToAnalyze;
 
     std::vector<long long> timestampsToAnalyze;
-    std::vector<double> distancesToAnalyze;
+    std::vector<double*> distancesToAnalyzeOriginal;
+    std::vector<double> distancesToAnalyzeAdjusted;
     std::ifstream videoDataFile;
     std::ifstream uwbDataFile;
 

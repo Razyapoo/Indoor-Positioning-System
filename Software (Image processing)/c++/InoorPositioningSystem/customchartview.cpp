@@ -1,6 +1,6 @@
-#include "chartview.h"
+#include "customchartview.h"
 
-ChartView::ChartView(QChart *chart) : QChartView(chart) {
+CustomChartView::CustomChartView(QChart *chart) : QChartView(chart) {
     setRenderHint(QPainter::Antialiasing);
     setDragMode(QGraphicsView::NoDrag);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -9,7 +9,7 @@ ChartView::ChartView(QChart *chart) : QChartView(chart) {
     isPanning = false;
 }
 
-void ChartView::mousePressEvent(QMouseEvent *event) {
+void CustomChartView::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         lastMousePos = event->pos();
         isPanning = true;
@@ -20,7 +20,7 @@ void ChartView::mousePressEvent(QMouseEvent *event) {
     }
 }
 
-void ChartView::mouseMoveEvent(QMouseEvent *event) {
+void CustomChartView::mouseMoveEvent(QMouseEvent *event) {
     if (isPanning) {
         QPoint delta = event->pos() - lastMousePos;
         chart()->scroll(-delta.x(), delta.y());
@@ -31,7 +31,7 @@ void ChartView::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
-void ChartView::mouseReleaseEvent(QMouseEvent *event) {
+void CustomChartView::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton && isPanning) {
         isPanning = false;
         setCursor(Qt::ArrowCursor);
@@ -41,19 +41,30 @@ void ChartView::mouseReleaseEvent(QMouseEvent *event) {
     }
 }
 
-void ChartView::wheelEvent(QWheelEvent *event) {
-    // Calculate the zoom factor based on the wheel delta
-    int numDegrees = event->angleDelta().y() / 8;
-    int numSteps = numDegrees / 15; // 15 degrees per step
+void CustomChartView::wheelEvent(QWheelEvent *event) {
+    if (event->modifiers() & Qt::ControlModifier) {
+        int numDegrees = event->angleDelta().y() / 8;
+        int numSteps = numDegrees / 15;
 
-    // Zoom in or out based on the wheel delta direction
-    if (numSteps > 0) {
-        for (int i = 0; i < numSteps; ++i)
-            chart()->zoomIn();
+        if (numSteps > 0) {
+            for (int i = 0; i < numSteps; ++i)
+                chart()->zoomIn();
+        } else {
+            for (int i = 0; i < -numSteps; ++i)
+                chart()->zoomOut();
+        }
+
+        event->accept();
     } else {
-        for (int i = 0; i < -numSteps; ++i)
-            chart()->zoomOut();
+        QChartView::wheelEvent(event);
     }
+}
 
-    event->accept();
+
+void CustomChartView::showTooltip(const QPointF& point, bool state) {
+    if (state) {
+        QToolTip::showText(QCursor::pos(), QString("(%1, %2)").arg(point.x(), 0, 'f', 1).arg(point.y()));
+    } else {
+        QToolTip::hideText();
+    }
 }

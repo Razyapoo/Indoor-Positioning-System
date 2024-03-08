@@ -1,14 +1,17 @@
-#ifndef CHARTVIEW_H
-#define CHARTVIEW_H
+#ifndef CUSTOMCHARTVIEW_H
+#define CUSTOMCHARTVIEW_H
 
 #include <QtCharts/QChartView>
 #include <QMouseEvent>
 #include <QValueAxis>
+#include <QToolTip>
 
-class ChartView : public QChartView {
+class CustomChartView : public QChartView {
     Q_OBJECT
 public:
-    ChartView(QChart *chart);
+    CustomChartView(QChart *chart);
+
+    void showTooltip(const QPointF& point, bool state);
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -19,5 +22,5 @@ private:
     QPoint lastMousePos;
 };
 
-#endif // CHARTVIEW_H
+#endif // CUSTOMCHARTVIEW_H
 
