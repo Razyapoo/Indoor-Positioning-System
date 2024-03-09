@@ -1,6 +1,6 @@
 #include "dataprocessor.h"
 
-DataProcessor::DataProcessor(ThreadSafeQueue& frameQueue): frameQueue(frameQueue){}
+DataProcessor::DataProcessor(ThreadSafeQueue& frameQueue): frameQueue(frameQueue) {}
 DataProcessor::~DataProcessor() {
     if (uwbDataFile.is_open()){
         uwbDataFile.close();
@@ -64,6 +64,7 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
 
     UWBData closestUWB = binarySearchUWB(frameTimestamp);
 
+
     // it is better to make a copy of UWB Data and then move it to the queue rather than push a pointer to existing array, just in case UWBData array will be deleted.
     UWBVideoData uwbVideoData(std::move(videoData), std::move(closestUWB));
     // uwbVideoDataVector.push_back(uwbVideoData);
@@ -72,6 +73,10 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
     frameQueue.enqueue(std::move(uwbVideoData));
 
 }
+
+// UWBCoordinates calculateUWBLocalization() {
+
+// }
 
 UWBData DataProcessor::linearSearchUWB(const long long &frameTimestamp) {
     UWBData* closestUWB = &uwbDataVector[0];

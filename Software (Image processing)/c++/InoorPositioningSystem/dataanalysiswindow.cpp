@@ -9,7 +9,12 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
 
     // layout = new QVBoxLayout(this);
 
-    setWindowTitle("Multiple Charts");
+    setWindowTitle("Data Analysis");
+    // setAttribute(Qt::WA_DeleteOnClose);
+
+    dataAnalysisWindowThread = new QThread(this);
+    dataAnalysisWindowThread->start();
+
     mainLayout = new QVBoxLayout(this);
 
     scrollArea = new QScrollArea(this);
@@ -64,6 +69,9 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
     chartViewOriginalVsAdjustedDistances = nullptr;
     calculatePolynomialRegressionButton = nullptr;
     updateOriginalWithAdjustedValuesButton = nullptr;
+    chartDistancesVsTimestamps = nullptr;
+    chartRollingDeviations = nullptr;
+
 
     // connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
     connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags, Qt::DirectConnection);
@@ -91,17 +99,40 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
 
     connect(this, &DataAnalysisWindow::requestUpdateOriginalWithAdjustedValues, dataProcessor, &DataProcessor::updateOriginalWithAdjustedValues, Qt::DirectConnection);
 
+
+
 }
 
 DataAnalysisWindow::~DataAnalysisWindow()
 {
     delete ui;
-    delete chartDistancesVsTimestamps;
-    delete chartRollingDeviations;
-    delete tagsAndAnchorsListsLayout;
-    delete rollingDeviationInputLayout;
-    delete thresholdInputLayout;
-    delete segmentMeansLayout;
+    if (chartDistancesVsTimestamps != nullptr) {
+        delete chartDistancesVsTimestamps;
+    }
+    if (chartRollingDeviations != nullptr) {
+        delete chartRollingDeviations;
+    }
+    if (tagsAndAnchorsListsLayout != nullptr) {
+        delete tagsAndAnchorsListsLayout;
+    }
+    if (rollingDeviationInputLayout != nullptr) {
+        delete rollingDeviationInputLayout;
+    }
+    if (thresholdInputLayout != nullptr) {
+        delete thresholdInputLayout;
+    }
+    if (segmentMeansLayout != nullptr) {
+        delete segmentMeansLayout;
+    }
+
+    dataAnalysisWindowThread->quit();
+    dataAnalysisWindowThread->wait();
+}
+
+void DataAnalysisWindow::closeEvent(QCloseEvent *event) {
+    dataAnalysisWindowThread->quit();
+    dataAnalysisWindowThread->wait();
+    QDialog::closeEvent(event);
 }
 
 void DataAnalysisWindow::initDataAnalysis()
@@ -114,6 +145,11 @@ void DataAnalysisWindow::initDataAnalysis()
     endFrameIndex = ((endFrameIndex - 1) < 0) ? 0 : endFrameIndex - 1;
     emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
+
+// void DataAnalysisWindow::onDialogClosed() {
+//     dataAnalysisWindowThread->quit();
+//     dataAnalysisWindowThread->wait();
+// }
 
 // Data are collected for tag every time it is selected in combox via connect
 void DataAnalysisWindow::showAvailableTags(const std::vector<int> &availableTagIDs)
@@ -337,10 +373,12 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
         ++i;
     }
 
-    while (segmentMeansLayout->count()) {
-        QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
-        segmentMeansLayout->removeWidget(widgetToDelete);
-        delete widgetToDelete;
+    if (segmentMeansLayout != nullptr) {
+        while (segmentMeansLayout->count()) {
+            QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
+            segmentMeansLayout->removeWidget(widgetToDelete);
+            delete widgetToDelete;
+        }
     }
 
     // for (int i = 0; i < chartsLayout->count(); ++i)
@@ -471,10 +509,12 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
         ++i;
     }
 
-    while (segmentMeansLayout->count()) {
-        QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
-        segmentMeansLayout->removeWidget(widgetToDelete);
-        delete widgetToDelete;
+    if (segmentMeansLayout != nullptr) {
+        while (segmentMeansLayout->count()) {
+            QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
+            segmentMeansLayout->removeWidget(widgetToDelete);
+            delete widgetToDelete;
+        }
     }
 
     // for (int i = 0; i < chartsLayout->count(); ++i)
@@ -588,10 +628,12 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
         ++i;
     }
 
-    while (segmentMeansLayout->count()) {
-        QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
-        segmentMeansLayout->removeWidget(widgetToDelete);
-        delete widgetToDelete;
+    if (segmentMeansLayout != nullptr) {
+        while (segmentMeansLayout->count()) {
+            QWidget* widgetToDelete = segmentMeansLayout->itemAt(0)->widget();
+            segmentMeansLayout->removeWidget(widgetToDelete);
+            delete widgetToDelete;
+        }
     }
 
     // for (int i = 0; i < chartsLayout->count(); ++i)

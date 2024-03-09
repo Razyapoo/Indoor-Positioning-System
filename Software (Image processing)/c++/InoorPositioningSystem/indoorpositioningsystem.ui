@@ -10,6 +10,18 @@
     <height>971</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>2136</width>
+    <height>16777215</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>IndoorPositioningSystem</string>
   </property>
@@ -446,64 +458,11 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_Data_Analysis_Start">
-    <property name="geometry">
-     <rect>
-      <x>1412</x>
-      <y>691</y>
-      <width>81</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start time:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Dat_Analisys_End">
-    <property name="geometry">
-     <rect>
-      <x>1419</x>
-      <y>724</y>
-      <width>71</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>End time:</string>
-    </property>
-   </widget>
-   <widget class="QTimeEdit" name="timeEdit_Data_Analysis_Start">
-    <property name="geometry">
-     <rect>
-      <x>1492</x>
-      <y>687</y>
-      <width>118</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTimeEdit" name="timeEdit_Data_Analysis_End">
-    <property name="geometry">
-     <rect>
-      <x>1492</x>
-      <y>720</y>
-      <width>118</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="minimumTime">
-     <time>
-      <hour>0</hour>
-      <minute>0</minute>
-      <second>1</second>
-     </time>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_UWB_Data_Analysis">
     <property name="geometry">
      <rect>
-      <x>1560</x>
-      <y>760</y>
+      <x>1400</x>
+      <y>520</y>
       <width>141</width>
       <height>25</height>
      </rect>
@@ -557,33 +516,17 @@
      <string>UWB Data Stream:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Video_Data_Analysis">
+   <widget class="QPushButton" name="pushButton_UWB_Localization">
     <property name="geometry">
      <rect>
-      <x>1410</x>
-      <y>760</y>
+      <x>1550</x>
+      <y>520</y>
       <width>141</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>Analyse Video Data</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Video_Stream_3">
-    <property name="geometry">
-     <rect>
-      <x>1380</x>
-      <y>650</y>
-      <width>151</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 700 13pt &quot;Ubuntu&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Analyse Data:</string>
+     <string>UWB Localization</string>
     </property>
    </widget>
   </widget>

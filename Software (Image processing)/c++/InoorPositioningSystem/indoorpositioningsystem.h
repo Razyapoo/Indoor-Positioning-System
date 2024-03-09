@@ -24,6 +24,7 @@
 #include "threadsafequeue.h"
 #include "dataprocessor.h"
 #include "dataanalysiswindow.h"
+#include "uwblocalizationwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -59,6 +60,8 @@ private slots:
 
     void on_pushButton_UWB_Data_Analysis_clicked();
 
+    void on_pushButton_UWB_Localization_clicked();
+
 signals:
     void frameIsReady(const UWBVideoData& data);
     void requestStopProcessing();
@@ -72,6 +75,7 @@ signals:
 private:
     Ui::IndoorPositioningSystem *ui;
     std::unique_ptr<DataAnalysisWindow> dataAnalysisWindow;
+    std::unique_ptr<UWBLocalizationWindow> uwbLocalizationWindow;
     std::unique_ptr<VideoProcessor> videoProcessor;
     std::unique_ptr<DataProcessor> dataProcessor;
     QTimer* frameTimer;
@@ -87,9 +91,11 @@ private:
     double fps;
     int totalFrames;
     bool isPlayPauseSetToPlay;
+    std::atomic<bool> toShowUWBLocalization;
 
     QThread videoThread;
     QThread uwbDataThread;
+    QThread dataAnalysisWindowThread;
     ThreadSafeQueue frameQueue;
     // std::thread checkForDisplayThread;
 

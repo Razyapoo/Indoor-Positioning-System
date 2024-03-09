@@ -51,6 +51,8 @@ signals:
 
 private:
     ThreadSafeQueue& frameQueue;
+    // std::atomic<bool>& toCalculateUWBLocalization;
+
     std::vector<long long> timestampsVector;
     std::vector<UWBData> uwbDataVector;
     std::vector<UWBVideoData> uwbVideoDataVector;

@@ -47,15 +47,18 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     // connect(this, &QMainWindow::destroyed, &uwbDataThread, &QThread::quit);
     // connect(this, &QMainWindow::destroyed, dataProcessor.get(), &QObject::deleteLater);
 
+    // connect(dataAnalysisWindow.get(), &QDialog::finished, &dataAnalysisWindowThread, &QThread::quit);
+    connect(uwbLocalizationWindow.get(), &QDialog::finished, uwbLocalizationWindow.get(), &QObject::deleteLater);
+
     // connect(videoProcessor, &VideoProcessor::finished, this, &IndoorPositioningSystem::stopCheckingForDisplayThread);
     // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
 
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    ui->timeEdit_Data_Analysis_Start->setDisplayFormat("HH:mm:ss");
-    ui->timeEdit_Data_Analysis_End->setDisplayFormat("HH:mm:ss");
+    // ui->timeEdit_Data_Analysis_Start->setDisplayFormat("HH:mm:ss");
+    // ui->timeEdit_Data_Analysis_End->setDisplayFormat("HH:mm:ss");
 
-    // ClickEventFilter *filter = new ClickEventFilter(this);
-    ui->timeEdit_Data_Analysis_Start->installEventFilter(this);
+    // // ClickEventFilter *filter = new ClickEventFilter(this);
+    // ui->timeEdit_Data_Analysis_Start->installEventFilter(this);
 }
 
 IndoorPositioningSystem::~IndoorPositioningSystem()
@@ -67,6 +70,8 @@ IndoorPositioningSystem::~IndoorPositioningSystem()
     videoThread.wait();
     uwbDataThread.terminate();
     uwbDataThread.wait();
+    // dataAnalysisWindowThread.terminate();
+    // dataAnalysisWindowThread.wait();
     delete ui;
 }
 
@@ -124,7 +129,8 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
         QString anchor101DistanceText = QString::number(data.uwbData.anchorList[0].distance, 'f', 6);
         QString anchor102DistanceText = QString::number(data.uwbData.anchorList[1].distance, 'f', 6);
 
-        switch (data.uwbData.tagID) {
+        switch (data.uwbData.tagID)
+        {
             case 1:
                 ui->label_Tag_ID_value_1->setNum(data.uwbData.tagID);
                 ui->label_Tag_timestamp_value_1->setText(tagTimestampText);
@@ -143,7 +149,11 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
                 ui->label_Anchor101_value_3->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_3->setText(anchor102DistanceText);
                 break;
-            }
+        }
+
+        // if (toShowUWBLocalization) {
+        //     emit requestVisualizeUWBLocalization(const UWBVideoData& data);
+        // }
 
         if (!ui->horizontalSlider_Duration->isSliderDown()){
             double currentTimeInSeconds = data.videoData.id / fps;
@@ -206,6 +216,7 @@ void IndoorPositioningSystem::on_actionOpen_Video_triggered()
     // if (totalFrames == -1) throw std::runtime_error("Error opening video file");
 
     isPlayPauseSetToPlay = true;
+    toShowUWBLocalization = false;
     frameTimer->start();
     videoThread.start();
 
@@ -253,7 +264,14 @@ void IndoorPositioningSystem::on_horizontalSlider_Duration_sliderReleased()
 void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 {
     dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get(), fps);
+    // connect(dataAnalysisWindow.get(), &QDialog::finished, dataAnalysisWindow.get(), &DataAnalysisWindow::onDialogClosed);
+    // dataAnalysisWindow->moveToThread(&(dataAnalysisWindow->dataAnalysisWindowThread));
+    // dataAnalysisWindow->dataAnalysisWindowThread.start();
+
     dataAnalysisWindow->show();
+    // dataAnalysisWindow->moveToThread(&dataAnalysisWindowThread);
+    // dataAnalysisWindowThread.start();
+
     // QTime startTime = ui->timeEdit_Data_Analysis_Start->time();
     // QTime endTime = ui->timeEdit_Data_Analysis_End->time();
     // long long startFrameIndex = (startTime.hour()*3600 + startTime.minute()*60 + startTime.second()) * fps;
@@ -264,4 +282,12 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 }
 
 
+
+
+void IndoorPositioningSystem::on_pushButton_UWB_Localization_clicked()
+{
+    uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, dataProcessor.get());
+    uwbLocalizationWindow->show();
+
+}
 

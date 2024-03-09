@@ -19,6 +19,7 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QInputDialog>
+#include <QThread>
 
 #include "dataprocessor.h"
 #include "customchartview.h"
@@ -46,8 +47,9 @@ public:
     explicit DataAnalysisWindow(QWidget *parent = nullptr, DataProcessor* dataProcessor = nullptr, double fps = 0.0);
     ~DataAnalysisWindow();
 
-
 public slots:
+    // void onDialogClosed();
+
     void showAvailableTags(const std::vector<int>& availableTagIDs);
     void showAvailableAnchors(const std::vector<int>& availableAnchorIDs);
     void showPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
@@ -70,6 +72,7 @@ signals:
     void requestSplitDataset(const double threshold);
     void requestCalculatePolynomialRegression(const std::vector<double>& referenceValues);
     void requestUpdateOriginalWithAdjustedValues();
+
     // void requestCalculateLinearRegression();
 
 
@@ -79,6 +82,8 @@ signals:
 private:
     Ui::DataAnalysisWindow *ui;
     DataProcessor* dataProcessor;
+    QThread* dataAnalysisWindowThread;
+
     double fps;
     int sizeOfProcessingData;
     int rollingDeviationWindowSize;
@@ -136,7 +141,8 @@ private:
 
     // void chartCleanup();
 
-
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // DATAANALYSISWINDOW_H

@@ -62,23 +62,47 @@ struct VideoData
 
 };
 
+struct UWBCoordinates {
+    int x = -1, y = -1;
+
+    UWBCoordinates(int x = -1, int y = -1) : x(x), y(y) {}
+
+    UWBCoordinates(const UWBCoordinates& other)
+        : x(other.x), y(other.y) {}
+
+    UWBCoordinates(UWBCoordinates&& other) noexcept
+        : x(std::exchange(other.x, -1)), y(std::exchange(other.y, -1)) {}
+
+    UWBCoordinates& operator=(UWBCoordinates&& other) noexcept {
+        if (this != &other) {
+            x = std::exchange(other.x, -1);
+            y = std::exchange(other.y, -1);
+
+        }
+        return *this;
+    }
+
+    ~UWBCoordinates() {}
+};
+
 struct UWBData
 {
     int id;
     long long timestamp;
     int tagID;
     std::vector<Anchor> anchorList;
+    UWBCoordinates coordinates;
 
-    UWBData() : id(-1), timestamp(0), tagID(-1) {}
+    UWBData() : id(-1), timestamp(0), tagID(-1), coordinates() {}
 
-    UWBData(int id, long long timestamp, int tagID, const std::vector<Anchor>& anchors)
-        : id(id), timestamp(timestamp), tagID(tagID), anchorList(anchors) {}
+    UWBData(int id, long long timestamp, int tagID, const std::vector<Anchor>& anchors, const UWBCoordinates& coordinates = UWBCoordinates())
+        : id(id), timestamp(timestamp), tagID(tagID), anchorList(anchors), coordinates(coordinates) {}
 
     UWBData(const UWBData& other)
-        : id(other.id), timestamp(other.timestamp), tagID(other.tagID), anchorList(other.anchorList) {}
+        : id(other.id), timestamp(other.timestamp), tagID(other.tagID), anchorList(other.anchorList), coordinates(other.coordinates) {}
 
     UWBData(UWBData&& other) noexcept
-        : id(std::exchange(other.id, -1)), timestamp(std::exchange(other.timestamp, 0)), tagID(std::exchange(other.tagID, -1)), anchorList(std::move(other.anchorList)) {}
+        : id(std::exchange(other.id, -1)), timestamp(std::exchange(other.timestamp, 0)), tagID(std::exchange(other.tagID, -1)), anchorList(std::move(other.anchorList)), coordinates(std::move(other.coordinates)) {}
 
     UWBData& operator=(UWBData&& other) noexcept {
         if (this != &other) {
@@ -86,7 +110,7 @@ struct UWBData
             timestamp = std::exchange(other.timestamp, 0);
             tagID = std::exchange(other.tagID, -1);
             anchorList = std::move(other.anchorList);
-
+            coordinates = std::move(other.coordinates);
         }
         return *this;
     }
