@@ -31,6 +31,7 @@ void DataProcessor::loadData(const QString& UWBDataFilename, const QString& vide
     Anchor anchor;
     // uwbDataVector.erase(uwbDataVector.begin(), uwbDataVector.end());
     uwbDataVector.clear();
+    uwbDataPerTag.clear();
     while (std::getline(uwbDataFile, line, '\n'))
     {
         std::istringstream ss(line);
@@ -44,8 +45,12 @@ void DataProcessor::loadData(const QString& UWBDataFilename, const QString& vide
         }
 
         uwbDataVector.push_back(record);
+
     }
 
+    for (UWBData& data: uwbDataVector) {
+        uwbDataPerTag[data.tagID].push_back(&data); //Add Pointer to uwbDataVector
+    }
 
     // qDebug() << "Data are loaded";
 
@@ -62,11 +67,15 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
 
     VideoData videoData(frameIndex, std::move(qImage), frameTimestamp);
 
-    UWBData closestUWB = binarySearchUWB(frameTimestamp);
+    std::vector<UWBData> closestForEachTag;
+    for (auto& data: uwbDataPerTag) {
+        UWBData closestUWB = binarySearchUWB(frameTimestamp, data.second);
+        closestForEachTag.push_back(closestUWB);
+    }
 
 
     // it is better to make a copy of UWB Data and then move it to the queue rather than push a pointer to existing array, just in case UWBData array will be deleted.
-    UWBVideoData uwbVideoData(std::move(videoData), std::move(closestUWB));
+    UWBVideoData uwbVideoData(std::move(videoData), std::move(closestForEachTag));
     // uwbVideoDataVector.push_back(uwbVideoData);
 
 
@@ -74,9 +83,29 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
 
 }
 
-// UWBCoordinates calculateUWBLocalization() {
+void DataProcessor::calculateUWBCoordinates(UWBData& data) {
 
-// }
+    // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0), Anchor 101 has coordinates (2.5, 0)
+    UWBCoordinates anchor101Coordinates(2.5, 0);
+    UWBCoordinates anchor102Coordinates(0, 0);
+
+    double anchorBaseline = anchor101Coordinates.x - anchor102Coordinates.x;
+
+    double distanceAnchor101, distanceAnchor102;
+    for (const Anchor& anchor: data.anchorList) {
+        if (anchor.anchorID == 101) {
+            distanceAnchor101 = anchor.distance;
+        } else if (anchor.anchorID == 102) {
+            distanceAnchor102 = anchor.distance;
+        }
+    }
+
+    double cos = (std::pow(distanceAnchor102, 2) - std::pow(distanceAnchor101, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline * distanceAnchor102);
+    double sin = std::sqrt(1 - std::pow(cos, 2));
+
+    data.coordinates.x = distanceAnchor101 * cos;
+    data.coordinates.y = distanceAnchor101 * sin;
+}
 
 UWBData DataProcessor::linearSearchUWB(const long long &frameTimestamp) {
     UWBData* closestUWB = &uwbDataVector[0];
@@ -95,6 +124,34 @@ UWBData DataProcessor::linearSearchUWB(const long long &frameTimestamp) {
     return *closestUWB;
 }
 
+
+UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp, const std::vector<UWBData*>& uwbDataVectorPtr) {
+    int left = 0;
+    int right = uwbDataVectorPtr.size() - 1;
+
+    UWBData* closestUWB = uwbDataVectorPtr[0];
+    long long minDif = std::abs(frameTimestamp - closestUWB->timestamp);
+    int mid;
+    long long dif;
+
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        dif = std::abs(frameTimestamp - uwbDataVectorPtr[mid]->timestamp);
+
+        if (dif < minDif) {
+            minDif = dif;
+            closestUWB = uwbDataVectorPtr[mid];
+        }
+
+        if (frameTimestamp > uwbDataVectorPtr[mid]->timestamp) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return *closestUWB;
+}
 
 UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
     int left = 0;

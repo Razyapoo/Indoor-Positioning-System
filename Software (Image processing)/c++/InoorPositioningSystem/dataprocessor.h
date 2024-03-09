@@ -39,6 +39,7 @@ public slots:
     void splitDataset(const double threshold);
     void calculatePolynomialRegression(const std::vector<double>& referenceValues);
     void updateOriginalWithAdjustedValues();
+    void calculateUWBCoordinates(UWBData& data);
 
 signals:
     void requestShowPlot();
@@ -55,6 +56,7 @@ private:
 
     std::vector<long long> timestampsVector;
     std::vector<UWBData> uwbDataVector;
+    std::unordered_map<int, std::vector<UWBData*>> uwbDataPerTag;
     std::vector<UWBVideoData> uwbVideoDataVector;
     std::vector<int> uniqueTagIDs;
     std::vector<double> rollingDeviations;
@@ -73,6 +75,8 @@ private:
 
     UWBData linearSearchUWB(const long long& frameTimestamp);
     UWBData binarySearchUWB(const long long& frameTimestamp);
+    UWBData binarySearchUWB(const long long& frameTimestamp, const std::vector<UWBData*>& uwbDataVector);
+
 };
 
 #endif // DATAPROCESSOR_H

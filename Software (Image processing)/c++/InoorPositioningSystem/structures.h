@@ -26,6 +26,15 @@ struct Anchor
         return *this;
     }
 
+    Anchor& operator=(const Anchor& other) {
+        if (this != &other) {
+            anchorID = other.anchorID;
+            distance = other.distance;
+
+        }
+        return *this;
+    }
+
 
     ~Anchor() {}
 };
@@ -63,9 +72,9 @@ struct VideoData
 };
 
 struct UWBCoordinates {
-    int x = -1, y = -1;
+    double x = -1, y = -1;
 
-    UWBCoordinates(int x = -1, int y = -1) : x(x), y(y) {}
+    UWBCoordinates(double x = -1, double y = -1) : x(x), y(y) {}
 
     UWBCoordinates(const UWBCoordinates& other)
         : x(other.x), y(other.y) {}
@@ -77,6 +86,15 @@ struct UWBCoordinates {
         if (this != &other) {
             x = std::exchange(other.x, -1);
             y = std::exchange(other.y, -1);
+
+        }
+        return *this;
+    }
+
+    UWBCoordinates& operator=(const UWBCoordinates& other) {
+        if (this != &other) {
+            x = other.x;
+            y = other.y;
 
         }
         return *this;
@@ -123,29 +141,29 @@ struct UWBData
     //     return id == other.id;
     // }
 
-    // UWBData& operator=(const UWBData& other) {
-    //     if (this != &other) {
-    //         id = other.id;
-    //         timestamp = other.timestamp;
-    //         tagID = other.tagID;
-    //         anchorList = other.anchorList;
-
-    //     }
-    //     return *this;
-    // }
+    UWBData& operator=(const UWBData& other) {
+        if (this != &other) {
+            id = other.id;
+            timestamp = other.timestamp;
+            tagID = other.tagID;
+            anchorList = other.anchorList;
+            coordinates = other.coordinates;
+        }
+        return *this;
+    }
 
     ~UWBData() {}
 };
 
 struct UWBVideoData {
     VideoData videoData;
-    UWBData uwbData;
+    std::vector<UWBData> uwbData;
 
     UWBVideoData() {}
 
-    UWBVideoData(const VideoData& videoData, const UWBData& uwbData): videoData(videoData), uwbData(uwbData) {}
+    UWBVideoData(const VideoData& videoData, const std::vector<UWBData>& uwbData): videoData(videoData), uwbData(uwbData) {}
 
-    UWBVideoData(VideoData&& videoData, UWBData&& uwbData): videoData(std::move(videoData)), uwbData(std::move(uwbData)) {}
+    UWBVideoData(VideoData&& videoData, std::vector<UWBData>&& uwbData): videoData(std::move(videoData)), uwbData(std::move(uwbData)) {}
 
     UWBVideoData(const UWBVideoData& other): videoData(other.videoData), uwbData(other.uwbData) {}
 

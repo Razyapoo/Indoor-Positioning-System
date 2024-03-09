@@ -6,6 +6,10 @@
 #include <QLayout>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsRectItem>
+#include <QPainter>
 
 #include "dataprocessor.h"
 
@@ -21,6 +25,7 @@ public:
     explicit UWBLocalizationWindow(QWidget *parent = nullptr, DataProcessor* dataProcessor = nullptr);
     ~UWBLocalizationWindow();
 
+
 private:
     Ui::UWBLocalizationWindow *ui;
     DataProcessor* dataProcessor;
@@ -29,7 +34,7 @@ private:
     QGraphicsView* uwbLocalizationView;
     QGraphicsScene* uwbLocalizationScene;
 
-
+    void drawRect();
 
 };
 

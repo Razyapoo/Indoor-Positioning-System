@@ -48,7 +48,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     // connect(this, &QMainWindow::destroyed, dataProcessor.get(), &QObject::deleteLater);
 
     // connect(dataAnalysisWindow.get(), &QDialog::finished, &dataAnalysisWindowThread, &QThread::quit);
-    connect(uwbLocalizationWindow.get(), &QDialog::finished, uwbLocalizationWindow.get(), &QObject::deleteLater);
+    // connect(uwbLocalizationWindow.get(), &QDialog::finished, uwbLocalizationWindow.get(), &QDialog::deleteLater);
 
     // connect(videoProcessor, &VideoProcessor::finished, this, &IndoorPositioningSystem::stopCheckingForDisplayThread);
     // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
@@ -125,30 +125,33 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
 
         // ui->uwbDataContainer->setLayout(uwbDataContainerLayout);
 
-        QString tagTimestampText = QString::number(data.uwbData.timestamp);
-        QString anchor101DistanceText = QString::number(data.uwbData.anchorList[0].distance, 'f', 6);
-        QString anchor102DistanceText = QString::number(data.uwbData.anchorList[1].distance, 'f', 6);
-
-        switch (data.uwbData.tagID)
+        for (const UWBData& uwbData: data.uwbData)
         {
+            QString tagTimestampText = QString::number(uwbData.timestamp);
+            QString anchor101DistanceText = QString::number(uwbData.anchorList[0].distance, 'f', 6);
+            QString anchor102DistanceText = QString::number(uwbData.anchorList[1].distance, 'f', 6);
+
+            switch (uwbData.tagID)
+            {
             case 1:
-                ui->label_Tag_ID_value_1->setNum(data.uwbData.tagID);
+                ui->label_Tag_ID_value_1->setNum(uwbData.tagID);
                 ui->label_Tag_timestamp_value_1->setText(tagTimestampText);
                 ui->label_Anchor101_value_1->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_1->setText(anchor102DistanceText);
                 break;
             case 2:
-                ui->label_Tag_ID_value_2->setNum(data.uwbData.tagID);
+                ui->label_Tag_ID_value_2->setNum(uwbData.tagID);
                 ui->label_Tag_timestamp_value_2->setText(tagTimestampText);
                 ui->label_Anchor101_value_2->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_2->setText(anchor102DistanceText);
                 break;
             case 3:
-                ui->label_Tag_ID_value_3->setNum(data.uwbData.tagID);
+                ui->label_Tag_ID_value_3->setNum(uwbData.tagID);
                 ui->label_Tag_timestamp_value_3->setText(tagTimestampText);
                 ui->label_Anchor101_value_3->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_3->setText(anchor102DistanceText);
                 break;
+            }
         }
 
         // if (toShowUWBLocalization) {
