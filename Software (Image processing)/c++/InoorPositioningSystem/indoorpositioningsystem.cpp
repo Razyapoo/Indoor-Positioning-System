@@ -37,6 +37,8 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystem::seekToFrame);
     connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystem::afterSeeking, Qt::DirectConnection);
 
+
+
     // connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::dataAnalysisInit, Qt::DirectConnection);
 
     connect(this, &IndoorPositioningSystem::finishedVideoProcessing, &videoThread, &QThread::quit);
@@ -125,38 +127,40 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
 
         // ui->uwbDataContainer->setLayout(uwbDataContainerLayout);
 
-        for (const UWBData& uwbData: data.uwbData)
+        for (const UWBData& tag: data.uwbData)
         {
-            QString tagTimestampText = QString::number(uwbData.timestamp);
-            QString anchor101DistanceText = QString::number(uwbData.anchorList[0].distance, 'f', 6);
-            QString anchor102DistanceText = QString::number(uwbData.anchorList[1].distance, 'f', 6);
+            QString tagTimestampText = QString::number(tag.timestamp);
+            QString anchor101DistanceText = QString::number(tag.anchorList[0].distance, 'f', 6);
+            QString anchor102DistanceText = QString::number(tag.anchorList[1].distance, 'f', 6);
 
-            switch (uwbData.tagID)
+            switch (tag.tagID)
             {
             case 1:
-                ui->label_Tag_ID_value_1->setNum(uwbData.tagID);
+                ui->label_Tag_ID_value_1->setNum(tag.tagID);
                 ui->label_Tag_timestamp_value_1->setText(tagTimestampText);
                 ui->label_Anchor101_value_1->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_1->setText(anchor102DistanceText);
                 break;
             case 2:
-                ui->label_Tag_ID_value_2->setNum(uwbData.tagID);
+                ui->label_Tag_ID_value_2->setNum(tag.tagID);
                 ui->label_Tag_timestamp_value_2->setText(tagTimestampText);
                 ui->label_Anchor101_value_2->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_2->setText(anchor102DistanceText);
                 break;
             case 3:
-                ui->label_Tag_ID_value_3->setNum(uwbData.tagID);
+                ui->label_Tag_ID_value_3->setNum(tag.tagID);
                 ui->label_Tag_timestamp_value_3->setText(tagTimestampText);
                 ui->label_Anchor101_value_3->setText(anchor101DistanceText);
                 ui->label_Anchor102_value_3->setText(anchor102DistanceText);
                 break;
             }
+
+            if ((uwbLocalizationWindow != nullptr) && (!uwbLocalizationWindow->isHidden()) ) {
+                emit tagPositionUpdated(tag.coordinates, tag.tagID);
+            }
+
         }
 
-        // if (toShowUWBLocalization) {
-        //     emit requestVisualizeUWBLocalization(const UWBVideoData& data);
-        // }
 
         if (!ui->horizontalSlider_Duration->isSliderDown()){
             double currentTimeInSeconds = data.videoData.id / fps;
@@ -289,8 +293,18 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 
 void IndoorPositioningSystem::on_pushButton_UWB_Localization_clicked()
 {
-    uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, dataProcessor.get());
+    std::vector<QPointF> anchorPositions = {QPointF(0, 0), QPointF(2.5, 0)};
+
+    uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
     uwbLocalizationWindow->show();
 
+    connect(this, &IndoorPositioningSystem::tagPositionUpdated, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition, Qt::DirectConnection);
+
+}
+
+void IndoorPositioningSystem::onUWBLocalizationWindowClosed() {
+    uwbLocalizationWindow = nullptr;
+
+    disconnect(this, &IndoorPositioningSystem::tagPositionUpdated, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
 }
 

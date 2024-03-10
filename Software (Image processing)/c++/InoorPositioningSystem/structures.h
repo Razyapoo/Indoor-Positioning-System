@@ -26,14 +26,14 @@ struct Anchor
         return *this;
     }
 
-    Anchor& operator=(const Anchor& other) {
-        if (this != &other) {
-            anchorID = other.anchorID;
-            distance = other.distance;
+    // Anchor& operator=(const Anchor& other) {
+    //     if (this != &other) {
+    //         anchorID = other.anchorID;
+    //         distance = other.distance;
 
-        }
-        return *this;
-    }
+    //     }
+    //     return *this;
+    // }
 
 
     ~Anchor() {}
@@ -71,37 +71,37 @@ struct VideoData
 
 };
 
-struct UWBCoordinates {
-    double x = -1, y = -1;
+// struct UWBCoordinates {
+//     double x = -1, y = -1;
 
-    UWBCoordinates(double x = -1, double y = -1) : x(x), y(y) {}
+//     UWBCoordinates(double x = -1, double y = -1) : x(x), y(y) {}
 
-    UWBCoordinates(const UWBCoordinates& other)
-        : x(other.x), y(other.y) {}
+//     UWBCoordinates(const UWBCoordinates& other)
+//         : x(other.x), y(other.y) {}
 
-    UWBCoordinates(UWBCoordinates&& other) noexcept
-        : x(std::exchange(other.x, -1)), y(std::exchange(other.y, -1)) {}
+//     UWBCoordinates(UWBCoordinates&& other) noexcept
+//         : x(std::exchange(other.x, -1)), y(std::exchange(other.y, -1)) {}
 
-    UWBCoordinates& operator=(UWBCoordinates&& other) noexcept {
-        if (this != &other) {
-            x = std::exchange(other.x, -1);
-            y = std::exchange(other.y, -1);
+//     UWBCoordinates& operator=(UWBCoordinates&& other) noexcept {
+//         if (this != &other) {
+//             x = std::exchange(other.x, -1);
+//             y = std::exchange(other.y, -1);
 
-        }
-        return *this;
-    }
+//         }
+//         return *this;
+//     }
 
-    UWBCoordinates& operator=(const UWBCoordinates& other) {
-        if (this != &other) {
-            x = other.x;
-            y = other.y;
+//     UWBCoordinates& operator=(const UWBCoordinates& other) {
+//         if (this != &other) {
+//             x = other.x;
+//             y = other.y;
 
-        }
-        return *this;
-    }
+//         }
+//         return *this;
+//     }
 
-    ~UWBCoordinates() {}
-};
+//     ~UWBCoordinates() {}
+// };
 
 struct UWBData
 {
@@ -109,11 +109,11 @@ struct UWBData
     long long timestamp;
     int tagID;
     std::vector<Anchor> anchorList;
-    UWBCoordinates coordinates;
+    QPointF coordinates;
 
     UWBData() : id(-1), timestamp(0), tagID(-1), coordinates() {}
 
-    UWBData(int id, long long timestamp, int tagID, const std::vector<Anchor>& anchors, const UWBCoordinates& coordinates = UWBCoordinates())
+    UWBData(int id, long long timestamp, int tagID, const std::vector<Anchor>& anchors, const QPointF& coordinates = QPointF())
         : id(id), timestamp(timestamp), tagID(tagID), anchorList(anchors), coordinates(coordinates) {}
 
     UWBData(const UWBData& other)
@@ -141,16 +141,16 @@ struct UWBData
     //     return id == other.id;
     // }
 
-    UWBData& operator=(const UWBData& other) {
-        if (this != &other) {
-            id = other.id;
-            timestamp = other.timestamp;
-            tagID = other.tagID;
-            anchorList = other.anchorList;
-            coordinates = other.coordinates;
-        }
-        return *this;
-    }
+    // UWBData& operator=(const UWBData& other) {
+    //     if (this != &other) {
+    //         id = other.id;
+    //         timestamp = other.timestamp;
+    //         tagID = other.tagID;
+    //         anchorList = other.anchorList;
+    //         coordinates = other.coordinates;
+    //     }
+    //     return *this;
+    // }
 
     ~UWBData() {}
 };

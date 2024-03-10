@@ -61,6 +61,7 @@ private slots:
     void on_pushButton_UWB_Data_Analysis_clicked();
 
     void on_pushButton_UWB_Localization_clicked();
+    void onUWBLocalizationWindowClosed();
 
 signals:
     void frameIsReady(const UWBVideoData& data);
@@ -70,6 +71,7 @@ signals:
     void requestProcessVideo();
     void requestLoadData(const QString& UWBDataFilename, const QString& videoDataFilename);
     void finishedVideoProcessing();
+    void tagPositionUpdated(const QPointF& position, int tagID);
     // void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
 
 private:
