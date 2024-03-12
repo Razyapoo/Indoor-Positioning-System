@@ -3030,3 +3030,15 @@ Where to use project:
 1. Use it isnide house (smart home) or other buildings to localize perople and make operating thing only in the area where person is located. For example to turn on the light, hitting etc. This will save money, a LOT!!
 
 2. To localize the robot, for example at wharehouses or restaurents, which will bring staff to customer etc.
+
+
+
+
+
+
+TODO:
+
+ 1. Calculate the distance from wall to first anchor (for anchor/tag visualization)
+ 2. Add offset to x-coordinate (done) and y-coordinate(TODO) in formula calculation. Conversion to world/camera coordinate system
+ 2. Record new data with 3/6 anchors
+

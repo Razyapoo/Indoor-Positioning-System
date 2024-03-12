@@ -293,7 +293,7 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 
 void IndoorPositioningSystem::on_pushButton_UWB_Localization_clicked()
 {
-    std::vector<QPointF> anchorPositions = {QPointF(0, 0), QPointF(2.5, 0)};
+    std::vector<QPointF> anchorPositions = {QPointF(1, 0), QPointF(3.5, 0)};
 
     uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
     uwbLocalizationWindow->show();

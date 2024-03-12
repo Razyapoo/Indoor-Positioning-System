@@ -7,8 +7,11 @@
 #include <QGraphicsItem>
 #include <QVBoxLayout>
 #include <QPointF>
+#include <QLabel>
+#include <QGraphicsSceneHoverEvent>
 
 #include "dataprocessor.h"
+#include "customgraphicitems.h"
 
 namespace Ui {
 class UWBLocalizationWindow;
@@ -32,6 +35,13 @@ private:
     Ui::UWBLocalizationWindow *ui;
     // std::vector<QPointF> anchors;
     std::map<int, QGraphicsPolygonItem*> tagPositions;
+    // std::map<int, QGraphicsRectItem*> tagPositions;
+
+    int mapScale;
+
+    // const int rectangleHeight;
+    // const int rectangleWidth;
+    // const int trianglePoint1, trianglePoint2, trianglePoint3;
 
     QLayout* uwbLocalizationMapLayout;
     QGraphicsView* uwbLocalizationView;
@@ -40,6 +50,7 @@ private:
     void addAnchor(const QPointF& position);
     void addTag(const QPointF& position, int tagID);
     void closeEvent(QCloseEvent *event) override;
+    void drawGrid(int widthMeters, int heightMeters, const QPointF& shiftInPixels);
 
 
 };

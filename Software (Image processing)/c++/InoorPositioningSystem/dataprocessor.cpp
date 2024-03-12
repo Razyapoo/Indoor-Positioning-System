@@ -87,11 +87,11 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
 
 void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
-    // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0), Anchor 101 has coordinates (2.5, 0)
-    QPointF anchor101Coordinates(2.5, 0);
-    QPointF anchor102Coordinates(0, 0);
+    // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0) in UWB coordinate system, Anchor 101 has coordinates (2.5, 0) in UWB corrdinate system
+    QPointF anchor101Coordinates(1, 0);
+    QPointF anchor102Coordinates(3.5, 0);
 
-    double anchorBaseline = anchor101Coordinates.x() - anchor102Coordinates.x();
+    double anchorBaseline = std::abs(anchor101Coordinates.x() - anchor102Coordinates.x());
 
     double distanceAnchor101, distanceAnchor102;
     for (const Anchor& anchor: tag.anchorList) {
@@ -102,11 +102,11 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
         }
     }
 
-    double cos = (std::pow(distanceAnchor101, 2) - std::pow(distanceAnchor102, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline * distanceAnchor102);
-    double sin = std::sqrt(1 - std::pow(cos, 2));
+    double x = std::abs((std::pow(distanceAnchor101, 2) - std::pow(distanceAnchor102, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
+    double y = std::sqrt(std::pow(distanceAnchor101, 2) - std::pow(x, 2));
 
-    tag.coordinates.setX(distanceAnchor101 * cos);
-    tag.coordinates.setY(distanceAnchor101 * sin);
+    tag.coordinates.setX(x + anchor101Coordinates.x()); // Transform x-coordinate to camera/world coordinate system
+    tag.coordinates.setY(y); //TODO: to add offset
 }
 
 UWBData DataProcessor::linearSearchUWB(const long long &frameTimestamp) {

@@ -34,6 +34,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dataanalysiswindow.h dataanalysiswindow.cpp dataanalysiswindow.ui
         customchartview.h customchartview.cpp
         uwblocalizationwindow.h uwblocalizationwindow.cpp uwblocalizationwindow.ui
+        customgraphicitems.h customgraphicitems.cpp
 
 
 
