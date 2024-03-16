@@ -59,7 +59,7 @@ void DataProcessor::loadData(const QString& UWBDataFilename, const QString& vide
     uwbDataFile.close();
 }
 
-void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
+void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
 
     long long frameTimestamp = timestampsVector[frameIndex - 1];
 
@@ -70,7 +70,7 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
     std::vector<UWBData> closestForEachTag;
     for (auto& data: uwbDataPerTag) {
         UWBData closestUWB = binarySearchUWB(frameTimestamp, data.second);
-        // Calculating coordinates here and not when data are read, because data then can be adjusted
+        // Calculating coordinates here and not when data are read, because data can be updated in the future
         calculateUWBCoordinates(closestUWB);
         closestForEachTag.push_back(closestUWB);
     }
@@ -84,6 +84,35 @@ void DataProcessor::findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) 
     frameQueue.enqueue(std::move(uwbVideoData));
 
 }
+
+void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord) {
+
+    long long frameTimestamp = timestampsVector[frameIndex - 1];
+    std::string outputFilePath = "uwb_to_bb_mapping.txt";
+
+    if (!outputFile.is_open()) {
+        outputFile = std::ofstream(outputFilePath, std::ios::out);
+    }
+
+    auto data = uwbDataPerTag.begin();
+    for (int i = 0; i < bottomEdgeCentersVector.size(); ++i) {
+        if (data != uwbDataPerTag.end()) {
+            UWBData closestUWB = binarySearchUWB(frameTimestamp, data->second);
+            calculateUWBCoordinates(closestUWB);
+            outputFile << frameIndex - 1 << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << bottomEdgeCentersVector[i].x() << " " << bottomEdgeCentersVector[i].y() << std::endl;
+            ++data;
+        } else {
+            qDebug() << "Intruder is found!! There is no tag to match with people";
+        }
+    }
+
+    if (lastRecord && outputFile.is_open()) {
+        outputFile.close();
+    }
+
+
+}
+
 
 void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 

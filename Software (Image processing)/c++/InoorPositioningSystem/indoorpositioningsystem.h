@@ -25,6 +25,7 @@
 #include "dataprocessor.h"
 #include "dataanalysiswindow.h"
 #include "uwblocalizationwindow.h"
+#include "exporttimerangesetter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -63,21 +64,26 @@ private slots:
     void on_pushButton_UWB_Localization_clicked();
     void onUWBLocalizationWindowClosed();
 
+    void on_pushButton_Export_Data_clicked();
+    void onExportFinish();
+    void onAcceptDataExport();
+
 signals:
     void frameIsReady(const UWBVideoData& data);
-    void requestStopProcessing();
+    void requestStopProcessing(bool isExportState = false);
     void requestContinueProcessing();
     void requestSeekToFrame(int position);
     void requestProcessVideo();
     void requestLoadData(const QString& UWBDataFilename, const QString& videoDataFilename);
     void finishedVideoProcessing();
     void tagPositionUpdated(const QPointF& position, int tagID);
-    // void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
+    void requestDataExport(int endPosition);
 
 private:
     Ui::IndoorPositioningSystem *ui;
     std::unique_ptr<DataAnalysisWindow> dataAnalysisWindow;
     std::unique_ptr<UWBLocalizationWindow> uwbLocalizationWindow;
+    std::unique_ptr<ExportTimeRangeSetter> exportTimeRangeSetter;
     std::unique_ptr<VideoProcessor> videoProcessor;
     std::unique_ptr<DataProcessor> dataProcessor;
     QTimer* frameTimer;
@@ -88,12 +94,12 @@ private:
     QLayout* uwbContainerLayout;
 
 
-    int latestPosition;
+    int seekPosition, lastPosition;
     double videoDuration;
     double fps;
     int totalFrames;
-    bool isPlayPauseSetToPlay;
-    std::atomic<bool> toShowUWBLocalization;
+    bool isPlayPauseSetToPlay, isExportState;
+    // std::atomic<bool> toShowUWBLocalization;
 
     QThread videoThread;
     QThread uwbDataThread;
@@ -110,6 +116,9 @@ private:
     // Data Analysis
     bool setDataAnalysisTimeStart, setDataAnalysisTimeEnd;
     long long dataAnalysisTimeStart, dataAnalysisTimeEnd;
+
+    int startDataExportPosition;
+    int endDataExportPosition;
 
 };
 #endif // INDOORPOSITIONINGSYSTEM_H

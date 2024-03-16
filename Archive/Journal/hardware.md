@@ -3042,3 +3042,12 @@ TODO:
  2. Add offset to x-coordinate (done) and y-coordinate(TODO) in formula calculation. Conversion to world/camera coordinate system
  2. Record new data with 3/6 anchors
 
+ # 13 March, 2024
+
+Trying to integrate object detection. 
+
+Best perfomrance, but less accurate if YOLOv4-tiny. Better to use normal YOLOv4, but this has large impact on performance. However usage of CUDA helped to improve performance. 
+
+To use more recent YOLO, like v8, there is a need to convert .pt to .onnx first. This can be done using python script. Necessary libraries: torch, ultralytics
+There is also another way how to make yolov8.pt to be used in c++: https://pytorch.org/tutorials/advanced/cpp_export.html
+

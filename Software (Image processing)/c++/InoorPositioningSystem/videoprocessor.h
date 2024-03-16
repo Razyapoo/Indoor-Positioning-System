@@ -8,6 +8,7 @@
 
 #include "dataprocessor.h"
 #include "structures.h"
+#include "humandetector.h"
 
 class VideoProcessor : public QObject
 {
@@ -23,14 +24,13 @@ public:
 
     void continueProcessing();
     void stopProcessing();
-
-
     bool isRunning();
 
 
 public slots:
     void processVideo();
     void seekToFrame(int position);
+    void onDataExport(int endPosition);
 
 
 signals:
@@ -38,11 +38,14 @@ signals:
     void finished();
     void seekingDone();
     void processingIsStopped();
-    void requestFindUWBMeasurement(int position, QImage qImage);
+    void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage);
+    void requestFindUWBMeasurementAndExport(int position, const std::vector<QPoint>& detectedBoxCenterPoint, bool lastRecord);
+    void exportFinished();
 
 private:
     ThreadSafeQueue& frameQueue;
     DataProcessor* dataProcessor;
+    HumanDetector humanDetector;
 
     std::atomic<bool> keepProcessingVideo;
     cv::VideoCapture camera;
@@ -55,6 +58,10 @@ private:
     int totalFrames;
     int keyframeInterval;
 
+    std::atomic<bool> isExportRequested;
+    int endDataExportPosition;
+
+    std::vector<QPoint> detectPeople(cv::Mat& frame);
 
 };
 

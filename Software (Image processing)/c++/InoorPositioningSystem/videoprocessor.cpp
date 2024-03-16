@@ -21,6 +21,9 @@ void VideoProcessor::init(const QString& filename) {
     totalFrames = static_cast<int>(camera.get(cv::CAP_PROP_FRAME_COUNT));
     fps = camera.get(cv::CAP_PROP_FPS);
     videoDuration = totalFrames / fps;
+
+    humanDetector.initHumanDetection("/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov4.cfg", "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov4.weights");
+    isExportRequested = false;
 }
 
 double VideoProcessor::getVideoDuration() const {
@@ -54,25 +57,80 @@ void VideoProcessor::processVideo() {
         }
 
         // qDebug() << "In video reading loop...";
-
         cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
 
-        if (qImage.isNull() || qImage.width() != frame.cols || qImage.height() != frame.rows) {
-            qImage = QImage(frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
-        }
+        // if (detectPeople)
+        // {
 
-        if (frame.data != qImage.bits()) {
-            memcpy(qImage.bits(), frame.data, static_cast<size_t>(frame.cols * frame.rows * frame.channels()));
-        }
+        // // }
+
+        // // frame = detectionImage;
+
+
 
         int position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
 
-        // qDebug() << "Position: " << position;
+        if (isExportRequested) {
+            if (position > endDataExportPosition) {
+                std::cout << "Position is out of range" << std::endl;
+                emit exportFinished();
+            } else {
+                while (position <= endDataExportPosition) {
+                    std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
+                    if (position != endDataExportPosition) {
+                        emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
+                    } else {
+                        emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
+                    }
+                    ++position;
+                }
 
-        // Decided to go with copy constructor and not move. Otherwise there is a need to sync videoProcessor and dataProcessor - may introduce difficulties in communication.
-        emit requestFindUWBMeasurement(position, qImage);
-        // frameQueue.enqueue(position, qImage);
+                if (position > endDataExportPosition) {
+                    keepProcessingVideo = false;
+                    isExportRequested = false;
+                    emit exportFinished();
+                }
+            }
+
+
+        } else {
+            if (qImage.isNull() || qImage.width() != frame.cols || qImage.height() != frame.rows) {
+                qImage = QImage(frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
+            }
+
+            if (frame.data != qImage.bits()) {
+                memcpy(qImage.bits(), frame.data, static_cast<size_t>(frame.cols * frame.rows * frame.channels()));
+            }
+
+            // Decided to go with copy constructor and not move. Otherwise there is a need to sync videoProcessor and dataProcessor - may introduce difficulties in communication.
+            emit requestFindUWBMeasurementAndEnqueue(position, qImage);
+        }
     }
+}
+
+std::vector<QPoint> VideoProcessor::detectPeople(cv::Mat& frame) {
+
+    int idx;
+    cv::Rect box;
+    std::vector<QPoint> bottomEdgeCentersVector;
+    std::pair<std::vector<cv::Rect>, std::vector<int>> detectedPeople = humanDetector.detectPeople(frame);
+    if (!detectedPeople.first.empty() && !detectedPeople.second.empty())
+    {
+        for (int i = 0; i < detectedPeople.second.size(); i++)
+        {
+            QPoint bottomEdgeCenter;
+            idx = detectedPeople.second[i];
+            box = detectedPeople.first[idx];
+            bottomEdgeCenter.setX(box.x + (box.width / 2));
+            bottomEdgeCenter.setY(box.y + box.height);
+            bottomEdgeCentersVector.push_back(bottomEdgeCenter);
+
+            cv::rectangle(frame, box, cv::Scalar(0, 0, 255), 2);
+        }
+    }
+
+    cv::resize(frame, frame, cv::Size(640, 360));
+    return bottomEdgeCentersVector;
 }
 
 void VideoProcessor::continueProcessing() {
@@ -98,26 +156,20 @@ bool VideoProcessor::isRunning() {
 // }
 
 void VideoProcessor::seekToFrame(int position) {
-    // double frameNumber = position / (videoDuration * fps);
     if (position < 0 || position >= totalFrames) {
         std::cout << "Non-existing position" << std::endl;
         position = std::max(0, std::min(position, totalFrames - 1));
     }
-    // int frameNumber = int((1 / fps) * 1000 * position);
-    // std::cout << "Frame Number: " << frameNumber << std::endl;
-    frameQueue.clear();
     camera.set(cv::CAP_PROP_POS_FRAMES, position);
-    // int success = camera.set(cv::CAP_PROP_POS_MSEC, frameNumber);
 
-
-
-    // std::cout << "Success: " << success << std::endl;
-    // camera.grab();
-    // camera.retrieve(frame);
-    // int newposition = int(camera.get(cv::CAP_PROP_POS_FRAMES));
-    // camera.read(frame);
-    this->continueProcessing();
+    continueProcessing();
 
     emit seekingDone();
-
 }
+
+void VideoProcessor::onDataExport(int endPosition) {
+    isExportRequested = true;
+    endDataExportPosition = endPosition;
+}
+
+

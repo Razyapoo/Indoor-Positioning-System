@@ -15,6 +15,10 @@ find_package(OpenCV)
 
 set(TS_FILES InoorPositioningSystem_en_GB.ts)
 
+# Set CUDA as a required language
+# enable_language(CUDA)
+
+
 set(PROJECT_SOURCES
         main.cpp
         indoorpositioningsystem.cpp
@@ -35,6 +39,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         customchartview.h customchartview.cpp
         uwblocalizationwindow.h uwblocalizationwindow.cpp uwblocalizationwindow.ui
         customgraphicitems.h customgraphicitems.cpp
+        humandetector.h humandetector.cpp
+        exporttimerangesetter.h exporttimerangesetter.cpp exporttimerangesetter.ui
+
 
 
 

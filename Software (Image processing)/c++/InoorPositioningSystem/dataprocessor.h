@@ -12,6 +12,8 @@
 #include <QString>
 #include <eigen3/Eigen/Dense>
 #include <cmath>
+#include <filesystem>
+
 
 #include "threadsafequeue.h"
 #include "structures.h"
@@ -30,7 +32,8 @@ public slots:
     void loadData(const QString& UWBDataFilename, const QString& videoDataFilename);
 
     // Find uwb data based on video timestamp. Timestamp is given by position.
-    void findUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
+    void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
+    void onFindUWBMeasurementAndExport(int frameIndex,  const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord);
     void collectDataForTag(const QString &tagIDText);
     void setRangeForDataAnalysis(const long long startFrameIndex, const long long endFrameIndex);
     // void collectDataForAnchor(const int anchorID);
@@ -71,6 +74,8 @@ private:
     std::vector<double> distancesToAnalyzeAdjusted;
     std::ifstream videoDataFile;
     std::ifstream uwbDataFile;
+
+    std::ofstream outputFile;
 
 
     UWBData linearSearchUWB(const long long& frameTimestamp);
