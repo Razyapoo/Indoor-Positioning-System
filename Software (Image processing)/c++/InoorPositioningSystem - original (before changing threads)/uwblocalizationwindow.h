@@ -28,8 +28,8 @@ public:
 public slots:
     void updateTagPosition(const QPointF& position, int tagID);
 
-// signals:
-//     void windowClosed();
+signals:
+    void windowClosed();
 
 private:
     Ui::UWBLocalizationWindow *ui;
@@ -49,7 +49,7 @@ private:
 
     void addAnchor(const QPointF& position);
     void addTag(const QPointF& position, int tagID);
-    // void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
     void drawGrid(int widthMeters, int heightMeters, const QPointF& shiftInPixels);
 
 

@@ -16,6 +16,7 @@ class ThreadSafeQueue
 {
 public:
     ThreadSafeQueue(size_t capacity);
+    ThreadSafeQueue();
     ~ThreadSafeQueue();
 
     void enqueue(UWBVideoData&& data);
@@ -24,7 +25,6 @@ public:
     bool dequeue(UWBVideoData& data);
     bool isEmpty();
     void notify_all();
-    void interruptionRequest();
     void clear();
     size_t size();
 
@@ -34,7 +34,6 @@ private:
     std::mutex mtx;
     std::condition_variable cvar;
     size_t capacity;
-    std::atomic<bool> isInterruptionRequested, isStopRequested;
 };
 
 #endif // THREADSAFEQUEUE_H

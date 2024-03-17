@@ -141,8 +141,8 @@ private:
 
     // void chartCleanup();
 
-// protected:
-//     void closeEvent(QCloseEvent *event) override;
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // DATAANALYSISWINDOW_H

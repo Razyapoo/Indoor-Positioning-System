@@ -12,8 +12,8 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
     setWindowTitle("Data Analysis");
     // setAttribute(Qt::WA_DeleteOnClose);
 
-    // dataAnalysisWindowThread = new QThread(this);
-    // dataAnalysisWindowThread->start();
+    dataAnalysisWindowThread = new QThread(this);
+    dataAnalysisWindowThread->start();
 
     mainLayout = new QVBoxLayout(this);
 
@@ -74,30 +74,30 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
 
 
     // connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowAvailableAnchors, this, &DataAnalysisWindow::showAvailableAnchors);//, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowAvailableAnchors, this, &DataAnalysisWindow::showAvailableAnchors, Qt::DirectConnection);
 
     // connect(this, &DataAnalysisWindow::requestCollectDataForTag, dataProcessor, &DataProcessor::collectDataForTag, Qt::DirectConnection);
-    connect(comboBoxAvailableTags, &QComboBox::currentTextChanged, dataProcessor, &DataProcessor::collectDataForTag);//, Qt::DirectConnection);
+    connect(comboBoxAvailableTags, &QComboBox::currentTextChanged, dataProcessor, &DataProcessor::collectDataForTag, Qt::DirectConnection);
     // connect(comboBoxAvailableAnchors, &QComboBox::currentTextChanged, dataProcessor, &DataProcessor::collectDataForAnchor, Qt::DirectConnection);
 
-    connect(setAnalysisTimeRangeButton, &QPushButton::clicked, this, &DataAnalysisWindow::initDataAnalysis);//, Qt::DirectConnection);
-    connect(this, &DataAnalysisWindow::requestAnalyseData, dataProcessor, &DataProcessor::setRangeForDataAnalysis);//, Qt::DirectConnection);
-    connect(analyzeDataButton, &QPushButton::clicked, this, &DataAnalysisWindow::startDataAnalysis);//, Qt::DirectConnection);
+    connect(setAnalysisTimeRangeButton, &QPushButton::clicked, this, &DataAnalysisWindow::initDataAnalysis, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestAnalyseData, dataProcessor, &DataProcessor::setRangeForDataAnalysis, Qt::DirectConnection);
+    connect(analyzeDataButton, &QPushButton::clicked, this, &DataAnalysisWindow::startDataAnalysis, Qt::DirectConnection);
     // connect(this, &DataAnalysisWindow::requestCollectDataForAnchor, dataProcessor, &DataProcessor::collectDataForAnchor, Qt::DirectConnection);
-    connect(this, &DataAnalysisWindow::requestCollectDataForPlotDistancesVsTimestamps, dataProcessor, &DataProcessor::collectDataForPlotDistancesVsTimestamps);//, Qt::DirectConnection);
-    connect(this, &DataAnalysisWindow::requestCalculateRollingDeviation, dataProcessor, &DataProcessor::calculateRollingDeviation);//, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestCollectDataForPlotDistancesVsTimestamps, dataProcessor, &DataProcessor::collectDataForPlotDistancesVsTimestamps, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestCalculateRollingDeviation, dataProcessor, &DataProcessor::calculateRollingDeviation, Qt::DirectConnection);
 
-    connect(dataProcessor, &DataProcessor::requestShowPlotDistancesVsTimestamps, this, &DataAnalysisWindow::showPlotDistancesVsTimestamps);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowPlotRollingDeviations, this, &DataAnalysisWindow::showPlotRollingDeviations);//, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowPlotDistancesVsTimestamps, this, &DataAnalysisWindow::showPlotDistancesVsTimestamps, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowPlotRollingDeviations, this, &DataAnalysisWindow::showPlotRollingDeviations, Qt::DirectConnection);
 
-    connect(this, &DataAnalysisWindow::requestSplitDataset, dataProcessor, &DataProcessor::splitDataset);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowDatasetSegments, this, &DataAnalysisWindow::showDatasetSegments);//, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestSplitDataset, dataProcessor, &DataProcessor::splitDataset, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowDatasetSegments, this, &DataAnalysisWindow::showDatasetSegments, Qt::DirectConnection);
 
-    connect(this, &DataAnalysisWindow::requestCalculatePolynomialRegression, dataProcessor, &DataProcessor::calculatePolynomialRegression);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowOriginalVsAdjustedDistances, this, &DataAnalysisWindow::showOriginalVsAdjustedDistances);//, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestCalculatePolynomialRegression, dataProcessor, &DataProcessor::calculatePolynomialRegression, Qt::DirectConnection);
+    connect(dataProcessor, &DataProcessor::requestShowOriginalVsAdjustedDistances, this, &DataAnalysisWindow::showOriginalVsAdjustedDistances, Qt::DirectConnection);
 
-    connect(this, &DataAnalysisWindow::requestUpdateOriginalWithAdjustedValues, dataProcessor, &DataProcessor::updateOriginalWithAdjustedValues);//, Qt::DirectConnection);
+    connect(this, &DataAnalysisWindow::requestUpdateOriginalWithAdjustedValues, dataProcessor, &DataProcessor::updateOriginalWithAdjustedValues, Qt::DirectConnection);
 
 
 
@@ -125,15 +125,15 @@ DataAnalysisWindow::~DataAnalysisWindow()
         delete segmentMeansLayout;
     }
 
-    // dataAnalysisWindowThread->quit();
-    // dataAnalysisWindowThread->wait();
+    dataAnalysisWindowThread->quit();
+    dataAnalysisWindowThread->wait();
 }
 
-// void DataAnalysisWindow::closeEvent(QCloseEvent *event) {
-//     dataAnalysisWindowThread->quit();
-//     dataAnalysisWindowThread->wait();
-//     QDialog::closeEvent(event);
-// }
+void DataAnalysisWindow::closeEvent(QCloseEvent *event) {
+    dataAnalysisWindowThread->quit();
+    dataAnalysisWindowThread->wait();
+    QDialog::closeEvent(event);
+}
 
 void DataAnalysisWindow::initDataAnalysis()
 {
@@ -201,6 +201,8 @@ void DataAnalysisWindow::rollingDeviationInit()
         rollingDeviationInputText = new QLineEdit(this);
         calculateRollingDeviationButton = new QPushButton("Calculate", this);
 
+
+
         rollingDeviationInputLabel->setText("Please input window size: ");
         rollingDeviationInputLabel->setFixedWidth(180);
         rollingDeviationInputLayout->addWidget(rollingDeviationInputLabel);
@@ -216,7 +218,6 @@ void DataAnalysisWindow::rollingDeviationInit()
         rollingDeviationInputLayout->addWidget(calculateRollingDeviationButton);
         rollingDeviationInputLayout->setAlignment(calculateRollingDeviationButton, Qt::AlignLeft);
         rollingDeviationInputLayout->addStretch(0);
-        connect(calculateRollingDeviationButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateRollingDeviationInput);//, Qt::DirectConnection);
     }
 
     rollingDeviationInputText->setText( "");
@@ -224,6 +225,7 @@ void DataAnalysisWindow::rollingDeviationInit()
     // rollingDeviationInputLayout->addSpacerItem(spacer);
     chartsLayout->addLayout(rollingDeviationInputLayout);
 
+    connect(calculateRollingDeviationButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateRollingDeviationInput, Qt::DirectConnection);
 }
 
 void DataAnalysisWindow::validateRollingDeviationInput()
@@ -291,12 +293,12 @@ void DataAnalysisWindow::initThresholdSetting()
         thresholdInputLayout->addWidget(thresholdInputButton);
         thresholdInputLayout->setAlignment(thresholdInputButton, Qt::AlignLeft);
         thresholdInputLayout->addStretch(0);
-        connect(thresholdInputButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateThresholdInput);//, Qt::DirectConnection);
     }
 
     thresholdInputText->setText("");
     chartsLayout->addLayout(thresholdInputLayout);
 
+    connect(thresholdInputButton, &QPushButton::clicked, this, &DataAnalysisWindow::validateThresholdInput, Qt::DirectConnection);
 }
 
 void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, std::vector<double*> distances)

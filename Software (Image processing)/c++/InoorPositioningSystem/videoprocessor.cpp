@@ -1,29 +1,58 @@
 #include "videoprocessor.h"
 
-VideoProcessor::VideoProcessor(ThreadSafeQueue& frameQueue, DataProcessor* dataProcessor): frameQueue(frameQueue), dataProcessor(dataProcessor), keepProcessingVideo(true) {}
-VideoProcessor::~VideoProcessor() {
-    keepProcessingVideo = false;
+VideoProcessor::VideoProcessor(ThreadSafeQueue& frameQueue, DataProcessor* dataProcessor):
+    frameQueue(frameQueue)
+    , dataProcessor(dataProcessor)
+    , isPaused(false)
+    , shouldStopVideoProcessing(false)
+    , isExportRequested(false)
+{
 
-    // if (camera.isOpened()) {
-    //     camera.release();
-    // }
+    videoProcessorThread.reset(new QThread);
+    moveToThread(videoProcessorThread.get());
+
+    // connect(videoProcessorThread.get(), &QThread::started, this, &VideoProcessor::processVideo);
+    connect(this, &VideoProcessor::requestFindUWBMeasurementAndEnqueue, dataProcessor, &DataProcessor::onFindUWBMeasurementAndEnqueue, Qt::BlockingQueuedConnection);
+    connect(this, &VideoProcessor::requestFindUWBMeasurementAndExport, dataProcessor, &DataProcessor::onFindUWBMeasurementAndExport, Qt::BlockingQueuedConnection);
+
+    // loop.exec();
+    videoProcessorThread->start();
 }
 
-void VideoProcessor::init(const QString& filename) {
-    this->filename = filename.toStdString();
-    camera.open(this->filename);
+VideoProcessor::~VideoProcessor() {
+    QMetaObject::invokeMethod(this, "cleanup");
+    // cleanup();
+    videoProcessorThread->wait();
+}
 
-    if (!camera.isOpened()) {
-        emit finished();
-        return;
+void VideoProcessor::init(const std::string& filename) {
+    pauseProcessing();
+    {
+        QMutexLocker locker(&mutex);
+        if (camera.isOpened()) {
+            camera.release();
+        }
+        if (!camera.open(filename)) {
+            // emit error("Failed to open video file.");
+            std::cout << "Failed to open video file." << std::endl;
+            return;
+        }
+        humanDetector.initHumanDetection("/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov4.cfg", "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov4.weights");
     }
 
     totalFrames = static_cast<int>(camera.get(cv::CAP_PROP_FRAME_COUNT));
     fps = camera.get(cv::CAP_PROP_FPS);
     videoDuration = totalFrames / fps;
+    resumeProcessing();
+    // processVideo();
+}
 
-    humanDetector.initHumanDetection("/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov4.cfg", "/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov4.weights");
-    isExportRequested = false;
+void VideoProcessor::cleanup() {
+    if (camera.isOpened()) {
+        camera.release();
+    }
+    // loop.quit();
+    videoProcessorThread->quit();
 }
 
 double VideoProcessor::getVideoDuration() const {
@@ -39,61 +68,86 @@ int VideoProcessor::getTotalFrames() const {
 }
 
 void VideoProcessor::processVideo() {
-    while (this->isRunning()) {
 
 
-        // if (!camera.isOpened()) {
-        //     std::cout << "VideoStream is closed" << std::endl;
-        // } else {
-        //     std::cout << "VideoStream is ok" << std::endl;
-        // }
-        if (!camera.read(frame)) {
-            emit finished();
-            return;
+    while (!shouldStopVideoProcessing) {
+
+        if (shouldStopVideoProcessing) break;
+
+
+        {
+            QMutexLocker locker(&mutex);
+            while (isPaused && !isSeekRequested && !isExportRequested) {
+                pauseCondition.wait(&mutex);
+            }
         }
 
-        if (!this->isRunning()) {
-            break;
+        if (isSeekRequested) {
+            {
+                QMutexLocker locker(&mutex);
+                camera.set(cv::CAP_PROP_POS_FRAMES, seekPosition - 1); // -1 because of the following read
+                isSeekRequested = false;
+                emit seekingDone();
+            }
         }
 
-        // qDebug() << "In video reading loop...";
+        {
+            QMutexLocker locker(&mutex);
+            if (!camera.read(frame)) {
+                pause(); // in case it will be necessary to read again
+                continue;
+            }
+        }
+
+
         cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
-
-        // if (detectPeople)
-        // {
-
-        // // }
-
-        // // frame = detectionImage;
-
-
-
-        int position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
+        int position;
+        {
+            QMutexLocker locker(&mutex);
+            position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
+        }
 
         if (isExportRequested) {
-            if (position > endDataExportPosition) {
-                std::cout << "Position is out of range" << std::endl;
-                emit exportFinished();
-            } else {
-                while (position <= endDataExportPosition) {
-                    std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
-                    if (position != endDataExportPosition) {
-                        emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
-                    } else {
-                        emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
-                    }
-                    ++position;
-                }
-
+            {
+                QMutexLocker locker(&mutex);
                 if (position > endDataExportPosition) {
-                    keepProcessingVideo = false;
-                    isExportRequested = false;
-                    emit exportFinished();
+                    std::cout << "Position is out of desired range" << std::endl;
+                    shouldStopExport = true;
+                } else {
+                    while (position <= endDataExportPosition) {
+                        if (shouldStopExport) {
+                            break;
+                        }
+                        std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
+                        if (position != endDataExportPosition) {
+                            emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
+                        } else {
+                            emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
+                        }
+                        ++position;
+                    }
                 }
             }
-
-
+            isPaused = true;
+            isExportRequested = false;
+            if (shouldStopExport) {
+                shouldStopExport = false;
+                emit exportFinished(false);
+            } else {
+                emit exportFinished(true);
+            }
+            continue;
         } else {
+
+
+            // if (detectPeople)
+            // {
+
+            // // }
+
+            // // frame = detectionImage;
+
+
             if (qImage.isNull() || qImage.width() != frame.cols || qImage.height() != frame.rows) {
                 qImage = QImage(frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
             }
@@ -106,6 +160,8 @@ void VideoProcessor::processVideo() {
             emit requestFindUWBMeasurementAndEnqueue(position, qImage);
         }
     }
+
+    camera.release();
 }
 
 std::vector<QPoint> VideoProcessor::detectPeople(cv::Mat& frame) {
@@ -133,43 +189,44 @@ std::vector<QPoint> VideoProcessor::detectPeople(cv::Mat& frame) {
     return bottomEdgeCentersVector;
 }
 
-void VideoProcessor::continueProcessing() {
-    keepProcessingVideo = true;
+void VideoProcessor::resumeProcessing() {
+    isPaused = false;
+    QMutexLocker locker(&mutex);
+    pauseCondition.wakeOne();
+}
+
+void VideoProcessor::pauseProcessing() {
+    // QMutexLocker locker(&mutex);
+    isPaused = true;
+    // emit processingIsPaused();
 }
 
 void VideoProcessor::stopProcessing() {
-    keepProcessingVideo = false;
-    emit processingIsStopped();
+    // QMutexLocker locker(&mutex);
+    shouldStopVideoProcessing = true;
+    resumeProcessing();
 }
-
-bool VideoProcessor::isRunning() {
-    return keepProcessingVideo;
-}
-
-// void VideoProcessor::seekToFrame(const double& setTimeInSeconds) {
-//     // int keyframePosition = static_cast<int>((position / videoDuration) * totalFrames);
-//     // keyframePosition = std::max(0, std::min(keyframePosition, totalFrames - 1));
-//     // if (setTimeInSeconds < videoDuration) {
-//     //     camera.set(cv::CAP_PROP_POS_MSEC, setTimeInSeconds * 1000);
-//     // }
-
-// }
 
 void VideoProcessor::seekToFrame(int position) {
-    if (position < 0 || position >= totalFrames) {
-        std::cout << "Non-existing position" << std::endl;
-        position = std::max(0, std::min(position, totalFrames - 1));
-    }
-    camera.set(cv::CAP_PROP_POS_FRAMES, position);
+    // isPaused = false;
+    isSeekRequested = true;
 
-    continueProcessing();
-
-    emit seekingDone();
+    QMutexLocker locker(&mutex);
+    seekPosition = position;
+    pauseCondition.wakeOne();
 }
 
-void VideoProcessor::onDataExport(int endPosition) {
+void VideoProcessor::dataExport(int endPosition) {
     isExportRequested = true;
+
+    QMutexLocker locker(&mutex);
     endDataExportPosition = endPosition;
+    // isPaused = false;
+    // pauseCondition.wakeOne();
 }
 
+void VideoProcessor::stopExport() {
+    // QMutexLocker locker(&mutex);
+    shouldStopExport = true;
+}
 

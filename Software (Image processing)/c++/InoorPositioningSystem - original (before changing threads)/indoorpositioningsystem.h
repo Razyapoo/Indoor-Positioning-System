@@ -14,7 +14,6 @@
 #include <QDebug>
 #include <QLayout>
 #include <QLabel>
-#include <QProgressDialog>
 
 
 #include <memory>
@@ -57,30 +56,28 @@ private slots:
     // void on_horizontalSlider_Duration_sliderPressed();
     void on_horizontalSlider_Duration_sliderReleased();
     void afterSeeking();
-    // void seekToFrame();
+    void seekToFrame();
     // void startProcessVideo();
 
     void on_pushButton_UWB_Data_Analysis_clicked();
 
     void on_pushButton_UWB_Localization_clicked();
-    // void onUWBLocalizationWindowClosed();
+    void onUWBLocalizationWindowClosed();
 
     void on_pushButton_Export_Data_clicked();
-    void onExportFinish(bool success);
+    void onExportFinish();
     void onAcceptDataExport();
-    // void onExportProgressUpdated(int frameIndex);
 
 signals:
     void frameIsReady(const UWBVideoData& data);
-    // void requestStopProcessing(bool isExportState = false);
-    // void requestContinueProcessing();
-    // void requestSeekToFrame(int position);
+    void requestStopProcessing(bool isExportState = false);
+    void requestContinueProcessing();
+    void requestSeekToFrame(int position);
     void requestProcessVideo();
-    void requestLoadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
-    void requestVideoInit(const std::string& filename);
+    void requestLoadData(const QString& UWBDataFilename, const QString& videoDataFilename);
     void finishedVideoProcessing();
     void tagPositionUpdated(const QPointF& position, int tagID);
-    // void requestDataExport(int endPosition);
+    void requestDataExport(int endPosition);
 
 private:
     Ui::IndoorPositioningSystem *ui;
@@ -101,16 +98,14 @@ private:
     double videoDuration;
     double fps;
     int totalFrames;
-    bool isPause, isExportState;
+    bool isPlayPauseSetToPlay, isExportState;
     // std::atomic<bool> toShowUWBLocalization;
 
-    // QThread videoThread;
-    // QThread uwbDataThread;
-    // QThread dataAnalysisWindowThread;
+    QThread videoThread;
+    QThread uwbDataThread;
+    QThread dataAnalysisWindowThread;
     ThreadSafeQueue frameQueue;
     // std::thread checkForDisplayThread;
-
-    QProgressDialog* exportProgressDialog;
 
 
 

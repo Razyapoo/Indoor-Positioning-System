@@ -10,11 +10,9 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
-#include <QThread>
 #include <eigen3/Eigen/Dense>
 #include <cmath>
 #include <filesystem>
-#include <QEventLoop>
 
 
 #include "threadsafequeue.h"
@@ -28,13 +26,11 @@ public:
     DataProcessor(ThreadSafeQueue& frameQueue);
     ~DataProcessor();
 
-    void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
-
 
 
 public slots:
+    void loadData(const QString& UWBDataFilename, const QString& videoDataFilename);
 
-    // void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
     // Find uwb data based on video timestamp. Timestamp is given by position.
     void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
     void onFindUWBMeasurementAndExport(int frameIndex,  const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord);
@@ -48,9 +44,6 @@ public slots:
     void updateOriginalWithAdjustedValues();
     void calculateUWBCoordinates(UWBData& data);
 
-private slots:
-    void cleanup();
-
 signals:
     void requestShowPlot();
     void requestShowAvailableTags(const std::vector<int>& availableTagIDs);
@@ -59,11 +52,9 @@ signals:
     void requestShowPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
     void requestShowDatasetSegments(const std::vector<double>& datasetSegmentMeans);
     void requestShowOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
-    void exportProgressUpdated(int progress);
 
 private:
     ThreadSafeQueue& frameQueue;
-    std::unique_ptr<QThread> dataProcessorThread;
     // std::atomic<bool>& toCalculateUWBLocalization;
 
     std::vector<long long> timestampsVector;

@@ -10,40 +10,44 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     ui->setupUi(this);
 
     // dataProcessor = new DataProcessor(frameQueue);
-    // dataProcessor = std::make_unique<DataProcessor>(frameQueue);
-
+    dataProcessor = std::make_unique<DataProcessor>(frameQueue);
+    dataProcessor->moveToThread(&uwbDataThread);
 
     // videoProcessor = new VideoProcessor(frameQueue, dataProcessor);
-
-
+    videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
+    videoProcessor->moveToThread(&videoThread);
 
     frameTimer = new QTimer(this);
     // frameTimer = std::make_unique<QTimer>(this);
     frameTimer->setInterval(58); // 3500 for human detector
 
-    dataProcessor = std::make_unique<DataProcessor>(frameQueue);
-    videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
-
+    // checkForDisplayThread = std::thread(&IndoorPositioningSystem::checkForDisplay, this);
+    // connect(&videoThread, &QThread::started, this, &IndoorPositioningSystem::startProcessVideo);
+    connect(this, &IndoorPositioningSystem::requestProcessVideo, videoProcessor.get(), &VideoProcessor::processVideo);
+    connect(this, &IndoorPositioningSystem::requestLoadData, dataProcessor.get(), &DataProcessor::loadData, Qt::DirectConnection);
+    // connect(videoProcessor, &VideoProcessor::latestFrame, this, &IndoorPositioningSystem::updateDataDisplay);
 
     connect(frameTimer, &QTimer::timeout, this, &IndoorPositioningSystem::checkForDisplay);
     connect(this, &IndoorPositioningSystem::frameIsReady, this, &IndoorPositioningSystem::updateDataDisplay);
-    connect(this, &IndoorPositioningSystem::requestProcessVideo, videoProcessor.get(), &VideoProcessor::processVideo);
+    connect(videoProcessor.get(), &VideoProcessor::requestFindUWBMeasurementAndEnqueue, dataProcessor.get(), &DataProcessor::onFindUWBMeasurementAndEnqueue, Qt::DirectConnection);
 
-    // connect(this, &IndoorPositioningSystem::requestStopProcessing, videoProcessor.get(),  &VideoProcessor::stopProcessing, Qt::DirectConnection);
+    connect(this, &IndoorPositioningSystem::requestStopProcessing, videoProcessor.get(),  &VideoProcessor::stopProcessing, Qt::DirectConnection);
     // connect(this, &IndoorPositioningSystem::requestContinueProcessing, videoProcessor,  &VideoProcessor::continueProcessing, Qt::BlockingQueuedConnection);
-    // connect(this, &IndoorPositioningSystem::requestSeekToFrame, videoProcessor.get(),  &VideoProcessor::seekToFrame, Qt::DirectConnection);
-    // connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystem::seekToFrame);
-    // connect(this, &IndoorPositioningSystem::requestVideoInit, videoProcessor.get(), &VideoProcessor::init, Qt::BlockingQueuedConnection);
-    // connect(this, &IndoorPositioningSystem::requestLoadData, dataProcessor.get(), &DataProcessor::loadData, Qt::BlockingQueuedConnection);
+    connect(this, &IndoorPositioningSystem::requestSeekToFrame, videoProcessor.get(),  &VideoProcessor::seekToFrame, Qt::DirectConnection);
+    connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystem::seekToFrame);
+    connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystem::afterSeeking, Qt::DirectConnection);
 
-    connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystem::afterSeeking);
+    connect(this, &IndoorPositioningSystem::requestDataExport, videoProcessor.get(), &VideoProcessor::onDataExport, Qt::DirectConnection);
+    connect(videoProcessor.get(), &VideoProcessor::requestFindUWBMeasurementAndExport, dataProcessor.get(), &DataProcessor::onFindUWBMeasurementAndExport, Qt::DirectConnection);
+    connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystem::onExportFinish, Qt::DirectConnection);
 
-    // connect(this, &IndoorPositioningSystem::requestDataExport, videoProcessor.get(), &VideoProcessor::dataExport, Qt::BlockingQueuedConnection);//, Qt::DirectConnection);
+
+
 
     // connect(this, &IndoorPositioningSystem::requestAnalyseData, dataProcessor.get(), &DataProcessor::dataAnalysisInit, Qt::DirectConnection);
 
-    // connect(this, &IndoorPositioningSystem::finishedVideoProcessing, &videoThread, &QThread::quit);
-    // connect(this, &IndoorPositioningSystem::finishedVideoProcessing, videoProcessor.get(), &QObject::deleteLater);
+    connect(this, &IndoorPositioningSystem::finishedVideoProcessing, &videoThread, &QThread::quit);
+    connect(this, &IndoorPositioningSystem::finishedVideoProcessing, videoProcessor.get(), &QObject::deleteLater);
 
     // connect(this, &QMainWindow::destroyed, &videoThread, &QThread::quit);
     // connect(this, &QMainWindow::destroyed, videoProcessor.get(), &QObject::deleteLater);
@@ -57,8 +61,6 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
 
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    // dataProcessor->moveToThread(&uwbDataThread);
-    // videoProcessor->moveToThread(&videoThread);
     // ui->timeEdit_Data_Analysis_Start->setDisplayFormat("HH:mm:ss");
     // ui->timeEdit_Data_Analysis_End->setDisplayFormat("HH:mm:ss");
 
@@ -68,12 +70,13 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
 
 IndoorPositioningSystem::~IndoorPositioningSystem()
 {
-    videoProcessor->stopProcessing();
+    frameQueue.notify_all();
+    frameQueue.clear();
 
-    // videoThread.terminate();
-    // videoThread.wait();
-    // uwbDataThread.terminate();
-    // uwbDataThread.wait();
+    videoThread.terminate();
+    videoThread.wait();
+    uwbDataThread.terminate();
+    uwbDataThread.wait();
     // dataAnalysisWindowThread.terminate();
     // dataAnalysisWindowThread.wait();
     delete ui;
@@ -169,7 +172,6 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
             QTime currentTime = QTime(0, 0).addSecs(static_cast<int>(currentTimeInSeconds));
             ui->horizontalSlider_Duration->setValue(data.videoData.id);
             ui->label_Current_Time->setText(currentTime.toString("HH:mm:ss"));
-            lastPosition = data.videoData.id;
         }
     }
 
@@ -178,11 +180,11 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
 void IndoorPositioningSystem::on_pushButton_Play_Pause_clicked()
 {
     if (frameTimer->isActive()) {
-        isPause = true;
+        isPlayPauseSetToPlay = false;
         frameTimer->stop();
         ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     } else {
-        isPause = false;
+        isPlayPauseSetToPlay = true;
         frameTimer->start();
         ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     }
@@ -193,7 +195,7 @@ void IndoorPositioningSystem::checkForDisplay() {
 
     // qDebug() << "Checking for frame to be displayed...";
 
-    if (!isPause && !isExportState) {
+    if (videoProcessor->isRunning()) {
         if (frameQueue.dequeue(data)) {
             emit frameIsReady(data);
         }
@@ -203,40 +205,35 @@ void IndoorPositioningSystem::checkForDisplay() {
 void IndoorPositioningSystem::on_actionOpen_Video_triggered()
 {
     // QString filename = QFileDialog::getOpenFileName(this, tr("Open Video"), "", tr("Video Files (*.avi)"));
-    std::string videoFileName, videotTimestampsFileName, UWBDataFileName;
+    QString videoFileName, videotTimestampsFileName, UWBDataFileName;
 
     QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", (QFileDialog::ShowDirsOnly, QFileDialog::DontResolveSymlinks));
 
     if (!directory.isEmpty()) {
         QDir qDirecroty(directory);
 
-        videoFileName = qDirecroty.filePath("video.avi").toStdString();
-        UWBDataFileName = qDirecroty.filePath("UWB_timestamps.txt").toStdString();/*qDirecroty.entryList(QStringList() << "UWB_*.txt", QDir::Files);*/
-        videotTimestampsFileName = qDirecroty.filePath("video_timestamps.txt").toStdString();/*qDirecroty.entryList(QStringList() << "video_*.txt", QDir::Files);*/
+        videoFileName = qDirecroty.filePath("video.avi");
+        UWBDataFileName = qDirecroty.filePath("UWB_timestamps.txt");/*qDirecroty.entryList(QStringList() << "UWB_*.txt", QDir::Files);*/
+        videotTimestampsFileName = qDirecroty.filePath("video_timestamps.txt");/*qDirecroty.entryList(QStringList() << "video_*.txt", QDir::Files);*/
     } /*else {
         throw QException('Directory is empty!');
     }*/
 
-    dataProcessor->loadData(UWBDataFileName, videotTimestampsFileName);
     videoProcessor->init(videoFileName);
-
-    // emit requestVideoInit(videoFileName);
-
-    // emit requestLoadData(UWBDataFileName, videotTimestampsFileName);
+    emit requestLoadData(UWBDataFileName, videotTimestampsFileName);
 
     videoDuration = videoProcessor->getVideoDuration();
     fps = videoProcessor->getFPS();
     totalFrames = videoProcessor->getTotalFrames();
     // if (totalFrames == -1) throw std::runtime_error("Error opening video file");
 
-    isPause = false;
+    isPlayPauseSetToPlay = true;
     isExportState = false;
     // toShowUWBLocalization = false;
-    emit requestProcessVideo();
     frameTimer->start();
-    // videoThread.start();
+    videoThread.start();
 
-    // emit requestProcessVideo();
+    emit requestProcessVideo();
 
     ui->horizontalSlider_Duration->setRange(1, totalFrames);
     QTime totalTime = QTime(0, 0).addSecs(static_cast<int>(videoDuration));
@@ -258,42 +255,52 @@ void IndoorPositioningSystem::on_horizontalSlider_Duration_valueChanged(int posi
     }
 }
 
-// void IndoorPositioningSystem::seekToFrame() {
+void IndoorPositioningSystem::seekToFrame() {
 
-//     // frameQueue.notify_all();
-//     // emit requestSeekToFrame(seekPosition);
-//     videoProcessor->seekToFrame(seekPosition);
-
-// }
+    // frameQueue.notify_all();
+    emit requestSeekToFrame(seekPosition);
+}
 
 void IndoorPositioningSystem::afterSeeking() {
 
-    if (!isPause) {
+
+    if (isExportState) {
+        emit requestDataExport(endDataExportPosition);
+    } else if (isPlayPauseSetToPlay) {
         frameTimer->start();
     }
     // frameQueue.notify_all();
-    // emit requestProcessVideo();
+    emit requestProcessVideo();
 }
 
 
 
 void IndoorPositioningSystem::on_horizontalSlider_Duration_sliderReleased()
 {
-    // emit requestStopProcessing();
-    videoProcessor->pauseProcessing();
+    emit requestStopProcessing();
     frameQueue.clear();
-    videoProcessor->seekToFrame(seekPosition);
-    videoProcessor->resumeProcessing();
+    frameQueue.notify_all();
 }
 
 
 void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 {
-    if (!dataAnalysisWindow) {
-        dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get(), fps);
-    }
+    dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get(), fps);
+    // connect(dataAnalysisWindow.get(), &QDialog::finished, dataAnalysisWindow.get(), &DataAnalysisWindow::onDialogClosed);
+    // dataAnalysisWindow->moveToThread(&(dataAnalysisWindow->dataAnalysisWindowThread));
+    // dataAnalysisWindow->dataAnalysisWindowThread.start();
 
     dataAnalysisWindow->show();
+    // dataAnalysisWindow->moveToThread(&dataAnalysisWindowThread);
+    // dataAnalysisWindowThread.start();
+
+    // QTime startTime = ui->timeEdit_Data_Analysis_Start->time();
+    // QTime endTime = ui->timeEdit_Data_Analysis_End->time();
+    // long long startFrameIndex = (startTime.hour()*3600 + startTime.minute()*60 + startTime.second()) * fps;
+    // long long endFrameIndex = (endTime.hour()*3600 + endTime.minute()*60 + endTime.second()) * fps;
+    // startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
+    // endFrameIndex = endFrameIndex - 1;
+    // emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
 
 
@@ -301,34 +308,27 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 
 void IndoorPositioningSystem::on_pushButton_UWB_Localization_clicked()
 {
-    if (!uwbLocalizationWindow) {
-        std::vector<QPointF> anchorPositions = {QPointF(1, 0), QPointF(3.5, 0)};
+    std::vector<QPointF> anchorPositions = {QPointF(1, 0), QPointF(3.5, 0)};
 
-        uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
-        connect(this, &IndoorPositioningSystem::tagPositionUpdated, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
-    }
-
+    uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
     uwbLocalizationWindow->show();
+
+    connect(this, &IndoorPositioningSystem::tagPositionUpdated, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
+
 }
 
-// void IndoorPositioningSystem::onUWBLocalizationWindowClosed() {
-//     uwbLocalizationWindow = nullptr;
+void IndoorPositioningSystem::onUWBLocalizationWindowClosed() {
+    uwbLocalizationWindow = nullptr;
 
-//     disconnect(this, &IndoorPositioningSystem::tagPositionUpdated, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
-// }
+    disconnect(this, &IndoorPositioningSystem::tagPositionUpdated, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
+}
 
 
 void IndoorPositioningSystem::on_pushButton_Export_Data_clicked()
 {
+    exportTimeRangeSetter = std::make_unique<ExportTimeRangeSetter>(this);
 
-    if (!exportTimeRangeSetter) {
-        exportTimeRangeSetter = std::make_unique<ExportTimeRangeSetter>(this);
-
-        connect(exportTimeRangeSetter.get(), &QDialog::accepted, this, &IndoorPositioningSystem::onAcceptDataExport);
-    }
-
-    exportTimeRangeSetter->startTimeEdit->setTime(QTime(0, 0));
-    exportTimeRangeSetter->endTimeEdit->setTime(QTime(0, 0));
+    connect(exportTimeRangeSetter.get(), &QDialog::accepted, this, &IndoorPositioningSystem::onAcceptDataExport);
     exportTimeRangeSetter->show();
 
     // connect(exportTimeRangeSetter.get(), &QDialog::accepted, this, [this, exportTimeRangeSetter, ui]() {
@@ -338,80 +338,35 @@ void IndoorPositioningSystem::on_pushButton_Export_Data_clicked()
 }
 
 void IndoorPositioningSystem::onAcceptDataExport() {
+    ui->horizontalSlider_Duration->setEnabled(false);
+    ui->pushButton_Export_Data->setEnabled(false);
+    ui->pushButton_UWB_Data_Analysis->setEnabled(false);
+    ui->pushButton_UWB_Localization->setEnabled(false);
+    ui->pushButton_Play_Pause->setEnabled(false);
+    if (frameTimer->isActive()) {
+        frameTimer->stop();
+    }
+    lastPosition = ui->horizontalSlider_Duration->pos().x();
+
+    isExportState = true;
     QTime startTime = exportTimeRangeSetter->startTimeEdit->time();
     QTime endTime = exportTimeRangeSetter->endTimeEdit->time();
     seekPosition = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
     endDataExportPosition = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
     seekPosition = ((seekPosition - 1) < 0) ? 0 : seekPosition - 1;
     endDataExportPosition = ((endDataExportPosition - 1) < 0) ? 0 : endDataExportPosition - 1;
-    int totalExportDuration = endDataExportPosition - seekPosition;
 
-    if (totalExportDuration > 0) {
-        ui->horizontalSlider_Duration->setEnabled(false);
-        ui->pushButton_Export_Data->setEnabled(false);
-        ui->pushButton_UWB_Data_Analysis->setEnabled(false);
-        ui->pushButton_UWB_Localization->setEnabled(false);
-        ui->pushButton_Play_Pause->setEnabled(false);
-        isPause = true;
-        if (frameTimer->isActive()) {
-            frameTimer->stop();
-        }
-        isExportState = true;
-
-
-        if (!exportProgressDialog) {
-            exportProgressDialog = new QProgressDialog("Exporting data...", "Cancel", 0, 100, this); // 0..100%
-            exportProgressDialog->setWindowModality(Qt::WindowModal);
-
-            connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystem::onExportFinish, Qt::BlockingQueuedConnection);
-            connect(dataProcessor.get(), &DataProcessor::exportProgressUpdated, this, [this, totalExportDuration](int position) {
-                    position = ((position - seekPosition) * 100) / totalExportDuration;
-                    exportProgressDialog->setValue(position);
-                }, Qt::QueuedConnection);
-            connect(exportProgressDialog, &QProgressDialog::canceled, this, [this]() {
-                // exportProgressDialog->setValue(0);
-                // exportProgressDialog->hide();
-                videoProcessor->stopExport();
-
-            });
-        }
-
-
-        videoProcessor->pauseProcessing();
-        frameQueue.interruptionRequest();
-        videoProcessor->dataExport(endDataExportPosition);
-        videoProcessor->seekToFrame(seekPosition);
-        videoProcessor->resumeProcessing();
-        exportProgressDialog->show();
-    } else {
-        QMessageBox::warning(this, "Warning! Wrong time range.", "Time range is set wrong. End time should be larger than start time.");
-        exportTimeRangeSetter->startTimeEdit->setTime(QTime(0, 0));
-        exportTimeRangeSetter->endTimeEdit->setTime(QTime(0, 0));
-        exportTimeRangeSetter->show();
-    }
+    emit requestStopProcessing();
 }
 
-void IndoorPositioningSystem::onExportFinish(bool success) {
-    if (success) {
-        exportProgressDialog->setValue(exportProgressDialog->maximum());
-        QMessageBox::information(this, "Export Complete", "The data export operation has completed successfully.");
-    } else {
-        // exportProgressDialog->setValue(0);
-        exportProgressDialog->reset();
-        // exportProgressDialog->close();
-    }
-
+void IndoorPositioningSystem::onExportFinish() {
     ui->horizontalSlider_Duration->setEnabled(true);
     ui->pushButton_Export_Data->setEnabled(true);
     ui->pushButton_UWB_Data_Analysis->setEnabled(true);
     ui->pushButton_UWB_Localization->setEnabled(true);
     ui->pushButton_Play_Pause->setEnabled(true);
-    isPause = false;
     isExportState = false;
 
-    videoProcessor->pauseProcessing();
-    frameQueue.clear();
-    videoProcessor->seekToFrame(lastPosition);
-    videoProcessor->resumeProcessing();
+    emit requestSeekToFrame(lastPosition);
 }
 

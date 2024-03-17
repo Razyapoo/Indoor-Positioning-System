@@ -80,10 +80,10 @@ void UWBLocalizationWindow::updateTagPosition(const QPointF& position, int tagID
     }
 }
 
-// void UWBLocalizationWindow::closeEvent(QCloseEvent *event) {
-//     QDialog::closeEvent(event);
-//     emit windowClosed();
-// }
+void UWBLocalizationWindow::closeEvent(QCloseEvent *event) {
+    QDialog::closeEvent(event);
+    emit windowClosed();
+}
 
 void UWBLocalizationWindow::drawGrid(int widthMeters, int heightMeters, const QPointF& shiftInPixels) {
 

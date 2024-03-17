@@ -2,14 +2,9 @@
 #define VIDEOPROCESSOR_H
 
 #include <QObject>
-#include <QThread>
-#include <atomic>
-#include <QMutex>
-#include <QWaitCondition>
 #include <QImage>
 #include <opencv2/opencv.hpp>
 #include <QDebug>
-#include <QEventLoop>
 
 #include "dataprocessor.h"
 #include "structures.h"
@@ -22,48 +17,37 @@ class VideoProcessor : public QObject
 public:
     VideoProcessor(ThreadSafeQueue& frameQueue, DataProcessor* dataProcessor);
     ~VideoProcessor();
-
-    void init(const std::string& filename);
+    void init(const QString& filename);
     double getVideoDuration() const;
     double getFPS() const;
     int getTotalFrames() const;
 
-    void resumeProcessing();
-    void pauseProcessing();
+    void continueProcessing();
     void stopProcessing();
     bool isRunning();
 
-    void seekToFrame(int position);
-    void dataExport(int endPosition);
-    void stopExport();
 
 public slots:
     void processVideo();
+    void seekToFrame(int position);
+    void onDataExport(int endPosition);
 
-private slots:
-    void cleanup();
 
 signals:
     // void latestFrame(const QImage& qImage, const int& position);
     void finished();
     void seekingDone();
-    void processingIsPaused();
+    void processingIsStopped();
     void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage);
     void requestFindUWBMeasurementAndExport(int position, const std::vector<QPoint>& detectedBoxCenterPoint, bool lastRecord);
-    void exportFinished(bool success);
+    void exportFinished();
 
 private:
     ThreadSafeQueue& frameQueue;
     DataProcessor* dataProcessor;
     HumanDetector humanDetector;
 
-    std::unique_ptr<QThread> videoProcessorThread;
-    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport;
-    QMutex mutex;
-    QWaitCondition pauseCondition;
-    QEventLoop loop;
-
-    // std::atomic<bool> keepProcessingVideo;
+    std::atomic<bool> keepProcessingVideo;
     cv::VideoCapture camera;
     cv::Mat frame;
     QImage qImage;
@@ -73,9 +57,9 @@ private:
     double videoDuration;
     int totalFrames;
     int keyframeInterval;
-    int seekPosition;
-    int endDataExportPosition;
 
+    std::atomic<bool> isExportRequested;
+    int endDataExportPosition;
 
     std::vector<QPoint> detectPeople(cv::Mat& frame);
 

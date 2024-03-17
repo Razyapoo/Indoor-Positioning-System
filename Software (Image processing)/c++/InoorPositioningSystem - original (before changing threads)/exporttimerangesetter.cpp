@@ -27,6 +27,7 @@ ExportTimeRangeSetter::ExportTimeRangeSetter(QWidget *parent)
     connect(confirmButton, &QDialogButtonBox::rejected, this, &ExportTimeRangeSetter::reject);
 
     setLayout(TimeExportLayout);
+    setAttribute(Qt::WA_DeleteOnClose);
 
 
 }

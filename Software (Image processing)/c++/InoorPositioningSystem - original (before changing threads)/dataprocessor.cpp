@@ -1,21 +1,7 @@
 #include "dataprocessor.h"
 
-DataProcessor::DataProcessor(ThreadSafeQueue& frameQueue): frameQueue(frameQueue) {
-
-    dataProcessorThread.reset(new QThread);
-    moveToThread(dataProcessorThread.get());
-
-    dataProcessorThread->start();
-
-}
-
+DataProcessor::DataProcessor(ThreadSafeQueue& frameQueue): frameQueue(frameQueue) {}
 DataProcessor::~DataProcessor() {
-    // cleanup();
-    QMetaObject::invokeMethod(this, "cleanup");
-    dataProcessorThread->wait();
-}
-
-void DataProcessor::cleanup() {
     if (uwbDataFile.is_open()){
         uwbDataFile.close();
     }
@@ -23,11 +9,12 @@ void DataProcessor::cleanup() {
     if (videoDataFile.is_open()) {
         videoDataFile.close();
     }
-    dataProcessorThread->quit();
 }
 
-void DataProcessor::loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename) {
-    videoDataFile = std::ifstream(videoDataFilename);
+void DataProcessor::loadData(const QString& UWBDataFilename, const QString& videoDataFilename) {
+    videoDataFile = std::ifstream(videoDataFilename.toStdString());
+
+    // timestampsVector.erase(timestampsVector.begin(), timestampsVector.end());
     timestampsVector.clear();
 
     int id;
@@ -38,10 +25,11 @@ void DataProcessor::loadData(const std::string& UWBDataFilename, const std::stri
         timestampsVector.push_back(timestamp);
     }
 
-    uwbDataFile = std::ifstream(UWBDataFilename);
+    uwbDataFile = std::ifstream(UWBDataFilename.toStdString());
     UWBData record;
     std::string line;
     Anchor anchor;
+    // uwbDataVector.erase(uwbDataVector.begin(), uwbDataVector.end());
     uwbDataVector.clear();
     uwbDataPerTag.clear();
     while (std::getline(uwbDataFile, line, '\n'))
@@ -111,7 +99,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, const std::vec
         if (data != uwbDataPerTag.end()) {
             UWBData closestUWB = binarySearchUWB(frameTimestamp, data->second);
             calculateUWBCoordinates(closestUWB);
-            outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << bottomEdgeCentersVector[i].x() << " " << bottomEdgeCentersVector[i].y() << std::endl;
+            outputFile << frameIndex - 1 << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << bottomEdgeCentersVector[i].x() << " " << bottomEdgeCentersVector[i].y() << std::endl;
             ++data;
         } else {
             qDebug() << "Intruder is found!! There is no tag to match with people";
@@ -122,7 +110,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, const std::vec
         outputFile.close();
     }
 
-    emit exportProgressUpdated(frameIndex);
+
 }
 
 
