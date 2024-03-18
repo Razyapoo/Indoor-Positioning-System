@@ -29,6 +29,7 @@ public:
     ~DataProcessor();
 
     void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
+    void getMiddleSegmentDataForModel();
 
 
 
@@ -73,6 +74,7 @@ private:
     std::vector<int> uniqueTagIDs;
     std::vector<double> rollingDeviations;
     std::vector<double> datasetSegmentMeans;
+    std::vector<int> segmentFrameIDs;
 
     std::span<UWBData> uwbDataRangeToAnalyze;
     std::vector<UWBData*> tagDataToAnalyze;
@@ -90,6 +92,7 @@ private:
     UWBData linearSearchUWB(const long long& frameTimestamp);
     UWBData binarySearchUWB(const long long& frameTimestamp);
     UWBData binarySearchUWB(const long long& frameTimestamp, const std::vector<UWBData*>& uwbDataVector);
+    int binarySearchVideoFrameID(const long long& uwbTimestamp);
 
 };
 

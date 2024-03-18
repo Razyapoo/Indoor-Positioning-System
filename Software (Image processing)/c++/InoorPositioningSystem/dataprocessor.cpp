@@ -224,6 +224,34 @@ UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
     return *closestUWB;
 }
 
+int DataProcessor::binarySearchVideoFrameID(const long long &uwbTimestamp) {
+    int left = 0;
+    int right = timestampsVector.size() - 1;
+    int closestID;
+
+    long long minDif = std::abs(uwbTimestamp - timestampsVector[0]);
+    int mid;
+    long long dif;
+
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        dif = std::abs(uwbTimestamp - timestampsVector[mid]);
+
+        if (dif < minDif) {
+            minDif = dif;
+            closestID = mid;
+        }
+
+        if (uwbTimestamp > timestampsVector[mid]) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return closestID;
+}
+
 void DataProcessor::setRangeForDataAnalysis(const long long startFrameIndex, const long long endFrameIndex) {
 
     long long startFrameTimestamp = timestampsVector[startFrameIndex];
@@ -340,18 +368,22 @@ void DataProcessor::calculateRollingDeviation(const int windowSize) {
 void DataProcessor::splitDataset(const double threshold) {
     // datasetSegmentMeans.erase(datasetSegmentMeans.begin(), datasetSegmentMeans.end());
     datasetSegmentMeans.clear();
+    segmentTimestampsForModel.clear();
 
     // Detect segments where tag was standing and calculate mean for each segment
     // Assuming segments are continuous
     double segmentSum = 0.0;
     int segmentSize = 0;
-    for (int i = 0; i < rollingDeviations.size(); ++i) {
+    int i;
+    for (i = 0; i < rollingDeviations.size(); ++i) {
         if (rollingDeviations[i] <= threshold) {
             segmentSum += *distancesToAnalyzeOriginal[i];
             segmentSize += 1;
         } else if (segmentSum > 0 && segmentSize > 0) {
             double temp = segmentSum / segmentSize;
             datasetSegmentMeans.push_back(temp);
+            int videoFrameID = binarySearchVideoFrameID(tagDataToAnalyze[i - (segmentSize / 2)]->timestamp);
+            segmentFrameIDs.push_back(videoFrameID); // remember timestamp of the segment's middle record for model training
             segmentSum = 0;
             segmentSize = 0;
         }
@@ -360,11 +392,15 @@ void DataProcessor::splitDataset(const double threshold) {
     if (segmentSum > 0 && segmentSize > 0) {
         double temp = segmentSum / segmentSize;
         datasetSegmentMeans.push_back(temp);
-        segmentSum = 0;
-        segmentSize = 0;
+        int videoFrameID = binarySearchVideoFrameID(tagDataToAnalyze[i - (segmentSize / 2)]->timestamp);
+        segmentFrameIDs.push_back(videoFrameID);
     }
 
     emit requestShowDatasetSegments(datasetSegmentMeans);
+}
+
+std::vector<int> DataProcessor::getSegmentFrameIDs() {
+    return segmentFrameIDs;
 }
 
 void DataProcessor::calculatePolynomialRegression(const std::vector<double>& referenceValues) {

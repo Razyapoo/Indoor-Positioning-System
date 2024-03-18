@@ -121,10 +121,16 @@ void VideoProcessor::processVideo() {
                         std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
                         if (position != endDataExportPosition) {
                             emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
+                            if (!camera.read(frame)) {
+                                std::cout << "Failed to read frame while export" << std::endl;
+                                break;
+                            }
+                            position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
                         } else {
                             emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
+                            break;
                         }
-                        ++position;
+                        // ++position;
                     }
                 }
             }
@@ -142,7 +148,10 @@ void VideoProcessor::processVideo() {
 
             // if (detectPeople)
             // {
-
+            // std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
+            // if (bottomEdgeCentersVector.size() > 0) {
+            //     qDebug() << "x: " << bottomEdgeCentersVector[0].x() << "y: " << bottomEdgeCentersVector[0].y();
+            // }
             // // }
 
             // // frame = detectionImage;
