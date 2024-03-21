@@ -7,6 +7,9 @@ DataProcessor::DataProcessor(ThreadSafeQueue& frameQueue): frameQueue(frameQueue
 
     dataProcessorThread->start();
 
+    segmentFrameIDs = {};
+    segmentRepresentatives = {};
+
 }
 
 DataProcessor::~DataProcessor() {
@@ -97,7 +100,7 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
 
 }
 
-void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord) {
+void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType exportType, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord) {
 
     long long frameTimestamp = timestampsVector[frameIndex - 1];
     std::string outputFilePath = "uwb_to_bb_mapping.txt";
@@ -106,23 +109,56 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, const std::vec
         outputFile = std::ofstream(outputFilePath, std::ios::out);
     }
 
-    auto data = uwbDataPerTag.begin();
-    for (int i = 0; i < bottomEdgeCentersVector.size(); ++i) {
-        if (data != uwbDataPerTag.end()) {
-            UWBData closestUWB = binarySearchUWB(frameTimestamp, data->second);
-            calculateUWBCoordinates(closestUWB);
-            outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << bottomEdgeCentersVector[i].x() << " " << bottomEdgeCentersVector[i].y() << std::endl;
-            ++data;
-        } else {
-            qDebug() << "Intruder is found!! There is no tag to match with people";
+    if (exportType == ExportType::FrameByFrameExport) {
+        auto data = uwbDataPerTag.begin();
+        // Vector of bottom edge centers is used for the future improvement of the code. When more people are used for model calibration
+        // As for now only one person in the scene assumed
+        for (int i = 0; i < bottomEdgeCentersVector.size(); ++i) {
+            if (data != uwbDataPerTag.end()) {
+                UWBData closestUWB = binarySearchUWB(frameTimestamp, data->second);
+                calculateUWBCoordinates(closestUWB);
+                outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << bottomEdgeCentersVector[i].x() << " " << bottomEdgeCentersVector[i].y() << std::endl;
+                ++data;
+            } else {
+                qDebug() << "Intruder is found!! There is no tag to match with people";
+            }
         }
+    // Always only for one tag for which data analysis is performed. Frame timestamp and UWBData are already known and synchornized. Synzhronization was done during split of dataset into segments
+    // Assuming only one person in the scene. Otherwise need to solve synchronization between indexes of detected people and indexes of the tags they are wearing
+    } else if (exportType == ExportType::SegmentFramesExport) {
+        double segmentDistanceSum = 0.0;
+        UWBData* data;
+        for (Anchor& segmentRepresentativeAnchor: segmentRepresentatives[rangeIndex].anchorList) {
+            for (int i = 0; i < segmentSizes[rangeIndex]; ++i) {
+                data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - 1 + i]; // assuming id of record corresponds to index of vector -1 position
+                std::vector<Anchor>::iterator anchor = std::find_if(data->anchorList.begin(), data->anchorList.end(), [segmentRepresentativeAnchor](const Anchor& anchor2) {
+                    return anchor2.anchorID == segmentRepresentativeAnchor.anchorID;
+                });
+                if (anchor != data->anchorList.end()) {
+                    segmentDistanceSum += anchor->distance;
+                } else {
+                    int j = 0;
+                    j++;
+                }
+                // ++data;
+            }
+            double distanceMean = segmentDistanceSum / segmentSizes[rangeIndex];
+            segmentRepresentativeAnchor.distance = distanceMean;
+            segmentDistanceSum = 0.0;
+        }
+
+        calculateUWBCoordinates(segmentRepresentatives[rangeIndex]);
+        outputFile << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << bottomEdgeCentersVector[0].x() << " " << bottomEdgeCentersVector[0].y() << std::endl;
     }
 
     if (lastRecord && outputFile.is_open()) {
+        segmentFrameIDs.clear();
+        segmentSizes.clear();
+        segmentRepresentatives.clear();
         outputFile.close();
     }
 
-    emit exportProgressUpdated(frameIndex);
+    emit exportProgressUpdated(rangeIndex);
 }
 
 
@@ -227,7 +263,7 @@ UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
 int DataProcessor::binarySearchVideoFrameID(const long long &uwbTimestamp) {
     int left = 0;
     int right = timestampsVector.size() - 1;
-    int closestID;
+    int closestID = -1;
 
     long long minDif = std::abs(uwbTimestamp - timestampsVector[0]);
     int mid;
@@ -366,37 +402,45 @@ void DataProcessor::calculateRollingDeviation(const int windowSize) {
 }
 
 void DataProcessor::splitDataset(const double threshold) {
-    // datasetSegmentMeans.erase(datasetSegmentMeans.begin(), datasetSegmentMeans.end());
-    datasetSegmentMeans.clear();
-    segmentTimestampsForModel.clear();
+    // segmentMeans.erase(segmentMeans.begin(), segmentMeans.end());
+    segmentMeans.clear();
+    segmentFrameIDs.clear();
+    segmentSizes.clear();
+    segmentRepresentatives.clear();
 
     // Detect segments where tag was standing and calculate mean for each segment
     // Assuming segments are continuous
-    double segmentSum = 0.0;
+    double segmentDistanceSum = 0.0;
     int segmentSize = 0;
     int i;
     for (i = 0; i < rollingDeviations.size(); ++i) {
         if (rollingDeviations[i] <= threshold) {
-            segmentSum += *distancesToAnalyzeOriginal[i];
+            segmentDistanceSum += *distancesToAnalyzeOriginal[i];
             segmentSize += 1;
-        } else if (segmentSum > 0 && segmentSize > 0) {
-            double temp = segmentSum / segmentSize;
-            datasetSegmentMeans.push_back(temp);
-            int videoFrameID = binarySearchVideoFrameID(tagDataToAnalyze[i - (segmentSize / 2)]->timestamp);
-            segmentFrameIDs.push_back(videoFrameID); // remember timestamp of the segment's middle record for model training
-            segmentSum = 0;
+        } else if (segmentDistanceSum > 0 && segmentSize > 0) {
+            double segmentMean = segmentDistanceSum / segmentSize;
+            segmentMeans.push_back(segmentMean);
+            UWBData segmentRepresentative = *tagDataToAnalyze[i - segmentSize + 1];
+            int segmentVideoFrameID = binarySearchVideoFrameID(segmentRepresentative.timestamp);
+            segmentFrameIDs.push_back(segmentVideoFrameID); // remember timestamp of the segment's first record for model training
+            segmentSizes.push_back(segmentSize);
+            segmentRepresentatives.push_back(std::move(segmentRepresentative));
+            segmentDistanceSum = 0;
             segmentSize = 0;
         }
     }
 
-    if (segmentSum > 0 && segmentSize > 0) {
-        double temp = segmentSum / segmentSize;
-        datasetSegmentMeans.push_back(temp);
-        int videoFrameID = binarySearchVideoFrameID(tagDataToAnalyze[i - (segmentSize / 2)]->timestamp);
-        segmentFrameIDs.push_back(videoFrameID);
+    if (segmentDistanceSum > 0 && segmentSize > 0) {
+        double segmentMean = segmentDistanceSum / segmentSize;
+        segmentMeans.push_back(segmentMean);
+        UWBData segmentRepresentative = *tagDataToAnalyze[i - segmentSize + 1];
+        int segmentVideoFrameID = binarySearchVideoFrameID(segmentRepresentative.timestamp);
+        segmentFrameIDs.push_back(segmentVideoFrameID); // remember timestamp of the segment's first record for model training
+        segmentSizes.push_back(segmentSize);
+        segmentRepresentatives.push_back(std::move(segmentRepresentative));
     }
 
-    emit requestShowDatasetSegments(datasetSegmentMeans);
+    emit requestShowDatasetSegments(segmentMeans);
 }
 
 std::vector<int> DataProcessor::getSegmentFrameIDs() {
@@ -413,8 +457,8 @@ void DataProcessor::calculatePolynomialRegression(const std::vector<double>& ref
 
     for (int i = 0; i < n; ++i) {
         A(i, 0) = 1;
-        A(i, 1) = datasetSegmentMeans[i];
-        A(i, 2) = std::pow(datasetSegmentMeans[i], 2);
+        A(i, 1) = segmentMeans[i];
+        A(i, 2) = std::pow(segmentMeans[i], 2);
         y(i) = referenceValues[i];
     }
 
@@ -424,6 +468,8 @@ void DataProcessor::calculatePolynomialRegression(const std::vector<double>& ref
         double distance = *(distancesToAnalyzeOriginal[i]);
         distancesToAnalyzeAdjusted.push_back(betaCoeff(0) + betaCoeff(1) * distance + betaCoeff(2) * distance * distance);
     }
+
+
 
     emit requestShowOriginalVsAdjustedDistances(timestampsToAnalyze, distancesToAnalyzeOriginal, distancesToAnalyzeAdjusted);
 }

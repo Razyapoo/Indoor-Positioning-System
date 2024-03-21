@@ -2,6 +2,10 @@
 #define STRUCTURES_H
 #include <QImage>
 
+enum ExportType {
+    FrameByFrameExport,
+    SegmentFramesExport
+};
 
 // bool debug = true;
 struct Anchor
@@ -26,14 +30,14 @@ struct Anchor
         return *this;
     }
 
-    // Anchor& operator=(const Anchor& other) {
-    //     if (this != &other) {
-    //         anchorID = other.anchorID;
-    //         distance = other.distance;
+    Anchor& operator=(const Anchor& other) {
+        if (this != &other) {
+            anchorID = other.anchorID;
+            distance = other.distance;
 
-    //     }
-    //     return *this;
-    // }
+        }
+        return *this;
+    }
 
 
     ~Anchor() {}
@@ -141,16 +145,16 @@ struct UWBData
     //     return id == other.id;
     // }
 
-    // UWBData& operator=(const UWBData& other) {
-    //     if (this != &other) {
-    //         id = other.id;
-    //         timestamp = other.timestamp;
-    //         tagID = other.tagID;
-    //         anchorList = other.anchorList;
-    //         coordinates = other.coordinates;
-    //     }
-    //     return *this;
-    // }
+    UWBData& operator=(const UWBData& other) {
+        if (this != &other) {
+            id = other.id;
+            timestamp = other.timestamp;
+            tagID = other.tagID;
+            anchorList = other.anchorList;
+            coordinates = other.coordinates;
+        }
+        return *this;
+    }
 
     ~UWBData() {}
 };

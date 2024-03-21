@@ -34,7 +34,7 @@ public:
     bool isRunning();
 
     void seekToFrame(int position);
-    void dataExport(int endPosition);
+    void setFrameRangeToExport(const std::vector<int>& frameRange, ExportType type);
     void stopExport();
 
 public slots:
@@ -49,7 +49,7 @@ signals:
     void seekingDone();
     void processingIsPaused();
     void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage);
-    void requestFindUWBMeasurementAndExport(int position, const std::vector<QPoint>& detectedBoxCenterPoint, bool lastRecord);
+    void requestFindUWBMeasurementAndExport(int position, int rangeIndex, ExportType type, const std::vector<QPoint>& detectedBoxCenterPoint, bool lastRecord);
     void exportFinished(bool success);
 
 private:
@@ -74,7 +74,10 @@ private:
     int totalFrames;
     int keyframeInterval;
     int seekPosition;
-    int endDataExportPosition;
+    ExportType exportType;
+    // int frameByFrameExportEndPosition;
+
+    std::vector<int> frameRangeToExport;
 
 
     std::vector<QPoint> detectPeople(cv::Mat& frame);

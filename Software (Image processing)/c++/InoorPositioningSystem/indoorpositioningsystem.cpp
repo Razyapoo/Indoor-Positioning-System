@@ -23,6 +23,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
 
     dataProcessor = std::make_unique<DataProcessor>(frameQueue);
     videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
+    exportProgressDialog = nullptr;
 
 
     connect(frameTimer, &QTimer::timeout, this, &IndoorPositioningSystem::checkForDisplay);
@@ -64,6 +65,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
 
     // // ClickEventFilter *filter = new ClickEventFilter(this);
     // ui->timeEdit_Data_Analysis_Start->installEventFilter(this);
+
 }
 
 IndoorPositioningSystem::~IndoorPositioningSystem()
@@ -294,6 +296,7 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
     }
 
     dataAnalysisWindow->show();
+    connect(dataAnalysisWindow.get(), &DataAnalysisWindow::requestSegmentFramesExport, this, &IndoorPositioningSystem::onSegmentFramesExport);
 }
 
 
@@ -324,65 +327,69 @@ void IndoorPositioningSystem::on_pushButton_Export_Data_clicked()
     if (!exportTimeRangeSetter) {
         exportTimeRangeSetter = std::make_unique<ExportTimeRangeSetter>(this);
 
-        connect(exportTimeRangeSetter.get(), &QDialog::accepted, this, &IndoorPositioningSystem::onAcceptDataExport);
+        connect(exportTimeRangeSetter.get(), &QDialog::accepted, this, &IndoorPositioningSystem::onAcceptFrameByFrameExport);
     }
 
     exportTimeRangeSetter->startTimeEdit->setTime(QTime(0, 0));
     exportTimeRangeSetter->endTimeEdit->setTime(QTime(0, 0));
     exportTimeRangeSetter->show();
 
-    // connect(exportTimeRangeSetter.get(), &QDialog::accepted, this, [this, exportTimeRangeSetter, ui]() {
-    //     // frameTimer->stop();
-
-    // });
 }
 
-void IndoorPositioningSystem::onAcceptDataExport() {
+
+void IndoorPositioningSystem::setupExportConfiguration(const std::vector<int>& frameRangeToExport, ExportType type) {
+    ui->horizontalSlider_Duration->setEnabled(false);
+    ui->pushButton_Export_Data->setEnabled(false);
+    ui->pushButton_UWB_Data_Analysis->setEnabled(false);
+    ui->pushButton_UWB_Localization->setEnabled(false);
+    ui->pushButton_Play_Pause->setEnabled(false);
+    isPause = true;
+    if (frameTimer->isActive()) {
+        frameTimer->stop();
+    }
+    isExportState = true;
+
+
+    videoProcessor->pauseProcessing();
+    frameQueue.interruptionRequest();
+    videoProcessor->setFrameRangeToExport(frameRangeToExport, type);
+    videoProcessor->resumeProcessing();
+
+    int totalExportDuration = frameRangeToExport.size();
+    if (!exportProgressDialog) {
+        exportProgressDialog = new QProgressDialog("Exporting data...", "Cancel", 0, 100, this); // 0..100%
+        exportProgressDialog->setWindowModality(Qt::WindowModal);
+
+        connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystem::onExportFinish, Qt::BlockingQueuedConnection);
+        connect(dataProcessor.get(), &DataProcessor::exportProgressUpdated, this, [this, totalExportDuration](int index) {
+                int proportion = (index * 100) / totalExportDuration;
+                exportProgressDialog->setValue(proportion);
+            }, Qt::QueuedConnection);
+        connect(exportProgressDialog, &QProgressDialog::canceled, this, [this]() {
+            videoProcessor->stopExport();
+
+        });
+    }
+
+    exportProgressDialog->show();
+}
+
+void IndoorPositioningSystem::onAcceptFrameByFrameExport() {
     QTime startTime = exportTimeRangeSetter->startTimeEdit->time();
     QTime endTime = exportTimeRangeSetter->endTimeEdit->time();
-    seekPosition = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
-    endDataExportPosition = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
-    seekPosition = ((seekPosition - 1) < 0) ? 0 : seekPosition - 1;
+    int startDataExportPosition = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
+    int endDataExportPosition = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
+    startDataExportPosition = ((startDataExportPosition - 1) < 0) ? 0 : startDataExportPosition - 1;
     endDataExportPosition = ((endDataExportPosition - 1) < 0) ? 0 : endDataExportPosition - 1;
-    int totalExportDuration = endDataExportPosition - seekPosition;
+    int totalExportDuration = endDataExportPosition - startDataExportPosition;
 
+    std::vector<int> frameRangeToExport;
     if (totalExportDuration > 0) {
-        ui->horizontalSlider_Duration->setEnabled(false);
-        ui->pushButton_Export_Data->setEnabled(false);
-        ui->pushButton_UWB_Data_Analysis->setEnabled(false);
-        ui->pushButton_UWB_Localization->setEnabled(false);
-        ui->pushButton_Play_Pause->setEnabled(false);
-        isPause = true;
-        if (frameTimer->isActive()) {
-            frameTimer->stop();
+        for (int i = startDataExportPosition; i <= endDataExportPosition; ++i) {
+            frameRangeToExport.push_back(i);
         }
-        isExportState = true;
+        setupExportConfiguration(frameRangeToExport, ExportType::FrameByFrameExport);
 
-
-        if (!exportProgressDialog) {
-            exportProgressDialog = new QProgressDialog("Exporting data...", "Cancel", 0, 100, this); // 0..100%
-            exportProgressDialog->setWindowModality(Qt::WindowModal);
-
-            connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystem::onExportFinish, Qt::BlockingQueuedConnection);
-            connect(dataProcessor.get(), &DataProcessor::exportProgressUpdated, this, [this, totalExportDuration](int position) {
-                    position = ((position - seekPosition) * 100) / totalExportDuration;
-                    exportProgressDialog->setValue(position);
-                }, Qt::QueuedConnection);
-            connect(exportProgressDialog, &QProgressDialog::canceled, this, [this]() {
-                // exportProgressDialog->setValue(0);
-                // exportProgressDialog->hide();
-                videoProcessor->stopExport();
-
-            });
-        }
-
-
-        videoProcessor->pauseProcessing();
-        frameQueue.interruptionRequest();
-        videoProcessor->dataExport(endDataExportPosition);
-        videoProcessor->seekToFrame(seekPosition);
-        videoProcessor->resumeProcessing();
-        exportProgressDialog->show();
     } else {
         QMessageBox::warning(this, "Warning! Wrong time range.", "Time range is set wrong. End time should be larger than start time.");
         exportTimeRangeSetter->startTimeEdit->setTime(QTime(0, 0));
@@ -391,14 +398,22 @@ void IndoorPositioningSystem::onAcceptDataExport() {
     }
 }
 
+
+void IndoorPositioningSystem::onSegmentFramesExport() {
+    std::vector<int> frameRangeToExport = dataProcessor->getSegmentFrameIDs();
+    if (frameRangeToExport.size()) {
+        setupExportConfiguration(frameRangeToExport, ExportType::SegmentFramesExport);
+    } else {
+        QMessageBox::warning(this, "Warning! Wrong time range.", "Time range is set wrong. Please set segment frame IDs to export.");
+    }
+}
+
 void IndoorPositioningSystem::onExportFinish(bool success) {
     if (success) {
         exportProgressDialog->setValue(exportProgressDialog->maximum());
         QMessageBox::information(this, "Export Complete", "The data export operation has completed successfully.");
     } else {
-        // exportProgressDialog->setValue(0);
         exportProgressDialog->reset();
-        // exportProgressDialog->close();
     }
 
     ui->horizontalSlider_Duration->setEnabled(true);

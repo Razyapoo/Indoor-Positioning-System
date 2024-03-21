@@ -38,7 +38,7 @@ public slots:
     // void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
     // Find uwb data based on video timestamp. Timestamp is given by position.
     void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
-    void onFindUWBMeasurementAndExport(int frameIndex,  const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord);
+    void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord);
     void collectDataForTag(const QString &tagIDText);
     void setRangeForDataAnalysis(const long long startFrameIndex, const long long endFrameIndex);
     // void collectDataForAnchor(const int anchorID);
@@ -48,6 +48,7 @@ public slots:
     void calculatePolynomialRegression(const std::vector<double>& referenceValues);
     void updateOriginalWithAdjustedValues();
     void calculateUWBCoordinates(UWBData& data);
+    std::vector<int> getSegmentFrameIDs();
 
 private slots:
     void cleanup();
@@ -58,7 +59,7 @@ signals:
     void requestShowAvailableAnchors(const std::vector<int>& availableAnchorIDs);
     void requestShowPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
     void requestShowPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
-    void requestShowDatasetSegments(const std::vector<double>& datasetSegmentMeans);
+    void requestShowDatasetSegments(const std::vector<double>& segmentMeans);
     void requestShowOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
     void exportProgressUpdated(int progress);
 
@@ -73,8 +74,10 @@ private:
     std::vector<UWBVideoData> uwbVideoDataVector;
     std::vector<int> uniqueTagIDs;
     std::vector<double> rollingDeviations;
-    std::vector<double> datasetSegmentMeans;
+    std::vector<double> segmentMeans;
     std::vector<int> segmentFrameIDs;
+    std::vector<UWBData> segmentRepresentatives;
+    std::vector<int> segmentSizes;
 
     std::span<UWBData> uwbDataRangeToAnalyze;
     std::vector<UWBData*> tagDataToAnalyze;

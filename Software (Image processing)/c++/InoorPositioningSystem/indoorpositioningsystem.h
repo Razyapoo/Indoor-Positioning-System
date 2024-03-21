@@ -34,7 +34,6 @@ class IndoorPositioningSystem;
 }
 QT_END_NAMESPACE
 
-
 class IndoorPositioningSystem : public QMainWindow
 {
     Q_OBJECT
@@ -66,8 +65,9 @@ private slots:
     // void onUWBLocalizationWindowClosed();
 
     void on_pushButton_Export_Data_clicked();
+    void onAcceptFrameByFrameExport();
+    void onSegmentFramesExport();
     void onExportFinish(bool success);
-    void onAcceptDataExport();
     // void onExportProgressUpdated(int frameIndex);
 
 signals:
@@ -116,14 +116,15 @@ private:
 
     void checkForDisplay();
     void setDuration(qint64 duration);
+    void setupExportConfiguration(const std::vector<int>& segmentFrameIDs, ExportType type);
 
 
     // Data Analysis
     bool setDataAnalysisTimeStart, setDataAnalysisTimeEnd;
     long long dataAnalysisTimeStart, dataAnalysisTimeEnd;
 
-    int startDataExportPosition;
-    int endDataExportPosition;
+    // int startDataExportPosition;
+    // int endDataExportPosition;
 
 };
 #endif // INDOORPOSITIONINGSYSTEM_H

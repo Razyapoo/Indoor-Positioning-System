@@ -1,6 +1,5 @@
 #include "dataanalysiswindow.h"
 #include "ui_dataanalysiswindow.h"
-#include "dataprocessor.h"
 
 DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProcessor, double fps)
     : QDialog(parent), ui(new Ui::DataAnalysisWindow), dataProcessor(dataProcessor), fps(fps)
@@ -69,6 +68,7 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
     chartViewOriginalVsAdjustedDistances = nullptr;
     calculatePolynomialRegressionButton = nullptr;
     updateOriginalWithAdjustedValuesButton = nullptr;
+    exportSegementFramesForModelButton = nullptr;
     chartDistancesVsTimestamps = nullptr;
     chartRollingDeviations = nullptr;
 
@@ -302,35 +302,6 @@ void DataAnalysisWindow::initThresholdSetting()
 void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, std::vector<double*> distances)
 {
 
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i)->widget() == chartViewDistancesVsTimestamps)
-    //     {
-    //         chartsLayout->removeWidget(chartViewDistancesVsTimestamps);
-    //         delete chartViewDistancesVsTimestamps;
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
-    //     {
-    //         chartsLayout->removeWidget(chartViewRollingDeviations);
-    //         delete chartViewRollingDeviations;
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
-    //     {
-    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
-    //         delete chartViewOriginalVsAdjustedDistances;
-    //         --i;
-    //     }
-    // }
-
-    // while (!segmentMeansLabels.empty()) {
-    //     QLabel* label = segmentMeansLabels.back();
-    //     segmentMeansLayout->removeWidget(label);
-    //     segmentMeansLabels.pop_back();
-    //     delete label;
-    // }
-
     int i = 0;
     while (i < chartsLayout->count()) {
         QLayoutItem* item = chartsLayout->itemAt(i);
@@ -359,6 +330,9 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
             } else if (widget == updateOriginalWithAdjustedValuesButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
+            } else if (widget == exportSegementFramesForModelButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
             }
         }
 
@@ -379,32 +353,8 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
         }
     }
 
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i) == rollingDeviationInputLayout)
-    //     {
-    //         chartsLayout->removeItem(rollingDeviationInputLayout);
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i) == thresholdInputLayout)
-    //     {
-    //         chartsLayout->removeItem(thresholdInputLayout);
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i) == segmentMeansLayout)
-    //     {
-    //         chartsLayout->removeItem(segmentMeansLayout);
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i)->widget() == calculatePolynomialRegressionButton) {
-    //         chartsLayout->removeWidget(calculatePolynomialRegressionButton);
-    //         --i;
-    //     }
-    // }
-
     sizeOfProcessingData = timestamps.size();
 
-    // seriesDistancesVsTimestamps->clear();
     QLineSeries* seriesDistancesVsTimestamps = new QLineSeries(this);
     chartDistancesVsTimestamps = new QChart();
 
@@ -456,22 +406,6 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
 void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> &timestamps, const std::vector<double> &deviations)
 {
 
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i)->widget() == chartViewRollingDeviations)
-    //     {
-    //         chartsLayout->removeWidget(chartViewRollingDeviations);
-    //         delete chartViewRollingDeviations;
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
-    //     {
-    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
-    //         delete chartViewOriginalVsAdjustedDistances;
-    //         --i;
-    //     }
-    // }
-
     int i = 0;
     while (i < chartsLayout->count()) {
         QLayoutItem* item = chartsLayout->itemAt(i);
@@ -495,6 +429,9 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
             } else if (widget == updateOriginalWithAdjustedValuesButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
+            } else if (widget == exportSegementFramesForModelButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
             }
         }
 
@@ -514,24 +451,6 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
             delete widgetToDelete;
         }
     }
-
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i) == thresholdInputLayout)
-    //     {
-    //         chartsLayout->removeItem(thresholdInputLayout);
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i) == segmentMeansLayout)
-    //     {
-    //         chartsLayout->removeItem(segmentMeansLayout);
-    //         --i;
-    //     }
-    //     else if (chartsLayout->itemAt(i) == calculatePolynomialRegressionButton) {
-    //         chartsLayout->removeWidget(calculatePolynomialRegressionButton);
-    //         --i;
-    //     }
-    // }
 
     QLineSeries* seriesRollingDeviations = new QLineSeries(this);
     chartRollingDeviations = new QChart();
@@ -581,22 +500,6 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
 
 void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetSegmentMeans)
 {
-    // while (!segmentMeansLabels.empty()) {
-    //     QLabel* label = segmentMeansLabels.back();
-    //     segmentMeansLayout->removeWidget(label);
-    //     segmentMeansLabels.pop_back();
-    //     delete label;
-    // }
-
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
-    //     {
-    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
-    //         delete chartViewOriginalVsAdjustedDistances;
-    //     }
-    // }
-
     int i = 0;
     while (i < chartsLayout->count()) {
         QLayoutItem* item = chartsLayout->itemAt(i);
@@ -613,6 +516,9 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
                 chartsLayout->removeWidget(widget);
                 continue;
             } else if (widget == updateOriginalWithAdjustedValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            } else if (widget == exportSegementFramesForModelButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
             }
@@ -634,30 +540,13 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
         }
     }
 
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i) == segmentMeansLayout)
-    //     {
-    //         chartsLayout->removeItem(segmentMeansLayout);
-    //         --i;
-    //     } else if (chartsLayout->itemAt(i)->widget() == calculatePolynomialRegressionButton) {
-    //         chartsLayout->removeWidget(calculatePolynomialRegressionButton);
-    //         --i;
-    //     }
-    // }
     referenceValues.clear();
     referenceValues.reserve(datasetSegmentMeans.size());
 
     int segmentNumber = 1;
     for (const double mean : datasetSegmentMeans)
     {
-        // QLabel *segmentMeanLabel = new QLabel(this);
-        // segmentMeanLabel->setText(QString("Mean value of segment %1: %2").arg(segmentNumber).arg(mean, 0, 'f', 2));
-        // segmentMeansLayout->addWidget(segmentMeanLabel);
-        // segmentNumber++;
-        // segmentMeansLabels.push_back(segmentMeanLabel);
-
-        referenceValues.push_back(mean);
+       referenceValues.push_back(mean);
 
         QWidget *meanValueContainer = new QWidget(this);
         QHBoxLayout *meanValueLayout = new QHBoxLayout(meanValueContainer);
@@ -705,15 +594,6 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
 
 void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted){
 
-    // for (int i = 0; i < chartsLayout->count(); ++i)
-    // {
-    //     if (chartsLayout->itemAt(i)->widget() == chartViewOriginalVsAdjustedDistances)
-    //     {
-    //         chartsLayout->removeWidget(chartViewOriginalVsAdjustedDistances);
-    //         delete chartViewOriginalVsAdjustedDistances;
-    //     }
-    // }
-
     int i = 0;
     while (i < chartsLayout->count()) {
         QWidget* widget = chartsLayout->itemAt(i)->widget();
@@ -725,6 +605,9 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
                 chartViewOriginalVsAdjustedDistances = nullptr;
                 break;
             } else if (widget == updateOriginalWithAdjustedValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
+            } else if (widget == exportSegementFramesForModelButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
             }
@@ -801,9 +684,18 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
         });
     }
 
+    if (exportSegementFramesForModelButton == nullptr) {
+        exportSegementFramesForModelButton = new QPushButton("Export segment means for data model", this);
+        connect(exportSegementFramesForModelButton, &QPushButton::clicked, this, &DataAnalysisWindow::requestSegmentFramesExport);
+    }
+
     updateOriginalWithAdjustedValuesButton->setFixedWidth(200);
     chartsLayout->addWidget(updateOriginalWithAdjustedValuesButton);
     chartsLayout->setAlignment(updateOriginalWithAdjustedValuesButton, Qt::AlignLeft);
+
+    exportSegementFramesForModelButton->setFixedWidth(200);
+    chartsLayout->addWidget(exportSegementFramesForModelButton);
+    chartsLayout->setAlignment(exportSegementFramesForModelButton, Qt::AlignLeft);
 
 }
 

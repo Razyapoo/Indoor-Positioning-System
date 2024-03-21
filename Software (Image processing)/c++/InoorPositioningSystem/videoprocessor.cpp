@@ -85,7 +85,7 @@ void VideoProcessor::processVideo() {
         if (isSeekRequested) {
             {
                 QMutexLocker locker(&mutex);
-                camera.set(cv::CAP_PROP_POS_FRAMES, seekPosition - 1); // -1 because of the following read
+                camera.set(cv::CAP_PROP_POS_FRAMES, seekPosition - 1); // -1 because of the following read. Following read saves one futher read
                 isSeekRequested = false;
                 emit seekingDone();
             }
@@ -107,32 +107,51 @@ void VideoProcessor::processVideo() {
             position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
         }
 
-        if (isExportRequested) {
+        if (isExportRequested && frameRangeToExport.size() > 0) {
             {
                 QMutexLocker locker(&mutex);
-                if (position > endDataExportPosition) {
-                    std::cout << "Position is out of desired range" << std::endl;
-                    shouldStopExport = true;
-                } else {
-                    while (position <= endDataExportPosition) {
-                        if (shouldStopExport) {
-                            break;
-                        }
-                        std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
-                        if (position != endDataExportPosition) {
-                            emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
-                            if (!camera.read(frame)) {
-                                std::cout << "Failed to read frame while export" << std::endl;
-                                break;
-                            }
-                            position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
-                        } else {
-                            emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
-                            break;
-                        }
-                        // ++position;
+                int i = 0;
+                for (i = 0; i < frameRangeToExport.size(); ++i) {
+                // for (frameID = frameRangeToExport.begin(); frameID != frameRangeToExport.end(); ++frameID) {
+                    if (shouldStopExport) {
+                        break;
+                    }
+                    camera.set(cv::CAP_PROP_POS_FRAMES, frameRangeToExport[i]);
+                    if (!camera.read(frame)) {
+                        std::cout << "Failed to read frame while export" << std::endl;
+                        break;
+                    }
+                    std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
+                    if (i != (frameRangeToExport.size() - 1)) {
+                        emit requestFindUWBMeasurementAndExport(frameRangeToExport[i], i, exportType, bottomEdgeCentersVector, false);
+                    } else {
+                        emit requestFindUWBMeasurementAndExport(frameRangeToExport[i], i, exportType, bottomEdgeCentersVector, true);
+                        break;
                     }
                 }
+                // if (position > frameByFrameExportEndPosition) {
+                //     std::cout << "Position is out of desired range" << std::endl;
+                //     shouldStopExport = true;
+                // } else {
+                //     while (position <= frameByFrameExportEndPosition) {
+                //         if (shouldStopExport) {
+                //             break;
+                //         }
+                //         std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
+                //         if (position != frameByFrameExportEndPosition) {
+                //             emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
+                //             if (!camera.read(frame)) {
+                //                 std::cout << "Failed to read frame while export" << std::endl;
+                //                 break;
+                //             }
+                //             position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
+                //         } else {
+                //             emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
+                //             break;
+                //         }
+                //         // ++position;
+                //     }
+                // }
             }
             isPaused = true;
             isExportRequested = false;
@@ -225,17 +244,16 @@ void VideoProcessor::seekToFrame(int position) {
     pauseCondition.wakeOne();
 }
 
-void VideoProcessor::dataExport(int endPosition) {
+void VideoProcessor::setFrameRangeToExport(const std::vector<int>& frameRange, ExportType type) {
     isExportRequested = true;
 
     QMutexLocker locker(&mutex);
-    endDataExportPosition = endPosition;
-    // isPaused = false;
-    // pauseCondition.wakeOne();
+    frameRangeToExport = frameRange;
+    exportType = type;
+    // frameByFrameExportEndPosition = endPosition;
 }
 
 void VideoProcessor::stopExport() {
-    // QMutexLocker locker(&mutex);
     shouldStopExport = true;
 }
 

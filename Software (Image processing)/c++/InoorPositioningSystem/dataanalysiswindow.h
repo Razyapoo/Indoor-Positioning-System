@@ -72,6 +72,7 @@ signals:
     void requestSplitDataset(const double threshold);
     void requestCalculatePolynomialRegression(const std::vector<double>& referenceValues);
     void requestUpdateOriginalWithAdjustedValues();
+    void requestSegmentFramesExport();
 
     // void requestCalculateLinearRegression();
 
@@ -135,6 +136,7 @@ private:
     CustomChartView *chartViewOriginalVsAdjustedDistances;
 
     QPushButton* updateOriginalWithAdjustedValuesButton;
+    QPushButton* exportSegementFramesForModelButton;
 
     void rollingDeviationInit();
     void initThresholdSetting();
