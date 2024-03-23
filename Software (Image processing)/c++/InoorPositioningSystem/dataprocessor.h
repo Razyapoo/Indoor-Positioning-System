@@ -14,7 +14,7 @@
 #include <eigen3/Eigen/Dense>
 #include <cmath>
 #include <filesystem>
-#include <QEventLoop>
+#include <QMutex>
 
 
 #include "threadsafequeue.h"
@@ -30,6 +30,9 @@ public:
 
     void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
     void getMiddleSegmentDataForModel();
+    long long getVideoTimestampById(int id);
+    int binarySearchVideoFrameID(const long long& uwbTimestamp);
+    int getTotalFrames();
 
 
 
@@ -40,7 +43,7 @@ public slots:
     void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
     void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord);
     void collectDataForTag(const QString &tagIDText);
-    void setRangeForDataAnalysis(const long long startFrameIndex, const long long endFrameIndex);
+    void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
     // void collectDataForAnchor(const int anchorID);
     void collectDataForPlotDistancesVsTimestamps(const int anchorID);
     void calculateRollingDeviation(const int windowSize);
@@ -68,7 +71,8 @@ private:
     std::unique_ptr<QThread> dataProcessorThread;
     // std::atomic<bool>& toCalculateUWBLocalization;
 
-    std::vector<long long> timestampsVector;
+    std::vector<long long> videoTimestampsVector;
+    // std::vector<long long> framesRelativeTimeInSeconds;
     std::vector<UWBData> uwbDataVector;
     std::unordered_map<int, std::vector<UWBData*>> uwbDataPerTag;
     std::vector<UWBVideoData> uwbVideoDataVector;
@@ -95,7 +99,7 @@ private:
     UWBData linearSearchUWB(const long long& frameTimestamp);
     UWBData binarySearchUWB(const long long& frameTimestamp);
     UWBData binarySearchUWB(const long long& frameTimestamp, const std::vector<UWBData*>& uwbDataVector);
-    int binarySearchVideoFrameID(const long long& uwbTimestamp);
+
 
 };
 

@@ -9,7 +9,8 @@
 #include <QRandomGenerator>
 #include <QComboBox>
 #include <QPushButton>
-#include <QtCharts/QValueAxis>
+// #include <QtCharts/QValueAxis>
+#include <QValueAxis>
 #include <QtCharts/QDateTimeAxis>
 #include <QtCharts/QDateTimeAxis>
 #include <QTimeEdit>
@@ -64,7 +65,7 @@ public slots:
     // void calculateLinearRegression();
 
 signals:
-    void requestAnalyseData(const long long startFrameIndex, const long long endFrameIndex);
+    void requestAnalyseData(const long long startTimeSec, const long long endTimeSec);
     void requestCollectDataForTag(int tagID);
     void requestCollectDataForAnchor(const int anchorID);
     void requestCollectDataForPlotDistancesVsTimestamps(const int anchorID);

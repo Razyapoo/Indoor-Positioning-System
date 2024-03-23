@@ -19,7 +19,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
 
     frameTimer = new QTimer(this);
     // frameTimer = std::make_unique<QTimer>(this);
-    frameTimer->setInterval(58); // 3500 for human detector
+    frameTimer->setInterval(60); // 3500 for human detector
 
     dataProcessor = std::make_unique<DataProcessor>(frameQueue);
     videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
@@ -167,8 +167,9 @@ void IndoorPositioningSystem::updateDataDisplay(const UWBVideoData& data) {
 
 
         if (!ui->horizontalSlider_Duration->isSliderDown()){
-            double currentTimeInSeconds = data.videoData.id / fps;
-            QTime currentTime = QTime(0, 0).addSecs(static_cast<int>(currentTimeInSeconds));
+            // double currentTimeInSeconds = data.videoData.id / fps;
+            long long currentTimeInMSeconds = data.videoData.timestamp - dataProcessor->getVideoTimestampById(0);
+            QTime currentTime = QTime(0, 0).addMSecs(static_cast<int>(currentTimeInMSeconds));
             ui->horizontalSlider_Duration->setValue(data.videoData.id);
             ui->label_Current_Time->setText(currentTime.toString("HH:mm:ss"));
             lastPosition = data.videoData.id;
@@ -226,9 +227,9 @@ void IndoorPositioningSystem::on_actionOpen_Video_triggered()
 
     // emit requestLoadData(UWBDataFileName, videotTimestampsFileName);
 
-    videoDuration = videoProcessor->getVideoDuration();
-    fps = videoProcessor->getFPS();
-    totalFrames = videoProcessor->getTotalFrames();
+    // videoDuration = videoProcessor->getVideoDuration();
+    // fps = videoProcessor->getFPS();
+    totalFrames = dataProcessor->getTotalFrames();
     // if (totalFrames == -1) throw std::runtime_error("Error opening video file");
 
     isPause = false;
@@ -241,7 +242,8 @@ void IndoorPositioningSystem::on_actionOpen_Video_triggered()
     // emit requestProcessVideo();
 
     ui->horizontalSlider_Duration->setRange(1, totalFrames);
-    QTime totalTime = QTime(0, 0).addSecs(static_cast<int>(videoDuration));
+    long long videoDuration = dataProcessor->getVideoTimestampById(totalFrames - 1) - dataProcessor->getVideoTimestampById(0);
+    QTime totalTime = QTime(0, 0).addMSecs(static_cast<int>(videoDuration));
     ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
 
@@ -253,8 +255,10 @@ void IndoorPositioningSystem::on_horizontalSlider_Duration_valueChanged(int posi
             frameTimer->stop();
         }
         // std::cout << "Position: " << position << std::endl;
-        double setTimeInSeconds = position / fps;
-        QTime setTime = QTime(0, 0).addSecs(static_cast<int>(setTimeInSeconds));
+        // double setTimeInSeconds = position / fps;
+        // QTime setTime = QTime(0, 0).addSecs(static_cast<int>(setTimeInSeconds));
+        long long setTimeInMSeconds = dataProcessor->getVideoTimestampById(position - 1) - dataProcessor->getVideoTimestampById(0);
+        QTime setTime = QTime(0, 0).addMSecs(static_cast<int>(setTimeInMSeconds));
         ui->label_Current_Time->setText(setTime.toString("HH:mm:ss"));
         seekPosition = position;
     }
@@ -377,15 +381,25 @@ void IndoorPositioningSystem::setupExportConfiguration(const std::vector<int>& f
 void IndoorPositioningSystem::onAcceptFrameByFrameExport() {
     QTime startTime = exportTimeRangeSetter->startTimeEdit->time();
     QTime endTime = exportTimeRangeSetter->endTimeEdit->time();
-    int startDataExportPosition = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
-    int endDataExportPosition = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
-    startDataExportPosition = ((startDataExportPosition - 1) < 0) ? 0 : startDataExportPosition - 1;
-    endDataExportPosition = ((endDataExportPosition - 1) < 0) ? 0 : endDataExportPosition - 1;
-    int totalExportDuration = endDataExportPosition - startDataExportPosition;
+    // int startDataExportPosition = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
+    // int endDataExportPosition = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
+    // startDataExportPosition = ((startDataExportPosition - 1) < 0) ? 0 : startDataExportPosition - 1;
+    // endDataExportPosition = ((endDataExportPosition - 1) < 0) ? 0 : endDataExportPosition - 1;
+
+    long long startTimeSec = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second());
+    long long endTimeSec = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second());
+
+    long long startTimestampMS = startTimeSec * 1000 + dataProcessor->getVideoTimestampById(0);
+    long long endTimestampMS = endTimeSec * 1000 + dataProcessor->getVideoTimestampById(0);
+
+    int startFrameIndex = dataProcessor->binarySearchVideoFrameID(startTimestampMS);
+    int endFrameIndex = dataProcessor->binarySearchVideoFrameID(endTimestampMS);
+
+    int totalExportDuration = endFrameIndex - startFrameIndex;
 
     std::vector<int> frameRangeToExport;
     if (totalExportDuration > 0) {
-        for (int i = startDataExportPosition; i <= endDataExportPosition; ++i) {
+        for (int i = startFrameIndex; i <= endFrameIndex; ++i) {
             frameRangeToExport.push_back(i);
         }
         setupExportConfiguration(frameRangeToExport, ExportType::FrameByFrameExport);

@@ -31,14 +31,14 @@ void DataProcessor::cleanup() {
 
 void DataProcessor::loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename) {
     videoDataFile = std::ifstream(videoDataFilename);
-    timestampsVector.clear();
+    videoTimestampsVector.clear();
 
     int id;
     long long timestamp;
     while (videoDataFile >> id >> timestamp)
     {
         // assuming data are recorded sequentially and no intermidiate data is missing
-        timestampsVector.push_back(timestamp);
+        videoTimestampsVector.push_back(timestamp);
     }
 
     uwbDataFile = std::ifstream(UWBDataFilename);
@@ -74,9 +74,17 @@ void DataProcessor::loadData(const std::string& UWBDataFilename, const std::stri
     uwbDataFile.close();
 }
 
+long long DataProcessor::getVideoTimestampById(int id) {
+    return videoTimestampsVector[id];
+}
+
+int DataProcessor::getTotalFrames() {
+    return videoTimestampsVector.size();
+}
+
 void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
 
-    long long frameTimestamp = timestampsVector[frameIndex - 1];
+    long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
 
     // qDebug() << "Searching for UWB data...";
 
@@ -102,7 +110,7 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
 
 void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType exportType, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord) {
 
-    long long frameTimestamp = timestampsVector[frameIndex - 1];
+    long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
     std::string outputFilePath = "uwb_to_bb_mapping.txt";
 
     if (!outputFile.is_open()) {
@@ -262,23 +270,23 @@ UWBData DataProcessor::binarySearchUWB(const long long &frameTimestamp) {
 
 int DataProcessor::binarySearchVideoFrameID(const long long &uwbTimestamp) {
     int left = 0;
-    int right = timestampsVector.size() - 1;
+    int right = videoTimestampsVector.size() - 1;
     int closestID = -1;
 
-    long long minDif = std::abs(uwbTimestamp - timestampsVector[0]);
+    long long minDif = std::abs(uwbTimestamp - videoTimestampsVector[0]);
     int mid;
     long long dif;
 
     while (left <= right) {
         mid = left + (right - left) / 2;
-        dif = std::abs(uwbTimestamp - timestampsVector[mid]);
+        dif = std::abs(uwbTimestamp - videoTimestampsVector[mid]);
 
         if (dif < minDif) {
             minDif = dif;
             closestID = mid;
         }
 
-        if (uwbTimestamp > timestampsVector[mid]) {
+        if (uwbTimestamp > videoTimestampsVector[mid]) {
             left = mid + 1;
         } else {
             right = mid - 1;
@@ -288,10 +296,16 @@ int DataProcessor::binarySearchVideoFrameID(const long long &uwbTimestamp) {
     return closestID;
 }
 
-void DataProcessor::setRangeForDataAnalysis(const long long startFrameIndex, const long long endFrameIndex) {
+void DataProcessor::setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec) {
 
-    long long startFrameTimestamp = timestampsVector[startFrameIndex];
-    long long endFrameTimestamp = timestampsVector[endFrameIndex];
+    long long startTimestampMS = startTimeSec * 1000 + videoTimestampsVector[0];
+    long long endTimestampMS = endTimeSec * 1000 + videoTimestampsVector[0];
+
+    int startFrameIndex = binarySearchVideoFrameID(startTimestampMS);
+    int endFrameIndex = binarySearchVideoFrameID(endTimestampMS);
+
+    long long startFrameTimestamp = videoTimestampsVector[startFrameIndex];
+    long long endFrameTimestamp = videoTimestampsVector[endFrameIndex];
 
     // To not copy subarray of elements, it is possible to use span
     UWBData startUWB = binarySearchUWB(startFrameTimestamp);
@@ -362,7 +376,7 @@ void DataProcessor::collectDataForPlotDistancesVsTimestamps(const int anchorID) 
     for (UWBData* data: tagDataToAnalyze) {
         for (Anchor& anchor: data->anchorList) {
             if (anchor.anchorID == anchorID) {
-                timestampsToAnalyze.push_back(data->timestamp);
+                timestampsToAnalyze.push_back(data->timestamp - videoTimestampsVector[0]);
                 distancesToAnalyzeOriginal.push_back(&(anchor.distance));
             }
         }

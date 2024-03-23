@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QValueAxis>
 #include <QToolTip>
+#include <QDateTime>
 
 class CustomChartView : public QChartView {
     Q_OBJECT

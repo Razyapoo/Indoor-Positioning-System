@@ -107,6 +107,7 @@ void VideoProcessor::processVideo() {
             position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
         }
 
+        // export is done using frame ID, not timestamp
         if (isExportRequested && frameRangeToExport.size() > 0) {
             {
                 QMutexLocker locker(&mutex);

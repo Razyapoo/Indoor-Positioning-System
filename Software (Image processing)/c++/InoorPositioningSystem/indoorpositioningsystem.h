@@ -98,7 +98,7 @@ private:
 
 
     int seekPosition, lastPosition;
-    double videoDuration;
+    // double videoDuration;
     double fps;
     int totalFrames;
     bool isPause, isExportState;

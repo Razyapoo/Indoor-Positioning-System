@@ -9,7 +9,6 @@
 #include <QImage>
 #include <opencv2/opencv.hpp>
 #include <QDebug>
-#include <QEventLoop>
 
 #include "dataprocessor.h"
 #include "structures.h"
@@ -61,7 +60,6 @@ private:
     std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport;
     QMutex mutex;
     QWaitCondition pauseCondition;
-    QEventLoop loop;
 
     // std::atomic<bool> keepProcessingVideo;
     cv::VideoCapture camera;

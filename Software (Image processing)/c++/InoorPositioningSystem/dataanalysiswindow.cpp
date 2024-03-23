@@ -139,11 +139,15 @@ void DataAnalysisWindow::initDataAnalysis()
 {
     QTime startTime = startAnalysisTime->time();
     QTime endTime = endAnalysisTime->time();
-    long long startFrameIndex = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
-    long long endFrameIndex = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
-    startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
-    endFrameIndex = ((endFrameIndex - 1) < 0) ? 0 : endFrameIndex - 1;
-    emit requestAnalyseData(startFrameIndex, endFrameIndex);
+    long long startTimeSec = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second());
+    long long endTimeSec = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second());
+    emit requestAnalyseData(startTimeSec, endTimeSec);
+
+    // long long startFrameIndex = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
+    // long long endFrameIndex = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
+    // startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
+    // endFrameIndex = ((endFrameIndex - 1) < 0) ? 0 : endFrameIndex - 1;
+    // emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
 
 // void DataAnalysisWindow::onDialogClosed() {
@@ -366,7 +370,9 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
 
     for (int i = 0; i < timestamps.size(); ++i)
     {
-        seriesDistancesVsTimestamps->append(timestamps[i], *distances[i]);
+        QDateTime time = QDateTime::fromMSecsSinceEpoch(timestamps[i]);
+        auto offsetMSeconds = time.offsetFromUtc() * 1000;
+        seriesDistancesVsTimestamps->append(time.addMSecs(-offsetMSeconds).toMSecsSinceEpoch(), *distances[i]);
         if (*distances[i] > maxDistance)
             maxDistance = *distances[i];
     }
@@ -379,7 +385,8 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
     legend->setAlignment(Qt::AlignBottom);
     legend->setPen(QPen(Qt::black));
 
-    QValueAxis *axisX = new QValueAxis(this);
+    QDateTimeAxis *axisX = new QDateTimeAxis(this);
+    axisX->setFormat("hh:mm:ss");
     chartDistancesVsTimestamps->addAxis(axisX, Qt::AlignBottom);
     seriesDistancesVsTimestamps->attachAxis(axisX);
 
@@ -463,7 +470,9 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
 
     for (int i = 0; i < deviations.size(); ++i)
     {
-        seriesRollingDeviations->append(timestamps[i], deviations[i]);
+        QDateTime time = QDateTime::fromMSecsSinceEpoch(timestamps[i]);
+        auto offsetMSeconds = time.offsetFromUtc() * 1000;
+        seriesRollingDeviations->append(time.addMSecs(-offsetMSeconds).toMSecsSinceEpoch(), deviations[i]);
         if (deviations[i] > maxStdDeviation)
             maxStdDeviation = deviations[i];
     }
@@ -476,7 +485,8 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
     legend->setAlignment(Qt::AlignBottom);
     legend->setPen(QPen(Qt::black));
 
-    QValueAxis *axisX = new QValueAxis(this);
+    QDateTimeAxis *axisX = new QDateTimeAxis(this);
+    axisX->setFormat("hh:mm:ss");
     chartRollingDeviations->addAxis(axisX, Qt::AlignBottom);
     seriesRollingDeviations->attachAxis(axisX);
 
@@ -632,13 +642,16 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
 
     for (int i = 0; i < timestampsToAnalyze.size(); ++i)
     {
-        seriesOriginalDistancesVsTimestamps->append(timestampsToAnalyze[i], *distancesToAnalyzeOriginal[i]);
+
+        QDateTime time = QDateTime::fromMSecsSinceEpoch(timestampsToAnalyze[i]);
+        auto offsetMSeconds = time.offsetFromUtc() * 1000;
+        seriesOriginalDistancesVsTimestamps->append(time.addMSecs(-offsetMSeconds).toMSecsSinceEpoch(), *distancesToAnalyzeOriginal[i]);
         if (*distancesToAnalyzeOriginal[i] > maxDistance)
         {
             maxDistance = *distancesToAnalyzeOriginal[i];
         }
 
-        seriesAdjustedDistancesVsTimestamps->append(timestampsToAnalyze[i], distancesToAnalyzeAdjusted[i]);
+        seriesAdjustedDistancesVsTimestamps->append(time.addMSecs(-offsetMSeconds).toMSecsSinceEpoch(), distancesToAnalyzeAdjusted[i]);
         if (distancesToAnalyzeAdjusted[i] > maxDistance)
         {
             maxDistance = distancesToAnalyzeAdjusted[i];
@@ -654,7 +667,8 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
     legend->setAlignment(Qt::AlignBottom);
     legend->setPen(QPen(Qt::black));
 
-    QValueAxis *axisX = new QValueAxis(this);
+    QDateTimeAxis *axisX = new QDateTimeAxis(this);
+    axisX->setFormat("hh:mm:ss");
     chartOriginalVsAdjustedDistances->addAxis(axisX, Qt::AlignBottom);
     seriesOriginalDistancesVsTimestamps->attachAxis(axisX);
     seriesAdjustedDistancesVsTimestamps->attachAxis(axisX);

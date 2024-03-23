@@ -63,7 +63,11 @@ void CustomChartView::wheelEvent(QWheelEvent *event) {
 
 void CustomChartView::showTooltip(const QPointF& point, bool state) {
     if (state) {
-        QToolTip::showText(QCursor::pos(), QString("(%1, %2)").arg(point.x(), 0, 'f', 1).arg(point.y()));
+        // QToolTip::showText(QCursor::pos(), QString("(%1, %2)").arg(point.x()).arg(point.y()));
+        QDateTime timePoint = QDateTime::fromMSecsSinceEpoch(point.x());
+        QString tooltipText = timePoint.toString("hh:mm:ss");
+
+        QToolTip::showText(QCursor::pos(), QString("(%1, %2)").arg(tooltipText).arg(point.y()));
     } else {
         QToolTip::hideText();
     }
