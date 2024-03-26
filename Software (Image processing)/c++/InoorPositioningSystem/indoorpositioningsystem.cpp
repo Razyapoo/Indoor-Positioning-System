@@ -58,6 +58,7 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
     // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
 
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    // ui->pushButton_Polyn_Regression_Predict-
     // dataProcessor->moveToThread(&uwbDataThread);
     // videoProcessor->moveToThread(&videoThread);
     // ui->timeEdit_Data_Analysis_Start->setDisplayFormat("HH:mm:ss");
@@ -247,6 +248,21 @@ void IndoorPositioningSystem::on_actionOpen_Video_triggered()
     ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
 
+}
+
+void IndoorPositioningSystem::on_actionLoad_params_triggered()
+{
+    QString polynRegressionParamsFileName;
+
+    QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", (QFileDialog::ShowDirsOnly, QFileDialog::DontResolveSymlinks));
+
+    if (!directory.isEmpty()) {
+        QDir qDirecroty(directory);
+
+        polynRegressionParamsFileName = qDirecroty.filePath("params.json");
+    }
+
+    videoProcessor->loadModelParams(polynRegressionParamsFileName);
 }
 
 void IndoorPositioningSystem::on_horizontalSlider_Duration_valueChanged(int position) {
@@ -441,6 +457,16 @@ void IndoorPositioningSystem::onExportFinish(bool success) {
     videoProcessor->pauseProcessing();
     frameQueue.clear();
     videoProcessor->seekToFrame(lastPosition);
+    videoProcessor->resumeProcessing();
+}
+
+
+
+void IndoorPositioningSystem::on_pushButton_Polyn_Regression_Predict_clicked()
+{
+    videoProcessor->pauseProcessing();
+    videoProcessor->setPredict(true);
+    frameQueue.clear();
     videoProcessor->resumeProcessing();
 }
 

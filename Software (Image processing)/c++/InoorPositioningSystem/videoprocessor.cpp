@@ -55,6 +55,19 @@ void VideoProcessor::cleanup() {
     videoProcessorThread->quit();
 }
 
+void VideoProcessor::loadModelParams(const QString& filename) {
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open the file.");
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    QJsonDocument doc(QJsonDocument::fromJson(data));
+
+    polynRegressionParams = doc.object();
+}
+
 double VideoProcessor::getVideoDuration() const {
     return videoDuration;
 }
@@ -130,29 +143,7 @@ void VideoProcessor::processVideo() {
                         break;
                     }
                 }
-                // if (position > frameByFrameExportEndPosition) {
-                //     std::cout << "Position is out of desired range" << std::endl;
-                //     shouldStopExport = true;
-                // } else {
-                //     while (position <= frameByFrameExportEndPosition) {
-                //         if (shouldStopExport) {
-                //             break;
-                //         }
-                //         std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
-                //         if (position != frameByFrameExportEndPosition) {
-                //             emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, false);
-                //             if (!camera.read(frame)) {
-                //                 std::cout << "Failed to read frame while export" << std::endl;
-                //                 break;
-                //             }
-                //             position = static_cast<int>(camera.get(cv::CAP_PROP_POS_FRAMES));
-                //         } else {
-                //             emit requestFindUWBMeasurementAndExport(position, bottomEdgeCentersVector, true);
-                //             break;
-                //         }
-                //         // ++position;
-                //     }
-                // }
+
             }
             isPaused = true;
             isExportRequested = false;
@@ -166,15 +157,18 @@ void VideoProcessor::processVideo() {
         } else {
 
 
-            // if (detectPeople)
-            // {
-            // std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
-            // if (bottomEdgeCentersVector.size() > 0) {
-            //     qDebug() << "x: " << bottomEdgeCentersVector[0].x() << "y: " << bottomEdgeCentersVector[0].y();
-            // }
+            if (isPredictionRequested)
+            {
+                std::vector<QPoint> bottomEdgeCentersVector = detectPeople(frame);
+                // if (bottomEdgeCentersVector.size() > 0) {
+                //     qDebug() << "x: " << bottomEdgeCentersVector[0].x() << "y: " << bottomEdgeCentersVector[0].y();
+                // }
+            }
             // // }
 
             // // frame = detectionImage;
+
+
 
 
             if (qImage.isNull() || qImage.width() != frame.cols || qImage.height() != frame.rows) {
@@ -214,8 +208,42 @@ std::vector<QPoint> VideoProcessor::detectPeople(cv::Mat& frame) {
         }
     }
 
+    if (isPredictionRequested) {
+        std::pair<double, double> coordinates = predictWorldCoordinates(bottomEdgeCentersVector[0].x(), bottomEdgeCentersVector[0].y());
+        std::string coordinatesText = "(" + std::to_string(coordinates.first) + ", " + std::to_string(coordinates.second) + ")" ;
+        cv::putText(frame, coordinatesText, cv::Point(bottomEdgeCentersVector[0].x(), bottomEdgeCentersVector[0].y()), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 2);
+
+    }
+
     cv::resize(frame, frame, cv::Size(640, 360));
     return bottomEdgeCentersVector;
+}
+
+std::pair<double, double> VideoProcessor::predictWorldCoordinates(double x_pixel, double y_pixel) {
+    // Construct polynomial features from pixel coordinates
+    Eigen::MatrixXd features(1, 6); // Adjust size based on the degree and interaction terms
+    features << 1, x_pixel, y_pixel, std::pow(x_pixel, 2), std::pow(y_pixel, 2), x_pixel * y_pixel;
+
+    QJsonArray coeffs_X_array = polynRegressionParams["model_X_coefficients"].toArray();
+    Eigen::VectorXd coeffs_X(coeffs_X_array.size());
+    for (int i = 0; i < coeffs_X_array.size(); ++i) {
+        coeffs_X[i] = coeffs_X_array[i].toDouble();
+    }
+    double intercept_X = polynRegressionParams["model_X_intercept"].toDouble();
+
+    QJsonArray coeffs_Y_array = polynRegressionParams["model_Y_coefficients"].toArray();
+    Eigen::VectorXd coeffs_Y(coeffs_Y_array.size());
+    for (int i = 0; i < coeffs_Y_array.size(); ++i) {
+        coeffs_Y[i] = coeffs_Y_array[i].toDouble();
+    }
+    double intercept_Y = polynRegressionParams["model_Y_intercept"].toDouble();
+
+    // Predict world coordinates
+    double X_world = (features * coeffs_X).value() + intercept_X;
+    double Y_world = (features * coeffs_Y).value() + intercept_Y;
+
+    std::pair<double, double> coordinates = std::make_pair(X_world, Y_world);
+    return coordinates;
 }
 
 void VideoProcessor::resumeProcessing() {
@@ -256,5 +284,9 @@ void VideoProcessor::setFrameRangeToExport(const std::vector<int>& frameRange, E
 
 void VideoProcessor::stopExport() {
     shouldStopExport = true;
+}
+
+void VideoProcessor::setPredict(bool toPredict) {
+    isPredictionRequested = toPredict;
 }
 

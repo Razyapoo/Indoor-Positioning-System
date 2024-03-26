@@ -41,6 +41,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         customgraphicitems.h customgraphicitems.cpp
         humandetector.h humandetector.cpp
         exporttimerangesetter.h exporttimerangesetter.cpp exporttimerangesetter.ui
+        json.h
+        customlabel.h customlabel.cpp
+
 
 
 

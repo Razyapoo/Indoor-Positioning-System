@@ -9,6 +9,14 @@
 #include <QImage>
 #include <opencv2/opencv.hpp>
 #include <QDebug>
+#include <eigen3/Eigen/Dense>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
+#include <QFile>
+#include <QIODevice>
+
 
 #include "dataprocessor.h"
 #include "structures.h"
@@ -35,6 +43,9 @@ public:
     void seekToFrame(int position);
     void setFrameRangeToExport(const std::vector<int>& frameRange, ExportType type);
     void stopExport();
+    void setPredict(bool toPredict);
+    void loadModelParams(const QString& filename);
+    std::pair<double, double> predictWorldCoordinates(double xPixel, double yPixel);
 
 public slots:
     void processVideo();
@@ -57,7 +68,7 @@ private:
     HumanDetector humanDetector;
 
     std::unique_ptr<QThread> videoProcessorThread;
-    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport;
+    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport, isPredictionRequested;
     QMutex mutex;
     QWaitCondition pauseCondition;
 
@@ -73,6 +84,7 @@ private:
     int keyframeInterval;
     int seekPosition;
     ExportType exportType;
+    QJsonObject polynRegressionParams;
     // int frameByFrameExportEndPosition;
 
     std::vector<int> frameRangeToExport;

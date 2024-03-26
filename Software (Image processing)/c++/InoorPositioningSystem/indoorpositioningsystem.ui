@@ -542,6 +542,19 @@
      <string>Export Data for Model</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_Polyn_Regression_Predict">
+    <property name="geometry">
+     <rect>
+      <x>1210</x>
+      <y>880</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Predict</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -558,6 +571,7 @@
     </property>
     <addaction name="actionOpen_Video"/>
     <addaction name="actionOpen_UWB_data"/>
+    <addaction name="actionLoad_params"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -570,6 +584,11 @@
   <action name="actionOpen_UWB_data">
    <property name="text">
     <string>Open UWB data</string>
+   </property>
+  </action>
+  <action name="actionLoad_params">
+   <property name="text">
+    <string>Load params</string>
    </property>
   </action>
  </widget>

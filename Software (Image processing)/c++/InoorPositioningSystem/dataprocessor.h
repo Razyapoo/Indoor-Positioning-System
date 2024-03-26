@@ -12,6 +12,7 @@
 #include <QString>
 #include <QThread>
 #include <eigen3/Eigen/Dense>
+// #include <Eigen/Dense>
 #include <cmath>
 #include <filesystem>
 #include <QMutex>
@@ -33,7 +34,8 @@ public:
     long long getVideoTimestampById(int id);
     int binarySearchVideoFrameID(const long long& uwbTimestamp);
     int getTotalFrames();
-
+    // void loadModelParams(const QString& filename);
+    // std::pair<double, double> predictWorldCoordinates(double xPixel, double yPixel);
 
 
 public slots:
@@ -92,6 +94,7 @@ private:
     std::vector<double> distancesToAnalyzeAdjusted;
     std::ifstream videoDataFile;
     std::ifstream uwbDataFile;
+    // QJsonObject polynRegressionParams;
 
     std::ofstream outputFile;
 

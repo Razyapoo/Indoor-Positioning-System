@@ -27,6 +27,7 @@
 #include "dataanalysiswindow.h"
 #include "uwblocalizationwindow.h"
 #include "exporttimerangesetter.h"
+#include "customlabel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -69,6 +70,10 @@ private slots:
     void onSegmentFramesExport();
     void onExportFinish(bool success);
     // void onExportProgressUpdated(int frameIndex);
+
+    void on_actionLoad_params_triggered();
+
+    void on_pushButton_Polyn_Regression_Predict_clicked();
 
 signals:
     void frameIsReady(const UWBVideoData& data);

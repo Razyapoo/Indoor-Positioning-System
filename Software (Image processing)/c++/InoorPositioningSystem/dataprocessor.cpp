@@ -82,6 +82,8 @@ int DataProcessor::getTotalFrames() {
     return videoTimestampsVector.size();
 }
 
+
+
 void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
@@ -168,7 +170,6 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
 
     emit exportProgressUpdated(rangeIndex);
 }
-
 
 void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
