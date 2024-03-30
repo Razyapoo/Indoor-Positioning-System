@@ -140,7 +140,8 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         UWBData* data;
         for (Anchor& segmentRepresentativeAnchor: segmentRepresentatives[rangeIndex].anchorList) {
             for (int i = 0; i < segmentSizes[rangeIndex]; ++i) {
-                data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - 1 + i]; // assuming id of record corresponds to index of vector -1 position
+                int middleIdx = segmentSizes[rangeIndex] / 2;
+                data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - middleIdx + i]; // assuming id of record corresponds to index of vector -1 position. Seeking the first record of range
                 std::vector<Anchor>::iterator anchor = std::find_if(data->anchorList.begin(), data->anchorList.end(), [segmentRepresentativeAnchor](const Anchor& anchor2) {
                     return anchor2.anchorID == segmentRepresentativeAnchor.anchorID;
                 });
@@ -435,9 +436,10 @@ void DataProcessor::splitDataset(const double threshold) {
         } else if (segmentDistanceSum > 0 && segmentSize > 0) {
             double segmentMean = segmentDistanceSum / segmentSize;
             segmentMeans.push_back(segmentMean);
-            UWBData segmentRepresentative = *tagDataToAnalyze[i - segmentSize + 1];
+            int middleIdx = segmentSize / 2;
+            UWBData segmentRepresentative = *tagDataToAnalyze[i - middleIdx];
             int segmentVideoFrameID = binarySearchVideoFrameID(segmentRepresentative.timestamp);
-            segmentFrameIDs.push_back(segmentVideoFrameID); // remember timestamp of the segment's first record for model training
+            segmentFrameIDs.push_back(segmentVideoFrameID); // remember timestamp of the segment's middle record for model training, first frame of the segment is not always good choice
             segmentSizes.push_back(segmentSize);
             segmentRepresentatives.push_back(std::move(segmentRepresentative));
             segmentDistanceSum = 0;
@@ -448,9 +450,10 @@ void DataProcessor::splitDataset(const double threshold) {
     if (segmentDistanceSum > 0 && segmentSize > 0) {
         double segmentMean = segmentDistanceSum / segmentSize;
         segmentMeans.push_back(segmentMean);
-        UWBData segmentRepresentative = *tagDataToAnalyze[i - segmentSize + 1];
+        int middleIdx = segmentSize / 2;
+        UWBData segmentRepresentative = *tagDataToAnalyze[i - middleIdx];
         int segmentVideoFrameID = binarySearchVideoFrameID(segmentRepresentative.timestamp);
-        segmentFrameIDs.push_back(segmentVideoFrameID); // remember timestamp of the segment's first record for model training
+        segmentFrameIDs.push_back(segmentVideoFrameID); // remember timestamp of the segment's middle record for model training, first frame of the segment is not always good choice
         segmentSizes.push_back(segmentSize);
         segmentRepresentatives.push_back(std::move(segmentRepresentative));
     }

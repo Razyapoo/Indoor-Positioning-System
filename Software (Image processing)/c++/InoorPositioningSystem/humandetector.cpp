@@ -49,8 +49,8 @@ std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(c
                 centerY = static_cast<int>(output.at<float>(i, 1) * frame.rows);
                 width = static_cast<int>(output.at<float>(i, 2) * frame.cols);
                 height = static_cast<int>(output.at<float>(i, 3) * frame.rows);
-                left = centerX - width / 2;
-                top = centerY - height / 2;
+                left = centerX - (width / 2);
+                top = centerY - (height / 2);
 
                 int classID = classIDPoint.x;
                 if (classID == 0)

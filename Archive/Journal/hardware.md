@@ -3051,3 +3051,39 @@ Best perfomrance, but less accurate if YOLOv4-tiny. Better to use normal YOLOv4,
 To use more recent YOLO, like v8, there is a need to convert .pt to .onnx first. This can be done using python script. Necessary libraries: torch, ultralytics
 There is also another way how to make yolov8.pt to be used in c++: https://pytorch.org/tutorials/advanced/cpp_export.html
 
+# 27 March, 2024
+
+Steps to Install XGBoost in C++
+
+- Clone the XGBoost Repository
+  First, clone the XGBoost GitHub repository to your local machine. Open a terminal or command prompt and run:
+    git clone --recursive https://github.com/dmlc/xgboost
+
+  The --recursive option is important because XGBoost uses submodules that also need to be cloned.
+
+- Build XGBoost Using CMake
+  Navigate to the cloned directory and create a build directory:
+
+    cd xgboost
+    mkdir build
+    cd build
+
+- Then, use CMake to generate the makefiles and build the project:
+    cmake .. -DUSE_CUDA=OFF  # Disable CUDA if you're not using GPU support
+    make -j$(nproc)          # Compiles using all available cores
+
+- After building, you can install XGBoost on your system. You might need superuser permissions for system-wide installation:
+
+    sudo make install
+
+
+
+
+In CMakeLists.txt add:  target_link_libraries(${PROJECT_NAME} xgboost)
+
+
+
+
+Notes:
+
+- Polynomial regression of any degree does not work to train a model. All predicted values are bad, even of trained data. EXtreme Gradient Booster Regression is way better. Predictions are almost correct.

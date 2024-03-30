@@ -116,6 +116,7 @@ private:
     // std::thread checkForDisplayThread;
 
     QProgressDialog* exportProgressDialog;
+    bool toPredictByModel, toPredictByHeight;
 
 
 

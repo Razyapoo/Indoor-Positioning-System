@@ -79,6 +79,7 @@ cv::Mat StereoCamera::getLeftFrame()
     if (leftCameraURL != "")
         cv::resize(readLeftFrame, readLeftFrame, cv::Size(640, 360));
 
+    // cv::resize(readLeftFrame, readLeftFrame, cv::Size(416, 416));
     return readLeftFrame;
 }
 
@@ -97,5 +98,6 @@ cv::Mat StereoCamera::getRightFrame()
     if (rightCameraURL != "")
         cv::resize(readRightFrame, readRightFrame, cv::Size(640, 360));
 
+    // cv::resize(readRightFrame, readRightFrame, cv::Size(416, 416));
     return readRightFrame;
 }

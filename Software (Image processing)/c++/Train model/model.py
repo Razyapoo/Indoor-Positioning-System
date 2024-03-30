@@ -6,8 +6,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import json
+import xgboost as xgb
 
-file_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/data copy'
+file_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/data.txt'
 column_names = ['Record_id', 'X_World', 'Y_World', 'x_pixel', 'y_pixel']
 data_loaded = pd.read_csv(file_path, names=column_names, delim_whitespace=True)
 
@@ -198,16 +199,49 @@ X = data_loaded[["x_pixel", "y_pixel"]]
 y = data_loaded[["X_World", "Y_World"]]
 
 # Training a Random Forest Regressor
-rf = RandomForestRegressor(n_estimators=10000, random_state=42)
-rf.fit(X, y)
+# rf = RandomForestRegressor(n_estimators=10000, random_state=42)
+# rf.fit(X, y)
 
-# Predicting on the test set
-y_pred = rf.predict(X)
+# # Predicting on the test set
+# y_pred = rf.predict(X)
 
-# Calculating the mean squared error
-mse = mean_squared_error(y, y_pred)
-rmse = np.sqrt(mse)
+# # Calculating the mean squared error
+# mse = mean_squared_error(y, y_pred)
+# rmse = np.sqrt(mse)
 
-# Outputting the RMSE as an accuracy metric
-print("RMSE: ", rmse)
-print(y_pred)
+# # Outputting the RMSE as an accuracy metric
+# print("RMSE: ", rmse)
+# print(y_pred)
+
+dtrain = xgb.DMatrix(X, label=y)
+params = {'max_depth': 2, 'eta': 1, 'objective': 'reg:squarederror'}
+# params = {
+#     'max_depth': 3,
+#     'min_child_weight': 1,
+# #     'n_estimators': 10,
+# #     'learning_rate': 0.05,
+# #     'subsample': 0.8,
+# #     'colsample_bytree': 0.8,
+#     #     'lambda': 1.0,
+#     #     'alpha': 1.0,
+#     #     'gamma': 1.0,
+#     'objective': 'reg:squarederror'  # or 'binary:logistic' for classification
+# }
+num_round = 100
+
+bst = xgb.train(params, dtrain, num_round)
+
+y_pred = bst.predict(dtrain)
+
+result = data_loaded[["x_pixel", "y_pixel", "X_World", "Y_World"]]
+result['X_World_Predicted'] = y_pred[:, 0]
+result['Y_World_Predicted'] = y_pred[:, 1]
+pd.set_option('display.max_rows', None)
+
+print(result[["x_pixel", "y_pixel", "X_World",
+      "X_World_Predicted", "Y_World", "Y_World_Predicted"]])
+
+
+# Save the model
+bst.save_model(
+    '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/xgboost_model.json')

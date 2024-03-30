@@ -238,6 +238,7 @@ void IndoorPositioningSystem::on_actionOpen_Video_triggered()
     // toShowUWBLocalization = false;
     emit requestProcessVideo();
     frameTimer->start();
+    toPredictByModel = false;
     // videoThread.start();
 
     // emit requestProcessVideo();
@@ -259,7 +260,7 @@ void IndoorPositioningSystem::on_actionLoad_params_triggered()
     if (!directory.isEmpty()) {
         QDir qDirecroty(directory);
 
-        polynRegressionParamsFileName = qDirecroty.filePath("params.json");
+        polynRegressionParamsFileName = qDirecroty.filePath("xgboost_model.json");
     }
 
     videoProcessor->loadModelParams(polynRegressionParamsFileName);
@@ -464,8 +465,9 @@ void IndoorPositioningSystem::onExportFinish(bool success) {
 
 void IndoorPositioningSystem::on_pushButton_Polyn_Regression_Predict_clicked()
 {
+    toPredictByModel = !toPredictByModel;
     videoProcessor->pauseProcessing();
-    videoProcessor->setPredict(true);
+    videoProcessor->setPredict(toPredictByModel);
     frameQueue.clear();
     videoProcessor->resumeProcessing();
 }

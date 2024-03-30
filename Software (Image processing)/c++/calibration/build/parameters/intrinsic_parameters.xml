@@ -5,43 +5,43 @@
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.4419790598800120e+02 0. 3.1450338079902417e+02 0.
-    4.4577493678174011e+02 1.7550729904829510e+02 0. 0. 1.</data></cameraMatrixLeft>
+    4.6993243015077968e+02 0. 3.1604939973838987e+02 0.
+    4.7500293352562642e+02 1.5845104084195611e+02 0. 0. 1.</data></cameraMatrixLeft>
 <cameraMatrixRight type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.3938900030200898e+02 0. 3.1224311117286265e+02 0.
-    4.4128102526454728e+02 1.6999867578085897e+02 0. 0. 1.</data></cameraMatrixRight>
+    4.7582055430296737e+02 0. 3.1074847641364642e+02 0.
+    4.7922351496366389e+02 1.5341376592583947e+02 0. 0. 1.</data></cameraMatrixRight>
 <optimalCameraMatrixLeft type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.4455319213867188e+02 0. 3.1614177260767428e+02 0.
-    4.4875259399414062e+02 1.7527825435845443e+02 0. 0. 1.</data></optimalCameraMatrixLeft>
+    4.8147125244140625e+02 0. 3.1834066431147221e+02 0.
+    4.8761572265625000e+02 1.5414320697056246e+02 0. 0. 1.</data></optimalCameraMatrixLeft>
 <optimalCameraMatrixRight type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.3640164184570312e+02 0. 3.1321872624841853e+02 0.
-    4.4402963256835938e+02 1.6924910971899499e+02 0. 0. 1.</data></optimalCameraMatrixRight>
+    4.9037759399414062e+02 0. 3.0973708447232093e+02 0.
+    4.9075726318359375e+02 1.5001513691577202e+02 0. 0. 1.</data></optimalCameraMatrixRight>
 <distortionCoeffsLeft type_id="opencv-matrix">
   <rows>1</rows>
-  <cols>14</cols>
+  <cols>5</cols>
   <dt>d</dt>
   <data>
-    1.0751867692780472e-01 -3.9789228977742186e-01
-    1.1715867004951212e-03 2.5447179785826426e-03 3.5534335344725437e-01
-    0. 0. 0. 0. 0. 0. 0. 0. 0.</data></distortionCoeffsLeft>
+    1.5412171838246638e-01 -1.6932925303443744e-01
+    -1.3320713129647152e-02 4.5661919365649400e-03
+    -1.3028984664451385e-01</data></distortionCoeffsLeft>
 <distortionCoeffsRight type_id="opencv-matrix">
   <rows>1</rows>
-  <cols>14</cols>
+  <cols>5</cols>
   <dt>d</dt>
   <data>
-    1.2118125925825321e-01 -4.7196970066999994e-01
-    -1.0597040304466193e-03 1.2867222101694449e-03
-    4.0797794909166168e-01 0. 0. 0. 0. 0. 0. 0. 0. 0.</data></distortionCoeffsRight>
+    1.8465905708533042e-01 -4.8303596063509979e-01
+    -8.8104236576149447e-03 -1.2617021109171860e-03
+    4.3709975932838374e-01</data></distortionCoeffsRight>
 </opencv_storage>

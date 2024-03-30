@@ -43,16 +43,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         exporttimerangesetter.h exporttimerangesetter.cpp exporttimerangesetter.ui
         json.h
         customlabel.h customlabel.cpp
-
-
-
-
-
-
-
-
-
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET InoorPositioningSystem APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -76,7 +66,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(InoorPositioningSystem PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia Qt${QT_VERSION_MAJOR}::MultimediaWidgets ${OpenCV_LIBS} Qt${QT_VERSION_MAJOR}::Charts)
+target_link_libraries(InoorPositioningSystem PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia Qt${QT_VERSION_MAJOR}::MultimediaWidgets ${OpenCV_LIBS} Qt${QT_VERSION_MAJOR}::Charts xgboost)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -93,6 +83,7 @@ set_target_properties(InoorPositioningSystem PROPERTIES
 )
 
 include(GNUInstallDirs)
+
 install(TARGETS InoorPositioningSystem
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

@@ -16,6 +16,7 @@
 #include <QJsonValue>
 #include <QFile>
 #include <QIODevice>
+#include <xgboost/c_api.h>
 
 
 #include "dataprocessor.h"
@@ -84,7 +85,7 @@ private:
     int keyframeInterval;
     int seekPosition;
     ExportType exportType;
-    QJsonObject polynRegressionParams;
+    // QJsonObject polynRegressionParams;
     // int frameByFrameExportEndPosition;
 
     std::vector<int> frameRangeToExport;
@@ -92,6 +93,7 @@ private:
 
     std::vector<QPoint> detectPeople(cv::Mat& frame);
 
+    BoosterHandle booster;
 };
 
 #endif // VIDEOPROCESSOR_H
