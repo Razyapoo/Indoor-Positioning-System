@@ -15,6 +15,12 @@
 #include <QLayout>
 #include <QLabel>
 #include <QProgressDialog>
+#include <QFile>
+#include <QIODevice>
+#include <QXmlStreamReader>
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QRegularExpression>
 
 
 #include <memory>
@@ -75,6 +81,10 @@ private slots:
 
     void on_pushButton_Polyn_Regression_Predict_clicked();
 
+    void on_pushButton_Predict_By_Height_clicked();
+
+    void on_actionLoad_optimal_matrix_triggered();
+
 signals:
     void frameIsReady(const UWBVideoData& data);
     // void requestStopProcessing(bool isExportState = false);
@@ -123,11 +133,14 @@ private:
     void checkForDisplay();
     void setDuration(qint64 duration);
     void setupExportConfiguration(const std::vector<int>& segmentFrameIDs, ExportType type);
+    void loadOptimalMatrix();
+    void loadModelParams();
 
 
     // Data Analysis
     bool setDataAnalysisTimeStart, setDataAnalysisTimeEnd;
     long long dataAnalysisTimeStart, dataAnalysisTimeEnd;
+
 
     // int startDataExportPosition;
     // int endDataExportPosition;

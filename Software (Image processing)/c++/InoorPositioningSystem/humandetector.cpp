@@ -13,7 +13,7 @@ void HumanDetector::initHumanDetection(const std::string &modelConfiguration, co
 HumanDetector::~HumanDetector() {}
 
 
-std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(const cv::Mat &frame)
+std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(const cv::Mat &frame, const cv::Size& detectionFrameSize)
 {
     cv::Mat blob = cv::Mat();
     std::vector<int> outLayers, indices;
@@ -25,7 +25,7 @@ std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(c
     double confidence;
     int centerX, centerY, width, height, left, top;
 
-    cv::dnn::blobFromImage(frame, blob, 1 / 255.0, cv::Size(640, 640), cv::Scalar(0, 0, 0), true, false);
+    cv::dnn::blobFromImage(frame, blob, 1 / 255.0, detectionFrameSize, cv::Scalar(0, 0, 0), true, false);
 
     net.setInput(blob);
 

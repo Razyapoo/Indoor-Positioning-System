@@ -547,12 +547,25 @@
      <rect>
       <x>1210</x>
       <y>880</y>
-      <width>89</width>
+      <width>131</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>Predict</string>
+     <string>Predict by model</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Predict_By_Height">
+    <property name="geometry">
+     <rect>
+      <x>1048</x>
+      <y>880</y>
+      <width>151</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Predict by height</string>
     </property>
    </widget>
   </widget>
@@ -572,6 +585,7 @@
     <addaction name="actionOpen_Video"/>
     <addaction name="actionOpen_UWB_data"/>
     <addaction name="actionLoad_params"/>
+    <addaction name="actionLoad_optimal_matrix"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -588,7 +602,12 @@
   </action>
   <action name="actionLoad_params">
    <property name="text">
-    <string>Load params</string>
+    <string>Load model params</string>
+   </property>
+  </action>
+  <action name="actionLoad_optimal_matrix">
+   <property name="text">
+    <string>Load optimal matrix</string>
    </property>
   </action>
  </widget>

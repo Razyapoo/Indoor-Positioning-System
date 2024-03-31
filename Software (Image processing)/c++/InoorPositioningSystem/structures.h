@@ -1,6 +1,7 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
 #include <QImage>
+#include <opencv2/opencv.hpp>
 
 enum ExportType {
     FrameByFrameExport,
@@ -183,6 +184,25 @@ struct UWBVideoData {
     }
 
     ~UWBVideoData() {}
+};
+
+struct DetectionResult {
+    QPoint bottomEdgeCenter;
+    cv::Rect bbox;
+
+    DetectionResult(const QPoint& bottomEdgeCenter, const cv::Rect& bbox): bottomEdgeCenter(bottomEdgeCenter), bbox(bbox) {}
+
+    DetectionResult(QPoint&& bottomEdgeCenter, cv::Rect&& bbox): bottomEdgeCenter(std::move(bottomEdgeCenter)), bbox(std::move(bbox)) {}
+
+    DetectionResult(const DetectionResult& other): bottomEdgeCenter(other.bottomEdgeCenter), bbox(other.bbox) {}
+
+    DetectionResult(DetectionResult&& other) noexcept: bottomEdgeCenter(std::move(other.bottomEdgeCenter)), bbox(std::move(other.bbox)) {}
+
+};
+
+enum PredictionType {
+    PredictionByHeight,
+    PredictionByModel
 };
 
 #endif // STRUCTURES_H

@@ -253,17 +253,16 @@ void IndoorPositioningSystem::on_actionOpen_Video_triggered()
 
 void IndoorPositioningSystem::on_actionLoad_params_triggered()
 {
-    QString polynRegressionParamsFileName;
+    frameTimer->stop();
+    loadModelParams();
+    frameTimer->start();
+}
 
-    QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", (QFileDialog::ShowDirsOnly, QFileDialog::DontResolveSymlinks));
-
-    if (!directory.isEmpty()) {
-        QDir qDirecroty(directory);
-
-        polynRegressionParamsFileName = qDirecroty.filePath("xgboost_model.json");
-    }
-
-    videoProcessor->loadModelParams(polynRegressionParamsFileName);
+void IndoorPositioningSystem::on_actionLoad_optimal_matrix_triggered()
+{
+    frameTimer->stop();
+    loadOptimalMatrix();
+    frameTimer->start();
 }
 
 void IndoorPositioningSystem::on_horizontalSlider_Duration_valueChanged(int position) {
@@ -465,10 +464,141 @@ void IndoorPositioningSystem::onExportFinish(bool success) {
 
 void IndoorPositioningSystem::on_pushButton_Polyn_Regression_Predict_clicked()
 {
+
+    int result;
     toPredictByModel = !toPredictByModel;
     videoProcessor->pauseProcessing();
-    videoProcessor->setPredict(toPredictByModel);
-    frameQueue.clear();
+    result = videoProcessor->setPredict(toPredictByModel, PredictionType::PredictionByModel);
+    if (result != -1) {
+        frameQueue.clear();
+    } else {
+        frameTimer->stop();
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Prediction Model", "XGBoost prediction model is not loaded. Do you want to load one?",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            loadModelParams();
+        } else {
+            toPredictByModel = false;
+        }
+
+        frameTimer->start();
+    }
     videoProcessor->resumeProcessing();
 }
+
+void IndoorPositioningSystem::loadModelParams() {
+    QString selectedFile = QFileDialog::getOpenFileName(this, "Select File", QDir::homePath(), "All Supported Files (*.model *.json);;XGBoost Model Files (*.model);;JSON Files (*.json)");
+
+    if (!selectedFile.isEmpty()) {
+        int result = videoProcessor->loadModelParams(selectedFile);
+        if (result == -1) {
+            QMessageBox::critical(this, "Error", "Failed to load model!");
+            toPredictByModel = false;
+        } else {
+            result = videoProcessor->setPredict(toPredictByModel, PredictionType::PredictionByModel);
+            if (result != -1) {
+                frameQueue.clear();
+                QMessageBox::information(this, "Success", "Model was loaded successfully!");
+            } else {
+                QMessageBox::critical(this, "Error", "Failed to load model!");
+                toPredictByModel = false;
+            }
+        }
+    } else {
+        QMessageBox::warning(this, "Warning", "No file was selected!");
+        toPredictByModel = false;
+    }
+}
+
+void IndoorPositioningSystem::on_pushButton_Predict_By_Height_clicked()
+{
+    int result;
+    toPredictByHeight = !toPredictByHeight;
+    videoProcessor->pauseProcessing();
+    result = videoProcessor->setPredict(toPredictByHeight, PredictionType::PredictionByHeight);
+    if (result != -1) {
+        frameQueue.clear();
+    } else {
+        frameTimer->stop();
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Camera Calibration Parameters", "The camera calibration parameters are not loaded. Do you want to load one?",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            // so far only xml files are supported
+
+            loadOptimalMatrix();
+        } else {
+           toPredictByHeight = false;
+        }
+        frameTimer->start();
+    }
+    videoProcessor->resumeProcessing();
+}
+
+void IndoorPositioningSystem::loadOptimalMatrix() {
+    QString selectedFile = QFileDialog::getOpenFileName(this, "Select File", QDir::homePath(), "XML Files (*.xml)");
+    if (!selectedFile.isEmpty()) {
+        QFile file(selectedFile);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QString warningMessage = QString("Error opening file: %1").arg(file.errorString());
+            QMessageBox::critical(this, "Error", warningMessage);
+            toPredictByHeight = false;
+        } else {
+            bool foundOptimalMatrixParameters = false;
+            std::vector<double> optimalCameraMatrix;
+            QXmlStreamReader xmlReader(&file);
+            while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+                QXmlStreamReader::TokenType token = xmlReader.readNext();
+                if (token == QXmlStreamReader::StartElement) {
+                    auto const bytes = xmlReader.name().toUtf8();
+                    std::string tag = std::string(bytes.constData(), bytes.length());
+                    if (tag == "optimalCameraMatrix") {
+                        foundOptimalMatrixParameters = true;
+                    } else if (foundOptimalMatrixParameters) {
+                        // Inside OptimalMatrixParameters tag, read matrix parameters
+                        if (tag == "data") {
+                            QString data = xmlReader.readElementText();
+                            static QRegularExpression pattern("\\s+");
+                            QStringList values = data.split(pattern, Qt::SkipEmptyParts);
+                            // std::vector<double> row;
+                            for (const QString& value : values) {
+                                optimalCameraMatrix.push_back(value.toDouble());
+                            }
+                            // optimalCameraMatrix.push_back(row);
+
+                            if (optimalCameraMatrix.size()){
+                                videoProcessor->setOptimalCameraMatrix(std::move(optimalCameraMatrix));
+                                int result = videoProcessor->setPredict(toPredictByHeight, PredictionType::PredictionByHeight);
+                                if (result != -1) {
+                                    frameQueue.clear();
+                                    QMessageBox::information(this, "Success", "Camera calibration parameters was loaded successfully!");
+                                } else {
+                                    QMessageBox::critical(this, "Error", "Failed to camera calibration parameters!");
+                                    toPredictByModel = false;
+                                }
+                                break;
+                            } else {
+                                QMessageBox::critical(this, "Error", "Failed to camera calibration parameters! Optimal camera matrix was not found.");
+                                toPredictByHeight = false;
+                            }
+                        }
+                    }
+                }
+            }
+            if (xmlReader.hasError()) {
+                QString warningMessage = QString("Error parsing XML: %1").arg(file.errorString());
+                QMessageBox::critical(this, "Error", warningMessage);
+                toPredictByHeight = false;
+            }
+
+            file.close();
+        }
+    } else {
+        QMessageBox::warning(this, "Warning", "No file was selected!");
+        toPredictByHeight = false;
+    }
+}
+
+
 

@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     uint8_t key;
 
     options["input_camera_left"] = "2";
-    options["input_camera_right"] = "4";
+    // options["input_camera_right"] = "4";
 
     // options["input_camera_left"] = "rtsp://admin:Nera1998&@192.168.1.11:554/";
     // options["input_camera_right"] = "rtsp://admin:Nera1998&@192.168.1.12:554/";
@@ -109,8 +109,16 @@ int main(int argc, char **argv)
     {
     case 's': // stream
         // StereoCalibrator::videoAsSource = false;
-        StereoCamera::initStereoCamera(std::stoi(options["input_camera_left"]), std::stoi(options["input_camera_right"]));
-//        HumanDetector::initHumanDetection(modelConfiguration, modelWeights);
+        // StereoCamera::initStereoCamera(std::stoi(options["input_camera_left"]), std::stoi(options["input_camera_right"]));
+        if (doubleCamera)
+        {
+            StereoCamera::initStereoCamera(std::stoi(options["input_camera_left"]), std::stoi(options["input_camera_right"]));
+        }
+        else
+        {
+            StereoCamera::initSingleCamera(std::stoi(options["input_camera_left"]));
+        }
+        //        HumanDetector::initHumanDetection(modelConfiguration, modelWeights);
         if (!skipCalibration)
         {
             StereoCalibrator::intrinsicFilePath = options["intrinsic_file_path"];

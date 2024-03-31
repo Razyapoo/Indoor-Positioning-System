@@ -110,7 +110,7 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
 
 }
 
-void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType exportType, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord) {
+void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType exportType, const std::vector<DetectionResult>& detectionsVector, bool lastRecord) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
     std::string outputFilePath = "uwb_to_bb_mapping.txt";
@@ -123,11 +123,11 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         auto data = uwbDataPerTag.begin();
         // Vector of bottom edge centers is used for the future improvement of the code. When more people are used for model calibration
         // As for now only one person in the scene assumed
-        for (int i = 0; i < bottomEdgeCentersVector.size(); ++i) {
+        for (int i = 0; i < detectionsVector.size(); ++i) {
             if (data != uwbDataPerTag.end()) {
                 UWBData closestUWB = binarySearchUWB(frameTimestamp, data->second);
                 calculateUWBCoordinates(closestUWB);
-                outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << bottomEdgeCentersVector[i].x() << " " << bottomEdgeCentersVector[i].y() << std::endl;
+                outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << detectionsVector[i].bottomEdgeCenter.x() << " " << detectionsVector[i].bottomEdgeCenter.y() << std::endl;
                 ++data;
             } else {
                 qDebug() << "Intruder is found!! There is no tag to match with people";
@@ -159,7 +159,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         }
 
         calculateUWBCoordinates(segmentRepresentatives[rangeIndex]);
-        outputFile << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << bottomEdgeCentersVector[0].x() << " " << bottomEdgeCentersVector[0].y() << std::endl;
+        outputFile << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << detectionsVector[0].bottomEdgeCenter.x() << " " << detectionsVector[0].bottomEdgeCenter.y() << std::endl;
     }
 
     if (lastRecord && outputFile.is_open()) {

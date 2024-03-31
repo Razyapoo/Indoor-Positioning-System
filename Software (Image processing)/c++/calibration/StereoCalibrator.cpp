@@ -56,16 +56,13 @@ void StereoCalibrator::initCameraCalibration()
     std::cout << "  x: exit" << std::endl;
 
     cv::namedWindow("Left Frame");
-    cv::namedWindow("Right Frame");
 
     while (true)
     {
         imageLeft = StereoCamera::getLeftFrame();
-        imageRight = StereoCamera::getRightFrame();
 
         // std::cout << "Image size: " << imageLeft.size() << std::endl;
         cv::imshow("Left Frame", imageLeft);
-        cv::imshow("Right Frame", imageRight);
 
         key = cv::waitKey(1);
         if (key == 'x')
@@ -89,32 +86,20 @@ void StereoCalibrator::detectChessboard()
     std::cout << "  c: repeat detection without saving" << std::endl;
 
     cv::namedWindow("Left Frame");
-    cv::namedWindow("Right Frame");
 
     while (true)
     {
         imageLeft = StereoCamera::getLeftFrame();
-        imageRight = StereoCamera::getRightFrame();
 
         cv::cvtColor(imageLeft, grayLeft, cv::COLOR_BGR2GRAY);
-        cv::cvtColor(imageRight, grayRight, cv::COLOR_BGR2GRAY);
 
-        foundLeft = cv::findChessboardCorners(grayLeft, chessboardSize, cornersLeft, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE + cv::CALIB_CB_FILTER_QUADS);    //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
-        foundRight = cv::findChessboardCorners(grayRight, chessboardSize, cornersRight, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE + cv::CALIB_CB_FILTER_QUADS); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
+        foundLeft = cv::findChessboardCorners(grayLeft, chessboardSize, cornersLeft, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE + cv::CALIB_CB_FILTER_QUADS); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
 
         if (foundLeft)
         {
             // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.01);
             cv::drawChessboardCorners(imageLeft, chessboardSize, cornersLeft, foundLeft);
             cv::cornerSubPix(grayLeft, cornersLeft, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
-        }
-
-        if (foundRight)
-        {
-            // cv::TermCriteria criteria(cv::CV_TERMCRIT_EPS | cv::CV_TERMCRIT_ITER, 30, 0.01);
-
-            cv::drawChessboardCorners(imageRight, chessboardSize, cornersRight, foundRight);
-            cv::cornerSubPix(grayRight, cornersRight, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
         }
 
         // // ----- Circles -----
@@ -131,11 +116,10 @@ void StereoCalibrator::detectChessboard()
         // // ----- Circles -----
 
         cv::imshow("Left Frame", imageLeft);
-        cv::imshow("Right Frame", imageRight);
 
         key = cv::waitKey(1);
 
-        if (foundLeft && foundRight)
+        if (foundLeft)
             key = cv::waitKey(0);
 
         if (key == 'x')
@@ -143,10 +127,9 @@ void StereoCalibrator::detectChessboard()
             cv::destroyAllWindows();
             exit(0);
         }
-        if (key == 's' && foundLeft && foundRight)
+        if (key == 's' && foundLeft)
         {
             imagePointsLeft.push_back(cornersLeft);
-            imagePointsRight.push_back(cornersRight);
             objectPoints.push_back(objectPoint);
             std::cout << "Number of stored corners: " << ++imageCounter << std::endl;
         }
@@ -168,10 +151,8 @@ void StereoCalibrator::intrinsicCalibration()
     std::cout << "Stage - Compute Intrinsic Parameters" << std::endl;
 
     cameraMatrixLeft = cv::initCameraMatrix2D(objectPoints, imagePointsLeft, imageSize, 0);
-    cameraMatrixRight = cv::initCameraMatrix2D(objectPoints, imagePointsRight, imageSize, 0);
 
     reprojectionErrorLeft = cv::calibrateCamera(objectPoints, imagePointsLeft, imageSize, cameraMatrixLeft, distortionCoeffsLeft, rotationVecsLeft, translationVecsLeft);
-    reprojectionErrorRight = cv::calibrateCamera(objectPoints, imagePointsRight, imageSize, cameraMatrixRight, distortionCoeffsRight, rotationVecsRight, translationVecsRight);
 
     bool ok = cv::checkRange(cameraMatrixLeft) && cv::checkRange(distortionCoeffsLeft);
     if (!ok)
@@ -179,21 +160,12 @@ void StereoCalibrator::intrinsicCalibration()
         std::cout << "ERROR: left camera was not calibrated" << std::endl;
     }
 
-    ok = cv::checkRange(cameraMatrixRight) && cv::checkRange(distortionCoeffsRight);
-    if (!ok)
-    {
-        std::cout << "ERROR: right camera was not calibrated" << std::endl;
-    }
-
     optimalCameraMatrixLeft = cv::getOptimalNewCameraMatrix(cameraMatrixLeft, distortionCoeffsLeft, imageSize, alpha, imageSize, 0);
-    optimalCameraMatrixRight = cv::getOptimalNewCameraMatrix(cameraMatrixRight, distortionCoeffsRight, imageSize, alpha, imageSize, 0);
 
     std::cout << "Intrinsic calibration is finished" << std::endl;
     std::cout << "Mean calibration Error Left Camera: " << cv::sqrt(reprojectionErrorLeft / imageCounter) << std::endl;
-    std::cout << "Mean calibration Error Right Camera: " << cv::sqrt(reprojectionErrorRight / imageCounter) << std::endl;
 
     std::cout << "Reprojection Error Left Camera: " << StereoCalibrator::getReprojectionError(objectPoints, imagePointsLeft, rotationVecsLeft, translationVecsLeft, cameraMatrixLeft, distortionCoeffsLeft) << std::endl;
-    std::cout << "Reprojection Error Right Camera: " << StereoCalibrator::getReprojectionError(objectPoints, imagePointsRight, rotationVecsRight, translationVecsRight, cameraMatrixRight, distortionCoeffsRight) << std::endl;
 
     std::cout << "Please press one of the following buttons to continue:" << std::endl;
     std::cout << "  n: continue to the next stage" << std::endl;
@@ -217,11 +189,8 @@ void StereoCalibrator::intrinsicCalibration()
                     throw std::runtime_error("Failed to open file for writing");
                 }
                 fs << "cameraMatrixLeft" << cameraMatrixLeft;
-                fs << "cameraMatrixRight" << cameraMatrixRight;
                 fs << "optimalCameraMatrixLeft" << optimalCameraMatrixLeft;
-                fs << "optimalCameraMatrixRight" << optimalCameraMatrixRight;
                 fs << "distortionCoeffsLeft" << distortionCoeffsLeft;
-                fs << "distortionCoeffsRight" << distortionCoeffsRight;
 
                 fs.release();
                 if (fs.isOpened())

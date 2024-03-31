@@ -12,6 +12,7 @@
 #include <QString>
 #include <QThread>
 #include <eigen3/Eigen/Dense>
+#include <opencv2/opencv.hpp>
 // #include <Eigen/Dense>
 #include <cmath>
 #include <filesystem>
@@ -43,7 +44,7 @@ public slots:
     // void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
     // Find uwb data based on video timestamp. Timestamp is given by position.
     void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
-    void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const std::vector<QPoint>& bottomEdgeCentersVector, bool lastRecord);
+    void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const std::vector<DetectionResult>& detectionsVector, bool lastRecord);
     void collectDataForTag(const QString &tagIDText);
     void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
     // void collectDataForAnchor(const int anchorID);
