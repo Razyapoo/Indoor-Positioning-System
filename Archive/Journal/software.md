@@ -177,3 +177,25 @@ Why we cannot reconstruct 3D from 2D using single camera:
 
   - in the dormitory I had bad light conditions
   - in school there is a big wall behind at distance 10 m. May be that is the reason?
+
+
+# April 2, 2024
+
+- Testing trained model: XGbooster. Even when trained on 1, 2, and 3 lines (7 lines in total starting and ending by papers, Video is /home/oskar/Documents/Master Thesis/Experiments/Experiment 02.25.24 - for neural network train/Experiment 1 - standing at each meter + half meter).
+
+On 3,5 meters model shows x = 2,29; y = 3,7; reference values are x = 2,25; y = 3,5
+Then it shows ( 2.42333 ,  1.95776 ) - predicted. When reference are (2.25, 2.0)
+
+- At the beginning, I tried to train a model based on the first frame of the standing segment. But it showed that this is not a good choice, because I am still moving at this point.
+
+- Then I decided to use middle frame to train a model. This helped. 
+
+- But as further improvement, I need to try to fit model with 3 frames per segment: first, middle and last.
+
+- Prediction also depends on the detection box, therefore on the detection model, how it is precised. More data is used to train a model, more flexible model becomes , and is able predict unknown coordinates.
+
+- I have also observed that it is sufficient to train a model on the left half of the coridor, so it can predict y coordinated almost successfully on the right side of the corridor (middle paper line is deliminator). Unfortunatelly, when training on the half of coridor, there is no sufficient amount of data for x-axis to be successfully predicted.
+
+For example reference point is (3.08; 6.5); predicted is (2.17; 6,24); or reference point is (3.08 , 5.00), while predicted is ( 2.21943 ,  5.07038 ) 
+
+- Need also to try to place camera above, to see the scene from the above. This way pixel coordinates will chage more impressivly.

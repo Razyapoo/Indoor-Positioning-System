@@ -9,11 +9,12 @@ IndoorPositioningSystem::IndoorPositioningSystem(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // dataProcessor = new DataProcessor(frameQueue);
-    // dataProcessor = std::make_unique<DataProcessor>(frameQueue);
+    setWindowTitle("Indoor Positioning System");
 
+    // Layout organization
+    // mainLayout = new QHBoxLayout(this);
+    setFixedSize(1920, 980);
 
-    // videoProcessor = new VideoProcessor(frameQueue, dataProcessor);
 
 
 
@@ -313,10 +314,10 @@ void IndoorPositioningSystem::on_pushButton_UWB_Data_Analysis_clicked()
 {
     if (!dataAnalysisWindow) {
         dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, dataProcessor.get(), fps);
+        connect(dataAnalysisWindow.get(), &DataAnalysisWindow::requestSegmentFramesExport, this, &IndoorPositioningSystem::onSegmentFramesExport);
     }
 
     dataAnalysisWindow->show();
-    connect(dataAnalysisWindow.get(), &DataAnalysisWindow::requestSegmentFramesExport, this, &IndoorPositioningSystem::onSegmentFramesExport);
 }
 
 

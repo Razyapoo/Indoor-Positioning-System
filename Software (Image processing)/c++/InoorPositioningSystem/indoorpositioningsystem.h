@@ -22,6 +22,8 @@
 #include <QFileDialog>
 #include <QRegularExpression>
 
+#include <QLabel>
+
 
 #include <memory>
 #include <QException>
@@ -110,6 +112,17 @@ private:
     // QTimer* frameTimer;
     QPixmap qPixmap;
     QLayout* uwbContainerLayout;
+
+    // Layout organization
+
+    QHBoxLayout* mainLayout;
+
+    QLabel* videoLabel;
+    QVBoxLayout* videoLayout;
+    QHBoxLayout* videoHeading;
+
+    QVBoxLayout* uwbLayout;
+
 
 
     int seekPosition, lastPosition;

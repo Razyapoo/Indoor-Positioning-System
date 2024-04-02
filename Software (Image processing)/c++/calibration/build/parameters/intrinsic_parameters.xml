@@ -5,21 +5,20 @@
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.6388733841011589e+02 0. 3.0353182909087451e+02 0.
-    4.6957811570025797e+02 1.7981771208095449e+02 0. 0. 1.</data></cameraMatrixLeft>
+    4.5260187351333587e+02 0. 3.1223661869487518e+02 0.
+    4.5424631671160614e+02 1.7474975080337904e+02 0. 0. 1.</data></cameraMatrixLeft>
 <optimalCameraMatrixLeft type_id="opencv-matrix">
   <rows>3</rows>
   <cols>3</cols>
   <dt>d</dt>
   <data>
-    4.7631170654296875e+02 0. 3.0150131491888533e+02 0.
-    4.8108523559570312e+02 1.8109736926659571e+02 0. 0. 1.</data></optimalCameraMatrixLeft>
+    4.5910421752929688e+02 0. 3.1271455030580546e+02 0.
+    4.6083276367187500e+02 1.7462544781842007e+02 0. 0. 1.</data></optimalCameraMatrixLeft>
 <distortionCoeffsLeft type_id="opencv-matrix">
   <rows>1</rows>
   <cols>5</cols>
   <dt>d</dt>
   <data>
-    2.0279296302046859e-01 -5.9787028919312390e-01
-    4.9995437275326682e-03 -3.9231817987629182e-03
-    5.5016157010109290e-01</data></distortionCoeffsLeft>
+    1.5906816638016361e-01 -5.1260239514969774e-01
+    5.5844785409938844e-04 6.1062284352289434e-04 4.6913330950910964e-01</data></distortionCoeffsLeft>
 </opencv_storage>

@@ -7,7 +7,7 @@ bool StereoCalibrator::intrinsicParamsSaved = false, StereoCalibrator::extrinsic
 std::string StereoCalibrator::intrinsicFilePath = "", StereoCalibrator::extrinsicFilePath = "", StereoCalibrator::rectificationFilePath = "";
 uint8_t StereoCalibrator::chessboardHeight = 6, StereoCalibrator::chessboardWidth = 9;
 uint16_t StereoCalibrator::imageCounter = 0;
-float StereoCalibrator::squareSize = 2.3f, StereoCalibrator::alpha = 0;
+float StereoCalibrator::squareSize = 0.025f, StereoCalibrator::alpha = 0;
 const cv::Size StereoCalibrator::chessboardSize = cv::Size(StereoCalibrator::chessboardHeight, StereoCalibrator::chessboardWidth);
 const cv::Size StereoCalibrator::imageSize = cv::Size(640, 360);
 const cv::TermCriteria StereoCalibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
@@ -45,7 +45,6 @@ void StereoCalibrator::initCameraCalibration()
 
     char key = -1;
     bool foundLeft = false;
-    bool foundRight = false;
     uint16_t imageCounter = 0;
 
     // StereoCamera cameraLeft = StereoCamera::StereoCamera(0);
