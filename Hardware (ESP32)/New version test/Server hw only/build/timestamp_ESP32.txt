@@ -1,835 +1,460 @@
-1 1699181319574 1 101 4.3445731 102 4.194437
-Request time: 1699181319490557564
-Response time: 1699181319574239399
-Overall time of the request: 83
-
-2 1699181319912 1 101 4.3492651 102 4.006766
-Request time: 1699181319574645323
-Response time: 1699181319912255716
-Overall time of the request: 337
-
-3 1699181320160 1 101 4.3351901 102 4.025533
-Request time: 1699181319912575163
-Response time: 1699181320160897468
-Overall time of the request: 248
-
-4 1699181321113 1 101 4.3445731 102 4.039608
-Request time: 1699181320161182911
-Response time: 1699181321113099380
-Overall time of the request: 951
-
-5 1699181321421 1 101 4.3351901 102 4.016150
-Request time: 1699181321113340300
-Response time: 1699181321421158288
-Overall time of the request: 307
-
-6 1699181321914 1 101 4.3351901 102 4.058376
-Request time: 1699181321421357239
-Response time: 1699181321914982544
-Overall time of the request: 493
-
-7 1699181322410 1 101 4.3164221 102 4.044301
-Request time: 1699181321915181960
-Response time: 1699181322410041762
-Overall time of the request: 494
-
-8 1699181322662 1 101 4.3258061 102 4.011458
-Request time: 1699181322410311464
-Response time: 1699181322662602717
-Overall time of the request: 252
-
-9 1699181322916 1 101 4.3351901 102 4.025533
-Request time: 1699181322662690321
-Response time: 1699181322916448010
-Overall time of the request: 253
-
-10 1699181323434 1 101 4.3821071 102 4.048992
-Request time: 1699181322916511891
-Response time: 1699181323434241655
-Overall time of the request: 517
-
-11 1699181323911 1 101 4.3492651 102 4.020842
-Request time: 1699181323434346437
-Response time: 1699181323911891825
-Overall time of the request: 477
-
-12 1699181324409 1 101 4.3398811 102 4.030225
-Request time: 1699181323912182975
-Response time: 1699181324409235117
-Overall time of the request: 497
-
-13 1699181324670 1 101 4.3070391 102 4.063067
-Request time: 1699181324409456085
-Response time: 1699181324670616030
-Overall time of the request: 261
-
-14 1699181325168 1 101 4.3398811 102 4.034917
-Request time: 1699181324670847809
-Response time: 1699181325168965526
-Overall time of the request: 498
-
-15 1699181325664 1 101 4.3211151 102 4.044301
-Request time: 1699181325169121821
-Response time: 1699181325664135111
-Overall time of the request: 495
-
-16 1699181326160 1 101 4.3445731 102 4.044301
-Request time: 1699181325664234735
-Response time: 1699181326160868804
-Overall time of the request: 496
-
-17 1699181326421 1 101 4.3727241 102 4.006766
-Request time: 1699181326161147442
-Response time: 1699181326421482786
-Overall time of the request: 260
-
-18 1699181326911 1 101 4.3304981 102 4.048992
-Request time: 1699181326421705075
-Response time: 1699181326911274675
-Overall time of the request: 489
-
-19 1699181327165 1 101 4.3727241 102 4.044301
-Request time: 1699181326911502990
-Response time: 1699181327165789093
-Overall time of the request: 254
-
-20 1699181327682 1 101 4.3539571 102 4.034917
-Request time: 1699181327165985998
-Response time: 1699181327682400823
-Overall time of the request: 516
-
-21 1699181328166 1 101 4.3774161 102 4.086526
-Request time: 1699181327682592564
-Response time: 1699181328166730323
-Overall time of the request: 484
-
-22 1699181328656 1 101 4.3258061 102 4.039608
-Request time: 1699181328166926725
-Response time: 1699181328656779720
-Overall time of the request: 489
-
-23 1699181328913 1 101 4.3539571 102 4.044301
-Request time: 1699181328657009443
-Response time: 1699181328913333154
-Overall time of the request: 256
-
-24 1699181329409 1 101 4.3351901 102 4.006766
-Request time: 1699181328913536354
-Response time: 1699181329409350891
-Overall time of the request: 495
-
-25 1699181329659 1 101 4.3586491 102 4.025533
-Request time: 1699181329409573182
-Response time: 1699181329659656090
-Overall time of the request: 250
-
-26 1699181329913 1 101 4.3023471 102 4.016150
-Request time: 1699181329659862710
-Response time: 1699181329913349921
-Overall time of the request: 253
-
-27 1699181330170 1 101 4.3398811 102 3.997383
-Request time: 1699181329913600273
-Response time: 1699181330170289822
-Overall time of the request: 256
-
-28 1699181330661 1 101 4.3492651 102 4.025533
-Request time: 1699181330170488802
-Response time: 1699181330661305792
-Overall time of the request: 490
-
-29 1699181330930 1 101 4.3351901 102 3.997383
-Request time: 1699181330661545498
-Response time: 1699181330930208458
-Overall time of the request: 268
-
-30 1699181331433 1 101 4.3351901 102 4.039608
-Request time: 1699181330930409052
-Response time: 1699181331433286126
-Overall time of the request: 502
-
-31 1699181331924 1 101 4.3492651 102 4.020842
-Request time: 1699181331433482113
-Response time: 1699181331924082911
-Overall time of the request: 490
-
-32 1699181332409 1 101 4.3492651 102 4.020842
-Request time: 1699181331924281211
-Response time: 1699181332409180510
-Overall time of the request: 484
-
-33 1699181332657 1 101 4.3586491 102 4.034917
-Request time: 1699181332409382312
-Response time: 1699181332657805589
-Overall time of the request: 248
-
-34 1699181332916 1 101 4.3117311 102 4.020842
-Request time: 1699181332658003810
-Response time: 1699181332916418695
-Overall time of the request: 258
-
-35 1699181333412 1 101 4.3351901 102 4.034917
-Request time: 1699181332916684467
-Response time: 1699181333412461339
-Overall time of the request: 495
-
-36 1699181333669 1 101 4.3304981 102 4.039608
-Request time: 1699181333412716468
-Response time: 1699181333669153814
-Overall time of the request: 256
-
-37 1699181334169 1 101 4.3211151 102 4.048992
-Request time: 1699181333669357721
-Response time: 1699181334169261668
-Overall time of the request: 499
-
-38 1699181334682 1 101 4.3398811 102 4.063067
-Request time: 1699181334169454453
-Response time: 1699181334682835828
-Overall time of the request: 513
-
-39 1699181335162 1 101 4.3258061 102 4.039608
-Request time: 1699181334683270719
-Response time: 1699181335162343387
-Overall time of the request: 479
-
-40 1699181335430 1 101 4.3821071 102 4.039608
-Request time: 1699181335162570157
-Response time: 1699181335430912578
-Overall time of the request: 268
-
-41 1699181335914 1 101 4.3304981 102 4.039608
-Request time: 1699181335431113146
-Response time: 1699181335914631702
-Overall time of the request: 483
-
-42 1699181336409 1 101 4.3680321 102 4.072451
-Request time: 1699181335914831113
-Response time: 1699181336409913908
-Overall time of the request: 495
-
-43 1699181336691 1 101 4.3398811 102 3.992691
-Request time: 1699181336410107834
-Response time: 1699181336691603070
-Overall time of the request: 281
-
-44 1699181337163 1 101 4.3398811 102 4.025533
-Request time: 1699181336691823938
-Response time: 1699181337163099798
-Overall time of the request: 471
-
-45 1699181337669 1 101 4.3492651 102 4.039608
-Request time: 1699181337163328131
-Response time: 1699181337669055523
-Overall time of the request: 505
-
-46 1699181338167 1 101 4.3586491 102 4.030225
-Request time: 1699181337669259401
-Response time: 1699181338167062259
-Overall time of the request: 497
-
-47 1699181338678 1 101 4.3117311 102 4.006766
-Request time: 1699181338167281133
-Response time: 1699181338678254535
-Overall time of the request: 510
-
-48 1699181339164 1 101 4.3633401 102 4.020842
-Request time: 1699181338678494789
-Response time: 1699181339164050757
-Overall time of the request: 485
-
-49 1699181339672 1 101 4.3492651 102 4.030225
-Request time: 1699181339164202088
-Response time: 1699181339672240909
-Overall time of the request: 508
-
-50 1699181340171 1 101 4.3727241 102 4.030225
-Request time: 1699181339672387926
-Response time: 1699181340171902781
-Overall time of the request: 499
-
-51 1699181340662 1 101 4.3445731 102 4.034917
-Request time: 1699181340172145153
-Response time: 1699181340662594336
-Overall time of the request: 490
-
-52 1699181340916 1 101 4.3445731 102 4.034917
-Request time: 1699181340662829270
-Response time: 1699181340916318792
-Overall time of the request: 253
-
-53 1699181341409 1 101 4.3539571 102 4.053684
-Request time: 1699181340916517346
-Response time: 1699181341409728514
-Overall time of the request: 493
-
-54 1699181341658 1 101 4.3774161 102 4.044301
-Request time: 1699181341409914001
-Response time: 1699181341658823619
-Overall time of the request: 248
-
-55 1699181341913 1 101 4.3774161 102 4.016150
-Request time: 1699181341658920997
-Response time: 1699181341913885422
-Overall time of the request: 254
-
-56 1699181342161 1 101 4.3445731 102 4.067759
-Request time: 1699181341914048377
-Response time: 1699181342161354912
-Overall time of the request: 247
-
-57 1699181342411 1 101 4.3633401 102 4.063067
-Request time: 1699181342161636728
-Response time: 1699181342411973069
-Overall time of the request: 250
-
-58 1699181342665 1 101 4.3023471 102 4.030225
-Request time: 1699181342412225358
-Response time: 1699181342665609644
-Overall time of the request: 253
-
-59 1699181343188 1 101 4.3727241 102 4.039608
-Request time: 1699181342665833623
-Response time: 1699181343188631999
-Overall time of the request: 522
-
-60 1699181343665 1 101 4.3633401 102 4.034917
-Request time: 1699181343188868259
-Response time: 1699181343665177110
-Overall time of the request: 476
-
-61 1699181344165 1 101 4.3492651 102 4.025533
-Request time: 1699181343665377407
-Response time: 1699181344165340403
-Overall time of the request: 499
-
-62 1699181344667 1 101 4.3304981 102 4.034917
-Request time: 1699181344165540441
-Response time: 1699181344667392027
-Overall time of the request: 501
-
-63 1699181345164 1 101 4.3586491 102 4.039608
-Request time: 1699181344667592993
-Response time: 1699181345164960888
-Overall time of the request: 497
-
-64 1699181345708 1 101 4.3398811 102 4.025533
-Request time: 1699181345165158465
-Response time: 1699181345708112126
-Overall time of the request: 542
-
-65 1699181346165 1 101 4.3398811 102 4.063067
-Request time: 1699181345708566501
-Response time: 1699181346165334850
-Overall time of the request: 456
-
-66 1699181346663 1 101 4.3633401 102 4.020842
-Request time: 1699181346165548823
-Response time: 1699181346663069150
-Overall time of the request: 497
-
-67 1699181347169 1 101 4.3023471 102 4.002075
-Request time: 1699181346663267705
-Response time: 1699181347169319171
-Overall time of the request: 506
-
-68 1699181347665 1 101 4.3304981 102 4.030225
-Request time: 1699181347169575484
-Response time: 1699181347665522516
-Overall time of the request: 495
-
-69 1699181348160 1 101 4.3304981 102 4.025533
-Request time: 1699181347665726032
-Response time: 1699181348160974389
-Overall time of the request: 495
-
-70 1699181348410 1 101 4.3164221 102 4.011458
-Request time: 1699181348161170431
-Response time: 1699181348410351914
-Overall time of the request: 249
-
-71 1699181348661 1 101 4.3258061 102 4.039608
-Request time: 1699181348410547902
-Response time: 1699181348661342629
-Overall time of the request: 250
-
-72 1699181348912 1 101 4.3633401 102 3.992691
-Request time: 1699181348661544907
-Response time: 1699181348912274648
-Overall time of the request: 250
-
-73 1699181349160 1 101 4.3586491 102 4.030225
-Request time: 1699181348912503725
-Response time: 1699181349160089067
-Overall time of the request: 247
-
-74 1699181349415 1 101 4.3586491 102 4.011458
-Request time: 1699181349160263865
-Response time: 1699181349415076415
-Overall time of the request: 254
-
-75 1699181349914 1 101 4.3633401 102 4.048992
-Request time: 1699181349415208399
-Response time: 1699181349914255034
-Overall time of the request: 499
-
-76 1699181350412 1 101 4.3821071 102 4.011458
-Request time: 1699181349914388257
-Response time: 1699181350412018014
-Overall time of the request: 497
-
-77 1699181350670 1 101 4.3633401 102 4.006766
-Request time: 1699181350412262752
-Response time: 1699181350670378079
-Overall time of the request: 258
-
-78 1699181351163 1 101 4.3539571 102 4.030225
-Request time: 1699181350670612157
-Response time: 1699181351163569010
-Overall time of the request: 492
-
-79 1699181351414 1 101 4.3680321 102 3.983307
-Request time: 1699181351163777139
-Response time: 1699181351414760180
-Overall time of the request: 250
-
-80 1699181351670 1 101 4.3633401 102 4.044301
-Request time: 1699181351414966808
-Response time: 1699181351670435557
-Overall time of the request: 255
-
-81 1699181352164 1 101 4.3304981 102 4.006766
-Request time: 1699181351670684710
-Response time: 1699181352164211079
-Overall time of the request: 493
-
-82 1699181352412 1 101 4.3821071 102 4.016150
-Request time: 1699181352164350925
-Response time: 1699181352412443837
-Overall time of the request: 248
-
-83 1699181352927 1 101 4.3539571 102 4.039608
-Request time: 1699181352412698534
-Response time: 1699181352927944640
-Overall time of the request: 515
-
-84 1699181353419 1 101 4.3351901 102 4.039608
-Request time: 1699181352928177883
-Response time: 1699181353419564144
-Overall time of the request: 491
-
-85 1699181353911 1 101 4.3351901 102 4.030225
-Request time: 1699181353419715460
-Response time: 1699181353911120992
-Overall time of the request: 491
-
-86 1699181354167 1 101 4.3445731 102 4.020842
-Request time: 1699181353911257638
-Response time: 1699181354167352155
-Overall time of the request: 256
-
-87 1699181354659 1 101 4.3633401 102 4.058376
-Request time: 1699181354167554126
-Response time: 1699181354659347526
-Overall time of the request: 491
-
-88 1699181354914 1 101 4.3445731 102 4.044301
-Request time: 1699181354659579950
-Response time: 1699181354914416902
-Overall time of the request: 254
-
-89 1699181355162 1 101 4.3351901 102 4.016150
-Request time: 1699181354914689406
-Response time: 1699181355162632387
-Overall time of the request: 247
-
-90 1699181355412 1 101 4.3445731 102 4.034917
-Request time: 1699181355162838452
-Response time: 1699181355412574732
-Overall time of the request: 249
-
-91 1699181355668 1 101 4.3680321 102 4.016150
-Request time: 1699181355412827711
-Response time: 1699181355668465427
-Overall time of the request: 255
-
-92 1699181356167 1 101 4.3445731 102 4.034917
-Request time: 1699181355668702220
-Response time: 1699181356167400132
-Overall time of the request: 498
-
-93 1699181356671 1 101 4.3680321 102 4.011458
-Request time: 1699181356167535312
-Response time: 1699181356671302929
-Overall time of the request: 503
-
-94 1699181357165 1 101 4.3023471 102 4.039608
-Request time: 1699181356671382933
-Response time: 1699181357165372209
-Overall time of the request: 493
-
-95 1699181357415 1 101 4.3633401 102 4.006766
-Request time: 1699181357165567446
-Response time: 1699181357415274166
-Overall time of the request: 249
-
-96 1699181357663 1 101 4.3586491 102 4.025533
-Request time: 1699181357415461518
-Response time: 1699181357663301947
-Overall time of the request: 247
-
-97 1699181357912 1 101 4.3727241 102 4.002075
-Request time: 1699181357663477923
-Response time: 1699181357912499126
-Overall time of the request: 249
-
-98 1699181358173 1 101 4.3586491 102 4.058376
-Request time: 1699181357912809173
-Response time: 1699181358173389238
-Overall time of the request: 260
-
-99 1699181358668 1 101 4.3351901 102 4.030225
-Request time: 1699181358173572822
-Response time: 1699181358668775265
-Overall time of the request: 495
-
-100 1699181359166 1 101 4.3586491 102 4.011458
-Request time: 1699181358668952019
-Response time: 1699181359166454950
-Overall time of the request: 497
-
-101 1699181359410 1 101 4.3492651 102 4.025533
-Request time: 1699181359166631367
-Response time: 1699181359410967101
-Overall time of the request: 244
-
-102 1699181359672 1 101 4.3398811 102 4.044301
-Request time: 1699181359411164171
-Response time: 1699181359672294652
-Overall time of the request: 261
-
-103 1699181360182 1 101 4.3539571 102 4.030225
-Request time: 1699181359672469249
-Response time: 1699181360182072458
-Overall time of the request: 509
-
-104 1699181360672 1 101 4.3633401 102 4.030225
-Request time: 1699181360182272096
-Response time: 1699181360672910188
-Overall time of the request: 490
-
-105 1699181361163 1 101 4.3633401 102 4.011458
-Request time: 1699181360673023647
-Response time: 1699181361163952405
-Overall time of the request: 490
-
-106 1699181361424 1 101 4.3539571 102 4.034917
-Request time: 1699181361164147102
-Response time: 1699181361424107191
-Overall time of the request: 259
-
-107 1699181361914 1 101 4.3492651 102 4.063067
-Request time: 1699181361424183703
-Response time: 1699181361914634330
-Overall time of the request: 490
-
-108 1699181362160 1 101 4.3539571 102 4.016150
-Request time: 1699181361914848716
-Response time: 1699181362160141337
-Overall time of the request: 245
-
-109 1699181362429 1 101 4.3821071 102 4.002075
-Request time: 1699181362160379021
-Response time: 1699181362429113909
-Overall time of the request: 268
-
-110 1699181362913 1 101 4.3774161 102 4.020842
-Request time: 1699181362429346166
-Response time: 1699181362913982847
-Overall time of the request: 484
-
-111 1699181363166 1 101 4.3398811 102 4.044301
-Request time: 1699181362914352779
-Response time: 1699181363166520830
-Overall time of the request: 252
-
-112 1699181363413 1 101 4.3492651 102 4.048992
-Request time: 1699181363166747591
-Response time: 1699181363413123005
-Overall time of the request: 246
-
-113 1699181363665 1 101 4.3070391 102 4.034917
-Request time: 1699181363413333003
-Response time: 1699181363665671351
-Overall time of the request: 252
-
-114 1699181363918 1 101 4.3586491 102 4.030225
-Request time: 1699181363665794369
-Response time: 1699181363918058028
-Overall time of the request: 252
-
-115 1699181364408 1 101 4.3492651 102 4.025533
-Request time: 1699181363918221903
-Response time: 1699181364408861417
-Overall time of the request: 490
-
-116 1699181364664 1 101 4.3445731 102 4.020842
-Request time: 1699181364408987425
-Response time: 1699181364664374953
-Overall time of the request: 255
-
-117 1699181365482 1 101 4.3680321 102 4.006766
-Request time: 1699181364664615013
-Response time: 1699181365482399480
-Overall time of the request: 817
-
-118 1699181365912 1 101 4.3445731 102 4.020842
-Request time: 1699181365482737709
-Response time: 1699181365912704321
-Overall time of the request: 429
-
-119 1699181366163 1 101 4.3727241 102 4.039608
-Request time: 1699181365912945450
-Response time: 1699181366163751536
-Overall time of the request: 250
-
-120 1699181366414 1 101 4.3398811 102 4.039608
-Request time: 1699181366163968432
-Response time: 1699181366414984129
-Overall time of the request: 251
-
-121 1699181366915 1 101 4.3351901 102 4.011458
-Request time: 1699181366415157960
-Response time: 1699181366915980727
-Overall time of the request: 500
-
-122 1699181367161 1 101 4.3633401 102 4.034917
-Request time: 1699181366916159352
-Response time: 1699181367161794608
-Overall time of the request: 245
-
-123 1699181367413 1 101 4.3258061 102 4.016150
-Request time: 1699181367161972197
-Response time: 1699181367413769088
-Overall time of the request: 251
-
-124 1699181367664 1 101 4.3351901 102 4.034917
-Request time: 1699181367413945513
-Response time: 1699181367664987828
-Overall time of the request: 251
-
-125 1699181367922 1 101 4.3539571 102 4.011458
-Request time: 1699181367665180687
-Response time: 1699181367922697066
-Overall time of the request: 257
-
-126 1699181368418 1 101 4.3445731 102 4.016150
-Request time: 1699181367923131139
-Response time: 1699181368418016279
-Overall time of the request: 494
-
-127 1699181368919 1 101 4.3633401 102 4.044301
-Request time: 1699181368418256399
-Response time: 1699181368919286831
-Overall time of the request: 501
-
-128 1699181369416 1 101 4.3539571 102 4.020842
-Request time: 1699181368919426765
-Response time: 1699181369416503845
-Overall time of the request: 497
-
-129 1699181369665 1 101 4.3633401 102 4.002075
-Request time: 1699181369416684756
-Response time: 1699181369665407641
-Overall time of the request: 248
-
-130 1699181369912 1 101 4.3445731 102 4.030225
-Request time: 1699181369665676804
-Response time: 1699181369912341053
-Overall time of the request: 246
-
-131 1699181370165 1 101 4.3304981 102 4.030225
-Request time: 1699181369912576723
-Response time: 1699181370165280700
-Overall time of the request: 252
-
-132 1699181370417 1 101 4.3211151 102 3.997383
-Request time: 1699181370165534037
-Response time: 1699181370417883871
-Overall time of the request: 252
-
-133 1699181370926 1 101 4.3492651 102 4.006766
-Request time: 1699181370418113930
-Response time: 1699181370926916194
-Overall time of the request: 508
-
-134 1699181371410 1 101 4.3586491 102 4.025533
-Request time: 1699181370927120709
-Response time: 1699181371410770975
-Overall time of the request: 483
-
-135 1699181371661 1 101 4.3821071 102 4.048992
-Request time: 1699181371410862719
-Response time: 1699181371661848602
-Overall time of the request: 250
-
-136 1699181371924 1 101 4.3211151 102 4.002075
-Request time: 1699181371661933343
-Response time: 1699181371924529200
-Overall time of the request: 262
-
-137 1699181372421 1 101 4.3304981 102 4.002075
-Request time: 1699181371924734409
-Response time: 1699181372421339026
-Overall time of the request: 496
-
-138 1699181372913 1 101 4.3539571 102 4.030225
-Request time: 1699181372421572222
-Response time: 1699181372913003711
-Overall time of the request: 491
-
-139 1699181373164 1 101 4.3070391 102 4.011458
-Request time: 1699181372913277900
-Response time: 1699181373164974136
-Overall time of the request: 251
-
-140 1699181373666 1 101 4.3680321 102 4.030225
-Request time: 1699181373165184880
-Response time: 1699181373666639368
-Overall time of the request: 501
-
-141 1699181373923 1 101 4.3821071 102 4.077143
-Request time: 1699181373666736845
-Response time: 1699181373923834675
-Overall time of the request: 257
-
-142 1699181374444 1 101 4.3492651 102 4.039608
-Request time: 1699181373923970301
-Response time: 1699181374444134275
-Overall time of the request: 520
-
-143 1699181374913 1 101 4.3633401 102 4.048992
-Request time: 1699181374444238723
-Response time: 1699181374913137813
-Overall time of the request: 468
-
-144 1699181375429 1 101 4.3680321 102 4.034917
-Request time: 1699181374913230912
-Response time: 1699181375429417133
-Overall time of the request: 516
-
-145 1699181375911 1 101 4.3304981 102 4.020842
-Request time: 1699181375429607436
-Response time: 1699181375911067209
-Overall time of the request: 481
-
-146 1699181377171 1 101 4.3727241 102 4.053684
-Request time: 1699181375911209275
-Response time: 1699181377171378205
-Overall time of the request: 1260
-
-147 1699181377672 1 101 4.3398811 102 4.025533
-Request time: 1699181377171456243
-Response time: 1699181377672072697
-Overall time of the request: 500
-
-148 1699181378163 1 101 4.3398811 102 4.030225
-Request time: 1699181377672159289
-Response time: 1699181378163480949
-Overall time of the request: 491
-
-149 1699181378418 1 101 4.3821071 102 4.044301
-Request time: 1699181378163727372
-Response time: 1699181378418708745
-Overall time of the request: 254
-
-150 1699181378921 1 101 4.3258061 102 4.063067
-Request time: 1699181378418983110
-Response time: 1699181378921598708
-Overall time of the request: 502
-
-151 1699181379418 1 101 4.3445731 102 4.039608
-Request time: 1699181378921876662
-Response time: 1699181379418265322
-Overall time of the request: 496
-
-152 1699181379912 1 101 4.3304981 102 4.039608
-Request time: 1699181379418528670
-Response time: 1699181379912415533
-Overall time of the request: 493
-
-153 1699181380161 1 101 4.3492651 102 4.030225
-Request time: 1699181379912749707
-Response time: 1699181380161602951
-Overall time of the request: 248
-
-154 1699181380418 1 101 4.3445731 102 4.044301
-Request time: 1699181380161865963
-Response time: 1699181380418506026
-Overall time of the request: 256
-
-155 1699181380923 1 101 4.3633401 102 4.006766
-Request time: 1699181380418783446
-Response time: 1699181380923240328
-Overall time of the request: 504
-
-156 1699181381414 1 101 4.3633401 102 4.016150
-Request time: 1699181380923530993
-Response time: 1699181381414161701
-Overall time of the request: 490
-
-157 1699181381663 1 101 4.3680321 102 4.039608
-Request time: 1699181381414370993
-Response time: 1699181381663923111
-Overall time of the request: 249
-
-158 1699181381918 1 101 4.2882721 102 4.016150
-Request time: 1699181381664197820
-Response time: 1699181381918076407
-Overall time of the request: 253
-
-159 1699181382165 1 101 4.3633401 102 3.987999
-Request time: 1699181381918343478
-Response time: 1699181382165340053
-Overall time of the request: 246
-
-160 1699181382415 1 101 4.3586491 102 4.025533
-Request time: 1699181382165408593
-Response time: 1699181382415221459
-Overall time of the request: 249
-
-161 1699181382666 1 101 4.3445731 102 4.016150
-Request time: 1699181382415301326
-Response time: 1699181382666746699
-Overall time of the request: 251
-
-162 1699181382916 1 101 4.3492651 102 4.011458
-Request time: 1699181382666930742
-Response time: 1699181382916054381
-Overall time of the request: 249
-
-163 1699181383174 1 101 4.3727241 102 4.020842
-Request time: 1699181382916233090
-Response time: 1699181383174674904
-Overall time of the request: 258
-
-164 1699181383671 1 101 4.3445731 102 4.053684
-Request time: 1699181383174876372
-Response time: 1699181383671063970
-Overall time of the request: 496
-
-165 1699181384162 1 101 4.3492651 102 4.030225
-Request time: 1699181383671297565
-Response time: 1699181384162407858
-Overall time of the request: 491
-
-166 1699181384412 1 101 4.3680321 102 4.044301
-Request time: 1699181384162669207
-Response time: 1699181384412352955
-Overall time of the request: 249
-
-167 1699181384669 1 101 4.3867991 102 4.011458
-Request time: 1699181384412469151
-Response time: 1699181384669994428
-Overall time of the request: 257
+1 1715414478591 MyID: 1 No anchor is detected. STATE DISCOVERY.Overall time of the request: 144
+
+2 1715414478914 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 222
+
+3 1715414479120 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 105
+
+4 1715414479378 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.58 }]}Overall time of the request: 157
+
+5 1715414479629 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.50 }, { "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 151
+
+6 1715414479856 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.19 }]}Overall time of the request: 126
+
+7 1715414480129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 172
+
+8 1715414480379 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 149
+
+9 1715414480631 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 151
+
+10 1715414480883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.40 }]}Overall time of the request: 151
+
+11 1715414481129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 145
+
+12 1715414481379 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.14 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 149
+
+13 1715414481606 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.19 }]}Overall time of the request: 126
+
+14 1715414481881 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.18 }]}Overall time of the request: 174
+
+15 1715414482129 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.19 }, { "Anchor ID": 101, "distance": 3.41 }]}Overall time of the request: 147
+
+16 1715414482379 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 149
+
+17 1715414482631 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 151
+
+18 1715414482879 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.17 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 147
+
+19 1715414483130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.40 }]}Overall time of the request: 150
+
+20 1715414483380 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.21 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 149
+
+21 1715414483630 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.18 }]}Overall time of the request: 149
+
+22 1715414483883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.21 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 152
+
+23 1715414484130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 146
+
+24 1715414484357 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 126
+
+25 1715414484632 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }, { "Anchor ID": 102, "distance": 3.21 }]}Overall time of the request: 174
+
+26 1715414484880 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }, { "Anchor ID": 102, "distance": 3.20 }]}Overall time of the request: 147
+
+27 1715414485130 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 149
+
+28 1715414485383 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.41 }]}Overall time of the request: 153
+
+29 1715414485632 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.41 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 148
+
+30 1715414485881 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }, { "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 148
+
+31 1715414486131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.21 }]}Overall time of the request: 149
+
+32 1715414486381 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 149
+
+33 1715414486632 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.21 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 151
+
+34 1715414486883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 150
+
+35 1715414487131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 147
+
+36 1715414487381 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 149
+
+37 1715414487608 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.40 }]}Overall time of the request: 126
+
+38 1715414487884 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 175
+
+39 1715414488133 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.40 }]}Overall time of the request: 148
+
+40 1715414488381 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.41 }]}Overall time of the request: 147
+
+41 1715414488631 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 149
+
+42 1715414488883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 151
+
+43 1715414489132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.43 }]}Overall time of the request: 148
+
+44 1715414489383 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 150
+
+45 1715414489631 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.41 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 148
+
+46 1715414489881 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 149
+
+47 1715414490131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.41 }]}Overall time of the request: 149
+
+48 1715414490381 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 149
+
+49 1715414490633 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 151
+
+50 1715414490881 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 147
+
+51 1715414491108 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 127
+
+52 1715414491384 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 175
+
+53 1715414491631 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 146
+
+54 1715414491881 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 149
+
+55 1715414492131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 149
+
+56 1715414492381 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.39 }]}Overall time of the request: 149
+
+57 1715414492637 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 155
+
+58 1715414492881 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 143
+
+59 1715414493136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.32 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 154
+
+60 1715414493359 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 123
+
+61 1715414493608 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 148
+
+62 1715414493883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 174
+
+63 1715414494131 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.21 }]}Overall time of the request: 147
+
+64 1715414494382 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 151
+
+65 1715414494632 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 149
+
+66 1715414494859 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 127
+
+67 1715414495109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 149
+
+68 1715414495359 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 149
+
+69 1715414495610 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 151
+
+70 1715414495883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 171
+
+71 1715414496132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 148
+
+72 1715414496384 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 152
+
+73 1715414496633 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.30 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 148
+
+74 1715414496882 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 148
+
+75 1715414497132 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 149
+
+76 1715414497387 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 154
+
+77 1715414497635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 147
+
+78 1715414497882 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 146
+
+79 1715414498109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 127
+
+80 1715414498382 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 172
+
+81 1715414498637 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 154
+
+82 1715414498885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 147
+
+83 1715414499109 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 123
+
+84 1715414499382 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 172
+
+85 1715414499633 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 150
+
+86 1715414499888 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 154
+
+87 1715414500133 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.31 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 144
+
+88 1715414500382 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 148
+
+89 1715414500633 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 150
+
+90 1715414500898 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 164
+
+91 1715414501135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 136
+
+92 1715414501362 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 127
+
+93 1715414501634 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 171
+
+94 1715414501883 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 148
+
+95 1715414502135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 151
+
+96 1715414502385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 149
+
+97 1715414502633 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.32 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 147
+
+98 1715414502884 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 150
+
+99 1715414503111 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 126
+
+100 1715414503364 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 152
+
+101 1715414503634 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 169
+
+102 1715414503860 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 125
+
+103 1715414504134 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 173
+
+104 1715414504384 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.21 }]}Overall time of the request: 149
+
+105 1715414504635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 150
+
+106 1715414504886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.28 }]}Overall time of the request: 150
+
+107 1715414505134 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.17 }, { "Anchor ID": 101, "distance": 3.24 }]}Overall time of the request: 148
+
+108 1715414505385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.31 }]}Overall time of the request: 150
+
+109 1715414505641 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.27 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 155
+
+110 1715414505886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 144
+
+111 1715414506135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 148
+
+112 1715414506385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 149
+
+113 1715414506635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 149
+
+114 1715414506888 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 152
+
+115 1715414507136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 147
+
+116 1715414507385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.27 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 148
+
+117 1715414507635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.22 }]}Overall time of the request: 149
+
+118 1715414507885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.29 }]}Overall time of the request: 149
+
+119 1715414508113 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.29 }]}Overall time of the request: 127
+
+120 1715414508387 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.27 }]}Overall time of the request: 173
+
+121 1715414508635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 147
+
+122 1715414508886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 150
+
+123 1715414509135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 148
+
+124 1715414509391 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 155
+
+125 1715414509616 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 124
+
+126 1715414509886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 169
+
+127 1715414510138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 151
+
+128 1715414510385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 147
+
+129 1715414510635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 149
+
+130 1715414510891 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 155
+
+131 1715414511136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 144
+
+132 1715414511386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 149
+
+133 1715414511636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 149
+
+134 1715414511887 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.22 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 151
+
+135 1715414512138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.24 }]}Overall time of the request: 149
+
+136 1715414512385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 147
+
+137 1715414512636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.39 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 150
+
+138 1715414512887 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 150
+
+139 1715414513137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.41 }]}Overall time of the request: 149
+
+140 1715414513387 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 149
+
+141 1715414513636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 148
+
+142 1715414513886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 149
+
+143 1715414514137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 150
+
+144 1715414514386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.21 }]}Overall time of the request: 148
+
+145 1715414514635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 148
+
+146 1715414514886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 150
+
+147 1715414515135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.33 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 148
+
+148 1715414515387 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 151
+
+149 1715414515636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.28 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 148
+
+150 1715414515915 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.31 }]}Overall time of the request: 178
+
+151 1715414516139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 123
+
+152 1715414516386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 146
+
+153 1715414516636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 148
+
+154 1715414516886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 150
+
+155 1715414517135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 148
+
+156 1715414517385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 149
+
+157 1715414517613 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.21 }]}Overall time of the request: 126
+
+158 1715414517888 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.22 }]}Overall time of the request: 175
+
+159 1715414518181 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.20 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 193
+
+160 1715414518405 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.19 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 123
+
+161 1715414518635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 129
+
+162 1715414518885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 149
+
+163 1715414519140 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.31 }, { "Anchor ID": 102, "distance": 3.23 }]}Overall time of the request: 154
+
+164 1715414519387 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.24 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 147
+
+165 1715414519636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 148
+
+166 1715414519886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 149
+
+167 1715414520136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.30 }]}Overall time of the request: 149
+
+168 1715414520385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 148
+
+169 1715414520635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 149
+
+170 1715414520887 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 151
+
+171 1715414521135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.30 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 147
+
+172 1715414521387 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 151
+
+173 1715414521635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 148
+
+174 1715414521885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 149
+
+175 1715414522135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.31 }]}Overall time of the request: 150
+
+176 1715414522363 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.31 }]}Overall time of the request: 127
+
+177 1715414522615 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }]}Overall time of the request: 151
+
+178 1715414522886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 170
+
+179 1715414523112 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 125
+
+180 1715414523386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.31 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 173
+
+181 1715414523636 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 149
+
+182 1715414523887 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 150
+
+183 1715414524138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 150
+
+184 1715414524385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 147
+
+185 1715414524635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 149
+
+186 1715414524885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 149
+
+187 1715414525138 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 152
+
+188 1715414525386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.31 }]}Overall time of the request: 148
+
+189 1715414525635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 148
+
+190 1715414525915 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 179
+
+191 1715414526139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.33 }, { "Anchor ID": 102, "distance": 3.30 }]}Overall time of the request: 123
+
+192 1715414526389 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 149
+
+193 1715414526638 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.26 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 148
+
+194 1715414526893 {"Tag ID": 1, "anchors": [, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 154
+
+195 1715414527135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.23 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 142
+
+196 1715414527390 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.25 }]}Overall time of the request: 154
+
+197 1715414527635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 144
+
+198 1715414527862 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 127
+
+199 1715414528135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 172
+
+200 1715414528385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 150
+
+201 1715414528641 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 156
+
+202 1715414528885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 143
+
+203 1715414529135 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 149
+
+204 1715414529385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.32 }]}Overall time of the request: 149
+
+205 1715414529635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 149
+
+206 1715414529886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 150
+
+207 1715414530137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 151
+
+208 1715414530385 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 147
+
+209 1715414530635 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 149
+
+210 1715414530885 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 149
+
+211 1715414531136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 150
+
+212 1715414531386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.25 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 149
+
+213 1715414531613 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 126
+
+214 1715414531886 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.40 }]}Overall time of the request: 172
+
+215 1715414532139 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.35 }]}Overall time of the request: 152
+
+216 1715414532386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.32 }, { "Anchor ID": 102, "distance": 3.26 }]}Overall time of the request: 147
+
+217 1715414532638 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.38 }, { "Anchor ID": 102, "distance": 3.30 }]}Overall time of the request: 151
+
+218 1715414532888 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 149
+
+219 1715414533114 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.34 }]}Overall time of the request: 126
+
+220 1715414533391 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.38 }]}Overall time of the request: 176
+
+221 1715414533637 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.30 }, { "Anchor ID": 101, "distance": 3.37 }]}Overall time of the request: 145
+
+222 1715414533888 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 150
+
+223 1715414534136 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 148
+
+224 1715414534386 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.27 }, { "Anchor ID": 101, "distance": 3.36 }]}Overall time of the request: 149
+
+225 1715414534638 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.30 }]}Overall time of the request: 151
+
+226 1715414534890 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.37 }, { "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 151
+
+227 1715414535137 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.36 }, { "Anchor ID": 102, "distance": 3.28 }]}Overall time of the request: 147
+
+228 1715414535388 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.42 }, { "Anchor ID": 102, "distance": 3.29 }]}Overall time of the request: 150
+
+229 1715414535637 {"Tag ID": 1, "anchors": [{ "Anchor ID": 101, "distance": 3.35 }, { "Anchor ID": 102, "distance": 3.27 }]}Overall time of the request: 148
+
+230 1715414535890 {"Tag ID": 1, "anchors": [{ "Anchor ID": 102, "distance": 3.29 }, { "Anchor ID": 101, "distance": 3.33 }]}Overall time of the request: 152
 

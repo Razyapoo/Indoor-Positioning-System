@@ -10,6 +10,7 @@ size_t Server::dataIndex = 1;
 std::chrono::milliseconds Server::currentTime;
 std::time_t Server::timestamp;
 bool Server::isBusy = false;
+std::chrono::time_point<std::chrono::high_resolution_clock> Server::requestTime, Server::responseTime;
 
 // DEBUG
 bool Server::debugMode = true;
@@ -90,12 +91,19 @@ void Server::runServer()
                         std::string request(buffer, nbytes);
                         std::cout << "Received distance " << request << " from client: " << socketID << std::endl;
 
+                        responseTime = std::chrono::high_resolution_clock::now();
+                        const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(responseTime - requestTime);
                         currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
                         timestamp = currentTime.count();
                         timestampFile << dataIndex << " " << timestamp << " " << request << std::endl;
-
+                        timestampFile << "Overall time of the request: " << duration.count() << "\n"
+                                      << std::endl;
                         if (debugMode)
+                        {
                             std::cout << "Data " << dataIndex << " is recorded" << std::endl;
+                            std::cout << "Overall time of the request: " << duration.count() << "\n"
+                                      << std::endl;
+                        }
                         dataIndex++;
 
                         std::string responseToTag = "7\n";
@@ -115,6 +123,7 @@ void Server::runServer()
             clientQueue.pop();
 
             std::string request = "1\n";
+            requestTime = std::chrono::high_resolution_clock::now();
             write(clientSocketFD, request.c_str(), request.length());
             isBusy = true;
 

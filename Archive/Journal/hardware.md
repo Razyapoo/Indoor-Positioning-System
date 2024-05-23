@@ -2979,7 +2979,7 @@ Cross walking. Similar to 5, but going outside the area. Opening doors + sitting
 Methods:
 
 1. (Camera only) Focal length
-2. (Camera only) HEometrical method 2. Using floor tiles
+2. (Camera only) geometric method 2. Using floor tiles
 3. (UWB + Camera) Calculate position using UWB measurements as distance from camera 
   - given camera and anchor permanent, it is possible to compute distance from camera
 

@@ -1,0 +1,114 @@
+1 1715371294354 {"links":[{"T":"1","A":"1786","R":"1.25"}]}Overall time of the request: 1943
+
+2 1715371295552 {"links":[{"T":"1","A":"1786","R":"1.26"}]}Overall time of the request: 1097
+
+3 1715371296802 {"links":[{"T":"1","A":"1786","R":"1.29"},{"T":"1","A":"1787","R":"2.23"}]}Overall time of the request: 1149
+
+4 1715371298052 {"links":[{"T":"1","A":"1786","R":"1.29"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1149
+
+5 1715371299304 {"links":[{"T":"1","A":"1786","R":"1.24"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1151
+
+6 1715371300552 {"links":[{"T":"1","A":"1786","R":"1.27"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1147
+
+7 1715371301801 {"links":[{"T":"1","A":"1786","R":"1.28"},{"T":"1","A":"1787","R":"2.24"}]}Overall time of the request: 1148
+
+8 1715371303051 {"links":[{"T":"1","A":"1786","R":"1.29"},{"T":"1","A":"1787","R":"2.21"}]}Overall time of the request: 1149
+
+9 1715371304301 {"links":[{"T":"1","A":"1786","R":"1.29"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1149
+
+10 1715371305555 {"links":[{"T":"1","A":"1786","R":"1.28"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1154
+
+11 1715371306805 {"links":[{"T":"1","A":"1786","R":"1.29"},{"T":"1","A":"1787","R":"2.21"}]}Overall time of the request: 1149
+
+12 1715371308051 {"links":[{"T":"1","A":"1786","R":"1.31"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1145
+
+13 1715371309303 {"links":[{"T":"1","A":"1786","R":"1.27"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1151
+
+14 1715371310553 {"links":[{"T":"1","A":"1786","R":"1.28"},{"T":"1","A":"1787","R":"2.24"}]}Overall time of the request: 1149
+
+15 1715371311801 {"links":[{"T":"1","A":"1786","R":"1.29"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1148
+
+16 1715371313054 {"links":[{"T":"1","A":"1786","R":"1.28"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1151
+
+17 1715371314309 {"links":[{"T":"1","A":"1786","R":"1.27"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1154
+
+18 1715371315551 {"links":[{"T":"1","A":"1786","R":"1.25"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1141
+
+19 1715371316801 {"links":[{"T":"1","A":"1786","R":"1.31"},{"T":"1","A":"1787","R":"2.22"}]}Overall time of the request: 1150
+
+20 1715371318052 {"links":[{"T":"1","A":"1786","R":"1.36"},{"T":"1","A":"1787","R":"2.38"}]}Overall time of the request: 1150
+
+21 1715371319310 {"links":[{"T":"1","A":"1786","R":"1.41"},{"T":"1","A":"1787","R":"2.29"}]}Overall time of the request: 1157
+
+22 1715371320551 {"links":[{"T":"1","A":"1786","R":"1.50"},{"T":"1","A":"1787","R":"2.30"}]}Overall time of the request: 1140
+
+23 1715371321801 {"links":[{"T":"1","A":"1786","R":"1.48"},{"T":"1","A":"1787","R":"2.26"}]}Overall time of the request: 1149
+
+24 1715371323051 {"links":[{"T":"1","A":"1786","R":"1.43"},{"T":"1","A":"1787","R":"2.28"}]}Overall time of the request: 1149
+
+25 1715371324303 {"links":[{"T":"1","A":"1786","R":"1.24"},{"T":"1","A":"1787","R":"2.26"}]}Overall time of the request: 1152
+
+26 1715371325551 {"links":[{"T":"1","A":"1786","R":"1.15"},{"T":"1","A":"1787","R":"2.28"}]}Overall time of the request: 1147
+
+27 1715371326656 {"links":[{"T":"2","A":"1786","R":"2.02"}]}Overall time of the request: 1004
+
+28 1715371327760 {"links":[{"T":"1","A":"1786","R":"1.15"},{"T":"1","A":"1787","R":"2.28"}]}Overall time of the request: 1003
+
+29 1715371328865 {"links":[{"T":"2","A":"1786","R":"1.96"}]}Overall time of the request: 1004
+
+30 1715371329969 {"links":[{"T":"1","A":"1787","R":"2.32"}]}Overall time of the request: 1004
+
+31 1715371331074 {"links":[{"T":"2","A":"1786","R":"2.00"}]}Overall time of the request: 1004
+
+32 1715371332179 {"links":[{"T":"1","A":"1787","R":"2.32"}]}Overall time of the request: 1005
+
+33 1715371333285 {"links":[{"T":"2","A":"1786","R":"2.00"}]}Overall time of the request: 1005
+
+34 1715371334391 {"links":[{"T":"1","A":"1787","R":"0.00"}]}Overall time of the request: 1006
+
+35 1715371335497 {"links":[{"T":"2","A":"1787","R":"2.77"}]}Overall time of the request: 1003
+
+36 1715371336602 {"links":[{"T":"1","A":"1787","R":"0.00"}]}Overall time of the request: 1004
+
+37 1715371337710 {"links":[{"T":"2","A":"1787","R":"2.82"}]}Overall time of the request: 1008
+
+38 1715371338814 {"links":[{"T":"1","A":"1786","R":"0.00"}]}Overall time of the request: 1003
+
+39 1715371339918 {"links":[{"T":"2","A":"1786","R":"1.98"},{"T":"2","A":"1787","R":"2.81"}]}Overall time of the request: 1003
+
+40 1715371341022 {"links":[{"T":"1","A":"1786","R":"0.00"}]}Overall time of the request: 1003
+
+41 1715371342126 {"links":[{"T":"2","A":"1786","R":"1.98"},{"T":"2","A":"1787","R":"2.81"}]}Overall time of the request: 1003
+
+42 1715371343230 {"links":[{"T":"1","A":"1786","R":"0.00"}]}Overall time of the request: 1003
+
+43 1715371344334 {"links":[{"T":"2","A":"1786","R":"2.03"},{"T":"2","A":"1787","R":"2.79"}]}Overall time of the request: 1003
+
+44 1715371345438 {"links":[{"T":"1","A":"1786","R":"1.30"}]}Overall time of the request: 1004
+
+45 1715371346542 {"links":[{"T":"2","A":"1786","R":"2.03"},{"T":"2","A":"1787","R":"2.79"}]}Overall time of the request: 1003
+
+46 1715371347646 {"links":[{"T":"1","A":"1786","R":"1.29"}]}Overall time of the request: 1004
+
+47 1715371348750 {"links":[{"T":"2","A":"1787","R":"2.79"}]}Overall time of the request: 1003
+
+48 1715371349854 {"links":[{"T":"1","A":"1786","R":"1.30"}]}Overall time of the request: 1003
+
+49 1715371350958 {"links":[{"T":"2","A":"1787","R":"2.79"}]}Overall time of the request: 1003
+
+50 1715371352064 {"links":[{"T":"1","A":"1786","R":"1.30"}]}Overall time of the request: 1006
+
+51 1715371353173 {"links":[{"T":"2","A":"1787","R":"2.79"}]}Overall time of the request: 1008
+
+52 1715371354280 {"links":[{"T":"1","A":"1786","R":"1.30"}]}Overall time of the request: 1006
+
+53 1715371355384 {"links":[{"T":"2","A":"1786","R":"2.00"}]}Overall time of the request: 1003
+
+54 1715371356488 {"links":[{"T":"1","A":"1786","R":"1.30"}]}Overall time of the request: 1004
+
+55 1715371357595 {"links":[{"T":"2","A":"1786","R":"2.11"}]}Overall time of the request: 1006
+
+56 1715371358703 {"links":[{"T":"1","A":"1786","R":"1.62"}]}Overall time of the request: 1007
+
+57 1715371359818 {"links":[{"T":"2","A":"1786","R":"2.08"}]}Overall time of the request: 1014
+

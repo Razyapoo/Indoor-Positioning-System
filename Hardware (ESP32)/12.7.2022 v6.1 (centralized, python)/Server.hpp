@@ -33,6 +33,7 @@ public:
     static void runServer();
     static void printFDSet(fd_set *set);
     static void showQueue(std::queue<int> queue);
+    static std::chrono::time_point<std::chrono::high_resolution_clock> requestTime, responseTime;
 
     static bool debugMode;
 };

@@ -1,49 +1,64 @@
 #include "arduino.h"
 
-void updateState(int nextState) {
+void updateState(int nextState)
+{
   state = nextState;
   lastStateChange = millis();
 }
 
-void noteActivity() {
+void noteActivity()
+{
   lastActivity = millis();
 }
 
-void setAddress() {
-    String macAddr = WiFi.macAddress();
-    Serial.println(macAddr);
-    if (macAddr == "70:B8:F6:D8:F8:B8") {
-        myID = 101;
-    } else if (macAddr == "70:B8:F6:D8:F8:28") {
-        myID = 102;
-    } else {
-        Serial.println("Wrong tag MAC address.");
+void setAddress()
+{
+  String macAddr = WiFi.macAddress();
+  Serial.println(macAddr);
+  if (macAddr == "D8:BC:38:42:FB:74")
+  {
+    myID = 101;
+  }
+  else if (macAddr == "70:B8:F6:D8:F8:28")
+  {
+    myID = 102;
+  }
+  else
+  {
+    Serial.println("Wrong tag MAC address.");
+  }
+}
+
+boolean isTagAddress(uint16_t addr)
+{
+  return (0 < addr && addr < 99) ? true : false;
+}
+
+void checkForReset()
+{
+  if (!sentAck && !receivedAck)
+  {
+    if (currentTime - lastActivity > DEFAULT_RESET_TIMEOUT)
+    {
+      initReceiver();
+      Serial.println("Reinit....");
     }
+    return;
+  }
 }
 
-boolean isTagAddress(uint16_t addr) {
-    return (0 < addr && addr < 99) ? true : false;
-}
-
-void checkForReset() {
-    if(!sentAck && !receivedAck) {
-      if(currentTime - lastActivity > DEFAULT_RESET_TIMEOUT) {
-        initReceiver();
-        Serial.println("Reinit....");
-      }
-      return;
-    }
-}
-
-void handleReceived() {
+void handleReceived()
+{
   receivedAck = true;
 }
 
-void handleSent() {
+void handleSent()
+{
   sentAck = true;
 }
 
-void initReceiver() {
+void initReceiver()
+{
   DW1000.newReceive();
   DW1000.setDefaults();
   DW1000.receivePermanently(true);
@@ -51,18 +66,21 @@ void initReceiver() {
   noteActivity();
 }
 
-void prepareTx() {
+void prepareTx()
+{
   DW1000.newTransmit();
   DW1000.setDefaults();
 }
 
-void startTx() {
+void startTx()
+{
   DW1000.setData(txFrame, FRAME_SIZE);
   DW1000.startTransmit();
   lastSent = 0;
 }
 
-void transmitRangingInit() {
+void transmitRangingInit()
+{
   prepareTx();
   txFrame[0] = RANGINGINIT;
   setSenderAddr(txFrame, myID);
@@ -70,7 +88,8 @@ void transmitRangingInit() {
   startTx();
 }
 
-void transmitPollAck() {
+void transmitPollAck()
+{
   prepareTx();
   txFrame[0] = POLLACK;
   setSenderAddr(txFrame, myID);
@@ -79,7 +98,8 @@ void transmitPollAck() {
   startTx();
 }
 
-void transmitRangeReport() {
+void transmitRangeReport()
+{
   prepareTx();
   txFrame[0] = RANGEREPORT;
   setSenderAddr(txFrame, myID);
@@ -90,7 +110,8 @@ void transmitRangeReport() {
   startTx();
 }
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
 
   DW1000.begin(PIN_IRQ, PIN_RST);
@@ -107,27 +128,26 @@ void setup() {
 
   DW1000.attachSentHandler(handleSent);
   DW1000.attachReceivedHandler(handleReceived);
-  
-  //DW1000.setAntennaDelay(Adelay);
+
+  // DW1000.setAntennaDelay(Adelay);
 
   initReceiver();
-
 }
 
-void loop() {
+void loop()
+{
   currentTime = millis();
-  
+
   checkForReset();
 
-  if (state == STATE_RANGING_INIT
-      && currentTime - lastStateChange > RANGING_INIT_TIMEOUT) {
+  if (state == STATE_RANGING_INIT && currentTime - lastStateChange > RANGING_INIT_TIMEOUT)
+  {
     PRINTLN(F("Seems Pending Pong lost. Return to IDLE"));
     updateState(STATE_IDLE);
   }
 
-  if (state == STATE_RANGE
-      && ((lastSent && currentTime - lastSent > RANGE_TIMEOUT)
-          || currentTime - lastStateChange > 2 * RANGE_TIMEOUT)) {
+  if (state == STATE_RANGE && ((lastSent && currentTime - lastSent > RANGE_TIMEOUT) || currentTime - lastStateChange > 2 * RANGE_TIMEOUT))
+  {
     /*
      * Check RANGE message timeout when state is waiting for RANGE message
      */
@@ -136,7 +156,8 @@ void loop() {
     return;
   }
 
-  if (sentAck) {
+  if (sentAck)
+  {
     PRINTLN(F("Sent something"));
     sentAck = false;
     noteActivity();
@@ -144,54 +165,67 @@ void loop() {
 
     sentMessageType = txFrame[0];
 
-    PRINT(F("  MSG TYPE: ")); PRINTLN(sentMessageType);
+    PRINT(F("  MSG TYPE: "));
+    PRINTLN(sentMessageType);
 
-    if (sentMessageType != RANGINGINIT && sentMessageType != POLLACK && sentMessageType != RANGEREPORT) return;
+    if (sentMessageType != RANGINGINIT && sentMessageType != POLLACK && sentMessageType != RANGEREPORT)
+      return;
 
-    if (state == STATE_RANGING_INIT && sentMessageType == RANGINGINIT) {
+    if (state == STATE_RANGING_INIT && sentMessageType == RANGINGINIT)
+    {
       PRINTLN(F("  Ranging phase initialized sent. Return to IDLE"));
       updateState(STATE_IDLE);
       return;
     }
 
-    if (sentMessageType == POLLACK) {
+    if (sentMessageType == POLLACK)
+    {
       PRINTLN(F("  POLLACK sent. Getting timestamp..."));
       DW1000.getTransmitTimestamp(timePollAckSent);
     }
 
-    if (sentMessageType == RANGEREPORT) {
+    if (sentMessageType == RANGEREPORT)
+    {
       PRINTLN(F("  RANGEREPORT sent"));
     }
   }
-  
-  if (receivedAck) {
+
+  if (receivedAck)
+  {
     PRINTLN(F("Received something"));
     receivedAck = false;
     noteActivity();
     DW1000.getData(rxFrame, FRAME_SIZE);
     getSenderAddr(rxFrame, tagID);
-    if (!isTagAddress(tagID)) return; 
+    if (!isTagAddress(tagID))
+      return;
 
-    PRINT(F("Received something from tag: ")); PRINTLN(tagID);
+    PRINT(F("Received something from tag: "));
+    PRINTLN(tagID);
 
     receivedMessageType = rxFrame[0];
-    //PRINT(F("Received msg: ")); PRINTLN(receivedMessageType);
-    if (receivedMessageType != BLINK && receivedMessageType != POLL && receivedMessageType != RANGE) return;
-    PRINT(F("Current state: ")); PRINTLN(state);
-    if (state == STATE_IDLE) {
+    // PRINT(F("Received msg: ")); PRINTLN(receivedMessageType);
+    if (receivedMessageType != BLINK && receivedMessageType != POLL && receivedMessageType != RANGE)
+      return;
+    PRINT(F("Current state: "));
+    PRINTLN(state);
+    if (state == STATE_IDLE)
+    {
       PRINTLN(F("  State: IDLE"));
-      if (receivedMessageType == BLINK) {
+      if (receivedMessageType == BLINK)
+      {
         PRINTLN(F("    Received BLINK. Reply with RANGING INIT"));
         rangingInitDelay = random(0, 50);
-        //runtimeDelay = millis();
-        //while (millis() - runtimeDelay < rangingInitDelay) continue;
+        // runtimeDelay = millis();
+        // while (millis() - runtimeDelay < rangingInitDelay) continue;
         delay(rangingInitDelay);
         transmitRangingInit();
         updateState(STATE_RANGING_INIT);
         return;
       }
 
-      if (receivedMessageType == POLL && isReceiverMatch(rxFrame, myID)) {
+      if (receivedMessageType == POLL && isReceiverMatch(rxFrame, myID))
+      {
         PRINTLN(F("    Received POLL"));
         DW1000.getReceiveTimestamp(timePollReceived);
         transmitPollAck();
@@ -201,7 +235,8 @@ void loop() {
       }
     }
 
-    if (state == STATE_RANGING_INIT) {
+    if (state == STATE_RANGING_INIT)
+    {
       PRINTLN(F("  State: STATE_RANGING_INIT"));
       PRINTLN(F("    Ignore all received frames"));
       /*
@@ -211,7 +246,8 @@ void loop() {
       return;
     }
 
-    if (state == STATE_RANGE && receivedMessageType == RANGE && isSenderMatch(rxFrame, tagID)) {
+    if (state == STATE_RANGE && receivedMessageType == RANGE && isSenderMatch(rxFrame, tagID))
+    {
       Serial.println("Received RANGE");
       DW1000.getReceiveTimestamp(timeRangeReceived);
       transmitRangeReport();
