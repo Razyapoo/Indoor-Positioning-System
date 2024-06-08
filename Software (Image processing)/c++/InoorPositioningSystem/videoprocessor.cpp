@@ -303,10 +303,10 @@ std::pair<double, double> VideoProcessor::predictWorldCoordinates(const Detectio
         double scaleY = (double)detectionFrameSize.height / (double)cameraFrameSize.height;
 
 
-        double fxAdjusted = optimalCameraMatrix[0] * scaleX;
-        double fyAdjusted = optimalCameraMatrix[4] * scaleY;
-        double cxAdjusted = optimalCameraMatrix[2] * scaleX;
-        double cyAdjusted = optimalCameraMatrix[5] * scaleY;
+        double fxAdjusted = cameraMatrix[0] * scaleX;
+        double fyAdjusted = cameraMatrix[4] * scaleY;
+        double cxAdjusted = cameraMatrix[2] * scaleX;
+        double cyAdjusted = cameraMatrix[5] * scaleY;
 
         double distance = (1760 * fyAdjusted) / height;
 
@@ -385,6 +385,14 @@ int VideoProcessor::setPredict(bool toPredict, PredictionType type) {
 }
 
 
+void VideoProcessor::setCameraMatrix(std::vector<double> &&matrix) {
+    cameraMatrix = std::move(matrix);
+}
+
 void VideoProcessor::setOptimalCameraMatrix(std::vector<double> &&matrix) {
     optimalCameraMatrix = std::move(matrix);
+}
+
+void VideoProcessor::setDistCoeffs(std::vector<double> &&matrix) {
+    distCoeffs = std::move(matrix);
 }

@@ -91,6 +91,7 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
     // qDebug() << "Searching for UWB data...";
 
     VideoData videoData(frameIndex, std::move(qImage), frameTimestamp);
+    qDebug() << "Frame id: " << frameIndex;
 
     std::vector<UWBData> closestForEachTag;
     for (auto& data: uwbDataPerTag) {
@@ -174,27 +175,71 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
 
 void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
-    // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0) in UWB coordinate system, Anchor 101 has coordinates (2.5, 0) in UWB corrdinate system
-    QPointF anchor101Coordinates(1, 0);
-    QPointF anchor102Coordinates(3.5, 0);
+    // // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0) in UWB coordinate system, Anchor 101 has coordinates (2.5, 0) in UWB corrdinate system
+    // QPointF anchor101Coordinates(0.627, 0);
+    // QPointF anchor102Coordinates(3.127, 0);
+    // QPointF anchor103Coordinates(3.127, 15);
+    // QPointF anchor104Coordinates(0.627, 15);
 
-    double anchorBaseline = std::abs(anchor101Coordinates.x() - anchor102Coordinates.x());
+    // Triangulation
+    QPointF anchor101Coordinates(3.127, 0);
+    QPointF anchor102Coordinates(0.627, 0);
+    QPointF anchor103Coordinates(0.627, 15);
+    QPointF anchor104Coordinates(3.127, 15);
 
-    double distanceAnchor101, distanceAnchor102;
+    QMap<int, QPointF> anchorCoordinates;
+    anchorCoordinates[101] = anchor101Coordinates;
+    anchorCoordinates[102] = anchor102Coordinates;
+    anchorCoordinates[103] = anchor103Coordinates;
+    anchorCoordinates[104] = anchor104Coordinates;
+
+    double distanceAnchor1 = 0;
+    double distanceAnchor2 = 0;
+    int anchor1ID = 0, anchor2ID = 0;
+    QPointF anchor1Coordinates;
+    QPointF anchor2Coordinates;
+
+    // Extract distances from the anchor list and find the pair of anchors
     for (const Anchor& anchor: tag.anchorList) {
-        if (anchor.anchorID == 101) {
-            distanceAnchor101 = anchor.distance;
-        } else if (anchor.anchorID == 102) {
-            distanceAnchor102 = anchor.distance;
+        qDebug() << "AnchorID: " << anchor.anchorID;
+        if (anchorCoordinates.contains(anchor.anchorID)) {
+            if (distanceAnchor1 == 0) {
+                distanceAnchor1 = anchor.distance;
+                anchor1Coordinates = anchorCoordinates[anchor.anchorID];
+                anchor1ID = anchor.anchorID;
+            } else if (distanceAnchor2 == 0) {
+                distanceAnchor2 = anchor.distance;
+                anchor2Coordinates = anchorCoordinates[anchor.anchorID];
+                anchor2ID = anchor.anchorID;
+                break; // We have found two distances, we can break out of the loop
+            }
         }
     }
 
-    double x = std::abs((std::pow(distanceAnchor101, 2) - std::pow(distanceAnchor102, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
-    double y = std::sqrt(std::pow(distanceAnchor101, 2) - std::pow(x, 2));
+    double anchorBaseline = std::sqrt(std::pow(anchor1Coordinates.x() - anchor2Coordinates.x(), 2) +
+                                      std::pow(anchor1Coordinates.y() - anchor2Coordinates.y(), 2));
 
-    tag.coordinates.setX(x + anchor101Coordinates.x()); // Transform x-coordinate to camera/world coordinate system
-    tag.coordinates.setY(y); //TODO: to add offset
+    double x = 0, y = 0;
+
+    if (anchor1ID == 103 || anchor1ID == 104) {
+        x = std::abs((std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
+        y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
+    } else if (anchor1ID == 101 || anchor1ID == 102) {
+        x = std::abs((std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
+        y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
+    }
+
+
+    // }
+
+    tag.coordinates.setX(x + 0.627); // Transform x-coordinate to camera/world coordinate system
+    tag.coordinates.setY(std::abs(y - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
+
+    qDebug() << "Tag ID: " << tag.tagID << "Distance 101: " << distanceAnchor1 << ", Distance 102: " << distanceAnchor2 << ";";
+    qDebug() << "Tag ID: " << tag.tagID << "Coordinates: (" << tag.coordinates.x() << ", " << tag.coordinates.y() << ");";
+
 }
+
 
 UWBData DataProcessor::linearSearchUWB(const long long &frameTimestamp) {
     UWBData* closestUWB = &uwbDataVector[0];

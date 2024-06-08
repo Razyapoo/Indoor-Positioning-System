@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>IndoorPositioningSystem</class>
- <widget class="QMainWindow" name="IndoorPositioningSystem">
+ <class>IndoorPositioningSystemUI</class>
+ <widget class="QMainWindow" name="IndoorPositioningSystemUI">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2136</width>
+    <width>1708</width>
     <height>971</height>
    </rect>
   </property>
@@ -111,7 +111,7 @@
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>30</y>
+      <y>32</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -123,8 +123,8 @@
    <widget class="QLabel" name="label_Tag_ID_1">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>150</y>
+      <x>1480</x>
+      <y>64</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -136,8 +136,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_1">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>172</y>
+      <x>1420</x>
+      <y>86</y>
       <width>81</width>
       <height>20</height>
      </rect>
@@ -149,8 +149,8 @@
    <widget class="QLabel" name="label_Anchor101_1">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>200</y>
+      <x>1420</x>
+      <y>114</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -162,8 +162,8 @@
    <widget class="QLabel" name="label_Anchor102_1">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>230</y>
+      <x>1420</x>
+      <y>144</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -176,9 +176,9 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>30</y>
+      <y>32</y>
       <width>131</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -189,9 +189,9 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>30</y>
+      <y>33</y>
       <width>151</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -201,8 +201,8 @@
    <widget class="QLabel" name="label_Tag_ID_value_1">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>150</y>
+      <x>1510</x>
+      <y>64</y>
       <width>111</width>
       <height>17</height>
      </rect>
@@ -214,8 +214,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_value_1">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>173</y>
+      <x>1510</x>
+      <y>87</y>
       <width>161</width>
       <height>20</height>
      </rect>
@@ -227,8 +227,8 @@
    <widget class="QLabel" name="label_Anchor101_value_1">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>200</y>
+      <x>1510</x>
+      <y>114</y>
       <width>191</width>
       <height>17</height>
      </rect>
@@ -240,8 +240,8 @@
    <widget class="QLabel" name="label_Anchor102_value_1">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>230</y>
+      <x>1510</x>
+      <y>144</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -253,8 +253,8 @@
    <widget class="QLabel" name="label_Tag_ID_value_2">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>260</y>
+      <x>1510</x>
+      <y>216</y>
       <width>111</width>
       <height>17</height>
      </rect>
@@ -266,8 +266,8 @@
    <widget class="QLabel" name="label_Anchor102_2">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>340</y>
+      <x>1420</x>
+      <y>296</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -279,8 +279,8 @@
    <widget class="QLabel" name="label_Tag_ID_2">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>260</y>
+      <x>1480</x>
+      <y>216</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -292,8 +292,8 @@
    <widget class="QLabel" name="label_Anchor101_value_2">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>310</y>
+      <x>1510</x>
+      <y>266</y>
       <width>191</width>
       <height>17</height>
      </rect>
@@ -305,8 +305,8 @@
    <widget class="QLabel" name="label_Anchor102_value_2">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>340</y>
+      <x>1510</x>
+      <y>296</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -318,8 +318,8 @@
    <widget class="QLabel" name="label_Anchor101_2">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>310</y>
+      <x>1420</x>
+      <y>266</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -331,8 +331,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_2">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>282</y>
+      <x>1420</x>
+      <y>238</y>
       <width>81</width>
       <height>20</height>
      </rect>
@@ -344,8 +344,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_value_2">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>285</y>
+      <x>1510</x>
+      <y>241</y>
       <width>161</width>
       <height>17</height>
      </rect>
@@ -357,8 +357,8 @@
    <widget class="QLabel" name="label_Tag_ID_value_3">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>380</y>
+      <x>1510</x>
+      <y>366</y>
       <width>111</width>
       <height>17</height>
      </rect>
@@ -370,8 +370,8 @@
    <widget class="QLabel" name="label_Anchor102_3">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>460</y>
+      <x>1420</x>
+      <y>446</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -383,8 +383,8 @@
    <widget class="QLabel" name="label_Tag_ID_3">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>380</y>
+      <x>1480</x>
+      <y>366</y>
       <width>21</width>
       <height>17</height>
      </rect>
@@ -396,8 +396,8 @@
    <widget class="QLabel" name="label_Anchor101_value_3">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>430</y>
+      <x>1510</x>
+      <y>416</y>
       <width>191</width>
       <height>17</height>
      </rect>
@@ -409,8 +409,8 @@
    <widget class="QLabel" name="label_Anchor102_value_3">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>460</y>
+      <x>1510</x>
+      <y>446</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -422,8 +422,8 @@
    <widget class="QLabel" name="label_Anchor101_3">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>430</y>
+      <x>1420</x>
+      <y>416</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -435,8 +435,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_3">
     <property name="geometry">
      <rect>
-      <x>1490</x>
-      <y>402</y>
+      <x>1420</x>
+      <y>388</y>
       <width>81</width>
       <height>20</height>
      </rect>
@@ -448,8 +448,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_value_3">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>406</y>
+      <x>1510</x>
+      <y>392</y>
       <width>161</width>
       <height>17</height>
      </rect>
@@ -461,8 +461,8 @@
    <widget class="QPushButton" name="pushButton_UWB_Data_Analysis">
     <property name="geometry">
      <rect>
-      <x>1400</x>
-      <y>520</y>
+      <x>1560</x>
+      <y>490</y>
       <width>141</width>
       <height>25</height>
      </rect>
@@ -490,8 +490,8 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>1330</x>
-      <y>0</y>
+      <x>1320</x>
+      <y>20</y>
       <width>21</width>
       <height>851</height>
      </rect>
@@ -503,7 +503,7 @@
    <widget class="QLabel" name="label_Video_Stream_2">
     <property name="geometry">
      <rect>
-      <x>1370</x>
+      <x>1350</x>
       <y>30</y>
       <width>151</width>
       <height>17</height>
@@ -519,21 +519,21 @@
    <widget class="QPushButton" name="pushButton_UWB_Localization">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>520</y>
-      <width>141</width>
+      <x>1490</x>
+      <y>840</y>
+      <width>201</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>UWB Localization</string>
+     <string>UWB Localization Schema</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_Export_Data">
     <property name="geometry">
      <rect>
-      <x>1710</x>
-      <y>730</y>
+      <x>1520</x>
+      <y>880</y>
       <width>171</width>
       <height>25</height>
      </rect>
@@ -542,7 +542,7 @@
      <string>Export Data for Model</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Polyn_Regression_Predict">
+   <widget class="QPushButton" name="pushButton_Predict_Model">
     <property name="geometry">
      <rect>
       <x>1210</x>
@@ -555,7 +555,7 @@
      <string>Predict by model</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Predict_By_Height">
+   <widget class="QPushButton" name="pushButton_Predict_Optical">
     <property name="geometry">
      <rect>
       <x>1048</x>
@@ -568,13 +568,91 @@
      <string>Predict by height</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_Tag_measurement_time_1">
+    <property name="geometry">
+     <rect>
+      <x>1336</x>
+      <y>170</y>
+      <width>170</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Measurement time (ms):</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_measurement_time_value_1">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>172</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_measurement_time_2">
+    <property name="geometry">
+     <rect>
+      <x>1336</x>
+      <y>320</y>
+      <width>170</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Measurement time (ms):</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_measurement_time_value_2">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>322</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_measurement_time_3">
+    <property name="geometry">
+     <rect>
+      <x>1336</x>
+      <y>470</y>
+      <width>170</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Measurement time (ms):</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Tag_measurement_time_value_3">
+    <property name="geometry">
+     <rect>
+      <x>1510</x>
+      <y>472</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2136</width>
+     <width>1708</width>
      <height>22</height>
     </rect>
    </property>
@@ -583,16 +661,15 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen_Video"/>
-    <addaction name="actionOpen_UWB_data"/>
-    <addaction name="actionLoad_params"/>
-    <addaction name="actionLoad_optimal_matrix"/>
+    <addaction name="actionLoad_model_params"/>
+    <addaction name="actionLoad_intrinsic_calibration_params"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen_Video">
    <property name="text">
-    <string>Open Video</string>
+    <string>Open</string>
    </property>
   </action>
   <action name="actionOpen_UWB_data">
@@ -600,14 +677,14 @@
     <string>Open UWB data</string>
    </property>
   </action>
-  <action name="actionLoad_params">
+  <action name="actionLoad_model_params">
    <property name="text">
     <string>Load model params</string>
    </property>
   </action>
-  <action name="actionLoad_optimal_matrix">
+  <action name="actionLoad_intrinsic_calibration_params">
    <property name="text">
-    <string>Load optimal matrix</string>
+    <string>Load camera intrinsic params</string>
    </property>
   </action>
  </widget>

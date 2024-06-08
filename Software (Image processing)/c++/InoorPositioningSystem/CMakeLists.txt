@@ -21,9 +21,9 @@ set(TS_FILES InoorPositioningSystem_en_GB.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        indoorpositioningsystem.cpp
-        indoorpositioningsystem.h
-        indoorpositioningsystem.ui
+        indoorpositioningsystemui.cpp
+        indoorpositioningsystemui.h
+        indoorpositioningsystemui.ui
         ${TS_FILES}
 )
 
@@ -43,6 +43,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         exporttimerangesetter.h exporttimerangesetter.cpp exporttimerangesetter.ui
         json.h
         customlabel.h customlabel.cpp
+        indoorpositioningsystemviewmodel.h indoorpositioningsystemviewmodel.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET InoorPositioningSystem APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

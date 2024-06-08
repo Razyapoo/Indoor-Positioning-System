@@ -1,4 +1,4 @@
-#include "indoorpositioningsystem.h"
+#include "indoorpositioningsystemui.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    IndoorPositioningSystem mainWindow;
+    IndoorPositioningSystemUI mainWindow;
 
     QObject::connect(&mainWindow, &QMainWindow::destroyed, &app, &QApplication::quit);
     mainWindow.show();

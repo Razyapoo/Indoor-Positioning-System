@@ -1,0 +1,48 @@
+\chapter{Introduction}
+
+The primary objective of this work is to develop robust and accurate methods for people localization using UWB (Ultra-Wideband) technology and video data. In light of recent global challenges such as the COVID-19 pandemic, ensuring safe distances between individuals has become crucial. Additionally, in hazardous environments, precise localization is essential for monitoring and ensuring the safety of personnel. Our goal is to extend the capabilities of traditional static CCTV cameras, transforming them from passive recording devices into intelligent systems capable of precise indoor localization.
+
+Our customers only need a set of CCTV cameras and a PC acting as a server. This approach minimizes costs by eliminating the need for additional hardware and leverages existing infrastructure. By focusing on offline, post-processing rather than real-time processing, we prioritize precision and accuracy, ensuring that the system can deliver reliable results without the constraints of real-time performance.
+Customer-Centric Approach
+
+Our method is designed with the customer’s needs in mind. The process is streamlined to make it as straightforward as possible for the end-user, requiring minimal setup and expertise. Here’s an outline of how our solution is implemented:
+
+    Input Data Stream: In the customer's premises, the system needs to acquire a continuous stream of input data from the CCTV cameras. These cameras will capture video footage that serves as the primary source of visual information.
+
+    Basic Measurements for Calibration: To ensure the accuracy of the localization system, basic measurements must be performed to calibrate the entire setup. This involves placing reference markers or objects within the camera’s field of view and measuring their known positions. These reference points are crucial for aligning the visual data with real-world coordinates.
+
+    Post-Processing Calibration: Once the initial measurements are taken, the system undergoes a detailed calibration process. This post-processing step involves aligning the UWB data with the video data to ensure synchronization. By mapping the visual data to precise distance measurements, we can accurately determine the locations of individuals within the monitored area.
+
+    Annotated Data for Model Training: The calibration process results in annotated data that combines video frames with precise location information. This annotated dataset is then used to train machine learning models. The models learn to predict real-world coordinates from pixel positions, enabling the system to perform accurate localization based on visual input alone.
+
+    Model Utilization: Once trained, the machine learning model is deployed within the customer’s system. The end-user benefits from a fully automated localization system that operates based on the pre-trained model, requiring no further intervention. This ensures ease of use and reliability, allowing customers to leverage advanced localization capabilities without needing extensive technical expertise.
+
+Motivation and Use Cases
+
+Achieving precise localization in various contexts is critical for several reasons:
+
+    COVID-19 Social Distancing: Ensuring individuals maintain safe distances in public spaces such as offices, schools, and shopping centers. Our methods provide real-time monitoring and alerts when social distancing protocols are violated.
+
+    Hazardous Work Environments: Monitoring the locations of personnel in industrial settings where there are risks of exposure to hazardous materials or dangerous machinery. Accurate localization helps in promptly identifying and responding to emergencies.
+
+    Indoor Navigation and Safety: Assisting with navigation in large indoor spaces such as hospitals, airports, and malls. Localization data can enhance wayfinding applications and improve emergency response times.
+
+    Surveillance and Security: Enhancing surveillance systems by providing accurate localization data to track movements within a monitored area. This can help in identifying unauthorized access or suspicious activities.
+
+Methodology
+
+The synchronization process involves aligning the timestamps of video frames with UWB measurements, allowing us to map visual data to precise distance measurements. This alignment is critical for applications requiring real-time monitoring and historical analysis.
+
+We have developed a comprehensive tool to assist developers in checking the precision of their methods and developing new ones. This tool enables the extraction of synchronized data, which can then be used for model learning. Additionally, the tool facilitates the comparison of various methods with reference UWB measurements. For example, we compare an optical method, such as the height-based approach, with UWB data to validate its accuracy.
+
+Our experiments were conducted in various environments to simulate real-world scenarios and test the robustness of the developed methods. These environments include a light manufacturing setup with obstacles like cabinets and electrical enclosures, as well as a long, obstacle-free hallway. Through these experiments, we collected extensive datasets to evaluate the performance of our localization methods.
+
+In addition to the technical development, our graphical user interface (GUI) plays a crucial role. The GUI not only supports data visualization and analysis but also enables the extraction of synchronized data for further processing. This tool helps compare different localization methods against UWB measurements, providing a robust framework for developing and testing new approaches.
+Challenges and Solutions
+
+Throughout the project, we encountered and addressed several challenges, including signal interference, data shifts, and synchronization issues. By implementing techniques such as rolling standard deviation and polynomial regression, we improved the accuracy of distance measurements and ensured reliable data synchronization.
+
+This thesis is structured as follows: Chapter 2 provides an overview of existing localization methods and the theoretical foundation of our approaches. Chapter 3 details the experimental setup and data collection processes. Chapter 4 discusses the development and evaluation of the height-based localization method. Chapter 5 focuses on the model-based approach, including data synchronization and machine learning techniques. Finally, Chapter 6 presents a comparative analysis of the developed methods, highlighting their strengths and limitations.
+Conclusion
+
+By extending the capabilities of traditional CCTV cameras, we offer a cost-effective and efficient solution for precise indoor localization. Our customer-centric approach ensures that the system is easy to set up and use, providing reliable results with minimal intervention. This innovative solution has broad applications, from enhancing safety in public and industrial spaces to improving navigation and security systems.

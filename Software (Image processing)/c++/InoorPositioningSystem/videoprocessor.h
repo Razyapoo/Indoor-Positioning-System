@@ -47,6 +47,8 @@ public:
     int loadModelParams(const QString& filename);
     // int loadOptimalCameraMatrix(const QString& filename);
     void setOptimalCameraMatrix(std::vector<double>&& matrix);
+    void setCameraMatrix(std::vector<double>&& matrix);
+    void setDistCoeffs(std::vector<double>&& matrix);
     std::pair<double, double> predictWorldCoordinates(const DetectionResult& detection);
 
 public slots:
@@ -99,6 +101,8 @@ private:
 
     BoosterHandle booster = nullptr;
     std::vector<double> optimalCameraMatrix;
+    std::vector<double> cameraMatrix;
+    std::vector<double> distCoeffs;
 
 };
 
