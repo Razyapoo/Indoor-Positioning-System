@@ -30,6 +30,22 @@ IndoorPositioningSystemViewModel::IndoorPositioningSystemViewModel(QObject *pare
     connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystemViewModel::onExportFinished, Qt::BlockingQueuedConnection);
 
 
+    connect(dataProcessor.get(), &DataProcessor::requestShowAvailableTags, this, &IndoorPositioningSystemViewModel::showAvailableTags);
+    connect(dataProcessor.get(), &DataProcessor::requestShowAvailableAnchors, this, &IndoorPositioningSystemViewModel::showAvailableAnchors);
+    connect(dataProcessor.get(), &DataProcessor::requestShowPlotDistancesVsTimestamps, this, &IndoorPositioningSystemViewModel::showPlotDistancesVsTimestamps);
+    connect(dataProcessor.get(), &DataProcessor::requestShowPlotRollingDeviations, this, &IndoorPositioningSystemViewModel::showPlotRollingDeviations);
+    connect(dataProcessor.get(), &DataProcessor::requestShowDatasetSegments, this, &IndoorPositioningSystemViewModel::showDatasetSegments);
+    connect(dataProcessor.get(), &DataProcessor::requestShowOriginalVsAdjustedDistances, this, &IndoorPositioningSystemViewModel::showOriginalVsAdjustedDistances);
+
+    connect(this, &IndoorPositioningSystemViewModel::requestSetRangeForDataAnalysis, dataProcessor.get(), &DataProcessor::setRangeForDataAnalysis);
+    connect(this, &IndoorPositioningSystemViewModel::requestCollectDataForPlotDistancesVsTimestamps, dataProcessor.get(), &DataProcessor::collectDataForPlotDistancesVsTimestamps);
+    connect(this, &IndoorPositioningSystemViewModel::requestCalculateRollingDeviation, dataProcessor.get(), &DataProcessor::calculateRollingDeviation);
+    connect(this, &IndoorPositioningSystemViewModel::requestSplitDataset, dataProcessor.get(), &DataProcessor::splitDataset);
+    connect(this, &IndoorPositioningSystemViewModel::requestCalculatePolynomialRegression, dataProcessor.get(), &DataProcessor::calculatePolynomialRegression);
+    connect(this, &IndoorPositioningSystemViewModel::requestUpdateOriginalWithAdjustedValues, dataProcessor.get(), &DataProcessor::updateOriginalWithAdjustedValues);
+    connect(this, &IndoorPositioningSystemViewModel::requestCollectDataForTag, dataProcessor.get(), &DataProcessor::collectDataForTag);
+
+
 }
 
 IndoorPositioningSystemViewModel::~IndoorPositioningSystemViewModel()
@@ -364,14 +380,14 @@ void IndoorPositioningSystemViewModel::onExportProgressUpdated(int index) {
 }
 
 // Export only a specific frame from each segment. Segment corresponds to a stationary period in video recording. This is usefull for faster data analysis.
-// void IndoorPositioningSystemViewModel::onSegmentFramesExport() {
-//     std::vector<int> frameRangeToExport = dataProcessor->getSegmentFrameIDs();
-//     if (frameRangeToExport.size()) {
-//         setupExportConfiguration(frameRangeToExport, ExportType::SegmentFramesExport);
-//     } else {
-//         emit showExportWarning("Warning! Wrong time range.", "Time range is set wrong. Please set segment frame IDs to export.", ExportType::SegmentFramesExport);
-//     }
-// }
+void IndoorPositioningSystemViewModel::onSegmentFramesExport() {
+    std::vector<int> frameRangeToExport = dataProcessor->getSegmentFrameIDs();
+    if (frameRangeToExport.size()) {
+        setupExportConfiguration(frameRangeToExport, ExportType::SegmentFramesExport);
+    } else {
+        emit showExportWarning("Warning! Wrong time range.", "Time range is set wrong. Please set segment frame IDs to export.", ExportType::SegmentFramesExport);
+    }
+}
 
 void IndoorPositioningSystemViewModel::stopExport() {
     videoProcessor->stopExport();
@@ -419,4 +435,58 @@ void IndoorPositioningSystemViewModel::predict(PredictionType type) {
         frameTimer->start();
     }
     videoProcessor->resumeProcessing();
+}
+
+// Analysis Window
+
+void IndoorPositioningSystemViewModel::setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec) {
+    emit requestSetRangeForDataAnalysis(startTimeSec, endTimeSec);
+}
+
+void IndoorPositioningSystemViewModel::collectDataForPlotDistancesVsTimestamps(const int anchorID) {
+    emit requestCollectDataForPlotDistancesVsTimestamps(anchorID);
+}
+
+void IndoorPositioningSystemViewModel::calculateRollingDeviation(const int windowSize) {
+    emit requestCalculateRollingDeviation(windowSize);
+}
+
+void IndoorPositioningSystemViewModel::splitDataset(const double threshold) {
+    emit requestSplitDataset(threshold);
+}
+
+void IndoorPositioningSystemViewModel::calculatePolynomialRegression(const std::vector<double> &referenceValues) {
+    emit requestCalculatePolynomialRegression(referenceValues);
+}
+
+void IndoorPositioningSystemViewModel::updateOriginalWithAdjustedValues() {
+    emit requestUpdateOriginalWithAdjustedValues();
+}
+
+void IndoorPositioningSystemViewModel::collectDataForTag(const QString &tagIDText) {
+    emit requestCollectDataForTag(tagIDText);
+}
+
+void IndoorPositioningSystemViewModel::showAvailableTags(const std::vector<int> &availableTagIDs) {
+    emit requestShowAvailableTags(availableTagIDs);
+}
+
+void IndoorPositioningSystemViewModel::showAvailableAnchors(const std::vector<int> &availableAnchorIDs) {
+   emit requestShowAvailableAnchors(availableAnchorIDs);
+}
+
+void IndoorPositioningSystemViewModel::showPlotDistancesVsTimestamps(const std::vector<long long> &timestamps, std::vector<double *> distances) {
+    emit requestShowPlotDistancesVsTimestamps(timestamps, distances);
+}
+
+void IndoorPositioningSystemViewModel::showPlotRollingDeviations(const std::vector<long long> &timestamps, const std::vector<double> &deviations) {
+    emit requestShowPlotRollingDeviations(timestamps, deviations);
+}
+
+void IndoorPositioningSystemViewModel::showDatasetSegments(const std::vector<double> &datasetSegmentMeans) {
+    emit requestShowDatasetSegments(datasetSegmentMeans);
+}
+
+void IndoorPositioningSystemViewModel::showOriginalVsAdjustedDistances(const std::vector<long long> &timestampsToAnalyze, std::vector<double *> distancesToAnalyzeOriginal, const std::vector<double> &distancesToAnalyzeAdjusted) {
+    emit requestShowOriginalVsAdjustedDistances(timestampsToAnalyze, distancesToAnalyzeOriginal, distancesToAnalyzeAdjusted);
 }

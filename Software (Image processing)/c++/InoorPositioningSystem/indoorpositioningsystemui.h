@@ -28,10 +28,6 @@
 // #include <memory>
 #include <QException>
 
-// #include "videoprocessor.h"
-// #include "structures.h"
-// #include "threadsafequeue.h"
-// #include "dataprocessor.h"
 #include "dataanalysiswindow.h"
 #include "uwblocalizationwindow.h"
 #include "exporttimerangesetter.h"
@@ -76,7 +72,6 @@ private slots:
 
     void on_pushButton_Export_Data_clicked();
     void onAcceptFrameByFrameExport();
-    // void onSegmentFramesExport();
     // void onExportFinish(bool success);
     // // void onExportProgressUpdated(int frameIndex);
 

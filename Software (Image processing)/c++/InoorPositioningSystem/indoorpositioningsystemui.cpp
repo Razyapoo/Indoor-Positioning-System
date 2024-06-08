@@ -16,60 +16,6 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
     viewModel = std::make_unique<IndoorPositioningSystemViewModel>(this);
     exportProgressDialog = nullptr;
 
-
-
-
-    // frameTimer = new QTimer(this);
-    // // frameTimer = std::make_unique<QTimer>(this);
-    // frameTimer->setInterval(60); // 3500 for human detector
-
-    // dataProcessor = std::make_unique<DataProcessor>(frameQueue);
-    // videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
-    // exportProgressDialog = nullptr;
-
-
-    // connect(frameTimer, &QTimer::timeout, this, &IndoorPositioningSystemUI::checkForDisplay);
-    // connect(this, &IndoorPositioningSystemUI::frameIsReady, this, &IndoorPositioningSystemUI::updateDataDisplay);
-    // connect(this, &IndoorPositioningSystemUI::requestProcessVideo, videoProcessor.get(), &VideoProcessor::processVideo);
-
-    // connect(this, &IndoorPositioningSystemUI::requestStopProcessing, videoProcessor.get(),  &VideoProcessor::stopProcessing, Qt::DirectConnection);
-    // connect(this, &IndoorPositioningSystemUI::requestContinueProcessing, videoProcessor,  &VideoProcessor::continueProcessing, Qt::BlockingQueuedConnection);
-    // connect(this, &IndoorPositioningSystemUI::requestSeekToFrame, videoProcessor.get(),  &VideoProcessor::seekToFrame, Qt::DirectConnection);
-    // connect(videoProcessor.get(), &VideoProcessor::processingIsStopped, this, &IndoorPositioningSystemUI::seekToFrame);
-    // connect(this, &IndoorPositioningSystemUI::requestVideoInit, videoProcessor.get(), &VideoProcessor::init, Qt::BlockingQueuedConnection);
-    // connect(this, &IndoorPositioningSystemUI::requestLoadData, dataProcessor.get(), &DataProcessor::loadData, Qt::BlockingQueuedConnection);
-
-    // connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystemUI::afterSeeking);
-
-    // connect(this, &IndoorPositioningSystemUI::requestDataExport, videoProcessor.get(), &VideoProcessor::dataExport, Qt::BlockingQueuedConnection);//, Qt::DirectConnection);
-
-    // connect(this, &IndoorPositioningSystemUI::requestAnalyseData, dataProcessor.get(), &DataProcessor::dataAnalysisInit, Qt::DirectConnection);
-
-    // connect(this, &IndoorPositioningSystemUI::finishedVideoProcessing, &videoThread, &QThread::quit);
-    // connect(this, &IndoorPositioningSystemUI::finishedVideoProcessing, videoProcessor.get(), &QObject::deleteLater);
-
-    // connect(this, &QMainWindow::destroyed, &videoThread, &QThread::quit);
-    // connect(this, &QMainWindow::destroyed, videoProcessor.get(), &QObject::deleteLater);
-    // connect(this, &QMainWindow::destroyed, &uwbDataThread, &QThread::quit);
-    // connect(this, &QMainWindow::destroyed, dataProcessor.get(), &QObject::deleteLater);
-
-    // connect(dataAnalysisWindow.get(), &QDialog::finished, &dataAnalysisWindowThread, &QThread::quit);
-    // connect(uwbLocalizationWindow.get(), &QDialog::finished, uwbLocalizationWindow.get(), &QDialog::deleteLater);
-
-    // connect(videoProcessor, &VideoProcessor::finished, this, &IndoorPositioningSystemUI::stopCheckingForDisplayThread);
-    // connect(&videoThread, &QThread::finished, &videoThread, &QThread::deleteLater);
-
-    // ui->pushButton_Polyn_Regression_Predict-
-    // dataProcessor->moveToThread(&uwbDataThread);
-    // videoProcessor->moveToThread(&videoThread);
-    // ui->timeEdit_Data_Analysis_Start->setDisplayFormat("HH:mm:ss");
-    // ui->timeEdit_Data_Analysis_End->setDisplayFormat("HH:mm:ss");
-
-    // // ClickEventFilter *filter = new ClickEventFilter(this);
-    // ui->timeEdit_Data_Analysis_Start->installEventFilter(this);
-
-
-
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::dataUpdated, this, &IndoorPositioningSystemUI::onDataUpdated);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::uwbDataUpdated, this, &IndoorPositioningSystemUI::onUWBDataUpdated);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::finishedVideoProcessing, this, &IndoorPositioningSystemUI::onFinishedVideoProcessing);
@@ -234,12 +180,11 @@ void IndoorPositioningSystemUI::on_horizontalSlider_Duration_sliderReleased()
 
 void IndoorPositioningSystemUI::on_pushButton_UWB_Data_Analysis_clicked()
 {
-    // if (!dataAnalysisWindow) {
-    //     dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, viewModel->dataProcessor.get(), fps);
-    //     connect(dataAnalysisWindow.get(), &DataAnalysisWindow::requestSegmentFramesExport, this, &IndoorPositioningSystemViewModel::onSegmentFramesExport);
-    // }
+    if (!dataAnalysisWindow) {
+        dataAnalysisWindow = std::make_unique<DataAnalysisWindow>(this, viewModel.get());
+    }
 
-    // dataAnalysisWindow->show();
+    dataAnalysisWindow->show();
 }
 
 void IndoorPositioningSystemUI::on_pushButton_UWB_Localization_clicked()

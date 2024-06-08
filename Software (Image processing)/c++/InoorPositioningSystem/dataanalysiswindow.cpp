@@ -1,8 +1,8 @@
 #include "dataanalysiswindow.h"
 #include "ui_dataanalysiswindow.h"
 
-DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProcessor, double fps)
-    : QDialog(parent), ui(new Ui::DataAnalysisWindow), dataProcessor(dataProcessor), fps(fps)
+DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, IndoorPositioningSystemViewModel *viewModel)
+    : QDialog(parent), ui(new Ui::DataAnalysisWindow), viewModel(viewModel)
 {
     ui->setupUi(this);
 
@@ -72,35 +72,24 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, DataProcessor *dataProce
     chartDistancesVsTimestamps = nullptr;
     chartRollingDeviations = nullptr;
 
+    connect(viewModel, &IndoorPositioningSystemViewModel::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags);
+    connect(viewModel, &IndoorPositioningSystemViewModel::requestShowAvailableAnchors, this, &DataAnalysisWindow::showAvailableAnchors);
+    connect(viewModel, &IndoorPositioningSystemViewModel::requestShowPlotDistancesVsTimestamps, this, &DataAnalysisWindow::showPlotDistancesVsTimestamps);
+    connect(viewModel, &IndoorPositioningSystemViewModel::requestShowPlotRollingDeviations, this, &DataAnalysisWindow::showPlotRollingDeviations);
+    connect(viewModel, &IndoorPositioningSystemViewModel::requestShowDatasetSegments, this, &DataAnalysisWindow::showDatasetSegments);
+    connect(viewModel, &IndoorPositioningSystemViewModel::requestShowOriginalVsAdjustedDistances, this, &DataAnalysisWindow::showOriginalVsAdjustedDistances);
 
-    // connect(dataProcessor, &DataProcessor::requestShowPlot, this, &DataAnalysisWindow::showPlot, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowAvailableTags, this, &DataAnalysisWindow::showAvailableTags);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowAvailableAnchors, this, &DataAnalysisWindow::showAvailableAnchors);//, Qt::DirectConnection);
+    connect(comboBoxAvailableTags, &QComboBox::currentTextChanged, viewModel, &IndoorPositioningSystemViewModel::collectDataForTag);
+    connect(setAnalysisTimeRangeButton, &QPushButton::clicked, this, &DataAnalysisWindow::initDataAnalysis);
+    connect(analyzeDataButton, &QPushButton::clicked, this, &DataAnalysisWindow::startDataAnalysis);
 
-    // connect(this, &DataAnalysisWindow::requestCollectDataForTag, dataProcessor, &DataProcessor::collectDataForTag, Qt::DirectConnection);
-    connect(comboBoxAvailableTags, &QComboBox::currentTextChanged, dataProcessor, &DataProcessor::collectDataForTag);//, Qt::DirectConnection);
-    // connect(comboBoxAvailableAnchors, &QComboBox::currentTextChanged, dataProcessor, &DataProcessor::collectDataForAnchor, Qt::DirectConnection);
-
-    connect(setAnalysisTimeRangeButton, &QPushButton::clicked, this, &DataAnalysisWindow::initDataAnalysis);//, Qt::DirectConnection);
-    connect(this, &DataAnalysisWindow::requestAnalyseData, dataProcessor, &DataProcessor::setRangeForDataAnalysis);//, Qt::DirectConnection);
-    connect(analyzeDataButton, &QPushButton::clicked, this, &DataAnalysisWindow::startDataAnalysis);//, Qt::DirectConnection);
-    // connect(this, &DataAnalysisWindow::requestCollectDataForAnchor, dataProcessor, &DataProcessor::collectDataForAnchor, Qt::DirectConnection);
-    connect(this, &DataAnalysisWindow::requestCollectDataForPlotDistancesVsTimestamps, dataProcessor, &DataProcessor::collectDataForPlotDistancesVsTimestamps);//, Qt::DirectConnection);
-    connect(this, &DataAnalysisWindow::requestCalculateRollingDeviation, dataProcessor, &DataProcessor::calculateRollingDeviation);//, Qt::DirectConnection);
-
-    connect(dataProcessor, &DataProcessor::requestShowPlotDistancesVsTimestamps, this, &DataAnalysisWindow::showPlotDistancesVsTimestamps);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowPlotRollingDeviations, this, &DataAnalysisWindow::showPlotRollingDeviations);//, Qt::DirectConnection);
-
-    connect(this, &DataAnalysisWindow::requestSplitDataset, dataProcessor, &DataProcessor::splitDataset);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowDatasetSegments, this, &DataAnalysisWindow::showDatasetSegments);//, Qt::DirectConnection);
-
-    connect(this, &DataAnalysisWindow::requestCalculatePolynomialRegression, dataProcessor, &DataProcessor::calculatePolynomialRegression);//, Qt::DirectConnection);
-    connect(dataProcessor, &DataProcessor::requestShowOriginalVsAdjustedDistances, this, &DataAnalysisWindow::showOriginalVsAdjustedDistances);//, Qt::DirectConnection);
-
-    connect(this, &DataAnalysisWindow::requestUpdateOriginalWithAdjustedValues, dataProcessor, &DataProcessor::updateOriginalWithAdjustedValues);//, Qt::DirectConnection);
-
-
-
+    connect(this, &DataAnalysisWindow::requestAnalyseData, viewModel, &IndoorPositioningSystemViewModel::setRangeForDataAnalysis);
+    connect(this, &DataAnalysisWindow::requestCollectDataForPlotDistancesVsTimestamps, viewModel, &IndoorPositioningSystemViewModel::collectDataForPlotDistancesVsTimestamps);
+    connect(this, &DataAnalysisWindow::requestCalculateRollingDeviation, viewModel, &IndoorPositioningSystemViewModel::calculateRollingDeviation);
+    connect(this, &DataAnalysisWindow::requestSplitDataset, viewModel, &IndoorPositioningSystemViewModel::splitDataset);
+    connect(this, &DataAnalysisWindow::requestCalculatePolynomialRegression, viewModel, &IndoorPositioningSystemViewModel::calculatePolynomialRegression);
+    connect(this, &DataAnalysisWindow::requestUpdateOriginalWithAdjustedValues, viewModel, &IndoorPositioningSystemViewModel::updateOriginalWithAdjustedValues);
+    connect(this, &DataAnalysisWindow::requestSegmentFramesExport, viewModel, &IndoorPositioningSystemViewModel::onSegmentFramesExport);
 }
 
 DataAnalysisWindow::~DataAnalysisWindow()
@@ -125,15 +114,8 @@ DataAnalysisWindow::~DataAnalysisWindow()
         delete segmentMeansLayout;
     }
 
-    // dataAnalysisWindowThread->quit();
-    // dataAnalysisWindowThread->wait();
 }
 
-// void DataAnalysisWindow::closeEvent(QCloseEvent *event) {
-//     dataAnalysisWindowThread->quit();
-//     dataAnalysisWindowThread->wait();
-//     QDialog::closeEvent(event);
-// }
 
 void DataAnalysisWindow::initDataAnalysis()
 {
@@ -142,18 +124,7 @@ void DataAnalysisWindow::initDataAnalysis()
     long long startTimeSec = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second());
     long long endTimeSec = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second());
     emit requestAnalyseData(startTimeSec, endTimeSec);
-
-    // long long startFrameIndex = (startTime.hour() * 3600 + startTime.minute() * 60 + startTime.second()) * fps;
-    // long long endFrameIndex = (endTime.hour() * 3600 + endTime.minute() * 60 + endTime.second()) * fps;
-    // startFrameIndex = ((startFrameIndex - 1) < 0) ? 0 : startFrameIndex - 1;
-    // endFrameIndex = ((endFrameIndex - 1) < 0) ? 0 : endFrameIndex - 1;
-    // emit requestAnalyseData(startFrameIndex, endFrameIndex);
 }
-
-// void DataAnalysisWindow::onDialogClosed() {
-//     dataAnalysisWindowThread->quit();
-//     dataAnalysisWindowThread->wait();
-// }
 
 // Data are collected for tag every time it is selected in combox via connect
 void DataAnalysisWindow::showAvailableTags(const std::vector<int> &availableTagIDs)

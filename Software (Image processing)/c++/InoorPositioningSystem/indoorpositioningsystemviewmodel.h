@@ -32,9 +32,6 @@
 #include "structures.h"
 #include "threadsafequeue.h"
 #include "dataprocessor.h"
-#include "dataanalysiswindow.h"
-#include "uwblocalizationwindow.h"
-#include "exporttimerangesetter.h"
 #include "customlabel.h"
 
 class IndoorPositioningSystemViewModel : public QObject
@@ -62,13 +59,31 @@ public:
     void predict(PredictionType type);
 
 
-private slots:
+public slots:
     void checkForDisplay();
     void updateDataDisplay(const UWBVideoData& data);
     void onExportFinished(bool success);
     void onExportProgressUpdated(int index);
-    // void onSegmentFramesExport();
+    void onSegmentFramesExport();
     void afterSeeking();
+
+    // DataAnalysisWindow
+    void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
+    void collectDataForPlotDistancesVsTimestamps(const int anchorID);
+    void calculateRollingDeviation(const int windowSize);
+    void splitDataset(const double threshold);
+    void calculatePolynomialRegression(const std::vector<double>& referenceValues);
+    void updateOriginalWithAdjustedValues();
+    void collectDataForTag(const QString &tagIDText);
+
+    void showAvailableTags(const std::vector<int>& availableTagIDs);
+    void showAvailableAnchors(const std::vector<int>& availableAnchorIDs);
+    void showPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
+    void showPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
+    void showDatasetSegments(const std::vector<double>& datasetSegmentMeans);
+    void showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
+
+
 
 signals:
     void requestProcessVideo();
@@ -91,6 +106,24 @@ signals:
     void showWarning(const QString& header, const QString& message);
 
 
+    // DataAnalysisWindow
+    void requestSetRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
+    void requestCollectDataForPlotDistancesVsTimestamps(const int anchorID);
+    void requestCalculateRollingDeviation(const int windowSize);
+    void requestSplitDataset(const double threshold);
+    void requestCalculatePolynomialRegression(const std::vector<double>& referenceValues);
+    void requestUpdateOriginalWithAdjustedValues();
+    void requestCollectDataForTag(const QString &tagIDText);
+
+    void requestShowAvailableTags(const std::vector<int>& availableTagIDs);
+    void requestShowAvailableAnchors(const std::vector<int>& availableAnchorIDs);
+    void requestShowPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
+    void requestShowPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
+    void requestShowDatasetSegments(const std::vector<double>& segmentMeans);
+    void requestShowOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
+
+
+
 
 private:
     std::unique_ptr<DataProcessor> dataProcessor;
@@ -100,20 +133,13 @@ private:
     bool isVideoOpened;
 
     int seekPosition, lastPosition;
-    // double videoDuration;
     double fps;
     int totalFrames;
     bool isPlaying, isExportState;
 
     ThreadSafeQueue frameQueue;
-    // std::thread checkForDisplayThread;
-
-
     bool toPredictByModel, toPredictByHeight;
     int totalExportDuration;
-
-
-    // void setDuration(qint64 duration);
     void setupExportConfiguration(const std::vector<int>& frameRangeToExport, ExportType type);
 
 

@@ -22,9 +22,9 @@
 #include <QInputDialog>
 #include <QThread>
 
-#include "dataprocessor.h"
 #include "customchartview.h"
 #include "custominputdialog.h"
+#include "indoorpositioningsystemviewmodel.h"
 #include <optional>
 #include <vector>
 #include <QGridLayout>
@@ -45,7 +45,7 @@ class DataAnalysisWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit DataAnalysisWindow(QWidget *parent = nullptr, DataProcessor* dataProcessor = nullptr, double fps = 0.0);
+    explicit DataAnalysisWindow(QWidget *parent = nullptr, IndoorPositioningSystemViewModel* viewModel = nullptr);
     ~DataAnalysisWindow();
 
 public slots:
@@ -83,10 +83,8 @@ signals:
 
 private:
     Ui::DataAnalysisWindow *ui;
-    DataProcessor* dataProcessor;
     QThread* dataAnalysisWindowThread;
-
-    double fps;
+    IndoorPositioningSystemViewModel* viewModel;
     int sizeOfProcessingData;
     int rollingDeviationWindowSize;
     qreal maxStdDeviation;
