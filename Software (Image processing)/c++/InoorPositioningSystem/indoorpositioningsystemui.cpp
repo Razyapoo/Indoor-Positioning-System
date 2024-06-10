@@ -22,6 +22,7 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::durationUpdated, this, &IndoorPositioningSystemUI::onDurationUpdated);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::videoOpened, this, &IndoorPositioningSystemUI::onVideoOpened);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::modelParamsLoaded, this, &IndoorPositioningSystemUI::onFileLoaded);
+    connect(viewModel.get(), &IndoorPositioningSystemViewModel::weightsLoaded, this, &IndoorPositioningSystemUI::onFileLoaded);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::intrinsicCalibrationParamsLoaded, this, &IndoorPositioningSystemUI::onFileLoaded);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::showExportProcessDialog, this, &IndoorPositioningSystemUI::onShowExportProcessDialog);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::showExportWarning, this, &IndoorPositioningSystemUI::onShowExportWarning);
@@ -30,10 +31,18 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::modelNotLoaded, this, &IndoorPositioningSystemUI::onModelNotLoaded);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::positionUpdated, this, &IndoorPositioningSystemUI::onPositionUpdated);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::showWarning, this, &IndoorPositioningSystemUI::onShowWarning);
-
-
+    connect(viewModel.get(), &IndoorPositioningSystemViewModel::requestChangePredictionButtonName, this, &IndoorPositioningSystemUI::onChangePredictionButtonName);
+    connect(viewModel.get(), &IndoorPositioningSystemViewModel::humanDetectorNotInitialized, this, &IndoorPositioningSystemUI::onHumanDetectorNotInitialized);
 
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+
+    ui->pushButton_Play_Pause->setDisabled(true);
+    ui->pushButton_Predict_Optical->setDisabled(true);
+    ui->pushButton_Predict_Model->setDisabled(true);
+    ui->pushButton_Export_Data->setDisabled(true);
+    ui->pushButton_UWB_Localization->setDisabled(true);
+    ui->pushButton_UWB_Data_Analysis->setDisabled(true);
+    ui->horizontalSlider_Duration->setDisabled(true);
 
 
 
@@ -54,27 +63,55 @@ void IndoorPositioningSystemUI::onDataUpdated(const QImage &image, int frameID, 
     ui->label_Video_Frame_Timestamp_value->setText(timestamp);
 }
 
-void IndoorPositioningSystemUI::onUWBDataUpdated(int tagID, const QString& timestamp, const QString& distanceAnchor1, const QString& distanceAnchor2)
+void IndoorPositioningSystemUI::onUWBDataUpdated(UWBData tag)
 {
-    switch (tagID)
+    QString tagTimestampText = QString::number(tag.timestamp);
+
+    QString measurementTimeText;
+    if (tag.measurementTime) {
+        measurementTimeText = QString::number(tag.measurementTime.value()) + " ms";
+    }
+
+    switch (tag.tagID)
     {
     case 1:
-        ui->label_Tag_ID_value_1->setNum(tagID);
-        ui->label_Tag_timestamp_value_1->setText(timestamp);
-        ui->label_Anchor101_value_1->setText(distanceAnchor1);
-        ui->label_Anchor102_value_1->setText(distanceAnchor2);
+        ui->label_Tag_ID_value_1->setNum(tag.tagID);
+        ui->label_Tag_timestamp_value_1->setText(tagTimestampText);
+        ui->label_Anchor1_ID_value_1->setNum(tag.anchorList[0].anchorID);
+        ui->label_Anchor1_Distance_value_1->setNum(tag.anchorList[0].distance);
+        ui->label_Anchor2_ID_value_1->setNum(tag.anchorList[1].anchorID);
+        ui->label_Anchor2_Distance_value_1->setNum(tag.anchorList[1].distance);
+        if (tag.measurementTime) {
+            ui->label_Tag_measurement_time_value_1->setText(measurementTimeText);
+        } else {
+            ui->label_Tag_measurement_time_value_1->setText("N/A");
+        }
         break;
     case 2:
-        ui->label_Tag_ID_value_2->setNum(tagID);
-        ui->label_Tag_timestamp_value_2->setText(timestamp);
-        ui->label_Anchor101_value_2->setText(distanceAnchor1);
-        ui->label_Anchor102_value_2->setText(distanceAnchor2);
+        ui->label_Tag_ID_value_2->setNum(tag.tagID);
+        ui->label_Tag_timestamp_value_2->setText(tagTimestampText);
+        ui->label_Anchor1_ID_value_2->setNum(tag.anchorList[0].anchorID);
+        ui->label_Anchor1_Distance_value_2->setNum(tag.anchorList[0].distance);
+        ui->label_Anchor2_ID_value_2->setNum(tag.anchorList[1].anchorID);
+        ui->label_Anchor2_Distance_value_2->setNum(tag.anchorList[1].distance);
+        if (tag.measurementTime) {
+            ui->label_Tag_measurement_time_value_2->setText(measurementTimeText);
+        } else {
+            ui->label_Tag_measurement_time_value_2->setText("N/A");
+        }
         break;
     case 3:
-        ui->label_Tag_ID_value_3->setNum(tagID);
-        ui->label_Tag_timestamp_value_3->setText(timestamp);
-        ui->label_Anchor101_value_3->setText(distanceAnchor1);
-        ui->label_Anchor102_value_3->setText(distanceAnchor2);
+        ui->label_Tag_ID_value_3->setNum(tag.tagID);
+        ui->label_Tag_timestamp_value_3->setText(tagTimestampText);
+        ui->label_Anchor1_ID_value_3->setNum(tag.anchorList[0].anchorID);
+        ui->label_Anchor1_Distance_value_3->setNum(tag.anchorList[0].distance);
+        ui->label_Anchor2_ID_value_3->setNum(tag.anchorList[1].anchorID);
+        ui->label_Anchor2_Distance_value_3->setNum(tag.anchorList[1].distance);
+        if (tag.measurementTime) {
+            ui->label_Tag_measurement_time_value_3->setText(measurementTimeText);
+        } else {
+            ui->label_Tag_measurement_time_value_3->setText("N/A");
+        }
         break;
     }
 }
@@ -90,7 +127,7 @@ void IndoorPositioningSystemUI::onDurationUpdated(int frameID, long long current
 
 void IndoorPositioningSystemUI::on_pushButton_Play_Pause_clicked()
 {
-    if (viewModel->isPlayingCheck()) {
+    if (viewModel->isPlaying()) {
         viewModel->pause();
         ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     } else {
@@ -110,30 +147,41 @@ void IndoorPositioningSystemUI::on_actionOpen_Video_triggered()
     } else {
         QMessageBox::warning(this, "Warning", "No directory was selected!");
     }
+    viewModel->startTimer();
 }
 
 void IndoorPositioningSystemUI::onVideoOpened(int totalFrames, long long videoDuration)
 {
+    ui->pushButton_Play_Pause->setEnabled(true);
+    ui->pushButton_Predict_Optical->setEnabled(true);
+    ui->pushButton_Predict_Model->setEnabled(true);
+    ui->pushButton_Export_Data->setEnabled(true);
+    ui->pushButton_UWB_Localization->setEnabled(true);
+    ui->pushButton_UWB_Data_Analysis->setEnabled(true);
+    ui->horizontalSlider_Duration->setEnabled(true);
+
     ui->horizontalSlider_Duration->setRange(1, totalFrames);
     QTime totalTime = QTime(0, 0).addMSecs(static_cast<int>(videoDuration));
     ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
 }
 
-void IndoorPositioningSystemUI::loadModelParams() {
+void IndoorPositioningSystemUI::loadPixelToRealModelParams() {
     viewModel->stopTimer();
     QString selectedFile = QFileDialog::getOpenFileName(this, "Select File", QDir::homePath(), "All Supported Files (*.model *.json);;XGBoost Model Files (*.model);;JSON Files (*.json)");
 
     if (!selectedFile.isEmpty()) {
-        viewModel->loadModelParams(selectedFile);
+        viewModel->loadPixelToRealModelParams(selectedFile);
     } else {
         QMessageBox::warning(this, "Warning", "No file was selected!");
     }
+    viewModel->startTimer();
 }
+
 
 void IndoorPositioningSystemUI::on_actionLoad_model_params_triggered()
 {
-    loadModelParams();
+    loadPixelToRealModelParams();
 }
 
 void IndoorPositioningSystemUI::onFileLoaded(bool success, const QString& message)
@@ -161,6 +209,64 @@ void IndoorPositioningSystemUI::loadIntrinsicCalibrationParams() {
     } else {
         QMessageBox::warning(this, "Warning", "No file was selected!");
     }
+    viewModel->startTimer();
+}
+
+void IndoorPositioningSystemUI::onModelNotLoaded(PredictionType type) {
+    viewModel->stopTimer();
+    QMessageBox::StandardButton reply;
+
+    if (type == PredictionType::PredictionByPixelToReal) {
+        reply = QMessageBox::question(this, "Prediction Model", "XGBoost prediction model is not loaded. Do you want to load one?",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            loadPixelToRealModelParams();
+        } else {
+            viewModel->setPredictByPixelToReal(false);
+        }
+    } else  if (type == PredictionType::PredictionByOptical) {
+        reply = QMessageBox::question(this, "Camera Calibration Parameters", "The camera calibration parameters are not loaded. Do you want to load one?",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            loadIntrinsicCalibrationParams();
+        } else {
+            viewModel->setPredictionByOptical(false);
+        }
+    }
+    viewModel->startTimer();
+}
+
+void IndoorPositioningSystemUI::on_actionLoad_human_detector_weights_triggered()
+{
+    loadHumanDetectorWeights();
+}
+
+void IndoorPositioningSystemUI::loadHumanDetectorWeights() {
+    viewModel->stopTimer();
+    QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", (QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks));
+
+    if (!directory.isEmpty()) {
+        viewModel->loadHumanDetectorWeights(directory);
+    } else {
+        QMessageBox::warning(this, "Warning", "No directory was selected!");
+    }
+    viewModel->startTimer();
+}
+
+void IndoorPositioningSystemUI::onHumanDetectorNotInitialized() {
+    viewModel->stopTimer();
+    // QMessageBox::StandardButton reply;
+
+    // reply = QMessageBox::question(this, "Human detector", "Wights and configuration file necessary for human detection are not loaded. Do you want to load them?",
+    //                               QMessageBox::Yes|QMessageBox::No);
+    // if (reply == QMessageBox::Yes) {
+    //     loadHumanDetectorWeights();
+    // } else {
+    //     viewModel->setPredictByPixelToReal(false);
+    //     viewModel->setPredictionByOptical(false);
+    // }
+    QMessageBox::warning(this, "Human detector", "Wights and configuration file necessary for human detection are not loaded. Please load them in 'file' menu.");
+    viewModel->startTimer();
 }
 
 void IndoorPositioningSystemUI::on_horizontalSlider_Duration_valueChanged(int position) {
@@ -273,35 +379,13 @@ void IndoorPositioningSystemUI::onExportFinished(bool success) {
 
 void IndoorPositioningSystemUI::on_pushButton_Predict_Model_clicked()
 {
-    viewModel->predict(PredictionType::PredictionByModel);
+    viewModel->predict(PredictionType::PredictionByPixelToReal);
 }
 
 
 void IndoorPositioningSystemUI::on_pushButton_Predict_Optical_clicked()
 {
-   viewModel->predict(PredictionType::PredictionByHeight);
-}
-
-void IndoorPositioningSystemUI::onModelNotLoaded(PredictionType type) {
-    QMessageBox::StandardButton reply;
-
-    if (type == PredictionType::PredictionByModel) {
-        reply = QMessageBox::question(this, "Prediction Model", "XGBoost prediction model is not loaded. Do you want to load one?",
-                                      QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::Yes) {
-            loadModelParams();
-        } else {
-            viewModel->setPredictByModel(false);
-        }
-    } else  if (type == PredictionType::PredictionByHeight) {
-        reply = QMessageBox::question(this, "Camera Calibration Parameters", "The camera calibration parameters are not loaded. Do you want to load one?",
-                                      QMessageBox::Yes|QMessageBox::No);
-        if (reply == QMessageBox::Yes) {
-            loadIntrinsicCalibrationParams();
-        } else {
-            viewModel->setPredictByHeight(false);
-        }
-    }
+   viewModel->predict(PredictionType::PredictionByOptical);
 }
 
 void IndoorPositioningSystemUI::onFinishedVideoProcessing() {
@@ -312,4 +396,58 @@ void IndoorPositioningSystemUI::onShowWarning(const QString& header, const QStri
     QMessageBox::warning(this, header, message);
 }
 
+void IndoorPositioningSystemUI::onChangePredictionButtonName(PredictionType type, bool isPredictionRequested) {
+    if (isPredictionRequested)
+    {
+        if (type == PredictionType::PredictionByPixelToReal) {
+            ui->pushButton_Predict_Model->setText("Stop prediction");
+            ui->pushButton_Predict_Model->setToolTip("Stop pixel to real prediction");
+        } else if (type == PredictionType::PredictionByOptical) {
+            ui->pushButton_Predict_Optical->setText("Stop prediction");
+            ui->pushButton_Predict_Model->setToolTip("Stop optical method");
+        }
+    } else {
+        if (type == PredictionType::PredictionByPixelToReal) {
+            ui->pushButton_Predict_Model->setText("Pixel to real");
+            ui->pushButton_Predict_Model->setToolTip("Start pixel to real model for coordinates prediction");
+        } else if (type == PredictionType::PredictionByOptical) {
+            ui->pushButton_Predict_Optical->setText("Optical method");
+            ui->pushButton_Predict_Model->setToolTip("Start optical method for coordinates estimation");
+        }
+    }
+}
+
+
+void IndoorPositioningSystemUI::on_pushButton_UWB_Show_Coordinates_clicked()
+{
+    if (!uwbCoordinatesWindow) {
+        uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
+        connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
+    }
+
+    uwbCoordinatesWindow->show();
+}
+
+
+void IndoorPositioningSystemUI::on_pushButton_Optical_Show_Coordinates_clicked()
+{
+    if (!opticalCoordinatesWindow) {
+        opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
+        connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateOpticalPosition, opticalCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
+    }
+
+    opticalCoordinatesWindow->show();
+}
+
+
+void IndoorPositioningSystemUI::on_pushButton_Pixel_to_Real_Show_Coordinates_clicked()
+{
+    if (!pixelToRealCoordinatesWindow) {
+        pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
+        connect(viewModel.get(), &IndoorPositioningSystemViewModel::updatePixelToRealPosition, pixelToRealCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
+    }
+
+    pixelToRealCoordinatesWindow->show();
+
+}
 

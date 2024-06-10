@@ -43,7 +43,7 @@ public slots:
 
     // void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
     // Find uwb data based on video timestamp. Timestamp is given by position.
-    void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage);
+    void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, std::vector<QPointF> pixelToRealCoordinates, std::vector<QPointF> opticalCoordinates);
     void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const std::vector<DetectionResult>& detectionsVector, bool lastRecord);
     void collectDataForTag(const QString &tagIDText);
     void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);

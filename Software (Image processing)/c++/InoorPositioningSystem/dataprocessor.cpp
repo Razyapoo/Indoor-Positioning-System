@@ -51,12 +51,23 @@ void DataProcessor::loadData(const std::string& UWBDataFilename, const std::stri
     {
         std::istringstream ss(line);
 
-        ss >> record.id >> record.timestamp >> record.tagID;
+        ss >> record.id >> record.timestamp >> record.tagID; // guaranteed to be present
 
+
+        int i = 0;
         record.anchorList.clear();
-        while (ss >> anchor.anchorID >> anchor.distance)
+        for (int i = 0; i < 2; i++) // guaranteed to be 2. It is possible to use while when more anchors found. This exact number is need for time measurement variable
         {
+            ss >> anchor.anchorID >> anchor.distance;
             record.anchorList.push_back(anchor);
+        }
+
+        double temp;
+        if (ss.rdbuf()->in_avail()) {
+            ss >> temp;
+            record.measurementTime = temp;
+        } else {
+            record.measurementTime = std::nullopt;
         }
 
         uwbDataVector.push_back(record);
@@ -84,14 +95,14 @@ int DataProcessor::getTotalFrames() {
 
 
 
-void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage) {
+void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, std::vector<QPointF> pixelToRealCoordinates, std::vector<QPointF> opticalCoordinates) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
 
     // qDebug() << "Searching for UWB data...";
 
     VideoData videoData(frameIndex, std::move(qImage), frameTimestamp);
-    qDebug() << "Frame id: " << frameIndex;
+    // qDebug() << "Frame id: " << frameIndex;
 
     std::vector<UWBData> closestForEachTag;
     for (auto& data: uwbDataPerTag) {
@@ -103,9 +114,7 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
 
 
     // it is better to make a copy of UWB Data and then move it to the queue rather than push a pointer to existing array, just in case UWBData array will be deleted.
-    UWBVideoData uwbVideoData(std::move(videoData), std::move(closestForEachTag));
-    // uwbVideoDataVector.push_back(uwbVideoData);
-
+    UWBVideoData uwbVideoData(std::move(videoData), std::move(closestForEachTag), std::move(pixelToRealCoordinates), std::move(opticalCoordinates));
 
     frameQueue.enqueue(std::move(uwbVideoData));
 
@@ -131,7 +140,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
                 outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << detectionsVector[i].bottomEdgeCenter.x() << " " << detectionsVector[i].bottomEdgeCenter.y() << std::endl;
                 ++data;
             } else {
-                qDebug() << "Intruder is found!! There is no tag to match with people";
+                // qDebug() << "Intruder is found!! There is no tag to match with people";
             }
         }
     // Always only for one tag for which data analysis is performed. Frame timestamp and UWBData are already known and synchornized. Synzhronization was done during split of dataset into segments
@@ -201,7 +210,7 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
     // Extract distances from the anchor list and find the pair of anchors
     for (const Anchor& anchor: tag.anchorList) {
-        qDebug() << "AnchorID: " << anchor.anchorID;
+        // qDebug() << "AnchorID: " << anchor.anchorID;
         if (anchorCoordinates.contains(anchor.anchorID)) {
             if (distanceAnchor1 == 0) {
                 distanceAnchor1 = anchor.distance;
@@ -235,8 +244,8 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
     tag.coordinates.setX(x + 0.627); // Transform x-coordinate to camera/world coordinate system
     tag.coordinates.setY(std::abs(y - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
 
-    qDebug() << "Tag ID: " << tag.tagID << "Distance 101: " << distanceAnchor1 << ", Distance 102: " << distanceAnchor2 << ";";
-    qDebug() << "Tag ID: " << tag.tagID << "Coordinates: (" << tag.coordinates.x() << ", " << tag.coordinates.y() << ");";
+    // qDebug() << "Tag ID: " << tag.tagID << "Distance 101: " << distanceAnchor1 << ", Distance 102: " << distanceAnchor2 << ";";
+    // qDebug() << "Tag ID: " << tag.tagID << "Coordinates: (" << tag.coordinates.x() << ", " << tag.coordinates.y() << ");";
 
 }
 

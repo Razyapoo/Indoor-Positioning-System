@@ -113,25 +113,27 @@ struct UWBData
     int id;
     long long timestamp;
     int tagID;
+    std::optional<double> measurementTime;
     std::vector<Anchor> anchorList;
     QPointF coordinates;
 
-    UWBData() : id(-1), timestamp(0), tagID(-1), coordinates() {}
+    UWBData() : id(-1), timestamp(0), tagID(-1), measurementTime(std::nullopt), coordinates() {}
 
-    UWBData(int id, long long timestamp, int tagID, const std::vector<Anchor>& anchors, const QPointF& coordinates = QPointF())
-        : id(id), timestamp(timestamp), tagID(tagID), anchorList(anchors), coordinates(coordinates) {}
+    UWBData(int id, long long timestamp, int tagID, std::optional<double> measurementTime, const std::vector<Anchor>& anchors, const QPointF& coordinates = QPointF())
+        : id(id), timestamp(timestamp), tagID(tagID), measurementTime(measurementTime), anchorList(anchors), coordinates(coordinates) {}
 
     UWBData(const UWBData& other)
-        : id(other.id), timestamp(other.timestamp), tagID(other.tagID), anchorList(other.anchorList), coordinates(other.coordinates) {}
+        : id(other.id), timestamp(other.timestamp), tagID(other.tagID), measurementTime(other.measurementTime), anchorList(other.anchorList), coordinates(other.coordinates) {}
 
     UWBData(UWBData&& other) noexcept
-        : id(std::exchange(other.id, -1)), timestamp(std::exchange(other.timestamp, 0)), tagID(std::exchange(other.tagID, -1)), anchorList(std::move(other.anchorList)), coordinates(std::move(other.coordinates)) {}
+        : id(std::exchange(other.id, -1)), timestamp(std::exchange(other.timestamp, 0)), tagID(std::exchange(other.tagID, -1)), measurementTime(std::move(other.measurementTime)), anchorList(std::move(other.anchorList)), coordinates(std::move(other.coordinates)) {}
 
     UWBData& operator=(UWBData&& other) noexcept {
         if (this != &other) {
             id = std::exchange(other.id, -1);
             timestamp = std::exchange(other.timestamp, 0);
             tagID = std::exchange(other.tagID, -1);
+            measurementTime = other.measurementTime;
             anchorList = std::move(other.anchorList);
             coordinates = std::move(other.coordinates);
         }
@@ -151,6 +153,7 @@ struct UWBData
             id = other.id;
             timestamp = other.timestamp;
             tagID = other.tagID;
+            measurementTime = std::move(other.measurementTime);
             anchorList = other.anchorList;
             coordinates = other.coordinates;
         }
@@ -163,21 +166,25 @@ struct UWBData
 struct UWBVideoData {
     VideoData videoData;
     std::vector<UWBData> uwbData;
+    std::vector<QPointF> pixelToRealCoordinates;
+    std::vector<QPointF> opticalCoordinates;
 
     UWBVideoData() {}
 
-    UWBVideoData(const VideoData& videoData, const std::vector<UWBData>& uwbData): videoData(videoData), uwbData(uwbData) {}
+    UWBVideoData(const VideoData& videoData, const std::vector<UWBData>& uwbData, const std::vector<QPointF>& pixelToRealCoordinates, const std::vector<QPointF>& opticalCoordinates): videoData(videoData), uwbData(uwbData), pixelToRealCoordinates(pixelToRealCoordinates), opticalCoordinates(opticalCoordinates) {}
 
-    UWBVideoData(VideoData&& videoData, std::vector<UWBData>&& uwbData): videoData(std::move(videoData)), uwbData(std::move(uwbData)) {}
+    UWBVideoData(VideoData&& videoData, std::vector<UWBData>&& uwbData, std::vector<QPointF>&& pixelToRealCoordinates, std::vector<QPointF>&& opticalCoordinates): videoData(std::move(videoData)), uwbData(std::move(uwbData)), pixelToRealCoordinates(std::move(pixelToRealCoordinates)), opticalCoordinates(std::move(opticalCoordinates)) {}
 
-    UWBVideoData(const UWBVideoData& other): videoData(other.videoData), uwbData(other.uwbData) {}
+    UWBVideoData(const UWBVideoData& other): videoData(other.videoData), uwbData(other.uwbData), pixelToRealCoordinates(other.pixelToRealCoordinates), opticalCoordinates(other.opticalCoordinates) {}
 
-    UWBVideoData(UWBVideoData&& other) noexcept: videoData(std::move(other.videoData)), uwbData(std::move(other.uwbData)) {}
+    UWBVideoData(UWBVideoData&& other) noexcept: videoData(std::move(other.videoData)), uwbData(std::move(other.uwbData)), pixelToRealCoordinates(std::move(other.pixelToRealCoordinates)), opticalCoordinates(std::move(other.opticalCoordinates)) {}
 
     UWBVideoData& operator=(UWBVideoData&& other) noexcept {
         if (this != &other) {
             videoData = std::move(other.videoData);
             uwbData = std::move(other.uwbData);
+            pixelToRealCoordinates = std::move(other.pixelToRealCoordinates);
+            opticalCoordinates = std::move(other.opticalCoordinates);
         }
 
         return *this;
@@ -201,8 +208,8 @@ struct DetectionResult {
 };
 
 enum PredictionType {
-    PredictionByHeight,
-    PredictionByModel
+    PredictionByOptical,
+    PredictionByPixelToReal
 };
 
 #endif // STRUCTURES_H

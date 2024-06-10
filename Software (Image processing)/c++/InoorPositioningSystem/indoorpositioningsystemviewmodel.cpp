@@ -16,8 +16,8 @@ IndoorPositioningSystemViewModel::IndoorPositioningSystemViewModel(QObject *pare
     dataProcessor = std::make_unique<DataProcessor>(frameQueue);
     videoProcessor = std::make_unique<VideoProcessor>(frameQueue, dataProcessor.get());
     isVideoOpened = false;
-    toPredictByModel = false;
-    toPredictByHeight = false;
+    toPredictByPixelToReal = false;
+    toPredictionByOptical = false;
 
 
     connect(frameTimer, &QTimer::timeout, this, &IndoorPositioningSystemViewModel::checkForDisplay);
@@ -28,6 +28,8 @@ IndoorPositioningSystemViewModel::IndoorPositioningSystemViewModel(QObject *pare
     connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystemViewModel::afterSeeking);
     connect(dataProcessor.get(), &DataProcessor::exportProgressUpdated, this, &IndoorPositioningSystemViewModel::onExportProgressUpdated);
     connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystemViewModel::onExportFinished, Qt::BlockingQueuedConnection);
+    connect(videoProcessor.get(), &VideoProcessor::requestChangePredictionButtonName, this, &IndoorPositioningSystemViewModel::onChangePredictionButtonName);
+    connect(videoProcessor.get(), &VideoProcessor::humanDetectorNotInitialized, this, &IndoorPositioningSystemViewModel::onHumanDetectorNotInitialized);
 
 
     connect(dataProcessor.get(), &DataProcessor::requestShowAvailableTags, this, &IndoorPositioningSystemViewModel::showAvailableTags);
@@ -84,50 +86,97 @@ void IndoorPositioningSystemViewModel::openVideo(const QString& directory)
 
     if (missingFile) {
         QString message = "Missing required files: " + missingFiles.join(", ");
-        emit videoOpenFailed(false, message);
+       emit showWarning("Failed to load", message);
     } else {
         dataProcessor->loadData(UWBDataFileName, videoTimestampsFileName);
         videoProcessor->init(videoFileName);
         int totalFrames = dataProcessor->getTotalFrames();
         isVideoOpened = true;
-        isPlaying = true;
+        _isPlaying = true;
         isExportState = false;
         emit requestProcessVideo();
-        toPredictByModel = false;
+        toPredictByPixelToReal = false;
 
         long long videoDuration = dataProcessor->getVideoTimestampById(totalFrames - 1) - dataProcessor->getVideoTimestampById(0);
         emit videoOpened(totalFrames, videoDuration);
     }
 
-    if (isVideoOpened) {
+    if (isVideoOpened && _isPlaying) {
         frameTimer->start();
     }
 }
 
-void IndoorPositioningSystemViewModel::loadModelParams(const QString& selectedFile){
+void IndoorPositioningSystemViewModel::loadHumanDetectorWeights(const QString& directory) {
+    bool missingFile = false;
+    std::string configFileName, weightsFileName;
+    QStringList missingFiles;
+
+    if (!directory.isEmpty()) {
+        QDir qDirectory(directory);
+
+        QStringList configFilter;
+        configFilter << "*.cfg";
+        QStringList configFiles = qDirectory.entryList(configFilter, QDir::Files);
+
+        if (configFiles.isEmpty()) {
+            missingFiles << "configuration file (*.cfg)";
+            missingFile = true;
+        } else if (configFiles.size() > 1){
+            emit showWarning("Failed to load", "More than one configuration file found.");
+            return;
+        } else {
+            configFileName = qDirectory.filePath(configFiles.first()).toStdString();
+        }
+
+        QStringList weightsFilter;
+        weightsFilter << "*.weights";
+        QStringList weightsFiles = qDirectory.entryList(weightsFilter, QDir::Files);
+
+        if (weightsFiles.isEmpty()) {
+            missingFiles << "weights file (*.weights)";
+            missingFile = true;
+        } else if (weightsFiles.size() > 1){
+            emit showWarning("Failed to load", "More than one weights file found.");
+            return;
+        } else {
+            weightsFileName = qDirectory.filePath(weightsFiles.first()).toStdString();
+        }
+    }
+
+    if (missingFile) {
+        QString message = "Missing required files: " + missingFiles.join(", ");
+        emit showWarning("Failed to load", message);
+    } else {
+        videoProcessor->initHumanDetector(configFileName, weightsFileName);
+        emit weightsLoaded(true, "Weights are successfully loaded!");
+    }
+
+}
+
+void IndoorPositioningSystemViewModel::loadPixelToRealModelParams(const QString& selectedFile){
     // frameTimer->stop();
 
     if (!selectedFile.isEmpty()) {
-        int result = videoProcessor->loadModelParams(selectedFile);
+        int result = videoProcessor->loadPixelToRealModelParams(selectedFile);
         if (result == -1) {
             emit modelParamsLoaded(false, "Failed to load model!");
-            toPredictByModel = false;
+            toPredictByPixelToReal = false;
         } else {
-            result = videoProcessor->setPredict(toPredictByModel, PredictionType::PredictionByModel);
+            result = videoProcessor->setPredict(toPredictByPixelToReal, PredictionType::PredictionByPixelToReal);
             if (result != -1) {
                 frameQueue.clear();
                 emit modelParamsLoaded(true, "Model was loaded successfully!");
             } else {
                 emit modelParamsLoaded(false, "Failed to load model!");
-                toPredictByModel = false;
+                toPredictByPixelToReal = false;
             }
         }
     } else {
         emit modelParamsLoaded(false, "No file was selected!");
-        toPredictByModel = false;
+        toPredictByPixelToReal = false;
     }
 
-    if (isVideoOpened) {
+    if (isVideoOpened && _isPlaying) {
         frameTimer->start();
     }
 
@@ -143,7 +192,7 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QString warningMessage = QString("Error opening file: %1").arg(file.errorString());
         emit intrinsicCalibrationParamsLoaded(false, warningMessage);
-        toPredictByHeight = false;
+        toPredictionByOptical = false;
         return;
     }
 
@@ -194,7 +243,7 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
     if (xmlReader.hasError()) {
         QString warningMessage = QString("Error parsing XML: %1").arg(xmlReader.errorString());
         emit intrinsicCalibrationParamsLoaded(false, warningMessage);
-        toPredictByHeight = false;
+        toPredictionByOptical = false;
     } else {
         if (optimalCameraMatrix.size() == 9) {
             videoProcessor->setOptimalCameraMatrix(std::move(optimalCameraMatrix));
@@ -210,7 +259,7 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
 
         if (cameraMatrix.size() == 9) {
             videoProcessor->setCameraMatrix(std::move(cameraMatrix));
-            int result = videoProcessor->setPredict(toPredictByHeight, PredictionType::PredictionByHeight);
+            int result = videoProcessor->setPredict(toPredictionByOptical, PredictionType::PredictionByOptical);
             if (result != -1) {
                 frameQueue.clear();
                 emit modelParamsLoaded(true, "Model was loaded successfully!");
@@ -218,14 +267,14 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
                 emit modelParamsLoaded(true, "Failed to load model!");
             }
         } else {
-            toPredictByHeight = false;
+            toPredictionByOptical = false;
             emit intrinsicCalibrationParamsLoaded(false, "Mandatory. Camera matrix parameters were not found or are incomplete. Method cannot be started.");
         }
     }
 
     file.close();
 
-    if (isVideoOpened) {
+    if (isVideoOpened && _isPlaying) {
         frameTimer->start();
     }
 }
@@ -234,7 +283,7 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
 void IndoorPositioningSystemViewModel::checkForDisplay() {
     UWBVideoData data;
 
-    if (isPlaying && !isExportState) {
+    if (_isPlaying && !isExportState) {
         if (frameQueue.dequeue(data)) {
             emit frameIsReady(data);
         }
@@ -252,13 +301,25 @@ void IndoorPositioningSystemViewModel::updateDataDisplay(const UWBVideoData& dat
 
         for (const UWBData& tag: data.uwbData)
         {
-            QString tagTimestampText = QString::number(tag.timestamp);
-            QString anchor101DistanceText = QString::number(tag.anchorList[0].distance, 'f', 6);
-            QString anchor102DistanceText = QString::number(tag.anchorList[1].distance, 'f', 6);
-
-            emit uwbDataUpdated(tag.tagID, tagTimestampText, anchor101DistanceText, anchor102DistanceText);
+            emit uwbDataUpdated(tag);
+            // std::pair<double, double> coordinates = std::make_pair<double, double>(static_cast<double>(tag.coordinates.x()), static_cast<double>(tag.coordinates.y()));
             emit updateTagPosition(tag.coordinates, tag.tagID);
+        }
 
+        if (data.pixelToRealCoordinates.size()) {
+            int i = 1;
+            for (const QPointF& coordinates: data.pixelToRealCoordinates) {
+                emit updatePixelToRealPosition(coordinates, i);
+                i++;
+            }
+        }
+
+        if (data.opticalCoordinates.size()) {
+            int i = 1;
+            for (const QPointF& coordinates: data.opticalCoordinates) {
+                emit updateOpticalPosition(coordinates, i);
+                i++;
+            }
         }
 
 
@@ -269,15 +330,15 @@ void IndoorPositioningSystemViewModel::updateDataDisplay(const UWBVideoData& dat
 
 }
 
-bool IndoorPositioningSystemViewModel::isPlayingCheck() const {
-    return isPlaying;
+bool IndoorPositioningSystemViewModel::isPlaying() const {
+    return _isPlaying;
 }
 
 void IndoorPositioningSystemViewModel::play()
 {
     if (isVideoOpened) {
-        if (!isPlaying) {
-            isPlaying = true;
+        if (!_isPlaying) {
+            _isPlaying = true;
             frameTimer->start();
         }
     } else {
@@ -288,8 +349,8 @@ void IndoorPositioningSystemViewModel::play()
 void IndoorPositioningSystemViewModel::pause()
 {
     if (isVideoOpened) {
-        if (isPlaying) {
-            isPlaying = false;
+        if (_isPlaying) {
+            _isPlaying = false;
             frameTimer->stop();
         }
     } else {
@@ -298,7 +359,9 @@ void IndoorPositioningSystemViewModel::pause()
 }
 
 void IndoorPositioningSystemViewModel::startTimer() {
-    frameTimer->start();
+    if (isVideoOpened && _isPlaying) {
+        frameTimer->start();
+    }
 }
 
 void IndoorPositioningSystemViewModel::stopTimer() {
@@ -320,7 +383,7 @@ void IndoorPositioningSystemViewModel::updateVideoPosition(int position){
 
 
 void IndoorPositioningSystemViewModel::afterSeeking() {
-    if (isPlaying) {
+    if (_isPlaying) {
         frameTimer->start();
     }
 }
@@ -359,7 +422,7 @@ void IndoorPositioningSystemViewModel::setFrameByFrameExportRange(const QTime& s
 }
 
 void IndoorPositioningSystemViewModel::setupExportConfiguration(const std::vector<int>& frameRangeToExport, ExportType type) {
-    isPlaying = false;
+    _isPlaying = false;
     if (frameTimer->isActive()) {
         frameTimer->stop();
     }
@@ -394,7 +457,7 @@ void IndoorPositioningSystemViewModel::stopExport() {
 }
 
 void IndoorPositioningSystemViewModel::onExportFinished(bool success) {
-    isPlaying = true;
+    _isPlaying = true;
     isExportState = false;
 
     videoProcessor->pauseProcessing();
@@ -405,34 +468,35 @@ void IndoorPositioningSystemViewModel::onExportFinished(bool success) {
     emit exportFinished(success);
 }
 
-void IndoorPositioningSystemViewModel::setPredictByModel(bool toPredict) {
-    toPredictByModel = toPredict;
+void IndoorPositioningSystemViewModel::setPredictByPixelToReal(bool toPredict) {
+    toPredictByPixelToReal = toPredict;
 }
 
-void IndoorPositioningSystemViewModel::setPredictByHeight(bool toPredict) {
-    toPredictByHeight = toPredict;
+void IndoorPositioningSystemViewModel::setPredictionByOptical(bool toPredict) {
+    toPredictionByOptical = toPredict;
 }
 
 void IndoorPositioningSystemViewModel::predict(PredictionType type) {
     int result = -1;
     videoProcessor->pauseProcessing();
 
-    if (type == PredictionType::PredictionByModel) {
-        toPredictByModel = !toPredictByModel;
-        result = videoProcessor->setPredict(toPredictByModel, type);
-    } else if (type == PredictionType::PredictionByHeight) {
-        toPredictByHeight = !toPredictByHeight;
-        result = videoProcessor->setPredict(toPredictByHeight, type);
+    if (type == PredictionType::PredictionByPixelToReal) {
+        toPredictByPixelToReal = !toPredictByPixelToReal;
+        result = videoProcessor->setPredict(toPredictByPixelToReal, type);
+    } else if (type == PredictionType::PredictionByOptical) {
+        toPredictionByOptical = !toPredictionByOptical;
+        result = videoProcessor->setPredict(toPredictionByOptical, type);
     }
 
-    if (result != -1) {
+    if (!result) {
         frameQueue.clear();
-    } else {
+    } else if (result == -1) {
         frameTimer->stop();
-
         emit modelNotLoaded(type);
-
         frameTimer->start();
+    } else if (result == -2) {
+        toPredictionByOptical = false;
+        toPredictByPixelToReal = false;
     }
     videoProcessor->resumeProcessing();
 }
@@ -489,4 +553,12 @@ void IndoorPositioningSystemViewModel::showDatasetSegments(const std::vector<dou
 
 void IndoorPositioningSystemViewModel::showOriginalVsAdjustedDistances(const std::vector<long long> &timestampsToAnalyze, std::vector<double *> distancesToAnalyzeOriginal, const std::vector<double> &distancesToAnalyzeAdjusted) {
     emit requestShowOriginalVsAdjustedDistances(timestampsToAnalyze, distancesToAnalyzeOriginal, distancesToAnalyzeAdjusted);
+}
+
+void IndoorPositioningSystemViewModel::onChangePredictionButtonName(PredictionType type, bool isPredictionRequested) {
+    emit requestChangePredictionButtonName(type, isPredictionRequested);
+}
+
+void IndoorPositioningSystemViewModel::onHumanDetectorNotInitialized() {
+    emit humanDetectorNotInitialized();
 }

@@ -42,20 +42,21 @@ public:
     explicit IndoorPositioningSystemViewModel(QObject *parent = nullptr);
     ~IndoorPositioningSystemViewModel();
 
-    bool isPlayingCheck() const;
+    bool isPlaying() const;
     void play();
     void pause();
     void stopTimer();
     void startTimer();
     void openVideo(const QString& directory);
-    void loadModelParams(const QString& selectedFile);
+    void loadPixelToRealModelParams(const QString& selectedFile);
     void loadIntrinsicCalibrationParams(const QString& selectedFile);
+    void loadHumanDetectorWeights(const QString& directory);
     void updateVideoPosition(int position);
     void seekToFrame();
     void setFrameByFrameExportRange(const QTime& startTime, const QTime& endTime);
     void stopExport();
-    void setPredictByModel(bool toPredict);
-    void setPredictByHeight(bool toPredict);
+    void setPredictByPixelToReal(bool toPredict);
+    void setPredictionByOptical(bool toPredict);
     void predict(PredictionType type);
 
 
@@ -66,6 +67,8 @@ public slots:
     void onExportProgressUpdated(int index);
     void onSegmentFramesExport();
     void afterSeeking();
+    void onChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
+    void onHumanDetectorNotInitialized();
 
     // DataAnalysisWindow
     void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
@@ -89,12 +92,13 @@ signals:
     void requestProcessVideo();
     void frameIsReady(const UWBVideoData& data);
     void dataUpdated(const QImage& image, int frameID, const QString& timestamp);
-    void uwbDataUpdated(int tagID, const QString& timestamp, const QString& distanceAnchor1, const QString& distanceAnchor2);
+    void uwbDataUpdated(UWBData tag);
     void finishedVideoProcessing();
     void updateTagPosition(const QPointF& coordinates, int tagID);
+    void updatePixelToRealPosition(const QPointF& coordinates, int objectID);
+    void updateOpticalPosition(const QPointF& coordinates, int objectID);
     void durationUpdated(int frameID, long long currentTimeInMSeconds);
     void videoOpened(int totalFrames, long long videoDuration);
-    void videoOpenFailed(bool success, const QString& message);
     void modelParamsLoaded(bool success, const QString& message);
     void intrinsicCalibrationParamsLoaded(bool success, const QString& message);
     void showExportWarning(const QString& header, const QString& message, ExportType type);
@@ -104,6 +108,9 @@ signals:
     void modelNotLoaded(PredictionType type);
     void positionUpdated(const QString& currentTime);
     void showWarning(const QString& header, const QString& message);
+    void requestChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
+    void weightsLoaded(bool success, const QString& message);
+    void humanDetectorNotInitialized();
 
 
     // DataAnalysisWindow
@@ -135,10 +142,10 @@ private:
     int seekPosition, lastPosition;
     double fps;
     int totalFrames;
-    bool isPlaying, isExportState;
+    bool _isPlaying, isExportState;
 
     ThreadSafeQueue frameQueue;
-    bool toPredictByModel, toPredictByHeight;
+    bool toPredictByPixelToReal, toPredictionByOptical;
     int totalExportDuration;
     void setupExportConfiguration(const std::vector<int>& frameRangeToExport, ExportType type);
 

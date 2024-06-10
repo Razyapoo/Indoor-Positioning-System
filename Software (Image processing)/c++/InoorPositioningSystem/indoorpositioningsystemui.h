@@ -32,6 +32,7 @@
 #include "uwblocalizationwindow.h"
 #include "exporttimerangesetter.h"
 #include "customlabel.h"
+#include "coordinateswindow.h"
 #include "indoorpositioningsystemviewmodel.h"
 
 QT_BEGIN_NAMESPACE
@@ -84,7 +85,7 @@ private slots:
     void on_actionLoad_intrinsic_calibration_params_triggered();
 
     void onDataUpdated(const QImage& image, int frameID, const QString& timestamp);
-    void onUWBDataUpdated(int tagID, const QString& timestamp, const QString& distanceAnchor1, const QString& distanceAnchor2);
+    void onUWBDataUpdated(UWBData tag);
     void onFinishedVideoProcessing();
     void onDurationUpdated(int frameID, long long currentTimeInMSeconds);
     void onVideoOpened(int totalFrames, long long videoDuration);
@@ -96,6 +97,15 @@ private slots:
     void onModelNotLoaded(PredictionType type);
     void onPositionUpdated(const QString& currentTime);
     void onShowWarning(const QString& header, const QString& message);
+    void onChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
+    void onHumanDetectorNotInitialized();
+    void on_actionLoad_human_detector_weights_triggered();
+
+    void on_pushButton_UWB_Show_Coordinates_clicked();
+
+    void on_pushButton_Optical_Show_Coordinates_clicked();
+
+    void on_pushButton_Pixel_to_Real_Show_Coordinates_clicked();
 
 signals:
     // void frameIsReady(const UWBVideoData& data);
@@ -114,10 +124,14 @@ private:
     std::unique_ptr<DataAnalysisWindow> dataAnalysisWindow;
     std::unique_ptr<UWBLocalizationWindow> uwbLocalizationWindow;
     std::unique_ptr<ExportTimeRangeSetter> exportTimeRangeSetter;
+    std::unique_ptr<CoordinatesWindow> uwbCoordinatesWindow;
+    std::unique_ptr<CoordinatesWindow> pixelToRealCoordinatesWindow;
+    std::unique_ptr<CoordinatesWindow> opticalCoordinatesWindow;
     QProgressDialog* exportProgressDialog;
 
-    void loadModelParams();
+    void loadPixelToRealModelParams();
     void loadIntrinsicCalibrationParams();
+    void loadHumanDetectorWeights();
 
 };
 #endif // IndoorPositioningSystemUI_H

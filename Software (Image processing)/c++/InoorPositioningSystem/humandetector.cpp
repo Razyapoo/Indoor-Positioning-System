@@ -1,17 +1,23 @@
 #include "humandetector.h"
 
-HumanDetector::HumanDetector() {}
+HumanDetector::HumanDetector(): _isInitialized(false) {}
 
 void HumanDetector::initHumanDetection(const std::string &modelConfiguration, const std::string &modelWeights) {
-    net = cv::dnn::readNetFromDarknet(modelConfiguration, modelWeights);
-    // net = cv::dnn::readNet("/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/weights/yolov8m.onnx");
 
-    net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
-    net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
+    try {
+        net = cv::dnn::readNetFromDarknet(modelConfiguration, modelWeights);
+
+        net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
+        net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
+
+        _isInitialized = true;
+    } catch (const cv::Exception &e) {
+        std::cerr << "Error: Failed to load network. " << e.what() << std::endl;
+        _isInitialized = false;
+    }
 }
 
 HumanDetector::~HumanDetector() {}
-
 
 std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(const cv::Mat &frame, const cv::Size& detectionFrameSize)
 {
@@ -66,4 +72,8 @@ std::pair<std::vector<cv::Rect>, std::vector<int>> HumanDetector::detectPeople(c
     std::pair<std::vector<cv::Rect>, std::vector<int>> pair = std::make_pair(boxes, indices);
 
     return pair;
+}
+
+bool HumanDetector::isInitialized() const {
+    return _isInitialized;
 }

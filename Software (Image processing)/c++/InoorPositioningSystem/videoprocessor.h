@@ -44,12 +44,14 @@ public:
     void setFrameRangeToExport(const std::vector<int>& frameRange, ExportType type);
     void stopExport();
     int setPredict(bool toPredict, PredictionType type);
-    int loadModelParams(const QString& filename);
+    int loadPixelToRealModelParams(const QString& filename);
     // int loadOptimalCameraMatrix(const QString& filename);
     void setOptimalCameraMatrix(std::vector<double>&& matrix);
     void setCameraMatrix(std::vector<double>&& matrix);
     void setDistCoeffs(std::vector<double>&& matrix);
-    std::pair<double, double> predictWorldCoordinates(const DetectionResult& detection);
+    QPointF predictWorldCoordinatesPixelToReal(const DetectionResult& detection);
+    QPointF predictWorldCoordinatesOptical(const DetectionResult& detection);
+    void initHumanDetector(const std::string &modelConfiguration, const std::string &modelWeights);
 
 public slots:
     void processVideo();
@@ -62,9 +64,11 @@ signals:
     void finished();
     void seekingDone();
     void processingIsPaused();
-    void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage);
+    void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage, std::vector<QPointF> pixelToRealCoordinates, std::vector<QPointF> opticalCoordinates);
     void requestFindUWBMeasurementAndExport(int position, int rangeIndex, ExportType type, const std::vector<DetectionResult>& detectionsVector, bool lastRecord);
     void exportFinished(bool success);
+    void requestChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
+    void humanDetectorNotInitialized();
 
 private:
     ThreadSafeQueue& frameQueue;
@@ -72,7 +76,7 @@ private:
     HumanDetector humanDetector;
 
     std::unique_ptr<QThread> videoProcessorThread;
-    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport, isPredictionRequested, isPredictionByModelRequested, isPredictionByHeightRequested;
+    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport, isPredictionRequested, isPredictionByPixelToRealRequested, isPredictionByOpticalRequested;
     std::atomic<PredictionType> predictionType;
     QMutex mutex;
     QWaitCondition pauseCondition;
