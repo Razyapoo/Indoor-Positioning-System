@@ -26,6 +26,8 @@ void DataProcessor::cleanup() {
     if (videoDataFile.is_open()) {
         videoDataFile.close();
     }
+    XGBoosterFree(booster);
+
     dataProcessorThread->quit();
 }
 
@@ -95,7 +97,7 @@ int DataProcessor::getTotalFrames() {
 
 
 
-void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, std::vector<QPointF> pixelToRealCoordinates, std::vector<QPointF> opticalCoordinates) {
+void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, DetectionData detectionData) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
 
@@ -112,32 +114,69 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
         closestForEachTag.push_back(closestUWB);
     }
 
+    QPointF pixelToRealCoordinates(0.0, 0.0);
+    QPointF opticalCoordinates(0.0, 0.0);
+    std::vector<QPointF> pixelToRealCoordinatesVector;
+    std::vector<QPointF> opticalCoordinatesVector;
+
+
+    if (detectionData.detectionResults.size()) {
+        // QPointF coordinates;
+        for (const DetectionResult& detection: detectionData.detectionResults){
+            if (isPredictionByPixelToRealRequested)
+            {
+                pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detection);
+                pixelToRealCoordinatesVector.push_back(pixelToRealCoordinates);
+            }
+
+            if (isPredictionByOpticalRequested) {
+                opticalCoordinates = predictWorldCoordinatesOptical(detection, detectionData.cameraFrameSize, detectionData.detectionFrameSize);
+                opticalCoordinatesVector.push_back(opticalCoordinates);
+
+            }
+            // std::string coordinatesText = "(" + std::to_string(coordinates.first) + ", " + std::to_string(coordinates.second) + ")" ;
+            // cv::putText(frame, coordinatesText, cv::Point(detection.bottomEdgeCenter.x(), detection.bottomEdgeCenter.y()), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 2);
+            // qDebug() << coordinatesText;
+        }
+    }
+
 
     // it is better to make a copy of UWB Data and then move it to the queue rather than push a pointer to existing array, just in case UWBData array will be deleted.
-    UWBVideoData uwbVideoData(std::move(videoData), std::move(closestForEachTag), std::move(pixelToRealCoordinates), std::move(opticalCoordinates));
+    UWBVideoData uwbVideoData(std::move(videoData), std::move(closestForEachTag), std::move(pixelToRealCoordinatesVector), std::move(opticalCoordinatesVector));
 
     frameQueue.enqueue(std::move(uwbVideoData));
 
 }
 
-void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType exportType, const std::vector<DetectionResult>& detectionsVector, bool lastRecord) {
+void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType exportType, const DetectionData& detectionData, bool lastRecord) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
-    std::string outputFilePath = "uwb_to_bb_mapping.txt";
+    std::string outputFilePathUWB = "uwb_to_bb_mapping_uwb.txt";
+    std::string outputFilePathPixelToReal = "pixel_to_real_to_bb_mapping.txt";
+    std::string outputFilePathOptical = "optical_to_bb_mapping.txt";
 
-    if (!outputFile.is_open()) {
-        outputFile = std::ofstream(outputFilePath, std::ios::out);
+
+    if (!outputFileUWB.is_open()) {
+        outputFileUWB = std::ofstream(outputFilePathUWB, std::ios::out);
+    }
+
+    if (!outputFilePixelToReal.is_open()) {
+        outputFilePixelToReal = std::ofstream(outputFilePathPixelToReal, std::ios::out);
+    }
+
+    if (!outputFileOptical.is_open()) {
+        outputFileOptical = std::ofstream(outputFilePathOptical, std::ios::out);
     }
 
     if (exportType == ExportType::FrameByFrameExport) {
         auto data = uwbDataPerTag.begin();
         // Vector of bottom edge centers is used for the future improvement of the code. When more people are used for model calibration
         // As for now only one person in the scene assumed
-        for (int i = 0; i < detectionsVector.size(); ++i) {
+        for (int i = 0; i < detectionData.detectionResults.size(); ++i) {
             if (data != uwbDataPerTag.end()) {
                 UWBData closestUWB = binarySearchUWB(frameTimestamp, data->second);
                 calculateUWBCoordinates(closestUWB);
-                outputFile << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << detectionsVector[i].bottomEdgeCenter.x() << " " << detectionsVector[i].bottomEdgeCenter.y() << std::endl;
+                outputFileUWB << frameIndex << " " << closestUWB.coordinates.x() << " " << closestUWB.coordinates.y() << " " << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << std::endl;
                 ++data;
             } else {
                 // qDebug() << "Intruder is found!! There is no tag to match with people";
@@ -169,14 +208,23 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         }
 
         calculateUWBCoordinates(segmentRepresentatives[rangeIndex]);
-        outputFile << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << detectionsVector[0].bottomEdgeCenter.x() << " " << detectionsVector[0].bottomEdgeCenter.y() << std::endl;
+
+        QPointF pixelToRealCoordinates(0.0, 0.0);
+        QPointF opticalCoordinates(0.0, 0.0);
+        pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detectionData.detectionResults[0]);
+        opticalCoordinates = predictWorldCoordinatesOptical(detectionData.detectionResults[0], detectionData.cameraFrameSize, detectionData.detectionFrameSize);
+        outputFileUWB << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << std::endl;
+        outputFilePixelToReal << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << std::endl;
+        outputFileOptical << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << opticalCoordinates.x() << " " << opticalCoordinates.y() << std::endl;
     }
 
-    if (lastRecord && outputFile.is_open()) {
+    if (lastRecord && (outputFileUWB.is_open() || outputFilePixelToReal.is_open() || outputFileOptical.is_open())) {
         segmentFrameIDs.clear();
         segmentSizes.clear();
         segmentRepresentatives.clear();
-        outputFile.close();
+        if (outputFileUWB.is_open()) outputFileUWB.close();
+        if (outputFilePixelToReal.is_open()) outputFilePixelToReal.close();
+        if (outputFileOptical.is_open()) outputFileOptical.close();
     }
 
     emit exportProgressUpdated(rangeIndex);
@@ -184,17 +232,17 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
 
 void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
-    // // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0) in UWB coordinate system, Anchor 101 has coordinates (2.5, 0) in UWB corrdinate system
-    // QPointF anchor101Coordinates(0.627, 0);
-    // QPointF anchor102Coordinates(3.127, 0);
-    // QPointF anchor103Coordinates(3.127, 15);
-    // QPointF anchor104Coordinates(0.627, 15);
+    // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0) in UWB coordinate system, Anchor 101 has coordinates (2.5, 0) in UWB corrdinate system
+    QPointF anchor101Coordinates(0, 0);
+    QPointF anchor102Coordinates(2.5, 0);
+    QPointF anchor103Coordinates(2.5, 15);
+    QPointF anchor104Coordinates(0, 15);
 
     // Triangulation
-    QPointF anchor101Coordinates(3.127, 0);
-    QPointF anchor102Coordinates(0.627, 0);
-    QPointF anchor103Coordinates(0.627, 15);
-    QPointF anchor104Coordinates(3.127, 15);
+    // QPointF anchor101Coordinates(3.127, 2.08);
+    // QPointF anchor102Coordinates(0.627, 2.08);
+    // QPointF anchor103Coordinates(0.627, 17.08);
+    // QPointF anchor104Coordinates(3.127, 17.08);
 
     QMap<int, QPointF> anchorCoordinates;
     anchorCoordinates[101] = anchor101Coordinates;
@@ -230,19 +278,19 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
     double x = 0, y = 0;
 
-    if (anchor1ID == 103 || anchor1ID == 104) {
+    // if (anchor1ID == 103 || anchor1ID == 104) {
         x = std::abs((std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
         y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
-    } else if (anchor1ID == 101 || anchor1ID == 102) {
-        x = std::abs((std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
-        y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
-    }
+    // } else if (anchor1ID == 101 || anchor1ID == 102) {
+    //     x = std::abs((std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
+    //     y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
+    // }
 
 
     // }
 
     tag.coordinates.setX(x + 0.627); // Transform x-coordinate to camera/world coordinate system
-    tag.coordinates.setY(std::abs(y - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
+    tag.coordinates.setY(std::abs(y + 2.08 - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
 
     // qDebug() << "Tag ID: " << tag.tagID << "Distance 101: " << distanceAnchor1 << ", Distance 102: " << distanceAnchor2 << ";";
     // qDebug() << "Tag ID: " << tag.tagID << "Coordinates: (" << tag.coordinates.x() << ", " << tag.coordinates.y() << ");";
@@ -551,3 +599,108 @@ void DataProcessor::updateOriginalWithAdjustedValues() {
         *(distancesToAnalyzeOriginal[i]) = distancesToAnalyzeAdjusted[i];
     }
 }
+
+QPointF DataProcessor::predictWorldCoordinatesPixelToReal(const DetectionResult& detection) {
+
+    QPointF coordinates;
+
+    // XGBooster Regressor
+    DMatrixHandle dmatrix;
+    const float pixelCoordinates[] = {static_cast<float>(detection.bottomEdgeCenter.x()), static_cast<float>(detection.bottomEdgeCenter.y())};
+    XGDMatrixCreateFromMat(pixelCoordinates, 1, 2, NAN, &dmatrix);
+
+    // Make prediction
+    bst_ulong outLen;
+    const float* outResult;
+    XGBoosterPredict(booster, dmatrix, 0, 0, 0, &outLen, &outResult);
+
+    coordinates = QPointF(static_cast<double>(outResult[0]), static_cast<double>(outResult[1]));
+    // qDebug() << "Real-World coordinates predicted by model: (" << outResult[0] << ", " << outResult[1] << ")";
+
+    // Cleanup
+    XGDMatrixFree(dmatrix);
+
+    return coordinates;
+
+}
+
+QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& detection, const cv::Size& cameraFrameSize, const cv::Size& detectionFrameSize) {
+
+    QPointF coordinates;
+    int height = detection.bbox.height;
+
+    int imageX = detection.bottomEdgeCenter.x();
+    int imageY = detection.bottomEdgeCenter.y();
+
+    // Camera parameters are computed for 640x360 size of an image. Need a scale factor for 640x640.
+    double scaleX = detectionFrameSize.width / cameraFrameSize.width;
+    double scaleY = (double)detectionFrameSize.height / (double)cameraFrameSize.height;
+
+
+    double fxAdjusted = cameraMatrix[0] * scaleX;
+    double fyAdjusted = cameraMatrix[4] * scaleY;
+    double cxAdjusted = cameraMatrix[2] * scaleX;
+    double cyAdjusted = cameraMatrix[5] * scaleY;
+
+    double distance = (1.76 * fyAdjusted) / height ;
+
+    // cx and fx from intrinsic calibration
+    double worldX = ((imageX - cxAdjusted) * (distance / fxAdjusted));
+    // cy and fy from intrinsic calibration
+    double worldY = (imageY - cyAdjusted) * (distance / fyAdjusted);
+
+    // qDebug() << "Pixel Coordinates: (" << imageX << ", "<< imageY << ")";
+    // qDebug() << "   Real-World coordinates calculated by height: (" << worldX << ", " << distance << ")" << " Z: " << worldY;
+    coordinates = QPointF(worldX + 0.627 + 1.25, distance); // + 0.627 - distance between the left wall to the left anchor, + 1.25 - distance between the camera and the left anchor
+
+    return coordinates;
+}
+
+// Both predictions at the same time are possilbe. Optimized to detect people only once.
+int DataProcessor::setPredict(bool toPredict, PredictionType type) {
+
+    predictionType = type;
+    if (type == PredictionType::PredictionByPixelToReal) {
+
+        if (!booster) {
+            return -1;
+        }
+
+        isPredictionByPixelToRealRequested = toPredict;
+        emit requestChangePredictionButtonName(type, isPredictionByPixelToRealRequested);
+
+    } else if (type == PredictionType::PredictionByOptical) {
+        if (!optimalCameraMatrix.size()) {
+            return -1;
+        }
+
+        isPredictionByOpticalRequested = toPredict;
+        emit requestChangePredictionButtonName(type, isPredictionByOpticalRequested);
+    }
+
+    return 0;
+}
+
+int DataProcessor::loadPixelToRealModelParams(const QString& filename) {
+    int result = XGBoosterCreate(NULL, 0, &booster);
+    if (result == 0) {
+        result = XGBoosterLoadModel(booster, filename.toStdString().c_str());
+        if (result == -1) {
+            booster = nullptr;
+        }
+    }
+
+    return result;
+}
+
+void DataProcessor::setCameraMatrix(std::vector<double> &&matrix) {
+    cameraMatrix = std::move(matrix);
+}
+
+// void DataProcessor::setOptimalCameraMatrix(std::vector<double> &&matrix) {
+//     optimalCameraMatrix = std::move(matrix);
+// }
+
+// void DataProcessor::setDistCoeffs(std::vector<double> &&matrix) {
+//     distCoeffs = std::move(matrix);
+// }

@@ -26,11 +26,12 @@ IndoorPositioningSystemViewModel::IndoorPositioningSystemViewModel(QObject *pare
 
 
     connect(videoProcessor.get(), &VideoProcessor::seekingDone, this, &IndoorPositioningSystemViewModel::afterSeeking);
-    connect(dataProcessor.get(), &DataProcessor::exportProgressUpdated, this, &IndoorPositioningSystemViewModel::onExportProgressUpdated);
-    connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystemViewModel::onExportFinished, Qt::BlockingQueuedConnection);
-    connect(videoProcessor.get(), &VideoProcessor::requestChangePredictionButtonName, this, &IndoorPositioningSystemViewModel::onChangePredictionButtonName);
+    connect(videoProcessor.get(), &VideoProcessor::exportFinished, this, &IndoorPositioningSystemViewModel::onExportFinished, Qt::BlockingQueuedConnection);    
     connect(videoProcessor.get(), &VideoProcessor::humanDetectorNotInitialized, this, &IndoorPositioningSystemViewModel::onHumanDetectorNotInitialized);
+    connect(videoProcessor.get(), &VideoProcessor::distCoeffLoaded, this, &IndoorPositioningSystemViewModel::onDistCoeffsLoaded);
 
+    connect(dataProcessor.get(), &DataProcessor::requestChangePredictionButtonName, this, &IndoorPositioningSystemViewModel::onChangePredictionButtonName);
+    connect(dataProcessor.get(), &DataProcessor::exportProgressUpdated, this, &IndoorPositioningSystemViewModel::onExportProgressUpdated);
 
     connect(dataProcessor.get(), &DataProcessor::requestShowAvailableTags, this, &IndoorPositioningSystemViewModel::showAvailableTags);
     connect(dataProcessor.get(), &DataProcessor::requestShowAvailableAnchors, this, &IndoorPositioningSystemViewModel::showAvailableAnchors);
@@ -155,20 +156,25 @@ void IndoorPositioningSystemViewModel::loadHumanDetectorWeights(const QString& d
 
 void IndoorPositioningSystemViewModel::loadPixelToRealModelParams(const QString& selectedFile){
     // frameTimer->stop();
-
+    int result = -1;
     if (!selectedFile.isEmpty()) {
-        int result = videoProcessor->loadPixelToRealModelParams(selectedFile);
+        result = dataProcessor->loadPixelToRealModelParams(selectedFile);
         if (result == -1) {
             emit modelParamsLoaded(false, "Failed to load model!");
             toPredictByPixelToReal = false;
-        } else {
-            result = videoProcessor->setPredict(toPredictByPixelToReal, PredictionType::PredictionByPixelToReal);
+        } else if (toPredictByPixelToReal) {
+            result = videoProcessor->setPredict(toPredictByPixelToReal);
             if (result != -1) {
-                frameQueue.clear();
-                emit modelParamsLoaded(true, "Model was loaded successfully!");
+                result = dataProcessor->setPredict(toPredictByPixelToReal, PredictionType::PredictionByPixelToReal);
+                if (result != -1) {
+                    frameQueue.clear();
+                    emit modelParamsLoaded(true, "Model was loaded successfully!");
+                } else {
+                    emit modelParamsLoaded(false, "Failed to load model!");
+                    toPredictByPixelToReal = false;
+                }
             } else {
-                emit modelParamsLoaded(false, "Failed to load model!");
-                toPredictByPixelToReal = false;
+                emit humanDetectorNotInitialized();
             }
         }
     } else {
@@ -183,6 +189,8 @@ void IndoorPositioningSystemViewModel::loadPixelToRealModelParams(const QString&
 }
 
 void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QString& selectedFile){
+
+    int result = -1;
     if (selectedFile.isEmpty()) {
         emit intrinsicCalibrationParamsLoaded(false, "No file was selected!");
         return;
@@ -258,13 +266,22 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
         }
 
         if (cameraMatrix.size() == 9) {
-            videoProcessor->setCameraMatrix(std::move(cameraMatrix));
-            int result = videoProcessor->setPredict(toPredictionByOptical, PredictionType::PredictionByOptical);
-            if (result != -1) {
-                frameQueue.clear();
-                emit modelParamsLoaded(true, "Model was loaded successfully!");
-            } else {
-                emit modelParamsLoaded(true, "Failed to load model!");
+            videoProcessor->setCameraMatrix(cameraMatrix);
+            dataProcessor->setCameraMatrix(std::move(cameraMatrix));
+            if (toPredictionByOptical) {
+                result = videoProcessor->setPredict(toPredictionByOptical);
+                if (result != -1) {
+                    result = dataProcessor->setPredict(toPredictionByOptical, PredictionType::PredictionByOptical);
+                    if (result != -1) {
+                        frameQueue.clear();
+                        emit modelParamsLoaded(true, "Model was loaded successfully!");
+                    } else {
+                        emit modelParamsLoaded(false, "Failed to load model!");
+                        toPredictionByOptical = false;
+                    }
+                } else {
+                    emit humanDetectorNotInitialized();
+                }
             }
         } else {
             toPredictionByOptical = false;
@@ -482,23 +499,55 @@ void IndoorPositioningSystemViewModel::predict(PredictionType type) {
 
     if (type == PredictionType::PredictionByPixelToReal) {
         toPredictByPixelToReal = !toPredictByPixelToReal;
-        result = videoProcessor->setPredict(toPredictByPixelToReal, type);
+        result = videoProcessor->setPredict(toPredictByPixelToReal);
+        if (result != -1) {
+            result = dataProcessor->setPredict(toPredictByPixelToReal, type);
+            if (result != -1) {
+                frameQueue.clear();
+            } else if (result == -1) {
+                frameTimer->stop();
+                emit modelNotLoaded(type);
+                toPredictByPixelToReal = false;
+                frameTimer->start();
+            }
+        } else {
+            toPredictByPixelToReal = false;
+            emit humanDetectorNotInitialized();
+        }
     } else if (type == PredictionType::PredictionByOptical) {
         toPredictionByOptical = !toPredictionByOptical;
-        result = videoProcessor->setPredict(toPredictionByOptical, type);
+        result = videoProcessor->setPredict(toPredictionByOptical);
+        if (result != -1) {
+            result = dataProcessor->setPredict(toPredictionByOptical, type);
+            if (result != -1) {
+                frameQueue.clear();
+            } else if (result == -1) {
+                frameTimer->stop();
+                emit modelNotLoaded(type);
+                toPredictionByOptical = false;
+                frameTimer->start();
+            }
+        } else {
+            toPredictionByOptical = false;
+            emit humanDetectorNotInitialized();
+        }
+
     }
 
-    if (!result) {
-        frameQueue.clear();
-    } else if (result == -1) {
-        frameTimer->stop();
-        emit modelNotLoaded(type);
-        frameTimer->start();
-    } else if (result == -2) {
-        toPredictionByOptical = false;
-        toPredictByPixelToReal = false;
-    }
+    // if (!result) {
+    //     frameQueue.clear();
+    // } else if (result == -1) {
+    //     frameTimer->stop();
+    //     emit modelNotLoaded(type);
+    //     frameTimer->start();
+    // } else if (result == -2) {
+
+    // }
     videoProcessor->resumeProcessing();
+}
+
+void IndoorPositioningSystemViewModel::onDistCoeffsLoaded() {
+    emit distCoeffsLoaded();
 }
 
 // Analysis Window

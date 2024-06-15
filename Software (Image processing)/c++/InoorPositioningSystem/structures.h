@@ -207,6 +207,21 @@ struct DetectionResult {
 
 };
 
+struct DetectionData {
+    cv::Size cameraFrameSize, detectionFrameSize;
+    std::vector<DetectionResult> detectionResults;
+
+    DetectionData(const std::vector<DetectionResult>& detectionResults, const cv::Size& cameraFrameSize, const cv::Size& detectionFrameSize): detectionResults(detectionResults), cameraFrameSize(cameraFrameSize), detectionFrameSize(detectionFrameSize) {}
+
+    DetectionData(std::vector<DetectionResult>&& detectionResults, cv::Size&& cameraFrameSize, cv::Size&& detectionFrameSize): detectionResults(std::move(detectionResults)), cameraFrameSize(std::move(cameraFrameSize)), detectionFrameSize(std::move(detectionFrameSize)) {}
+
+    DetectionData(const DetectionData& other): detectionResults(other.detectionResults), cameraFrameSize(other.cameraFrameSize), detectionFrameSize(other.detectionFrameSize) {}
+
+    DetectionData(DetectionData&& other) noexcept: detectionResults(std::move(other.detectionResults)), cameraFrameSize(std::move(other.cameraFrameSize)), detectionFrameSize(std::move(other.detectionFrameSize)) {}
+
+};
+
+
 enum PredictionType {
     PredictionByOptical,
     PredictionByPixelToReal

@@ -15,8 +15,6 @@
 #include <QJsonArray>
 #include <QJsonValue>
 
-#include <xgboost/c_api.h>
-
 
 #include "dataprocessor.h"
 #include "structures.h"
@@ -43,14 +41,14 @@ public:
     void seekToFrame(int position);
     void setFrameRangeToExport(const std::vector<int>& frameRange, ExportType type);
     void stopExport();
-    int setPredict(bool toPredict, PredictionType type);
-    int loadPixelToRealModelParams(const QString& filename);
+    int setPredict(bool toPredict);
+    // int loadPixelToRealModelParams(const QString& filename);
     // int loadOptimalCameraMatrix(const QString& filename);
     void setOptimalCameraMatrix(std::vector<double>&& matrix);
-    void setCameraMatrix(std::vector<double>&& matrix);
+    void setCameraMatrix(std::vector<double> matrix);
     void setDistCoeffs(std::vector<double>&& matrix);
-    QPointF predictWorldCoordinatesPixelToReal(const DetectionResult& detection);
-    QPointF predictWorldCoordinatesOptical(const DetectionResult& detection);
+    // QPointF predictWorldCoordinatesPixelToReal(const DetectionResult& detection);
+    // QPointF predictWorldCoordinatesOptical(const DetectionResult& detection);
     void initHumanDetector(const std::string &modelConfiguration, const std::string &modelWeights);
 
 public slots:
@@ -64,11 +62,12 @@ signals:
     void finished();
     void seekingDone();
     void processingIsPaused();
-    void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage, std::vector<QPointF> pixelToRealCoordinates, std::vector<QPointF> opticalCoordinates);
-    void requestFindUWBMeasurementAndExport(int position, int rangeIndex, ExportType type, const std::vector<DetectionResult>& detectionsVector, bool lastRecord);
+    void requestFindUWBMeasurementAndEnqueue(int position, QImage qImage, DetectionData detectionData);
+    void requestFindUWBMeasurementAndExport(int position, int rangeIndex, ExportType type, const DetectionData& detectionData, bool lastRecord);
     void exportFinished(bool success);
-    void requestChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
+    // void requestChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
     void humanDetectorNotInitialized();
+    void distCoeffLoaded();
 
 private:
     ThreadSafeQueue& frameQueue;
@@ -76,8 +75,8 @@ private:
     HumanDetector humanDetector;
 
     std::unique_ptr<QThread> videoProcessorThread;
-    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport, isPredictionRequested, isPredictionByPixelToRealRequested, isPredictionByOpticalRequested;
-    std::atomic<PredictionType> predictionType;
+    std::atomic<bool> shouldStopVideoProcessing, isSeekRequested, isExportRequested, isPaused, shouldStopExport, isPredictionRequested;
+    // std::atomic<PredictionType> predictionType;
     QMutex mutex;
     QWaitCondition pauseCondition;
 
@@ -86,8 +85,8 @@ private:
     cv::Size cameraFrameSize, detectionFrameSize;
     cv::Mat frame;
     QImage qImage;
-    std::string filename;
-    std::string intrinsicCalibrationFilename;
+    // std::string filename;
+    // std::string intrinsicCalibrationFilename;
 
     double fps;
     double videoDuration;
@@ -99,14 +98,15 @@ private:
     // int frameByFrameExportEndPosition;
 
     std::vector<int> frameRangeToExport;
+    std::vector<double> optimalCameraMatrix, cameraMatrix, distCoeffs;
 
 
     void detectPeople(cv::Mat& frame, std::vector<DetectionResult>& detectionsVector);
 
-    BoosterHandle booster = nullptr;
-    std::vector<double> optimalCameraMatrix;
-    std::vector<double> cameraMatrix;
-    std::vector<double> distCoeffs;
+    // BoosterHandle booster = nullptr;
+    // std::vector<double> optimalCameraMatrix;
+    // std::vector<double> cameraMatrix;
+    // std::vector<double> distCoeffs;
 
 };
 

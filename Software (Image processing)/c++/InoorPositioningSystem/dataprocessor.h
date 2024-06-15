@@ -17,6 +17,8 @@
 #include <cmath>
 #include <filesystem>
 #include <QMutex>
+#include <xgboost/c_api.h>
+#include <opencv2/opencv.hpp>
 
 
 #include "threadsafequeue.h"
@@ -35,6 +37,13 @@ public:
     long long getVideoTimestampById(int id);
     int binarySearchVideoFrameID(const long long& uwbTimestamp);
     int getTotalFrames();
+    int setPredict(bool toPredict, PredictionType type);
+    int loadPixelToRealModelParams(const QString& filename);
+    // void setOptimalCameraMatrix(std::vector<double>&& matrix);
+    void setCameraMatrix(std::vector<double>&& matrix);
+    // void setDistCoeffs(std::vector<double>&& matrix);
+    QPointF predictWorldCoordinatesPixelToReal(const DetectionResult& detection);
+    QPointF predictWorldCoordinatesOptical(const DetectionResult& detection, const cv::Size& cameraFrameSize, const cv::Size& detectionFrameSize);
     // void loadModelParams(const QString& filename);
     // std::pair<double, double> predictWorldCoordinates(double xPixel, double yPixel);
 
@@ -43,8 +52,8 @@ public slots:
 
     // void loadData(const std::string& UWBDataFilename, const std::string& videoDataFilename);
     // Find uwb data based on video timestamp. Timestamp is given by position.
-    void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, std::vector<QPointF> pixelToRealCoordinates, std::vector<QPointF> opticalCoordinates);
-    void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const std::vector<DetectionResult>& detectionsVector, bool lastRecord);
+    void onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, DetectionData detectionData);
+    void onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex, ExportType type, const DetectionData& detectionData, bool lastRecord);
     void collectDataForTag(const QString &tagIDText);
     void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
     // void collectDataForAnchor(const int anchorID);
@@ -68,6 +77,7 @@ signals:
     void requestShowDatasetSegments(const std::vector<double>& segmentMeans);
     void requestShowOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
     void exportProgressUpdated(int progress);
+    void requestChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
 
 private:
     ThreadSafeQueue& frameQueue;
@@ -97,7 +107,17 @@ private:
     std::ifstream uwbDataFile;
     // QJsonObject polynRegressionParams;
 
-    std::ofstream outputFile;
+    std::atomic<PredictionType> predictionType;
+    std::atomic<bool> isPredictionByPixelToRealRequested, isPredictionByOpticalRequested;
+    std::string modelFilename;
+    std::string intrinsicCalibrationFilename;
+
+    BoosterHandle booster = nullptr;
+    std::vector<double> optimalCameraMatrix, cameraMatrix, distCoeffs;
+
+    std::ofstream outputFileUWB, outputFileOptical, outputFilePixelToReal;
+
+
 
 
     UWBData linearSearchUWB(const long long& frameTimestamp);

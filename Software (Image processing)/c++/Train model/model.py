@@ -214,7 +214,7 @@ y = data_loaded[["X_World", "Y_World"]]
 # print(y_pred)
 
 dtrain = xgb.DMatrix(X, label=y)
-params = {'max_depth': 2, 'eta': 1, 'objective': 'reg:squarederror'}
+# params = {'max_depth': 2, 'eta': 1, 'objective': 'reg:squarederror'}
 # params = {
 #     'max_depth': 3,
 #     'min_child_weight': 1,
@@ -229,13 +229,13 @@ params = {'max_depth': 2, 'eta': 1, 'objective': 'reg:squarederror'}
 # }
 
 # Deterministic
-# params = {
-#     'max_depth': 2,
-#     'eta': 1,
-#     'objective': 'reg:squarederror',
-#     'seed': 42,  # Set a fixed random seed
-#     'nthread': 1  # Set the number of threads to ensure consistency
-# }
+params = {
+    'max_depth': 2,
+    'eta': 1,
+    'objective': 'reg:squarederror',
+    'seed': 42,  # Set a fixed random seed
+    'nthread': 1  # Set the number of threads to ensure consistency
+}
 
 num_round = 100
 

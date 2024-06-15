@@ -106,6 +106,7 @@ private slots:
     void on_pushButton_Optical_Show_Coordinates_clicked();
 
     void on_pushButton_Pixel_to_Real_Show_Coordinates_clicked();
+    void onDistCoeffsLoaded();
 
 signals:
     // void frameIsReady(const UWBVideoData& data);

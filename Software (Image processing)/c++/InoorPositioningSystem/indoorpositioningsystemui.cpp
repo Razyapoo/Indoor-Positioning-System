@@ -12,7 +12,7 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
 
     // Layout organization
     // mainLayout = new QHBoxLayout(this);
-    setFixedSize(1720, 980);
+    setFixedSize(1720, 1000);
     viewModel = std::make_unique<IndoorPositioningSystemViewModel>(this);
     exportProgressDialog = nullptr;
 
@@ -33,6 +33,7 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::showWarning, this, &IndoorPositioningSystemUI::onShowWarning);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::requestChangePredictionButtonName, this, &IndoorPositioningSystemUI::onChangePredictionButtonName);
     connect(viewModel.get(), &IndoorPositioningSystemViewModel::humanDetectorNotInitialized, this, &IndoorPositioningSystemUI::onHumanDetectorNotInitialized);
+    connect(viewModel.get(), &IndoorPositioningSystemViewModel::distCoeffsLoaded, this, &IndoorPositioningSystemUI::onDistCoeffsLoaded);
 
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
 
@@ -296,7 +297,7 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Data_Analysis_clicked()
 void IndoorPositioningSystemUI::on_pushButton_UWB_Localization_clicked()
 {
     if (!uwbLocalizationWindow) {
-        std::vector<QPointF> anchorPositions = {QPointF(0.627, 0), QPointF(3.127, 0)};
+        std::vector<QPointF> anchorPositions = {QPointF(1.877, 0), QPointF(0.627, 2.08), QPointF(3.127, 2.08)};
 
         uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
@@ -432,7 +433,7 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Show_Coordinates_clicked()
 void IndoorPositioningSystemUI::on_pushButton_Optical_Show_Coordinates_clicked()
 {
     if (!opticalCoordinatesWindow) {
-        opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
+        opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Oprical Coordinates");
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateOpticalPosition, opticalCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
     }
 
@@ -443,7 +444,7 @@ void IndoorPositioningSystemUI::on_pushButton_Optical_Show_Coordinates_clicked()
 void IndoorPositioningSystemUI::on_pushButton_Pixel_to_Real_Show_Coordinates_clicked()
 {
     if (!pixelToRealCoordinatesWindow) {
-        pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
+        pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Pixel to Real Coordinates");
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updatePixelToRealPosition, pixelToRealCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
     }
 
@@ -451,3 +452,6 @@ void IndoorPositioningSystemUI::on_pushButton_Pixel_to_Real_Show_Coordinates_cli
 
 }
 
+void IndoorPositioningSystemUI::onDistCoeffLoaded() {
+    QMessageBox::information(this, "Distortion Coefficients", "Distortion coefficients are successfully applied to the image!");
+}

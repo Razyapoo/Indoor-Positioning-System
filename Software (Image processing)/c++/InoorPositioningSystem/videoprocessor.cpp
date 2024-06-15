@@ -54,20 +54,7 @@ void VideoProcessor::cleanup() {
         camera.release();
     }
 
-    XGBoosterFree(booster);
     videoProcessorThread->quit();
-}
-
-int VideoProcessor::loadPixelToRealModelParams(const QString& filename) {
-    int result = XGBoosterCreate(NULL, 0, &booster);
-    if (result == 0) {
-        result = XGBoosterLoadModel(booster, filename.toStdString().c_str());
-        if (result == -1) {
-            booster = nullptr;
-        }
-    }
-
-    return result;
 }
 
 void VideoProcessor::initHumanDetector(const std::string &modelConfiguration, const std::string &modelWeights) {
@@ -120,6 +107,11 @@ void VideoProcessor::processVideo() {
             if (cameraFrameSize.empty()) {
                 cameraFrameSize = frame.size();
             }
+
+            if (distCoeffs.size()) {
+                emit distCoeffLoaded();
+                cv::undistort(frame, frame, cameraMatrix, distCoeffs, optimalCameraMatrix);
+            }
         }
 
 
@@ -152,12 +144,14 @@ void VideoProcessor::processVideo() {
                         break;
                     }
 
-                    std::vector<DetectionResult> detectionsVector;
-                    detectPeople(frame, detectionsVector);
+                    std::vector<DetectionResult> detectionResults;
+                    detectPeople(frame, detectionResults);
+                    DetectionData detectionData(detectionResults, cameraFrameSize, detectionFrameSize);
+
                     if (i != (frameRangeToExport.size() - 1)) {
-                        emit requestFindUWBMeasurementAndExport(frameRangeToExport[i], i, exportType, detectionsVector, false);
+                        emit requestFindUWBMeasurementAndExport(frameRangeToExport[i], i, exportType, detectionData, false);
                     } else {
-                        emit requestFindUWBMeasurementAndExport(frameRangeToExport[i], i, exportType, detectionsVector, true);
+                        emit requestFindUWBMeasurementAndExport(frameRangeToExport[i], i, exportType, detectionData, true);
                         break;
                     }
                 }
@@ -174,36 +168,14 @@ void VideoProcessor::processVideo() {
             continue;
         } else {
 
-            QPointF pixelToRealCoordinates(0.0, 0.0);
-            QPointF opticalCoordinates(0.0, 0.0);
-            std::vector<QPointF> pixelToRealCoordinatesVector;
-            std::vector<QPointF> opticalCoordinatesVector;
+            std::vector<DetectionResult> detectionResults;
 
             if (isPredictionRequested)
-            {
-                std::vector<DetectionResult> detectionsVector;
-                detectPeople(frame, detectionsVector);
-
-                if (detectionsVector.size()) {
-                    // QPointF coordinates;
-                    for (const DetectionResult& detection: detectionsVector){
-                        if (isPredictionByPixelToRealRequested)
-                        {
-                            pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detection);
-                            pixelToRealCoordinatesVector.push_back(pixelToRealCoordinates);
-                        }
-
-                        if (isPredictionByOpticalRequested) {
-                            opticalCoordinates = predictWorldCoordinatesOptical(detection);
-                            opticalCoordinatesVector.push_back(opticalCoordinates);
-
-                        }
-                        // std::string coordinatesText = "(" + std::to_string(coordinates.first) + ", " + std::to_string(coordinates.second) + ")" ;
-                        // cv::putText(frame, coordinatesText, cv::Point(detection.bottomEdgeCenter.x(), detection.bottomEdgeCenter.y()), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 2);
-                        // qDebug() << coordinatesText;
-                    }
-                }
+            {    
+                detectPeople(frame, detectionResults);
             }
+
+            DetectionData detectionData(detectionResults, cameraFrameSize, detectionFrameSize);
 
 
             if (qImage.isNull() || qImage.width() != frame.cols || qImage.height() != frame.rows) {
@@ -215,7 +187,7 @@ void VideoProcessor::processVideo() {
             }
 
             // Decided to go with copy constructor and not move. Otherwise there is a need to sync videoProcessor and dataProcessor - may introduce difficulties in communication.
-            emit requestFindUWBMeasurementAndEnqueue(position, qImage, pixelToRealCoordinatesVector, opticalCoordinatesVector);
+            emit requestFindUWBMeasurementAndEnqueue(position, qImage, detectionData);
         }
     }
 
@@ -245,62 +217,6 @@ void VideoProcessor::detectPeople(cv::Mat& frame, std::vector<DetectionResult>& 
     }
 
     cv::resize(frame, frame, cameraFrameSize);
-}
-
-QPointF VideoProcessor::predictWorldCoordinatesPixelToReal(const DetectionResult& detection) {
-
-    QPointF coordinates;
-
-    // XGBooster Regressor
-    DMatrixHandle dmatrix;
-    const float pixelCoordinates[] = {static_cast<float>(detection.bottomEdgeCenter.x()), static_cast<float>(detection.bottomEdgeCenter.y())};
-    XGDMatrixCreateFromMat(pixelCoordinates, 1, 2, NAN, &dmatrix);
-
-    // Make prediction
-    bst_ulong outLen;
-    const float* outResult;
-    XGBoosterPredict(booster, dmatrix, 0, 0, 0, &outLen, &outResult);
-
-    coordinates = QPointF(static_cast<double>(outResult[0]), static_cast<double>(outResult[1]));
-    // qDebug() << "Real-World coordinates predicted by model: (" << outResult[0] << ", " << outResult[1] << ")";
-
-    // Cleanup
-    XGDMatrixFree(dmatrix);
-
-    return coordinates;
-
-}
-
-QPointF VideoProcessor::predictWorldCoordinatesOptical(const DetectionResult& detection) {
-
-    QPointF coordinates;
-    int height = detection.bbox.height;
-
-    int imageX = detection.bottomEdgeCenter.x();
-    int imageY = detection.bottomEdgeCenter.y();
-
-    // Camera parameters are computed for 640x360 size of an image. Need a scale factor for 640x640.
-    double scaleX = detectionFrameSize.width / cameraFrameSize.width;
-    double scaleY = (double)detectionFrameSize.height / (double)cameraFrameSize.height;
-
-
-    double fxAdjusted = cameraMatrix[0] * scaleX;
-    double fyAdjusted = cameraMatrix[4] * scaleY;
-    double cxAdjusted = cameraMatrix[2] * scaleX;
-    double cyAdjusted = cameraMatrix[5] * scaleY;
-
-    double distance = (1760 * fyAdjusted) / height;
-
-    // cx and fx from intrinsic calibration
-    double worldX = (imageX - cxAdjusted) * (distance / fxAdjusted);
-    // cy and fy from intrinsic calibration
-    double worldY = (imageY - cyAdjusted) * (distance / fyAdjusted);
-
-    // qDebug() << "Pixel Coordinates: (" << imageX << ", "<< imageY << ")";
-    // qDebug() << "   Real-World coordinates calculated by height: (" << worldX << ", " << distance << ")" << " Z: " << worldY;
-    coordinates = QPointF(worldX, worldY);
-
-    return coordinates;
 }
 
 void VideoProcessor::resumeProcessing() {
@@ -344,40 +260,20 @@ void VideoProcessor::stopExport() {
 }
 
 // Both predictions at the same time are possilbe. Optimized to detect people only once.
-int VideoProcessor::setPredict(bool toPredict, PredictionType type) {
+int VideoProcessor::setPredict(bool toPredict) {
 
     if (!humanDetector.isInitialized() && toPredict) {
-        emit humanDetectorNotInitialized();
-        return -2;
-
+        // emit humanDetectorNotInitialized();
+        return -1;
     }
 
-    predictionType = type;
-    if (type == PredictionType::PredictionByPixelToReal) {
-
-        if (!booster) {
-            return -1;
-        }
-
-        isPredictionByPixelToRealRequested = toPredict;
-        emit requestChangePredictionButtonName(type, isPredictionByPixelToRealRequested);
-
-    } else if (type == PredictionType::PredictionByOptical) {
-        if (!optimalCameraMatrix.size()) {
-            return -1;
-        }
-
-        isPredictionByOpticalRequested = toPredict;
-        emit requestChangePredictionButtonName(type, isPredictionByOpticalRequested);
-    }
     isPredictionRequested = toPredict;
 
     return 0;
 }
 
-
-void VideoProcessor::setCameraMatrix(std::vector<double> &&matrix) {
-    cameraMatrix = std::move(matrix);
+void VideoProcessor::setCameraMatrix(std::vector<double> matrix) {
+    cameraMatrix = matrix;
 }
 
 void VideoProcessor::setOptimalCameraMatrix(std::vector<double> &&matrix) {

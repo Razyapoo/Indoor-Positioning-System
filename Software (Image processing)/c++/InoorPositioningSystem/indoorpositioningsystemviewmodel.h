@@ -69,6 +69,7 @@ public slots:
     void afterSeeking();
     void onChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
     void onHumanDetectorNotInitialized();
+    void onDistCoeffsLoaded();
 
     // DataAnalysisWindow
     void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
@@ -111,6 +112,7 @@ signals:
     void requestChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
     void weightsLoaded(bool success, const QString& message);
     void humanDetectorNotInitialized();
+    void distCoeffsLoaded();
 
 
     // DataAnalysisWindow

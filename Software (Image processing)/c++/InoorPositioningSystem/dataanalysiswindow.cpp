@@ -671,6 +671,7 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
 
     if (exportSegementFramesForModelButton == nullptr) {
         exportSegementFramesForModelButton = new QPushButton("Export segment means for data model", this);
+        // exportSegementFramesForModelButton->adjustSize();
         connect(exportSegementFramesForModelButton, &QPushButton::clicked, this, &DataAnalysisWindow::requestSegmentFramesExport);
     }
 
@@ -678,7 +679,7 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
     chartsLayout->addWidget(updateOriginalWithAdjustedValuesButton);
     chartsLayout->setAlignment(updateOriginalWithAdjustedValuesButton, Qt::AlignLeft);
 
-    exportSegementFramesForModelButton->setFixedWidth(200);
+    exportSegementFramesForModelButton->setFixedWidth(300);
     chartsLayout->addWidget(exportSegementFramesForModelButton);
     chartsLayout->setAlignment(exportSegementFramesForModelButton, Qt::AlignLeft);
 

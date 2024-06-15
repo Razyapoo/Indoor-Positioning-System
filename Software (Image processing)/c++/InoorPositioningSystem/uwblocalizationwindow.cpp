@@ -17,7 +17,7 @@ UWBLocalizationWindow::UWBLocalizationWindow(QWidget *parent, const std::vector<
 
     // Center Grid at center of anchor figures (half of anchor rectangle side)
     QPointF shiftInPixels(10, 10);
-    drawGrid(5, 15, shiftInPixels);
+    drawGrid(5, 18, shiftInPixels);
 
     for(const QPointF position: anchorPositions) {
         addAnchor(position);
