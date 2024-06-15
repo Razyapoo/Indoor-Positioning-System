@@ -227,6 +227,16 @@ params = {'max_depth': 2, 'eta': 1, 'objective': 'reg:squarederror'}
 #     #     'gamma': 1.0,
 #     'objective': 'reg:squarederror'  # or 'binary:logistic' for classification
 # }
+
+# Deterministic
+# params = {
+#     'max_depth': 2,
+#     'eta': 1,
+#     'objective': 'reg:squarederror',
+#     'seed': 42,  # Set a fixed random seed
+#     'nthread': 1  # Set the number of threads to ensure consistency
+# }
+
 num_round = 100
 
 bst = xgb.train(params, dtrain, num_round)

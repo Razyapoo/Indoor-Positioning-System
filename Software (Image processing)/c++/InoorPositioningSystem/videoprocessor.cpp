@@ -187,13 +187,13 @@ void VideoProcessor::processVideo() {
                 if (detectionsVector.size()) {
                     // QPointF coordinates;
                     for (const DetectionResult& detection: detectionsVector){
-                        if (predictionType == PredictionType::PredictionByPixelToReal)
+                        if (isPredictionByPixelToRealRequested)
                         {
                             pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detection);
                             pixelToRealCoordinatesVector.push_back(pixelToRealCoordinates);
                         }
 
-                        if (predictionType == PredictionType::PredictionByOptical) {
+                        if (isPredictionByOpticalRequested) {
                             opticalCoordinates = predictWorldCoordinatesOptical(detection);
                             opticalCoordinatesVector.push_back(opticalCoordinates);
 
