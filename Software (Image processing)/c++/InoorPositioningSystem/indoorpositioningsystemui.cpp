@@ -45,9 +45,8 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
     ui->pushButton_UWB_Data_Analysis->setDisabled(true);
     ui->horizontalSlider_Duration->setDisabled(true);
 
-
-
-
+    ui->pushButton_Optical_Show_Coordinates->setDisabled(true);
+    ui->pushButton_Pixel_to_Real_Show_Coordinates->setDisabled(true);
 }
 
 IndoorPositioningSystemUI::~IndoorPositioningSystemUI()
@@ -165,6 +164,25 @@ void IndoorPositioningSystemUI::onVideoOpened(int totalFrames, long long videoDu
     QTime totalTime = QTime(0, 0).addMSecs(static_cast<int>(videoDuration));
     ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+    if (!uwbCoordinatesWindow) {
+        uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
+        connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
+
+        // Get the current position of the main window
+        QPoint currentWindowPos = this->pos();
+
+        // Define the offset
+        int offsetX = 1720;
+        int offsetY = 50;
+
+        // Calculate the new position for the uwbCoordinatesWindow
+        QPoint newWindowPos = currentWindowPos + QPoint(offsetX, offsetY);
+
+        // Move the uwbCoordinatesWindow to the new position
+        uwbCoordinatesWindow->move(newWindowPos);
+    }
+
+    uwbCoordinatesWindow->show();
 }
 
 void IndoorPositioningSystemUI::loadPixelToRealModelParams() {
@@ -336,11 +354,13 @@ void IndoorPositioningSystemUI::onShowExportProcessDialog() {
 }
 
 void IndoorPositioningSystemUI::onAcceptFrameByFrameExport() {
-    ui->horizontalSlider_Duration->setEnabled(false);
-    ui->pushButton_Export_Data->setEnabled(false);
-    ui->pushButton_UWB_Data_Analysis->setEnabled(false);
-    ui->pushButton_UWB_Localization->setEnabled(false);
-    ui->pushButton_Play_Pause->setEnabled(false);
+    ui->horizontalSlider_Duration->setDisabled(true);
+    ui->pushButton_Export_Data->setDisabled(true);
+    ui->pushButton_UWB_Data_Analysis->setDisabled(true);
+    ui->pushButton_UWB_Localization->setDisabled(true);
+    ui->pushButton_Play_Pause->setDisabled(true);
+    ui->pushButton_Predict_Optical->setDisabled(true);
+    ui->pushButton_Predict_Model->setDisabled(true);
 
     QTime startTime = exportTimeRangeSetter->startTimeEdit->time();
     QTime endTime = exportTimeRangeSetter->endTimeEdit->time();
@@ -403,17 +423,61 @@ void IndoorPositioningSystemUI::onChangePredictionButtonName(PredictionType type
         if (type == PredictionType::PredictionByPixelToReal) {
             ui->pushButton_Predict_Model->setText("Stop prediction");
             ui->pushButton_Predict_Model->setToolTip("Stop pixel to real prediction");
+            ui->pushButton_Pixel_to_Real_Show_Coordinates->setEnabled(true);
+            if (!pixelToRealCoordinatesWindow) {
+                pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Pixel to Real Coordinates");
+                connect(viewModel.get(), &IndoorPositioningSystemViewModel::updatePixelToRealPosition, pixelToRealCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
+                // Get the current position of the main window
+                QPoint currentWindowPos = this->pos();
+
+                // Define the offset
+                int offsetX = 1720;
+                int offsetY = 800;
+
+                // Calculate the new position for the uwbCoordinatesWindow
+                QPoint newWindowPos = currentWindowPos + QPoint(offsetX, offsetY);
+
+                // Move the uwbCoordinatesWindow to the new position
+                pixelToRealCoordinatesWindow->move(newWindowPos);
+            }
+            pixelToRealCoordinatesWindow->show();
         } else if (type == PredictionType::PredictionByOptical) {
             ui->pushButton_Predict_Optical->setText("Stop prediction");
-            ui->pushButton_Predict_Model->setToolTip("Stop optical method");
+            ui->pushButton_Predict_Optical->setToolTip("Stop optical method");
+            ui->pushButton_Optical_Show_Coordinates->setEnabled(true);
+            if (!opticalCoordinatesWindow) {
+                opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Oprical Coordinates");
+                connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateOpticalPosition, opticalCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
+                // Get the current position of the main window
+                QPoint currentWindowPos = this->pos();
+
+                // Define the offset
+                int offsetX = 1720;
+                int offsetY = 400;
+
+                // Calculate the new position for the uwbCoordinatesWindow
+                QPoint newWindowPos = currentWindowPos + QPoint(offsetX, offsetY);
+
+                // Move the uwbCoordinatesWindow to the new position
+                opticalCoordinatesWindow->move(newWindowPos);
+            }
+            opticalCoordinatesWindow->show();
         }
     } else {
         if (type == PredictionType::PredictionByPixelToReal) {
-            ui->pushButton_Predict_Model->setText("Pixel to real");
+            ui->pushButton_Predict_Model->setText("Start Pixel-to-real");
             ui->pushButton_Predict_Model->setToolTip("Start pixel to real model for coordinates prediction");
+            ui->pushButton_Pixel_to_Real_Show_Coordinates->setDisabled(true);
+            if (pixelToRealCoordinatesWindow && !pixelToRealCoordinatesWindow->isHidden()) {
+                pixelToRealCoordinatesWindow->hide();
+            }
         } else if (type == PredictionType::PredictionByOptical) {
-            ui->pushButton_Predict_Optical->setText("Optical method");
-            ui->pushButton_Predict_Model->setToolTip("Start optical method for coordinates estimation");
+            ui->pushButton_Predict_Optical->setText("Start Optical method");
+            ui->pushButton_Predict_Optical->setToolTip("Start optical method for coordinates estimation");
+            ui->pushButton_Optical_Show_Coordinates->setDisabled(true);
+            if (opticalCoordinatesWindow && !opticalCoordinatesWindow->isHidden()) {
+                opticalCoordinatesWindow->hide();
+            }
         }
     }
 }
@@ -427,6 +491,7 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Show_Coordinates_clicked()
     }
 
     uwbCoordinatesWindow->show();
+
 }
 
 
@@ -452,6 +517,6 @@ void IndoorPositioningSystemUI::on_pushButton_Pixel_to_Real_Show_Coordinates_cli
 
 }
 
-void IndoorPositioningSystemUI::onDistCoeffLoaded() {
+void IndoorPositioningSystemUI::onDistCoeffsLoaded() {
     QMessageBox::information(this, "Distortion Coefficients", "Distortion coefficients are successfully applied to the image!");
 }

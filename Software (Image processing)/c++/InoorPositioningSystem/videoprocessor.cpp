@@ -46,6 +46,7 @@ void VideoProcessor::init(const std::string& filename) {
     totalFrames = static_cast<int>(camera.get(cv::CAP_PROP_FRAME_COUNT));
     fps = camera.get(cv::CAP_PROP_FPS);
     videoDuration = totalFrames / fps;
+    isDistCoeffSet = false;
     resumeProcessing();
 }
 
@@ -108,9 +109,23 @@ void VideoProcessor::processVideo() {
                 cameraFrameSize = frame.size();
             }
 
-            if (distCoeffs.size()) {
-                emit distCoeffLoaded();
-                cv::undistort(frame, frame, cameraMatrix, distCoeffs, optimalCameraMatrix);
+            if (!distCoeffs.empty()) {
+                if (!isDistCoeffSet) {
+                    emit distCoeffLoaded();
+                    isDistCoeffSet = true;
+                }
+                cv::Mat tempFrame;
+                // std::cout << "Frame connent before undistortion: " << frame;
+                // cv::undistort(frame, tempFrame, cameraMatrix, distCoeffs, optimalCameraMatrix);
+                // Initialize the undistortion and rectification maps
+                cv::Mat map1, map2;
+                cv::initUndistortRectifyMap(cameraMatrix, distCoeffs, cv::Mat(), optimalCameraMatrix, frame.size(), CV_16SC2, map1, map2);
+
+                // Undistort the image using remap
+                // cv::Mat dst;
+                cv::remap(frame, tempFrame, map1, map2, cv::INTER_LINEAR);
+                frame = tempFrame;
+                // std::cout << "frame connent afetr: " << frame;
             }
         }
 
@@ -272,14 +287,27 @@ int VideoProcessor::setPredict(bool toPredict) {
     return 0;
 }
 
-void VideoProcessor::setCameraMatrix(std::vector<double> matrix) {
+void VideoProcessor::setCameraMatrix(const cv::Mat& matrix) {
+    // cameraMatrix = cv::Mat(3, 3, CV_64F);
+    // cameraMatrix = cv::Mat(matrix).reshape(1, 3);
+    // std::cout << "cameraMatrix:\n" << cameraMatrix << std::endl;
     cameraMatrix = matrix;
 }
 
-void VideoProcessor::setOptimalCameraMatrix(std::vector<double> &&matrix) {
-    optimalCameraMatrix = std::move(matrix);
+void VideoProcessor::setOptimalCameraMatrix(const cv::Mat& matrix) {
+    // optimalCameraMatrix = cv::Mat(3, 3, CV_64F);
+    // optimalCameraMatrix = cv::Mat(matrix).reshape(1, 3);
+    // std::cout << "optimalCameraMatrix:\n" << optimalCameraMatrix.at<double>(0, 0) << std::endl;
+    // std::cout << "optimalCameraMatrix:\n" << optimalCameraMatrix.at<double>(0, 1) << std::endl;
+    optimalCameraMatrix = matrix;
 }
 
-void VideoProcessor::setDistCoeffs(std::vector<double> &&matrix) {
-    distCoeffs = std::move(matrix);
+void VideoProcessor::setDistCoeffs(const cv::Mat& matrix) {
+    // distCoeffs.create(1, 5, CV_64F);
+    // for (int i = 0; i < matrix.size(); ++i) {
+    //     distCoeffs.at<double>(0, i) = matrix[i];
+    // }
+    distCoeffs = matrix;
+    // std::cout << "dist: " << distCoeffs << std::endl;
+    // std::cout << "1st: " << distCoeffs.at<double>(0, 1) << std::endl;
 }

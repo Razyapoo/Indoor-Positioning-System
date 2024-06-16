@@ -61,6 +61,7 @@ public slots:
     void validateThresholdInput();
     void showDatasetSegments(const std::vector<double>& datasetSegmentMeans);
     void showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
+    void uploadReferenceValues();
     // void attachReferenceValues();
     // void calculateLinearRegression();
 
@@ -74,6 +75,7 @@ signals:
     void requestCalculatePolynomialRegression(const std::vector<double>& referenceValues);
     void requestUpdateOriginalWithAdjustedValues();
     void requestSegmentFramesExport();
+    // void requestUploadReferenceValues(std::vector<double> datasetSegmentMeans);
 
     // void requestCalculateLinearRegression();
 
@@ -126,9 +128,12 @@ private:
     QLineEdit *thresholdInputText;
     QPushButton *thresholdInputButton;
 
+    std::vector<double> segmentMeans;
     QVBoxLayout* segmentMeansLayout;
-    std::vector<QLabel*> segmentMeansLabels;
+    QVector<QLabel*> segmentMeansLabels;
 
+    QVector<QPushButton*> adjustReferenceValueButtons;
+    QPushButton* uploadReferenceValuesButton;
     QPushButton* calculatePolynomialRegressionButton;
 
     QChart *chartOriginalVsAdjustedDistances;

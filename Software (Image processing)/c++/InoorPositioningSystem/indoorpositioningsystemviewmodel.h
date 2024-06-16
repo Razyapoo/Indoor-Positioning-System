@@ -23,6 +23,7 @@
 #include <QRegularExpression>
 
 #include <QLabel>
+#include <opencv2/opencv.hpp>
 
 
 #include <memory>

@@ -40,7 +40,7 @@ public:
     int setPredict(bool toPredict, PredictionType type);
     int loadPixelToRealModelParams(const QString& filename);
     // void setOptimalCameraMatrix(std::vector<double>&& matrix);
-    void setCameraMatrix(std::vector<double>&& matrix);
+    void setCameraMatrix(const cv::Mat& matrix);
     // void setDistCoeffs(std::vector<double>&& matrix);
     QPointF predictWorldCoordinatesPixelToReal(const DetectionResult& detection);
     QPointF predictWorldCoordinatesOptical(const DetectionResult& detection, const cv::Size& cameraFrameSize, const cv::Size& detectionFrameSize);
@@ -113,7 +113,7 @@ private:
     std::string intrinsicCalibrationFilename;
 
     BoosterHandle booster = nullptr;
-    std::vector<double> optimalCameraMatrix, cameraMatrix, distCoeffs;
+    cv::Mat optimalCameraMatrix, cameraMatrix, distCoeffs;
 
     std::ofstream outputFileUWB, outputFileOptical, outputFilePixelToReal;
 

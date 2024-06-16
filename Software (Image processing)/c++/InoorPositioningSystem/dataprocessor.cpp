@@ -208,14 +208,15 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         }
 
         calculateUWBCoordinates(segmentRepresentatives[rangeIndex]);
+        outputFileUWB << frameIndex << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << std::endl;
 
+        // As for now without check whether everything needed for pixel-to-real and optical methods is loaded. Only hard export. Export only for analysis purpose. Otherwise should be commented.
         QPointF pixelToRealCoordinates(0.0, 0.0);
         QPointF opticalCoordinates(0.0, 0.0);
         pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detectionData.detectionResults[0]);
         opticalCoordinates = predictWorldCoordinatesOptical(detectionData.detectionResults[0], detectionData.cameraFrameSize, detectionData.detectionFrameSize);
-        outputFileUWB << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << std::endl;
-        outputFilePixelToReal << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << std::endl;
-        outputFileOptical << frameIndex << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << " " << opticalCoordinates.x() << " " << opticalCoordinates.y() << std::endl;
+        outputFilePixelToReal << frameIndex << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << " " << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << std::endl;
+        outputFileOptical << frameIndex << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << " " << opticalCoordinates.x() << " " << opticalCoordinates.y() << std::endl;
     }
 
     if (lastRecord && (outputFileUWB.is_open() || outputFilePixelToReal.is_open() || outputFileOptical.is_open())) {
@@ -637,10 +638,10 @@ QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& det
     double scaleY = (double)detectionFrameSize.height / (double)cameraFrameSize.height;
 
 
-    double fxAdjusted = cameraMatrix[0] * scaleX;
-    double fyAdjusted = cameraMatrix[4] * scaleY;
-    double cxAdjusted = cameraMatrix[2] * scaleX;
-    double cyAdjusted = cameraMatrix[5] * scaleY;
+    double fxAdjusted = cameraMatrix.at<double>(0, 0) * scaleX;
+    double fyAdjusted = cameraMatrix.at<double>(1, 1) * scaleY;
+    double cxAdjusted = cameraMatrix.at<double>(0, 2) * scaleX;
+    double cyAdjusted = cameraMatrix.at<double>(1, 2) * scaleY;
 
     double distance = (1.76 * fyAdjusted) / height ;
 
@@ -670,7 +671,8 @@ int DataProcessor::setPredict(bool toPredict, PredictionType type) {
         emit requestChangePredictionButtonName(type, isPredictionByPixelToRealRequested);
 
     } else if (type == PredictionType::PredictionByOptical) {
-        if (!optimalCameraMatrix.size()) {
+        // if (!cameraMatrix.size()) {
+        if (cameraMatrix.empty()) {
             return -1;
         }
 
@@ -693,8 +695,8 @@ int DataProcessor::loadPixelToRealModelParams(const QString& filename) {
     return result;
 }
 
-void DataProcessor::setCameraMatrix(std::vector<double> &&matrix) {
-    cameraMatrix = std::move(matrix);
+void DataProcessor::setCameraMatrix(const cv::Mat& matrix) {
+    cameraMatrix = matrix;
 }
 
 // void DataProcessor::setOptimalCameraMatrix(std::vector<double> &&matrix) {

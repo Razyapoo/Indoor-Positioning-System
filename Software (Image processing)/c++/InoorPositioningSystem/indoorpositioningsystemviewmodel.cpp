@@ -196,100 +196,164 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
         return;
     }
 
-    QFile file(selectedFile);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QString warningMessage = QString("Error opening file: %1").arg(file.errorString());
+    // QFile file(selectedFile);
+    // if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    //     QString warningMessage = QString("Error opening file: %1").arg(file.errorString());
+    //     emit intrinsicCalibrationParamsLoaded(false, warningMessage);
+    //     toPredictionByOptical = false;
+    //     return;
+    // }
+    std::string tempFileName = selectedFile.toStdString();
+    cv::FileStorage fs(tempFileName, cv::FileStorage::READ);
+    if (!fs.isOpened()) {
+        QString warningMessage = QString("Error opening file: %1").arg(selectedFile);
         emit intrinsicCalibrationParamsLoaded(false, warningMessage);
         toPredictionByOptical = false;
         return;
     }
 
-    bool foundOptimalMatrixParameters = false;
-    bool foundCameraMatrixParameters = false;
-    bool foundDistCoeffsParameters = false;
+    // bool foundOptimalMatrixParameters = false;
+    // bool foundCameraMatrixParameters = false;
+    // bool foundDistCoeffsParameters = false;
 
-    std::vector<double> optimalCameraMatrix;
-    std::vector<double> cameraMatrix;
-    std::vector<double> distCoeffs;
+    // std::vector<double> optimalCameraMatrix;
+    // std::vector<double> cameraMatrix;
+    // std::vector<double> distCoeffs;
 
-    QXmlStreamReader xmlReader(&file);
-    while (!xmlReader.atEnd() && !xmlReader.hasError()) {
-        QXmlStreamReader::TokenType token = xmlReader.readNext();
-        if (token == QXmlStreamReader::StartElement) {
-            auto const bytes = xmlReader.name().toUtf8();
-            std::string tag = std::string(bytes.constData(), bytes.length());
-            if (tag == "optimalCameraMatrix") {
-                foundOptimalMatrixParameters = true;
-            } else if (tag == "cameraMatrix") {
-                foundCameraMatrixParameters = true;
-            } else if (tag == "distortionCoeffs") {
-                foundDistCoeffsParameters = true;
-            } else if (tag == "data") {
-                QString data = xmlReader.readElementText();
-                static QRegularExpression pattern("\\s+");
-                QStringList values = data.split(pattern, Qt::SkipEmptyParts);
-                if (foundOptimalMatrixParameters) {
-                    for (const QString& value : values) {
-                        optimalCameraMatrix.push_back(value.toDouble());
-                    }
-                    foundOptimalMatrixParameters = false;
-                } else if (foundCameraMatrixParameters) {
-                    for (const QString& value : values) {
-                        cameraMatrix.push_back(value.toDouble());
-                    }
-                    foundCameraMatrixParameters = false;
-                } else if (foundDistCoeffsParameters) {
-                    for (const QString& value : values) {
-                        distCoeffs.push_back(value.toDouble());
-                    }
-                    foundDistCoeffsParameters = false;
-                }
-            }
-        }
-    }
+    // QXmlStreamReader xmlReader(&file);
+    // while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+    //     QXmlStreamReader::TokenType token = xmlReader.readNext();
+    //     if (token == QXmlStreamReader::StartElement) {
+    //         auto const bytes = xmlReader.name().toUtf8();
+    //         std::string tag = std::string(bytes.constData(), bytes.length());
+    //         if (tag == "optimalCameraMatrix") {
+    //             foundOptimalMatrixParameters = true;
+    //         } else if (tag == "cameraMatrix") {
+    //             foundCameraMatrixParameters = true;
+    //         } else if (tag == "distortionCoeffs") {
+    //             foundDistCoeffsParameters = true;
+    //         } else if (tag == "data") {
+    //             QString data = xmlReader.readElementText();
+    //             static QRegularExpression pattern("\\s+");
+    //             QStringList values = data.split(pattern, Qt::SkipEmptyParts);
+    //             if (foundOptimalMatrixParameters) {
+    //                 for (const QString& value : values) {
+    //                     optimalCameraMatrix.push_back(value.toDouble());
+    //                 }
+    //                 foundOptimalMatrixParameters = false;
+    //             } else if (foundCameraMatrixParameters) {
+    //                 for (const QString& value : values) {
+    //                     cameraMatrix.push_back(value.toDouble());
+    //                 }
+    //                 foundCameraMatrixParameters = false;
+    //             } else if (foundDistCoeffsParameters) {
+    //                 for (const QString& value : values) {
+    //                     distCoeffs.push_back(value.toDouble());
+    //                 }
+    //                 foundDistCoeffsParameters = false;
+    //             }
+    //         }
+    //     }
+    // }
 
-    if (xmlReader.hasError()) {
-        QString warningMessage = QString("Error parsing XML: %1").arg(xmlReader.errorString());
-        emit intrinsicCalibrationParamsLoaded(false, warningMessage);
-        toPredictionByOptical = false;
+    // if (xmlReader.hasError()) {
+    //     QString warningMessage = QString("Error parsing XML: %1").arg(xmlReader.errorString());
+    //     emit intrinsicCalibrationParamsLoaded(false, warningMessage);
+    //     toPredictionByOptical = false;
+    // } else {
+    //     if (optimalCameraMatrix.size() == 9) {
+    //         videoProcessor->setOptimalCameraMatrix(optimalCameraMatrix);
+    //     } else {
+    //         emit intrinsicCalibrationParamsLoaded(false, "Optional. Optimal camera matrix parameters were not found or are incomplete.");
+    //     }
+
+    //     if (distCoeffs.size() == 5) { // Assuming 5 distortion coefficients
+    //         videoProcessor->setDistCoeffs(distCoeffs);
+    //     } else {
+    //         emit intrinsicCalibrationParamsLoaded(false, "Optional. Distortion coefficients were not found or are incomplete.");
+    //     }
+
+    //     if (cameraMatrix.size() == 9) {
+    //         videoProcessor->setCameraMatrix(cameraMatrix);
+    //         dataProcessor->setCameraMatrix(cameraMatrix);
+    //         if (toPredictionByOptical) {
+    //             result = videoProcessor->setPredict(toPredictionByOptical);
+    //             if (result != -1) {
+    //                 result = dataProcessor->setPredict(toPredictionByOptical, PredictionType::PredictionByOptical);
+    //                 if (result != -1) {
+    //                     frameQueue.clear();
+    //                     emit modelParamsLoaded(true, "Model was loaded successfully!");
+    //                 } else {
+    //                     emit modelParamsLoaded(false, "Failed to load model!");
+    //                     toPredictionByOptical = false;
+    //                 }
+    //             } else {
+    //                 emit humanDetectorNotInitialized();
+    //             }
+    //         }
+    //     } else {
+    //         toPredictionByOptical = false;
+    //         emit intrinsicCalibrationParamsLoaded(false, "Mandatory. Camera matrix parameters were not found or are incomplete. Method cannot be started.");
+    //     }
+    // }
+
+    cv::Mat cameraMatrix, optimalCameraMatrix, distCoeffs;
+
+    // if (fs["cameraMatrix"].isNone()) {
+    //     std::cerr << "Error: One or more required tags are missing in the XML file." << std::endl;
+    //     return;
+    // } else {}
+
+    fs["cameraMatrix"] >> cameraMatrix;
+    fs["optimalCameraMatrix"] >> optimalCameraMatrix;
+    fs["distortionCoeffs"] >> distCoeffs;
+    fs.release();
+
+    // if (cameraMatrix.empty() && cameraMatrix.total() == 9) {
+    //     emit intrinsicCalibrationParamsLoaded(false, "Mandatory. Camera matrix parameters were not found or are incomplete. Method cannot be started.");
+    //     toPredictionByOptical = false;
+    //     return;
+    // }
+
+    if (!optimalCameraMatrix.empty() && optimalCameraMatrix.total() == 9) {
+        videoProcessor->setOptimalCameraMatrix(optimalCameraMatrix);
     } else {
-        if (optimalCameraMatrix.size() == 9) {
-            videoProcessor->setOptimalCameraMatrix(std::move(optimalCameraMatrix));
-        } else {
-            emit intrinsicCalibrationParamsLoaded(false, "Optional. Optimal camera matrix parameters were not found or are incomplete.");
-        }
-
-        if (distCoeffs.size() == 5) { // Assuming 5 distortion coefficients
-            videoProcessor->setDistCoeffs(std::move(distCoeffs));
-        } else {
-            emit intrinsicCalibrationParamsLoaded(false, "Optional. Distortion coefficients were not found or are incomplete.");
-        }
-
-        if (cameraMatrix.size() == 9) {
-            videoProcessor->setCameraMatrix(cameraMatrix);
-            dataProcessor->setCameraMatrix(std::move(cameraMatrix));
-            if (toPredictionByOptical) {
-                result = videoProcessor->setPredict(toPredictionByOptical);
-                if (result != -1) {
-                    result = dataProcessor->setPredict(toPredictionByOptical, PredictionType::PredictionByOptical);
-                    if (result != -1) {
-                        frameQueue.clear();
-                        emit modelParamsLoaded(true, "Model was loaded successfully!");
-                    } else {
-                        emit modelParamsLoaded(false, "Failed to load model!");
-                        toPredictionByOptical = false;
-                    }
-                } else {
-                    emit humanDetectorNotInitialized();
-                }
-            }
-        } else {
-            toPredictionByOptical = false;
-            emit intrinsicCalibrationParamsLoaded(false, "Mandatory. Camera matrix parameters were not found or are incomplete. Method cannot be started.");
-        }
+        emit intrinsicCalibrationParamsLoaded(false, "Optional. Optimal camera matrix parameters were not found or are incomplete.");
     }
 
-    file.close();
+
+    if (!distCoeffs.empty() && distCoeffs.total() == 5) { // Assuming 5 distortion coefficients
+        videoProcessor->setDistCoeffs(distCoeffs);
+    } else {
+        videoProcessor->setDistCoeffs(distCoeffs);
+        emit intrinsicCalibrationParamsLoaded(false, "Optional. Distortion coefficients were not found or are incomplete.");
+    }
+
+    if (!cameraMatrix.empty() && cameraMatrix.total() == 9) {
+        videoProcessor->setCameraMatrix(cameraMatrix);
+        dataProcessor->setCameraMatrix(cameraMatrix);
+        if (toPredictionByOptical) {
+            result = videoProcessor->setPredict(toPredictionByOptical);
+            if (result != -1) {
+                result = dataProcessor->setPredict(toPredictionByOptical, PredictionType::PredictionByOptical);
+                if (result != -1) {
+                    frameQueue.clear();
+                    emit modelParamsLoaded(true, "Model was loaded successfully!");
+                } else {
+                    emit modelParamsLoaded(false, "Failed to load model!");
+                    toPredictionByOptical = false;
+                }
+            } else {
+                emit humanDetectorNotInitialized();
+            }
+        }
+    } else {
+        toPredictionByOptical = false;
+        emit intrinsicCalibrationParamsLoaded(false, "Mandatory. Camera matrix parameters were not found or are incomplete. Method cannot be started.");
+        return;
+    }
+
+    // file.close();
 
     if (isVideoOpened && _isPlaying) {
         frameTimer->start();
@@ -499,7 +563,8 @@ void IndoorPositioningSystemViewModel::predict(PredictionType type) {
 
     if (type == PredictionType::PredictionByPixelToReal) {
         toPredictByPixelToReal = !toPredictByPixelToReal;
-        result = videoProcessor->setPredict(toPredictByPixelToReal);
+        bool toPredict = toPredictionByOptical || toPredictByPixelToReal;
+        result = videoProcessor->setPredict(toPredict);
         if (result != -1) {
             result = dataProcessor->setPredict(toPredictByPixelToReal, type);
             if (result != -1) {
@@ -516,7 +581,8 @@ void IndoorPositioningSystemViewModel::predict(PredictionType type) {
         }
     } else if (type == PredictionType::PredictionByOptical) {
         toPredictionByOptical = !toPredictionByOptical;
-        result = videoProcessor->setPredict(toPredictionByOptical);
+        bool toPredict = toPredictionByOptical || toPredictByPixelToReal;
+        result = videoProcessor->setPredict(toPredict);
         if (result != -1) {
             result = dataProcessor->setPredict(toPredictionByOptical, type);
             if (result != -1) {

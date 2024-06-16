@@ -44,9 +44,9 @@ public:
     int setPredict(bool toPredict);
     // int loadPixelToRealModelParams(const QString& filename);
     // int loadOptimalCameraMatrix(const QString& filename);
-    void setOptimalCameraMatrix(std::vector<double>&& matrix);
-    void setCameraMatrix(std::vector<double> matrix);
-    void setDistCoeffs(std::vector<double>&& matrix);
+    void setOptimalCameraMatrix(const cv::Mat& matrix);
+    void setCameraMatrix(const cv::Mat& matrix);
+    void setDistCoeffs(const cv::Mat& matrix);
     // QPointF predictWorldCoordinatesPixelToReal(const DetectionResult& detection);
     // QPointF predictWorldCoordinatesOptical(const DetectionResult& detection);
     void initHumanDetector(const std::string &modelConfiguration, const std::string &modelWeights);
@@ -98,7 +98,8 @@ private:
     // int frameByFrameExportEndPosition;
 
     std::vector<int> frameRangeToExport;
-    std::vector<double> optimalCameraMatrix, cameraMatrix, distCoeffs;
+    cv::Mat optimalCameraMatrix, cameraMatrix, distCoeffs;
+    bool isDistCoeffSet;
 
 
     void detectPeople(cv::Mat& frame, std::vector<DetectionResult>& detectionsVector);

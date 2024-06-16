@@ -7,10 +7,10 @@ bool StereoCalibrator::intrinsicParamsSaved = false, StereoCalibrator::extrinsic
 std::string StereoCalibrator::intrinsicFilePath = "", StereoCalibrator::extrinsicFilePath = "", StereoCalibrator::rectificationFilePath = "";
 uint8_t StereoCalibrator::chessboardHeight = 6, StereoCalibrator::chessboardWidth = 9;
 uint16_t StereoCalibrator::imageCounter = 0;
-float StereoCalibrator::squareSize = 0.024f, StereoCalibrator::alpha = 0;
+float StereoCalibrator::squareSize = 24.0f, StereoCalibrator::alpha = 0.97;
 const cv::Size StereoCalibrator::chessboardSize = cv::Size(StereoCalibrator::chessboardHeight, StereoCalibrator::chessboardWidth);
 const cv::Size StereoCalibrator::imageSize = cv::Size(640, 360);
-const cv::TermCriteria StereoCalibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001);
+const cv::TermCriteria StereoCalibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 30, 0.01); //cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001
 const cv::TermCriteria StereoCalibrator::criteriaStereo = cv::TermCriteria(cv::TermCriteria::COUNT, 100, 1e-5);
 const int StereoCalibrator::numberOfCells = StereoCalibrator::chessboardHeight * StereoCalibrator::chessboardWidth;
 
@@ -171,8 +171,19 @@ void StereoCalibrator::intrinsicCalibration()
     std::cout << "  x: exit" << std::endl;
     std::cout << "  s: save intrinsic parameters" << std::endl;
 
+    std::cout << "Camera Matrix: " << cameraMatrixLeft << std::endl;
+    std::cout << "Optimal Camera Matrix: " << optimalCameraMatrixLeft << std::endl;
+    std::cout << "Dist coeffs: " << distortionCoeffsLeft << std::endl;
+    cv::Mat undistortedImage;
+
     while (true)
     {
+        
+        
+        imageLeft = StereoCamera::getLeftFrame();
+        cv::undistort(imageLeft, undistortedImage, cameraMatrixLeft, distortionCoeffsLeft, optimalCameraMatrixLeft);
+        // std::cout << "Image size: " << imageLeft.size() << std::endl;
+        cv::imshow("Left Frame undistorted", undistortedImage);
 
         key = cv::waitKey(1);
 

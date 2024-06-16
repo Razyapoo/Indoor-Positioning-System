@@ -518,9 +518,9 @@
    <widget class="QPushButton" name="pushButton_Predict_Model">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1030</x>
       <y>920</y>
-      <width>141</width>
+      <width>151</width>
       <height>25</height>
      </rect>
     </property>
@@ -528,15 +528,15 @@
      <string>Start pixel to real model for coordinates prediction</string>
     </property>
     <property name="text">
-     <string>Run Pixel-to-real</string>
+     <string>Start Pixel-to-real</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_Predict_Optical">
     <property name="geometry">
      <rect>
-      <x>1040</x>
+      <x>1030</x>
       <y>879</y>
-      <width>141</width>
+      <width>151</width>
       <height>25</height>
      </rect>
     </property>
@@ -544,7 +544,7 @@
      <string>Start optical method for coordinates estimation</string>
     </property>
     <property name="text">
-     <string>Run Optical method</string>
+     <string>Start Optical method</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_Tag_measurement_time_1">
@@ -628,7 +628,7 @@
    <widget class="QLabel" name="label_Predict_coordinates">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>740</x>
       <y>880</y>
       <width>281</width>
       <height>20</height>
@@ -662,7 +662,7 @@
    <widget class="QLabel" name="label_Predict_coordinates_2">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>700</x>
       <y>920</y>
       <width>321</width>
       <height>20</height>

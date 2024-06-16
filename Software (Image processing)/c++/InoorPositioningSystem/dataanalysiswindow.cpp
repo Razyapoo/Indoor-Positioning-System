@@ -67,6 +67,7 @@ DataAnalysisWindow::DataAnalysisWindow(QWidget *parent, IndoorPositioningSystemV
     chartViewThresholdInput = nullptr;
     chartViewOriginalVsAdjustedDistances = nullptr;
     calculatePolynomialRegressionButton = nullptr;
+    uploadReferenceValuesButton = nullptr;
     updateOriginalWithAdjustedValuesButton = nullptr;
     exportSegementFramesForModelButton = nullptr;
     chartDistancesVsTimestamps = nullptr;
@@ -299,6 +300,9 @@ void DataAnalysisWindow::showPlotDistancesVsTimestamps(const std::vector<long lo
                 delete widget;
                 chartViewOriginalVsAdjustedDistances = nullptr;
                 continue;
+            } else if (widget == uploadReferenceValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
             } else if (widget == calculatePolynomialRegressionButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
@@ -401,6 +405,9 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
                 delete widget;
                 chartViewOriginalVsAdjustedDistances = nullptr;
                 continue;
+            } else if (widget == uploadReferenceValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
             } else if (widget == calculatePolynomialRegressionButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
@@ -493,6 +500,9 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
                 delete widget;
                 chartViewOriginalVsAdjustedDistances = nullptr;
                 continue;
+            } else if (widget == uploadReferenceValuesButton) {
+                chartsLayout->removeWidget(widget);
+                continue;
             } else if (widget == calculatePolynomialRegressionButton) {
                 chartsLayout->removeWidget(widget);
                 continue;
@@ -524,8 +534,16 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
     referenceValues.clear();
     referenceValues.reserve(datasetSegmentMeans.size());
 
+    segmentMeansLabels.clear();
+    segmentMeansLabels.reserve(datasetSegmentMeans.size());
+
+    adjustReferenceValueButtons.clear();
+    adjustReferenceValueButtons.reserve(datasetSegmentMeans.size());
+
+    segmentMeans = datasetSegmentMeans;
+
     int segmentNumber = 1;
-    for (const double mean : datasetSegmentMeans)
+    for (const double mean : segmentMeans)
     {
        referenceValues.push_back(mean);
 
@@ -555,19 +573,30 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
             }
         });
 
+        segmentMeansLabels.append(label);
+        adjustReferenceValueButtons.append(adjustReferenceValueButton);
         segmentNumber++;
     }
+
+    if (uploadReferenceValuesButton == nullptr) {
+        uploadReferenceValuesButton = new QPushButton("Upload reference values", this);
+        connect(uploadReferenceValuesButton, &QPushButton::clicked, this, &DataAnalysisWindow::uploadReferenceValues);
+    }
+
+    uploadReferenceValuesButton->setFixedWidth(200);
+    chartsLayout->addWidget(uploadReferenceValuesButton);
+    chartsLayout->setAlignment(uploadReferenceValuesButton, Qt::AlignLeft);
 
     chartsLayout->addLayout(segmentMeansLayout);
 
     if (calculatePolynomialRegressionButton == nullptr) {
-        calculatePolynomialRegressionButton = new QPushButton("Calculate Linear Regression", this);
+        calculatePolynomialRegressionButton = new QPushButton("Calculate Polynomial Regression", this);
         connect(calculatePolynomialRegressionButton, &QPushButton::clicked, this, [this]() {
             emit requestCalculatePolynomialRegression(referenceValues);
         });
     }
 
-    calculatePolynomialRegressionButton->setFixedWidth(200);
+    calculatePolynomialRegressionButton->setFixedWidth(300);
     chartsLayout->addWidget(calculatePolynomialRegressionButton);
     chartsLayout->setAlignment(calculatePolynomialRegressionButton, Qt::AlignLeft);
 
@@ -685,3 +714,54 @@ void DataAnalysisWindow::showOriginalVsAdjustedDistances(const std::vector<long 
 
 }
 
+void DataAnalysisWindow::uploadReferenceValues() {
+    QString fileName = QFileDialog::getOpenFileName(this, "Open Reference Values File", "", "Text Files (*.txt);;All Files (*)");
+    if (fileName.isEmpty()) {
+        return;
+    }
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "Could not open the file for reading");
+        return;
+    }
+
+    QTextStream in(&file);
+
+    // Count the number of lines in the file
+    int lineCount = 0;
+    while (!in.atEnd()) {
+        in.readLine();
+        lineCount++;
+    }
+
+    // Check if the line count matches the number of segment means
+    if (lineCount != segmentMeans.size()) {
+        QMessageBox::critical(this, "Error", "The number of lines in the file does not match the number of segments.");
+        file.close();
+        return;
+    }
+
+    // Reset the stream to the beginning of the file
+    file.seek(0);
+    in.seek(0);
+
+    int segmentNumber = 1;
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        bool ok;
+        double referenceValue = line.toDouble(&ok);
+        if (ok) {
+            QPushButton *adjustReferenceValueButton = adjustReferenceValueButtons[segmentNumber - 1];
+            QLabel* label = segmentMeansLabels[segmentNumber - 1];
+            double mean = segmentMeans[segmentNumber - 1];
+            label->setText(QString("Mean value of segment %1: %2 \t\t\t Reference value is set to:  %3").arg(segmentNumber).arg(mean, 0, 'f', 2).arg(referenceValue));
+            adjustReferenceValueButton->setText("Change Reference Value");
+            referenceValues[segmentNumber - 1] = referenceValue;
+            segmentNumber++;
+        } else {
+            QMessageBox::warning(this, "Warning", QString("Invalid value on line %1").arg(segmentNumber));
+        }
+    }
+    file.close();
+}
