@@ -116,6 +116,7 @@ private:
     cv::Mat optimalCameraMatrix, cameraMatrix, distCoeffs;
 
     std::ofstream outputFileUWB, outputFileOptical, outputFilePixelToReal;
+    int fileIncrementer;
 
 
 

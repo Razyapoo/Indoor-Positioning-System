@@ -212,6 +212,7 @@ void DataAnalysisWindow::validateRollingDeviationInput()
     if (!ok)
     {
         QMessageBox::critical(nullptr, "Error", "Invalid input: not an integer");
+        return;
     }
 
     if (inputValue < 0 || inputValue > sizeOfProcessingData)
@@ -234,7 +235,8 @@ void DataAnalysisWindow::validateThresholdInput()
 
     if (!ok)
     {
-        QMessageBox::critical(nullptr, "Error", "Invalid input: not an double");
+        QMessageBox::critical(nullptr, "Error", "Invalid input: not a double");
+        return;
     }
 
     if (inputValue < 0 || inputValue > maxStdDeviation)
