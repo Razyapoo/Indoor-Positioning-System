@@ -315,7 +315,7 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Data_Analysis_clicked()
 void IndoorPositioningSystemUI::on_pushButton_UWB_Localization_clicked()
 {
     if (!uwbLocalizationWindow) {
-        std::vector<QPointF> anchorPositions = {QPointF(1.877, 0), QPointF(0.627, 2.08), QPointF(3.127, 2.08)};
+        std::vector<QPointF> anchorPositions = {QPointF(2.362, 0), QPointF(1.112, 2.08), QPointF(3.612, 2.08)}; // 2.362
 
         uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);

@@ -9,22 +9,23 @@ uwb_coords = pd.DataFrame({'x': [], 'y': []})
 optical_coords = pd.DataFrame({'x': [], 'y': []})
 model_coords = pd.DataFrame({'x': [], 'y': []})
 
-frames = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[0])
+frames = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/s1 data (more precised)/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[0])
 frames.columns = ['Frames']
 
 # Load the reference coordinates
-ref_coords_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/reference_coordinates.txt'
+ref_coords_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/s1 data (more precised)/reference_coordinates.txt'
 ref_coords = pd.read_csv(ref_coords_path, sep=' ', header=None)
 ref_coords.columns = ['x', 'y']
 
-uwb_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+uwb_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/s1 data (more precised)/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
 uwb_coords.columns = ['x', 'y']
 
-optical_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/optical_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+optical_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/s1 data (more precised)/optical_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
 optical_coords.columns = ['x', 'y']
 
-model_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/pixel_to_real_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+model_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/s1 data (more precised)/pixel_to_real_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
 model_coords.columns = ['x', 'y']
+
 
 
 # plt.figure(figsize=(10, 6))
@@ -34,7 +35,7 @@ model_coords.columns = ['x', 'y']
 
 # plt.xlabel('X Coordinate', fontsize=14)
 # plt.ylabel('Y Coordinate', fontsize=14)
-# plt.title('Reference and Estimated UWB Coordinates. Test Environment 3.', fontsize=18)
+# plt.title('Reference and Estimated UWB Coordinates. Test Environment 4.', fontsize=18)
 # plt.legend(fontsize=10)
 # plt.xticks(fontsize=12)
 # plt.yticks(fontsize=12)
@@ -48,7 +49,7 @@ model_coords.columns = ['x', 'y']
 
 # plt.xlabel('X Coordinate', fontsize=14)
 # plt.ylabel('Y Coordinate', fontsize=14)
-# plt.title('Reference and Estimated Pixel-to-Real Coordinates. Test Environment 3.', fontsize=18)
+# plt.title('Reference and Estimated Pixel-to-Real Coordinates. Test Environment 4.', fontsize=18)
 # plt.legend(fontsize=10)
 # plt.xticks(fontsize=12)
 # plt.yticks(fontsize=12)
@@ -62,7 +63,7 @@ model_coords.columns = ['x', 'y']
 
 # plt.xlabel('X Coordinate', fontsize=14)
 # plt.ylabel('Y Coordinate', fontsize=14)
-# plt.title('Reference and Estimated Optical Coordinates. Test Environment 3.', fontsize=18)
+# plt.title('Reference and Estimated Optical Coordinates. Test Environment 4.', fontsize=18)
 # plt.legend(fontsize=10)
 # plt.xticks(fontsize=12)
 # plt.yticks(fontsize=12)
@@ -90,7 +91,7 @@ errors_melted_df['Axis'] = errors_melted_df['Method_Error'].apply(lambda x: x.sp
 # # Boxplot of errors
 # plt.figure(figsize=(12, 6))
 # sns.boxplot(data=errors_melted_df, x='Method', y='Error', hue='Axis')
-# plt.title('Boxplot of Errors in Coordinates. Test Environment 3.', fontsize=18)
+# plt.title('Boxplot of Errors in Coordinates. Test Environment 4.', fontsize=18)
 # plt.ylabel('Absolute Error', fontsize=13)
 # plt.xlabel('Methods', fontsize=12)
 # plt.legend(title='Axis', fontsize=13)
@@ -117,7 +118,7 @@ errors_melted_df['Axis'] = errors_melted_df['Method_Error'].apply(lambda x: x.sp
 # # Create histograms for each method separately and put all in a grid of figures
 
 # plt.figure(figsize=(14, 10))
-# plt.suptitle('Histogram of Errors in Coordinates. Test Environment 3.', fontsize=18)
+# plt.suptitle('Histogram of Errors in Coordinates. Test Environment 4.', fontsize=18)
 # # Histogram for UWB_X_Error
 # plt.subplot(3, 2, 1)
 # plt.hist(errors_df['UWB_x_Error'], bins=50, alpha=0.7, color='green')
@@ -217,7 +218,7 @@ errors_df['Frames'] = frames[['Frames']].copy()
 
 
 # plt.figure(figsize=(14, 10))
-# plt.suptitle('Error Trend Over Time. Test Environment 3.', fontsize=18)
+# plt.suptitle('Error Trend Over Time. Test Environment 4.', fontsize=18)
 # # UWB
 # plt.subplot(3, 2, 1)
 # plt.plot(errors_df['Frames'], errors_df['UWB_x_Error'], label='UWB_x_Error', alpha=0.7)
@@ -290,7 +291,6 @@ errors_df['Frames'] = frames[['Frames']].copy()
 
 # plt.tight_layout()
 # plt.show()
-
 
 
 distance_errors = pd.DataFrame({'UWB_Distance': [], 'Pixel_to_Real_Distance': [], 'Optical_Distance': []})
@@ -367,7 +367,7 @@ plt.figure(figsize=(14, 6))
 plt.scatter(errors_df['Frames'], distance_errors['UWB_Distance'], alpha=0.5, label='UWB', color='green')
 plt.scatter(errors_df['Frames'], distance_errors['Pixel_to_Real_Distance'], alpha=0.5, label='Pixel-to-Real', color='orange')
 plt.scatter(errors_df['Frames'], distance_errors['Optical_Distance'], alpha=0.5, label='Optical', color='red')
-plt.title('Scatter Plot of Distance Errors between Estimated Coordinates \nand Ground Truth Coordinates Over Time. Test Environment 3.', fontsize=16)
+plt.title('Scatter Plot of Distance Errors between Estimated Coordinates \nand Ground Truth Coordinates Over Time. Test Environment 4.', fontsize=16)
 plt.xlabel('Frames', fontsize=14)
 plt.ylabel('Distance Errors', fontsize=14)
 plt.xticks(fontsize=12)
@@ -378,7 +378,7 @@ plt.grid(True)
 
 # Histogram Plot: Distribution of UWB and Optical distances
 plt.figure(figsize=(14, 10))
-plt.suptitle('Histogram Plot of Distance Errors between Estimated Coordinates \nand Ground Truth Coordinates Over Time. Test Environment 3.', fontsize=16)
+plt.suptitle('Histogram Plot of Distance Errors between Estimated Coordinates \nand Ground Truth Coordinates Over Time. Test Environment 4.', fontsize=16)
 plt.subplot(3, 1, 1)
 plt.hist(distance_errors['UWB_Distance'], bins=50, alpha=0.7, label='UWB', color='green')
 plt.title('Distance Errors between UWB and Ground Truth Coordinates', fontsize=14)

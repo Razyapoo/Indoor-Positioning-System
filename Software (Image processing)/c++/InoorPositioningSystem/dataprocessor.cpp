@@ -82,7 +82,7 @@ void DataProcessor::loadData(const std::string& UWBDataFilename, const std::stri
 
     // qDebug() << "Data are loaded";
 
-    fileIncrementer = 0;
+    fileIncrementer = 1;
     videoDataFile.close();
     uwbDataFile.close();
 }
@@ -154,7 +154,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
     std::string outputFilePathUWB = "uwb_to_bb_mapping_" + std::to_string(fileIncrementer) + ".txt";
     std::string outputFilePathPixelToReal = "pixel_to_real_to_bb_mapping_" + std::to_string(fileIncrementer) + ".txt";
     std::string outputFilePathOptical = "optical_to_bb_mapping_" + std::to_string(fileIncrementer) + ".txt";
-    fileIncrementer++;
+
 
     if (!outputFileUWB.is_open()) {
         outputFileUWB = std::ofstream(outputFilePathUWB, std::ios::out);
@@ -220,6 +220,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
     }
 
     if (lastRecord && (outputFileUWB.is_open() || outputFilePixelToReal.is_open() || outputFileOptical.is_open())) {
+        fileIncrementer++;
         segmentFrameIDs.clear();
         segmentSizes.clear();
         segmentRepresentatives.clear();
@@ -234,15 +235,15 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
 void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
     // As for now, assuming only two anchors 101 and 102. Anchor 102 has coordinates (0, 0) in UWB coordinate system, Anchor 101 has coordinates (2.5, 0) in UWB corrdinate system
-    // QPointF anchor101Coordinates(0, 0);
-    // QPointF anchor102Coordinates(2.5, 0);
-    // QPointF anchor103Coordinates(2.5, 15);
-    // QPointF anchor104Coordinates(0, 15);
+    QPointF anchor101Coordinates(0, 0);
+    QPointF anchor102Coordinates(2.5, 0);
+    QPointF anchor103Coordinates(2.5, 15);
+    QPointF anchor104Coordinates(0, 15);
 
-    QPointF anchor101Coordinates(2.5, 0);
-    QPointF anchor102Coordinates(0, 0);
-    QPointF anchor103Coordinates(0, 15);
-    QPointF anchor104Coordinates(2.5, 15);
+    // QPointF anchor101Coordinates(2.5, 0);
+    // QPointF anchor102Coordinates(0, 0);
+    // QPointF anchor103Coordinates(0, 15);
+    // QPointF anchor104Coordinates(2.5, 15);
 
     QMap<int, QPointF> anchorCoordinates;
     anchorCoordinates[101] = anchor101Coordinates;
@@ -278,23 +279,29 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
     double x = 0, y = 0;
 
-    // if (anchor1ID == 103 || anchor1ID == 104) {
-        // x = std::abs((std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
-        // y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
-    // } else if (anchor1ID == 101 || anchor1ID == 102) {
-        x = std::abs((std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
-        y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
-    // }
-
-
-    // }
-
-    tag.coordinates.setX(x + 0.695); // Transform x-coordinate to camera/world coordinate system
-    tag.coordinates.setY(std::abs(y + 2.08 - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
-
-    // qDebug() << "Tag ID: " << tag.tagID << "Distance 101: " << distanceAnchor1 << ", Distance 102: " << distanceAnchor2 << ";";
-    // qDebug() << "Tag ID: " << tag.tagID << "Coordinates: (" << tag.coordinates.x() << ", " << tag.coordinates.y() << ");";
-
+    if (anchor101Coordinates.x() == 0 && anchor101Coordinates.y() == 0) { // S8
+        if (anchor1ID == 101 || anchor1ID == 102) {
+            x = std::abs((std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
+            y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
+            tag.coordinates.setY(std::abs(y + 2.08 - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
+        } else if (anchor1ID == 103 || anchor1ID == 104) {
+            x = std::abs((std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline));
+            y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
+            tag.coordinates.setY(std::abs(y - 2.08 - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
+        }
+        tag.coordinates.setX(x + 0.627);
+    } else if (anchor102Coordinates.x() == 0 && anchor102Coordinates.y() == 0) { // S306
+        if (anchor1ID == 101 || anchor1ID == 102) {
+            x = (std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+            y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
+            tag.coordinates.setY(std::abs(y + 2.08 - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
+        } else if (anchor1ID == 103 || anchor1ID == 104) {
+            x = (std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+            y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
+            tag.coordinates.setY(std::abs(y - 2.08 - std::max(anchor1Coordinates.y(), anchor2Coordinates.y())));
+        }
+        tag.coordinates.setX(x + 1.112);
+    }
 }
 
 
