@@ -28,10 +28,8 @@
 // #include <memory>
 #include <QException>
 
-#include "structures.h"
 #include "dataanalysiswindow.h"
 #include "uwblocalizationwindow.h"
-#include "anchorinputwindow.h"
 #include "exporttimerangesetter.h"
 #include "customlabel.h"
 #include "coordinateswindow.h"
@@ -130,7 +128,6 @@ private:
     std::unique_ptr<CoordinatesWindow> uwbCoordinatesWindow;
     std::unique_ptr<CoordinatesWindow> pixelToRealCoordinatesWindow;
     std::unique_ptr<CoordinatesWindow> opticalCoordinatesWindow;
-    std::unique_ptr<AnchorInputWindow> anchorInputWindow;
     QProgressDialog* exportProgressDialog;
 
     void loadPixelToRealModelParams();

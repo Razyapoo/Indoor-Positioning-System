@@ -1,22 +1,32 @@
 #include "coordinateswindow.h"
 #include "ui_coordinateswindow.h"
 
-CoordinatesWindow::CoordinatesWindow(QWidget *parent, const QString& windowName)
+CoordinatesWindow::CoordinatesWindow(QWidget *parent, const QString& windowName, CoordinateWindowObjectType type)
     : QDialog(parent)
     , ui(new Ui::CoordinatesWindow)
 {
 
 
     mainLayout = new QVBoxLayout(this);
-    person1Label = new QLabel("Person 1", this);
-    person1XLabel = new QLabel("X: 0", this);
-    person1YLabel = new QLabel("Y: 0", this);
-    person2Label = new QLabel("Person 2", this);
-    person2XLabel = new QLabel("X: 0", this);
-    person2YLabel = new QLabel("Y: 0", this);
-    person3Label = new QLabel("Person 3", this);
-    person3XLabel = new QLabel("X: 0", this);
-    person3YLabel = new QLabel("Y: 0", this);
+
+    if (type == CoordinateWindowObjectType::Tag) {
+        object1Label = new QLabel("Tag 1", this);
+        object2Label = new QLabel("Tag 2", this);
+        object3Label = new QLabel("Tag 3", this);
+    } else {
+        object1Label = new QLabel("Person 1", this);
+        object2Label = new QLabel("Person 2", this);
+        object3Label = new QLabel("Person 3", this);
+    }
+
+    object1XLabel = new QLabel("X: 0", this);
+    object1YLabel = new QLabel("Y: 0", this);
+
+    object2XLabel = new QLabel("X: 0", this);
+    object2YLabel = new QLabel("Y: 0", this);
+
+    object3XLabel = new QLabel("X: 0", this);
+    object3YLabel = new QLabel("Y: 0", this);
 
     ui->setupUi(this);
     setWindowTitle(windowName);
@@ -30,24 +40,24 @@ CoordinatesWindow::~CoordinatesWindow()
 
 void CoordinatesWindow::setupLayout() {
 
-    QGridLayout *person1Layout = new QGridLayout;
-    person1Layout->addWidget(person1Label, 0, 0, 1, 2);
-    person1Layout->addWidget(person1XLabel, 1, 0);
-    person1Layout->addWidget(person1YLabel, 1, 1);
+    QGridLayout *object1Layout = new QGridLayout;
+    object1Layout->addWidget(object1Label, 0, 0, 1, 2);
+    object1Layout->addWidget(object1XLabel, 1, 0);
+    object1Layout->addWidget(object1YLabel, 1, 1);
 
-    QGridLayout *person2Layout = new QGridLayout;
-    person2Layout->addWidget(person2Label, 0, 0, 1, 2);
-    person2Layout->addWidget(person2XLabel, 1, 0);
-    person2Layout->addWidget(person2YLabel, 1, 1);
+    QGridLayout *object2Layout = new QGridLayout;
+    object2Layout->addWidget(object2Label, 0, 0, 1, 2);
+    object2Layout->addWidget(object2XLabel, 1, 0);
+    object2Layout->addWidget(object2YLabel, 1, 1);
 
-    QGridLayout *person3Layout = new QGridLayout;
-    person3Layout->addWidget(person3Label, 0, 0, 1, 2);
-    person3Layout->addWidget(person3XLabel, 1, 0);
-    person3Layout->addWidget(person3YLabel, 1, 1);
+    QGridLayout *object3Layout = new QGridLayout;
+    object3Layout->addWidget(object3Label, 0, 0, 1, 2);
+    object3Layout->addWidget(object3XLabel, 1, 0);
+    object3Layout->addWidget(object3YLabel, 1, 1);
 
-    mainLayout->addLayout(person1Layout);
-    mainLayout->addLayout(person2Layout);
-    mainLayout->addLayout(person3Layout);
+    mainLayout->addLayout(object1Layout);
+    mainLayout->addLayout(object2Layout);
+    mainLayout->addLayout(object3Layout);
 
     setLayout(mainLayout);
 }
@@ -59,16 +69,16 @@ void CoordinatesWindow::updatePosition(const QPointF& position, int objectID) {
     switch (objectID)
     {
     case 1:
-        person1XLabel->setText(xText);
-        person1YLabel->setText(yText);
+        object1XLabel->setText(xText);
+        object1YLabel->setText(yText);
         break;
     case 2:
-        person2XLabel->setText(xText);
-        person2YLabel->setText(yText);
+        object2XLabel->setText(xText);
+        object2YLabel->setText(yText);
         break;
     case 3:
-        person3XLabel->setText(xText);
-        person3YLabel->setText(yText);
+        object3XLabel->setText(xText);
+        object3YLabel->setText(yText);
         break;
     }
 }

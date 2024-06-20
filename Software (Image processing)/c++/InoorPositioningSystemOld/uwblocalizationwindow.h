@@ -23,7 +23,7 @@ class UWBLocalizationWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit UWBLocalizationWindow(QWidget *parent = nullptr, const std::vector<AnchorPosition>& anchorPositions = {});
+    explicit UWBLocalizationWindow(QWidget *parent = nullptr, const std::vector<QPointF>& anchorPositions = {});
     ~UWBLocalizationWindow();
 
 public slots:
@@ -48,7 +48,7 @@ private:
     QGraphicsView* uwbLocalizationView;
     QGraphicsScene* uwbLocalizationScene;
 
-    void addAnchor(const AnchorPosition& position);
+    void addAnchor(const QPointF& position);
     void addTag(const QPointF& position, int tagID);
     // void closeEvent(QCloseEvent *event) override;
     void drawGrid(int widthMeters, int heightMeters, const QPointF& shiftInPixels);

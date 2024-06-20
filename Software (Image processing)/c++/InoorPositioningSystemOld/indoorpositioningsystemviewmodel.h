@@ -48,7 +48,7 @@ public:
     void pause();
     void stopTimer();
     void startTimer();
-    bool openVideo(const QString& directory);
+    void openVideo(const QString& directory);
     void loadPixelToRealModelParams(const QString& selectedFile);
     void loadIntrinsicCalibrationParams(const QString& selectedFile);
     void loadHumanDetectorWeights(const QString& directory);
@@ -59,10 +59,6 @@ public:
     void setPredictByPixelToReal(bool toPredict);
     void setPredictionByOptical(bool toPredict);
     void predict(PredictionType type);
-    bool addAnchorPosition(int anchorID, qreal x, qreal y, bool isOrigin);
-    const std::vector<AnchorPosition>& getAnchorPositions();
-    bool isOriginExists() const;
-    void unsetAnchorOrigin();
 
 
 public slots:
@@ -75,7 +71,6 @@ public slots:
     void onChangePredictionButtonName(PredictionType type, bool isPredictionRequested);
     void onHumanDetectorNotInitialized();
     void onDistCoeffsLoaded();
-    void onStartTimer();
 
     // DataAnalysisWindow
     void setRangeForDataAnalysis(const long long startTimeSec, const long long endTimeSec);
@@ -91,7 +86,8 @@ public slots:
     void showPlotDistancesVsTimestamps(const std::vector<long long>& timestamps, std::vector<double*> distances);
     void showPlotRollingDeviations(const std::vector<long long>& timestamps, const std::vector<double>& deviations);
     void showDatasetSegments(const std::vector<double>& datasetSegmentMeans);
-    void showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);   
+    void showOriginalVsAdjustedDistances(const std::vector<long long>& timestampsToAnalyze, std::vector<double*> distancesToAnalyzeOriginal, const std::vector<double>& distancesToAnalyzeAdjusted);
+
 
 
 signals:
@@ -145,7 +141,6 @@ private:
 
     QTimer* frameTimer;
     bool isVideoOpened;
-    std::vector<AnchorPosition> anchorPositions;
 
     int seekPosition, lastPosition;
     double fps;
@@ -155,12 +150,12 @@ private:
     ThreadSafeQueue frameQueue;
     bool toPredictByPixelToReal, toPredictionByOptical;
     int totalExportDuration;
+    void setupExportConfiguration(const std::vector<int>& frameRangeToExport, ExportType type);
+
 
     // Data Analysis
     bool setDataAnalysisTimeStart, setDataAnalysisTimeEnd;
     long long dataAnalysisTimeStart, dataAnalysisTimeEnd;
-
-    void setupExportConfiguration(const std::vector<int>& frameRangeToExport, ExportType type);
 };
 
 #endif // INDOORPOSITIONINGSYSTEMVIEWMODEL_H

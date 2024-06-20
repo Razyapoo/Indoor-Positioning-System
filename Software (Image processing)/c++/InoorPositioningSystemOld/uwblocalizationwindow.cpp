@@ -1,7 +1,7 @@
 #include "uwblocalizationwindow.h"
 #include "ui_uwblocalizationwindow.h"
 
-UWBLocalizationWindow::UWBLocalizationWindow(QWidget *parent, const std::vector<AnchorPosition>& anchorPositions)
+UWBLocalizationWindow::UWBLocalizationWindow(QWidget *parent, const std::vector<QPointF>& anchorPositions)
     : QDialog(parent)
     , ui(new Ui::UWBLocalizationWindow)
 {
@@ -19,7 +19,7 @@ UWBLocalizationWindow::UWBLocalizationWindow(QWidget *parent, const std::vector<
     QPointF shiftInPixels(10, 10);
     drawGrid(5, 18, shiftInPixels);
 
-    for(const AnchorPosition& position: anchorPositions) {
+    for(const QPointF position: anchorPositions) {
         addAnchor(position);
     }
 
@@ -42,11 +42,11 @@ UWBLocalizationWindow::~UWBLocalizationWindow()
 }
 
 
-void UWBLocalizationWindow::addAnchor(const AnchorPosition& position) {
+void UWBLocalizationWindow::addAnchor(const QPointF& position) {
     qreal x, y;
 
-    x = position.x * mapScale;
-    y = position.y * mapScale;
+    x = position.x() * mapScale;
+    y = position.y() * mapScale;
     CustomRectItem* anchor = new CustomRectItem(QRectF(0, 0, 20, 20), mapScale);
     anchor->setBrush(QBrush(Qt::red));
     anchor->setPen(QPen(Qt::black));

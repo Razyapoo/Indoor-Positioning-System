@@ -8,18 +8,6 @@ enum ExportType {
     SegmentFramesExport
 };
 
-enum CoordinateWindowObjectType {
-    Tag,
-    Person
-};
-
-struct AnchorPosition {
-    int anchorID;
-    qreal x;
-    qreal y;
-    bool isOrigin;
-};
-
 // bool debug = true;
 struct Anchor
 {

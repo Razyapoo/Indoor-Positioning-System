@@ -56,10 +56,10 @@ IndoorPositioningSystemViewModel::~IndoorPositioningSystemViewModel()
     videoProcessor->stopProcessing();
 }
 
-bool IndoorPositioningSystemViewModel::openVideo(const QString& directory)
+void IndoorPositioningSystemViewModel::openVideo(const QString& directory)
 {
     // frameTimer->stop();
-    anchorPositions.clear();
+
     std::string videoFileName, videoTimestampsFileName, UWBDataFileName;
     bool missingFile = false;
     QStringList missingFiles;
@@ -86,18 +86,25 @@ bool IndoorPositioningSystemViewModel::openVideo(const QString& directory)
     }
 
     if (missingFile) {
-       QString message = "Missing required files: " + missingFiles.join(", ");
+        QString message = "Missing required files: " + missingFiles.join(", ");
        emit showWarning("Failed to load", message);
-       return false;
     } else {
         dataProcessor->loadData(UWBDataFileName, videoTimestampsFileName);
         videoProcessor->init(videoFileName);
+        int totalFrames = dataProcessor->getTotalFrames();
+        isVideoOpened = true;
+        _isPlaying = true;
+        isExportState = false;
+        emit requestProcessVideo();
+        toPredictByPixelToReal = false;
+
+        long long videoDuration = dataProcessor->getVideoTimestampById(totalFrames - 1) - dataProcessor->getVideoTimestampById(0);
+        emit videoOpened(totalFrames, videoDuration);
     }
 
-    return true;
-    // if (isVideoOpened && _isPlaying) {
-    //     frameTimer->start();
-    // }
+    if (isVideoOpened && _isPlaying) {
+        frameTimer->start();
+    }
 }
 
 void IndoorPositioningSystemViewModel::loadHumanDetectorWeights(const QString& directory) {
@@ -353,23 +360,6 @@ void IndoorPositioningSystemViewModel::loadIntrinsicCalibrationParams(const QStr
     }
 }
 
-void IndoorPositioningSystemViewModel::onStartTimer() {
-
-    int totalFrames = dataProcessor->getTotalFrames();
-    dataProcessor->setAnchorPositions(anchorPositions);
-    isVideoOpened = true;
-    _isPlaying = true;
-    isExportState = false;
-    emit requestProcessVideo();
-    toPredictByPixelToReal = false;
-
-    long long videoDuration = dataProcessor->getVideoTimestampById(totalFrames - 1) - dataProcessor->getVideoTimestampById(0);
-    emit videoOpened(totalFrames, videoDuration);
-
-    if (isVideoOpened && _isPlaying) {
-        frameTimer->start();
-    }
-}
 
 void IndoorPositioningSystemViewModel::checkForDisplay() {
     UWBVideoData data;
@@ -687,48 +677,3 @@ void IndoorPositioningSystemViewModel::onChangePredictionButtonName(PredictionTy
 void IndoorPositioningSystemViewModel::onHumanDetectorNotInitialized() {
     emit humanDetectorNotInitialized();
 }
-
-bool IndoorPositioningSystemViewModel::addAnchorPosition(int anchorID, qreal x, qreal y, bool isOrigin) {
-
-    if (isOrigin && isOriginExists()) {
-        emit showWarning("Invalid Input", "There is already an anchor set as the origin. Only one origin is allowed.");
-        return false;
-    }
-
-    auto anchor = std::find_if(anchorPositions.begin(), anchorPositions.end(), [anchorID](const AnchorPosition& pos) {
-        return pos.anchorID == anchorID;
-    });
-
-    if (anchor != anchorPositions.end()) {
-        anchor->anchorID = anchorID;
-        anchor->x = x;
-        anchor->y = y;
-        anchor->isOrigin = isOrigin;
-        emit showWarning("Updated Anchor", "Anchor already exists. Data for anchor were re-written.");
-    } else {
-        AnchorPosition anchorPosition = {anchorID, x, y, isOrigin};
-        anchorPositions.push_back(anchorPosition);
-    }
-    return true;
-
-}
-
-bool IndoorPositioningSystemViewModel::isOriginExists() const {
-    for (const AnchorPosition& anchor : anchorPositions) {
-        if (anchor.isOrigin) {
-            return true;
-        }
-    }
-    return false;
-}
-
-const std::vector<AnchorPosition>& IndoorPositioningSystemViewModel::getAnchorPositions() {
-    return anchorPositions;
-}
-
-void IndoorPositioningSystemViewModel::unsetAnchorOrigin() {
-    for (AnchorPosition& anchor: anchorPositions) {
-        anchor.isOrigin = false;
-    }
-}
-

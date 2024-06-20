@@ -64,7 +64,6 @@ public slots:
     void updateOriginalWithAdjustedValues();
     void calculateUWBCoordinates(UWBData& data);
     std::vector<int> getSegmentFrameIDs();
-    void setAnchorPositions(std::vector<AnchorPosition> anchorPositions);
 
 private slots:
     void cleanup();
@@ -85,7 +84,6 @@ private:
     std::unique_ptr<QThread> dataProcessorThread;
     // std::atomic<bool>& toCalculateUWBLocalization;
 
-    std::vector<AnchorPosition> anchorPositions;
     std::vector<long long> videoTimestampsVector;
     // std::vector<long long> framesRelativeTimeInSeconds;
     std::vector<UWBData> uwbDataVector;

@@ -45,7 +45,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         customlabel.h customlabel.cpp
         indoorpositioningsystemviewmodel.h indoorpositioningsystemviewmodel.cpp
         coordinateswindow.h coordinateswindow.cpp coordinateswindow.ui
-        anchorinputwindow.h anchorinputwindow.cpp anchorinputwindow.ui
 
     )
 # Define target properties for Android with Qt 6 as:

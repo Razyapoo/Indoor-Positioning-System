@@ -141,22 +141,12 @@ void IndoorPositioningSystemUI::on_actionOpen_Video_triggered()
 {
     viewModel->stopTimer();
     QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", (QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks));
-    bool isOpened = false;
 
     if (!directory.isEmpty()) {
-        isOpened = viewModel->openVideo(directory);
+        viewModel->openVideo(directory);
     } else {
         QMessageBox::warning(this, "Warning", "No directory was selected!");
     }
-
-    if (isOpened) {
-        if (!anchorInputWindow) {
-            anchorInputWindow = std::make_unique<AnchorInputWindow>(this, viewModel.get());
-        }
-        anchorInputWindow->exec();
-    }
-
-
     viewModel->startTimer();
 }
 
@@ -175,7 +165,7 @@ void IndoorPositioningSystemUI::onVideoOpened(int totalFrames, long long videoDu
     ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     if (!uwbCoordinatesWindow) {
-        uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates", CoordinateWindowObjectType::Tag);
+        uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
 
         // Get the current position of the main window
@@ -325,9 +315,8 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Data_Analysis_clicked()
 void IndoorPositioningSystemUI::on_pushButton_UWB_Localization_clicked()
 {
     if (!uwbLocalizationWindow) {
-        std::vector<AnchorPosition> anchorPositions = viewModel->getAnchorPositions();
+        std::vector<QPointF> anchorPositions = {QPointF(1.956, 0), QPointF(0.695, 2.08), QPointF(3.195, 2.08)}; // 2.362
 
-         // = {QPointF(2.362, 0), QPointF(1.112, 2.08), QPointF(3.612, 2.08)}; // 2.362
         uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
     }
@@ -436,7 +425,7 @@ void IndoorPositioningSystemUI::onChangePredictionButtonName(PredictionType type
             ui->pushButton_Predict_Model->setToolTip("Stop pixel to real prediction");
             ui->pushButton_Pixel_to_Real_Show_Coordinates->setEnabled(true);
             if (!pixelToRealCoordinatesWindow) {
-                pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Pixel to Real Coordinates", CoordinateWindowObjectType::Person);
+                pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Pixel to Real Coordinates");
                 connect(viewModel.get(), &IndoorPositioningSystemViewModel::updatePixelToRealPosition, pixelToRealCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
                 // Get the current position of the main window
                 QPoint currentWindowPos = this->pos();
@@ -457,7 +446,7 @@ void IndoorPositioningSystemUI::onChangePredictionButtonName(PredictionType type
             ui->pushButton_Predict_Optical->setToolTip("Stop optical method");
             ui->pushButton_Optical_Show_Coordinates->setEnabled(true);
             if (!opticalCoordinatesWindow) {
-                opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Optical Coordinates", CoordinateWindowObjectType::Person);
+                opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Oprical Coordinates");
                 connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateOpticalPosition, opticalCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
                 // Get the current position of the main window
                 QPoint currentWindowPos = this->pos();
@@ -497,7 +486,7 @@ void IndoorPositioningSystemUI::onChangePredictionButtonName(PredictionType type
 void IndoorPositioningSystemUI::on_pushButton_UWB_Show_Coordinates_clicked()
 {
     if (!uwbCoordinatesWindow) {
-        uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates", CoordinateWindowObjectType::Tag);
+        uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates");
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
     }
 
@@ -509,7 +498,7 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Show_Coordinates_clicked()
 void IndoorPositioningSystemUI::on_pushButton_Optical_Show_Coordinates_clicked()
 {
     if (!opticalCoordinatesWindow) {
-        opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Optical Coordinates", CoordinateWindowObjectType::Person);
+        opticalCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Oprical Coordinates");
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateOpticalPosition, opticalCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
     }
 
@@ -520,7 +509,7 @@ void IndoorPositioningSystemUI::on_pushButton_Optical_Show_Coordinates_clicked()
 void IndoorPositioningSystemUI::on_pushButton_Pixel_to_Real_Show_Coordinates_clicked()
 {
     if (!pixelToRealCoordinatesWindow) {
-        pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Pixel to Real Coordinates", CoordinateWindowObjectType::Person);
+        pixelToRealCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "Pixel to Real Coordinates");
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updatePixelToRealPosition, pixelToRealCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
     }
 

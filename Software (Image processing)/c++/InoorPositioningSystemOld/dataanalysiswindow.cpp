@@ -133,9 +133,9 @@ void DataAnalysisWindow::showAvailableTags(const std::vector<int> &availableTagI
 
     if (comboBoxAvailableTags->count())
     {
-        while(comboBoxAvailableTags->count())
+        for (int i = 0; i < comboBoxAvailableTags->count(); ++i)
         {
-            comboBoxAvailableTags->removeItem(0);
+            comboBoxAvailableTags->removeItem(i);
         }
     }
 
@@ -151,9 +151,9 @@ void DataAnalysisWindow::showAvailableAnchors(const std::vector<int> &availableA
 
     if (comboBoxAvailableAnchors->count())
     {
-        while(comboBoxAvailableAnchors->count())
+        for (int i = 0; i < comboBoxAvailableAnchors->count(); ++i)
         {
-            comboBoxAvailableAnchors->removeItem(0);
+            comboBoxAvailableAnchors->removeItem(i);
         }
     }
 
