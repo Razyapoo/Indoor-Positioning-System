@@ -9,6 +9,7 @@
 #include <QPointF>
 #include <QLabel>
 #include <QGraphicsSceneHoverEvent>
+#include <QGraphicsTextItem>
 
 
 #include "dataprocessor.h"
@@ -35,7 +36,7 @@ public slots:
 private:
     Ui::UWBLocalizationWindow *ui;
     // std::vector<QPointF> anchors;
-    std::map<int, QGraphicsPolygonItem*> tagPositions;
+    std::map<int, CustomPolygonItem*> tagPositions;
     // std::map<int, QGraphicsRectItem*> tagPositions;
 
     int mapScale;

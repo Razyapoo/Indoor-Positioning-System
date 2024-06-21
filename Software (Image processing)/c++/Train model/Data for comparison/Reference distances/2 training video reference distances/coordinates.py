@@ -3,7 +3,7 @@ import pandas as pd
 import math
 
 # Load distances from the file
-file_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/2 training video reference values/reference_values.txt'
+file_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/2 training video reference values/reference_distances.txt'
 data = np.loadtxt(file_path)
 
 # Define anchor coordinates

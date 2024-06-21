@@ -43,6 +43,7 @@ IndoorPositioningSystemUI::IndoorPositioningSystemUI(QWidget *parent)
     ui->pushButton_Export_Data->setDisabled(true);
     ui->pushButton_UWB_Localization->setDisabled(true);
     ui->pushButton_UWB_Data_Analysis->setDisabled(true);
+    ui->pushButton_UWB_Show_Coordinates->setDisabled(true);
     ui->horizontalSlider_Duration->setDisabled(true);
 
     ui->pushButton_Optical_Show_Coordinates->setDisabled(true);
@@ -168,6 +169,7 @@ void IndoorPositioningSystemUI::onVideoOpened(int totalFrames, long long videoDu
     ui->pushButton_Export_Data->setEnabled(true);
     ui->pushButton_UWB_Localization->setEnabled(true);
     ui->pushButton_UWB_Data_Analysis->setEnabled(true);
+    ui->pushButton_UWB_Show_Coordinates->setEnabled(true);
     ui->horizontalSlider_Duration->setEnabled(true);
 
     ui->horizontalSlider_Duration->setRange(1, totalFrames);
@@ -371,6 +373,7 @@ void IndoorPositioningSystemUI::onAcceptFrameByFrameExport() {
     ui->horizontalSlider_Duration->setDisabled(true);
     ui->pushButton_Export_Data->setDisabled(true);
     ui->pushButton_UWB_Data_Analysis->setDisabled(true);
+    ui->pushButton_UWB_Show_Coordinates->setDisabled(true);
     ui->pushButton_UWB_Localization->setDisabled(true);
     ui->pushButton_Play_Pause->setDisabled(true);
     ui->pushButton_Predict_Optical->setDisabled(true);
@@ -408,6 +411,7 @@ void IndoorPositioningSystemUI::onExportFinished(bool success) {
     ui->horizontalSlider_Duration->setEnabled(true);
     ui->pushButton_Export_Data->setEnabled(true);
     ui->pushButton_UWB_Data_Analysis->setEnabled(true);
+    ui->pushButton_UWB_Show_Coordinates->setEnabled(true);
     ui->pushButton_UWB_Localization->setEnabled(true);
     ui->pushButton_Play_Pause->setEnabled(true);
 }

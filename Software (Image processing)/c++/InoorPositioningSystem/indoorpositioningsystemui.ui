@@ -502,9 +502,9 @@
    <widget class="QPushButton" name="pushButton_Export_Data">
     <property name="geometry">
      <rect>
-      <x>1530</x>
+      <x>1460</x>
       <y>900</y>
-      <width>171</width>
+      <width>241</width>
       <height>25</height>
      </rect>
     </property>
@@ -512,7 +512,7 @@
      <string>Export data for Pixel to Real model. This includes UWB coordinates synchronized with video frames</string>
     </property>
     <property name="text">
-     <string>Export Data</string>
+     <string>Export Data Frame by Frame</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_Predict_Model">

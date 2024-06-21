@@ -186,38 +186,56 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
     // Always only for one tag for which data analysis is performed. Frame timestamp and UWBData are already known and synchornized. Synzhronization was done during split of dataset into segments
     // Assuming only one person in the scene. Otherwise need to solve synchronization between indexes of detected people and indexes of the tags they are wearing
     } else if (exportType == ExportType::SegmentFramesExport) {
-        double segmentDistanceSum = 0.0;
-        UWBData* data;
-        for (Anchor& segmentRepresentativeAnchor: segmentRepresentatives[rangeIndex].anchorList) {
-            for (int i = 0; i < segmentSizes[rangeIndex]; ++i) {
-                int middleIdx = segmentSizes[rangeIndex] / 2;
-                data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - middleIdx + i]; // assuming id of record corresponds to index of vector -1 position. Seeking the first record of range
-                std::vector<Anchor>::iterator anchor = std::find_if(data->anchorList.begin(), data->anchorList.end(), [segmentRepresentativeAnchor](const Anchor& anchor2) {
-                    return anchor2.anchorID == segmentRepresentativeAnchor.anchorID;
-                });
-                if (anchor != data->anchorList.end()) {
-                    segmentDistanceSum += anchor->distance;
-                } else {
-                    int j = 0;
-                    j++;
-                }
-                // ++data;
-            }
-            double distanceMean = segmentDistanceSum / segmentSizes[rangeIndex];
-            segmentRepresentativeAnchor.distance = distanceMean;
-            segmentDistanceSum = 0.0;
-        }
+        // double segmentDistanceSum = 0.0;
+        // UWBData* data;
+        // for (Anchor& segmentRepresentativeAnchor: segmentRepresentatives[rangeIndex].anchorList) {
+        //     for (int i = 0; i < segmentSizes[rangeIndex]; ++i) {
+        //         int middleIdx = segmentSizes[rangeIndex] / 2;
+        //         data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - middleIdx + i]; // assuming id of record corresponds to index of vector -1 position. Seeking the first record of range
+        //         std::vector<Anchor>::iterator anchor = std::find_if(data->anchorList.begin(), data->anchorList.end(), [segmentRepresentativeAnchor](const Anchor& anchor2) {
+        //             return anchor2.anchorID == segmentRepresentativeAnchor.anchorID;
+        //         });
+        //         if (anchor != data->anchorList.end()) {
+        //             segmentDistanceSum += anchor->distance;
+        //         } else {
+        //             int j = 0;
+        //             j++;
+        //         }
+        //         // ++data;
+        //     }
+        //     double distanceMean = segmentDistanceSum / segmentSizes[rangeIndex];
+        //     segmentRepresentativeAnchor.distance = distanceMean;
+        //     segmentDistanceSum = 0.0;
+        // }
 
         calculateUWBCoordinates(segmentRepresentatives[rangeIndex]);
-        outputFileUWB << frameIndex << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << " " << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << std::endl;
 
         // As for now without check whether everything needed for pixel-to-real and optical methods is loaded. Only hard export. Export only for analysis purpose. Otherwise should be commented.
         QPointF pixelToRealCoordinates(0.0, 0.0);
         QPointF opticalCoordinates(0.0, 0.0);
-        pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detectionData.detectionResults[0]);
-        opticalCoordinates = predictWorldCoordinatesOptical(detectionData.detectionResults[0], detectionData.cameraFrameSize, detectionData.detectionFrameSize);
-        outputFilePixelToReal << frameIndex << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << " " << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << std::endl;
-        outputFileOptical << frameIndex << " " << detectionData.detectionResults[0].bottomEdgeCenter.x() << " " << detectionData.detectionResults[0].bottomEdgeCenter.y() << " " << opticalCoordinates.x() << " " << opticalCoordinates.y() << std::endl;
+
+        outputFileUWB << frameIndex << " ";
+        outputFilePixelToReal << frameIndex << " ";
+        outputFileOptical << frameIndex << " ";
+
+        for (int i = 0; i < detectionData.detectionResults.size(); ++i) {
+            outputFileUWB << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
+
+            pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detectionData.detectionResults[i]);
+            opticalCoordinates = predictWorldCoordinatesOptical(detectionData.detectionResults[i], detectionData.cameraFrameSize, detectionData.detectionFrameSize);
+
+            outputFilePixelToReal << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
+            outputFileOptical << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
+
+            outputFilePixelToReal << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << " ";
+            outputFileOptical << opticalCoordinates.x() << " " << opticalCoordinates.y() << " ";
+        }
+
+        outputFileUWB << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << std::endl;
+        outputFilePixelToReal << std::endl;
+        outputFileOptical << std::endl;
+
+
     }
 
     if (lastRecord && (outputFileUWB.is_open() || outputFilePixelToReal.is_open() || outputFileOptical.is_open())) {
@@ -701,7 +719,13 @@ QPointF DataProcessor::predictWorldCoordinatesPixelToReal(const DetectionResult&
     const float* outResult;
     XGBoosterPredict(booster, dmatrix, 0, 0, 0, &outLen, &outResult);
 
-    coordinates = QPointF(static_cast<double>(outResult[0]), static_cast<double>(outResult[1]));
+    auto found = std::find_if(anchorPositions.begin(), anchorPositions.end(), [](const AnchorPosition& pos) {
+        return pos.isOrigin;
+    });
+
+    AnchorPosition origin = *found;
+
+    coordinates = QPointF(static_cast<double>(outResult[0]) + origin.x - 0.627, static_cast<double>(outResult[1])); // 0.627 is the offset from the left wall in video on which model is trained
     // qDebug() << "Real-World coordinates predicted by model: (" << outResult[0] << ", " << outResult[1] << ")";
 
     // Cleanup
@@ -729,7 +753,7 @@ QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& det
     double cxAdjusted = cameraMatrix.at<double>(0, 2) * scaleX;
     double cyAdjusted = cameraMatrix.at<double>(1, 2) * scaleY;
 
-    double distance = (1.76 * fyAdjusted) / height ;
+    double distance = (1.78 * fyAdjusted) / height ;
 
     // cx and fx from intrinsic calibration
     double worldX = ((imageX - cxAdjusted) * (distance / fxAdjusted));
@@ -744,7 +768,7 @@ QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& det
 
     AnchorPosition origin = *found;
 
-    coordinates = QPointF(worldX + origin.x + 1.25, distance); // + origin.x - distance between the left wall to the left anchor, + 1.25 - distance between the camera and the left anchor
+    coordinates = QPointF(worldX + origin.x + 1.25, distance - 0.15); // + origin.x - distance between the left wall to the left anchor, + 1.25 - distance between the camera and the left anchor
 
     return coordinates;
 }

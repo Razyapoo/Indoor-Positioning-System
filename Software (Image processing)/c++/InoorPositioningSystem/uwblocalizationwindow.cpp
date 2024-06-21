@@ -59,6 +59,13 @@ void UWBLocalizationWindow::addAnchor(const AnchorPosition& position) {
     anchor->setPen(QPen(Qt::black));
     uwbLocalizationScene->addItem(anchor);
     anchor->setPos(x, y);
+
+    QGraphicsTextItem* label = new QGraphicsTextItem(QString("Anchor %1").arg(position.anchorID));
+    uwbLocalizationScene->addItem(label);
+    QTransform transform;
+    transform.scale(1, -1);
+    label->setTransform(transform);
+    anchor->setLabel(label, -25, 0);
 }
 
 void UWBLocalizationWindow::addTag(const QPointF &position, int tagID) {
@@ -73,6 +80,14 @@ void UWBLocalizationWindow::addTag(const QPointF &position, int tagID) {
     y = position.y() * mapScale;
     tagItem->setPos(x, y);
     tagPositions[tagID] = tagItem;
+
+    QGraphicsTextItem* label = new QGraphicsTextItem(QString("Tag %1").arg(tagID));
+    uwbLocalizationScene->addItem(label);
+    QTransform transform;
+    transform.scale(1, -1);
+    label->setTransform(transform);
+    tagItem->setLabel(label, -10, 0);
+
 }
 
 void UWBLocalizationWindow::addCamera(const QPointF& cameraPosition) {
@@ -86,6 +101,13 @@ void UWBLocalizationWindow::addCamera(const QPointF& cameraPosition) {
     x = cameraPosition.x() * mapScale;
     y = cameraPosition.y() * mapScale;
     camera->setPos(x, y);
+
+    QGraphicsTextItem* label = new QGraphicsTextItem(QString("Camera"));
+    uwbLocalizationScene->addItem(label);
+    QTransform transform;
+    transform.scale(1, -1);
+    label->setTransform(transform);
+    camera->setLabel(label, -20, 40);
 }
 
 void UWBLocalizationWindow::updateTagPosition(const QPointF& position, int tagID) {
@@ -94,15 +116,11 @@ void UWBLocalizationWindow::updateTagPosition(const QPointF& position, int tagID
         x = position.x() * mapScale;
         y = position.y() * mapScale;
         tagPositions[tagID]->setPos(x, y);
+        tagPositions[tagID]->updateLabelPosition(-10, 0);
     } else {
         addTag(position, tagID);
     }
 }
-
-// void UWBLocalizationWindow::closeEvent(QCloseEvent *event) {
-//     QDialog::closeEvent(event);
-//     emit windowClosed();
-// }
 
 void UWBLocalizationWindow::drawGrid(int widthMeters, int heightMeters, const QPointF& shiftInPixels) {
 

@@ -215,7 +215,7 @@ void DataAnalysisWindow::validateRollingDeviationInput()
         return;
     }
 
-    if (inputValue < 0 || inputValue > sizeOfProcessingData)
+    if (inputValue < 1 || inputValue > sizeOfProcessingData)
     {
         QMessageBox::critical(nullptr, "Error", "Invalid input: window size is out of dataset size");
     }
@@ -239,9 +239,9 @@ void DataAnalysisWindow::validateThresholdInput()
         return;
     }
 
-    if (inputValue < 0 || inputValue > maxStdDeviation)
+    if (inputValue < minStdDeviation || inputValue > maxStdDeviation)
     {
-        QMessageBox::critical(nullptr, "Error", "Invalid input: window size is out of dataset size");
+        QMessageBox::critical(nullptr, "Error", "Invalid input: threshold value is out of range");
     }
     else
     {
@@ -447,14 +447,20 @@ void DataAnalysisWindow::showPlotRollingDeviations(const std::vector<long long> 
     seriesRollingDeviations->setPen(QPen(Qt::blue));
 
     maxStdDeviation = std::numeric_limits<qreal>::min();
+    minStdDeviation = std::numeric_limits<qreal>::max();
 
     for (int i = 0; i < deviations.size(); ++i)
     {
         QDateTime time = QDateTime::fromMSecsSinceEpoch(timestamps[i]);
         auto offsetMSeconds = time.offsetFromUtc() * 1000;
         seriesRollingDeviations->append(time.addMSecs(-offsetMSeconds).toMSecsSinceEpoch(), deviations[i]);
-        if (deviations[i] > maxStdDeviation)
+        if (deviations[i] > maxStdDeviation) {
             maxStdDeviation = deviations[i];
+        }
+
+        if (deviations[i] < minStdDeviation) {
+            minStdDeviation = deviations[i];
+        }
     }
 
     chartRollingDeviations->addSeries(seriesRollingDeviations);
@@ -567,7 +573,7 @@ void DataAnalysisWindow::showDatasetSegments(const std::vector<double> &datasetS
             bool ok;
             double referenceValue = QInputDialog::getDouble(this, "Set Reference Value",
                                                    QString("Enter reference value for segment %1:").arg(segmentNumber),
-                                                   0.0, 0.0, 10000.0, 2, &ok);
+                                                   0.0, 0.0, 10000.0, 9, &ok);
             if (ok) {
                 label->setText(QString("Mean value of segment %1: %2 \t\t\t Reference value is set to:  %3").arg(segmentNumber).arg(mean, 0, 'f', 2).arg(referenceValue));
                 adjustReferenceValueButton->setText("Change Reference Value");

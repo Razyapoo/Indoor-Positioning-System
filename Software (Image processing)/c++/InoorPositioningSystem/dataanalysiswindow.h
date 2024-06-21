@@ -90,6 +90,7 @@ private:
     int sizeOfProcessingData;
     int rollingDeviationWindowSize;
     qreal maxStdDeviation;
+    qreal minStdDeviation;
     std::vector<double> referenceValues;
 
     QTimeEdit *startAnalysisTime, *endAnalysisTime;
