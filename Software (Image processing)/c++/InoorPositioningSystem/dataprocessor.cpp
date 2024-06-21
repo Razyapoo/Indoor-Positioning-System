@@ -49,6 +49,7 @@ void DataProcessor::loadData(const std::string& UWBDataFilename, const std::stri
     Anchor anchor;
     uwbDataVector.clear();
     uwbDataPerTag.clear();
+    coordinateHistory.clear();
     while (std::getline(uwbDataFile, line, '\n'))
     {
         std::istringstream ss(line);
@@ -281,10 +282,14 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
             if (distanceAnchor1 == 0) {
                 distanceAnchor1 = anchor.distance;
                 anchor1Position = *position;
+                // anchor1Position.x = anchor1Position.x - origin.x;
+                // anchor1Position.y = anchor1Position.y - origin.y;
                 anchor1ID = anchor.anchorID;
             } else if (distanceAnchor2 == 0) {
                 distanceAnchor2 = anchor.distance;
                 anchor2Position = *position;
+                // anchor2Position.x = anchor2Position.x - origin.x;
+                // anchor2Position.y = anchor2Position.y - origin.y;
                 anchor2ID = anchor.anchorID;
                 break; // We have found two distances, we can break out of the loop
             }
@@ -296,32 +301,87 @@ void DataProcessor::calculateUWBCoordinates(UWBData& tag) {
 
     double x = 0, y = 0;
 
-    if (origin.anchorID == 101) { // S8
-        if (anchor1ID == 101 || anchor1ID == 102) {
-            x = (std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
-            y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
-            //tag.coordinates.setY(std::abs(y + 2.08 - std::max(anchor1Position.y, anchor2Position.y)));
-            tag.coordinates.setY(std::abs(y + 4.16 - std::max(anchor1Position.y, anchor2Position.y)));
-        } else if (anchor1ID == 103 || anchor1ID == 104) {
-            x = (std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
-            y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
-            tag.coordinates.setY(std::abs(y - std::max(anchor1Position.y, anchor2Position.y)));
-        }
+    // if (origin.anchorID == 101) { // S8
+    //     if (anchor1ID == 101 || anchor1ID == 102) {
+    //         x = (std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+    //         y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
+    //         //tag.coordinates.setY(std::abs(y + 2.08 - std::max(anchor1Position.y, anchor2Position.y)));
+    //         tag.coordinates.setY(std::abs(y + 4.16 - std::max(anchor1Position.y, anchor2Position.y)));
+    //     } else if (anchor1ID == 103 || anchor1ID == 104) {
+    //         x = (std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+    //         y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
+    //         tag.coordinates.setY(std::abs(y - std::max(anchor1Position.y, anchor2Position.y)));
+    //     }
 
-    } else if (origin.anchorID == 102) { // S306
-        if (anchor1ID == 101 || anchor1ID == 102) {
-            x = (std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
-            y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
-            tag.coordinates.setY(std::abs(y + 4.16 - std::max(anchor1Position.y, anchor2Position.y)));
-        } else if (anchor1ID == 103 || anchor1ID == 104) {
-            x = (std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
-            y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
-            tag.coordinates.setY(std::abs(y - std::max(anchor1Position.y, anchor2Position.y)));
+    // } else if (origin.anchorID == 102) { // S306
+    //     if (anchor1ID == 101 || anchor1ID == 102) {
+    //         x = (std::pow(distanceAnchor2, 2) - std::pow(distanceAnchor1, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+    //         y = std::sqrt(std::pow(distanceAnchor2, 2) - std::pow(x, 2));
+    //         tag.coordinates.setY(std::abs(y + 4.16 - std::max(anchor1Position.y, anchor2Position.y)));
+    //     } else if (anchor1ID == 103 || anchor1ID == 104) {
+    //         x = (std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+    //         y = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(x, 2));
+    //         tag.coordinates.setY(std::abs(y - std::max(anchor1Position.y, anchor2Position.y)));
+    //     }
+    // }
+
+    double a = (std::pow(distanceAnchor1, 2) - std::pow(distanceAnchor2, 2) + std::pow(anchorBaseline, 2)) / (2 * anchorBaseline);
+    double h = std::sqrt(std::pow(distanceAnchor1, 2) - std::pow(a, 2)); // could be negative due to descrepancies in measurements
+
+    QPointF Ptemp, P1, P2, P;
+    Ptemp.setX(anchor1Position.x + a * (anchor2Position.x - anchor1Position.x) / anchorBaseline);
+    Ptemp.setY(anchor1Position.y + a * (anchor2Position.y - anchor1Position.y) / anchorBaseline);
+
+    P1.setX(Ptemp.x() - h * (anchor2Position.y - anchor1Position.y) / anchorBaseline);
+    P1.setY(Ptemp.y() + h * (anchor2Position.x - anchor1Position.x) / anchorBaseline);
+    P2.setX(Ptemp.x() + h * (anchor2Position.y - anchor1Position.y) / anchorBaseline);
+    P2.setY(Ptemp.y() - h * (anchor2Position.x - anchor1Position.x) / anchorBaseline);
+
+    if ((anchor1Position.anchorID == 101 && anchor2Position.anchorID == 102) || (anchor1Position.anchorID == 102 && anchor2Position.anchorID == 101)) {
+        // P1.setX(P.x() - h * (anchor2Position.y - anchor1Position.y) / anchorBaseline);
+        // P1.setY(P.y() + h * (anchor2Position.x - anchor1Position.x) / anchorBaseline);
+        if (P1.y() > P2.y()) {
+            // tag.coordinates = QPointF(P1.x() + origin.x, P1.y() + origin.y);
+            tag.coordinates = P1;
+        } else {
+            // tag.coordinates = QPointF(P2.x() + origin.x, P2.y() + origin.y);
+            tag.coordinates = P2;
         }
-        // tag.coordinates.setX(x + 1.112);
+        coordinateHistory[tag.tagID] = tag.coordinates;
+    } else if ((anchor1Position.anchorID == 103 && anchor2Position.anchorID == 104) || (anchor1Position.anchorID == 104 && anchor2Position.anchorID == 103)) {
+        // P2.setX(P.x() + h * (anchor2Position.y - anchor1Position.y) / anchorBaseline);
+        // P2.setY(P.y() - h * (anchor2Position.x - anchor1Position.x) / anchorBaseline);
+        if (P1.y() < P2.y()) {
+            // tag.coordinates = QPointF(P1.x() + origin.x, P1.y() + origin.y);
+            tag.coordinates = P1;
+        } else {
+            // tag.coordinates = QPointF(P2.x() + origin.x, P2.y() + origin.y);
+            tag.coordinates = P2;
+        }
+        coordinateHistory[tag.tagID] = tag.coordinates;
+    } else {
+        if (coordinateHistory.contains(tag.tagID)) {
+            double delta1 = std::abs(coordinateHistory[tag.tagID].x() - P1.x());
+            double delta2 = std::abs(coordinateHistory[tag.tagID].x() - P2.x());
+            if (h > 0 && (delta1 < 0.1 || delta2 < 0.1)){
+                if (delta1 < delta2) {
+                    tag.coordinates = P1;
+                } else {
+                    tag.coordinates = P2;
+                }
+                coordinateHistory[tag.tagID] = tag.coordinates;
+            } else {
+                tag.coordinates = coordinateHistory[tag.tagID];
+            }
+        } else {
+            tag.coordinates = P2;
+        }
     }
 
-    tag.coordinates.setX(x + origin.x);
+    // tag.coordinates.setX(x + origin.x);
+
+    // qDebug() << "Intersection Point 1: (" << P1.x() << ", " << P1.y() << ")\n";
+    // qDebug() << "Intersection Point 2: (" << P2.x() << ", " << P2.y() << ")\n";
 }
 
 
@@ -678,7 +738,13 @@ QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& det
 
     // qDebug() << "Pixel Coordinates: (" << imageX << ", "<< imageY << ")";
     // qDebug() << "   Real-World coordinates calculated by height: (" << worldX << ", " << distance << ")" << " Z: " << worldY;
-    coordinates = QPointF(worldX + 0.627 + 1.25, distance); // + 0.627 - distance between the left wall to the left anchor, + 1.25 - distance between the camera and the left anchor
+    auto found = std::find_if(anchorPositions.begin(), anchorPositions.end(), [](const AnchorPosition& pos) {
+        return pos.isOrigin;
+    });
+
+    AnchorPosition origin = *found;
+
+    coordinates = QPointF(worldX + origin.x + 1.25, distance); // + origin.x - distance between the left wall to the left anchor, + 1.25 - distance between the camera and the left anchor
 
     return coordinates;
 }

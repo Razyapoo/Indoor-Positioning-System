@@ -214,7 +214,7 @@
    <widget class="QLabel" name="label_Tag_timestamp_value_1">
     <property name="geometry">
      <rect>
-      <x>1540</x>
+      <x>1536</x>
       <y>80</y>
       <width>161</width>
       <height>20</height>
@@ -254,7 +254,7 @@
     <property name="geometry">
      <rect>
       <x>1390</x>
-      <y>210</y>
+      <y>213</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -292,7 +292,7 @@
    <widget class="QLabel" name="label_Anchor1_Distance_value_2">
     <property name="geometry">
      <rect>
-      <x>1580</x>
+      <x>1560</x>
       <y>240</y>
       <width>101</width>
       <height>17</height>
@@ -344,8 +344,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_value_2">
     <property name="geometry">
      <rect>
-      <x>1530</x>
-      <y>210</y>
+      <x>1537</x>
+      <y>212</y>
       <width>161</width>
       <height>17</height>
      </rect>
@@ -357,8 +357,8 @@
    <widget class="QLabel" name="label_Tag_ID_value_3">
     <property name="geometry">
      <rect>
-      <x>1400</x>
-      <y>340</y>
+      <x>1393</x>
+      <y>342</y>
       <width>71</width>
       <height>17</height>
      </rect>
@@ -397,7 +397,7 @@
     <property name="geometry">
      <rect>
       <x>1450</x>
-      <y>336</y>
+      <y>339</y>
       <width>81</width>
       <height>20</height>
      </rect>
@@ -409,8 +409,8 @@
    <widget class="QLabel" name="label_Tag_timestamp_value_3">
     <property name="geometry">
      <rect>
-      <x>1540</x>
-      <y>340</y>
+      <x>1538</x>
+      <y>342</y>
       <width>151</width>
       <height>17</height>
      </rect>
@@ -563,8 +563,8 @@
    <widget class="QLabel" name="label_Tag_measurement_time_value_1">
     <property name="geometry">
      <rect>
-      <x>1510</x>
-      <y>162</y>
+      <x>1512</x>
+      <y>163</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -752,7 +752,7 @@
     <property name="geometry">
      <rect>
       <x>1420</x>
-      <y>130</y>
+      <y>131</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -804,7 +804,7 @@
     <property name="geometry">
      <rect>
       <x>1420</x>
-      <y>260</y>
+      <y>261</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -830,7 +830,7 @@
     <property name="geometry">
      <rect>
       <x>1420</x>
-      <y>240</y>
+      <y>239</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -868,7 +868,7 @@
    <widget class="QLabel" name="label_Anchor2_ID_value_3">
     <property name="geometry">
      <rect>
-      <x>1410</x>
+      <x>1420</x>
       <y>400</y>
       <width>51</width>
       <height>17</height>
@@ -881,8 +881,8 @@
    <widget class="QLabel" name="label_Anchor1_ID_value_3">
     <property name="geometry">
      <rect>
-      <x>1410</x>
-      <y>380</y>
+      <x>1420</x>
+      <y>379</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -894,8 +894,8 @@
    <widget class="QLabel" name="label_Anchor1_Distance_value_3">
     <property name="geometry">
      <rect>
-      <x>1580</x>
-      <y>380</y>
+      <x>1560</x>
+      <y>381</y>
       <width>101</width>
       <height>17</height>
      </rect>

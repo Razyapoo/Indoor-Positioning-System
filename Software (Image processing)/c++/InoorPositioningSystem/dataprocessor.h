@@ -97,6 +97,7 @@ private:
     std::vector<int> segmentFrameIDs;
     std::vector<UWBData> segmentRepresentatives;
     std::vector<int> segmentSizes;
+    QMap<int, QPointF> coordinateHistory;
 
     std::span<UWBData> uwbDataRangeToAnalyze;
     std::vector<UWBData*> tagDataToAnalyze;

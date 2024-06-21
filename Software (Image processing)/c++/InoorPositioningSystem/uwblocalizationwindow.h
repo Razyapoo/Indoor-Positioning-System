@@ -50,6 +50,7 @@ private:
 
     void addAnchor(const AnchorPosition& position);
     void addTag(const QPointF& position, int tagID);
+    void addCamera(const QPointF& cameraPosition);
     // void closeEvent(QCloseEvent *event) override;
     void drawGrid(int widthMeters, int heightMeters, const QPointF& shiftInPixels);
 

@@ -174,6 +174,8 @@ void IndoorPositioningSystemUI::onVideoOpened(int totalFrames, long long videoDu
     QTime totalTime = QTime(0, 0).addMSecs(static_cast<int>(videoDuration));
     ui->label_Total_Time->setText(totalTime.toString("HH:mm:ss"));
     ui->pushButton_Play_Pause->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
+
+    uwbLocalizationWindow.reset();
     if (!uwbCoordinatesWindow) {
         uwbCoordinatesWindow = std::make_unique<CoordinatesWindow>(this, "UWB Coordinates", CoordinateWindowObjectType::Tag);
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbCoordinatesWindow.get(), &CoordinatesWindow::updatePosition);
@@ -328,6 +330,7 @@ void IndoorPositioningSystemUI::on_pushButton_UWB_Localization_clicked()
         std::vector<AnchorPosition> anchorPositions = viewModel->getAnchorPositions();
 
          // = {QPointF(2.362, 0), QPointF(1.112, 2.08), QPointF(3.612, 2.08)}; // 2.362
+
         uwbLocalizationWindow = std::make_unique<UWBLocalizationWindow>(this, anchorPositions);
         connect(viewModel.get(), &IndoorPositioningSystemViewModel::updateTagPosition, uwbLocalizationWindow.get(), &UWBLocalizationWindow::updateTagPosition);
     }

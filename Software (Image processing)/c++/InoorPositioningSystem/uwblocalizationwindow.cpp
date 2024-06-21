@@ -19,9 +19,16 @@ UWBLocalizationWindow::UWBLocalizationWindow(QWidget *parent, const std::vector<
     QPointF shiftInPixels(10, 10);
     drawGrid(5, 18, shiftInPixels);
 
+    QPointF cameraPosition;
+
     for(const AnchorPosition& position: anchorPositions) {
         addAnchor(position);
+        if (position.isOrigin) {
+            cameraPosition = {position.x + 1.25, position.y - 2.08}; // as for now hard set
+        }
     }
+
+    addCamera(cameraPosition);
 
     uwbLocalizationView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     uwbLocalizationView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -68,6 +75,18 @@ void UWBLocalizationWindow::addTag(const QPointF &position, int tagID) {
     tagPositions[tagID] = tagItem;
 }
 
+void UWBLocalizationWindow::addCamera(const QPointF& cameraPosition) {
+    QPolygonF triangle;
+    qreal x, y;
+    triangle << QPointF(0, 20) << QPointF(20, 20) << QPointF(10, 0);
+    CustomPolygonItem* camera = new CustomPolygonItem(triangle, mapScale);
+    camera->setBrush(QBrush(Qt::green));
+    camera->setPen(QPen(Qt::black));
+    uwbLocalizationScene->addItem(camera);
+    x = cameraPosition.x() * mapScale;
+    y = cameraPosition.y() * mapScale;
+    camera->setPos(x, y);
+}
 
 void UWBLocalizationWindow::updateTagPosition(const QPointF& position, int tagID) {
     if (tagPositions.count(tagID) > 0) {
