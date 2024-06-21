@@ -18,8 +18,6 @@ struct AnchorPosition {
     qreal x;
     qreal y;
     bool isOrigin;
-
-    AnchorPosition() : anchorID(0), x(0.0), y(0.0), isOrigin(false) {}
 };
 
 // bool debug = true;

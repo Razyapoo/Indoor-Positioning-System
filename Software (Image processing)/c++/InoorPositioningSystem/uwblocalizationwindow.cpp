@@ -32,7 +32,7 @@ UWBLocalizationWindow::UWBLocalizationWindow(QWidget *parent, const std::vector<
 
     uwbLocalizationView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     uwbLocalizationView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    uwbLocalizationView->setSceneRect(-100, -100, 450, 1000); // shift scene by -100 to see axes labels
+    uwbLocalizationView->setSceneRect(-100, -50, 450, 1000); // shift scene by -100 to see axes labels
     uwbLocalizationView->setMouseTracking(true);
 
     // Flip scene to see it in bottom-up view

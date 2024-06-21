@@ -6,7 +6,7 @@ df1 = pd.read_csv(file1, sep=' ', header=None,
                   names=['recordId', 'timestamp', 'tagId', 'sensor1', 'value1', 'sensor2', 'value2'])
 
 dfsByTag = {tag: df1[df1['tagId'] == tag] for tag in df1['tagId'].unique()}
-print(dfsByTag)
+
 sampledDfs = {tag: df.sample(n=100, random_state=1) for tag, df in dfsByTag.items()}
 
 
