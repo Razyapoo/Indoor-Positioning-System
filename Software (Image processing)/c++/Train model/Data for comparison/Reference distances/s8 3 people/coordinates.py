@@ -3,15 +3,13 @@ import pandas as pd
 import math
 
 # Load distances from the file
-file_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 2 people reference values/reference_distances_person_2.txt'
+file_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/Reference distances/s8 3 people/reference_distances_person_3.txt'
 data = np.loadtxt(file_path)
 
 # Define anchor coordinates
 anchor_coordinates = {
     101: (2.5, 0),
-    102: (0, 0),
-    103: (0, 15),
-    104: (2.5, 15)
+    102: (0, 0)
 }
 
 # Function to calculate reference coordinates
@@ -25,8 +23,8 @@ def calculate_reference_coordinates(distance_anchor1, distance_anchor2):
     x = abs((distance_anchor2 ** 2 - distance_anchor1 ** 2 + anchor_baseline ** 2) / (2 * anchor_baseline))
     y = math.sqrt(distance_anchor2 ** 2 - x ** 2)
 
-    x_transformed = x + 1.112
-    y_transformed = abs(y + 2.08 - max(anchor1_coordinates[1], anchor2_coordinates[1]))
+    x_transformed = x + 0.627
+    y_transformed = y + 2.08
 
     return x_transformed, y_transformed
 
@@ -36,4 +34,4 @@ reference_coordinates = np.array([calculate_reference_coordinates(d[0], d[1]) fo
 # Create a DataFrame for better visualization
 reference_df = pd.DataFrame(reference_coordinates, columns=['x', 'y'])
 
-reference_df.to_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 2 people reference values/reference_coordinates_person_2.txt', index=False, sep=' ', header=False)
+reference_df.to_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/Reference distances/s8 3 people/reference_coordinates_person_3.txt', index=False, sep=' ', header=False)

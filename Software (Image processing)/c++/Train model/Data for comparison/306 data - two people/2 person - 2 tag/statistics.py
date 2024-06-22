@@ -6,22 +6,21 @@ uwb_coords = pd.DataFrame({'x': [], 'y': []})
 optical_coords = pd.DataFrame({'x': [], 'y': []})
 model_coords = pd.DataFrame({'x': [], 'y': []})
 
-frames = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[0])
+frames = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/uwb_to_bb_mapping.txt', sep=' ', header=None, usecols=[0])
 frames.columns = ['Frames']
 
 # Load the reference coordinates
-ref_coords_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/reference_coordinates.txt'
+ref_coords_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/reference_coordinates.txt'
 ref_coords = pd.read_csv(ref_coords_path, sep=' ', header=None)
 ref_coords.columns = ['x', 'y']
 
-# Load estimated coordinates
-uwb_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+uwb_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/uwb_to_bb_mapping.txt', sep=' ', header=None, usecols=[3, 4])
 uwb_coords.columns = ['x', 'y']
 
-optical_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/optical_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+optical_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/optical_to_bb_mapping.txt', sep=' ', header=None, usecols=[3, 4])
 optical_coords.columns = ['x', 'y']
 
-model_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/pixel_to_real_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+model_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/pixel_to_real_to_bb_mapping.txt', sep=' ', header=None, usecols=[3, 4])
 model_coords.columns = ['x', 'y']
 
 # Function to calculate metrics

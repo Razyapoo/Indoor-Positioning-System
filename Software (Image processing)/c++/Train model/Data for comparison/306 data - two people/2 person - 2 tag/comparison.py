@@ -9,68 +9,68 @@ uwb_coords = pd.DataFrame({'x': [], 'y': []})
 optical_coords = pd.DataFrame({'x': [], 'y': []})
 model_coords = pd.DataFrame({'x': [], 'y': []})
 
-frames = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[0])
+frames = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/uwb_to_bb_mapping.txt', sep=' ', header=None, usecols=[0])
 frames.columns = ['Frames']
 
 # Load the reference coordinates
-ref_coords_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/reference_coordinates.txt'
+ref_coords_path = '/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/reference_coordinates.txt'
 ref_coords = pd.read_csv(ref_coords_path, sep=' ', header=None)
 ref_coords.columns = ['x', 'y']
 
-uwb_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/uwb_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+uwb_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/uwb_to_bb_mapping.txt', sep=' ', header=None, usecols=[3, 4])
 uwb_coords.columns = ['x', 'y']
 
-optical_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/optical_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+optical_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/optical_to_bb_mapping.txt', sep=' ', header=None, usecols=[3, 4])
 optical_coords.columns = ['x', 'y']
 
-model_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/306 data/pixel_to_real_to_bb_mapping_entire.txt', sep=' ', header=None, usecols=[3, 4])
+model_coords = pd.read_csv('/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/Train model/Data for comparison/306 data - two people/2 person - 2 tag/pixel_to_real_to_bb_mapping.txt', sep=' ', header=None, usecols=[3, 4])
 model_coords.columns = ['x', 'y']
 
 
-# plt.figure(figsize=(10, 6))
+plt.figure(figsize=(10, 6))
 
-# plt.scatter(ref_coords['x'], ref_coords['y'], color='blue', label='Reference Coordinates', s=30)
-# plt.scatter(uwb_coords['x'], uwb_coords['y'], color='green', label='UWB Estimated Coordinates', s=30)
+plt.scatter(ref_coords['x'], ref_coords['y'], color='blue', label='Reference Coordinates', s=30)
+plt.scatter(uwb_coords['x'], uwb_coords['y'], color='green', label='UWB Estimated Coordinates', s=30)
 
-# plt.xlabel('X Coordinate', fontsize=14)
-# plt.ylabel('Y Coordinate', fontsize=14)
-# plt.title('Reference and Estimated UWB Coordinates. Test Environment 3.', fontsize=18)
-# plt.legend(fontsize=10)
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.grid(True)
-
-
-# plt.figure(figsize=(10, 6))
-
-# plt.scatter(ref_coords['x'], ref_coords['y'], color='blue', label='Reference Coordinates', s=30)
-# plt.scatter(model_coords['x'], model_coords['y'], color='orange', label='Pixel-to-Real Estimated Coordinates', s=30)
-
-# plt.xlabel('X Coordinate', fontsize=14)
-# plt.ylabel('Y Coordinate', fontsize=14)
-# plt.title('Reference and Estimated Pixel-to-Real Coordinates. Test Environment 3.', fontsize=18)
-# plt.legend(fontsize=10)
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.grid(True)
+plt.xlabel('X Coordinate', fontsize=14)
+plt.ylabel('Y Coordinate', fontsize=14)
+plt.title('Reference and Estimated UWB Coordinates. Test Environment 3.', fontsize=18)
+plt.legend(fontsize=10)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.grid(True)
 
 
-# plt.figure(figsize=(10, 6))
+plt.figure(figsize=(10, 6))
 
-# plt.scatter(ref_coords['x'], ref_coords['y'], color='blue', label='Reference Coordinates', s=30)
-# plt.scatter(optical_coords['x'], optical_coords['y'], color='red', label='Optical Estimated Coordinates', s=30)
+plt.scatter(ref_coords['x'], ref_coords['y'], color='blue', label='Reference Coordinates', s=30)
+plt.scatter(model_coords['x'], model_coords['y'], color='orange', label='Pixel-to-Real Estimated Coordinates', s=30)
 
-# plt.xlabel('X Coordinate', fontsize=14)
-# plt.ylabel('Y Coordinate', fontsize=14)
-# plt.title('Reference and Estimated Optical Coordinates. Test Environment 3.', fontsize=18)
-# plt.legend(fontsize=10)
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.grid(True)
+plt.xlabel('X Coordinate', fontsize=14)
+plt.ylabel('Y Coordinate', fontsize=14)
+plt.title('Reference and Estimated Pixel-to-Real Coordinates. Test Environment 3.', fontsize=18)
+plt.legend(fontsize=10)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.grid(True)
+
+
+plt.figure(figsize=(10, 6))
+
+plt.scatter(ref_coords['x'], ref_coords['y'], color='blue', label='Reference Coordinates', s=30)
+plt.scatter(optical_coords['x'], optical_coords['y'], color='red', label='Optical Estimated Coordinates', s=30)
+
+plt.xlabel('X Coordinate', fontsize=14)
+plt.ylabel('Y Coordinate', fontsize=14)
+plt.title('Reference and Estimated Optical Coordinates. Test Environment 3.', fontsize=18)
+plt.legend(fontsize=10)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.grid(True)
 
 
 
-# plt.show()
+plt.show()
 
 
 
