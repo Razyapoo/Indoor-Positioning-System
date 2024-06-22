@@ -389,26 +389,32 @@ void IndoorPositioningSystemViewModel::updateDataDisplay(const UWBVideoData& dat
     } else {
         emit dataUpdated(data.videoData.qImage, data.videoData.id, QString::number(data.videoData.timestamp));
 
-
+        std::cout << "UWB data: " << std::endl;
         for (const UWBData& tag: data.uwbData)
         {
             emit uwbDataUpdated(tag);
             // std::pair<double, double> coordinates = std::make_pair<double, double>(static_cast<double>(tag.coordinates.x()), static_cast<double>(tag.coordinates.y()));
             emit updateTagPosition(tag.coordinates, tag.tagID);
+            std::cout << "Tag: " << tag.tagID << " " << tag.coordinates.x() << " " << tag.coordinates.y() << std::endl;
+
         }
 
+        std::cout << "PixelToReal data: " << std::endl;
         if (data.pixelToRealCoordinates.size()) {
             int i = 1;
             for (const QPointF& coordinates: data.pixelToRealCoordinates) {
                 emit updatePixelToRealPosition(coordinates, i);
+                std::cout << "ID: " << i << " " << coordinates.x() << " " << coordinates.y() << std::endl;
                 i++;
             }
         }
 
+        std::cout << "Optical data: " << std::endl;
         if (data.opticalCoordinates.size()) {
             int i = 1;
             for (const QPointF& coordinates: data.opticalCoordinates) {
                 emit updateOpticalPosition(coordinates, i);
+                std::cout << "ID: " << i << " " << coordinates.x() << " " << coordinates.y() << std::endl;
                 i++;
             }
         }

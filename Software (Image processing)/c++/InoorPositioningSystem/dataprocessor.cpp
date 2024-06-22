@@ -96,8 +96,6 @@ int DataProcessor::getTotalFrames() {
     return videoTimestampsVector.size();
 }
 
-
-
 void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, DetectionData detectionData) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
@@ -122,7 +120,6 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
 
 
     if (detectionData.detectionResults.size()) {
-        // QPointF coordinates;
         for (const DetectionResult& detection: detectionData.detectionResults){
             if (isPredictionByPixelToRealRequested)
             {
@@ -133,11 +130,7 @@ void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage
             if (isPredictionByOpticalRequested) {
                 opticalCoordinates = predictWorldCoordinatesOptical(detection, detectionData.cameraFrameSize, detectionData.detectionFrameSize);
                 opticalCoordinatesVector.push_back(opticalCoordinates);
-
             }
-            // std::string coordinatesText = "(" + std::to_string(coordinates.first) + ", " + std::to_string(coordinates.second) + ")" ;
-            // cv::putText(frame, coordinatesText, cv::Point(detection.bottomEdgeCenter.x(), detection.bottomEdgeCenter.y()), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 255), 2);
-            // qDebug() << coordinatesText;
         }
     }
 
@@ -186,27 +179,27 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
     // Always only for one tag for which data analysis is performed. Frame timestamp and UWBData are already known and synchornized. Synzhronization was done during split of dataset into segments
     // Assuming only one person in the scene. Otherwise need to solve synchronization between indexes of detected people and indexes of the tags they are wearing
     } else if (exportType == ExportType::SegmentFramesExport) {
-        // double segmentDistanceSum = 0.0;
-        // UWBData* data;
-        // for (Anchor& segmentRepresentativeAnchor: segmentRepresentatives[rangeIndex].anchorList) {
-        //     for (int i = 0; i < segmentSizes[rangeIndex]; ++i) {
-        //         int middleIdx = segmentSizes[rangeIndex] / 2;
-        //         data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - middleIdx + i]; // assuming id of record corresponds to index of vector -1 position. Seeking the first record of range
-        //         std::vector<Anchor>::iterator anchor = std::find_if(data->anchorList.begin(), data->anchorList.end(), [segmentRepresentativeAnchor](const Anchor& anchor2) {
-        //             return anchor2.anchorID == segmentRepresentativeAnchor.anchorID;
-        //         });
-        //         if (anchor != data->anchorList.end()) {
-        //             segmentDistanceSum += anchor->distance;
-        //         } else {
-        //             int j = 0;
-        //             j++;
-        //         }
-        //         // ++data;
-        //     }
-        //     double distanceMean = segmentDistanceSum / segmentSizes[rangeIndex];
-        //     segmentRepresentativeAnchor.distance = distanceMean;
-        //     segmentDistanceSum = 0.0;
-        // }
+        double segmentDistanceSum = 0.0;
+        UWBData* data;
+        for (Anchor& segmentRepresentativeAnchor: segmentRepresentatives[rangeIndex].anchorList) {
+            for (int i = 0; i < segmentSizes[rangeIndex]; ++i) {
+                int middleIdx = segmentSizes[rangeIndex] / 2;
+                data = &uwbDataVector[segmentRepresentatives[rangeIndex].id - middleIdx + i]; // assuming id of record corresponds to index of vector -1 position. Seeking the first record of range
+                std::vector<Anchor>::iterator anchor = std::find_if(data->anchorList.begin(), data->anchorList.end(), [segmentRepresentativeAnchor](const Anchor& anchor2) {
+                    return anchor2.anchorID == segmentRepresentativeAnchor.anchorID;
+                });
+                if (anchor != data->anchorList.end()) {
+                    segmentDistanceSum += anchor->distance;
+                } else {
+                    int j = 0;
+                    j++;
+                }
+                // ++data;
+            }
+            double distanceMean = segmentDistanceSum / segmentSizes[rangeIndex];
+            segmentRepresentativeAnchor.distance = distanceMean;
+            segmentDistanceSum = 0.0;
+        }
 
         calculateUWBCoordinates(segmentRepresentatives[rangeIndex]);
 
@@ -215,25 +208,25 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         QPointF opticalCoordinates(0.0, 0.0);
 
         outputFileUWB << frameIndex << " ";
-        outputFilePixelToReal << frameIndex << " ";
-        outputFileOptical << frameIndex << " ";
+        // outputFilePixelToReal << frameIndex << " ";
+        // outputFileOptical << frameIndex << " ";
 
         for (int i = 0; i < detectionData.detectionResults.size(); ++i) {
             outputFileUWB << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
 
-            pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detectionData.detectionResults[i]);
-            opticalCoordinates = predictWorldCoordinatesOptical(detectionData.detectionResults[i], detectionData.cameraFrameSize, detectionData.detectionFrameSize);
+            // pixelToRealCoordinates = predictWorldCoordinatesPixelToReal(detectionData.detectionResults[i]);
+            // opticalCoordinates = predictWorldCoordinatesOptical(detectionData.detectionResults[i], detectionData.cameraFrameSize, detectionData.detectionFrameSize);
 
-            outputFilePixelToReal << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
-            outputFileOptical << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
+            // outputFilePixelToReal << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
+            // outputFileOptical << detectionData.detectionResults[i].bottomEdgeCenter.x() << " " << detectionData.detectionResults[i].bottomEdgeCenter.y() << " ";
 
-            outputFilePixelToReal << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << " ";
-            outputFileOptical << opticalCoordinates.x() << " " << opticalCoordinates.y() << " ";
+            // outputFilePixelToReal << pixelToRealCoordinates.x() << " " << pixelToRealCoordinates.y() << " ";
+            // outputFileOptical << opticalCoordinates.x() << " " << opticalCoordinates.y() << " ";
         }
 
         outputFileUWB << segmentRepresentatives[rangeIndex].coordinates.x() << " " << segmentRepresentatives[rangeIndex].coordinates.y() << std::endl;
-        outputFilePixelToReal << std::endl;
-        outputFileOptical << std::endl;
+        // outputFilePixelToReal << std::endl;
+        // outputFileOptical << std::endl;
 
 
     }
@@ -738,7 +731,7 @@ QPointF DataProcessor::predictWorldCoordinatesPixelToReal(const DetectionResult&
 QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& detection, const cv::Size& cameraFrameSize, const cv::Size& detectionFrameSize) {
 
     QPointF coordinates;
-    int height = detection.bbox.height;
+    int bboxHeight = detection.bbox.height;
 
     int imageX = detection.bottomEdgeCenter.x();
     int imageY = detection.bottomEdgeCenter.y();
@@ -753,7 +746,20 @@ QPointF DataProcessor::predictWorldCoordinatesOptical(const DetectionResult& det
     double cxAdjusted = cameraMatrix.at<double>(0, 2) * scaleX;
     double cyAdjusted = cameraMatrix.at<double>(1, 2) * scaleY;
 
-    double distance = (1.78 * fyAdjusted) / height ;
+    double personHeight = 1.78;
+
+    if (imageX < 280) {
+        personHeight = 1.78;
+    } else if (280 <= imageX && imageX <= 315) {
+        personHeight = 1.86;
+    } else {
+        personHeight = 1.78;
+    }
+
+    double distance = (personHeight * fyAdjusted) / bboxHeight;
+
+
+
 
     // cx and fx from intrinsic calibration
     double worldX = ((imageX - cxAdjusted) * (distance / fxAdjusted));

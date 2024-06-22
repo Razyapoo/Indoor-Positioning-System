@@ -13,6 +13,11 @@ enum CoordinateWindowObjectType {
     Person
 };
 
+enum TagDirection {
+    TowardsBaseline,
+    OutwardsBaseline
+};
+
 struct AnchorPosition {
     int anchorID;
     qreal x;
