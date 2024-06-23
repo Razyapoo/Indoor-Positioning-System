@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.1, 2024-06-23T07:44:04. -->
+<!-- Written by QtCreator 12.0.1, 2024-06-23T08:53:18. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -174,11 +174,24 @@
       </valuelist>
       <value type="bool" key="CMakeProjectManager.MakeStep.ClearSystemEnvironment">false</value>
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.UserEnvironmentChanges"/>
-      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">false</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
      </valuemap>
-     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="IncrediBuild.BuildConsole.CMakeCommandBuilder.Arguments"></value>
+      <value type="QString" key="IncrediBuild.BuildConsole.CMakeCommandBuilder.Command"></value>
+      <value type="QString" key="IncrediBuild.BuildConsole.CustomCommandBuilder.Arguments"></value>
+      <value type="QString" key="IncrediBuild.BuildConsole.CustomCommandBuilder.Command"></value>
+      <value type="QString" key="IncrediBuild.BuildConsole.MakeCommandBuilder.Arguments"></value>
+      <value type="QString" key="IncrediBuild.BuildConsole.MakeCommandBuilder.Command"></value>
+      <value type="QString" key="IncrediBuild.BuildStep.Type">IncrediBuild.BuildStep.BuildConsole</value>
+      <value type="QString" key="IncrediBuild.IBConsole.CommandBuilder">CMakeCommandBuilder</value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">IncrediBuild for Linux</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">IncrediBuild.BuildStep.IB_Console</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
