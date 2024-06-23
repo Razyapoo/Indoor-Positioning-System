@@ -100,8 +100,9 @@ void VideoProcessor::processVideo() {
 
         {
             QMutexLocker locker(&mutex);
-            if (!camera.read(frame)) {
-                pause(); // in case it will be necessary to read again
+            if (!camera.read(frame) || frame.empty()) {
+                // pause(); // in case it will be necessary to read again
+                camera.set(cv::CAP_PROP_POS_FRAMES, 0);
                 continue;
             }
 
