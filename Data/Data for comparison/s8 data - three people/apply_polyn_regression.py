@@ -13,7 +13,7 @@ df = pd.read_csv('/home/oskar/Documents/Master Thesis/Experiments/Video Player -
 # Convert columns to appropriate data types
 df = df.astype({'recordId': int, 'timestamp': int, 'tagId': int, 'anchor1': int, 'value1': float, 'anchor2': int, 'value2': float})
 
-def apply_polynomial(X, params):
+def applyPolynomial(X, params):
     intercept, beta1, beta2 = params
     return intercept + beta1 * X + beta2 * X**2
 
@@ -24,10 +24,10 @@ for tag in df['tagId'].unique():
             params = polynomialParameters[str(tag)][str(anchor)]
             # Update value1 where anchor1 == anchor
             mask = (df['tagId'] == tag) & (df['anchor1'] == anchor)
-            df.loc[mask, 'value1'] = apply_polynomial(df.loc[mask, 'value1'], params)
+            df.loc[mask, 'value1'] = applyPolynomial(df.loc[mask, 'value1'], params)
             # Update value2 where anchor2 == anchor
             mask = (df['tagId'] == tag) & (df['anchor2'] == anchor)
-            df.loc[mask, 'value2'] = apply_polynomial(df.loc[mask, 'value2'], params)
+            df.loc[mask, 'value2'] = applyPolynomial(df.loc[mask, 'value2'], params)
 
 # Write the result to a new text file
 df.to_csv('/home/oskar/Documents/Master Thesis/Experiments/Video Player - test s8 - 3 people - parallel - after correction (PR)/UWB_timestamps.txt', sep=' ', index=False, header=False)
