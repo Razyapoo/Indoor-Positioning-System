@@ -30,15 +30,15 @@ def calculateErrors(refCoords, uwbCoords, modelCoords, opticalCoords, compareWit
         errorsDf = pd.DataFrame({
             'UWB_x_Error': np.abs(refCoords['x'] - uwbCoords['x']),
             'UWB_y_Error': np.abs(refCoords['y'] - uwbCoords['y']),
-            'Pixel-to-Real_x_Error': np.abs(refCoords['x'] - modelCoords['x']),
-            'Pixel-to-Real_y_Error': np.abs(refCoords['y'] - modelCoords['y']),
+            'Pixel_to_Real_x_Error': np.abs(refCoords['x'] - modelCoords['x']),
+            'Pixel_to_Real_y_Error': np.abs(refCoords['y'] - modelCoords['y']),
             'Optical_x_Error': np.abs(refCoords['x'] - opticalCoords['x']),
             'Optical_y_Error': np.abs(refCoords['y'] - opticalCoords['y'])
         })
     elif compareWith == 'uwb':
         errorsDf = pd.DataFrame({
-            'Pixel-to-Real_x_Error': np.abs(uwbCoords['x'] - modelCoords['x']),
-            'Pixel-to-Real_y_Error': np.abs(uwbCoords['y'] - modelCoords['y']),
+            'Pixel_to_Real_x_Error': np.abs(uwbCoords['x'] - modelCoords['x']),
+            'Pixel_to_Real_y_Error': np.abs(uwbCoords['y'] - modelCoords['y']),
             'Optical_x_Error': np.abs(uwbCoords['x'] - opticalCoords['x']),
             'Optical_y_Error': np.abs(uwbCoords['y'] - opticalCoords['y'])
         })
@@ -69,7 +69,7 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     for i, method in enumerate(methods, 1):
         for axis in ['x', 'y']:
             plt.subplot(len(methods), 2, i*2-1 if axis == 'x' else i*2)
-            plt.hist(errorsDf[f'{method}_{axis}_Error'], bins=50, alpha=0.7, label=f'{method}_{axis}', color='green' if method == 'UWB' else ('orange' if method == 'Pixel-to-Real' else 'red'))
+            plt.hist(errorsDf[f'{method}_{axis}_Error'], bins=50, alpha=0.7, label=f'{method}_{axis}', color='green' if method == 'UWB' else ('orange' if method == 'Pixel_to_Real' else 'red'))
             plt.title(f'{method} {axis.upper()} Coordinate Errors', fontsize=14)
             plt.xlabel('Absolute Error', fontsize=13)
             plt.ylabel('Frequency', fontsize=13)
@@ -140,6 +140,7 @@ def plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, folderToSa
     plt.tight_layout()
     plt.savefig(f'{folderToSave}/histogram_distance_errors_{fileName}.png')
     plt.close()
+
 def createSplits(data, splitSizes):
     """Split data into parts based on the splitSizes"""
     indices = np.cumsum(splitSizes)
@@ -166,7 +167,7 @@ def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title
     plt.grid(True)
     plt.tight_layout()
     if folderToSave:
-        fileNameToSave = folderToSave + "/" + title.replace(" ", "").replace("\n", "")
+        fileNameToSave = folderToSave + "/" + title.replace(" ", "_").replace("\n", "_")
         plt.savefig(fileNameToSave)
     else:
         plt.show()
@@ -285,7 +286,7 @@ datasets = [
     }
 ]
 
-baseFolder = "/home/oskar/Documents/Master Thesis/Archive/Images/plots"
+baseFolder = "/home/oskar/Documents/Images from inkscape/plots"
 
 for dataset in datasets:
     refCoords, uwbCoords, opticalCoords, modelCoords = loadData(
@@ -302,19 +303,21 @@ for dataset in datasets:
     modelSplits = createSplits(modelCoords, dataset["splitSizes"])
 
     for compareWith in ['ref', 'uwb']:
-        comparisonFolder = 'Comparison with reference coordinates' if compareWith == 'ref' else 'Comparison with uwb coordinates'
+        comparisonFolder = 'comparison_with_reference_coordinates' if compareWith == 'ref' else 'comparison_with_uwb_coordinates'
         comparisonSuffixFileName = 'reference_coordinates' if compareWith == 'ref' else 'uwb_coordinates'
         fileName = f'{dataset["fileName"]}_{comparisonSuffixFileName}'
         comparisonSuffix = 'Reference Coordinates' if compareWith == 'ref' else 'UWB Coordinates'
         titleSuffix = f'{dataset["titleSuffix"]} \n Compared with {comparisonSuffix}'
 
-        # folderToSave = createDirectories(baseFolder, comparisonFolder, dataset["fileName"])
-        boxplotFolder = createDirectories(baseFolder, comparisonFolder, 'Cooridnate errors', dataset["fileName"])
-        histogramFolder = createDirectories(baseFolder, comparisonFolder, 'Distances errors', dataset["fileName"])
-        errorTrendFolder = createDirectories(baseFolder, comparisonFolder, 'Error trend', dataset["fileName"])
-        scatterPlotFolder = createDirectories(baseFolder, comparisonFolder, 'Scatter plots', dataset["fileName"])
+        # Creating folders for different plot types within the comparison folders
+        boxplotFolder = createDirectories(baseFolder, comparisonFolder, 'boxplot_errors', dataset["fileName"])
+        histogramFolder = createDirectories(baseFolder, comparisonFolder, 'histogram_errors', dataset["fileName"])
+        errorTrendFolder = createDirectories(baseFolder, comparisonFolder, 'error_trend', dataset["fileName"])
+        scatterPlotFolder = createDirectories(baseFolder, comparisonFolder, 'scatter_plots', dataset["fileName"])
 
         errorsDf = calculateErrors(refCoords, uwbCoords, modelCoords, opticalCoords, compareWith)
+        
+        # Save plots to respective folders
         plotErrors(errorsDf, titleSuffix, fileName, boxplotFolder)
     
         frames = pd.read_csv(dataset["uwbPath"], sep=' ', header=None, usecols=[0])
@@ -336,7 +339,7 @@ for dataset in datasets:
 
         plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, histogramFolder)
 
-                # Plot splits for scatter plots
+        # Plot splits for scatter plots
         plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Reference vs Estimated Uwb Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
         plotSplits(refSplits, modelSplits, 'PixelToReal Estimated Coordinates', 'orange', f'Reference vs Estimated PixelToReal Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
         plotSplits(refSplits, opticalSplits, 'Optical Estimated Coordinates', 'red', f'Reference vs Estimated Optical Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
