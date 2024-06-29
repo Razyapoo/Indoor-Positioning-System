@@ -45,7 +45,7 @@ def calculateMetrics(refCoords, estCoords):
     }
 
 def saveMetricsToFile(metricsDf, filePath):
-    metricsDf.to_csv(filePath, sep=" ")
+    metricsDf.to_csv(filePath, sep=",")
 
 def saveMetricsToLatex(metricsDf, filePath, comparisonType, exp, tag):
     with open(filePath, 'w') as f:
@@ -461,7 +461,7 @@ for dataset in datasets:
             }
         
         distanceMetricsDF = pd.DataFrame(distanceMetrics)
-        distanceMetricsDF.to_csv(f'{distanceErrorMetricsFolder}/{fileName}_distance_error_metrics.txt', sep=" ")
+        distanceMetricsDF.to_csv(f'{distanceErrorMetricsFolder}/{fileName}_distance_error_metrics.csv', sep=",")
 
         plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, distanceErrorFolder)
         summaryMetricsPath = os.path.join(distanceErrorMetricsFolder, f"{fileName}_distance_error_summary.tex")
