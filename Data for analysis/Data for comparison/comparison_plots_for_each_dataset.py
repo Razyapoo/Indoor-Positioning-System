@@ -323,7 +323,7 @@ datasets = [
 ]
 # Directory paths
 baseFolder = "../../Archive/Images/plots"
-baseFolderMetrics = "../../Archive/Data/Metrics"
+baseFolderMetrics = "../../Archive/Metrics"
 
 for dataset in datasets:
     refCoords, uwbCoords, opticalCoords, modelCoords = loadData(

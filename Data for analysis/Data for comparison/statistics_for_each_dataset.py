@@ -220,8 +220,8 @@ for dataset in datasets:
     ])
     
     # Directory paths
-    refDir = f"../../Archive/Data/Metrics/Comparison with reference coordinates/Statistics/{dataset['folderName']}"
-    uwbDir = f"../../Archive/Data/Metrics/Comparison with uwb coordinates/Statistics/{dataset['folderName']}"
+    refDir = f"../../Archive/Metrics/Comparison with reference coordinates/Statistics/{dataset['folderName']}"
+    uwbDir = f"../../Archive/Metrics/Comparison with uwb coordinates/Statistics/{dataset['folderName']}"
     
     # Create directories if they don't exist
     os.makedirs(refDir, exist_ok=True)
