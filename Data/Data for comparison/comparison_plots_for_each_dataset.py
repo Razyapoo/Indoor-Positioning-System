@@ -309,13 +309,13 @@ for dataset in datasets:
         titleSuffix = f'{dataset["titleSuffix"]} \n Compared with {comparisonSuffix}'
 
         # folderToSave = createDirectories(baseFolder, comparisonFolder, dataset["fileName"])
-        boxplotFolder = createDirectories(baseFolder, comparisonFolder, 'Cooridnate errors', dataset["fileName"])
-        histogramFolder = createDirectories(baseFolder, comparisonFolder, 'Distances errors', dataset["fileName"])
+        boxplotCoordinatesFolder = createDirectories(baseFolder, comparisonFolder, 'Basic plots showing errors in coordinates', dataset["fileName"])
+        distanceErrorFolder = createDirectories(baseFolder, comparisonFolder, 'Distance errors', dataset["fileName"])
         errorTrendFolder = createDirectories(baseFolder, comparisonFolder, 'Error trend', dataset["fileName"])
         scatterPlotFolder = createDirectories(baseFolder, comparisonFolder, 'Scatter plots', dataset["fileName"])
 
         errorsDf = calculateErrors(refCoords, uwbCoords, modelCoords, opticalCoords, compareWith)
-        plotErrors(errorsDf, titleSuffix, fileName, boxplotFolder)
+        plotErrors(errorsDf, titleSuffix, fileName, boxplotCoordinatesFolder)
     
         frames = pd.read_csv(dataset["uwbPath"], sep=' ', header=None, usecols=[0])
         frames.columns = ['Frames']
@@ -328,13 +328,36 @@ for dataset in datasets:
                 'Pixel_to_Real_Distance': np.sqrt((refCoords['x'] - modelCoords['x'])**2 + (refCoords['y'] - modelCoords['y'])**2),
                 'Optical_Distance': np.sqrt((refCoords['x'] - opticalCoords['x'])**2 + (refCoords['y'] - opticalCoords['y'])**2)
             })
+
+            distanceMetrics = {
+                'Method': ['UWB', 'Pixel-to-Real', 'Optical'],
+                'Mean Distance': [distanceErrors['UWB_Distance'].mean(), distanceErrors['Pixel_to_Real_Distance'].mean(), distanceErrors['Optical_Distance'].mean()],
+                'Median Distance': [distanceErrors['UWB_Distance'].median(), distanceErrors['Pixel_to_Real_Distance'].median(), distanceErrors['Optical_Distance'].median()],
+                'Max Distance': [distanceErrors['UWB_Distance'].max(), distanceErrors['Pixel_to_Real_Distance'].max(), distanceErrors['Optical_Distance'].max()],
+                'Min Distance': [distanceErrors['UWB_Distance'].min(), distanceErrors['Pixel_to_Real_Distance'].min(), distanceErrors['Optical_Distance'].min()],
+                'Std Dev Distance': [distanceErrors['UWB_Distance'].std(), distanceErrors['Pixel_to_Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
+            }
         else:
             distanceErrors = pd.DataFrame({
                 'Pixel_to_Real_Distance': np.sqrt((uwbCoords['x'] - modelCoords['x'])**2 + (uwbCoords['y'] - modelCoords['y'])**2),
                 'Optical_Distance': np.sqrt((uwbCoords['x'] - opticalCoords['x'])**2 + (uwbCoords['y'] - opticalCoords['y'])**2)
             })
 
-        plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, histogramFolder)
+            distanceMetrics = {
+                'Method': ['Pixel-to-Real', 'Optical'],
+                'Mean Distance': [distanceErrors['Pixel_to_Real_Distance'].mean(), distanceErrors['Optical_Distance'].mean()],
+                'Median Distance': [distanceErrors['Pixel_to_Real_Distance'].median(), distanceErrors['Optical_Distance'].median()],
+                'Max Distance': [distanceErrors['Pixel_to_Real_Distance'].max(), distanceErrors['Optical_Distance'].max()],
+                'Min Distance': [distanceErrors['Pixel_to_Real_Distance'].min(), distanceErrors['Optical_Distance'].min()],
+                'Std Dev Distance': [distanceErrors['Pixel_to_Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
+            }
+        
+        
+
+        distanceMetricsDF = pd.DataFrame(distanceMetrics)
+        distanceMetricsDF.to_csv(f'{distanceErrorFolder}/{fileName}_distance_error_metrics.txt', sep=" ")
+
+        plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, distanceErrorFolder)
 
                 # Plot splits for scatter plots
         plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Reference vs Estimated Uwb Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
