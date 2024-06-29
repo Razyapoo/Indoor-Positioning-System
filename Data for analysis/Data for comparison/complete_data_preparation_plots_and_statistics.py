@@ -1,8 +1,8 @@
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
 
 def createDirectories(baseFolder, comparisonFolder, diagramType, experimentName):
     """Create directories for saving plots."""
@@ -24,6 +24,65 @@ def loadData(refPath, uwbPath, opticalPath, modelPath, useCols):
     modelCoords.columns = ['x', 'y']
     
     return refCoords, uwbCoords, opticalCoords, modelCoords
+
+def calculateMetrics(refCoords, estCoords):
+    maeX = (refCoords['x'] - estCoords['x']).abs().mean()
+    maeY = (refCoords['y'] - estCoords['y']).abs().mean()
+
+    mseX = ((refCoords['x'] - estCoords['x']) ** 2).mean()
+    mseY = ((refCoords['y'] - estCoords['y']) ** 2).mean()
+
+    rmseX = np.sqrt(mseX)
+    rmseY = np.sqrt(mseY)
+
+    return {
+        'MAE_X': maeX,
+        'MSE_X': mseX,
+        'RMSE_X': rmseX,
+        'MAE_Y': maeY,
+        'MSE_Y': mseY,
+        'RMSE_Y': rmseY
+    }
+
+def saveMetricsToFile(metricsDf, filePath):
+    metricsDf.to_csv(filePath, sep=" ")
+
+def saveMetricsToLatex(metricsDf, filePath, comparisonType, exp, tag):
+    with open(filePath, 'w') as f:
+        f.write("\\begin{table}[h]\n")
+        f.write("\\centering\n")
+        f.write("\\begin{tabular}{|c|c|c|c|c|}\n")
+        f.write("\\hline\n")
+        f.write("$Method$ & $Coordinate$ & $MAE$ & $MSE$ & $RMSE$ \\\\\n")
+        f.write("\\hline\n")
+        for i, row in metricsDf.iterrows():
+            if i % 2 == 0:
+                if comparisonType == 'Reference':
+                    f.write("\\multirow{2}{*}{{\\footnotesize Error(C\\textsubscript{%s}(%s, Tag %d), RS\\textsubscript{0.5m}(Tag %d))}} & " % (row['Method'], exp.split('(')[0][1:], tag, tag))
+                else:
+                    f.write("\\multirow{2}{*}{{\\footnotesize Error(C\\textsubscript{%s}(%s, Tag %d), C\\textsubscript{UWB}(%s, Tag %d))}} & " % (row['Method'], exp.split('(')[0][1:], tag, exp.split('(')[0][1:], tag))
+            else:
+                f.write("& ")
+            f.write("\\texttt{%s\\textsubscript{%s}} & %.4f & %.4f & %.4f \\\\\n" % (row['Coordinate'], row['Method'], row['MAE'], row['MSE'], row['RMSE']))
+            if i % 2 != 0:
+                f.write("\\hline\n")
+        f.write("\\end{tabular}\n")
+        f.write("\\end{table}\n")
+
+def saveSummaryMetricsToLatex(metricsDf, filePath):
+    with open(filePath, 'w') as f:
+        f.write("\\begin{table}[h]\n")
+        f.write("\\centering\n")
+        f.write("\\begin{tabular}{|c|c|c|c|c|c|}\n")
+        f.write("\\hline\n")
+        f.write("$Method$ & $Mean$ & $Median$ & $Max$ & $Min$ & $StdDev$ \\\\\n")
+        f.write("\\hline\n")
+        for i, row in metricsDf.iterrows():
+            f.write("%s & %.4f & %.4f & %.4f & %.4f & %.4f \\\\\n" % (row['Method'], row['Mean Distance'], row['Median Distance'], row['Max Distance'], row['Min Distance'], row['Std Dev Distance']))
+            f.write("\\hline\n")
+        f.write("\\end{tabular}\n")
+        f.write("\\end{table}\n")
+
 
 def calculateErrors(refCoords, uwbCoords, modelCoords, opticalCoords, compareWith):
     if compareWith == 'ref':
@@ -140,7 +199,7 @@ def plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, folderToSa
     plt.tight_layout()
     plt.savefig(f'{folderToSave}/histogram_distance_errors_{fileName}.png')
     plt.close()
-    
+
 def createSplits(data, splitSizes):
     """Split data into parts based on the splitSizes"""
     indices = np.cumsum(splitSizes)
@@ -167,7 +226,6 @@ def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title
     plt.grid(True)
     plt.tight_layout()
     if folderToSave:
-        # fileNameToSave = folderToSave + "/" + title.replace(" ", "").replace("\n", "")
         plt.savefig(f'{folderToSave}/reference_vs_estimated_{type}_scatter_plot_{fileName}.png')
     else:
         plt.show()
@@ -218,7 +276,8 @@ datasets = [
         "useCols": [3, 4],
         "titleSuffix": "E109(DA_S8_S5(T1_A2_TPh_Md_Wpn)) - full area (17 meters)",
         "fileName": "e109_full_area",
-        "splitSizes": [28] + [29] * 6
+        "splitSizes": [28] + [29] * 6,
+        "tag": 1
     },
     {
         "refPath": "./s8 data - single person/reference_coordinates_reduced_range.txt",
@@ -228,7 +287,8 @@ datasets = [
         "useCols": [3, 4],
         "titleSuffix": "E109(DA_S8_S5(T1_A2_TPh_Md_Wpn)) - reduced area (10 meters)",
         "fileName": "e109_reduced_area",
-        "splitSizes": [14] + [15] * 6
+        "splitSizes": [14] + [15] * 6,
+        "tag": 1
     },
     {
         "refPath": "./s301 data - single person/reference_coordinates.txt",
@@ -238,7 +298,8 @@ datasets = [
         "useCols": [3, 4],
         "titleSuffix": "E113(DA_S301_S5(T1_A2_TPh_Md_Wpn))",
         "fileName": "e113",
-        "splitSizes": [12] * 6 + [11]
+        "splitSizes": [12] * 6 + [11],
+        "tag": 1
     },
     {
         "refPath": "./s8 data - three people/1 person/reference_coordinates.txt",
@@ -248,7 +309,8 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 1 - full area (16 meters)",
         "fileName": "e118_full_area_person1",
-        "splitSizes": [27]
+        "splitSizes": [27],
+        "tag": 1
     },
     {
         "refPath": "./s8 data - three people/2 person/reference_coordinates.txt",
@@ -258,7 +320,8 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 2 - full area (16 meters)",
         "fileName": "e118_full_area_person2",
-        "splitSizes": [27]
+        "splitSizes": [27],
+        "tag": 2
     },
     {
         "refPath": "./s8 data - three people/3 person/reference_coordinates.txt",
@@ -268,7 +331,8 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 3 - full area (16 meters)",
         "fileName": "e118_full_area_person3",
-        "splitSizes": [27]
+        "splitSizes": [27],
+        "tag": 3
     },
     {
         "refPath": "./s8 data - three people/1 person/reference_coordinates_reduced_range.txt",
@@ -278,7 +342,8 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 1 - reduced area (10 meters)",
         "fileName": "e118_reduced_area_person1",
-        "splitSizes": [15]
+        "splitSizes": [15],
+        "tag": 1
     },
     {
         "refPath": "./s8 data - three people/2 person/reference_coordinates_reduced_range.txt",
@@ -288,7 +353,8 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 2 - reduced area (10 meters)",
         "fileName": "e118_reduced_area_person2",
-        "splitSizes": [15]
+        "splitSizes": [15],
+        "tag": 2
     },
     {
         "refPath": "./s8 data - three people/3 person/reference_coordinates_reduced_range.txt",
@@ -298,7 +364,8 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 3 - reduced area (10 meters)",
         "fileName": "e118_reduced_area_person3",
-        "splitSizes": [15]
+        "splitSizes": [15],
+        "tag": 3
     },
     {
         "refPath": "./s301 data - two people/1 person - 1 tag/reference_coordinates.txt",
@@ -308,7 +375,8 @@ datasets = [
         "useCols": [3, 4],
         "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 1",
         "fileName": "e124_person1",
-        "splitSizes": [9]
+        "splitSizes": [9],
+        "tag": 1
     },
     {
         "refPath": "./s301 data - two people/2 person - 2 tag/reference_coordinates.txt",
@@ -318,7 +386,8 @@ datasets = [
         "useCols": [3, 4],
         "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 2",
         "fileName": "e124_person2",
-        "splitSizes": [9]
+        "splitSizes": [9],
+        "tag": 2
     }
 ]
 # Directory paths
@@ -351,8 +420,8 @@ for dataset in datasets:
         distanceErrorFolder = createDirectories(baseFolder, comparisonFolder, 'Distance errors', dataset["fileName"])
         distanceErrorMetricsFolder = createDirectories(baseFolderMetrics, comparisonFolder, 'Distance error metrics', dataset["fileName"])
         errorTrendFolder = createDirectories(baseFolder, comparisonFolder, 'Error trend', dataset["fileName"])
+        statisticsFolder = createDirectories(baseFolderMetrics, comparisonFolder, 'Statistics', dataset["fileName"])
         
-
         errorsDf = calculateErrors(refCoords, uwbCoords, modelCoords, opticalCoords, compareWith)
         plotErrors(errorsDf, titleSuffix, fileName, boxplotCoordinatesFolder)
     
@@ -391,12 +460,12 @@ for dataset in datasets:
                 'Std Dev Distance': [distanceErrors['Pixel_to_Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
             }
         
-        
-
         distanceMetricsDF = pd.DataFrame(distanceMetrics)
         distanceMetricsDF.to_csv(f'{distanceErrorMetricsFolder}/{fileName}_distance_error_metrics.txt', sep=" ")
 
         plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, distanceErrorFolder)
+        summaryMetricsPath = os.path.join(distanceErrorMetricsFolder, f"{fileName}_distance_error_summary.tex")
+        saveSummaryMetricsToLatex(distanceMetricsDF, summaryMetricsPath)
 
         # Plot splits for scatter plots
         if compareWith == 'ref':
@@ -409,4 +478,35 @@ for dataset in datasets:
             plotSplitsMulti(referenceSplits=refSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_pixel_to_real_vs_optical', folderToSave=scatterPlotCommonFolder)
             plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_uwb_vs_pixel_to_real', folderToSave=scatterPlotCommonFolder)
         
+        # Metrics Calculation
+        uwbMetrics = calculateMetrics(refCoords, uwbCoords)
+        opticalMetrics = calculateMetrics(refCoords, opticalCoords)
+        modelMetrics = calculateMetrics(refCoords, modelCoords)
+        opticalVsUwbMetrics = calculateMetrics(uwbCoords, opticalCoords)
+        modelVsUwbMetrics = calculateMetrics(uwbCoords, modelCoords)
         
+        # Create DataFrame for reference comparison
+        refMetricsDf = pd.DataFrame([
+            {'Method': 'UWB', 'Coordinate': 'x', 'MAE': uwbMetrics['MAE_X'], 'MSE': uwbMetrics['MSE_X'], 'RMSE': uwbMetrics['RMSE_X']},
+            {'Method': 'UWB', 'Coordinate': 'y', 'MAE': uwbMetrics['MAE_Y'], 'MSE': uwbMetrics['MSE_Y'], 'RMSE': uwbMetrics['RMSE_Y']},
+            {'Method': 'P2R', 'Coordinate': 'x', 'MAE': modelMetrics['MAE_X'], 'MSE': modelMetrics['MSE_X'], 'RMSE': modelMetrics['RMSE_X']},
+            {'Method': 'P2R', 'Coordinate': 'y', 'MAE': modelMetrics['MAE_Y'], 'MSE': modelMetrics['MSE_Y'], 'RMSE': modelMetrics['RMSE_Y']},
+            {'Method': 'Opt', 'Coordinate': 'x', 'MAE': opticalMetrics['MAE_X'], 'MSE': opticalMetrics['MSE_X'], 'RMSE': opticalMetrics['RMSE_X']},
+            {'Method': 'Opt', 'Coordinate': 'y', 'MAE': opticalMetrics['MAE_Y'], 'MSE': opticalMetrics['MSE_Y'], 'RMSE': opticalMetrics['RMSE_Y']}
+        ])
+        
+        # Create DataFrame for UWB comparison
+        uwbMetricsDf = pd.DataFrame([
+            {'Method': 'P2R', 'Coordinate': 'x', 'MAE': modelVsUwbMetrics['MAE_X'], 'MSE': modelVsUwbMetrics['MSE_X'], 'RMSE': modelVsUwbMetrics['RMSE_X']},
+            {'Method': 'P2R', 'Coordinate': 'y', 'MAE': modelVsUwbMetrics['MAE_Y'], 'MSE': modelVsUwbMetrics['MSE_Y'], 'RMSE': modelVsUwbMetrics['RMSE_Y']},
+            {'Method': 'Opt', 'Coordinate': 'x', 'MAE': opticalVsUwbMetrics['MAE_X'], 'MSE': opticalVsUwbMetrics['MSE_X'], 'RMSE': opticalVsUwbMetrics['RMSE_X']},
+            {'Method': 'Opt', 'Coordinate': 'y', 'MAE': opticalVsUwbMetrics['MAE_Y'], 'MSE': opticalVsUwbMetrics['MSE_Y'], 'RMSE': opticalVsUwbMetrics['RMSE_Y']}
+        ])
+        
+        # Save LaTeX formatted metrics
+        saveMetricsToLatex(refMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.tex"), 'Reference', dataset['titleSuffix'], dataset['tag'])
+        saveMetricsToLatex(uwbMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.tex"), 'UWB', dataset['titleSuffix'], dataset['tag'])
+        
+        # Save CSV formatted metrics
+        saveMetricsToFile(refMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.csv"))
+        saveMetricsToFile(uwbMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.csv"))
