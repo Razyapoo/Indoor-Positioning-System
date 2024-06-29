@@ -145,7 +145,7 @@ def createSplits(data, splitSizes):
     indices = np.cumsum(splitSizes)
     return np.split(data, indices[:-1])
 
-def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title, refAlpha=0.3, estAlpha=1, folderToSave=None):
+def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title, refAlpha=0.3, estAlpha=1, type="", fileName="", folderToSave=None):
     """Plot the splits for the reference and estimated coordinates"""
     plt.figure(figsize=(15, 10))
 
@@ -166,118 +166,150 @@ def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title
     plt.grid(True)
     plt.tight_layout()
     if folderToSave:
-        fileNameToSave = folderToSave + "/" + title.replace(" ", "").replace("\n", "")
-        plt.savefig(fileNameToSave)
+        # fileNameToSave = folderToSave + "/" + title.replace(" ", "").replace("\n", "")
+        plt.savefig(f'{folderToSave}/reference_vs_estimated_{type}_scatter_plot_{fileName}.png')
+    else:
+        plt.show()
+    plt.close()
+
+def plotSplitsMulti(referenceSplits, uwbSplits, pixelToRealSplits, opticalSplits, title, refAlpha=0.3, estAlpha=1, fileName="", folderToSave=None):
+    """Plot the splits for the reference and estimated coordinates from multiple methods"""
+    plt.figure(figsize=(15, 10))
+
+    for i, refSplit in enumerate(referenceSplits):
+        plt.plot(refSplit['x'], refSplit['y'], 'o-', color='blue', alpha=refAlpha, label='Reference Coordinates' if i == 0 else "")
+
+    for i, estSplit in enumerate(uwbSplits):
+        plt.plot(estSplit['x'], estSplit['y'], 'x-', color='green', alpha=estAlpha, label='UWB Estimated Coordinates' if i == 0 else "")
+    
+    for i, estSplit in enumerate(pixelToRealSplits):
+        plt.plot(estSplit['x'], estSplit['y'], 'x-', color='orange', alpha=estAlpha, label='Pixel-to-Real Estimated Coordinates' if i == 0 else "")
+
+    for i, estSplit in enumerate(opticalSplits):
+        plt.plot(estSplit['x'], estSplit['y'], 'x-', color='red', alpha=estAlpha, label='Optical Estimated Coordinates' if i == 0 else "")
+
+    plt.xlabel('X Coordinate', fontsize=14)
+    plt.ylabel('Y Coordinate', fontsize=14)
+    plt.title(title, fontsize=18)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    byLabel = dict(zip(labels, handles))
+    plt.legend(byLabel.values(), byLabel.keys(), fontsize=12, loc='upper right')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.grid(True)
+    plt.tight_layout()
+    if folderToSave:
+        plt.savefig(f'{folderToSave}/common_scatter_plot_{fileName}.png')
     else:
         plt.show()
     plt.close()
 
 datasets = [
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/uwb_to_bb_mapping_entire.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/optical_to_bb_mapping_entire.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/pixel_to_real_to_bb_mapping_entire.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/uwb_to_bb_mapping_entire.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/optical_to_bb_mapping_entire.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/pixel_to_real_to_bb_mapping_entire.txt",
         "useCols": [3, 4],
-        "titleSuffix": "E109(DA_S8_S5(T1_A2_TPh_Md_Wpn)) - full area (16 meters)",
+        "titleSuffix": "E109(DA_S8_S5(T1_A2_TPh_Md_Wpn)) - full area (17 meters)",
         "fileName": "e109_full_area",
         "splitSizes": [28] + [29] * 6
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/reference_coordinates_reduced_range.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/uwb_to_bb_mapping_entire_reduced_range.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/optical_to_bb_mapping_entire_reduced_range.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - single person/pixel_to_real_to_bb_mapping_entire_reduced_range.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/reference_coordinates_reduced_range.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/uwb_to_bb_mapping_entire_reduced_range.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/optical_to_bb_mapping_entire_reduced_range.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - single person/pixel_to_real_to_bb_mapping_entire_reduced_range.txt",
         "useCols": [3, 4],
         "titleSuffix": "E109(DA_S8_S5(T1_A2_TPh_Md_Wpn)) - reduced area (10 meters)",
         "fileName": "e109_reduced_area",
         "splitSizes": [14] + [15] * 6
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - single person/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - single person/export/uwb_to_bb_mapping_entire.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - single person/export/optical_to_bb_mapping_entire.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - single person/export/pixel_to_real_to_bb_mapping_entire.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - single person/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - single person/export/uwb_to_bb_mapping_entire.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - single person/export/optical_to_bb_mapping_entire.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - single person/export/pixel_to_real_to_bb_mapping_entire.txt",
         "useCols": [3, 4],
         "titleSuffix": "E113(DA_S301_S5(T1_A2_TPh_Md_Wpn))",
         "fileName": "e113",
         "splitSizes": [12] * 6 + [11]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/uwb_to_bb_mapping.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/optical_to_bb_mapping.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/pixel_to_real_to_bb_mapping.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/uwb_to_bb_mapping.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/optical_to_bb_mapping.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/pixel_to_real_to_bb_mapping.txt",
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 1 - full area (16 meters)",
         "fileName": "e118_full_area_person1",
         "splitSizes": [27]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/uwb_to_bb_mapping.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/optical_to_bb_mapping.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/pixel_to_real_to_bb_mapping.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/uwb_to_bb_mapping.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/optical_to_bb_mapping.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/pixel_to_real_to_bb_mapping.txt",
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 2 - full area (16 meters)",
         "fileName": "e118_full_area_person2",
         "splitSizes": [27]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/uwb_to_bb_mapping.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/optical_to_bb_mapping.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/pixel_to_real_to_bb_mapping.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/uwb_to_bb_mapping.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/optical_to_bb_mapping.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/pixel_to_real_to_bb_mapping.txt",
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 3 - full area (16 meters)",
         "fileName": "e118_full_area_person3",
         "splitSizes": [27]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/reference_coordinates_reduced_range.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/uwb_to_bb_mapping_reduced_range.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/optical_to_bb_mapping_reduced_range.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/1 person/pixel_to_real_to_bb_mapping_reduced_range.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/reference_coordinates_reduced_range.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/uwb_to_bb_mapping_reduced_range.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/optical_to_bb_mapping_reduced_range.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/1 person/pixel_to_real_to_bb_mapping_reduced_range.txt",
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 1 - reduced area (10 meters)",
         "fileName": "e118_reduced_area_person1",
         "splitSizes": [15]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/reference_coordinates_reduced_range.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/uwb_to_bb_mapping_reduced_range.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/optical_to_bb_mapping_reduced_range.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/2 person/pixel_to_real_to_bb_mapping_reduced_range.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/reference_coordinates_reduced_range.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/uwb_to_bb_mapping_reduced_range.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/optical_to_bb_mapping_reduced_range.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/2 person/pixel_to_real_to_bb_mapping_reduced_range.txt",
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 2 - reduced area (10 meters)",
         "fileName": "e118_reduced_area_person2",
         "splitSizes": [15]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/reference_coordinates_reduced_range.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/uwb_to_bb_mapping_reduced_range.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/optical_to_bb_mapping_reduced_range.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s8 data - three people/3 person/pixel_to_real_to_bb_mapping_reduced_range.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/reference_coordinates_reduced_range.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/uwb_to_bb_mapping_reduced_range.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/optical_to_bb_mapping_reduced_range.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s8 data - three people/3 person/pixel_to_real_to_bb_mapping_reduced_range.txt",
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 3 - reduced area (10 meters)",
         "fileName": "e118_reduced_area_person3",
         "splitSizes": [15]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/1 person - 1 tag/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/1 person - 1 tag/uwb_to_bb_mapping.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/1 person - 1 tag/optical_to_bb_mapping.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/1 person - 1 tag/pixel_to_real_to_bb_mapping.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/1 person - 1 tag/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/1 person - 1 tag/uwb_to_bb_mapping.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/1 person - 1 tag/optical_to_bb_mapping.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/1 person - 1 tag/pixel_to_real_to_bb_mapping.txt",
         "useCols": [3, 4],
         "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 1",
         "fileName": "e124_person1",
         "splitSizes": [9]
     },
     {
-        "refPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/2 person - 2 tag/reference_coordinates.txt",
-        "uwbPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/2 person - 2 tag/uwb_to_bb_mapping.txt",
-        "opticalPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/2 person - 2 tag/optical_to_bb_mapping.txt",
-        "modelPath": "/home/oskar/Documents/Master Thesis/Data/Data for comparison/s301 data - two people/2 person - 2 tag/pixel_to_real_to_bb_mapping.txt",
+        "refPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/2 person - 2 tag/reference_coordinates.txt",
+        "uwbPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/2 person - 2 tag/uwb_to_bb_mapping.txt",
+        "opticalPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/2 person - 2 tag/optical_to_bb_mapping.txt",
+        "modelPath": "/home/oskar/Documents/Master Thesis/Data for analysis/Data for comparison/s301 data - two people/2 person - 2 tag/pixel_to_real_to_bb_mapping.txt",
         "useCols": [3, 4],
         "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 2",
         "fileName": "e124_person2",
@@ -312,7 +344,7 @@ for dataset in datasets:
         boxplotCoordinatesFolder = createDirectories(baseFolder, comparisonFolder, 'Basic plots showing errors in coordinates', dataset["fileName"])
         distanceErrorFolder = createDirectories(baseFolder, comparisonFolder, 'Distance errors', dataset["fileName"])
         errorTrendFolder = createDirectories(baseFolder, comparisonFolder, 'Error trend', dataset["fileName"])
-        scatterPlotFolder = createDirectories(baseFolder, comparisonFolder, 'Scatter plots', dataset["fileName"])
+        
 
         errorsDf = calculateErrors(refCoords, uwbCoords, modelCoords, opticalCoords, compareWith)
         plotErrors(errorsDf, titleSuffix, fileName, boxplotCoordinatesFolder)
@@ -359,7 +391,13 @@ for dataset in datasets:
 
         plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, distanceErrorFolder)
 
-                # Plot splits for scatter plots
-        plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Reference vs Estimated Uwb Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
-        plotSplits(refSplits, modelSplits, 'PixelToReal Estimated Coordinates', 'orange', f'Reference vs Estimated PixelToReal Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
-        plotSplits(refSplits, opticalSplits, 'Optical Estimated Coordinates', 'red', f'Reference vs Estimated Optical Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, folderToSave=scatterPlotFolder)
+        # Plot splits for scatter plots
+        if compareWith == 'ref':
+            scatterPlotFolder = createDirectories(baseFolder, comparisonFolder, 'Scatter plots', dataset["fileName"])
+            scatterPlotCommonFolder = createDirectories(baseFolder, 'Comparison with reference coordinates', 'Scatter plot common', dataset["fileName"])
+            plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Reference vs Estimated Uwb Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='uwb', folderToSave=scatterPlotFolder)
+            plotSplits(refSplits, modelSplits, 'PixelToReal Estimated Coordinates', 'orange', f'Reference vs Estimated PixelToReal Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='pixel_to_real', folderToSave=scatterPlotFolder)
+            plotSplits(refSplits, opticalSplits, 'Optical Estimated Coordinates', 'red', f'Reference vs Estimated Optical Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='optical', folderToSave=scatterPlotFolder)
+            plotSplitsMulti(refSplits, uwbSplits, modelSplits, opticalSplits, f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], folderToSave=scatterPlotCommonFolder)
+        
+        
