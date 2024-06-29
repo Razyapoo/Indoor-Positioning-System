@@ -504,9 +504,10 @@ for dataset in datasets:
         ])
         
         # Save LaTeX formatted metrics
-        saveMetricsToLatex(refMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.tex"), 'Reference', dataset['titleSuffix'], dataset['tag'])
-        saveMetricsToLatex(uwbMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.tex"), 'UWB', dataset['titleSuffix'], dataset['tag'])
+        if compareWith == 'ref':
+            saveMetricsToLatex(refMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.tex"), 'Reference', dataset['titleSuffix'], dataset['tag'])
+            saveMetricsToFile(refMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.csv"))
+        else:
+            saveMetricsToLatex(uwbMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.tex"), 'UWB', dataset['titleSuffix'], dataset['tag'])
+            saveMetricsToFile(uwbMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.csv"))
         
-        # Save CSV formatted metrics
-        saveMetricsToFile(refMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.csv"))
-        saveMetricsToFile(uwbMetricsDf, os.path.join(statisticsFolder, "statistical_metrics.csv"))
