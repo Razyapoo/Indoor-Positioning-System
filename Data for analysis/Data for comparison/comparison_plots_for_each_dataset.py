@@ -172,21 +172,25 @@ def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title
         plt.show()
     plt.close()
 
-def plotSplitsMulti(referenceSplits, uwbSplits, pixelToRealSplits, opticalSplits, title, refAlpha=0.3, estAlpha=1, fileName="", folderToSave=None):
+def plotSplitsMulti(referenceSplits=None, uwbSplits=None, pixelToRealSplits=None, opticalSplits=None, title=None, refAlpha=0.3, estAlpha=1, fileName="", folderToSave=None):
     """Plot the splits for the reference and estimated coordinates from multiple methods"""
     plt.figure(figsize=(15, 10))
-
-    for i, refSplit in enumerate(referenceSplits):
-        plt.plot(refSplit['x'], refSplit['y'], 'o-', color='blue', alpha=refAlpha, label='Reference Coordinates' if i == 0 else "")
-
-    for i, estSplit in enumerate(uwbSplits):
-        plt.plot(estSplit['x'], estSplit['y'], 'x-', color='green', alpha=estAlpha, label='UWB Estimated Coordinates' if i == 0 else "")
     
-    for i, estSplit in enumerate(pixelToRealSplits):
-        plt.plot(estSplit['x'], estSplit['y'], 'x-', color='orange', alpha=estAlpha, label='Pixel-to-Real Estimated Coordinates' if i == 0 else "")
+    if referenceSplits:
+        for i, refSplit in enumerate(referenceSplits):
+            plt.plot(refSplit['x'], refSplit['y'], 'o-', color='blue', alpha=refAlpha, label='Reference Coordinates' if i == 0 else "")
 
-    for i, estSplit in enumerate(opticalSplits):
-        plt.plot(estSplit['x'], estSplit['y'], 'x-', color='red', alpha=estAlpha, label='Optical Estimated Coordinates' if i == 0 else "")
+    if uwbSplits:
+        for i, estSplit in enumerate(uwbSplits):
+            plt.plot(estSplit['x'], estSplit['y'], 'x-', color='green', alpha=estAlpha, label='UWB Estimated Coordinates' if i == 0 else "")
+    
+    if pixelToRealSplits:
+        for i, estSplit in enumerate(pixelToRealSplits):
+            plt.plot(estSplit['x'], estSplit['y'], 'x-', color='orange', alpha=estAlpha, label='Pixel-to-Real Estimated Coordinates' if i == 0 else "")
+
+    if opticalSplits:
+        for i, estSplit in enumerate(opticalSplits):
+            plt.plot(estSplit['x'], estSplit['y'], 'x-', color='red', alpha=estAlpha, label='Optical Estimated Coordinates' if i == 0 else "")
 
     plt.xlabel('X Coordinate', fontsize=14)
     plt.ylabel('Y Coordinate', fontsize=14)
@@ -398,6 +402,8 @@ for dataset in datasets:
             plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Reference vs Estimated Uwb Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='uwb', folderToSave=scatterPlotFolder)
             plotSplits(refSplits, modelSplits, 'PixelToReal Estimated Coordinates', 'orange', f'Reference vs Estimated PixelToReal Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='pixel_to_real', folderToSave=scatterPlotFolder)
             plotSplits(refSplits, opticalSplits, 'Optical Estimated Coordinates', 'red', f'Reference vs Estimated Optical Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='optical', folderToSave=scatterPlotFolder)
-            plotSplitsMulti(refSplits, uwbSplits, modelSplits, opticalSplits, f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], folderToSave=scatterPlotCommonFolder)
+            plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_complete', folderToSave=scatterPlotCommonFolder)
+            plotSplitsMulti(referenceSplits=refSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_pixel_to_real_vs_optical', folderToSave=scatterPlotCommonFolder)
+            plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_uwb_vs_pixel_to_real', folderToSave=scatterPlotCommonFolder)
         
         
