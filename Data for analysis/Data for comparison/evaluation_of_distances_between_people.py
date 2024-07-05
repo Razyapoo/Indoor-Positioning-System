@@ -75,7 +75,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         
         plt.figure(figsize=(12, 6))
         sns.boxplot(data=errorsDf, y='Error')
-        plt.title(f'Boxplot of Distance Errors - {method} {titleSuffix} - Pair {pairStr}', fontsize=18)
+        plt.title(f'Boxplot of Errors in Distance Between Pair {pairStr} \n {method} method {titleSuffix}', fontsize=18)
         plt.ylabel('Distance Error', fontsize=13)
         plt.xlabel('Pairs of Participants', fontsize=12)
         plt.grid(True)
@@ -84,7 +84,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         plt.close()
 
         plt.figure(figsize=(14, 10))
-        plt.suptitle(f'Histogram of Distance Errors - {method} {titleSuffix} - Pair {pairStr}', fontsize=18)
+        plt.suptitle(f'Histogram of Errors in Distance Between Pair {pairStr} \n {method} method {titleSuffix}', fontsize=18)
         plt.hist(errorsDf['Error'], bins=50, alpha=0.7)
         plt.xlabel('Distance Error', fontsize=13)
         plt.ylabel('Frequency', fontsize=13)
@@ -123,7 +123,7 @@ def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave):
         
         plt.figure(figsize=(14, 6))
         plt.plot(frames, errorsDf['Error'])
-        plt.title(f'Error Trend Over Time - {method} {titleSuffix} - Pair {pairStr}', fontsize=18)
+        plt.title(f'Error Trend Over Time in Distance Between Pair {pairStr} \n {method} method {titleSuffix}', fontsize=18)
         plt.xlabel('Frame', fontsize=13)
         plt.ylabel('Distance Error', fontsize=13)
         plt.grid(True)
@@ -183,7 +183,7 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             comparisonFolder = 'Comparison with reference coordinates' if compareWith == 'ref' else 'Comparison with uwb coordinates'
             comparisonSuffixFileName = 'reference_coordinates' if compareWith == 'ref' else 'uwb_coordinates'
             fileName = f'{dataset["fileName"]}_{comparisonSuffixFileName}'
-            comparisonSuffix = 'Reference Coordinates' if compareWith == 'ref' else 'UWB Coordinates'
+            comparisonSuffix = 'Ground Truth Coordinates' if compareWith == 'ref' else 'UWB Coordinates'
             titleSuffix = f'{dataset["titleSuffix"]} \n Compared with {comparisonSuffix}'
 
             # Compare distances
@@ -261,7 +261,7 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
 
              # Combine all errors into a single DataFrame and plot combined boxplots
             combinedErrorsDf = pd.concat(aggregatedErrors, ignore_index=True)
-            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Distance Errors', plotFolderToSave)
+            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Errors in Distance between Pairs', plotFolderToSave)
 
 # Example datasets list (use your actual datasets)
 datasets = [

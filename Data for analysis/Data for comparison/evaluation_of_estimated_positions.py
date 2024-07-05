@@ -111,7 +111,7 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     # Combined Boxplot
     plt.figure(figsize=(12, 6))
     sns.boxplot(data=errorsMeltedDf, x='Method', y='Error', hue='Axis')
-    plt.title(f'Boxplot of Errors - {titleSuffix}', fontsize=18)
+    plt.title(f'Boxplot of Errors in Coordinates \n {titleSuffix}', fontsize=18)
     plt.ylabel('Absolute Error', fontsize=13)
     plt.xlabel('Methods', fontsize=12)
     plt.legend(title='Axis', fontsize=13)
@@ -126,7 +126,7 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     for method in errorsMeltedDf['Method'].unique():
         plt.figure(figsize=(12, 6))
         sns.boxplot(data=errorsMeltedDf[errorsMeltedDf['Method'] == method], x='Axis', y='Error')
-        plt.title(f'Boxplot of {method} Errors - {titleSuffix}', fontsize=18)
+        plt.title(f'Boxplot of Errors in Coordinates. {method} method \n {titleSuffix}', fontsize=18)
         plt.ylabel('Absolute Error', fontsize=13)
         plt.xlabel('Axis', fontsize=12)
         plt.xticks(fontsize=13)
@@ -138,14 +138,14 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
 
     # Combined Histogram
     plt.figure(figsize=(14, 10))
-    plt.suptitle(f'Histogram of Errors in Coordinates - {titleSuffix}', fontsize=18)
+    plt.suptitle(f'Histogram of Errors in Coordinates \n {titleSuffix}', fontsize=18)
 
     methods = errorsDf.columns.str.split('_').str[0].unique()
     for i, method in enumerate(methods, 1):
         for axis in ['x', 'y']:
             plt.subplot(len(methods), 2, i*2-1 if axis == 'x' else i*2)
             plt.hist(errorsDf[f'{method}_{axis}_Error'], bins=50, alpha=0.7, label=f'{method}_{axis}', color='green' if method == 'UWB' else ('orange' if method == 'Pixel-to-Real' else 'red'))
-            plt.title(f'{method} {axis.upper()} Coordinate Errors', fontsize=14)
+            plt.title(f'{method} method {axis.upper()} Coordinate Errors', fontsize=14)
             plt.xlabel('Absolute Error', fontsize=13)
             plt.ylabel('Frequency', fontsize=13)
             plt.xticks(fontsize=12)
@@ -160,10 +160,10 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     for method in methods:
             plt.figure(figsize=(14, 6))
             for i, axis in enumerate(['x', 'y'], 1):
-                plt.suptitle(f'Histogram of {method} Errors in Coordinates - {titleSuffix}', fontsize=18)
+                plt.suptitle(f'Histogram of Errors in Coordinates. {method} method \n {titleSuffix}', fontsize=18)
                 plt.subplot(1, 2, i)
                 plt.hist(errorsDf[f'{method}_{axis}_Error'], bins=50, alpha=0.7, label=f'{method}_{axis}', color='green' if method == 'UWB' else ('orange' if method == 'Pixel-to-Real' else 'red'))
-                plt.title(f'{method} {axis.upper()} Coordinate Errors', fontsize=14)
+                plt.title(f'{method} method {axis.upper()} Coordinate Errors', fontsize=14)
                 plt.xlabel('Absolute Error', fontsize=13)
                 plt.ylabel('Frequency', fontsize=13)
                 plt.xticks(fontsize=12)
@@ -183,7 +183,7 @@ def plotErrorTrend(errorsDf, frames, windowSize, titleSuffix, fileName, folderTo
     errorsDf['Frames'] = frames[['Frames']].copy()
 
     plt.figure(figsize=(14, 10))
-    plt.suptitle(f'Error Trend Over Time - {titleSuffix}', fontsize=18)
+    plt.suptitle(f'Error Trend Over Time \n {titleSuffix}', fontsize=18)
 
     for i, method in enumerate(methods, 1):
         for axis in ['x', 'y']:
@@ -206,7 +206,7 @@ def plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, folderToSa
     plt.figure(figsize=(14, 6))
     for method, color in zip(distanceErrors.columns, ['green', 'orange', 'red']):
         plt.scatter(frames['Frames'], distanceErrors[method], alpha=0.5, label=method, color=color)
-    plt.title(f'Scatter Plot of Distance Errors - {titleSuffix}', fontsize=16)
+    plt.title(f'Scatter Plot of Distance Errors \n {titleSuffix}', fontsize=16)
     plt.xlabel('Frames', fontsize=14)
     plt.ylabel('Distance Errors', fontsize=14)
     plt.xticks(fontsize=12)
@@ -218,7 +218,7 @@ def plotDistanceErrors(distanceErrors, frames, titleSuffix, fileName, folderToSa
     plt.close()
 
     plt.figure(figsize=(14, 10))
-    plt.suptitle(f'Histogram Plot of Distance Errors - {titleSuffix}', fontsize=16)
+    plt.suptitle(f'Histogram Plot of Distance Errors \n {titleSuffix}', fontsize=16)
 
     for i, method in enumerate(distanceErrors.columns, 1):
         plt.subplot(3, 1, i)
@@ -244,7 +244,7 @@ def plotSplits(referenceSplits, estimatedSplits, estimatedLabel, estColor, title
     plt.figure(figsize=(15, 10))
 
     for i, (refSplit, estSplit) in enumerate(zip(referenceSplits, estimatedSplits)):
-        refLabel = 'Reference Coordinates'
+        refLabel = 'Ground Truth Coordinates'
         estLabel = f'{estimatedLabel}'
         plt.plot(refSplit['x'], refSplit['y'], 'o-', color='blue', alpha=refAlpha, label=refLabel)
         plt.plot(estSplit['x'], estSplit['y'], 'x-', color=estColor, alpha=estAlpha, label=estLabel)
@@ -271,7 +271,7 @@ def plotSplitsMulti(referenceSplits=None, uwbSplits=None, pixelToRealSplits=None
     
     if referenceSplits:
         for i, refSplit in enumerate(referenceSplits):
-            plt.plot(refSplit['x'], refSplit['y'], 'o-', color='blue', alpha=refAlpha, label='Reference Coordinates' if i == 0 else "")
+            plt.plot(refSplit['x'], refSplit['y'], 'o-', color='blue', alpha=refAlpha, label='Ground Truth Coordinates' if i == 0 else "")
 
     if uwbSplits:
         for i, estSplit in enumerate(uwbSplits):
@@ -446,7 +446,7 @@ for dataset in datasets:
         comparisonFolder = 'Comparison with reference coordinates' if compareWith == 'ref' else 'Comparison with uwb coordinates'
         comparisonSuffixFileName = 'reference_coordinates' if compareWith == 'ref' else 'uwb_coordinates'
         fileName = f'{dataset["fileName"]}_{comparisonSuffixFileName}'
-        comparisonSuffix = 'Reference Coordinates' if compareWith == 'ref' else 'UWB Coordinates'
+        comparisonSuffix = 'Ground Truth Coordinates' if compareWith == 'ref' else 'UWB Coordinates'
         titleSuffix = f'{dataset["titleSuffix"]} \n Compared with {comparisonSuffix}'
 
         # folderToSave = createDirectories(baseFolder, comparisonFolder, dataset["fileName"])
@@ -505,12 +505,12 @@ for dataset in datasets:
         if compareWith == 'ref':
             scatterPlotFolder = createDirectories(baseFolder, comparisonFolder, 'Reference vs estimated scatter plots', dataset["fileName"])
             scatterPlotCommonFolder = createDirectories(baseFolder, 'Comparison with reference coordinates', 'Reference vs estimated scatter plots combined', dataset["fileName"])
-            plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Reference vs Estimated Uwb Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='uwb', folderToSave=scatterPlotFolder)
-            plotSplits(refSplits, modelSplits, 'PixelToReal Estimated Coordinates', 'orange', f'Reference vs Estimated PixelToReal Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='pixel_to_real', folderToSave=scatterPlotFolder)
-            plotSplits(refSplits, opticalSplits, 'Optical Estimated Coordinates', 'red', f'Reference vs Estimated Optical Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='optical', folderToSave=scatterPlotFolder)
-            plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_complete', folderToSave=scatterPlotCommonFolder)
-            plotSplitsMulti(referenceSplits=refSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_pixel_to_real_vs_optical', folderToSave=scatterPlotCommonFolder)
-            plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, title=f'Reference vs Estimated Coordinates - {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_uwb_vs_pixel_to_real', folderToSave=scatterPlotCommonFolder)
+            plotSplits(refSplits, uwbSplits, 'Uwb Estimated Coordinates', 'green', f'Ground Truth vs Estimated Uwb Coordinates \n {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='uwb', folderToSave=scatterPlotFolder)
+            plotSplits(refSplits, modelSplits, 'PixelToReal Estimated Coordinates', 'orange', f'Ground Truth vs Estimated PixelToReal Coordinates \n {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='pixel_to_real', folderToSave=scatterPlotFolder)
+            plotSplits(refSplits, opticalSplits, 'Optical Estimated Coordinates', 'red', f'Ground Truth vs Estimated Optical Coordinates \n {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=dataset["fileName"], type='optical', folderToSave=scatterPlotFolder)
+            plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Ground Truth vs Estimated Coordinates \n {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_complete', folderToSave=scatterPlotCommonFolder)
+            plotSplitsMulti(referenceSplits=refSplits, pixelToRealSplits=modelSplits, opticalSplits=opticalSplits, title=f'Ground Truth vs Estimated Coordinates \n {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_pixel_to_real_vs_optical', folderToSave=scatterPlotCommonFolder)
+            plotSplitsMulti(referenceSplits=refSplits, uwbSplits=uwbSplits, pixelToRealSplits=modelSplits, title=f'Ground Truth vs Estimated Coordinates \n {titleSuffix}', refAlpha=0.3, estAlpha=1, fileName=f'{dataset["fileName"]}_uwb_vs_pixel_to_real', folderToSave=scatterPlotCommonFolder)
         
         # Statistics Calculation
         uwbStatistics = calculateStatistics(refCoords, uwbCoords)
