@@ -108,6 +108,7 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     errorsMeltedDf['Method'] = errorsMeltedDf['Method_Error'].apply(lambda x: x.split('_')[0])
     errorsMeltedDf['Axis'] = errorsMeltedDf['Method_Error'].apply(lambda x: x.split('_')[1])
 
+    # Combined Boxplot
     plt.figure(figsize=(12, 6))
     sns.boxplot(data=errorsMeltedDf, x='Method', y='Error', hue='Axis')
     plt.title(f'Boxplot of Errors - {titleSuffix}', fontsize=18)
@@ -121,6 +122,21 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     plt.savefig(f'{folderToSave}/boxplot_errors_{fileName}.png')
     plt.close()
 
+    # Individual Boxplots
+    for method in errorsMeltedDf['Method'].unique():
+        plt.figure(figsize=(12, 6))
+        sns.boxplot(data=errorsMeltedDf[errorsMeltedDf['Method'] == method], x='Axis', y='Error')
+        plt.title(f'Boxplot of {method} Errors - {titleSuffix}', fontsize=18)
+        plt.ylabel('Absolute Error', fontsize=13)
+        plt.xlabel('Axis', fontsize=12)
+        plt.xticks(fontsize=13)
+        plt.yticks(fontsize=12)
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(f'{folderToSave}/boxplot_errors_{fileName}_{method}.png')
+        plt.close()
+
+    # Combined Histogram
     plt.figure(figsize=(14, 10))
     plt.suptitle(f'Histogram of Errors in Coordinates - {titleSuffix}', fontsize=18)
 
@@ -139,6 +155,24 @@ def plotErrors(errorsDf, titleSuffix, fileName, folderToSave):
     plt.tight_layout()
     plt.savefig(f'{folderToSave}/histogram_errors_{fileName}.png')
     plt.close()
+
+    # Individual Histograms
+    for method in methods:
+            plt.figure(figsize=(14, 6))
+            for i, axis in enumerate(['x', 'y'], 1):
+                plt.suptitle(f'Histogram of {method} Errors in Coordinates - {titleSuffix}', fontsize=18)
+                plt.subplot(1, 2, i)
+                plt.hist(errorsDf[f'{method}_{axis}_Error'], bins=50, alpha=0.7, label=f'{method}_{axis}', color='green' if method == 'UWB' else ('orange' if method == 'Pixel-to-Real' else 'red'))
+                plt.title(f'{method} {axis.upper()} Coordinate Errors', fontsize=14)
+                plt.xlabel('Absolute Error', fontsize=13)
+                plt.ylabel('Frequency', fontsize=13)
+                plt.xticks(fontsize=12)
+                plt.yticks(fontsize=12)
+                plt.grid(True)
+            
+            plt.tight_layout()
+            plt.savefig(f'{folderToSave}/histogram_errors_{fileName}_{method}.png')
+            plt.close()
 
 def plotErrorTrend(errorsDf, frames, windowSize, titleSuffix, fileName, folderToSave):
     methods = errorsDf.columns.str.split('_').str[0].unique()
@@ -433,31 +467,31 @@ for dataset in datasets:
         if compareWith == 'ref':
             distanceErrors = pd.DataFrame({
                 'UWB_Distance': np.sqrt((refCoords['x'] - uwbCoords['x'])**2 + (refCoords['y'] - uwbCoords['y'])**2),
-                'Pixel_to_Real_Distance': np.sqrt((refCoords['x'] - modelCoords['x'])**2 + (refCoords['y'] - modelCoords['y'])**2),
+                'Pixel-to-Real_Distance': np.sqrt((refCoords['x'] - modelCoords['x'])**2 + (refCoords['y'] - modelCoords['y'])**2),
                 'Optical_Distance': np.sqrt((refCoords['x'] - opticalCoords['x'])**2 + (refCoords['y'] - opticalCoords['y'])**2)
             })
 
             distanceStatistics = {
                 'Method': ['UWB', 'Pixel-to-Real', 'Optical'],
-                'Mean Distance': [distanceErrors['UWB_Distance'].mean(), distanceErrors['Pixel_to_Real_Distance'].mean(), distanceErrors['Optical_Distance'].mean()],
-                'Median Distance': [distanceErrors['UWB_Distance'].median(), distanceErrors['Pixel_to_Real_Distance'].median(), distanceErrors['Optical_Distance'].median()],
-                'Max Distance': [distanceErrors['UWB_Distance'].max(), distanceErrors['Pixel_to_Real_Distance'].max(), distanceErrors['Optical_Distance'].max()],
-                'Min Distance': [distanceErrors['UWB_Distance'].min(), distanceErrors['Pixel_to_Real_Distance'].min(), distanceErrors['Optical_Distance'].min()],
-                'Std Dev Distance': [distanceErrors['UWB_Distance'].std(), distanceErrors['Pixel_to_Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
+                'Mean Distance': [distanceErrors['UWB_Distance'].mean(), distanceErrors['Pixel-to-Real_Distance'].mean(), distanceErrors['Optical_Distance'].mean()],
+                'Median Distance': [distanceErrors['UWB_Distance'].median(), distanceErrors['Pixel-to-Real_Distance'].median(), distanceErrors['Optical_Distance'].median()],
+                'Max Distance': [distanceErrors['UWB_Distance'].max(), distanceErrors['Pixel-to-Real_Distance'].max(), distanceErrors['Optical_Distance'].max()],
+                'Min Distance': [distanceErrors['UWB_Distance'].min(), distanceErrors['Pixel-to-Real_Distance'].min(), distanceErrors['Optical_Distance'].min()],
+                'Std Dev Distance': [distanceErrors['UWB_Distance'].std(), distanceErrors['Pixel-to-Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
             }
         else:
             distanceErrors = pd.DataFrame({
-                'Pixel_to_Real_Distance': np.sqrt((uwbCoords['x'] - modelCoords['x'])**2 + (uwbCoords['y'] - modelCoords['y'])**2),
+                'Pixel-to-Real_Distance': np.sqrt((uwbCoords['x'] - modelCoords['x'])**2 + (uwbCoords['y'] - modelCoords['y'])**2),
                 'Optical_Distance': np.sqrt((uwbCoords['x'] - opticalCoords['x'])**2 + (uwbCoords['y'] - opticalCoords['y'])**2)
             })
 
             distanceStatistics = {
                 'Method': ['Pixel-to-Real', 'Optical'],
-                'Mean Distance': [distanceErrors['Pixel_to_Real_Distance'].mean(), distanceErrors['Optical_Distance'].mean()],
-                'Median Distance': [distanceErrors['Pixel_to_Real_Distance'].median(), distanceErrors['Optical_Distance'].median()],
-                'Max Distance': [distanceErrors['Pixel_to_Real_Distance'].max(), distanceErrors['Optical_Distance'].max()],
-                'Min Distance': [distanceErrors['Pixel_to_Real_Distance'].min(), distanceErrors['Optical_Distance'].min()],
-                'Std Dev Distance': [distanceErrors['Pixel_to_Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
+                'Mean Distance': [distanceErrors['Pixel-to-Real_Distance'].mean(), distanceErrors['Optical_Distance'].mean()],
+                'Median Distance': [distanceErrors['Pixel-to-Real_Distance'].median(), distanceErrors['Optical_Distance'].median()],
+                'Max Distance': [distanceErrors['Pixel-to-Real_Distance'].max(), distanceErrors['Optical_Distance'].max()],
+                'Min Distance': [distanceErrors['Pixel-to-Real_Distance'].min(), distanceErrors['Optical_Distance'].min()],
+                'Std Dev Distance': [distanceErrors['Pixel-to-Real_Distance'].std(), distanceErrors['Optical_Distance'].std()]
             }
         
         distanceStatisticsDF = pd.DataFrame(distanceStatistics)
