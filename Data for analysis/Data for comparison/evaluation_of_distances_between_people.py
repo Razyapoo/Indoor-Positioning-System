@@ -41,7 +41,7 @@ def compareDistances(refDistances, estDistances):
             rowErrors = {}
             for pair in refRowDistances:
                 if pair in estRowDistances:
-                    rowErrors[pair] = refRowDistances[pair] - estRowDistances[pair]
+                    rowErrors[pair] = estRowDistances[pair] - refRowDistances[pair]
             errors[i] = rowErrors
     return errors
 
@@ -57,11 +57,11 @@ def performStatistics(errors):
     for pair, errors in statsByPair.items():
         errorsDf = pd.DataFrame(errors, columns=['Error'])
         statistics = {
+            'MAE': abs(errorsDf['Error']).mean(),
             'Mean': errorsDf['Error'].mean(),
             'Median': errorsDf['Error'].median(),
-            'Max': errorsDf['Error'].max(),
-            'Min': errorsDf['Error'].min(),
-            'Std Dev': errorsDf['Error'].std()
+            'Max': abs(errorsDf['Error']).max(),
+            'Min': abs(errorsDf['Error']).min()
         }
         statsSummary[pair] = statistics
     
@@ -93,9 +93,27 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         plt.savefig(f'{folderToSave}/histogram_distance_errors_{method}_pair_{pairStr}.png')
         plt.close()
 
-        # Save statistics summary for each pair
-        pairStats = pd.DataFrame([statsSummary[pair]], index=[pairStr])
-        pairStats.to_csv(f'{folderToSave}/distance_error_stats_summary_{method}_pair_{pairStr}.csv')
+def aggregateErrorsForPlotting(errorsByPair, method, experiment):
+    aggregatedErrors = []
+    for pair, errors in errorsByPair.items():
+        errorsDf = pd.DataFrame(errors, columns=['Error'])
+        errorsDf['Method'] = method
+        errorsDf['Pair'] = f"{pair[0]}_{pair[1]}"
+        errorsDf['Experiment'] = experiment
+        aggregatedErrors.append(errorsDf)
+    return pd.concat(aggregatedErrors, ignore_index=True)
+
+def plotCombinedBoxplots(aggregatedErrors, title, folderToSave):
+    plt.figure(figsize=(14, 8))
+    sns.boxplot(x='Pair', y='Error', hue='Method', data=aggregatedErrors)
+    plt.title(title, fontsize=18)
+    plt.ylabel('Distance Error', fontsize=13)
+    plt.xlabel('Pairs of Participants', fontsize=12)
+    plt.legend(title='Method')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(f'{folderToSave}/combined_boxplot_distance_errors.png')
+    plt.close()
 
 def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave):
     for pair, errors in errorsByPair.items():
@@ -113,28 +131,32 @@ def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave):
         plt.savefig(f'{folderToSave}/trend_distance_errors_{method}_pair_{pairStr}.png')
         plt.close()
 
-def saveMetricsToLatex(statsSummary, method, titleSuffix, filePath):
+def saveMetricsToLatex(statsSummary, type, titleSuffix, filePath):
     with open(filePath, 'w') as f:
         f.write("\\begin{table}[h]\n")
         f.write("\\centering\n")
-        f.write("\\begin{tabular}{|c|c|c|c|c|c|}\n")
+        f.write("{\\small\n")
+        f.write("\\begin{tabular}{|c|c|c|c|c|}\n")
         f.write("\\hline\n")
-        f.write("$Method$ & $Mean$ & $Median$ & $Max$ & $Min$ & $StdDev$ \\\\\n")
+        f.write("$Method$ & $MAE$ & $Median$ & $Min$ & $Max$ \\\\\n")
         f.write("\\hline\n")
         for idx in statsSummary.index:
             # pairStr = f"{idx[1]}_{idx[2]}"
-            if method == 'ref':
-                f.write("{\\footnotesize Error(D\\textsubscript{%s}(Tag %d, Tag %d), D\\textsubscript{RS}(Tag %d, Tag %d)) & " % (idx[0], int(idx[1]), int(idx[2]), int(idx[1]), int(idx[2])))
+            method = 'UWB' if (idx[0] == 'UWB') else 'P2R' if (idx[0] == 'Pixel-to-Real') else 'Opt' 
+            if type == 'ref':
+                f.write("{\\scriptsize Error(DPeople\\textsubscript{%s}(Tag %d, Tag %d), DPeople\\textsubscript{RS}(Tag %d, Tag %d))} & " % (method, int(idx[1]), int(idx[2]), int(idx[1]), int(idx[2])))
             else:
-                f.write("{\\footnotesize Error(D\\textsubscript{%s}(Tag %d, Tag %d), D\\textsubscript{UWB}(Tag %d, Tag %d)) & " % (idx[0], int(idx[1]), int(idx[2]), int(idx[1]), int(idx[2])))
+                f.write("{\\scriptsize Error(DPeople\\textsubscript{%s}(Tag %d, Tag %d), DPeople\\textsubscript{UWB}(Tag %d, Tag %d))} & " % (method, int(idx[1]), int(idx[2]), int(idx[1]), int(idx[2])))
             stats = statsSummary.loc[idx]
-            f.write(f"{stats['Mean']:.4f} & {stats['Median']:.4f} & {stats['Max']:.4f} & {stats['Min']:.4f} & {stats['Std Dev']:.4f} \\\\\n")
+            f.write(f"{stats['MAE']:.3f} & {stats['Median']:.3f} & {stats['Min']:.3f} & {stats['Max']:.3f} \\\\\n")
             f.write("\\hline\n")
         f.write("\\end{tabular}\n")
+        f.write("}\n")
         f.write("\\end{table}\n")
 
 def processExperiments(datasets, baseFolder, baseFolderMetrics):
     for dataset in datasets:
+        aggregatedErrors = []
         basePath = dataset["basePath"]
         participantFiles = {
             "reference": dataset["refFiles"],
@@ -224,6 +246,11 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             plotStatistics(opticalErrorsByPair, opticalVsUwbStats if compareWith == 'uwb' else opticalStats, 'Optical', titleSuffix, plotFolderToSave)
             plotStatistics(modelErrorsByPair, modelVsUwbStats if compareWith == 'uwb' else modelStats, 'Pixel-to-Real', titleSuffix, plotFolderToSave)
 
+            if compareWith == 'ref':
+                aggregatedErrors.append(aggregateErrorsForPlotting(uwbErrorsByPair, 'UWB', dataset["titleSuffix"]))
+            aggregatedErrors.append(aggregateErrorsForPlotting(opticalErrorsByPair, 'Optical', dataset["titleSuffix"]))
+            aggregatedErrors.append(aggregateErrorsForPlotting(modelErrorsByPair, 'Pixel-to-Real', dataset["titleSuffix"]))
+
             # Plot trend over time
             frames = pd.read_csv(os.path.join(basePath, participantFiles["uwb"]["1"]), sep=' ', header=None, usecols=[0])
             frames.columns = ['Frames']
@@ -231,6 +258,10 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
                 plotTrend(uwbErrorsByPair, frames, 'UWB', titleSuffix, trendFolderToSave)
             plotTrend(opticalErrorsByPair, frames, 'Optical', titleSuffix, trendFolderToSave)
             plotTrend(modelErrorsByPair, frames, 'Pixel-to-Real', titleSuffix, trendFolderToSave)
+
+             # Combine all errors into a single DataFrame and plot combined boxplots
+            combinedErrorsDf = pd.concat(aggregatedErrors, ignore_index=True)
+            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Distance Errors', plotFolderToSave)
 
 # Example datasets list (use your actual datasets)
 datasets = [
@@ -243,6 +274,16 @@ datasets = [
         "useCols": [1, 2],
         "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - full area (16 meters)",
         "fileName": "e118_full_area",
+    },
+    {
+        "basePath": "./s8 data - three people",
+        "refFiles": {"1": "1 person/reference_coordinates_reduced_range.txt", "2": "2 person/reference_coordinates_reduced_range.txt", "3": "3 person/reference_coordinates_reduced_range.txt"},
+        "uwbFiles": {"1": "1 person/uwb_to_bb_mapping_reduced_range.txt", "2": "2 person/uwb_to_bb_mapping_reduced_range.txt", "3": "3 person/uwb_to_bb_mapping_reduced_range.txt"},
+        "opticalFiles": {"1": "1 person/optical_to_bb_mapping_reduced_range.txt", "2": "2 person/optical_to_bb_mapping_reduced_range.txt", "3": "3 person/optical_to_bb_mapping_reduced_range.txt"},
+        "modelFiles": {"1": "1 person/pixel_to_real_to_bb_mapping_reduced_range.txt", "2": "2 person/pixel_to_real_to_bb_mapping_reduced_range.txt", "3": "3 person/pixel_to_real_to_bb_mapping_reduced_range.txt"},
+        "useCols": [1, 2],
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - reduced area (10 meters)",
+        "fileName": "e118_reduced_area",
     },
     {
         "basePath": "./s301 data - two people",
