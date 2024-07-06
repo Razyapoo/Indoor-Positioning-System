@@ -10,7 +10,7 @@ def loadParticipantData(basePath, participantFiles, useCols):
     for tag, filePath in participantFiles.items():
         fileFullPath = os.path.join(basePath, filePath)
         try:
-            if 'reference' in filePath:
+            if 'ground_truth' in filePath:
                 data = pd.read_csv(fileFullPath, sep=' ', header=None)
             else:
                 data = pd.read_csv(fileFullPath, sep=' ', header=None, usecols=useCols)
@@ -33,15 +33,15 @@ def computeDistances(coords):
         distances[i] = rowDistances
     return distances
 
-def compareDistances(refDistances, estDistances):
+def compareDistances(gtDistances, estDistances):
     errors = {}
-    for i, refRowDistances in refDistances.items():
+    for i, gtRowDistances in gtDistances.items():
         if i in estDistances:
             estRowDistances = estDistances[i]
             rowErrors = {}
-            for pair in refRowDistances:
+            for pair in gtRowDistances:
                 if pair in estRowDistances:
-                    rowErrors[pair] = estRowDistances[pair] - refRowDistances[pair]
+                    rowErrors[pair] = estRowDistances[pair] - gtRowDistances[pair]
             errors[i] = rowErrors
     return errors
 
@@ -103,10 +103,10 @@ def aggregateErrorsForPlotting(errorsByPair, method, experiment):
         aggregatedErrors.append(errorsDf)
     return pd.concat(aggregatedErrors, ignore_index=True)
 
-def plotCombinedBoxplots(aggregatedErrors, title, folderToSave):
+def plotCombinedBoxplots(aggregatedErrors, title, titleSuffix, folderToSave):
     plt.figure(figsize=(14, 8))
     sns.boxplot(x='Pair', y='Error', hue='Method', data=aggregatedErrors)
-    plt.title(title, fontsize=18)
+    plt.title(title + titleSuffix, fontsize=18)
     plt.ylabel('Distance Error', fontsize=13)
     plt.xlabel('Pairs of Participants', fontsize=12)
     plt.legend(title='Method')
@@ -143,7 +143,7 @@ def saveMetricsToLatex(statsSummary, type, titleSuffix, filePath):
         for idx in statsSummary.index:
             # pairStr = f"{idx[1]}_{idx[2]}"
             method = 'UWB' if (idx[0] == 'UWB') else 'P2R' if (idx[0] == 'Pixel-to-Real') else 'Opt' 
-            if type == 'ref':
+            if type == 'gt':
                 f.write("{\\scriptsize Error(DPeople\\textsubscript{%s}(Tag %d, Tag %d), DPeople\\textsubscript{RS}(Tag %d, Tag %d))} & " % (method, int(idx[1]), int(idx[2]), int(idx[1]), int(idx[2])))
             else:
                 f.write("{\\scriptsize Error(DPeople\\textsubscript{%s}(Tag %d, Tag %d), DPeople\\textsubscript{UWB}(Tag %d, Tag %d))} & " % (method, int(idx[1]), int(idx[2]), int(idx[1]), int(idx[2])))
@@ -159,44 +159,44 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
         aggregatedErrors = []
         basePath = dataset["basePath"]
         participantFiles = {
-            "reference": dataset["refFiles"],
+            "ground_truth": dataset["gtFiles"],
             "uwb": dataset["uwbFiles"],
             "optical": dataset["opticalFiles"],
             "model": dataset["modelFiles"]
         }
 
-        refCoords = loadParticipantData(basePath, participantFiles["reference"], dataset["useCols"])
+        gtCoords = loadParticipantData(basePath, participantFiles["ground_truth"], dataset["useCols"])
         uwbCoords = loadParticipantData(basePath, participantFiles["uwb"], dataset["useCols"])
         opticalCoords = loadParticipantData(basePath, participantFiles["optical"], dataset["useCols"])
         modelCoords = loadParticipantData(basePath, participantFiles["model"], dataset["useCols"])
 
-        if len(refCoords) < 2:
+        if len(gtCoords) < 2:
             continue  # Skip experiments with less than 2 participants
 
         # Compute distances
-        refDistances = computeDistances(refCoords)
+        gtDistances = computeDistances(gtCoords)
         uwbDistances = computeDistances(uwbCoords)
         opticalDistances = computeDistances(opticalCoords)
         modelDistances = computeDistances(modelCoords)
 
-        for compareWith in ['ref', 'uwb']:
-            comparisonFolder = 'Comparison with reference coordinates' if compareWith == 'ref' else 'Comparison with uwb coordinates'
-            comparisonSuffixFileName = 'reference_coordinates' if compareWith == 'ref' else 'uwb_coordinates'
+        for compareWith in ['gt', 'uwb']:
+            comparisonFolder = 'Comparison with ground truth coordinates' if compareWith == 'gt' else 'Comparison with uwb coordinates'
+            comparisonSuffixFileName = 'ground_truth_coordinates' if compareWith == 'gt' else 'uwb_coordinates'
             fileName = f'{dataset["fileName"]}_{comparisonSuffixFileName}'
-            comparisonSuffix = 'Ground Truth Coordinates' if compareWith == 'ref' else 'UWB Coordinates'
+            comparisonSuffix = 'Ground Truth Coordinates' if compareWith == 'gt' else 'UWB Coordinates'
             titleSuffix = f'{dataset["titleSuffix"]} \n Compared with {comparisonSuffix}'
 
             # Compare distances
-            if compareWith == 'ref':
-                uwbErrors = compareDistances(refDistances, uwbDistances)
-                opticalErrors = compareDistances(refDistances, opticalDistances)
-                modelErrors = compareDistances(refDistances, modelDistances)
+            if compareWith == 'gt':
+                uwbErrors = compareDistances(gtDistances, uwbDistances)
+                opticalErrors = compareDistances(gtDistances, opticalDistances)
+                modelErrors = compareDistances(gtDistances, modelDistances)
             else:
                 opticalErrors = compareDistances(uwbDistances, opticalDistances)
                 modelErrors = compareDistances(uwbDistances, modelDistances)
 
             # Perform statistics
-            if compareWith == 'ref':
+            if compareWith == 'gt':
                 uwbErrorsByPair, uwbStats = performStatistics(uwbErrors)
                 opticalErrorsByPair, opticalStats = performStatistics(opticalErrors)
                 modelErrorsByPair, modelStats = performStatistics(modelErrors)
@@ -224,29 +224,29 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
                 errorsDf = pd.DataFrame(errors, columns=['Error'])
                 errorsDf.to_csv(os.path.join(metricsFolderToSave, f"model_distance_errors_pair_{pairStr}.csv"), index=False)
 
-            if compareWith == 'ref':
+            if compareWith == 'gt':
                 for pair, errors in uwbErrorsByPair.items():
                     pairStr = f"{pair[0]}_{pair[1]}"
                     errorsDf = pd.DataFrame(errors, columns=['Error'])
                     errorsDf.to_csv(os.path.join(metricsFolderToSave, f"uwb_distance_errors_pair_{pairStr}.csv"), index=False)
 
             # Save statistics summary
-            if compareWith == 'ref':
+            if compareWith == 'gt':
                 statsSummary = pd.concat([pd.DataFrame(uwbStats).T, pd.DataFrame(modelStats).T, pd.DataFrame(opticalStats).T], keys=['UWB', 'Pixel-to-Real', 'Optical'])
             else:
                 statsSummary = pd.concat([pd.DataFrame(modelVsUwbStats).T, pd.DataFrame(opticalVsUwbStats).T], keys=['Pixel-to-Real', 'Optical'])
             statsSummary.to_csv(os.path.join(metricsFolderToSave, f"distance_error_stats_summary_{comparisonSuffixFileName}.csv"))
 
             # Export statistics to LaTeX
-            saveMetricsToLatex(statsSummary, 'ref' if compareWith == 'ref' else 'uwb', titleSuffix, os.path.join(metricsFolderToSave, f"distance_error_stats_summary_{comparisonSuffixFileName}.tex"))
+            saveMetricsToLatex(statsSummary, 'gt' if compareWith == 'gt' else 'uwb', titleSuffix, os.path.join(metricsFolderToSave, f"distance_error_stats_summary_{comparisonSuffixFileName}.tex"))
 
             # Plot statistics
-            if compareWith == 'ref':
+            if compareWith == 'gt':
                 plotStatistics(uwbErrorsByPair, uwbStats, 'UWB', titleSuffix, plotFolderToSave)
             plotStatistics(opticalErrorsByPair, opticalVsUwbStats if compareWith == 'uwb' else opticalStats, 'Optical', titleSuffix, plotFolderToSave)
             plotStatistics(modelErrorsByPair, modelVsUwbStats if compareWith == 'uwb' else modelStats, 'Pixel-to-Real', titleSuffix, plotFolderToSave)
 
-            if compareWith == 'ref':
+            if compareWith == 'gt':
                 aggregatedErrors.append(aggregateErrorsForPlotting(uwbErrorsByPair, 'UWB', dataset["titleSuffix"]))
             aggregatedErrors.append(aggregateErrorsForPlotting(opticalErrorsByPair, 'Optical', dataset["titleSuffix"]))
             aggregatedErrors.append(aggregateErrorsForPlotting(modelErrorsByPair, 'Pixel-to-Real', dataset["titleSuffix"]))
@@ -254,40 +254,40 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             # Plot trend over time
             frames = pd.read_csv(os.path.join(basePath, participantFiles["uwb"]["1"]), sep=' ', header=None, usecols=[0])
             frames.columns = ['Frames']
-            if compareWith == 'ref':
+            if compareWith == 'gt':
                 plotTrend(uwbErrorsByPair, frames, 'UWB', titleSuffix, trendFolderToSave)
             plotTrend(opticalErrorsByPair, frames, 'Optical', titleSuffix, trendFolderToSave)
             plotTrend(modelErrorsByPair, frames, 'Pixel-to-Real', titleSuffix, trendFolderToSave)
 
              # Combine all errors into a single DataFrame and plot combined boxplots
             combinedErrorsDf = pd.concat(aggregatedErrors, ignore_index=True)
-            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Errors in Distance between Pairs', plotFolderToSave)
+            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Errors in Distance between Pairs', titleSuffix, plotFolderToSave)
 
 # Example datasets list (use your actual datasets)
 datasets = [
     {
         "basePath": "./s8 data - three people",
-        "refFiles": {"1": "1 person/reference_coordinates.txt", "2": "2 person/reference_coordinates.txt", "3": "3 person/reference_coordinates.txt"},
+        "gtFiles": {"1": "1 person/ground_truth_coordinates.txt", "2": "2 person/ground_truth_coordinates.txt", "3": "3 person/ground_truth_coordinates.txt"},
         "uwbFiles": {"1": "1 person/uwb_to_bb_mapping.txt", "2": "2 person/uwb_to_bb_mapping.txt", "3": "3 person/uwb_to_bb_mapping.txt"},
         "opticalFiles": {"1": "1 person/optical_to_bb_mapping.txt", "2": "2 person/optical_to_bb_mapping.txt", "3": "3 person/optical_to_bb_mapping.txt"},
         "modelFiles": {"1": "1 person/pixel_to_real_to_bb_mapping.txt", "2": "2 person/pixel_to_real_to_bb_mapping.txt", "3": "3 person/pixel_to_real_to_bb_mapping.txt"},
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - full area (16 meters)",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - full area (16.08 meters)",
         "fileName": "e118_full_area",
     },
     {
         "basePath": "./s8 data - three people",
-        "refFiles": {"1": "1 person/reference_coordinates_reduced_range.txt", "2": "2 person/reference_coordinates_reduced_range.txt", "3": "3 person/reference_coordinates_reduced_range.txt"},
+        "gtFiles": {"1": "1 person/ground_truth_coordinates_reduced_range.txt", "2": "2 person/ground_truth_coordinates_reduced_range.txt", "3": "3 person/ground_truth_coordinates_reduced_range.txt"},
         "uwbFiles": {"1": "1 person/uwb_to_bb_mapping_reduced_range.txt", "2": "2 person/uwb_to_bb_mapping_reduced_range.txt", "3": "3 person/uwb_to_bb_mapping_reduced_range.txt"},
         "opticalFiles": {"1": "1 person/optical_to_bb_mapping_reduced_range.txt", "2": "2 person/optical_to_bb_mapping_reduced_range.txt", "3": "3 person/optical_to_bb_mapping_reduced_range.txt"},
         "modelFiles": {"1": "1 person/pixel_to_real_to_bb_mapping_reduced_range.txt", "2": "2 person/pixel_to_real_to_bb_mapping_reduced_range.txt", "3": "3 person/pixel_to_real_to_bb_mapping_reduced_range.txt"},
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - reduced area (10 meters)",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - reduced area (10.08 meters)",
         "fileName": "e118_reduced_area",
     },
     {
         "basePath": "./s301 data - two people",
-        "refFiles": {"1": "1 person - 1 tag/reference_coordinates.txt", "2": "2 person - 2 tag/reference_coordinates.txt"},
+        "gtFiles": {"1": "1 person - 1 tag/ground_truth_coordinates.txt", "2": "2 person - 2 tag/ground_truth_coordinates.txt"},
         "uwbFiles": {"1": "1 person - 1 tag/uwb_to_bb_mapping.txt", "2": "2 person - 2 tag/uwb_to_bb_mapping.txt"},
         "opticalFiles": {"1": "1 person - 1 tag/optical_to_bb_mapping.txt", "2": "2 person - 2 tag/optical_to_bb_mapping.txt"},
         "modelFiles": {"1": "1 person - 1 tag/pixel_to_real_to_bb_mapping.txt", "2": "2 person - 2 tag/pixel_to_real_to_bb_mapping.txt"},
