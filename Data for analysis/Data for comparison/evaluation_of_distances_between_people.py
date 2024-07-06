@@ -67,7 +67,7 @@ def performStatistics(errors):
     
     return statsByPair, statsSummary
 
-def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave):
+def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave, fileName):
     combinedErrors = pd.DataFrame()
 
     for pair, errors in errorsByPair.items():
@@ -82,7 +82,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         plt.xlabel('Pairs of Participants', fontsize=12)
         plt.grid(True)
         plt.tight_layout()
-        plt.savefig(f'{folderToSave}/boxplot_distance_errors_{method}_pair_{pairStr}.png')
+        plt.savefig(f'{folderToSave}/boxplot_distance_errors_{fileName}_{method}_pair_{pairStr}.png')
         plt.close()
 
         plt.figure(figsize=(14, 10))
@@ -92,7 +92,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         plt.ylabel('Frequency', fontsize=13)
         plt.grid(True)
         plt.tight_layout()
-        plt.savefig(f'{folderToSave}/histogram_distance_errors_{method}_pair_{pairStr}.png')
+        plt.savefig(f'{folderToSave}/histogram_distance_errors_{fileName}_{method}_pair_{pairStr}.png')
         plt.close()
 
         errorsDf["Pair"] = pairStr
@@ -107,7 +107,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
     plt.xticks(fontsize=10)
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'{folderToSave}/boxplot_distance_errors_{method}_combined_pairs.png')
+    plt.savefig(f'{folderToSave}/boxplot_distance_errors_{fileName}_{method}_combined_pairs.png')
     plt.close()
 
     # Plot combined histogram
@@ -118,7 +118,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
     plt.ylabel('Frequency', fontsize=13)
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'{folderToSave}/histogram_distance_errors_{method}_combined_pairs.png')
+    plt.savefig(f'{folderToSave}/histogram_distance_errors_{fileName}_{method}_combined_pairs.png')
     plt.close()
 
 def aggregateErrorsForPlotting(errorsByPair, method, experiment):
@@ -131,7 +131,7 @@ def aggregateErrorsForPlotting(errorsByPair, method, experiment):
         aggregatedErrors.append(errorsDf)
     return pd.concat(aggregatedErrors, ignore_index=True)
 
-def plotCombinedBoxplots(aggregatedErrors, title, titleSuffix, folderToSave):
+def plotCombinedBoxplots(aggregatedErrors, title, titleSuffix, folderToSave, fileName):
     plt.figure(figsize=(14, 8))
     sns.boxplot(x='Method', y='Error', hue='Pair', data=aggregatedErrors)
     plt.title(title + "\n" + titleSuffix, fontsize=18)
@@ -140,10 +140,10 @@ def plotCombinedBoxplots(aggregatedErrors, title, titleSuffix, folderToSave):
     plt.legend(title='Pairs of Participants')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'{folderToSave}/combined_boxplot_distance_errors.png')
+    plt.savefig(f'{folderToSave}/combined_boxplot_distance_errors_{fileName}.png')
     plt.close()
 
-def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave):
+def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave, fileName):
     for pair, errors in errorsByPair.items():
         errorsDf = pd.DataFrame(errors, columns=['Error'])
         
@@ -156,7 +156,7 @@ def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave):
         plt.ylabel('Distance Error', fontsize=13)
         plt.grid(True)
         plt.tight_layout()
-        plt.savefig(f'{folderToSave}/trend_distance_errors_{method}_pair_{pairStr}.png')
+        plt.savefig(f'{folderToSave}/trend_distance_errors_{fileName}_{method}_pair_{pairStr}.png')
         plt.close()
 
 def saveMetricsToLatex(statsSummary, type, titleSuffix, filePath):
@@ -273,9 +273,9 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
 
             # Plot statistics
             if compareWith == 'gt':
-                plotStatistics(uwbErrorsByPair, uwbStats, 'UWB', titleSuffix, plotFolderToSave)
-            plotStatistics(modelErrorsByPair, modelVsUwbStats if compareWith == 'uwb' else modelStats, 'Pixel-to-Real', titleSuffix, plotFolderToSave)
-            plotStatistics(opticalErrorsByPair, opticalVsUwbStats if compareWith == 'uwb' else opticalStats, 'Optical', titleSuffix, plotFolderToSave)
+                plotStatistics(uwbErrorsByPair, uwbStats, 'UWB', titleSuffix, plotFolderToSave, fileName)
+            plotStatistics(modelErrorsByPair, modelVsUwbStats if compareWith == 'uwb' else modelStats, 'Pixel-to-Real', titleSuffix, plotFolderToSave, fileName)
+            plotStatistics(opticalErrorsByPair, opticalVsUwbStats if compareWith == 'uwb' else opticalStats, 'Optical', titleSuffix, plotFolderToSave, fileName)
 
             if compareWith == 'gt':
                 aggregatedErrors.append(aggregateErrorsForPlotting(uwbErrorsByPair, 'UWB', dataset["titleSuffix"]))
@@ -287,13 +287,13 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             frames = pd.read_csv(os.path.join(basePath, participantFiles["uwb"]["1"]), sep=' ', header=None, usecols=[0])
             frames.columns = ['Frames']
             if compareWith == 'gt':
-                plotTrend(uwbErrorsByPair, frames, 'UWB', titleSuffix, trendFolderToSave)
-            plotTrend(modelErrorsByPair, frames, 'Pixel-to-Real', titleSuffix, trendFolderToSave)
-            plotTrend(opticalErrorsByPair, frames, 'Optical', titleSuffix, trendFolderToSave)
+                plotTrend(uwbErrorsByPair, frames, 'UWB', titleSuffix, trendFolderToSave, fileName)
+            plotTrend(modelErrorsByPair, frames, 'Pixel-to-Real', titleSuffix, trendFolderToSave, fileName)
+            plotTrend(opticalErrorsByPair, frames, 'Optical', titleSuffix, trendFolderToSave, fileName)
 
              # Combine all errors into a single DataFrame and plot combined boxplots
             combinedErrorsDf = pd.concat(aggregatedErrors, ignore_index=True)
-            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Errors in Distance between Pairs', titleSuffix, plotFolderToSave)
+            plotCombinedBoxplots(combinedErrorsDf, 'Combined Boxplot of Errors in Distance between Pairs', titleSuffix, plotFolderToSave, fileName)
 
 # Example datasets list (use your actual datasets)
 datasets = [
