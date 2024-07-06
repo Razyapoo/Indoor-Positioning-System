@@ -75,7 +75,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         
         plt.figure(figsize=(12, 6))
         sns.boxplot(data=errorsDf, y='Error')
-        plt.title(f'Boxplot of Errors in Distance Between Pair {pairStr} \n {method} method {titleSuffix}', fontsize=18)
+        plt.title(f'Boxplot of Errors in Distance Between Pair {pairStr}. {method} method \n {titleSuffix}', fontsize=18)
         plt.ylabel('Distance Error', fontsize=13)
         plt.xlabel('Pairs of Participants', fontsize=12)
         plt.grid(True)
@@ -106,7 +106,7 @@ def aggregateErrorsForPlotting(errorsByPair, method, experiment):
 def plotCombinedBoxplots(aggregatedErrors, title, titleSuffix, folderToSave):
     plt.figure(figsize=(14, 8))
     sns.boxplot(x='Pair', y='Error', hue='Method', data=aggregatedErrors)
-    plt.title(title + titleSuffix, fontsize=18)
+    plt.title(title + "\n" + titleSuffix, fontsize=18)
     plt.ylabel('Distance Error', fontsize=13)
     plt.xlabel('Pairs of Participants', fontsize=12)
     plt.legend(title='Method')
@@ -123,7 +123,7 @@ def plotTrend(errorsByPair, frames, method, titleSuffix, folderToSave):
         
         plt.figure(figsize=(14, 6))
         plt.plot(frames, errorsDf['Error'])
-        plt.title(f'Error Trend Over Time in Distance Between Pair {pairStr} \n {method} method {titleSuffix}', fontsize=18)
+        plt.title(f'Error Trend Over Time in Distance Between Pair {pairStr}. {method} method \n {titleSuffix}', fontsize=18)
         plt.xlabel('Frame', fontsize=13)
         plt.ylabel('Distance Error', fontsize=13)
         plt.grid(True)
