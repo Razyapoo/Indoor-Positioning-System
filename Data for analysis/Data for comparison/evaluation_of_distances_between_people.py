@@ -272,8 +272,8 @@ datasets = [
         "opticalFiles": {"1": "1 person/optical_to_bb_mapping.txt", "2": "2 person/optical_to_bb_mapping.txt", "3": "3 person/optical_to_bb_mapping.txt"},
         "modelFiles": {"1": "1 person/pixel_to_real_to_bb_mapping.txt", "2": "2 person/pixel_to_real_to_bb_mapping.txt", "3": "3 person/pixel_to_real_to_bb_mapping.txt"},
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Full Region of Interest (16.08 meters)",
-        "fileName": "e118_full_roi",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - full area (16.08 meters)",
+        "fileName": "e118_full_area",
     },
     {
         "basePath": "./s8 data - three people",
@@ -282,8 +282,8 @@ datasets = [
         "opticalFiles": {"1": "1 person/optical_to_bb_mapping_reduced_range.txt", "2": "2 person/optical_to_bb_mapping_reduced_range.txt", "3": "3 person/optical_to_bb_mapping_reduced_range.txt"},
         "modelFiles": {"1": "1 person/pixel_to_real_to_bb_mapping_reduced_range.txt", "2": "2 person/pixel_to_real_to_bb_mapping_reduced_range.txt", "3": "3 person/pixel_to_real_to_bb_mapping_reduced_range.txt"},
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Reduced Region of Interest (10.08 meters)",
-        "fileName": "e118_reduced_roi",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - reduced area (10.08 meters)",
+        "fileName": "e118_reduced_area",
     },
     {
         "basePath": "./s301 data - two people",
@@ -292,7 +292,7 @@ datasets = [
         "opticalFiles": {"1": "1 person - 1 tag/optical_to_bb_mapping.txt", "2": "2 person - 2 tag/optical_to_bb_mapping.txt"},
         "modelFiles": {"1": "1 person - 1 tag/pixel_to_real_to_bb_mapping.txt", "2": "2 person - 2 tag/pixel_to_real_to_bb_mapping.txt"},
         "useCols": [3, 4],
-        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Full Region of Interest (7.08 meters)",
+        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - full area (7.08 meters)",
         "fileName": "e124",
     }
 ]
