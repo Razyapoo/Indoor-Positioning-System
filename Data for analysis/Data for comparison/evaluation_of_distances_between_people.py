@@ -86,7 +86,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         plt.close()
 
         plt.figure(figsize=(14, 10))
-        plt.suptitle(f'Histogram of Errors in Distance Between Pair {pairStr} \n {method} method {titleSuffix}', fontsize=18)
+        plt.suptitle(f'Histogram of Errors in Distance Between Pair {pairStr}. {method} method \n {titleSuffix}', fontsize=18)
         plt.hist(errorsDf['Error'], bins=50, alpha=0.7)
         plt.xlabel('Distance Error', fontsize=13)
         plt.ylabel('Frequency', fontsize=13)
@@ -113,7 +113,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
     # Plot combined histogram
     plt.figure(figsize=(14, 10))
     sns.histplot(data=combinedErrors, x='Error', hue='Pair', bins=50, multiple='stack', alpha=0.7)
-    plt.title(f'Combined Histogram of Errors in Distance for All Pairs \n {method} method {titleSuffix}', fontsize=18)
+    plt.title(f'Combined Histogram of Errors in Distance for All Pairs. {method} method \n {titleSuffix}', fontsize=18)
     plt.xlabel('Distance Error', fontsize=13)
     plt.ylabel('Frequency', fontsize=13)
     plt.grid(True)
@@ -133,11 +133,11 @@ def aggregateErrorsForPlotting(errorsByPair, method, experiment):
 
 def plotCombinedBoxplots(aggregatedErrors, title, titleSuffix, folderToSave):
     plt.figure(figsize=(14, 8))
-    sns.boxplot(x='Pair', y='Error', hue='Method', data=aggregatedErrors)
+    sns.boxplot(x='Method', y='Error', hue='Pair', data=aggregatedErrors)
     plt.title(title + "\n" + titleSuffix, fontsize=18)
     plt.ylabel('Distance Error', fontsize=13)
-    plt.xlabel('Pairs of Participants', fontsize=12)
-    plt.legend(title='Method')
+    plt.xlabel('Method', fontsize=12)
+    plt.legend(title='Pairs of Participants')
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(f'{folderToSave}/combined_boxplot_distance_errors.png')
@@ -189,14 +189,15 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
         participantFiles = {
             "ground_truth": dataset["gtFiles"],
             "uwb": dataset["uwbFiles"],
-            "optical": dataset["opticalFiles"],
-            "model": dataset["modelFiles"]
+            "model": dataset["modelFiles"],
+            "optical": dataset["opticalFiles"]
         }
 
         gtCoords = loadParticipantData(basePath, participantFiles["ground_truth"], dataset["useCols"])
         uwbCoords = loadParticipantData(basePath, participantFiles["uwb"], dataset["useCols"])
-        opticalCoords = loadParticipantData(basePath, participantFiles["optical"], dataset["useCols"])
         modelCoords = loadParticipantData(basePath, participantFiles["model"], dataset["useCols"])
+        opticalCoords = loadParticipantData(basePath, participantFiles["optical"], dataset["useCols"])
+        
 
         if len(gtCoords) < 2:
             continue  # Skip experiments with less than 2 participants
@@ -204,8 +205,9 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
         # Compute distances
         gtDistances = computeDistances(gtCoords)
         uwbDistances = computeDistances(uwbCoords)
-        opticalDistances = computeDistances(opticalCoords)
         modelDistances = computeDistances(modelCoords)
+        opticalDistances = computeDistances(opticalCoords)
+        
 
         for compareWith in ['gt', 'uwb']:
             comparisonFolder = 'Comparison with ground truth coordinates' if compareWith == 'gt' else 'Comparison with uwb coordinates'
@@ -217,20 +219,21 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             # Compare distances
             if compareWith == 'gt':
                 uwbErrors = compareDistances(gtDistances, uwbDistances)
-                opticalErrors = compareDistances(gtDistances, opticalDistances)
                 modelErrors = compareDistances(gtDistances, modelDistances)
+                opticalErrors = compareDistances(gtDistances, opticalDistances)
             else:
-                opticalErrors = compareDistances(uwbDistances, opticalDistances)
                 modelErrors = compareDistances(uwbDistances, modelDistances)
+                opticalErrors = compareDistances(uwbDistances, opticalDistances)
 
             # Perform statistics
             if compareWith == 'gt':
                 uwbErrorsByPair, uwbStats = performStatistics(uwbErrors)
-                opticalErrorsByPair, opticalStats = performStatistics(opticalErrors)
                 modelErrorsByPair, modelStats = performStatistics(modelErrors)
+                opticalErrorsByPair, opticalStats = performStatistics(opticalErrors)
             else:
-                opticalErrorsByPair, opticalVsUwbStats = performStatistics(opticalErrors)
                 modelErrorsByPair, modelVsUwbStats = performStatistics(modelErrors)
+                opticalErrorsByPair, opticalVsUwbStats = performStatistics(opticalErrors)
+                
 
             # Create directories for saving plots and metrics
             plotFolderToSave = os.path.join(baseFolder, comparisonFolder, 'Basic plots showing errors in distance between people (BoxPlots and Histograms)', dataset["fileName"])
@@ -242,15 +245,15 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             os.makedirs(metricsFolderToSave, exist_ok=True)
 
             # Save statistics to CSV
-            for pair, errors in opticalErrorsByPair.items():
-                pairStr = f"{pair[0]}_{pair[1]}"
-                errorsDf = pd.DataFrame(errors, columns=['Error'])
-                errorsDf.to_csv(os.path.join(metricsFolderToSave, f"optical_distance_errors_pair_{pairStr}.csv"), index=False)
-            
             for pair, errors in modelErrorsByPair.items():
                 pairStr = f"{pair[0]}_{pair[1]}"
                 errorsDf = pd.DataFrame(errors, columns=['Error'])
                 errorsDf.to_csv(os.path.join(metricsFolderToSave, f"model_distance_errors_pair_{pairStr}.csv"), index=False)
+
+            for pair, errors in opticalErrorsByPair.items():
+                pairStr = f"{pair[0]}_{pair[1]}"
+                errorsDf = pd.DataFrame(errors, columns=['Error'])
+                errorsDf.to_csv(os.path.join(metricsFolderToSave, f"optical_distance_errors_pair_{pairStr}.csv"), index=False)            
 
             if compareWith == 'gt':
                 for pair, errors in uwbErrorsByPair.items():
@@ -271,21 +274,22 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
             # Plot statistics
             if compareWith == 'gt':
                 plotStatistics(uwbErrorsByPair, uwbStats, 'UWB', titleSuffix, plotFolderToSave)
-            plotStatistics(opticalErrorsByPair, opticalVsUwbStats if compareWith == 'uwb' else opticalStats, 'Optical', titleSuffix, plotFolderToSave)
             plotStatistics(modelErrorsByPair, modelVsUwbStats if compareWith == 'uwb' else modelStats, 'Pixel-to-Real', titleSuffix, plotFolderToSave)
+            plotStatistics(opticalErrorsByPair, opticalVsUwbStats if compareWith == 'uwb' else opticalStats, 'Optical', titleSuffix, plotFolderToSave)
 
             if compareWith == 'gt':
                 aggregatedErrors.append(aggregateErrorsForPlotting(uwbErrorsByPair, 'UWB', dataset["titleSuffix"]))
-            aggregatedErrors.append(aggregateErrorsForPlotting(opticalErrorsByPair, 'Optical', dataset["titleSuffix"]))
             aggregatedErrors.append(aggregateErrorsForPlotting(modelErrorsByPair, 'Pixel-to-Real', dataset["titleSuffix"]))
+            aggregatedErrors.append(aggregateErrorsForPlotting(opticalErrorsByPair, 'Optical', dataset["titleSuffix"]))
+            
 
             # Plot trend over time
             frames = pd.read_csv(os.path.join(basePath, participantFiles["uwb"]["1"]), sep=' ', header=None, usecols=[0])
             frames.columns = ['Frames']
             if compareWith == 'gt':
                 plotTrend(uwbErrorsByPair, frames, 'UWB', titleSuffix, trendFolderToSave)
-            plotTrend(opticalErrorsByPair, frames, 'Optical', titleSuffix, trendFolderToSave)
             plotTrend(modelErrorsByPair, frames, 'Pixel-to-Real', titleSuffix, trendFolderToSave)
+            plotTrend(opticalErrorsByPair, frames, 'Optical', titleSuffix, trendFolderToSave)
 
              # Combine all errors into a single DataFrame and plot combined boxplots
             combinedErrorsDf = pd.concat(aggregatedErrors, ignore_index=True)
