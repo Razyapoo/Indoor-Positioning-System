@@ -101,7 +101,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
     # Plot combined boxplot
     plt.figure(figsize=(12, 6))
     sns.boxplot(data=combinedErrors, x='Pair', y='Error')
-    plt.title(f'Combined Boxplot of Errors in Distance for All Pairs. {method} method \n {titleSuffix}', fontsize=18)
+    plt.title(f'Combined Boxplot of Errors in Distance Between Pairs. All Pairs. {method} method \n {titleSuffix}', fontsize=18)
     plt.ylabel('Distance Error', fontsize=13)
     plt.xlabel('Pairs of Participants', fontsize=12)
     plt.xticks(fontsize=10)
@@ -113,7 +113,7 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
     # Plot combined histogram
     plt.figure(figsize=(14, 10))
     sns.histplot(data=combinedErrors, x='Error', hue='Pair', bins=50, multiple='stack', alpha=0.7)
-    plt.title(f'Combined Histogram of Errors in Distance for All Pairs. {method} method \n {titleSuffix}', fontsize=18)
+    plt.title(f'Combined Histogram of Errors in Distance Between Pairs. All Pairs. {method} method \n {titleSuffix}', fontsize=18)
     plt.xlabel('Distance Error', fontsize=13)
     plt.ylabel('Frequency', fontsize=13)
     plt.grid(True)
