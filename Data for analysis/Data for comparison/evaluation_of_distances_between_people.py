@@ -68,6 +68,8 @@ def performStatistics(errors):
     return statsByPair, statsSummary
 
 def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave):
+    combinedErrors = pd.DataFrame()
+
     for pair, errors in errorsByPair.items():
         errorsDf = pd.DataFrame(errors, columns=['Error'])
         
@@ -92,6 +94,32 @@ def plotStatistics(errorsByPair, statsSummary, method, titleSuffix, folderToSave
         plt.tight_layout()
         plt.savefig(f'{folderToSave}/histogram_distance_errors_{method}_pair_{pairStr}.png')
         plt.close()
+
+        errorsDf["Pair"] = pairStr
+        combinedErrors = pd.concat([combinedErrors, errorsDf])
+
+    # Plot combined boxplot
+    plt.figure(figsize=(12, 6))
+    sns.boxplot(data=combinedErrors, x='Pair', y='Error')
+    plt.title(f'Combined Boxplot of Errors in Distance for All Pairs. {method} method \n {titleSuffix}', fontsize=18)
+    plt.ylabel('Distance Error', fontsize=13)
+    plt.xlabel('Pairs of Participants', fontsize=12)
+    plt.xticks(fontsize=10)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(f'{folderToSave}/boxplot_distance_errors_{method}_combined_pairs.png')
+    plt.close()
+
+    # Plot combined histogram
+    plt.figure(figsize=(14, 10))
+    sns.histplot(data=combinedErrors, x='Error', hue='Pair', bins=50, multiple='stack', alpha=0.7)
+    plt.title(f'Combined Histogram of Errors in Distance for All Pairs \n {method} method {titleSuffix}', fontsize=18)
+    plt.xlabel('Distance Error', fontsize=13)
+    plt.ylabel('Frequency', fontsize=13)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(f'{folderToSave}/histogram_distance_errors_{method}_combined_pairs.png')
+    plt.close()
 
 def aggregateErrorsForPlotting(errorsByPair, method, experiment):
     aggregatedErrors = []
