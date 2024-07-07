@@ -184,7 +184,6 @@ def saveMetricsToLatex(statsSummary, type, titleSuffix, filePath):
 
 def processExperiments(datasets, baseFolder, baseFolderMetrics):
     for dataset in datasets:
-        aggregatedErrors = []
         basePath = dataset["basePath"]
         participantFiles = {
             "ground_truth": dataset["gtFiles"],
@@ -210,6 +209,7 @@ def processExperiments(datasets, baseFolder, baseFolderMetrics):
         
 
         for compareWith in ['gt', 'uwb']:
+            aggregatedErrors = []
             comparisonFolder = 'Comparison with ground truth coordinates' if compareWith == 'gt' else 'Comparison with uwb coordinates'
             comparisonSuffixFileName = 'ground_truth_coordinates' if compareWith == 'gt' else 'uwb_coordinates'
             fileName = f'{dataset["fileName"]}_{comparisonSuffixFileName}'
@@ -304,7 +304,7 @@ datasets = [
         "opticalFiles": {"1": "1 person/optical_to_bb_mapping.txt", "2": "2 person/optical_to_bb_mapping.txt", "3": "3 person/optical_to_bb_mapping.txt"},
         "modelFiles": {"1": "1 person/pixel_to_real_to_bb_mapping.txt", "2": "2 person/pixel_to_real_to_bb_mapping.txt", "3": "3 person/pixel_to_real_to_bb_mapping.txt"},
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - full area (16.08 meters)",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - full area (17.08 meters)",
         "fileName": "e118_full_area",
     },
     {
@@ -324,7 +324,7 @@ datasets = [
         "opticalFiles": {"1": "1 person - 1 tag/optical_to_bb_mapping.txt", "2": "2 person - 2 tag/optical_to_bb_mapping.txt"},
         "modelFiles": {"1": "1 person - 1 tag/pixel_to_real_to_bb_mapping.txt", "2": "2 person - 2 tag/pixel_to_real_to_bb_mapping.txt"},
         "useCols": [3, 4],
-        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - full area (7.08 meters)",
+        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - full area (8.08 meters)",
         "fileName": "e124",
     }
 ]

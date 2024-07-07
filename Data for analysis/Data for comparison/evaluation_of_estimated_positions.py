@@ -371,7 +371,7 @@ datasets = [
         "opticalPath": "./s8 data - three people/1 person/optical_to_bb_mapping.txt",
         "modelPath": "./s8 data - three people/1 person/pixel_to_real_to_bb_mapping.txt",
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 1 - full area (16.08 meters)",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 1 - full area (17.08 meters)",
         "fileName": "e118_full_area_person1",
         "splitSizes": [27],
         "tag": 1
@@ -382,7 +382,7 @@ datasets = [
         "opticalPath": "./s8 data - three people/2 person/optical_to_bb_mapping.txt",
         "modelPath": "./s8 data - three people/2 person/pixel_to_real_to_bb_mapping.txt",
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 2 - full area (16.08 meters)",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 2 - full area (17.08 meters)",
         "fileName": "e118_full_area_person2",
         "splitSizes": [27],
         "tag": 2
@@ -393,7 +393,7 @@ datasets = [
         "opticalPath": "./s8 data - three people/3 person/optical_to_bb_mapping.txt",
         "modelPath": "./s8 data - three people/3 person/pixel_to_real_to_bb_mapping.txt",
         "useCols": [1, 2],
-        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 3 - full area (16.08 meters)",
+        "titleSuffix": "E118(DA_S8_S6(T3_A4_TPh_Md_Wp)) - Person 3 - full area (17.08 meters)",
         "fileName": "e118_full_area_person3",
         "splitSizes": [27],
         "tag": 3
@@ -437,7 +437,7 @@ datasets = [
         "opticalPath": "./s301 data - two people/1 person - 1 tag/optical_to_bb_mapping.txt",
         "modelPath": "./s301 data - two people/1 person - 1 tag/pixel_to_real_to_bb_mapping.txt",
         "useCols": [3, 4],
-        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 1 - full area (7.08 meters)",
+        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 1 - full area (8.08 meters)",
         "fileName": "e124_person1",
         "splitSizes": [9],
         "tag": 1
@@ -448,7 +448,7 @@ datasets = [
         "opticalPath": "./s301 data - two people/2 person - 2 tag/optical_to_bb_mapping.txt",
         "modelPath": "./s301 data - two people/2 person - 2 tag/pixel_to_real_to_bb_mapping.txt",
         "useCols": [3, 4],
-        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 2 - full area (7.08 meters)",
+        "titleSuffix": "E124(DA_S301_S6(T2_A4_TPh_Md_Wp)) - Person 2 - full area (8.08 meters)",
         "fileName": "e124_person2",
         "splitSizes": [9],
         "tag": 2
