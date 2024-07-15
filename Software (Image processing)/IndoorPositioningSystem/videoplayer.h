@@ -1,4 +1,0 @@
-#ifndef VIDEOPLAYER_H
-#define VIDEOPLAYER_H
-
-#endif // VIDEOPLAYER_H

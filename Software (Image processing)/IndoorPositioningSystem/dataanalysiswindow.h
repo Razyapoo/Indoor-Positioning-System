@@ -23,9 +23,10 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QFileDialog>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 #include "customchartview.h"
-#include "custominputdialog.h"
 #include "indoorpositioningsystemviewmodel.h"
 
 namespace Ui {

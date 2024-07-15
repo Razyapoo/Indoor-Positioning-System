@@ -1,2 +1,0 @@
-This version just controls bottleneck of the server. Doesn't control whether data came from a tag from which connection accepted?
-A huge advantage here is that ID of tag is mentioned in the massage coming from the tag, so it doesn't matter to setup communication channel and receive data from the tag with which the connection is established.

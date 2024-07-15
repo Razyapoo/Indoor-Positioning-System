@@ -1,3 +1,0 @@
-/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Data reader/build/CMakeFiles/DataReader.dir
-/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Data reader/build/CMakeFiles/edit_cache.dir
-/home/oskar/Documents/Master Thesis/Hardware (ESP32)/New version test/Data reader/build/CMakeFiles/rebuild_cache.dir
