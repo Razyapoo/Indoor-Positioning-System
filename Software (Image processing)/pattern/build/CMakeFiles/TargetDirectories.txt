@@ -1,3 +1,0 @@
-/home/oskar/Documents/Master Thesis/Software (Image processing)/pattern/build/CMakeFiles/chessboard.dir
-/home/oskar/Documents/Master Thesis/Software (Image processing)/pattern/build/CMakeFiles/edit_cache.dir
-/home/oskar/Documents/Master Thesis/Software (Image processing)/pattern/build/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,0 @@
-int CHECKERBOARD[2]{6, 9};

@@ -1,3 +1,0 @@
-/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/offline/build/CMakeFiles/StereoOffline.dir
-/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/offline/build/CMakeFiles/edit_cache.dir
-/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/offline/build/CMakeFiles/rebuild_cache.dir

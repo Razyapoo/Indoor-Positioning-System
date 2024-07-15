@@ -1,3 +1,0 @@
-/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/build/CMakeFiles/StereoCalibration.dir
-/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/build/CMakeFiles/edit_cache.dir
-/home/oskar/Documents/Master Thesis/Software (Image processing)/c++/calibration/build/CMakeFiles/rebuild_cache.dir
