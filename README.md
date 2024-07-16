@@ -1,7 +1,7 @@
 # Smart extensions to regular cameras in the industrial environment
 
 ## Author
-**Name:** Oskar Razyapov 
+**Name:** Oskar Razyapov\
 **Email:** oskarrazyapov@gmail.com  
 
 ## Abstract
@@ -11,7 +11,7 @@
 **Keywords:** Repeatable Experiments, CCTV Cameras, Localization, Ultra-Wide band, Machine learning
 
 ## Institute
-**Institute Name:** Charles University
+**Institute Name:** Charles University\
 **Department:** Department of Software Engineering
 
 ## Project structure
@@ -25,21 +25,21 @@
 │   ├── Journal                                  # Journal entries related to the project
 │   └── Papers                                   # Research papers and articles (Motivation for the project)
 ├── Data for Video Player                        # Data files prepared to be opened in the Indoor Positioning System (GUI) application
-│   ├── Ground truth distances                   # Ground truth distance data for experiments
-│   │   ├── Experiment 109                       # Data for Experiment 109
-│   │   ├── Experiment 113                       # Data for Experiment 113
-│   │   ├── Experiment 118                       # Data for Experiment 118
-│   │   └── Experiment 124                       # Data for Experiment 124
-│   ├── Test - Experiment 113                    # Experiment 113 - Test of PixelToReal model
-│   ├── Test - Experiment 118                    # Experiment 118 - Test of PixelToReal model
-│   ├── Test - Experiment 124                    # Experiment 124 - Test of PixelToReal model
-│   └── Train - Experiment 109                   # Experiment 109 - for PixelToReal model training
+│   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)
+│   │   ├── Experiment 109                       # Prepared data for Experiment 109
+│   │   ├── Experiment 113                       # Prepared data for Experiment 113
+│   │   ├── Experiment 118                       # Prepared data for Experiment 118
+│   │   └── Experiment 124                       # Prepared data for Experiment 124
+│   ├── Test - Experiment 113                    # Test data for PixelToReal model from Experiment 113
+│   ├── Test - Experiment 118                    # Test data for PixelToReal model from Experiment 118
+│   ├── Test - Experiment 124                    # Test data for PixelToReal model from Experiment 124
+│   └── Train - Experiment 109                   # Train data for PixelToReal model from Experiment 124
 ├── Implementation                               # Source code and implementation files
 │   ├── ESP32 UWB                                # Firmware for ESP32 UWB devices
 │   │   ├── anchorArduino                        # Firmware for Anchor
 │   │   └── tagArduino                           # Firmware for Tag
 │   ├── IndoorPositioningSystem                  # Main GUI
-│   ├── Optical - Camera Intrinsic Calibration   # Intrinsic camera calibration
+│   ├── Camera Intrinsic Calibration (Optical)   # Intrinsic camera calibration
 │   ├── ├── intrinsic_parameters.xml             # Parameters prepared to be used in GUI for Optical method
 │   │   └── Calibrator                           # Source code for calibration 
 │   ├── PixelToReal                              # Source code and data for PixelToReal training
