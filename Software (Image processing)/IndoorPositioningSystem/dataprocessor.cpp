@@ -25,7 +25,7 @@ void DataProcessor::cleanup() {
         videoDataFile.close();
     }
 
-    // Free xBooster
+    // Free XGBoost
     XGBoosterFree(booster);
 
     dataProcessorThread->quit();

@@ -1,41 +1,43 @@
-#include "Calibrator.hpp"
+#include "Calibrator.h"
 
 cv::VideoCapture Calibrator::videoSource;
-
-bool Calibrator::intrinsicParamsSaved = false;
 std::string Calibrator::intrinsicFilePath = "";
+bool Calibrator::intrinsicParamsSaved = false;
+
+// Chessboard size
 uint8_t Calibrator::chessboardHeight = 6, Calibrator::chessboardWidth = 9;
-uint16_t Calibrator::imageCounter = 0;
+
+// Calibration parameters
 float Calibrator::squareSize = 24.0f, Calibrator::alpha = 0.97;
+double Calibrator::Calibrator::reprojectionError;
 const cv::Size Calibrator::chessboardSize = cv::Size(Calibrator::chessboardHeight, Calibrator::chessboardWidth);
 const cv::Size Calibrator::imageSize = cv::Size(640, 360);
-const cv::TermCriteria Calibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 30, 0.01); //cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001
 const int Calibrator::numberOfCells = Calibrator::chessboardHeight * Calibrator::chessboardWidth;
-
-double Calibrator::Calibrator::reprojectionError;
 std::vector<std::vector<cv::Point3f>> Calibrator::objectPoints;
 std::vector<std::vector<cv::Point2f>> Calibrator::imagePoints;
 std::vector<cv::Point2f> Calibrator::corners;
 std::vector<cv::Point3f> Calibrator::objectPoint;
+const cv::TermCriteria Calibrator::criteriaMono = cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 30, 0.01); //cv::TermCriteria::MAX_ITER + cv::TermCriteria::EPS, 100, 0.001
+
 // Working with frames
 cv::Mat Calibrator::image, Calibrator::gray;
 bool Calibrator::found;
-// Intrinsic calibration
-cv::Mat Calibrator::cameraMatrix, Calibrator::distortionCoeffs;
-std::vector<cv::Mat> Calibrator::rotationVecs, Calibrator::translationVecs;
-cv::Mat Calibrator::optimalCameraMatrix;
 uint8_t Calibrator::key;
+uint16_t Calibrator::imageCounter = 0;
+
+// Output matrices that are used in Video Player (GUI)
+cv::Mat Calibrator::cameraMatrix, Calibrator::distortionCoeffs, Calibrator::optimalCameraMatrix;
+std::vector<cv::Mat> Calibrator::rotationVecs, Calibrator::translationVecs;
+
 
 void Calibrator::initCameraCalibration()
 {
-
+    // Prepare known 3D coordinates of chessboard corners
     for (auto i = 0; i < chessboardWidth; i++)
         for (auto j = 0; j < chessboardHeight; j++)
             objectPoint.push_back(cv::Point3f((float)j * squareSize, (float)i * squareSize, 0.0f));
 
-    char key = -1;
-    bool found = false;
-    uint16_t imageCounter = 0;
+    key = -1;
 
     std::cout << "Stage - IDLE. This stage is intended for your preparation. Please press one of the following buttons to continue: " << std::endl;
     std::cout << "  n: continue to the next stage" << std::endl;
@@ -50,26 +52,29 @@ void Calibrator::initCameraCalibration()
         cv::imshow("Frame", image);
 
         key = cv::waitKey(1);
-        if (key == 'x')
-            exit(0);
-        if (key == 'n')
+        if (key == 'n') // continue with next step
         {
             cv::destroyAllWindows();
             Calibrator::detectChessboard();
             break;
+        } 
+        else if (key == 'x')  // exit calibration
+        {
+            exit(0);
         }
     }
 }
 
+// Collect images that will be used for calibration
 void Calibrator::detectChessboard()
 {
 
-    std::cout << "Stage - DETECT CHESSBOARD" << std::endl;
+    std::cout << "Stage - CHESSBOARD DETECTION. During this stage you can collect the images that will be used as means for intrinsic calibration" << std::endl;
+    std::cout << "  c: repeat detection without saving" << std::endl;
+    std::cout << "  s: save the image" << std::endl;
     std::cout << "  n: continue to the next stage" << std::endl;
     std::cout << "  x: exit" << std::endl;
-    std::cout << "  s: save the pair of images" << std::endl;
-    std::cout << "  c: repeat detection without saving" << std::endl;
-
+    
     cv::namedWindow("Frame");
 
     while (true)
@@ -80,52 +85,43 @@ void Calibrator::detectChessboard()
 
         found = cv::findChessboardCorners(gray, chessboardSize, corners, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_NORMALIZE_IMAGE + cv::CALIB_CB_FILTER_QUADS); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
 
+        // Draw detected chessboard for better understanding of the calibration process
         if (found)
         {
             cv::drawChessboardCorners(image, chessboardSize, corners, found);
             cv::cornerSubPix(gray, corners, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
         }
 
-        // // ----- Circles -----
-        // found = cv::findCirclesGrid(gray, chessboardSize, corners, cv::CALIB_CB_ASYMMETRIC_GRID); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
-        // foundRight = cv::findCirclesGrid(grayRight, chessboardSize, cornersRight, cv::CALIB_CB_ASYMMETRIC_GRID); //, cv::CALIB_CB_ADAPTIVE_THRESH + cv::CALIB_CB_FILTER_QUADS + cv::CALIB_CB_NORMALIZE_IMAGE);
-
-        // // If the pattern is found in both images, draw the circles at the detected corners
-        // if (found && foundRight) {
-        //     cv::drawChessboardCorners(image, chessboardSize, cv::Mat(corners), found);
-        //     cv::drawChessboardCorners(imageRight, chessboardSize, cv::Mat(cornersRight), foundRight);
-        //     cv::cornerSubPix(gray, corners, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
-        //     cv::cornerSubPix(grayRight, cornersRight, cv::Size(11, 11), cv::Size(-1, -1), criteriaMono);
-        // }
-        // // ----- Circles -----
-
         cv::imshow("Frame", image);
 
+        // By default play video without stopping
         key = cv::waitKey(1);
 
+        // If chessboard is detected, stop video and show detected chessboard 
         if (found)
             key = cv::waitKey(0);
 
-        if (key == 'x')
-        {
-            cv::destroyAllWindows();
-            exit(0);
-        }
-        if (key == 's' && found)
+        if (key == 'c') // skip saving
+        { 
+            continue;
+        } 
+        else if (key == 's' && found) // save if chessboard is found
         {
             imagePoints.push_back(corners);
             objectPoints.push_back(objectPoint);
             std::cout << "Number of stored corners: " << ++imageCounter << std::endl;
-        }
-        if (key == 'c')
-        {
-            continue;
-        }
-        if (key == 'n')
+        } 
+        else if (key == 'n') // continue with next step - calibration 
         {
             Calibrator::intrinsicCalibration();
             break;
         }
+        else if (key == 'x') // exit calibration
+        {
+            cv::destroyAllWindows();
+            exit(0);
+        }
+        
     }
 }
 
@@ -135,12 +131,15 @@ void Calibrator::intrinsicCalibration()
 
     cameraMatrix = cv::initCameraMatrix2D(objectPoints, imagePoints, imageSize, 0);
 
+    // Checking the quality of calibration
     reprojectionError = cv::calibrateCamera(objectPoints, imagePoints, imageSize, cameraMatrix, distortionCoeffs, rotationVecs, translationVecs);
 
+    // Safety check
     bool ok = cv::checkRange(cameraMatrix) && cv::checkRange(distortionCoeffs);
     if (!ok)
     {
         std::cout << "ERROR: camera was not calibrated" << std::endl;
+        return;
     }
 
     optimalCameraMatrix = cv::getOptimalNewCameraMatrix(cameraMatrix, distortionCoeffs, imageSize, alpha, imageSize, 0);
@@ -155,26 +154,22 @@ void Calibrator::intrinsicCalibration()
     std::cout << "Dist coeffs: " << distortionCoeffs << std::endl;
 
     std::cout << "Please press one of the following buttons to continue:" << std::endl;
-    std::cout << "  x: exit" << std::endl;
     std::cout << "  s: save intrinsic parameters" << std::endl;
+    std::cout << "  x: exit" << std::endl;
 
     cv::Mat undistortedImage;
 
+    // Show calibration results
     while (true)
     {
         
-        
         image = Camera::getFrame();
         cv::undistort(image, undistortedImage, cameraMatrix, distortionCoeffs, optimalCameraMatrix);
-        cv::imshow("Frame undistorted", undistortedImage);
+        cv::imshow("Undistorted frame", undistortedImage);
 
         key = cv::waitKey(1);
 
-        if (key == 'x')
-        {
-            std::cout << "Calibration is finished!!" << std::endl;
-            exit(0);
-        }
+        // Save resulting calibration parameters 
         if (key == 's')
         {
             try
@@ -206,12 +201,17 @@ void Calibrator::intrinsicCalibration()
                 std::cerr << "Error: " << e.what() << std::endl;
             }
         }
+        else if (key == 'x')
+        {
+            std::cout << "Calibration is finished!!" << std::endl;
+            exit(0);
+        }
     }
 }
 
+// Check quality of the calibration
 double Calibrator::getReprojectionError(const std::vector<std::vector<cv::Point3f>> &objectPoints, const std::vector<std::vector<cv::Point2f>> &imagePoints, const std::vector<cv::Mat> &rotationVecs, const std::vector<cv::Mat> &translationVecs, const cv::Mat &cameraMatrix, const cv::Mat &distortionCoeffs)
 {
-
     double totalError = 0.0;
     double localError = 0.0;
     double rms = 0.0;

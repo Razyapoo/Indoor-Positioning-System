@@ -1,21 +1,26 @@
 
-#include "Calibrator.hpp"
+#include "Calibrator.h"
 #include <string>
 #include <map>
 #include <fstream>
 
+/*********************************************** Calibrator (main) ***********************************************
+ * Camera Intrinsic Calibration
+****************************************************************************************************************/
+
 int main(int argc, char **argv)
 {
+    // Command line options
     std::map<std::string, std::string> options;
 
     uint8_t key;
 
+    // Default options
     options["input_camera"] = "2";
-
     options["intrinsic_file_path"] = "parameters/intrinsic_parameters.xml";
-
     options["image_path"] = "images";
 
+    // Parse options
     for (int i = 1; i < argc; i++)
     {
         std::string arg = argv[i];
@@ -48,16 +53,12 @@ int main(int argc, char **argv)
         }
     }
 
-    std::ifstream intrinsicParametersFile(options["intrinsic_file_path"]);
-
-
     char input;
     cv::Mat frame, resizedFrame;
-
-
+    // Init Camera
     Camera::initCamera(std::stoi(options["input_camera"]));
 
+    // Init Calibrator
     Calibrator::intrinsicFilePath = options["intrinsic_file_path"];
     Calibrator::initCameraCalibration();
-    
 }

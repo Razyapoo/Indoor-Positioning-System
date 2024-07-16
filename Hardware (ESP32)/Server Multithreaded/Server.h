@@ -27,7 +27,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
 
-#include "SharedData.hpp"
+#include "SharedData.h"
 
 class Server
 {

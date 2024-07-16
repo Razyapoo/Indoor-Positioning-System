@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "Camera.h"
 
 int Camera::cameraIndex;
 cv::VideoCapture Camera::camera;
@@ -15,12 +15,6 @@ void Camera::initCamera(const int &cameraIndex)
     }
 }
 
-void Camera::release()
-{
-    camera.release();
-    cv::destroyAllWindows();
-}
-
 cv::Mat Camera::getFrame()
 {
     cv::Mat readFrame;
@@ -30,4 +24,10 @@ cv::Mat Camera::getFrame()
     }
 
     return readFrame;
+}
+
+void Camera::release()
+{
+    camera.release();
+    cv::destroyAllWindows();
 }

@@ -8,7 +8,7 @@
  * Responsible for:
  *  - Visualization of main functions (buttons, video, uwb data etc.)
  *  - Load / Play / Pause / Seek data stream
- *  - Load addiotnal data for HumanDetector (.weights, .cfg), xBooster (.json), Intrinsic Camera Parameters (.xml)
+ *  - Load addiotnal data for HumanDetector (.weights, .cfg), XGBoost (.json), Intrinsic Camera Parameters (.xml)
  *
  * Folder structure to be opened in Video Pleayer as a project (raw video + raw UWB data):
  *  - UWB_timestamps.txt

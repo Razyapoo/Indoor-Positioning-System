@@ -1,4 +1,4 @@
-#include "VideoManager.hpp"
+#include "VideoManager.h"
 
 size_t VideoManager::frameIndex = 1;
 double VideoManager::fps = 18.0;

@@ -1,4 +1,4 @@
-#include "Server.hpp"
+#include "Server.h"
 
 int Server::serverSocketFD, Server::clientSocketFD, Server::currentClientSocketFD;
 int Server::maxSocketFD;

@@ -12,10 +12,10 @@
  *      - Activity watchdog: monitors tag responses and detects if communication between anchor and tag is blocked
 ***************************************************************************************************************************************/
 
-#include "Server.hpp"
-#include "VideoManager.hpp"
-#include "SharedData.hpp"
-#include "Camera"
+#include "Server.h"
+#include "VideoManager.h"
+#include "SharedData.h"
+#include "Camera.h"
 #include <iostream>
 #include <thread>
 

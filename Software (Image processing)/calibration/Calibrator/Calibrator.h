@@ -1,25 +1,34 @@
 #ifndef CALIBRATION_H
 #define CALIBRATION_H
 
+
+/*********************************************** Calibrator ***************************************************
+ * Responsible for Camera intrinsic calibration
+ * 
+ * Requirenments: 
+ *  - functional webcam
+ *  - 6x9 chessboard pattern (either printed or electronic)
+****************************************************************************************************************/
+
 #include <iostream>
 #include <stdio.h>
 #include <vector>
 #include <memory>
 #include <filesystem>
-#include "Camera.hpp"
+
+#include "Camera.h"
 
 class Calibrator
 {
 public:
     static cv::VideoCapture videoSource;
-
-    // common variables
     static std::string intrinsicFilePath;
     static bool intrinsicParamsSaved;
-    static uint8_t chessboardHeight;
-    static uint8_t chessboardWidth;
-    static uint8_t key;
-    static uint16_t imageCounter;
+
+    // Chessboard size
+    static uint8_t chessboardHeight, chessboardWidth;
+    
+    // Calibration parameters
     static float squareSize, alpha;
     static double reprojectionError;
     const static cv::Size chessboardSize, imageSize;
@@ -29,14 +38,16 @@ public:
     static std::vector<std::vector<cv::Point2f>> imagePoints;
     static std::vector<cv::Point2f> corners;
     static std::vector<cv::Point3f> objectPoint;
+    
     // Working with frames
     static cv::Mat image, gray;
     static bool found;
-    // Intrinsic calibration
-    static cv::Mat cameraMatrix, distortionCoeffs;
+    static uint8_t key;
+    static uint16_t imageCounter;
+    
+    // Output matrices that are used in Video Player (GUI)
+    static cv::Mat cameraMatrix, optimalCameraMatrix, distortionCoeffs;
     static std::vector<cv::Mat> rotationVecs, translationVecs;
-    static cv::Mat optimalCameraMatrix;
-
 
     // Methods
     static void initCameraCalibration();

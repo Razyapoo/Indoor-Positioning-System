@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "Camera.h"
 
 int Camera::cameraIndex;
 cv::Mat Camera::frame;
