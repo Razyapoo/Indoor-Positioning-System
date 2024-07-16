@@ -15,45 +15,43 @@
 **Department:** Department of Software Engineering
 
 ## Project structure
-```bash
+```
 .
-├── Archive
-│   ├── Documentation
-│   │   ├── Main Documentation
-│   │   ├── Technical Documentation
-│   │   └── User documentation
-│   ├── Journal
-│   └── Papers
-├── Data for Video Player
-│   ├── Ground truth distances for correction of UWB distances (data shifts)
-│   │   ├── Experiment 109
-│   │   ├── Experiment 113
-│   │   ├── Experiment 118
-│   │   └── Experiment 124
-│   ├── Test - Experiment 113
-│   ├── Test - Experiment 118
-│   ├── Test - Experiment 118 - after correction
-│   ├── Test - Experiment 124
-│   └── Train - Experiment 109
-├── Implementation
-│   ├── ESP32 UWB
-│   │   ├── anchorArduino
-│   │   └── tagArduino
-│   ├── GUI - Video Player
-│   │   └── IndoorPositioningSystem
-│   ├── Optical - Camera Intrinsic Calibration
-│   │   └── Calibrator
-│   ├── PixelToReal
-│   └── UWB + Video data recorder (Server)
-│       └── build
-├── PixelToReal, Optical and UWB evaluation
-│   ├── Data for evaluation
-│   │   ├── For Experiment 109
-│   │   ├── For Experiment 113
-│   │   ├── For Experiment 118
-│   │   └── For Experiment 124
-│   └── Relusts of evaluation (Plots, Statistics)
-│       ├── Plots
-│       └── Statistics
-└── Recorded Experiments
+├── Archive                                      # Contains archived documents and papers
+│   ├── Documentation                            # Documentation for various aspects of the project
+│   │   ├── Main Documentation                   # Primary documentation for the project
+│   │   ├── Technical Documentation              # Detailed technical documentation
+│   │   └── User documentation                   # User guides and manuals
+│   ├── Journal                                  # Journal entries related to the project
+│   └── Papers                                   # Research papers and articles (Motivation for the project)
+├── Data for Video Player                        # Data files prepared to be opened in the Indoor Positioning System (GUI) application
+│   ├── Ground truth distances                   # Ground truth distance data for experiments
+│   │   ├── Experiment 109                       # Data for Experiment 109
+│   │   ├── Experiment 113                       # Data for Experiment 113
+│   │   ├── Experiment 118                       # Data for Experiment 118
+│   │   └── Experiment 124                       # Data for Experiment 124
+│   ├── Test - Experiment 113                    # Experiment 113 - Test of PixelToReal model
+│   ├── Test - Experiment 118                    # Experiment 118 - Test of PixelToReal model
+│   ├── Test - Experiment 124                    # Experiment 124 - Test of PixelToReal model
+│   └── Train - Experiment 109                   # Experiment 109 - for PixelToReal model training
+├── Implementation                               # Source code and implementation files
+│   ├── ESP32 UWB                                # Firmware for ESP32 UWB devices
+│   │   ├── anchorArduino                        # Firmware for Anchor
+│   │   └── tagArduino                           # Firmware for Tag
+│   ├── IndoorPositioningSystem                  # Main GUI
+│   ├── Optical - Camera Intrinsic Calibration   # Intrinsic camera calibration
+│   ├── ├── intrinsic_parameters.xml             # Parameters prepared to be used in GUI for Optical method
+│   │   └── Calibrator                           # Source code for calibration 
+│   ├── PixelToReal                              # Source code and data for PixelToReal training
+│   └── Server                                   # Centralized server for recording UWB and video data
+├── PixelToReal, Optical and UWB evaluation      # Evaluation data and results
+│   ├── Data for evaluation                      # Data used for evaluating the system (export from GUI)
+│   │   ├── For Experiment 109                   # Evaluation data for Experiment 109
+│   │   ├── For Experiment 113                   # Evaluation data for Experiment 113
+│   │   ├── For Experiment 118                   # Evaluation data for Experiment 118
+│   │   └── For Experiment 124                   # Evaluation data for Experiment 124
+│   └── Relusts of evaluation (Plots, Statistics) # Evaluation results, including plots and statistics
+│       ├── Plots                                # Plot files for evaluation results
+│       └── Statistics                           # Statistical analysis of evaluation results
+└── Recorded Experiments                         # Raw data and recordings from experiments (Not prepared to be opened in GUI)
 ```
