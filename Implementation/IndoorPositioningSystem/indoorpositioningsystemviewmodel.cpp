@@ -54,7 +54,7 @@ IndoorPositioningSystemViewModel::~IndoorPositioningSystemViewModel()
 
 // ------------------------- Load files --------------------------------------------------------------------
 // Open Video + UWB data
-// Mandatory files: video.avi, UWB_timestamps.txt, video_timestamps.txt
+// Mandatory files: video.avi (.mp4), UWB_timestamps.txt, video_timestamps.txt
 bool IndoorPositioningSystemViewModel::openVideo(const QString& directory)
 {
     anchorPositions.clear();
@@ -66,14 +66,20 @@ bool IndoorPositioningSystemViewModel::openVideo(const QString& directory)
     if (!directory.isEmpty()) {
         QDir qDirectory(directory);
 
-        videoFileName = qDirectory.filePath("video.avi").toStdString();
+        QString videoFileNameAVI = qDirectory.filePath("video.avi");
+        QString videoFileNameMP4 = qDirectory.filePath("video.mp4");
+        if (QFile::exists(videoFileNameAVI)) {
+            videoFileName = videoFileNameAVI.toStdString();
+        } else if (QFile::exists(videoFileNameMP4)) {
+            videoFileName = videoFileNameMP4.toStdString();
+        } else {
+            missingFiles << "video.avi or video.mp4";
+            missingFile = true;
+        }
+
         UWBDataFileName = qDirectory.filePath("UWB_timestamps.txt").toStdString();
         videoTimestampsFileName = qDirectory.filePath("video_timestamps.txt").toStdString();
 
-        if (!QFile::exists(QString::fromStdString(videoFileName))) {
-            missingFiles << "video.avi";
-            missingFile = true;
-        }
         if (!QFile::exists(QString::fromStdString(UWBDataFileName))) {
             missingFiles << "UWB_timestamps.txt";
             missingFile = true;

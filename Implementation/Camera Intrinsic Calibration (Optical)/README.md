@@ -1,0 +1,3 @@
+- Parameters produced by calibration are used:
+        - to calculate people coordinates using Optical method
+        - to undostort the image for better people prediction
