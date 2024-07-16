@@ -18,13 +18,13 @@
 ```
 .
 ├── Archive                                      # Contains archived documents and papers
-│   ├── Documentation                            # Documentation for various aspects of the project
-│   │   ├── Main Documentation                   # Primary documentation for the project
+│   ├── Documentation                            # Documentation related to the project
+│   │   ├── Main Documentation                   # Thesis
 │   │   ├── Technical Documentation              # Detailed technical documentation
 │   │   └── User documentation                   # User guides and manuals
 │   ├── Journal                                  # Journal entries related to the project
 │   └── Papers                                   # Research papers and articles (Motivation for the project)
-├── Data for Video Player                        # Data files prepared to be opened in the Indoor Positioning System (GUI) application
+├── Data for Indoor Positioning System (GUI)     # Data files prepared to be opened in the Indoor Positioning System (GUI) application
 │   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)
 │   │   ├── Experiment 109                       # Prepared data for Experiment 109
 │   │   ├── Experiment 113                       # Prepared data for Experiment 113
