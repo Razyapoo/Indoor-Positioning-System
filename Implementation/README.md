@@ -1,8 +1,22 @@
 # Implementation
 
-## Purpose
 Contains source code and implementation files.
 
+!!! IMPORTANT !!!:
+- Coordinates are calculate in Indoor Positioning System for all methods
+    - Tags only estimate distances
+    - Calibrator only gives calibration parameters
+
+**Requarnments**:
+- Linux operating system
+    - tested on Ubuntu 22.04.4 LTS
+- [eXtream Gradient Boost](https://xgboost.readthedocs.io/en/stable/install.html)
+- [OpenCV v4.7.0](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html)
+- [Qt6 Framework v6.6.1](https://www.qt.io/download-qt-installer-oss?hsCtaTracking=99d9dd4f-5681-48d2-b096-470725510d34%7C074ddad0-fdef-4e53-8aa8-5e8a876d6ab4)
+- [YoloV4](https://github.com/AlexeyAB/darknet) 
+    - [yolov4-tiny.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
+    - [yolov4-tiny.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)
+    
 ## Structure
 ```
 .

@@ -9,7 +9,7 @@ import pandas as pd
 import xgboost as xgb
 
 # Load data
-filePath = '/home/oskar/Documents/Master Thesis/Software (Image processing)/Train Pixel-to-Real model/data_to_train_model.txt'
+filePath = '/home/oskar/Documents/Master Thesis/Software (Image processing)/Train Pixel-to-Real model/data_to_train_model_experiment_109.txt'
 columnNames = ['Record_id', 'X_World', 'Y_World', 'x_pixel', 'y_pixel']
 loadedData = pd.read_csv(filePath, names=columnNames, delim_whitespace=True)
 

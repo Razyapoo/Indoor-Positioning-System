@@ -1,14 +1,13 @@
 # Data for Indoor Positioning System (GUI)
 
-## Purpose
 Contains data that are **ready** to open in Indoor Positioning System (GUI)
 - The "Ground truth distances" **should not** be opened in as a project in GUI
     - These are Ground Truth distances for data correction in Data Analysis window in GUI!!!
 
 - Indoor Positioning System (GUI) opens as a project a folder consisting of:
-    - "UWB_timestamps.txt" - UWB data
-    - "video_timestamps.txt" - index file for video
-    - video (.avi, .mp4) - original video have .avi format; for sending the project to SIS sample video were changed to .mp4
+    - `UWB_timestamps.txt` - UWB measurements.
+    - `video_timestamps.txt` - index file to read the video frame-by-frame.
+    - `video (.avi, .mp4)` - original video have .avi format; for sending the project to SIS sample video were changed to .mp4
 
 ## Structure
 ```

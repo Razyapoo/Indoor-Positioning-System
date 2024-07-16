@@ -1,6 +1,5 @@
 # Archive
 
-## Purpose
 Contains archived documents, journals, and research papers relevant to the project.
 
 ## Structure

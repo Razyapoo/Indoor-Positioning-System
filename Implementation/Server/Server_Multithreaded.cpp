@@ -1,5 +1,5 @@
 /*********************************************** Server Multithreaded *****************************************************************
- * Initiates synchronous work of (in dedicated threads):
+ * Initiates simultaneous work of (in dedicated threads):
  *      - Video Manager
  *      - (UWB) Server
  *      - Activity watchdog separately
