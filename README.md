@@ -1,8 +1,12 @@
 # Master Thesis
 
 ## Author
-**Name:** Oskar Razyapov
+**Name:** Oskar Razyapov 
 **Email:** oskarrazyapov@gmail.com  
+
+## Abstract
+
+
 
 ## Keywords
 **Topic:** Smart extensions to regular cameras in the industrial environment
@@ -12,8 +16,5 @@
 **Institute Name:** Charles University
 **Department:** Department of Software Engineering
 
-## Abstract
-
-
 ## Project structure
- 
+
