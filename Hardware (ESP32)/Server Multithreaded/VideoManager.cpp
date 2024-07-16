@@ -14,7 +14,7 @@ extern SharedData sharedData;
 
 void VideoManager::runVideoRecorder()
 {
-
+    // Setup of the video parameters
     cv::VideoWriter videoWriter("video.avi", cv::VideoWriter::fourcc('H', '2', '6', '4'), fps, frameSize);
 
     if (!videoWriter.isOpened())
@@ -23,10 +23,12 @@ void VideoManager::runVideoRecorder()
         return;
     }
 
+    // Open the index file
     std::ofstream timestampFile("video_timestamps.txt");
     if (!timestampFile.is_open())
         throw std::runtime_error("Failed to open video_timestamps.txt file");
 
+    // Start recording both UWB and Video streams
     sharedData.startRecording();
 
     std::cout << "Video is recording..." << std::endl;
@@ -46,6 +48,7 @@ void VideoManager::runVideoRecorder()
 
             videoWriter.write(frame);
 
+            // record timestamp + frameIndex of the video frame for later synchronization with UWB records
             currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
             timestamp = currentTime.count();
             timestampFile << frameIndex << " " << timestamp << std::endl;
@@ -55,14 +58,14 @@ void VideoManager::runVideoRecorder()
 
         cv::imshow("Frame", frame);
 
-        key = cv::waitKey(50);
+        key = cv::waitKey(60); // corresponds to 17 fps
         if (key == 'p')
             sharedData.pauseRecording();
-        if (key == 'c')
+        if (key == 'c') // continue recording
             sharedData.startRecording();
         if (key == 's')
         {
-            sharedData.setTerminationFlag();
+            sharedData.setTerminationFlag(); // notify UWB server about termination
             break;
         }
     }
@@ -73,7 +76,7 @@ void VideoManager::runVideoRecorder()
 
         videoWriter.release();
         timestampFile.close();
-        std::cout << "Video saved successfully!" << std::endl;
+        std::cout << "Video has been saved successfully!" << std::endl;
     }
     catch (const std::exception &e)
     {

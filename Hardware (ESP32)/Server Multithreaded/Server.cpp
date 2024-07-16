@@ -23,7 +23,7 @@ size_t Server::dataIndex = 1;
 int Server::statusImageHeight = 640;
 int Server::statusImageWidth = 720;
 
-extern SharedData sharedData; // extern shared variable
+extern SharedData sharedData; // extern shared variable that is used for communication between threads 
 
 bool Server::debugMode = true; // DEBUG
 
@@ -179,6 +179,7 @@ void Server::runServer()
                 exit(EXIT_FAILURE);
             }
 
+            // Add newly discovered tag to the queue for further communication
             clientQueue.push(clientSocketFD);
             std::cout << "New client connected, address: " << inet_ntoa(clientAddress.sin_addr) << ":" << ntohs(clientAddress.sin_port) << ", socketFD: " << clientSocketFD << std::endl;
 
@@ -260,7 +261,15 @@ void Server::runServer()
             clientSocketFD = clientQueue.front();  // select next tag for communication
             clientQueue.pop();
 
-            std::string request = "1\n"; // request initiation indicator
+            std::string request = "1\n"; // request initiation indicator: "Mesure!"
+
+            /* Server records the time when it sent the request "Measure!" to a tag;
+            * when the tag responses with distance measurements, the server records the 
+            * receiption time and calculates the difference (response - request time)
+            * this gives a time spent measuring the distances by the tag. 
+            * Best and most common time of mesuring is 100ms (fast) !!!
+            * this means that tags are able to calculate people positions at a frequency of 10Hz each
+            */
             requestTime = std::chrono::high_resolution_clock::now();
             write(clientSocketFD, request.c_str(), request.length());
             isBusy = true;

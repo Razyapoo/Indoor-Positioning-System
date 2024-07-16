@@ -1,20 +1,22 @@
 #include "arduino.h"
 
+// Set ID and Antenna delay for each tag separately
+// we operate with 3 tags
 void setMyProperties()
 {
   String macAddr = WiFi.macAddress();
 
-  if (macAddr == "D8:BC:38:42:FB:74") //"70:B8:F6:D8:F6:48"
+  if (macAddr == "D8:BC:38:42:FB:74")
   {
     aDelay = 16526;
     myID = 1;
   }
-  else if (macAddr == "D8:BC:38:42:FF:5C") //70:B8:F6:D8:F6:24
+  else if (macAddr == "D8:BC:38:42:FF:5C")
   {
     aDelay = 16532;
     myID = 2;
   }
-  else if (macAddr == "D8:BC:38:42:F3:C4") //70:B8:F6:D8:F6:60
+  else if (macAddr == "D8:BC:38:42:F3:C4")
   {
     aDelay = 16524;
     myID = 3;
@@ -22,26 +24,32 @@ void setMyProperties()
   
 }
 
+// Safety check if the tag is blocked
+// If the tag is reset like this, it does not interrupt the connection with the server
+// instead it tries to reach the anchor again
 void checkForReset()
 {
   currentTime = millis();
-  if (!sentAck && !receivedAck)
+  // if nothing is received during the timeout
+  if (!sentAck && !receivedAck) 
   {
     if (((currentTime - lastActivity) > DEFAULT_RESET_TIMEOUT) && isRequestFromServerReceived)
     {
+      // Reinit
       for (size_t i = 0; i < MAX_ANCHORS; i++)
         discoveredAnchors[i] = 0;
       discoveredAnchorsCount = 0;
       initReceiver();
-      isTagBusy = true;
+      isTagBusy = true; // start communicating with anchors again
       expectedMessageType = MSG_TYPE_POLL_ACK;
       sendMessage(MSG_TYPE_POLL);
-      noteActivity();
+      noteActivity(); // activity watchdog
     }
     return;
   }
 }
 
+// Init as a receiver
 void initReceiver()
 {
   DW1000.newReceive();
@@ -65,12 +73,14 @@ void connectToServer()
 {
   while (!client.connect(host, 30001))
   {
-    delay(500);
+    delay(500); // wait until repeating
   }
 }
 
 void sendDistancesToServer()
 {
+  // Prepare message with measured distances
+  // *position* is helping structure for forming the message
   int position = sprintf(msgToSend, "%d %d %f", myID, discoveredAnchors[0], distances[0]);
 
   if (discoveredAnchorsCount > 1)
@@ -83,9 +93,11 @@ void sendDistancesToServer()
 
   sprintf(msgToSend + position, "\n");
 
+  // Send distances to the server
   client.print(msgToSend);
 }
 
+// Check for correct anchor address 
 bool isAnchorAddress()
 {
   if (100 < receivedMessage[1] && receivedMessage[1] < 199)
@@ -94,6 +106,7 @@ bool isAnchorAddress()
   return false;
 }
 
+// Check if received message is from the expected anchor
 bool checkSource()
 {
   if (isAnchorAddress() && currentAnchorAddress == receivedMessage[1])
@@ -102,6 +115,7 @@ bool checkSource()
   return false;
 }
 
+// Chekc if the message is intended to this Tag (me)
 bool checkDestination()
 {
   if (myID == receivedMessage[2])
@@ -115,6 +129,10 @@ bool checkSourceAndDestination()
   return checkSource() && checkDestination();
 }
 
+/* Asymmetric DS-TWR:
+*  - we do not expect the reply time to be symmetric for anchor and tag
+*  - we assume the possibility of clock drifts
+*/
 float computeRangeAsymmetric()
 {
   DW1000Time round1 = (timePollAckReceived - timePollSent).wrap();
@@ -132,6 +150,7 @@ void prepareMessageToSend(byte messageType, byte source, byte destination)
   memcpy(currentMessage + 2, &destination, sizeof(destination));
 }
 
+// broadcast
 void prepareMessageToSend(byte messageType, byte source)
 {
   memcpy(currentMessage, &messageType, sizeof(messageType));
@@ -153,6 +172,8 @@ void handleSent()
   sentAck = true;
 }
 
+// Activity watchdog
+// helps to detect if the tag is blocked in communication
 void noteActivity()
 {
   lastActivity = millis();
@@ -160,7 +181,7 @@ void noteActivity()
 
 void sendMessage(byte messageType)
 {
-
+  // Preparation for transmitting the message  
   DW1000.newTransmit();
   DW1000.setDefaults();
 
@@ -170,7 +191,6 @@ void sendMessage(byte messageType)
   }
   else if (messageType == MSG_TYPE_RANGE)
   {
-
     prepareMessageToSend(MSG_TYPE_RANGE, myID, currentAnchorAddress);
     setReplyDelay();
     rangeReplyDelay = DW1000Time(replyDelay, DW1000Time::MICROSECONDS);
@@ -178,12 +198,14 @@ void sendMessage(byte messageType)
   }
 
   DW1000.setData(currentMessage, sizeof(currentMessage));
-
+  
+  // Send message to the anchor
   DW1000.startTransmit();
   blinkTimer = millis();
   discoveryTimer = millis();
 }
 
+// Check if the anchor has already been detected
 bool isAnchorDiscovered()
 {
   for (size_t i = 0; i < MAX_ANCHORS; i++)
@@ -197,12 +219,12 @@ bool isAnchorDiscovered()
   return false;
 }
 
+// Init as a Tag
 void initTag()
 {
   DW1000.begin(PIN_IRQ, PIN_RST);
   DW1000.select(PIN_SS);
 
-//  /myID = getMyID();
   setMyProperties();
 
   DW1000.newConfiguration();
@@ -218,6 +240,8 @@ void initTag()
 
   initReceiver();
 
+  // Wait until everything is set up correctly
+  // delay() is not working correctly
   currentTime = millis();
   while (millis() - currentTime < 1000)
   {
@@ -244,10 +268,11 @@ void loop()
     noteActivity();
   }
 
+  // If the server and tag are free: let's communicate!
   if (client.available() && !isRequestFromServerReceived)
   {
     serverRequest = client.readStringUntil('\n');
-    if (serverRequest == "1")
+    if (serverRequest == "1") // received "Measure!" request from the server
     {
       for (size_t i = 0; i < MAX_ANCHORS; i++)
         discoveredAnchors[i] = 0;
@@ -256,19 +281,21 @@ void loop()
       currentAnchorAddress = 0;
       isTagBusy = true;
       expectedMessageType = MSG_TYPE_POLL_ACK;
-      sendMessage(MSG_TYPE_POLL);
+      sendMessage(MSG_TYPE_POLL); // Broadcast to initiate a communication with anchors
       noteActivity();
       return;
     }
   }
 
-  if (isRequestFromServerReceived)
+  if (isRequestFromServerReceived) //safety check
   {
-    if (sentAck)
+    // If something has been sent
+    if (sentAck) 
     {
       noteActivity();
       sentAck = false;
 
+      // Record the transmission time for DS-TWR 
       if (currentMessage[0] == MSG_TYPE_POLL)
       {
         DW1000.getTransmitTimestamp(timePollSent);
@@ -280,11 +307,13 @@ void loop()
       }
     }
 
+    // If something has been received
     if (receivedAck)
     {
       receivedAck = false;
       noteActivity();
 
+      // Unpack the received message
       DW1000.getData(receivedMessage, sizeof(receivedMessage));
 
       if (expectedMessageType == receivedMessage[0])
@@ -293,11 +322,12 @@ void loop()
         {
           if (expectedMessageType == MSG_TYPE_POLL_ACK && checkDestination())
           {
+            // If new anchor is discovered
             if (!isAnchorDiscovered() && isAnchorAddress())
             {
               discoveredAnchors[discoveredAnchorsCount++] = receivedMessage[1];
               currentAnchorAddress = receivedMessage[1];
-              DW1000.getReceiveTimestamp(timePollAckReceived);
+              DW1000.getReceiveTimestamp(timePollAckReceived); // record timestamp of reception for DS-TWR
               expectedMessageType = MSG_TYPE_RANGE_REPORT;
               sendMessage(MSG_TYPE_RANGE);
               noteActivity();
@@ -305,8 +335,11 @@ void loop()
             return;
           }
 
+          // Calculate the distance (using DS-TWR) 
+          //  if it is last message in communication with the anchor
           if (expectedMessageType == MSG_TYPE_RANGE_REPORT && checkSourceAndDestination())
           {
+            // Get timestamps from message for DS-TWR
             timePollReceived.setTimestamp(receivedMessage + 5);
             timePollAckSent.setTimestamp(receivedMessage + 10);
             timeRangeReceived.setTimestamp(receivedMessage + 15);
@@ -314,6 +347,8 @@ void loop()
 
             distances[discoveredAnchorsCount - 1] = distance;
             isTagBusy = false;
+            // Start discovering new anchors
+            //  if the desired number of anchors has not yet been found
             if (discoveredAnchorsCount < MIN_ANCHORS)
             {
               currentAnchorAddress = 0;
@@ -328,6 +363,8 @@ void loop()
       }
     }
 
+    // If the desired number of anchors has been found
+    //  it is time to send measurements to the server!
     discoveryTimeout = millis();
     if (!isTagBusy && (discoveredAnchorsCount >= MIN_ANCHORS || discoveryTimeout - discoveryTimer > BLINK_DELAY))
     {
@@ -347,6 +384,7 @@ void loop()
       return;
     }
 
+    // Otherwise, try to discover new anchors
     blinkCurrentMillis = millis();
     if (!isTagBusy && discoveredAnchorsCount < MIN_ANCHORS && blinkCurrentMillis - blinkTimer > BLINK_DELAY)
     {

@@ -1,7 +1,16 @@
 #ifndef SHAREDDATA_H
 #define SHAREDDATA_H
 
-// Allows to synchronize threads. For example when server do not receive the data, video is not recording
+// Allows to synchronize threads. 
+
+/*********************************************** Shared Data **********************************************************
+ * This is an auxiliary structure, which helps in communcation between the Server, Video Manager and Activity Watchdog
+ * For example, it ensures safe termination of the Server_Multithreaded (when "s" is pressed): 
+ *  - safe shutdown of the (UWB) Server
+ *  - safe releasing cv::VideoCapture webcam
+ *  - pause recording of both data streams (when "p" is pressed in cv::imshow window)
+***********************************************************************************************************************/
+
 #include <mutex>
 #include <chrono>
 #include <ctime>
