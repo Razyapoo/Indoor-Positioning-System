@@ -13,13 +13,13 @@ It doesn't record all changes, but the most important.
   - uploading existing code from official **[arduino-dw1000](https://github.com/thotro/arduino-dw1000)** library (examples/DW1000Ranging_ANCHOR/DW1000Ranging_ANCHOR.ino and examples/DW1000Ranging_TAG/DW1000Ranging_TAG.ino)
     - it works perfectly, but only for one tag and one anchor
     - To support more anchors, we have to use already implemented linked list of anchors:
-      - integration of [link.cpp](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.cpp) and [link.h](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.h) to detect multiple anchors from a tag
+      - integration of [link.cpp](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.cpp) and [link.h](https://github.com/playfultechnology/UWBRTLPS/blob/main/ESP32/UWB_Positioning/link.h) to detect multiple anchors from a tag. However, there is a downside of this approad.
 
-- The main idea of the project is to implement synchronized system which uses several methods for distance measurement and then estimates final distance based on measured distances. For example it can use average.
+- The main idea of the project is to implement synchronized system which uses several methods for distance measurement.
 
   - this requires synchronization between each method
 
-- First thing which comes to mind is to use some machine which will collect data from every method and then make final decision about the distance estimation. This machine can be a server.
+- First thing which comes to mind is to use some machine which will collect data from every method. This machine can be a server.
 
 - There are two ways to store the distances measured by UWB chips: in anchors and in tags. 
 
