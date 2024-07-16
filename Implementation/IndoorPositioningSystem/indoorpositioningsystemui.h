@@ -1,8 +1,8 @@
 #ifndef IndoorPositioningSystemUI_H
 #define IndoorPositioningSystemUI_H
 
-/*********************************************** Main GUI (Video Player) *************************************************
- * This is a Main Video Player which shows synchronized Video and estimated data (UWB, Pixel-to-Real, Optical)
+/*********************************************** Main GUI (Indoor Positioning System) *************************************************
+ * This is a Main "Video Player" which shows synchronized Video and estimated data (UWB, Pixel-to-Real, Optical)
  * It communicates with other part of the program though ViewModel class
  *
  * Responsible for:
