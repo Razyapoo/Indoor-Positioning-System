@@ -90,7 +90,7 @@ void DataProcessor::loadData(const std::string& folderName, const std::string& U
     }
 
     // Add Pointer to uwbDataVector. Needed for "on-the-fly" data correction.
-    // After correcting, data shown in the Video Player are atomatically adjusted.
+    // After correcting, data shown in the GUI are atomatically adjusted.
     for (UWBData& data: uwbDataVector) {
         uwbDataPerTag[data.tagID].push_back(&data);
     }
@@ -216,7 +216,7 @@ int DataProcessor::binarySearchVideoFrameID(const long long &uwbTimestamp) {
     return closestID;
 }
 
-// For a given frame, find the closest UWB measurements for each observed person and enque to the ThreadSafeQueue for visualization in Video Player.
+// For a given frame, find the closest UWB measurements for each observed person and enque to the ThreadSafeQueue for visualization in GUI.
 void DataProcessor::onFindUWBMeasurementAndEnqueue(int frameIndex, QImage qImage, DetectionData detectedPeople) {
 
     long long frameTimestamp = videoTimestampsVector[frameIndex - 1];
@@ -377,7 +377,7 @@ void DataProcessor::onFindUWBMeasurementAndExport(int frameIndex, int rangeIndex
         if (outputFileOptical.is_open()) outputFileOptical.close();
     }
 
-    // Update Export Progress Dialog in main Video Player (GUI)
+    // Update Export Progress Dialog in main GUI (GUI)
     emit exportProgressUpdated(rangeIndex);
 }
 
@@ -788,7 +788,7 @@ void DataProcessor::calculatePolynomialRegression(const std::vector<double>& ref
     emit requestShowOriginalVsAdjustedDistances(timestampsToAnalyze, distancesToAnalyzeOriginal, distancesToAnalyzeAdjusted);
 }
 
-// Update "on-the-fly" data to be visualized in Video Player (GUI)
+// Update "on-the-fly" data to be visualized in GUI
 void DataProcessor::updateOriginalWithAdjustedValues() {
     for (int i = 0; i < distancesToAnalyzeAdjusted.size(); ++i) {
         *(distancesToAnalyzeOriginal[i]) = distancesToAnalyzeAdjusted[i];

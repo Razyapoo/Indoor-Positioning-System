@@ -25,7 +25,7 @@ bool Calibrator::found;
 uint8_t Calibrator::key;
 uint16_t Calibrator::imageCounter = 0;
 
-// Output matrices that are used in Video Player (GUI)
+// Output matrices that are used in GUI
 cv::Mat Calibrator::cameraMatrix, Calibrator::distortionCoeffs, Calibrator::optimalCameraMatrix;
 std::vector<cv::Mat> Calibrator::rotationVecs, Calibrator::translationVecs;
 

@@ -15,7 +15,7 @@ void ThreadSafeQueue::enqueue(UWBVideoData&& data) {
         return;
     }
     buffer.push(std::move(data));
-    cvar.notify_all(); // notify all who waits for update in the queue, e.g. Video Player to show frame
+    cvar.notify_all(); // notify all who waits for update in the queue, e.g. GUI to show frame
 }
 
 bool ThreadSafeQueue::dequeue(UWBVideoData& data) {

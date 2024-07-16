@@ -2,7 +2,7 @@
 #define IndoorPositioningSystemUI_H
 
 /*********************************************** Main GUI (Indoor Positioning System) *************************************************
- * This is a Main "Video Player" which shows synchronized Video and estimated data (UWB, Pixel-to-Real, Optical)
+ * This is a Main GUI which shows synchronized Video and estimated data (UWB, Pixel-to-Real, Optical)
  * It communicates with other part of the program though ViewModel class
  *
  * Responsible for:
@@ -10,7 +10,7 @@
  *  - Load / Play / Pause / Seek data stream
  *  - Load addiotnal data for HumanDetector (.weights, .cfg), XGBoost (.json), Intrinsic Camera Parameters (.xml)
  *
- * Folder structure to be opened in Video Pleayer as a project (raw video + raw UWB data):
+ * Folder structure to open in Indoor Positioning System as a project (raw video + raw UWB data):
  *  - UWB_timestamps.txt
  *  - video.avi
  *  - video_timestamps.txt

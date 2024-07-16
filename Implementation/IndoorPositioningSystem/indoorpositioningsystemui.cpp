@@ -222,7 +222,7 @@ void IndoorPositioningSystemUI::onHumanDetectorNotInitialized() {
 }
 
 //---------------------------------- Update Data in GUI ------------------------------------------------------
-// Update UWB lables in Video Player
+// Update UWB lables in GUI
 void IndoorPositioningSystemUI::onUWBDataUpdated(UWBData tag)
 {
     QString tagTimestampText = QString::number(tag.timestamp);

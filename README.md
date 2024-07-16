@@ -24,7 +24,7 @@
 │   │   └── User documentation                   # User guides and manuals
 │   ├── Journal                                  # Journal entries related to the project
 │   └── Papers                                   # Research papers and articles (Motivation for the project)
-├── Data for Indoor Positioning System (GUI)     # Data files prepared to be opened in the IPS (GUI) application
+├── Data for Indoor Positioning System (GUI)     # Data files prepared to open in the IPS (GUI) application
 │   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)
 │   │   ├── Experiment 109                       # Prepared data for Experiment 109
 │   │   ├── Experiment 113                       # Prepared data for Experiment 113
@@ -53,5 +53,5 @@
 │   └── Relusts of evaluation (Plots, Statistics) # Evaluation results, including plots and statistics
 │       ├── Plots                                # Plot files for evaluation results
 │       └── Statistics                           # Statistical analysis of evaluation results
-└── Recorded Experiments                         # Raw data and recordings from experiments (Not prepared to be opened in GUI)
+└── Recorded Experiments                         # Raw data and recordings from experiments (Not prepared to open in GUI)
 ```

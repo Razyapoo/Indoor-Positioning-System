@@ -45,7 +45,7 @@ public:
     static uint8_t key;
     static uint16_t imageCounter;
     
-    // Output matrices that are used in Video Player (GUI)
+    // Output matrices that are used in GUI
     static cv::Mat cameraMatrix, optimalCameraMatrix, distortionCoeffs;
     static std::vector<cv::Mat> rotationVecs, translationVecs;
 
