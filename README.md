@@ -22,7 +22,7 @@
 │   │   ├── Main Documentation                   # Thesis
 │   │   ├── Technical Documentation              # Detailed technical documentation
 │   │   └── User documentation                   # User guides and manuals
-│   ├── Journal                                  # Journal entries related to the project
+│   ├── Journal                                  # Notes collected during experiments and development of the project
 │   └── Papers                                   # Research papers and articles (Motivation for the project)
 ├── Data for Indoor Positioning System (GUI)     # Data files prepared for opening in the IPS (GUI) application
 │   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)

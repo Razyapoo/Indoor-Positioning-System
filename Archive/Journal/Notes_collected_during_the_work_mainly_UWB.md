@@ -1,6 +1,6 @@
 # Journal
 
-This is the journal to record updates and ideas, what didn't work, what was changed etc. Starting date is Oct 31, 2022 (middle point of the implementation, not beginning)
+This is the journal for recording updates and ideas, what didn't work, what was changed etc. Starting date is Oct 31, 2022 (middle point of the implementation, not beginning)
 
 It doesn't record all changes, but the most important.
 
