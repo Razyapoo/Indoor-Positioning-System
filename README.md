@@ -24,7 +24,7 @@
 │   │   └── User documentation                   # User guides and manuals
 │   ├── Journal                                  # Journal entries related to the project
 │   └── Papers                                   # Research papers and articles (Motivation for the project)
-├── Data for Indoor Positioning System (GUI)     # Data files prepared to open in the IPS (GUI) application
+├── Data for Indoor Positioning System (GUI)     # Data files prepared for opening in the IPS (GUI) application
 │   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)
 │   │   ├── Experiment 109                       # Prepared data for Experiment 109
 │   │   ├── Experiment 113                       # Prepared data for Experiment 113
@@ -40,7 +40,7 @@
 │   │   └── tagArduino                           # Firmware for Tag
 │   ├── IndoorPositioningSystem                  # Main GUI
 │   ├── Camera Intrinsic Calibration (Optical)   # Intrinsic camera calibration
-│   ├── ├── intrinsic_parameters.xml             # Parameters prepared to be used in GUI for Optical method
+│   ├── ├── intrinsic_parameters.xml             # Parameters prepared for using in GUI for Optical method
 │   │   └── Calibrator                           # Source code for calibration 
 │   ├── PixelToReal                              # Source code and data for PixelToReal training
 │   └── Server                                   # Centralized server for recording UWB and video data
@@ -53,5 +53,5 @@
 │   └── Relusts of evaluation (Plots, Statistics) # Evaluation results, including plots and statistics
 │       ├── Plots                                # Plot files for evaluation results
 │       └── Statistics                           # Statistical analysis of evaluation results
-└── Recorded Experiments                         # Raw data and recordings from experiments (Not prepared to open in GUI)
+└── Recorded Experiments                         # Raw data and recordings from experiments (Not prepared for opening in GUI)
 ```

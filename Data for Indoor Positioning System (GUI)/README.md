@@ -12,7 +12,7 @@ Contains data that are **ready** to open in Indoor Positioning System (GUI)
 ## Structure
 ```
 .
-├── Data for Indoor Positioning System (GUI)     # Data files prepared to open in the Indoor Positioning System (GUI) application
+├── Data for Indoor Positioning System (GUI)     # Data files prepared for opening in the Indoor Positioning System (GUI) application
 │   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)
 │   │   ├── Experiment 109                       # Prepared data for Experiment 109
 │   │   ├── Experiment 113                       # Prepared data for Experiment 113
