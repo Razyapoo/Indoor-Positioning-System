@@ -230,7 +230,7 @@ void Server::runServer()
                     }
 
                     // Response with ACK - show successful receipt
-                    std::string responseToTag = "7\n";
+                    std::string responseToTag = "7\n"; // RECEIVED
                     write(clientSocketFD, responseToTag.c_str(), responseToTag.length());
 
                     // Remember the tag for new iterations

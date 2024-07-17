@@ -3,9 +3,9 @@
 Contains source code and implementation files.
 
 !!! IMPORTANT !!!:
-- Coordinates are calculate in Indoor Positioning System for all methods
-    - Tags only estimate distances
-    - Calibrator only gives calibration parameters
+- People positions are calculated in Indoor Positioning System (GUI) for all methods
+    - Tags only estimate distances (ESP32 UWB) 
+    - Calibrator only gives calibration parameters (Camera Intrinsic Calibration)
 
 **Requarnments**:
 - Linux operating system
