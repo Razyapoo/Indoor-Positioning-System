@@ -1,0 +1,1 @@
+For detailed documentation, including the installation process and application usage, please refer to our [Wiki](https://github.com/Razyapoo/Master-Thesis/wiki).

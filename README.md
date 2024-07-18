@@ -14,11 +14,14 @@
 **Institute Name:** Charles University\
 **Department:** Department of Software Engineering
 
+For detailed documentation, including the installation process and application usage, please refer to our [Wiki](https://github.com/Razyapoo/Master-Thesis/wiki).
+
 ## Project structure
 ```
 .
 ├── Archive                                      # Contains archived documents and papers
 │   ├── Documentation                            # Documentation related to the project
+│   ├── Images for wiki                          # Images for wiki 
 │   │   ├── Main Documentation                   # Thesis
 │   │   ├── Technical Documentation              # Detailed technical documentation
 │   │   └── User documentation                   # User guides and manuals
