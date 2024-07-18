@@ -3088,14 +3088,3 @@ Notes:
 
 - Polynomial regression of any degree does not work to train a model. All predicted values are bad, even of trained data. EXtreme Gradient Booster Regression is way better. Predictions are almost correct.
 
-
-# Notes for text
-
-How to lower the image quality:
-  1. Open .svg in inkscape
-  2. Set lower quality when export (1920x1080, 72 Dpi)
-  3. Compress .png: pngquant input.png --quality=50-65 --force output.png
-  3. Convert .png to .pdf: convert input.png output.pdf
-
-How to convert .avi to .mp4 (MPEG-4 (PUID: fmt/199)):
-  1. ffmpeg -i input.avi -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 192k output.mp4

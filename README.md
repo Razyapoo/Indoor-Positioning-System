@@ -25,11 +25,11 @@
 │   ├── Journal                                  # Notes collected during experiments and development of the project
 │   └── Papers                                   # Research papers and articles (Motivation for the project)
 ├── Data for Indoor Positioning System (GUI)     # Data files prepared to open in the IPS (GUI) application
-│   ├── Ground truth distances                   # Ground truth distance data for experiments (used for correction of UWB measurements)
-│   │   ├── Experiment 109                       # Prepared data for Experiment 109
-│   │   ├── Experiment 113                       # Prepared data for Experiment 113
-│   │   ├── Experiment 118                       # Prepared data for Experiment 118
-│   │   └── Experiment 124                       # Prepared data for Experiment 124
+│   ├── Ground truth data                        # Ground truth distances and coordinates for experiments (used for correction of UWB measurements)
+│   │   ├── Experiment 109                       # Ground truth data for Experiment 109
+│   │   ├── Experiment 113                       # Ground truth data for Experiment 113
+│   │   ├── Experiment 118                       # Ground truth data for Experiment 118
+│   │   └── Experiment 124                       # Ground truth data for Experiment 124
 │   ├── Test - Experiment 113                    # Test data for PixelToReal model from Experiment 113
 │   ├── Test - Experiment 118                    # Test data for PixelToReal model from Experiment 118
 │   ├── Test - Experiment 124                    # Test data for PixelToReal model from Experiment 124
@@ -40,7 +40,6 @@
 │   │   └── tagArduino                           # Firmware for Tag
 │   ├── IndoorPositioningSystem                  # Main GUI
 │   ├── Camera Intrinsic Calibration (Optical)   # Intrinsic camera calibration
-│   ├── ├── intrinsic_parameters.xml             # Parameters prepared for using in GUI for Optical method
 │   │   └── Calibrator                           # Source code for calibration 
 │   ├── PixelToReal                              # Source code and data for PixelToReal training
 │   └── Server                                   # Centralized server for recording UWB and video data
