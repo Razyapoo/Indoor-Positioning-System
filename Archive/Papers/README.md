@@ -1,3 +1,3 @@
 # Papers Archive
 
-This papers are used as motivation
+This papers are used as a motivation
