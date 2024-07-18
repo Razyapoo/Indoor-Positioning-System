@@ -2,16 +2,18 @@
 
 Contains data that are **ready** to open in Indoor Positioning System (GUI)
 - The "Ground truth data" **should not** be opened in as a project in GUI
-    - These are Ground Truth distances for data correction in Data Analysis window in GUI!!!
-    - This folder also contains Ground Truth Coordinates user for methods' evaluation (UWB, Pixel-to-Real, Optical)
+    - These are Ground Truth distances for UWB measurements correction in Data Analysis window in GUI!!!
+    - This folder also contains Ground Truth Coordinates used for methods' evaluation (UWB, Pixel-to-Real, Optical)
 
-- Indoor Positioning System (GUI) opens as a project a folder consisting of:
+- Indoor Positioning System (GUI) opens as a project (IPS project) a folder consisting of:
     - `UWB_timestamps.txt` - UWB measurements.
     - `video_timestamps.txt` - index file to read the video frame-by-frame.
-    - `video (.avi, .mp4)` - original video have .avi format; for sending the project to SIS sample video were changed to .mp4
+    - `video (.avi, .mp4)` - original video have .avi format; for sending the project to SIS, sample video were changed to .mp4
 
-- Coordinates of anchors (should be used when video is opened in Indoor Positioning System GUI)
-    - They have different coordinates of origins!!
+- Coordinates of anchors
+    - Each experiment have different coordinates of Origin of UWB coordinate system!!
+    - Input the following coordinates of the anchors when opening a new IPS project
+    - Origin should be checked as so, when anchor positions are entered in Indoor Positioning System GUI 
     - Experiment 109
         - Anchor 101 { x: 0.627, y: 2.08} (Origin)
         - Anchor 102 { x: 3.127, y: 2.08}
