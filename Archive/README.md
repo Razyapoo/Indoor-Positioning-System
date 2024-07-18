@@ -6,7 +6,7 @@ Contains archived documents, journals, and research papers relevant to the proje
 ```
 .
 ├── Documentation                            # Documentation related to the project.
-    ├── Images for wiki                      # Images for wiki 
+│   ├── Images for wiki                      # Images for wiki 
 │   ├── Main Documentation                   # Thesis text itself.
 │   ├── Technical Documentation              # Detailed technical documentation including system design, implementation details, and technical specifications, installation instructions.
 │   └── User documentation                   # User guides and manuals.
