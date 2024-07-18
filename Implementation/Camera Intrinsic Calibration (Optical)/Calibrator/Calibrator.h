@@ -1,5 +1,5 @@
-#ifndef CALIBRATION_H
-#define CALIBRATION_H
+#ifndef CALIBRATOR_H
+#define CALIBRATOR_H
 
 
 /*********************************************** Calibrator ***************************************************

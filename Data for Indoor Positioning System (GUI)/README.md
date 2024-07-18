@@ -33,7 +33,7 @@ Contains data that are **ready** to open in Indoor Positioning System (GUI)
         - Anchor 102 { x: 1.112, y: 2.08} (Origin)
         - Anchor 103 { x: 1.112, y: 8.08}
         - Anchor 104 { x: 3.612, y: 8.08}
-        
+
 ## Structure
 ```
 .

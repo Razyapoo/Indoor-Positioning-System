@@ -9,7 +9,7 @@ The calibrator determines the intrinsic parameters of a camera:
 
 These parameters are used to calculate people coordinates using Optical method and undistort the image for better people detection.
 
-`intrinsic_parameters_to_be_used_in_GUI.xml` - is prepared intrinsic parameters to use in Indoor Positioning System (GUI)
+`intrinsic_parameters_to_be_used_in_GUI.xml` - prepared intrinsic parameters to use in Indoor Positioning System (GUI)
 
 **Process**:
 - The calibration process uses a chessboard pattern to gather multiple views of the pattern from different angles.

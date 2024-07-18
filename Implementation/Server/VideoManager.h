@@ -1,5 +1,5 @@
-#ifndef VIDOMANAGER_H
-#define VIDOMANAGER_H
+#ifndef VIDEOMANAGER_H
+#define VIDEOMANAGER_H
 
 /*********************************************** Video Manager **********************************************************
  * Responsible for:
