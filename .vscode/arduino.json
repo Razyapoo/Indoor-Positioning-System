@@ -1,6 +1,0 @@
-{
-    "configuration": "PartitionScheme=default,FlashMode=qio,FlashFreq=80,UploadSpeed=921600,DebugLevel=none",
-    "board": "esp32:esp32:esp32wrover",
-    "port": "/dev/ttyS0",
-    "sketch": "Hardware (ESP32)/11.8.2022 (own implementation)/anchorArduino/anchorArduino.ino"
-}
