@@ -5,7 +5,7 @@
 **Email:** oskarrazyapov@gmail.com  
 
 ## Abstract
-
+> purpose of the project and its overview (will be added)
 
 
 **Keywords:** Repeatable Experiments, CCTV Cameras, Localization, Ultra-Wide band, Machine learning
@@ -16,7 +16,27 @@
 
 ## Documentation
 
-For detailed documentation, including the installation process and application usage, please refer to our [Wiki](https://github.com/Razyapoo/Master-Thesis/wiki).
+The entire application (system) consists of several separate parts (smaller applications) each located in its own folder within this repository. Each part has its own installation guide available in the README.md file found in its respective folder. Detailed instructions on how to use the sepcific part of the application can be found in the [Wiki](https://github.com/Razyapoo/Master-Thesis/wiki).
+  
+## Workflow of the system
+
+- **Working with video and UWB**
+    1. Video and UWB data are collected using the [Server](./Server/).
+        - The server [records](./Implementation/Server/VideoManager.h) video data and [communicates](./Implementation/Server/Server.h) with [ESP32 UWB devices](./ESP32%20UWB/), collecting data from both sources.
+        - After the data is collected, they should be formatted for opening in GUI, as described in [Recorded Experiments](../Recorded%20Experiments/).
+    2. After correction, the collected data can be opened in [Indoor Positioning System (GUI)](./Implementation/IndoorPositioningSystem/).
+
+- **Camera calibration for Optical method**
+
+    1. The camera calibration (calculation of intrinsic camera parameters) is performed using [Calibrator](./Implementation/Camera%20Intrinsic%20Calibration%20(Optical)/Calibrator/).
+
+    2. After calibration, the parameters can be opened in [Indoor Positioning System (GUI)](./Implementation/IndoorPositioningSystem/) to enable the people localization using Optical method
+
+- **Pixel-to-Real model training**
+    
+    1. The model capable of localizing people is trained using [`train_PixeltoReal_model.py`](./Implementation/PixelToReal/train_PixeltoReal_model.py)
+
+    2. After the model is trained, it can be opened in [Indoor Positioning System (GUI)](./Implementation/IndoorPositioningSystem/) to enable the people localization using PixelToReal model
 
 ## Project structure
 ```
@@ -38,7 +58,7 @@ For detailed documentation, including the installation process and application u
 │   ├── Test - Experiment 113                    # Test data for PixelToReal model from Experiment 113
 │   ├── Test - Experiment 118                    # Test data for PixelToReal model from Experiment 118
 │   ├── Test - Experiment 124                    # Test data for PixelToReal model from Experiment 124
-│   └── Train - Experiment 109                   # Train data for PixelToReal model from Experiment 124
+│   └── Train - Experiment 109                   # Train data for PixelToReal model from Experiment 109
 ├── Implementation                               # Source code files
 │   ├── ESP32 UWB                                # Firmware for ESP32 UWB devices
 │   │   ├── anchorArduino                        # Firmware for Anchor
@@ -46,14 +66,14 @@ For detailed documentation, including the installation process and application u
 │   ├── IndoorPositioningSystem                  # Main GUI
 │   ├── Camera Intrinsic Calibration (Optical)   # Intrinsic camera calibration
 │   │   └── Calibrator                           # Source code for calibration 
-│   ├── PixelToReal                              # Source code and data for PixelToReal training
+│   ├── PixelToReal                              # Source code and data for the PixelToReal model training
 │   └── Server                                   # Centralized server for recording UWB and video data
 ├── PixelToReal, Optical and UWB evaluation      # Evaluation data and results
 │   ├── Data for evaluation                      # Data prepared for evaluating the system (export from GUI)
-│   │   ├── For Experiment 109                   # Evaluation data for Experiment 109
-│   │   ├── For Experiment 113                   # Evaluation data for Experiment 113
-│   │   ├── For Experiment 118                   # Evaluation data for Experiment 118
-│   │   └── For Experiment 124                   # Evaluation data for Experiment 124
+│   │   ├── For Experiment 109                   # Data from the Experiment 109, to be evaluated
+│   │   ├── For Experiment 113                   # Data from the Experiment 113, to be evaluated
+│   │   ├── For Experiment 118                   # Data from the Experiment 118, to be evaluated
+│   │   └── For Experiment 124                   # Data from the Experiment 124, to be evaluated
 │   └── Relusts of evaluation (Plots, Statistics) # Evaluation results, including plots and statistics
 │       ├── Plots                                # Plot files for evaluation results
 │       └── Statistics                           # Statistical analysis of evaluation results

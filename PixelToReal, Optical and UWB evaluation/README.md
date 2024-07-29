@@ -1,14 +1,12 @@
-# Data
-
 # PixelToReal, Optical and UWB evaluation
 
 Contains:
 - `Data for evaluation`
-    - Export of data from GUI for UWB, Pixel-to-Real and Optical methods
-    - Prepared for evaluation
+    - Export of the data from GUI for UWB, Pixel-to-Real and Optical methods
+    - These data is prepared for evaluation
 
 - `Relusts of evaluation (Plots, Statistics)`
-    - Statistics and plots showing the result of the data analysis
+    - Statistics and plots showing the result of the evaluation
 
 ## Structure
 ```
