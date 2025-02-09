@@ -5,7 +5,7 @@
 **Email:** oskarrazyapov@gmail.com  
 
 ## Abstract
-> purpose of the project and its overview (will be added)
+> The purpose of this work is to obtain an extensive set of videos with automatically annotated locations of people. Using the collected data, we have developed a Pixel-to-Real machine learning model, which aims to extend static Closed-circuit television (CCTV) cameras to allow for localization of people and measuring distance between the them, solely based on the input video data. To gather the datasets, we have developed an Ultra-wideband (UWB) system, which allows for precise people localization. By synchronizing UWB and video data, we generated automatically annotated datasets, which were used for training the Pixel-to-Real model. To facilitate the data acquisition, we have developed a GUI, which allows to synchronize, visualize, and analyze video and UWB data for fast and easy system calibration. Additionally, it facilitates an export of the data for the model training. To demonstrate the accuracy of the developed model, we have developed the Optical method for people localization based on the height of people, and compared it with Pixel-to-Real model. We also performed a comprehensive evaluation of UWB, Pixel-to-Real, and Optical methods against Ground Truth people positions. Our methodology ensures the repeatability of the experiments, which allows us to support the future research and development in people localization.
 
 
 **Keywords:** Repeatable Experiments, CCTV Cameras, Localization, Ultra-Wide band, Machine learning
